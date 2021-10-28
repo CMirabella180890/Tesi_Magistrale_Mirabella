@@ -14,21 +14,12 @@
 % structural elements (i.e. main wing spar, main wing ribs...) of the
 % aircraft. The points are (V, n) couples.
 
-% For a more in depth description, look ahead in this file
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = cl_unit_lift(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.CL.value(3), ...
-                                                                                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.CL.value(4), ...
-                                                                                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value(3,:)', ...
-                                                                                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value(4,:)');
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";  
-
 % Half-span stations vector 
-half_span = linspace(0, ...
-    Aircraft.Geometry.Wing.b.value*0.5, ...
-    length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value));
+Aircraft.Geometry.Wing.y.value = linspace(0, ...
+                                          Aircraft.Geometry.Wing.b.value*0.5, ...
+                                          length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value));
 
 % Point S of the final envelope
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.y_half_span.value = half_span;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.y_half_span.Attributes.unit = "m";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value = 'Point S';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(end);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.Attributes.unit = "m/s"; 
@@ -49,8 +40,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LHT
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LHTail_S.Attributes.unit = "daN";
 
 % Point A of the final envelope
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.y_half_span.value = half_span;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.y_half_span.Attributes.unit = "m";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value = 'Point A';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit = "m/s"; 
@@ -78,8 +67,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHT
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.Attributes.unit = "daN";
 
 % Point C of the final envelope
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.y_half_span.value = half_span;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.y_half_span.Attributes.unit = "m";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value = 'Point C';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(end);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.Attributes.unit = "m/s"; 
@@ -99,8 +86,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHT
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTail_C.Attributes.unit = "daN";
 
 % Point D of the final envelope 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.y_half_span.value = half_span;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.y_half_span.Attributes.unit = "m";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value = 'Point D';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value(end);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.Attributes.unit = "m/s"; 
@@ -120,8 +105,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHT
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.Attributes.unit = "daN";
 
 % Point F of the final envelope
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.y_half_span.value = half_span;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.y_half_span.Attributes.unit = "m";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value = 'Point F';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value(end);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.Attributes.unit = "m/s"; 
@@ -141,8 +124,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHT
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHTail_F.Attributes.unit = "daN";
 
 % Point G of the final envelope
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.y_half_span.value = half_span;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.y_half_span.Attributes.unit = "m";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value = 'Point G';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.Attributes.unit = "m/s";   
@@ -162,8 +143,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHT
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHTail_G.Attributes.unit = "daN"; 
 
 % Point E of the final envelope
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.y_half_span.value = half_span;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.y_half_span.Attributes.unit = "m";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value = 'Point E';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value(end);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.Attributes.unit = "m/s"; 

@@ -237,7 +237,7 @@ classdef ShearBendingTorsion
             grid minor
             % text(y(1)-0.2, Shear(1)+20.0, Reg) % Regulation applied
             % xlabel("Position along the span - $y$ (m)", "Interpreter", "latex")
-            ylabel("Shear - $S$ $(daN/m)$", "Interpreter", "latex")
+            ylabel("Shear $(daN/m)$", "Interpreter", "latex")
             title('Subplot 1: Shear distribution')
 
             subplot(3,1,2); 
@@ -246,7 +246,7 @@ classdef ShearBendingTorsion
             grid minor
             % text(y(1)-0.2, Bend_mom(1)+20.0, Aircraft_name)                                 % Aircraft name inside the plot
             % xlabel("Position along the span - $y$ (m)", "Interpreter", "latex")
-            ylabel("Bending - $M$ $(daN*m)$", "Interpreter", "latex")
+            ylabel("Bending $(daN*m)$", "Interpreter", "latex")
             title('Subplot 2: Bending moment distribution')
             
             subplot(3,1,3); 
@@ -255,7 +255,7 @@ classdef ShearBendingTorsion
             grid minor
             % text(y(1)-0.2, Torsion(1)-20.0, Point)                                           % Regulation applied
             xlabel("Position along the semispan - $y$ (m)", "Interpreter", "latex")
-            ylabel("Torsion - $T$ $(daN*m)$", "Interpreter", "latex")
+            ylabel("Torsion $(daN*m)$", "Interpreter", "latex")
             title('Subplot 3: Torsion distribution')
             
             sgtitle(Point) 
