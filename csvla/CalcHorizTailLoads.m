@@ -632,21 +632,9 @@ Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_d
          Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_d.VD.case_three.Total_airloads.value, ...
          Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_d.VD.case_four.Total_airloads.value];
 disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
-format = '%f          %f         %f          %f\n';
+format = '%f          %f          %f          %f\n';
 label  = 'Case 1              Case 2             Case 3             Case 4  \n';
 fprintf(label);
 fprintf(format, Total.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
-
-
-
-
-
-
-
-
-
-
-
-
 
