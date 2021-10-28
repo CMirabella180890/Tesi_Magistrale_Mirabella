@@ -1,0 +1,226 @@
+{Unable to resolve the name Aircraft.Certification.Aircraft_name.value.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Main_UAS', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\v2\Main_UAS.m', 9)" style="font-weight:bold">Main_UAS</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\v2\Main_UAS.m',9,0)">line 9</a>)
+ac.name = Aircraft.Certification.Aircraft_name.value;                              % aircraft name
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 53)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',53,0)">line 53</a>)
+        Main_UAS
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)
+Aircraft = ApplyRegulation(Aircraft);
+} 
+test
+{Unrecognized field name "Aircraft_name".
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Main_UAS', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\v2\Main_UAS.m', 9)" style="font-weight:bold">Main_UAS</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\v2\Main_UAS.m',9,0)">line 9</a>)
+ac.name = Aircraft.Certification.Aircraft_name.value;                              % aircraft name
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 53)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',53,0)">line 53</a>)
+        Main_UAS
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)
+Aircraft = ApplyRegulation(Aircraft);
+} 
+test
+##############################################
+##############################################
+ 
+### aircraft name is UAS
+ 
+ 
+ 
+### aircraft configurations to be analyzed is W
+ 
+ 
+ 
+### aircraft movables to be analyzed is none
+ 
+ 
+ 
+### creating vspscript...
+ 
+ 
+ 
+ 
+ 
+### degenerating geometry and calculating mass properties...
+
+ans =
+
+     0
+
+ 
+ 
+ 
+ 
+ 
+### creating vspaero...
+ 
+ 
+ 
+ 
+ 
+### running solver...
+ 
+ 
+VSPAERO v.6.0.0 --- Compiled on: Nov  9 2019 at 19:19:15 PST  
+ 
+ 
+ 
+ 
+Initializing OPENMP for 4 threads  
+NumberOfThreads_: 4  
+Mach: 0.100000  
+AoA: 0.000000  
+ReCref_: 1000000.000000  
+Sref            = 1.120000  
+Cref            = 0.400000  
+Bref            = 2.800000  
+X_cg            = 0.100000  
+Y_cg            = 0.000000  
+Z_cg            = 0.000000  
+Mach            = 0.100000  
+AoA             = 0.000000, 3.000000, 6.000000, 9.000000  
+Beta            = 0.000000  
+Vinf            = 34.000000  
+Vref            = 34.000000  
+Rho             = 1.225000  
+ReCref          = 1000000.000000  
+ClMax           = -1.000000  
+MaxTurningAngle = -1.000000  
+Symmetry        = Y   
+FarDist         = -1.000000  
+NumWakeNodes    = -1   
+WakeIters       = 3   
+NumberOfRotors: 0  
+Number Of Surfaces: 2  
+GeomIDFlags are defined!  
+NumberOfDegenWings_: 1  
+NumberOfDegenBodies_: 0  
+Found: 0 Rotors  
+NumberOfDegenBodies_: 0  
+Done loading in geometry!  
+NumberOfSurfaces_: 1  
+NumberOfKuttaNodes: 15  
+Total NumberOfNodes:      315  
+Total NumberOfLoops:      560  
+Total NumberOfEdges:      874  
+Total NumberOfKuttaNodes: 15  
+Total surface area: 0.560000  
+Minimum loop area constraint set to: 0.560000  
+Agglomerating mesh...  
+Grid:0 --> # loops:        560 ...# Edges:        874  
+Grid:1 --> # loops:        280 ...# Edges:        594  
+Grid:2 --> # loops:         70 ...# Edges:        191   
+Grid:3 --> # loops:         20 ...# Edges:        101   
+Grid:4 --> # loops:          6 ...# Edges:         75   
+Grid:5 --> # loops:          2 ...# Edges:         69   
+Grid:6 --> # loops:          1 ...# Edges:         68   
+NumberOfGridLevels_: 6  
+NumberOfSurfacePatches_: 1  
+Xmax_ - Xmin_: 0.400000  
+Ymax_ - Ymin_: 1.400000  
+Zmax_ - Zmin_: 0.000000  
+ 
+Wake FarDist set to: 2.800000  
+Number Of Trailing Vortices: 15  
+NumberOfComponentGroups_: 1  
+Found 1 surfaces for component group: 1  
+AllComponentsAreFixed_: 0  
+Creating matrix preconditioners data structure...  
+Starting at level: 6  
+Level: 6 has MaxLoops of: 280  
+Level: 5 has MaxLoops of: 168  
+Level: 4 has MaxLoops of: 64  
+Starting at level: 4  
+Created: 5 Matrix preconditioners  
+Min matrix: 48 Loops  
+Max matrix: 64 Loops  
+Avg matrix: 56 Loops  
+ 
+Updating interaction lists due to subsonic / supersonic Mach change  
+Creating interaction lists...  
+ 
+Forward sweep...  
+The Forward Speed Up Ratio: 2.251157  
+Backward sweep...  
+ 
+Total Speed Up Ratio: 4.718298  
+ 
+ 
+Xmax_ - Xmin_: 0.400000  
+Ymax_ - Ymin_: 1.400000  
+Zmax_ - Zmin_: 0.000000  
+ 
+Wake FarDist set to: 2.800000  
+ 
+There are:          1 Vortex Sheets  
+Creating vortex sheet data...  
+There are:         15 kutta nodes for vortex sheet:          1   
+Done creating vortex sheet data...  
+Solving...  
+ 
+Wake Iter:     1 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:  -12.81484 / 0.53148    Wake Iter:     1 / 3     ... GMRES Iter:     1 ... Red:   -0.53809 / -1.00000   ...  Max:  -13.35293 / 0.53148     Wake Iter:     1 / 3     ... GMRES Iter:     2 ... Red:   -0.65244 / -1.00000   ...  Max:  -13.46728 / 0.53148     Wake Iter:     1 / 3     ... GMRES Iter:     3 ... Red:   -1.01920 / -1.00000   ...  Max:  -13.83403 / 0.53148      
+Wake Iter:     2 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:  -13.83402 / 0.53148    Wake Iter:     2 / 3     ... GMRES Iter:     1 ... Red:   -0.09210 / -1.00000   ...  Max:  -13.92611 / 0.53148     Wake Iter:     2 / 3     ... GMRES Iter:     2 ... Red:   -0.43543 / -1.00000   ...  Max:  -14.26945 / 0.53148     Wake Iter:     2 / 3     ... GMRES Iter:     3 ... Red:   -0.88884 / -1.00000   ...  Max:  -14.72285 / 0.53148     Wake Iter:     2 / 3     ... GMRES Iter:     4 ... Red:   -1.38734 / -1.00000   ...  Max:  -15.22135 / 0.53148      
+Wake Iter:     3 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:  -15.22135 / 0.53148    Wake Iter:     3 / 3     ... GMRES Iter:     1 ... Red:   -0.22440 / -1.00000   ...  Max:  -15.44575 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     2 ... Red:   -0.63670 / -1.00000   ...  Max:  -15.85806 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     3 ... Red:   -0.77666 / -1.00000   ...  Max:  -15.99801 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     4 ... Red:   -1.04364 / -1.00000   ...  Max:  -16.26499 / 0.53148      
+ 
+Xmax_ - Xmin_: 0.400000  
+Ymax_ - Ymin_: 1.400000  
+Zmax_ - Zmin_: 0.000000  
+ 
+Wake FarDist set to: 2.800000  
+ 
+There are:          1 Vortex Sheets  
+Creating vortex sheet data...  
+There are:         15 kutta nodes for vortex sheet:          1   
+Done creating vortex sheet data...  
+Solving...  
+ 
+Wake Iter:     1 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:    0.72454 / 0.53148    Wake Iter:     1 / 3     ... GMRES Iter:     1 ... Red:   -0.34648 / -1.00000   ...  Max:    0.37806 / 0.53148     Wake Iter:     1 / 3     ... GMRES Iter:     2 ... Red:   -0.74918 / -1.00000   ...  Max:   -0.02464 / 0.53148     Wake Iter:     1 / 3     ... GMRES Iter:     3 ... Red:   -1.07338 / -1.00000   ...  Max:   -0.34884 / 0.53148      
+Wake Iter:     2 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:   -0.34884 / 0.53148    Wake Iter:     2 / 3     ... GMRES Iter:     1 ... Red:   -0.26482 / -1.00000   ...  Max:   -0.61367 / 0.53148     Wake Iter:     2 / 3     ... GMRES Iter:     2 ... Red:   -0.75079 / -1.00000   ...  Max:   -1.09963 / 0.53148     Wake Iter:     2 / 3     ... GMRES Iter:     3 ... Red:   -1.04218 / -1.00000   ...  Max:   -1.39102 / 0.53148      
+Wake Iter:     3 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:   -1.39105 / 0.53148    Wake Iter:     3 / 3     ... GMRES Iter:     1 ... Red:   -0.12800 / -1.00000   ...  Max:   -1.51905 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     2 ... Red:   -0.54046 / -1.00000   ...  Max:   -1.93151 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     3 ... Red:   -0.71270 / -1.00000   ...  Max:   -2.10375 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     4 ... Red:   -1.10151 / -1.00000   ...  Max:   -2.49256 / 0.53148      
+ 
+Xmax_ - Xmin_: 0.400000  
+Ymax_ - Ymin_: 1.400000  
+Zmax_ - Zmin_: 0.000000  
+ 
+Wake FarDist set to: 2.800000  
+ 
+There are:          1 Vortex Sheets  
+Creating vortex sheet data...  
+There are:         15 kutta nodes for vortex sheet:          1   
+Done creating vortex sheet data...  
+Solving...  
+ 
+Wake Iter:     1 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:    1.02497 / 0.53148    Wake Iter:     1 / 3     ... GMRES Iter:     1 ... Red:   -0.34639 / -1.00000   ...  Max:    0.67858 / 0.53148     Wake Iter:     1 / 3     ... GMRES Iter:     2 ... Red:   -0.74900 / -1.00000   ...  Max:    0.27597 / 0.53148     Wake Iter:     1 / 3     ... GMRES Iter:     3 ... Red:   -1.07312 / -1.00000   ...  Max:   -0.04815 / 0.53148      
+Wake Iter:     2 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:   -0.04815 / 0.53148    Wake Iter:     2 / 3     ... GMRES Iter:     1 ... Red:   -0.26474 / -1.00000   ...  Max:   -0.31289 / 0.53148     Wake Iter:     2 / 3     ... GMRES Iter:     2 ... Red:   -0.75047 / -1.00000   ...  Max:   -0.79861 / 0.53148     Wake Iter:     2 / 3     ... GMRES Iter:     3 ... Red:   -1.04182 / -1.00000   ...  Max:   -1.08997 / 0.53148      
+Wake Iter:     3 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:   -1.09009 / 0.53148    Wake Iter:     3 / 3     ... GMRES Iter:     1 ... Red:   -0.12799 / -1.00000   ...  Max:   -1.21808 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     2 ... Red:   -0.54043 / -1.00000   ...  Max:   -1.63051 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     3 ... Red:   -0.71282 / -1.00000   ...  Max:   -1.80291 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     4 ... Red:   -1.10172 / -1.00000   ...  Max:   -2.19180 / 0.53148      
+ 
+Xmax_ - Xmin_: 0.400000  
+Ymax_ - Ymin_: 1.400000  
+Zmax_ - Zmin_: 0.000000  
+ 
+Wake FarDist set to: 2.800000  
+ 
+There are:          1 Vortex Sheets  
+Creating vortex sheet data...  
+There are:         15 kutta nodes for vortex sheet:          1   
+Done creating vortex sheet data...  
+Solving...  
+ 
+Wake Iter:     1 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:    1.20007 / 0.53148    Wake Iter:     1 / 3     ... GMRES Iter:     1 ... Red:   -0.34625 / -1.00000   ...  Max:    0.85382 / 0.53148     Wake Iter:     1 / 3     ... GMRES Iter:     2 ... Red:   -0.74872 / -1.00000   ...  Max:    0.45135 / 0.53148     Wake Iter:     1 / 3     ... GMRES Iter:     3 ... Red:   -1.07268 / -1.00000   ...  Max:    0.12739 / 0.53148      
+Wake Iter:     2 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:    0.12738 / 0.53148    Wake Iter:     2 / 3     ... GMRES Iter:     1 ... Red:   -0.26461 / -1.00000   ...  Max:   -0.13723 / 0.53148     Wake Iter:     2 / 3     ... GMRES Iter:     2 ... Red:   -0.74993 / -1.00000   ...  Max:   -0.62255 / 0.53148     Wake Iter:     2 / 3     ... GMRES Iter:     3 ... Red:   -1.04122 / -1.00000   ...  Max:   -0.91384 / 0.53148      
+Wake Iter:     3 / 3     ... GMRES Iter:     0 ... Red:    0.00000 / -1.00000   ...  Max:   -0.91410 / 0.53148    Wake Iter:     3 / 3     ... GMRES Iter:     1 ... Red:   -0.12797 / -1.00000   ...  Max:   -1.04208 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     2 ... Red:   -0.54038 / -1.00000   ...  Max:   -1.45448 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     3 ... Red:   -0.71301 / -1.00000   ...  Max:   -1.62711 / 0.53148     Wake Iter:     3 / 3     ... GMRES Iter:     4 ... Red:   -1.10207 / -1.00000   ...  Max:   -2.01617 / 0.53148      
+ 
+Total setup and solve time: 4.063000 seconds  
+Component 1 Name: wing
+Component 2 Name: wing
+Component 1 Name: wing
+Component 2 Name: wing
+Component 1 Name: wing
+Component 2 Name: wing
+[Warning: No parasite drag files to move] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('MoveResults', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\v2\MoveResults.m', 33)" style="font-weight:bold">MoveResults</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\v2\MoveResults.m',33,0)">line 33</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Main_PROSIB_WT', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\v2\Main_PROSIB_WT.m', 369)" style="font-weight:bold">Main_PROSIB_WT</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\v2\Main_PROSIB_WT.m',369,0)">line 369</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 55)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',55,0)">line 55</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)] 

@@ -1,0 +1,306 @@
+void main()
+{
+
+// wing
+
+string wing = AddGeom("WING");
+
+SetGeomName(wing,"wing");
+
+SetParmVal(wing,"Sym_Planar_Flag","Sym",2);
+
+Update(); 
+
+SetParmVal(wing,"X_Rel_Location","XForm",26.19);
+SetParmVal(wing,"Y_Rel_Location","XForm",0);
+SetParmVal(wing,"Z_Rel_Location","XForm",-2.15);
+SetParmVal(wing,"X_Rel_Rotation","XForm",0);
+SetParmVal(wing,"Y_Rel_Rotation","XForm",0);
+
+SetParmVal(wing,"Z_Rel_Rotation","XForm",0);
+
+Update(); 
+
+InsertXSec(wing,1,XS_FOUR_SERIES);
+InsertXSec(wing,1,XS_FOUR_SERIES);
+
+Update(); 
+
+// wing panel 1
+
+SetDriverGroup(wing,1,SPAN_WSECT_DRIVER,ROOTC_WSECT_DRIVER,TIPC_WSECT_DRIVER);
+
+SetParmVal(wing,"Root_Chord","XSec_1",14.5);
+SetParmVal(wing,"Tip_Chord","XSec_1",9.35);
+SetParmVal(wing,"Span","XSec_1",9.33);
+SetParmVal(wing,"Sweep","XSec_1",32);
+SetParmVal(wing,"Sweep_Location","XSec_1",0);
+SetParmVal(wing,"Sec_Sweep_Location","XSec_1",1);
+SetParmVal(wing,"Dihedral","XSec_1",6.2);
+
+SetParmVal(wing,"SectTess_U","XSec_1",15);
+Update(); 
+// wing panel 2
+
+SetDriverGroup(wing,2,SPAN_WSECT_DRIVER,ROOTC_WSECT_DRIVER,TIPC_WSECT_DRIVER);
+
+SetParmVal(wing,"Root_Chord","XSec_2",9.35);
+SetParmVal(wing,"Tip_Chord","XSec_2",2.74);
+SetParmVal(wing,"Span","XSec_2",16.28);
+SetParmVal(wing,"Sweep","XSec_2",32);
+SetParmVal(wing,"Sweep_Location","XSec_2",0);
+SetParmVal(wing,"Sec_Sweep_Location","XSec_2",1);
+SetParmVal(wing,"Dihedral","XSec_2",6.2);
+
+SetParmVal(wing,"SectTess_U","XSec_2",15);
+Update(); 
+// wing panel 3
+
+SetDriverGroup(wing,3,SPAN_WSECT_DRIVER,ROOTC_WSECT_DRIVER,TIPC_WSECT_DRIVER);
+
+SetParmVal(wing,"Root_Chord","XSec_3",2.74);
+SetParmVal(wing,"Tip_Chord","XSec_3",0.51);
+SetParmVal(wing,"Span","XSec_3",1.39);
+SetParmVal(wing,"Sweep","XSec_3",60);
+SetParmVal(wing,"Sweep_Location","XSec_3",0);
+SetParmVal(wing,"Sec_Sweep_Location","XSec_3",1);
+SetParmVal(wing,"Dihedral","XSec_3",50);
+
+SetParmVal(wing,"SectTess_U","XSec_3",4);
+Update(); 
+// wing airfoil 1
+
+SetParmVal(wing,"Camber","XSecCurve_0",0.02);
+SetParmVal(wing,"CamberLoc","XSecCurve_0",0.4);
+SetParmVal(wing,"ThickChord","XSecCurve_0",0.12);
+
+SetParmVal(wing,"Twist","XSec_0",3);
+SetParmVal(wing,"Twist_Location","XSec_0",0);
+
+Update(); 
+// wing airfoil 2
+
+SetParmVal(wing,"Camber","XSecCurve_1",0.02);
+SetParmVal(wing,"CamberLoc","XSecCurve_1",0.4);
+SetParmVal(wing,"ThickChord","XSecCurve_1",0.12);
+
+SetParmVal(wing,"Twist","XSec_1",1);
+SetParmVal(wing,"Twist_Location","XSec_1",0);
+
+Update(); 
+// wing airfoil 3
+
+SetParmVal(wing,"Camber","XSecCurve_2",0.02);
+SetParmVal(wing,"CamberLoc","XSecCurve_2",0.4);
+SetParmVal(wing,"ThickChord","XSecCurve_2",0.12);
+
+SetParmVal(wing,"Twist","XSec_2",-3);
+SetParmVal(wing,"Twist_Location","XSec_2",0);
+
+Update(); 
+// wing airfoil 4
+
+SetParmVal(wing,"Camber","XSecCurve_3",0.02);
+SetParmVal(wing,"CamberLoc","XSecCurve_3",0.4);
+SetParmVal(wing,"ThickChord","XSecCurve_3",0.12);
+
+SetParmVal(wing,"Twist","XSec_3",0);
+SetParmVal(wing,"Twist_Location","XSec_3",0);
+
+Update(); 
+SetParmVal(wing,"Tess_W","Shape",25);
+
+SetParmVal(wing,"CapUMinTess","EndCap",9);
+
+SetParmVal(wing,"LECluster","WingGeom",0.15);
+
+SetParmVal(wing,"TECluster","WingGeom",0.15);
+
+Update(); 
+
+// horizontal
+
+string horizontal = AddGeom("WING");
+
+SetGeomName(horizontal,"horizontal");
+
+SetParmVal(horizontal,"Sym_Planar_Flag","Sym",2);
+
+Update(); 
+
+SetParmVal(horizontal,"X_Rel_Location","XForm",64.67);
+SetParmVal(horizontal,"Y_Rel_Location","XForm",0);
+SetParmVal(horizontal,"Z_Rel_Location","XForm",1.5);
+SetParmVal(horizontal,"X_Rel_Rotation","XForm",0);
+SetParmVal(horizontal,"Y_Rel_Rotation","XForm",0);
+
+SetParmVal(horizontal,"Z_Rel_Rotation","XForm",0);
+
+Update(); 
+
+// horizontal panel 1
+
+SetDriverGroup(horizontal,1,SPAN_WSECT_DRIVER,ROOTC_WSECT_DRIVER,TIPC_WSECT_DRIVER);
+
+SetParmVal(horizontal,"Root_Chord","XSec_1",5.85);
+SetParmVal(horizontal,"Tip_Chord","XSec_1",2.43);
+SetParmVal(horizontal,"Span","XSec_1",11.54);
+SetParmVal(horizontal,"Sweep","XSec_1",30);
+SetParmVal(horizontal,"Sweep_Location","XSec_1",0);
+SetParmVal(horizontal,"Sec_Sweep_Location","XSec_1",1);
+SetParmVal(horizontal,"Dihedral","XSec_1",5.85);
+
+SetParmVal(horizontal,"SectTess_U","XSec_1",15);
+Update(); 
+// horizontal airfoil 1
+
+SetParmVal(horizontal,"Camber","XSecCurve_0",0.02);
+SetParmVal(horizontal,"CamberLoc","XSecCurve_0",0.4);
+SetParmVal(horizontal,"ThickChord","XSecCurve_0",0.12);
+
+SetParmVal(horizontal,"Twist","XSec_0",0);
+SetParmVal(horizontal,"Twist_Location","XSec_0",0);
+
+Update(); 
+// horizontal airfoil 2
+
+SetParmVal(horizontal,"Camber","XSecCurve_1",0.02);
+SetParmVal(horizontal,"CamberLoc","XSecCurve_1",0.4);
+SetParmVal(horizontal,"ThickChord","XSecCurve_1",0.12);
+
+SetParmVal(horizontal,"Twist","XSec_1",0);
+SetParmVal(horizontal,"Twist_Location","XSec_1",0);
+
+Update(); 
+SetParmVal(horizontal,"Tess_W","Shape",25);
+
+SetParmVal(horizontal,"CapUMinTess","EndCap",9);
+
+SetParmVal(horizontal,"LECluster","WingGeom",0.15);
+
+SetParmVal(horizontal,"TECluster","WingGeom",0.15);
+
+Update(); 
+
+// vertical
+
+string vertical = AddGeom("WING");
+
+SetGeomName(vertical,"vertical");
+
+SetParmVal(vertical,"Sym_Planar_Flag","Sym",0);
+
+Update(); 
+
+SetParmVal(vertical,"X_Rel_Location","XForm",60);
+SetParmVal(vertical,"Y_Rel_Location","XForm",0);
+SetParmVal(vertical,"Z_Rel_Location","XForm",0);
+SetParmVal(vertical,"X_Rel_Rotation","XForm",90);
+SetParmVal(vertical,"Y_Rel_Rotation","XForm",0);
+
+SetParmVal(vertical,"Z_Rel_Rotation","XForm",0);
+
+Update(); 
+
+// vertical panel 1
+
+SetDriverGroup(vertical,1,SPAN_WSECT_DRIVER,ROOTC_WSECT_DRIVER,TIPC_WSECT_DRIVER);
+
+SetParmVal(vertical,"Root_Chord","XSec_1",10.49);
+SetParmVal(vertical,"Tip_Chord","XSec_1",3.42);
+SetParmVal(vertical,"Span","XSec_1",11.05);
+SetParmVal(vertical,"Sweep","XSec_1",45);
+SetParmVal(vertical,"Sweep_Location","XSec_1",0);
+SetParmVal(vertical,"Sec_Sweep_Location","XSec_1",1);
+SetParmVal(vertical,"Dihedral","XSec_1",0);
+
+SetParmVal(vertical,"SectTess_U","XSec_1",15);
+Update(); 
+// vertical airfoil 1
+
+SetParmVal(vertical,"Camber","XSecCurve_0",0);
+SetParmVal(vertical,"CamberLoc","XSecCurve_0",0.2);
+SetParmVal(vertical,"ThickChord","XSecCurve_0",0.1);
+
+SetParmVal(vertical,"Twist","XSec_0",0);
+SetParmVal(vertical,"Twist_Location","XSec_0",0);
+
+Update(); 
+// vertical airfoil 2
+
+SetParmVal(vertical,"Camber","XSecCurve_1",0);
+SetParmVal(vertical,"CamberLoc","XSecCurve_1",0.2);
+SetParmVal(vertical,"ThickChord","XSecCurve_1",0.1);
+
+SetParmVal(vertical,"Twist","XSec_1",0);
+SetParmVal(vertical,"Twist_Location","XSec_1",0);
+
+Update(); 
+SetParmVal(vertical,"Tess_W","Shape",25);
+
+SetParmVal(vertical,"CapUMinTess","EndCap",9);
+
+SetParmVal(vertical,"LECluster","WingGeom",0.15);
+
+SetParmVal(vertical,"TECluster","WingGeom",0.15);
+
+Update(); 
+
+// fuselage 
+
+string fuselage = AddGeom("TransportFuse");
+
+SetParmVal(fuselage,"Length","Design",73.84);
+SetParmVal(fuselage,"Diameter","Design",5.64);
+
+Update(); 
+
+SetParmVal(fuselage,"Tess_U","Shape",30);
+SetParmVal(fuselage,"Tess_W","Shape",15);
+
+Update(); 
+
+string flap = AddSubSurf( wing , SS_CONTROL );
+SetSubSurfName(wing,flap, "flap" );
+
+SetParmVal( wing , "UStart", "SS_Control_1", 0.25788);
+SetParmVal( wing , "UStart", "SS_Control_1", 0.25788);
+SetParmVal( wing , "UEnd", "SS_Control_1", 0.51757);
+SetParmVal( wing , "Length_C_Start", "SS_Control_1", 0.25);
+SetParmVal( wing , "Tess_Num", "SS_Control_1", 10);
+Update(); 
+
+string elevator = AddSubSurf( horizontal , SS_CONTROL );
+SetSubSurfName(horizontal,elevator, "elevator" );
+
+SetParmVal( horizontal , "UStart", "SS_Control_1", 0.33333);
+SetParmVal( horizontal , "UStart", "SS_Control_1", 0.33333);
+SetParmVal( horizontal , "UEnd", "SS_Control_1", 0.66667);
+SetParmVal( horizontal , "Length_C_Start", "SS_Control_1", 0.25);
+SetParmVal( horizontal , "Tess_Num", "SS_Control_1", 10);
+Update(); 
+
+string rudder = AddSubSurf( vertical , SS_CONTROL );
+SetSubSurfName(vertical,rudder, "rudder" );
+
+SetParmVal( vertical , "UStart", "SS_Control_1", 0.33333);
+SetParmVal( vertical , "UStart", "SS_Control_1", 0.33333);
+SetParmVal( vertical , "UEnd", "SS_Control_1", 0.66667);
+SetParmVal( vertical , "Length_C_Start", "SS_Control_1", 0.25);
+SetParmVal( vertical , "Tess_Num", "SS_Control_1", 10);
+Update(); 
+
+SetComputationFileName(DEGEN_GEOM_CSV_TYPE,"A340_DegenGeom.csv");
+ComputeDegenGeom(SET_ALL,DEGEN_GEOM_CSV_TYPE);
+
+SetComputationFileName(DEGEN_GEOM_M_TYPE,"A340_DegenGeom.m");
+ComputeDegenGeom(SET_ALL,DEGEN_GEOM_M_TYPE);
+
+//==== Save Vehicle to File ====//
+string fname = "A340.vsp3";
+WriteVSPFile( fname, SET_ALL );
+
+SetComputationFileName(MASS_PROP_TXT_TYPE,"A340_MassProps.txt");
+ComputeMassProps(SET_ALL,50);
+
+}
