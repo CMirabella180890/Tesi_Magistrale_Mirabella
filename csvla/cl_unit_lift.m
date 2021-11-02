@@ -28,6 +28,9 @@ function cl = cl_unit_lift(CL1, CL2, cl1, cl2)
 %   cl  --> Lift coefficient distribution along the span associated with 
 %           the global lift coefficient CL = 1.0
 
+% Distance between CL2 and CL1
+check0 = abs(CL2 - CL1); 
+
 % Variables to check different cases for the interpolation
 check1 = abs(1.0 - CL1); 
 check2 = abs(1.0 - CL2);
