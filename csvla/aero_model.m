@@ -697,13 +697,22 @@ classdef aero_model
             %         purposes.
             
             CL = CLzero + CLalpha*AoA;
-            for i = 1:length(CL)
-                x = CL(i) - CLstar; 
-                if abs(x) < 1.0*1e-3
-                    j = i;
-                    for z = j:length(CL)
-                        CL(z) = a.*(AoA(z).^2) + b.*AoA(z) + c;
+            if length(CL) > 1
+                for i = 1:length(CL)
+                    x = CL(i) - CLstar; 
+                    if abs(x) < 1.0*1e-2
+                        j = i;
+                        for z = j:length(CL)
+                            CL(z) = a.*(AoA(z).^2) + b.*AoA(z) + c;
+                        end
                     end
+                end
+            elseif length(CL) == 1
+                x = CL - CLstar; 
+                if abs(x) < 1.0*1e-2
+                    CL = a*AoA^2 + b*AoA + c; 
+                else
+                    CL = CL;
                 end
             end
             obj = CL;
