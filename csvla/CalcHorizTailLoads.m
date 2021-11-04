@@ -177,6 +177,88 @@
 %             d alpha
 %
 % =========================================================================
+%% CS - VLA 423 - METHOD A - MANOEUVRING AIRSPEED VA 
+Aircraft.Geometry.Horizontal.Movable.max_deflection.value = 15.0;
+Aircraft.Geometry.Horizontal.Movable.max_deflection.Attributes.unit = "degrees";
+Aircraft.Geometry.Fuselage.Non_dim_radius_of_gyration.value = 0.34;
+Aircraft.Geometry.Fuselage.Non_dim_radius_of_gyration.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Fuselage.Radius_of_gyration.value = Aircraft.Geometry.Fuselage.length.value*Aircraft.Geometry.Fuselage.Non_dim_radius_of_gyration.value*0.5;
+Aircraft.Geometry.Fuselage.Radius_of_gyration.Attributes.unit = "meters";
+Aircraft.Weight.I_Level.IY.value = (Aircraft.Weight.I_Level.W_maxTakeOff.value)*(Aircraft.Geometry.Fuselage.Radius_of_gyration.value)^2;
+Aircraft.Weight.I_Level.IY.Attributes.unit = "kg * m^2"; 
+Aircraft.Geometry.Horizontal.tau.value = 0.75; 
+Aircraft.Geometry.Horizontal.tau.Attributes.unit = "Non dimensional";
+
+% OPTION (a) OF THE CS VLA 423
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.l_tail.value = Aircraft.Geometry.Horizontal.l.value; 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.S_tail.value = Aircraft.Geometry.Horizontal.S.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.S_tail.Attributes.unit = "squared meters";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.qA.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.qA.Attributes.unit = "Pa";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.a_tail_rad.value = 4.8;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.a_tail_rad.Attributes.unit = "1/radians";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.a_tail_grad.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.a_tail_rad.value*(pi/180);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.a_tail_grad.Attributes.unit = "1/degrees";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.time_step.value = 0.3;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.time_step.Attributes.unit = "seconds";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.omega.value = Aircraft.Geometry.Horizontal.Movable.max_deflection.value/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.time_step.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.omega.Attributes.unit = "deg/sec";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.damping_factor.value = 0.3; 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.damping_factor.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.IY.value = Aircraft.Weight.I_Level.IY.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.IY.Attributes.unit = "kg * m^2"; 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.dvVA.value = 0.01*(180/pi); 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.dvVA.Attributes.unit = "degree";
+
+% SOLVING THE EQUATION OF MOTION 
+% 
+%     d^2 theta   (q * S_tail * a_tail * d)   /           delta_v     \
+%     --------- = ------------------------- *| omega*dt - ------- * DF|
+%       dt^2                 IY               \             VA        /
+%
+
+A0 = (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.qA.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.S_tail.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.a_tail_grad.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.l_tail.value)/(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.IY.value);
+C  = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.dvVA.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.damping_factor.value;
+B  =(Aircraft.Constants.g.value/Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value)*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value - 1);
+t_span = [ 0.0, 50.0 ];
+f = @(t, y) [ B; y(2) - A0*(y(1)*t - C)]; % define function f(t,y)
+t0 = 0;  
+y0 = [ 17.0/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.omega.value; 17.0/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.omega.value ];                         % initial condition with vector y0
+% y0 = [ 0.0; 0.0 ]; 
+% func_hand = @(t, theta) [ theta(2) A0*(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.omega.value*t - Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.dvVA.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.damping_factor.value) ]; 
+[t, theta_dot] = ode45(f, t_span, y0);
+theta0         = [ 0.0, 0.0 ]; 
+A_theta        = (theta_dot(2,1) - theta_dot(1,1))/(t(2) - t(1));
+f_theta        = @(t, theta_dot) - theta_dot + A_theta*t;
+[t_t, theta]   = ode45(f_theta, t_span, 0.0);
+% -------------------------------------------------------------------------
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.theta_dot_plot.value = figure();
+hold on 
+grid on; grid minor; 
+plot(t, theta_dot(:,1), '-k.', 'linewidth', 1.5);
+title("Angular speed vs Time", "interpreter", "latex");
+xlabel("Time - $t$ $[s]$", "interpreter", "latex");
+ylabel("Angular velocity - $\dot{\theta}$ $[deg/s]$", "interpreter", "latex");
+% -------------------------------------------------------------------------
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.theta_plot0.value = figure();
+hold on 
+grid on; grid minor; 
+plot(t_t, theta(:,1), '-r.', 'linewidth', 1.5);
+title("Pitch angle vs Time", "interpreter", "latex");
+xlabel("Time - $t$ $[s]$", "interpreter", "latex");
+ylabel("Pitch angle - $\theta$ $[deg]$", "interpreter", "latex");
+% -------------------------------------------------------------------------
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.theta_plot1.value = figure();
+hold on 
+grid on; grid minor; 
+plot(t_t, theta(:,1), '-r.', 'linewidth', 1.5);
+title("Pitch angle vs Time", "interpreter", "latex");
+xlabel("Time - $t$ $[s]$", "interpreter", "latex");
+ylabel("Pitch angle - $\theta$ $[deg]$", "interpreter", "latex");
+xlim([0.0 10.0]);
+ylim([0.0 10.0]);
+% Aircraft.Geometry.Horizontal.S.value 
+
 %% CS - VLA 423 - METHOD D - MANOEUVRING AIRSPEED VA - POINT A OF THE FLIGHT ENVELOPE - CASE 1
 
 % Normal load n at Point A of the flight envelope
