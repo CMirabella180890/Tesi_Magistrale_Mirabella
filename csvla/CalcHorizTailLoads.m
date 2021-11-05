@@ -273,7 +273,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.IY.Attri
 
 % V = VA
 % ANGULAR ACCELERATION PER CS VLA 423
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.pitch_up_acceleration.value = (20.1/Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value - 1);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.pitch_up_acceleration.value = (20.1/Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value - 1.5);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.pitch_up_acceleration.Attributes.unit = "rad/sec^2";
 
 % PITCHING MOMENT AT VA
@@ -281,29 +281,99 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.MA.Attributes.unit = "N*m";
 
 % TAIL LOAD
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.tail_load.value = (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.MA.value/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.l_tail.value)*1e-1;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.tail_load.value = (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.MA.value/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.l_tail.value)*1e-1;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.tail_load.Attributes.unit = "daN";
 
 % TOTAL LOAD 
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.total_horizontal_load.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VAtail_load.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.total_horizontal_load.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.tail_load.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.total_horizontal_load.Attributes.unit = "daN";
 
 % V = VC
 % ANGULAR ACCELERATION PER CS VLA 423
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.pitch_up_acceleration.value = (20.1/Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value - 1);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.pitch_up_acceleration.value = (20.1/Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value - 1.5);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.pitch_up_acceleration.Attributes.unit = "rad/sec^2";
 
-% PITCHING MOMENT AT VA
+% PITCHING MOMENT AT VC
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.MC.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.IY.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.pitch_up_acceleration.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.MC.Attributes.unit = "N*m";
 
 % TAIL LOAD
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.tail_load.value = (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.MA.value/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.l_tail.value)*1e-1;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.tail_load.value = (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.MC.value/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.l_tail.value)*1e-1;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.tail_load.Attributes.unit = "daN";
 
 % TOTAL LOAD 
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.total_horizontal_load.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTail_C.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.tail_load.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.total_horizontal_load.Attributes.unit = "daN";
+
+% V = VD
+% ANGULAR ACCELERATION PER CS VLA 423
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.pitch_up_acceleration.value = (20.1/Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value - 1.5);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.pitch_up_acceleration.Attributes.unit = "rad/sec^2";
+
+% PITCHING MOMENT AT VD
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.MD.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.IY.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.pitch_up_acceleration.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.MD.Attributes.unit = "N*m";
+
+% TAIL LOAD
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.tail_load.value = (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.MD.value/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.l_tail.value)*1e-1;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.tail_load.Attributes.unit = "daN";
+
+% TOTAL LOAD 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.total_horizontal_load.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.tail_load.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.total_horizontal_load.Attributes.unit = "daN";
+
+% NOSE DOWN PITCHING 
+
+% V = VA
+% ANGULAR ACCELERATION PER CS VLA 423
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.pitch_down_acceleration.value = -(20.1/Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value - 1.5);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.pitch_down_acceleration.Attributes.unit = "rad/sec^2";
+
+% PITCHING MOMENT AT VA
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.MA.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.IY.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.pitch_down_acceleration.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.MA.Attributes.unit = "N*m";
+
+% TAIL LOAD
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.tail_load.value = (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.MA.value/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.l_tail.value)*1e-1;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.tail_load.Attributes.unit = "daN";
+
+% TOTAL LOAD 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.total_horizontal_load.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.tail_load.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.total_horizontal_load.Attributes.unit = "daN";
+
+% V = VC
+% ANGULAR ACCELERATION PER CS VLA 423
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.pitch_down_acceleration.value = -(20.1/Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value - 1.5);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.pitch_down_acceleration.Attributes.unit = "rad/sec^2";
+
+% PITCHING MOMENT AT VA
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.MC.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.IY.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.pitch_down_acceleration.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.MC.Attributes.unit = "N*m";
+
+% TAIL LOAD
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.tail_load.value = (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.MC.value/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.l_tail.value)*1e-1;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.tail_load.Attributes.unit = "daN";
+
+% TOTAL LOAD 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.total_horizontal_load.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTail_C.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.tail_load.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.total_horizontal_load.Attributes.unit = "daN";
+
+% V = VD
+% ANGULAR ACCELERATION PER CS VLA 423
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.pitch_down_acceleration.value = -(20.1/Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value - 1.5);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.pitch_down_acceleration.Attributes.unit = "rad/sec^2";
+
+% PITCHING MOMENT AT VA
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.MD.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.IY.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.pitch_down_acceleration.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.MD.Attributes.unit = "N*m";
+
+% TAIL LOAD
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.tail_load.value = (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.MD.value/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.l_tail.value)*1e-1;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.tail_load.Attributes.unit = "daN";
+
+% TOTAL LOAD 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.total_horizontal_load.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.tail_load.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.total_horizontal_load.Attributes.unit = "daN";
 
 %% CS - VLA 423 - METHOD D - MANOEUVRING AIRSPEED VA - POINT A OF THE FLIGHT ENVELOPE - CASE 1
 
