@@ -240,6 +240,13 @@ plot(t, theta_dot(:,1), '-k.', 'linewidth', 1.5);
 title("Angular speed vs Time", "interpreter", "latex");
 xlabel("Time - $t$ $[s]$", "interpreter", "latex");
 ylabel("Angular velocity - $\dot{\theta}$ $[deg/s]$", "interpreter", "latex");
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.theta_dot_plot.value, 'ThetaDot.pdf', 'ContentType', 'vector')
+% Saving figures inside correct folder
+fprintf('Saving in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile ThetaDot.pdf Output
 % -------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.theta_plot0.value = figure();
 hold on 
@@ -248,6 +255,13 @@ plot(t_t, theta(:,1), '-r.', 'linewidth', 1.5);
 title("Pitch angle vs Time", "interpreter", "latex");
 xlabel("Time - $t$ $[s]$", "interpreter", "latex");
 ylabel("Pitch angle - $\theta$ $[deg]$", "interpreter", "latex");
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.theta_plot0.value, 'Theta.pdf', 'ContentType', 'vector')
+% Saving figures inside correct folder
+fprintf('Saving in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile Theta.pdf Output
 % -------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.theta_plot1.value = figure();
 hold on 
@@ -258,7 +272,13 @@ xlabel("Time - $t$ $[s]$", "interpreter", "latex");
 ylabel("Pitch angle - $\theta$ $[deg]$", "interpreter", "latex");
 xlim([0.0 10.0]);
 ylim([0.0 10.0]);
-% Aircraft.Geometry.Horizontal.S.value 
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.theta_plot1.value, 'ThetaZoom.pdf', 'ContentType', 'vector')
+% Saving figures inside correct folder
+fprintf('Saving in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile ThetaZoom.pdf Output
 
 %% CS - VLA 423 - METHOD A - MANOEUVRING AIRSPEED VA 
 % NOSE UP PITCHING 
@@ -374,6 +394,58 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_do
 % TOTAL LOAD 
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.total_horizontal_load.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.tail_load.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.total_horizontal_load.Attributes.unit = "daN";
+
+%% PRINT RESULTS 
+
+disp(" ++++ METHOD CS - VLA 423 (b) ++++");
+disp(" ++++ PITCH UP ++++");
+
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.tail_load.value, ...
+    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.tail_load.value, ...
+    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.tail_load.value];
+disp(" ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ ")
+format = '%f          %f          %f\n';
+label  = 'VA                 VC                VD\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
+% Total horizontal tail increment
+Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VA.total_horizontal_load.value, ...
+    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VC.total_horizontal_load.value, ...
+    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.VD.total_horizontal_load.value];
+disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
+format = '%f          %f          %f\n';
+label  = 'VA                 VC                VD\n';
+fprintf(label);
+fprintf(format, Total.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
+disp(" ++++ METHOD CS - VLA 423 (b) ++++");
+disp(" ++++ PITCH DOWN ++++");
+
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.tail_load.value, ...
+    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.tail_load.value, ...
+    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.tail_load.value];
+disp(" ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ ")
+format = '%f          %f          %f\n';
+label  = 'VA                 VC                VD\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
+% Total horizontal tail increment
+Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VA.total_horizontal_load.value, ...
+    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VC.total_horizontal_load.value, ...
+    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_down.VD.total_horizontal_load.value];
+disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
+format = '%f          %f          %f\n';
+label  = 'VA                 VC                VD\n';
+fprintf(label);
+fprintf(format, Total.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 %% CS - VLA 423 - METHOD D - MANOEUVRING AIRSPEED VA - POINT A OF THE FLIGHT ENVELOPE - CASE 1
 
