@@ -336,7 +336,7 @@ Data4 = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.M
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.value];            % Negative load factors associated with wind gust, V = VD                 % VG = VD on the negative side of V - n diagram
 disp(" ++++++++++ DATA USED TO PLOT FINAL ENVELOPE ++++++++++ ")
 format = ' %f    %f     %f    %f    %f    %f\n';
-label  = ' VC            nC             VD            nD            VF            nF\n';
+label  = ' VC            nC           VD          nD          VF          nF\n';
 fprintf(label);
 fprintf(format, Data4.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
