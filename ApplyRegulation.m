@@ -52,6 +52,7 @@ switch (Aircraft.Certification.Regulation.value)
         %% STARTING OPEN VSP CALCULATION
         % Main_UAS
         % +++ ISTRUZIONE IMPORTANTE +++
+        diary off
         Main_PROSIB_WT 
         % +++ ISTRUZIONE IMPORTANTE +++
         % LOADING DATA INSIDE VARIABLE STRUCT
@@ -61,6 +62,7 @@ switch (Aircraft.Certification.Regulation.value)
         cd .. 
         cd ..
         cd ..
+        diary CMFlightLoads.txt
         cd csvla
         % The 'dir' variable contains working directory path saved as a
         % char value
