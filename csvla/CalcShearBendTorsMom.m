@@ -165,7 +165,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.Attributes.unit = "Non dimensional";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CD_F.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromFtoE.value(1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CD_F.Attributes.unit = "Non dimensional";  
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alpha_F.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_fromFtoE_new.value(1) - Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alpha_F.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_fromFtoE_new.value(1); 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alpha_F.Attributes.unit = "Radians"; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromFtoE_new.value(1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF.Attributes.unit = "daN";
@@ -234,7 +234,7 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LHTail_S.value];
 disp(" ++++++++++ POINT S OF THE FINAL ENVELOPE ++++++++++ ")
 format = ' %f          %f          %f          %f          %f          %f          %f\n';
-label  = ' VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -249,7 +249,7 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value];
 disp(" ++++++++++ POINT A OF THE FINAL ENVELOPE ++++++++++ ")
 format = ' %f          %f          %f          %f          %f          %f          %f\n';
-label  = ' VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -264,7 +264,7 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTail_C.value];
 disp(" ++++++++++ POINT C OF THE FINAL ENVELOPE ++++++++++ ")
 format = ' %f          %f          %f         %f          %f          %f          %f\n';
-label  = ' VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -279,7 +279,7 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value];
 disp(" ++++++++++ POINT D OF THE FINAL ENVELOPE ++++++++++ ")
 format = ' %f          %f          %f         %f          %f          %f            %f\n';
-label  = ' VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -294,7 +294,7 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHTail_F.value];
 disp(" ++++++++++ POINT F OF THE FINAL ENVELOPE ++++++++++ ")
 format = ' %f          %f          %f        %f          %f          %f          %f\n';
-label  = ' VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -309,7 +309,7 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHTail_G.value];
 disp(" ++++++++++ POINT G OF THE FINAL ENVELOPE ++++++++++ ")
 format = ' %f          %f          %f          %f          %f          %f          %f\n';
-label  = ' VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -324,7 +324,7 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LHTail_E.value];
 disp(" ++++++++++ POINT E OF THE FINAL ENVELOPE ++++++++++ ")
 format = ' %f          %f          %f          %f          %f          %f          %f\n';
-label  = ' VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -359,9 +359,9 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Diagram_li
                             Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value, ...
                             Aircraft.Certification.Aerodynamic_data.CL_star.value, ...
                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alpha_D.value), ...
-                           CL_F, ... 
-                           CL_G, ...
-                           CL_E, ...
+                           abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value), ... 
+                           CL_G - Aircraft.Certification.Aerodynamic_data.CL0.value, ...
+                           CL_E - Aircraft.Certification.Aerodynamic_data.CL0.value, ...
                            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
                            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
                            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
@@ -1634,9 +1634,9 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.value, ...
+- Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.value, ...
+- Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.value, ...
+- Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...

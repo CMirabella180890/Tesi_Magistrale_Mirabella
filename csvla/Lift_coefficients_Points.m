@@ -58,7 +58,7 @@ plot(alpha_E, CL_E, '.', ...
 % xlim([]);
 % ylim([0.0 1.80]);
 xlabel("Angle of attack - $\alpha$ $(deg)$", "Interpreter", "latex")
-ylabel("Lift coefficient - $C_L$", "Interpreter", "latex")
+ylabel("Wing Body Lift coefficient - $(C_L)_wb$", "Interpreter", "latex")
 title("Lift curve model", "Interpreter", "latex")
 % legend({'Full model','Inverted','Data'}, 'Interpreter', 'latex', 'Location', 'northeast')
 legend({'Normal flight', 'Inverted flight', Point_S, Point_A, Point_C, Point_D, Point_F, Point_G, Point_E}, 'Interpreter', 'latex', 'Location', 'northwestoutside')

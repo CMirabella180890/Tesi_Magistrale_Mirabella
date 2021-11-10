@@ -1102,31 +1102,31 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ POINT OF THE FINAL ENVELOPE ++++
  ++++++++++ POINT S OF THE FINAL ENVELOPE ++++++++++ 
- VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
+ V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
  19.840611          241.110535          1.631673          0.227419          11.547234          101.854796          -12.414122
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT A OF THE FINAL ENVELOPE ++++++++++ 
- VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
+ V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
  38.614737          913.297481          1.631673          0.227419          11.547234          385.813621          -16.982519
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT C OF THE FINAL ENVELOPE ++++++++++ 
- VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
+ V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
  45.164388          1249.390954          1.631673         0.227419          11.547234          527.793034          -16.982519
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT D OF THE FINAL ENVELOPE ++++++++++ 
- VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
+ V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
  58.402226          2089.127250          0.746495         0.067306          7.382850          403.760508            -39.181412
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT F OF THE FINAL ENVELOPE ++++++++++ 
- VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
- 58.402226          2089.127250          -0.890168        0.088050          18.752686          -253.622756          -31.143494
+ V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
+ 58.402226          2089.127250          -0.890168        0.088050          9.749925          -253.622756          -31.143494
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT G OF THE FINAL ENVELOPE ++++++++++ 
- VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
+ V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
  30.556409          571.887655          -0.662335          0.066710          7.254494          -98.066500          -16.184300
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT E OF THE FINAL ENVELOPE ++++++++++ 
- VS [m/s]           qS [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
+ V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
  42.387619          1100.485010          -0.217282          0.053694          12.413852          -117.522411          -50.923685
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 Saving in: 
@@ -1250,12 +1250,12 @@ Saving in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 Saving in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-Saving in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-Saving in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-Saving in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ METHOD CS - VLA 423 (a) ++++
+ ++++ UNCHECKED ++++
+ ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
+VA                 
+-22737577229697202226079989189598123512062604268283740230897519042078966232537053571313515364352.000000          
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ METHOD CS - VLA 423 (b) ++++
  ++++ PITCH UP ++++
  ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 

@@ -983,8 +983,9 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift
 
 % *** WING LIFT AT N = 1.0 ***
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Wing_Lift_unit_load_factor.value = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_Tail_unit_load_factor.value), 1);
-for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_Tail_unit_load_factor.value) 
-    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Wing_Lift_unit_load_factor.value(i) = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_unit_load_factor.value(i) - Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_unit_load_factor.value(i);   
+for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_Tail_unit_load_factor.value)   
+    V = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value(i);
+    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Wing_Lift_unit_load_factor.value(i) = ;   
 end
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Wing_Lift_unit_load_factor.Attributes.unit = "daN";
 
@@ -1149,8 +1150,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WingAirloa
                 V_fromDtoE, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromFtoE_new.value, ...
                 V_fromFtoE, ...
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Wing_Lift_unit_load_factor.value, ...
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value, ...
                 Aircraft.Certification.Regulation.value, ... 
                 Aircraft.Certification.Aircraft_Name.value);
 pause(1);

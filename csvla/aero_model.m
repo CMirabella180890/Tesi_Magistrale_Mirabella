@@ -415,7 +415,11 @@ classdef aero_model
             %                                                          MAC  
             
             x    = bcg/MAC;
-            obj  = CL*cos(alpha)*(xac - xcg) - CL*sin(alpha)*(x);
+            y    = xac - xcg; 
+            ter1 = cos(alpha);
+            ter2 = sin(alpha);
+            
+            obj  = CL*ter1*y - CL*ter2*(x);
         end
         % -----------------------------------------------------------------
         function obj = CDWB_contrib(obj, CD, alpha, xac, xcg, bcg, MAC)
