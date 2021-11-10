@@ -146,7 +146,7 @@ classdef ShearBendingTorsion
             
             array_dim = size(y);
             if array_dim == [1, length(y)]
-                disp("Dimension must be correct");
+                % disp("Dimension must be correct");
                 y  = y'; 
                 y  = flip(y); 
             elseif array_dim == [length(y), 1]
@@ -179,7 +179,7 @@ classdef ShearBendingTorsion
             
             array_dim = size(y);
             if array_dim == [1, length(y)]
-                disp("Dimension must be correct");
+                % disp("Dimension must be correct");
                 y  = y'; 
                 y  = flip(y); 
             elseif array_dim == [length(y), 1]
@@ -426,7 +426,7 @@ classdef ShearBendingTorsion
             
             array_dim = size(y);
             if array_dim == [1, length(y)]
-                disp("Dimension must be correct");
+                % disp("Dimension must be correct");
                 y  = y'; 
                 y  = flip(y); 
             elseif array_dim == [length(y), 1]

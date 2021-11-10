@@ -88,18 +88,18 @@ fprintf(format, Data1.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Horizontal tail loads increments
-Data2 = [ Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value, ... % Positive load factors
-       Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value, ...    % Negative load factors
-       Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value, ...              % Positive stall speed vectors
-       Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_VS.value, ...              % Negative stall speed vectors
-                                                                                       
-        ];                 
-disp(" ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ ")
-format = ' %f          %f          %f          %f\n';
-label  = ' n+                n-                 VS+                VS-\n';
-fprintf(label);
-fprintf(format, Data2.');
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+% Data2 = [ Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value, ... % Positive load factors
+%        Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value, ...    % Negative load factors
+%        Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value, ...              % Positive stall speed vectors
+%        Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_VS.value, ...              % Negative stall speed vectors
+%                                                                                        
+%         ];                 
+% disp(" ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ ")
+% format = ' %f          %f          %f          %f\n';
+% label  = ' n+                n-                 VS+                VS-\n';
+% fprintf(label);
+% fprintf(format, Data2.');
+% disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 %% OUTPUT 
 % x = V_n_diagram(npos, nneg, nmax, nmin, VSpos, VSneg, VD, VG, Reg, Aircraft_name)
@@ -107,6 +107,7 @@ disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 % flight envelope of the aircraft, following CS-VLA airworthiness
 % prescription. To have a complete documentation check the class
 % file csvla.m
+disp(" ++++ FIGURE 1 - FLIGHT ENVELOP DIAGRAM ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.V_n_diagram.value = V_n_diagram(obj, Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value, ... % Positive load factors
                                                                                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value, ...      % Negative load factors
                                                                                        Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value, ...                       % Max positive value of load factors
@@ -126,7 +127,7 @@ fprintf('\n');
 fprintf('### Saving outpus inside correct Folder ###');
 fprintf('\n');
 SaveFolder = strcat(dir,'\Output');
-fprintf('Saving in: ');
+fprintf('Saving Vndiagram.pdf in: ');
 fprintf('\n');      
 fprintf('%s\n', SaveFolder);
 % SaveFolder
@@ -208,21 +209,21 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_d
 % A possible way to track inputs for the various data will be provided
 % inside the .txt file used as a log for the program.
 
-disp(" ++++ INPUT GUST ENVELOPE ++++");
-
-% Horizontal tail loads increments
-Data3 = [  Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value, ...            % Airspeed resulting from gust when flight speed is V = VC
-           Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value, ...              % Airspeed resulting from gust when flight speed is V = VD
-           Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value, ...       % Positive load factors associated with wind gust, V = VC 
-           Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value, ...       % Negative load factors associated with wind gust, V = VC
-           Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value, ...         % Positive load factors associated with wind gust, V = VD
-           Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value];            % Negative load factors associated with wind gust, V = VD                 % VG = VD on the negative side of V - n diagram
-disp(" ++++++++++ DATA USED TO PLOT GUST ENVELOPE ++++++++++ ")
-format = ' %f          %f           %f          %f          %f          %f\n';
-label  = ' Gust at VC      Gust at VD      Gust n+ at VC      Gust n- at VC      Gust n+ at VD      Gust n- at VD\n';
-fprintf(label);
-fprintf(format, Data3.');
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+% disp(" ++++ INPUT GUST ENVELOPE ++++");
+% 
+% % Horizontal tail loads increments
+% Data3 = [  Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value, ...            % Airspeed resulting from gust when flight speed is V = VC
+%            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value, ...              % Airspeed resulting from gust when flight speed is V = VD
+%            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value, ...       % Positive load factors associated with wind gust, V = VC 
+%            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value, ...       % Negative load factors associated with wind gust, V = VC
+%            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value, ...         % Positive load factors associated with wind gust, V = VD
+%            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value];            % Negative load factors associated with wind gust, V = VD                 % VG = VD on the negative side of V - n diagram
+% disp(" ++++++++++ DATA USED TO PLOT GUST ENVELOPE ++++++++++ ")
+% format = ' %f          %f           %f          %f          %f          %f\n';
+% label  = ' Gust at VC      Gust at VD      Gust n+ at VC      Gust n- at VC      Gust n+ at VD      Gust n- at VD\n';
+% fprintf(label);
+% fprintf(format, Data3.');
+% disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 %% OUTPUT
 % x = Gust_envelope(npos, nneg, VSpos, VSneg, VD, nmax, nmin, VG, ...
@@ -232,6 +233,7 @@ disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 % gust envelope of the aircraft, following CS-VLA airworthiness
 % prescription. To have a complete documentation check the class
 % file csvla.m 
+disp(" ++++ FIGURE 2 - GUST ENVELOPE ++++ "); 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_envelope.value = Gust_envelope(obj, Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value, ... % Vector which contains positive load factor values
                                                                                            Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value, ...    % Vector which contains negative load factor values 
                                                                                            Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value, ...              % Vector which contains positive stall speed values 
@@ -251,7 +253,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_envelope.v
 pause(1);
 
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving Gustenvelope.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -355,6 +357,7 @@ fprintf(label);
 fprintf(format, Data5.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
+disp(" ++++ FIGURE 3 - FINAL ENVELOPE PLOT ++++ ");
 % -------------------------------------------------------------------------
 %  fig1 = V_n_diagram(npos, nneg, VSpos, VSneg, VD, VG, VA, VE, Reg, Aircraft_name)
 %  This function plot the V - n diagram, based on the applied regulation.
@@ -384,7 +387,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Diagram.va
 pause(1);
 
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving Finalenvelope.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -399,13 +402,14 @@ Aircraft.Certification.Aerodynamic_data.CL.value    = str2num(Aircraft.Certifica
 Aircraft.Certification.Aerodynamic_data.CD.value    = str2num(Aircraft.Certification.Aerodynamic_data.CD.value);    % A vector which contains CD values 
 Aircraft.Certification.Aerodynamic_data.CM.value    = str2num(Aircraft.Certification.Aerodynamic_data.CM.value);    % A vector which contains CM values 
 % A figure with polars subplots is automatically generated from the vectors
+disp(" ++++ FIGURE 4 - AERODYNAMIC DATA ++++ ");
 Aircraft.Certification.Aerodynamic_data.Polars = AeroPlot(Aircraft.Certification.Aerodynamic_data.alpha.value, ...
                                                           Aircraft.Certification.Aerodynamic_data.CL.value, ...
                                                           Aircraft.Certification.Aerodynamic_data.CD.value, ...
                                                           Aircraft.Certification.Aerodynamic_data.CM.value);
 pause(1);
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving Polars.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder

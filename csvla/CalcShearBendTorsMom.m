@@ -23,10 +23,19 @@ yi_cl  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Bal
 [XI_cl,YI_cl] = meshgrid(xi_cl, yi_cl);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value = interp2(XX_cl, YY_cl, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value, ...
                                                                         XI_cl, YI_cl, 'spline');
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";
+disp(" ++++ FIGURE 10 - 3D INTERPOLATION OF SPANWISE LIFT DISTR. ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph = cl_interpolation_graph(x_cl, y_cl, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value, ... 
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value, XI_cl, YI_cl); 
+pause(1);
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.pdf', 'ContentType', 'vector')
+% Saving figures inside correct folder
+fprintf('Saving ClInterpolation3dplot.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile ClInterpolation3dplot.pdf Output
 
 % For a more in depth description, look ahead in this file
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = cl_unit_lift(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.CL.value(3), ...
@@ -226,6 +235,7 @@ disp(" ++++ POINT OF THE FINAL ENVELOPE ++++");
 
 % Horizontal tail loads increments
 Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value, ...
@@ -233,14 +243,15 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LHTail_S.value];
 disp(" ++++++++++ POINT S OF THE FINAL ENVELOPE ++++++++++ ")
-format = ' %f          %f          %f          %f          %f          %f          %f\n';
-label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+format = ' %f          %f          %f          %f          %f          %f          %f          %f\n';
+label  = ' V [m/s]           n [g]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Horizontal tail loads increments
 Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CD_A.value, ...
@@ -248,14 +259,15 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value];
 disp(" ++++++++++ POINT A OF THE FINAL ENVELOPE ++++++++++ ")
-format = ' %f          %f          %f          %f          %f          %f          %f\n';
-label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+% format = ' %f          %f          %f          %f          %f          %f          %f\n';
+% label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Horizontal tail loads increments
 Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value, ...
@@ -263,14 +275,15 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTail_C.value];
 disp(" ++++++++++ POINT C OF THE FINAL ENVELOPE ++++++++++ ")
-format = ' %f          %f          %f         %f          %f          %f          %f\n';
-label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+% format = ' %f          %f          %f         %f          %f          %f          %f\n';
+% label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Horizontal tail loads increments
 Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value, ...
@@ -278,14 +291,15 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LD.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value];
 disp(" ++++++++++ POINT D OF THE FINAL ENVELOPE ++++++++++ ")
-format = ' %f          %f          %f         %f          %f          %f            %f\n';
-label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+% format = ' %f          %f          %f         %f          %f          %f            %f\n';
+% label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Horizontal tail loads increments
 Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.qF.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CD_F.value, ...
@@ -293,14 +307,15 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHTail_F.value];
 disp(" ++++++++++ POINT F OF THE FINAL ENVELOPE ++++++++++ ")
-format = ' %f          %f          %f        %f          %f          %f          %f\n';
-label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+% format = ' %f          %f          %f        %f          %f          %f          %f\n';
+% label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Horizontal tail loads increments
 Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value, ...
@@ -308,14 +323,15 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHTail_G.value];
 disp(" ++++++++++ POINT G OF THE FINAL ENVELOPE ++++++++++ ")
-format = ' %f          %f          %f          %f          %f          %f          %f\n';
-label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+% format = ' %f          %f          %f          %f          %f          %f          %f\n';
+% label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Horizontal tail loads increments
 Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.qE.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CD_E.value, ...
@@ -323,14 +339,14 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LHTail_E.value];
 disp(" ++++++++++ POINT E OF THE FINAL ENVELOPE ++++++++++ ")
-format = ' %f          %f          %f          %f          %f          %f          %f\n';
-label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+% format = ' %f          %f          %f          %f          %f          %f          %f\n';
+% label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 %% LIFT CURVE AND LIFT COEFFICIENT EVALUATED AT THE FINAL ENVELOPE POINTS
-
+disp(" ++++ FIGURE 11 - LIFT MODELS AND FLIGHT ENVELOPE POINTS ++++ ");
 CL_S = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alpha_S.value^2 + Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alpha_S.value + Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value;
 CL_A = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alpha_A.value^2 + Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alpha_A.value + Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value;
 CL_C = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alpha_C.value^2 + Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alpha_C.value + Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value;
@@ -372,7 +388,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Diagram_li
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Diagram_lift_coefficient_comparison.value, 'LiftComparisonWithPoints.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving LiftComparisonWithPoints.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -599,6 +615,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tor
 %  fig1 = Bending_Shear_diag(y, Shear, Bend_mom, Torsion, Point)
 % A complete description of this function is included inside the class file
 % ShearBendingTorsion.m
+disp(" ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_BendMom_diagram.value = Shear_Bending_Torsion_diag(obj2, flip(Aircraft.Geometry.Wing.y.value), ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_distr.value, ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Bend_mom_distr.value, ...
@@ -607,7 +624,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.She
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointS.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving ShearBendingTorsionDiagramPointS.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -740,6 +757,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.Attributes.unit = "daN*m";
 
 % Subplots with Shear, Bending moment and Torsion
+disp(" ++++ FIGURE 13 - POINT A SHEAR, BENDING, TORSION");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_BendMom_diagram.value = Shear_Bending_Torsion_diag(obj2, flip(Aircraft.Geometry.Wing.y.value), ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value, ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value, ...
@@ -748,7 +766,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.She
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointA.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving ShearBendingTorsionDiagramPointA.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -889,6 +907,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.Attributes.unit = "daN*m";
 
 % Subplots with shear, bending moment and torsion diagram
+disp(" ++++ FIGURE 14 - POINT C SHEAR, BENDING, TORSION");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_BendMom_diagram.value = Shear_Bending_Torsion_diag(obj2, flip(Aircraft.Geometry.Wing.y.value), ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value, ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Bend_mom_distr.value, ...
@@ -897,7 +916,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.She
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointC.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving ShearBendingTorsionDiagramPointC.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -933,9 +952,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_
 % Export the interpolation carpet plot
 % Cd interpolation and saving diagram
 pause(1);
+disp(" ++++ FIGURE 15 - DRAG SPANWISE DISTRIBUTION INTERPOLATION ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_Interpolation_Graph.value, 'CdInterpolationdiag.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving CdInterpolationdiag.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -943,9 +963,10 @@ movefile CdInterpolationdiag.pdf Output
 
 % Cd interpolation and saving diagram
 pause(1);
+disp(" ++++ FIGURE 16 - PITCH MOM. SPANWISE DISTRIBUTION INTERPOLATION ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_Interpolation_Graph.value, 'CmInterpolationdiag.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving CmInterpolationdiag.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -1085,6 +1106,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.Attributes.unit = "daN*m";
 
 % Subplots with shear, bending moment and torsion 
+disp(" ++++ FIGURE 17 - POINT D SHEAR, BENDING, TORSION ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_BendMom_diagram.value = Shear_Bending_Torsion_diag(obj2, flip(Aircraft.Geometry.Wing.y.value), ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.value, ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.value, ...
@@ -1093,7 +1115,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.She
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointD.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving ShearBendingTorsionDiagramPointD.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -1248,6 +1270,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.Attributes.unit = "daN*m";
 
 % Subplots with shear, bending moment and torsion
+disp(" ++++ FIGURE 18 - POINT F SHEAR, BENDING, TORSION ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Shear_BendMom_diagram.value = Shear_Bending_Torsion_diag(obj2, flip(Aircraft.Geometry.Wing.y.value), ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Shear_distr.value, ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Bend_mom_distr.value, ...
@@ -1256,7 +1279,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.She
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointF.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving ShearBendingTorsionDiagramPointF.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -1405,6 +1428,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.Attributes.unit = "daN*m";
 
 % Subplots with shear, bending moment and torsion diagram
+disp(" ++++ FIGURE 19 - POINT G SHEAR, BENDING, TORSION ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Shear_BendMom_diagram.value = Shear_Bending_Torsion_diag(obj2, flip(Aircraft.Geometry.Wing.y.value), ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Shear_distr.value, ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Bend_mom_distr.value, ...
@@ -1413,7 +1437,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.She
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointG.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving ShearBendingTorsionDiagramPointG.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -1562,6 +1586,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.Attributes.unit = "daN*m";
 
 % Subplots with shear, bending moment and torsion diagram
+disp(" ++++ FIGURE 20 - POINT E SHEAR, BENDING, TORSION ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Shear_BendMom_diagram.value = Shear_Bending_Torsion_diag(obj2, flip(Aircraft.Geometry.Wing.y.value), ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Shear_distr.value, ...
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Bend_mom_distr.value, ...
@@ -1570,13 +1595,14 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.She
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointE.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving ShearBendingTorsionDiagramPointE.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ShearBendingTorsionDiagramPointE.pdf Output
 
 %% COMPARING SHEAR CURVES 
+disp(" ++++ FIGURE 21 - SHEAR COMPARISON ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value = Compare_Shear_curves(flip(Aircraft.Geometry.Wing.y.value), ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_distr.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value, ...
@@ -1596,13 +1622,14 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.poi
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value, 'ShearComparison.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving ShearComparison.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ShearComparison.pdf Output
 
 %% COMPARING BENDING CURVES 
+disp(" ++++ FIGURE 22 - BENDING COMPARISON ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value = Compare_Bending_curves(flip(Aircraft.Geometry.Wing.y.value), ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Bend_mom_distr.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value, ...
@@ -1622,13 +1649,14 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.poi
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value, 'BendingComparison.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving BendingComparison.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile BendingComparison.pdf Output
 
 %% COMPARING TORSION CURVES 
+disp(" ++++ FIGURE 23 - TORSION COMPARISON ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value = Compare_Torsion_curves(flip(Aircraft.Geometry.Wing.y.value), ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tors_mom_distr.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value, ...
@@ -1648,8 +1676,89 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.poi
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value, 'TorsionComparison.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving TorsionComparison.pdf Output in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile TorsionComparison.pdf Output
+
+%% COMPARING DISTRIBUTION ALONG THE SPAN OF CL, CD, CM
+% =========================================================================================================================================================
+disp(" ++++ FIGURE 24 - SPANWISE LIFT COMPARISON ++++ ");
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value = Compare_cl_curves(flip(Aircraft.Geometry.Wing.y.value), ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cl_A.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cl_D.value, ...
+abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.value), ...
+abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.value), ...
+abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.value), ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
+% Saving
+pause(1);
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value, 'clComparison.pdf', 'ContentType', 'vector')
+% Saving figures inside correct folder
+fprintf('Saving clComparison.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile clComparison.pdf Output
+% =========================================================================================================================================================
+disp(" ++++ FIGURE 25 - SPANWISE DRAG COMPARISON ++++ ");
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = Compare_cd_curves(flip(Aircraft.Geometry.Wing.y.value), ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cd_F.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cd_G.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cd_E.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
+% Saving
+pause(1);
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value, 'cdComparison.pdf', 'ContentType', 'vector')
+% Saving figures inside correct folder
+fprintf('Saving cdComparison.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile cdComparison.pdf Output
+% =========================================================================================================================================================
+disp(" ++++ FIGURE 26 - SPANWISE PITCH MOMENT COMPARISON ++++ ");
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value = Compare_cm_curves(flip(Aircraft.Geometry.Wing.y.value), ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cm_F.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cm_G.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cm_E.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
+% Saving
+pause(1);
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value, 'cmComparison.pdf', 'ContentType', 'vector')
+% Saving figures inside correct folder
+fprintf('Saving cmComparison.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile cmComparison.pdf Output
+% =========================================================================================================================================================

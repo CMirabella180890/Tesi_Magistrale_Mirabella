@@ -68,6 +68,7 @@ Aircraft.Certification.Aerodynamic_data.CL_Linear.value = Aircraft.Certification
 Aircraft.Certification.Aerodynamic_data.CL_Linear.Attributes.unit = "Non dimensional";
 
 % Lift model comparison
+disp(" ++++ FIGURE 5 - SELECTED INTERPOLATION CURVES FOR AERO DATA ++++ ");
 Aircraft.Certification.Aerodynamic_data.CL_comparison_diagram.value = Lift_comparison(Aircraft.Certification.Aerodynamic_data.AOA_aux.value, ... 
                   Aircraft.Certification.Aerodynamic_data.CL_NonLinear.value, ...
                   Aircraft.Certification.Aerodynamic_data.CL_Linear.value, ...
@@ -76,7 +77,7 @@ Aircraft.Certification.Aerodynamic_data.CL_comparison_diagram.value = Lift_compa
 pause(1);
 exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_comparison_diagram.value, 'LiftComparison.pdf', 'ContentType', 'vector');
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving LiftComparison.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -97,6 +98,7 @@ Aircraft.Certification.Aerodynamic_data.CL_Full_model.Attributes.unit = "Non dim
 Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value =  -(1/Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value) + Aircraft.Certification.Aerodynamic_data.CL_Full_model.value;
 
 % Complete lift curve diagram 
+disp(" ++++ FIGURE 6 - LIFT CURVES COMPARISON ++++ ");
 Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmodel_curve(Aircraft.Certification.Aerodynamic_data.AOA_aux.value, ...
     Aircraft.Certification.Aerodynamic_data.CL_Full_model.value, ...
     Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value, ...
@@ -105,7 +107,7 @@ Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmo
 pause(1);
 exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelStraightAndInverted.pdf', 'ContentType', 'vector');
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving FullLiftModelStraightAndInverted.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -1015,6 +1017,7 @@ fprintf('%s\n', dir);
 %
 % A complete documentation of this function is included inside the file
 % csvla.m
+disp(" ++++ FIGURE 7 - HORIZONTAL EMPENNAGE AIRLOADS ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTailAirloadsDiagram.value = Balancing_loads(obj, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_positivestall.value, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value, ...
@@ -1032,7 +1035,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTailAirlo
                 Aircraft.Certification.Aircraft_Name.value);
 pause(1);
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving Balancingloads.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -1137,7 +1140,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fro
 %
 % A complete documentation of this function is included inside the file
 % csvla.m
-                                        
+disp(" ++++ FIGURE 8 - MAIN WING AIRLOADS ++++ ");                                
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WingAirloadsDiagram.value = Mainwing_loads(obj, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_posstall_new.value, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value, ...
@@ -1155,7 +1158,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WingAirloa
                 Aircraft.Certification.Aircraft_Name.value);
 pause(1);
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving Wingairloads.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder

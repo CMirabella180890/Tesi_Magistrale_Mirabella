@@ -49,11 +49,10 @@ switch (Aircraft.Certification.Regulation.value)
         fprintf('### Current directory ###');
         fprintf('\n');
         fprintf('%s\n', dir);
-        
         %% STARTING OPEN VSP CALCULATION
         % Main_UAS
         % +++ ISTRUZIONE IMPORTANTE +++
-        disp(" ++++ STARTING OPEN VSP CALCULATIONS ++++ ");
+        disp(" ++++ ST
         diary off
         Main_PROSIB_WT 
         % +++ ISTRUZIONE IMPORTANTE +++
@@ -65,7 +64,6 @@ switch (Aircraft.Certification.Regulation.value)
         cd ..
         cd ..
         diary CMFlightLoads.txt
-        disp(" ++++ FIGURE 9 - OPEN VSP RESULTS ++++ ");
         cd csvla
         % The 'dir' variable contains working directory path saved as a
         % char value

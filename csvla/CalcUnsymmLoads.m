@@ -101,6 +101,7 @@ for z = j:k
 end
 
 % Pitching moment coefficient diagram 
+disp(" ++++ FIGURE 27 - POINT A SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Pitching_moment_diagram_comparison.value = Pitching_moment_coefficients_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value, ...
@@ -108,7 +109,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Uns
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Pitching_moment_diagram_comparison.value, 'CmComparisonPointA.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving CmComparisonPointA.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -159,6 +160,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Uns
 %     Aircraft.Geometry.Wing.y.value, flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value), '-r')
 
 % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point A 
+disp(" ++++ FIGURE 28 - POINT A PARTIAL LOAD - UNSYMM. TORSION ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value), ...
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value), ...
@@ -166,7 +168,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Uns
 pause(1);
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load, 'UnsymmetricalTorsionSeventyPerCentPointA.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving UnsymmetricalTorsionSeventyPerCentPointA.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -178,6 +180,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Uns
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value), ...
                                                                                                                                           Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value);
 pause(1);
+disp(" ++++ FIGURE 29 - POINT A FULL LOAD - UNSYMM. TORSION ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointA.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
 fprintf('Saving in: ');
@@ -225,9 +228,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Uns
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.cm_C.value, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value);
 pause(1);
+disp(" ++++ FIGURE 30 -POINT C SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Pitching_moment_diagram_comparison.value, 'CmComparisonPointC.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving CmComparisonPointC.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -277,9 +281,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Uns
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value), ...
                                                                                                                                           Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value);
 pause(1);
+disp(" ++++ FIGURE 31 - POINT C PARTIAL LOAD - UNSYMM. TORSION ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load, 'UnsymmetricalTorsionSeventyPerCentPointC.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -291,9 +296,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Uns
                                                                                                                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value), ...
                                                                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value);
 pause(1);
+disp(" ++++ FIGURE 32 - POINT C FULL LOAD - UNSYMM. TORSION ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointC.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -338,9 +344,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Uns
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.cm_D.value, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value);
 pause(1);
+disp(" ++++ FIGURE 33 -POINT D SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Pitching_moment_diagram_comparison.value, 'CmComparisonPointD.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving CmComparisonPointD.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -391,9 +398,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Uns
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value), ... 
                                                                                                                                           Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value);
 pause(1);
+disp(" ++++ FIGURE 34 - POINT D PARTIAL LOAD - UNSYMM. TORSION ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load, 'UnsymmetricalTorsionSeventyPerCentPointD.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving UnsymmetricalTorsionSeventyPerCentPointD.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -405,9 +413,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Uns
                                                                                                                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value), ...
                                                                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value);
 pause(1);
+disp(" ++++ FIGURE 35 - POINT D FULL LOAD - UNSYMM. TORSION ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointD.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving UnsymmetricalTorsionFullPointD.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -424,9 +433,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetri
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
     'Full load');
 pause(1);
+disp(" ++++ FIGURE 36 - FULL LOAD UNSYMM. TORSION COMPARISON ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetrical_loads_comparison.value, 'UnsymmetricalLoadsComparisonFullLoad.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving UnsymmetricalLoadsComparisonFullLoad.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
@@ -442,9 +452,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetri
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
     '$70\%$ load');
 pause(1);
+disp(" ++++ FIGURE 37 - PARTIAL LOAD UNSYMM. TORSION COMPARISON ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetrical_loads_comparison.value, 'UnsymmetricalLoadsComparisonSeventyPerCentLoad.pdf', 'ContentType', 'vector')
 % Saving figures inside correct folder
-fprintf('Saving in: ');
+fprintf('Saving UnsymmetricalLoadsComparisonSeventyPerCentLoad.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
