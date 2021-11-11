@@ -566,7 +566,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up
     2*length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value))';
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.airspeed_vector.Attributes.unit = "m/s";
 
-% OMEGA CALCULATIONS 
+% ANGULAR ACCELERATION CALCULATIONS 
 v  = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.airspeed_vector.value;
 nm = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.full_load_factor_vector.value;
 lm = (20.1/v).*nm.*(nm - 1.5);
@@ -593,10 +593,6 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up
     length(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.delta_tail_airloads.value))';
 % Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_positivestall.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_fromCtoD.value];
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.Attributes.unit = "daN";
-
-lb = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.value;
-lm = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.delta_tail_airloads.value;
-v  = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.airspeed_vector.value;
 
 % TOTAL AIRLOADS ASSOCIATED WITH THE PITCH UP MANOEUVRE
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.total_tail_airloads.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.delta_tail_airloads.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.value;

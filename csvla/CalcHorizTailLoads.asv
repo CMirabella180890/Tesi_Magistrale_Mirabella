@@ -566,13 +566,13 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up
     2*length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value))';
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.airspeed_vector.Attributes.unit = "m/s";
 
-% OMEGA CALCULATIONS 
+% ANGULAR ACCELERATION CALCULATIONS 
 v  = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.airspeed_vector.value;
 nm = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.full_load_factor_vector.value;
-n  = 1.5
-
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.ang_acc.value = (20.1/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.airspeed_vector.value)*(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.full_load_factor_vector.value - 1.5*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.unit_load_factor_vector.value)*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.full_load_factor_vector.value;
+lm = (20.1/v).*nm.*(nm - 1.5);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.ang_acc.value = lm;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.ang_acc.Attributes.unit = "rad/sec^2";
+clear v nm lm
 
 % MOMENT MY
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.MY.value = zeros(length(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.ang_acc.value), 1);
