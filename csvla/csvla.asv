@@ -132,8 +132,7 @@ classdef csvla
             end
         end
         %% FLIGHT ENVELOPE - FOURTH METHOD
-        function obj = calcvc(obj, WS)
-        % function obj = calcvc(obj, WS, VH) 
+        function obj = calcvc(obj, WS, VH) 
             % Cruisespeed CS-VLA(a)(1)(2), Design cruise speed
             %   Vc (in m/s) may not be less than
             %               Vc > 2.4*sqrt(W/S)
@@ -148,11 +147,11 @@ classdef csvla
             %   
             obj = (2.4)*sqrt(WS);
             % x   = (0.9)*VH;
-            % if obj > x
-            %    obj = x;
-            %else 
-            %    obj = obj;
-            % end 
+            if obj > x
+                obj = x;
+            else 
+                obj = obj;
+            end 
         end
         %% FLIGHT ENVELOPE - FIFTH METHOD
         function obj = V_n_diagram(obj, npos, nneg, nmax, nmin, VSpos, VSneg, VD, VG, Reg, Aircraft_name)

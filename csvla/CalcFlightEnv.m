@@ -27,8 +27,9 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_VS.Attributes.un
 % This function identifies (following CS-VLA airworthiness reg.)
 % maximum cruise speed (Point C) for flight envelope calculations. 
 % To have a complete documentation check the class file csvla.m
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value = calcvc(obj, Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value, ...                        % Wing Loading in SI units
-                                                                                           Aircraft.Certification.Regulation.SubpartC.Flightloads.Max_Continuous_Power_Speed_VH.value); % VH design speed for max continous power
+% VH design speed for max continous power: this airspeed is not available
+% but must be known. From CS - VLA Airworthiness rules
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value = calcvc(obj, Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value); 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.Attributes.unit = "m/s";
 % -------------------------------------------------------------------------
 %% x = calcvd(obj, MinDesignCruiseSpeed, CruiseSpeedVC)
