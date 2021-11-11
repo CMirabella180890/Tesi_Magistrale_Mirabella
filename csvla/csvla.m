@@ -497,7 +497,7 @@ classdef csvla
     methods
         %% FINAL ENVELOPE - FIRST METHOD
         function obj = stall_speed_limit1(obj, VA, vstall, vgust, nstall, ...
-                                          ngust, nmax)
+                                          ngust, nmax, VC)
         % FUNCTION DETAILED DESCRIPTION 
         %  This function is able to obtain a stall speed vector which
         %  include the gust speed lines tracked with respect the cruise
@@ -523,10 +523,13 @@ classdef csvla
         temp2 = 1;
         temp3 = 1;
         temp4 = 1;
+        temp5 = 1;
+        temp6 = 1;
         tol  = 1E-1;
         vs    = abs(vstall);
         vg    = abs(vgust);
         va    = abs(VA); 
+        vc    = abs(VC);
             % -------------------------------------
             for i = 1:length(vg) 
                 if abs(va - vg(i)) < tol
@@ -538,7 +541,18 @@ classdef csvla
                     temp2 = j;
                 end
             end
-            % -------------------------------------
+            for k = 1:length(vg)
+                if abs(vc - vg(k)) < tol
+                    temp5 = k;
+                end
+            end
+            for n = 1:length(vs)
+                if abs(vc - vs(n)) < tol
+                    temp6 = n;
+                end
+            end
+            % ------------------------------------
+        % -------------------------------------
          ng    = abs(ngust);
          ns    = abs(nstall);
          nm    = abs(nmax);
@@ -655,8 +669,8 @@ classdef csvla
         hold on
         grid on 
         grid minor
-        ylim([nF-0.5 nC+0.5])
-        xlim([0 VD+10])
+        % ylim([nF-0.5 nC+0.5])
+        % xlim([0 VD+10])
         plot(VSpos, npos, '-r', 'LineWidth', 1)
         plot(VSneg, nneg, '-b', 'LineWidth', 1)
         plot([VSpos(1) VSpos(1)], [npos(1) 0.0], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
