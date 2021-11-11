@@ -89,6 +89,14 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.y_h
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value = 'Point A';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA_unit_load_factor.value = 0.0;
+for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value)
+    x = abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value - Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value(i));
+    if x < 1e-2
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA_unit_load_factor.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value(i);
+    end
+end
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA_unit_load_factor.Attributes.unit = "m/s"; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value = 0.5*Aircraft.Certification.ISA_Condition.rho0.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value^2);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.Attributes.unit = "N/m^2";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value; 
@@ -145,6 +153,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.y_h
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value = 'Point D';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value(end);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.Attributes.unit = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD_unit_load_factor.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value(end);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD_unit_load_factor.Attributes.unit = "m/s";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value = 0.5*Aircraft.Certification.ISA_Condition.rho0.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value^2);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.Attributes.unit = "N/m^2";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value(end);

@@ -184,7 +184,8 @@ Aircraft.Geometry.Fuselage.Non_dim_radius_of_gyration.value = 0.34;
 Aircraft.Geometry.Fuselage.Non_dim_radius_of_gyration.Attributes.unit = "Non dimensional";
 Aircraft.Geometry.Fuselage.Radius_of_gyration.value = Aircraft.Geometry.Fuselage.length.value*Aircraft.Geometry.Fuselage.Non_dim_radius_of_gyration.value*0.5;
 Aircraft.Geometry.Fuselage.Radius_of_gyration.Attributes.unit = "meters";
-Aircraft.Weight.I_Level.IY.value = (Aircraft.Weight.I_Level.W_maxTakeOff.value)*(Aircraft.Geometry.Fuselage.Radius_of_gyration.value)^2;
+% Aircraft.Weight.I_Level.IY.value = (Aircraft.Weight.I_Level.W_maxTakeOff.value)*(Aircraft.Geometry.Fuselage.Radius_of_gyration.value)^2;
+Aircraft.Weight.I_Level.IY.value = 100.0;
 Aircraft.Weight.I_Level.IY.Attributes.unit = "kg * m^2"; 
 Aircraft.Geometry.Horizontal.tau.value = 0.50; 
 Aircraft.Geometry.Horizontal.tau.Attributes.unit = "Non dimensional";
@@ -358,7 +359,7 @@ disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 % % Moving file inside correct folder
 % movefile ThetaZoom.pdf Output
 
-%% CS - VLA 423 - METHOD A - MANOEUVRING AIRSPEED VA 
+%% CS - VLA 423 - METHOD B - MANOEUVRING AIRSPEED VA 
 % NOSE UP PITCHING 
 
 % L TAIL 
@@ -524,6 +525,73 @@ label  = 'VA                 VC                VD\n';
 fprintf(label);
 fprintf(format, Total.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
+%% CS - VLA 423 - METHOD B - PITCH UP
+% LOAD FACTOR FROM C TO D
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.n_fromCtoD.value = linspace(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.value, ...
+    Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value, ...
+    length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value))';
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.n_fromCtoD.Attributes.unit = "g's";
+
+% LOAD FACTOR FROM A TO C
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.n_fromAtoC.value = linspace(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.value, ...
+length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value))';
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.n_fromAtoC.Attributes.unit = "g's";
+
+% FULL LOAD FACTOR 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.full_load_factor_vector.value = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.n_fromAtoC.value; Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.n_fromCtoD.value];
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.full_load_factor_vector.Attributes.unit = "g's";
+
+% UNIT LOAD FACTOR 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.unit_load_factor_vector.value = ones(2*length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value), 1);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.unit_load_factor_vector.Attributes.unit = "g's";
+
+% AIRSPEED VECTOR FOR CALCULATIONS
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.airspeed_vector.value = linspace(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value, ...
+    Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value, ...
+    2*length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value))';
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.airspeed_vector.Attributes.unit = "m/s";
+
+% OMEGA CALCULATIONS 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.omega.value = (20.1/Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.airspeed_vector.value)*(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.full_load_factor_vector.value - 1.5*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.unit_load_factor_vector.value)*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.full_load_factor_vector.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.omega.Attributes.unit = "rad/sec^2";
+
+% MOMENT MY
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.MY.value = zeros(length(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.omega.value), 1);
+
+for i = 1:length(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.omega.value)
+    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.MY.value(i) = (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.IY.value)*(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.omega.value(i));
+end
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.MY.Attributes.unit = "N*m";
+
+% DELTA TAIL AIRLOADS
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.delta_tail_airloads.value = (1e-1)*(-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.MY.value)/(Aircraft.Geometry.Horizontal.l.value);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.delta_tail_airloads.Attributes.unit = "daN";
+
+% BALANCING TAIL AIRLOADS
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.value = linspace(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value, ...
+    Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value, ...
+    length(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.delta_tail_airloads.value))';
+% Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_positivestall.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_fromCtoD.value];
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.Attributes.unit = "daN";
+
+% TOTAL AIRLOADS ASSOCIATED WITH THE PITCH UP MANOEUVRE
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.total_tail_airloads.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.delta_tail_airloads.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.total_tail_airloads.Attributes.unit = "daN";
+
+% CRITICAL TAIL AIRLOADS VALUE 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.critical_tail_airloads.value = 0.0; 
+Absolute_value    = abs(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.total_tail_airloads.value);
+max_critical_load = max(Absolute_value);
+for i = 1:length(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.total_tail_airloads.value)
+    x = (-max_critical_load) - Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.total_tail_airloads.value;
+    if abs(x) < 1e-3
+        max_load_index = i;
+        Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.critical_tail_airloads.Attributes.index = max_load_index;
+    end
+end
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.critical_tail_airloads.Attributes.unit = "daN";
 
 %% CS - VLA 423 - METHOD D - MANOEUVRING AIRSPEED VA - POINT A OF THE FLIGHT ENVELOPE - CASE 1
 
@@ -986,3 +1054,4 @@ fprintf(label);
 fprintf(format, Total.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
+%% METHOD 
