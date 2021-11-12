@@ -93,8 +93,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA_
 for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value)
     x = abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value - Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value(i));
     if x < 1e-2
-        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA_unit_load_factor.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value(i);
+    end
 end
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA_unit_load_factor.Attributes.unit = "m/s"; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value = 0.5*Aircraft.Certification.ISA_Condition.rho0.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value^2);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.Attributes.unit = "N/m^2";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value; 
@@ -151,6 +153,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.y_h
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value = 'Point D';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value(end);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.Attributes.unit = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD_unit_load_factor.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value(end);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD_unit_load_factor.Attributes.unit = "m/s";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value = 0.5*Aircraft.Certification.ISA_Condition.rho0.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value^2);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.Attributes.unit = "N/m^2";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value(end);
@@ -989,7 +993,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Int
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
 for i = 1:length(yi)
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.value(i) = trapz(Aircraft.Geometry.Wing.half_span_y.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Cd.value(i,:));
-    if abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.value(i) - Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value) < 1e-3
+    if abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.value(i) - Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value) < 1e-2
        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Cd.value(i,:)';
        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Cm.value(i,:)';
     end
@@ -1153,7 +1157,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Int
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
 for i = 1:length(yi)
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.value(i) = trapz(Aircraft.Geometry.Wing.half_span_y.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Cd.value(i,:));
-    if abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.value(i) - Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CD_F.value) < 1e-3
+    if abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.value(i) - Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CD_F.value) < 1e-2
        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cd_F.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Cd.value(i,:)';
        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cm_F.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Cm.value(i,:)';
     end
@@ -1691,7 +1695,7 @@ movefile TorsionComparison.pdf Output
 %% COMPARING DISTRIBUTION ALONG THE SPAN OF CL, CD, CM
 % =========================================================================================================================================================
 disp(" ++++ FIGURE 24 - SPANWISE LIFT COMPARISON ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value = Compare_cl_curves(flip(Aircraft.Geometry.Wing.y.value), ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value = Compare_cl_curves(Aircraft.Geometry.Wing.y.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cl_A.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.value, ...
@@ -1717,7 +1721,7 @@ fprintf('%s\n', SaveFolder);
 movefile clComparison.pdf Output
 % =========================================================================================================================================================
 disp(" ++++ FIGURE 25 - SPANWISE DRAG COMPARISON ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = Compare_cd_curves(flip(Aircraft.Geometry.Wing.y.value), ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = Compare_cd_curves(Aircraft.Geometry.Wing.y.value), ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.value, ...
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value, ...

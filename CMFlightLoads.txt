@@ -63,7 +63,7 @@ Gust load factor is greater or lower than max load factor
  ++++ INPUT FINAL ENVELOPE ++++
  ++++++++++ DATA USED TO PLOT FINAL ENVELOPE ++++++++++ 
  VC            nC             VD            nD            VF            nF
- 46.721781    5.348275     58.402226    3.717672    46.721781    -3.348275
+ 46.721781    5.348275     58.402226    3.800000    46.721781    -3.348275
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ DATA USED TO PLOT FINAL ENVELOPE ++++++++++ 
  VE            nE             VA            nA            VG            nG
@@ -81,9 +81,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 -----------------
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
- ++++ FIGURE 5 - SELECTED INTERPOLATION CURVES FOR AERO DATA ++++ 
-Saving LiftComparison.pdf in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 6 - LIFT CURVES COMPARISON ++++ 
 Saving FullLiftModelStraightAndInverted.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -127,7 +124,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT D OF THE FINAL ENVELOPE ++++++++++ 
  V [m/s]           n [g]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
- 58.402226          3.717672          2089.127250          0.746495          0.067306          7.382850          403.760508          -39.181412
+ 58.402226          3.717672          2089.127250          0.761093          0.068081          7.546343          411.656254          -39.003554
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT F OF THE FINAL ENVELOPE ++++++++++ 
  V [m/s]           n [g]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
@@ -766,7 +763,7 @@ VA
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
 VA
-0.000000
+-65.001592
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
 Case 1              Case 2             Case 3             Case 4  
@@ -776,5 +773,5 @@ Case 1              Case 2             Case 3             Case 4
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
 Case 1              Case 2             Case 3             Case 4  
 -60.658886          -54.410924          18.835060          -53.515371
--79.446523          -92.920487          -10.161708          -79.943390
+-79.446523          -92.920487          -10.161708          -79.765532
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 

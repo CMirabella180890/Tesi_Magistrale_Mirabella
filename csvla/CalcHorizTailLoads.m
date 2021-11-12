@@ -581,7 +581,9 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up
 % ANGULAR ACCELERATION CALCULATIONS 
 v  = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up.airspeed_vector.value;
 nm = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up.full_load_factor_vector.value;
-lm = (20.1/v).*nm.*(nm - 1.5);
+for i = 1:length(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up.airspeed_vector.value)
+    lm = (20.1/v(i))*nm(i)*(nm(i) - 1.5);
+end
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up.ang_acc.value = lm;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up.ang_acc.Attributes.unit = "rad/sec^2";
 clear v nm lm

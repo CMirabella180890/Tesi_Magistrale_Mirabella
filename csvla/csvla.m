@@ -625,6 +625,9 @@ classdef csvla
                 disp('Gust load factor is greater or lower than max load factor')
                 vAD = [vstall(end) vgust(end)];
                 nAD = [nstall(end) ngust(end)];
+                if abs(ngust(end)) < nm
+                    nAD = [nstall(end) nm];
+                end
             end
         obj = [vAD; nAD];
         end
@@ -704,6 +707,7 @@ classdef csvla
                                             HT_Lift_fromDtoE, V_fromDtoE, ...
                                             HT_Lift_fromFtoE, V_fromFtoE, ...
                                             HT_Lift_unit_load_factor, V_unit_load_factor, ...
+                                            VA, VG, ...
                                             Reg, Aircraft_name)
         % FUNCTION DETAILED DESCRIPTION
         %  fig1 = V_n_diagram(HT_Lift_posstall, VSpos, HT_Lift_negstall, VSneg, ...
@@ -757,14 +761,33 @@ classdef csvla
         hold on
         grid on 
         grid minor
+        index_va = dsearchn(VSpos, VA);
+        index_vg = dsearchn(VSneg, VG);
         % ylim([min(HT_Lift_posstall)-0.5 max(HT_Lift_fromDtoE)+0.5])
-        % xlim([0 max(V_fromDtoE)+10])
+        xlim([18.0 max(V_fromDtoE)+5])
         plot(VSpos, HT_Lift_posstall, '-r', 'LineWidth', 1)
         plot(VSneg, HT_Lift_negstall, '-r', 'LineWidth', 1)
         plot(V_fromCtoD, HT_Lift_fromCtoD, '-r', 'LineWidth', 1)
         plot(V_fromDtoE, HT_Lift_fromDtoE, '-r', 'LineWidth', 1)
         plot(V_fromFtoE, HT_Lift_fromFtoE, '-r', 'LineWidth', 1)
         plot(V_unit_load_factor, HT_Lift_unit_load_factor, '-.k', 'LineWidth', 2)
+        plot(VSpos(1), HT_Lift_posstall(1),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(VSpos(index_va), HT_Lift_posstall(index_va),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromCtoD(1), HT_Lift_fromCtoD(1),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromCtoD(end), HT_Lift_fromCtoD(end),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(VSneg(index_vg), HT_Lift_negstall(index_vg),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromFtoE(1), HT_Lift_fromFtoE(1),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromFtoE(end), HT_Lift_fromFtoE(end),'k.','MarkerSize', 10,'LineStyle','none');
+        % ---------------------------------------------------------------------
+        text(20, -1.0, '\fontname{Courier} Point S')
+        text(VSpos(index_va)+0.1, HT_Lift_posstall(index_va)+ 2.0, '\fontname{Courier} Point A')
+        % text(V_fromCtoD(1)-0.2, HT_Lift_fromCtoD(1)+0.2, '\fontname{Courier} Point C')
+        text(46, HT_Lift_fromCtoD(1)+ 2.0, '\fontname{Courier} Point C')
+        text(57, -36.5, '\fontname{Courier} Point D')
+        % text(VSneg(index_vg)-1.0, HT_Lift_negstall(index_vg)+0.2, '\fontname{Courier} Point G')
+        text(22, HT_Lift_negstall(index_vg)+0.2, '\fontname{Courier} Point G')
+        text(41, -40, '\fontname{Courier} Point F')
+        text(52.5, -54, '\fontname{Courier} Point E')
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Horizontal tail lift - $L_{ht}$ (daN)", "Interpreter", "latex")
         title("Horizontal empennage airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
@@ -778,6 +801,7 @@ classdef csvla
                                             WING_Lift_fromDtoE, V_fromDtoE, ...
                                             WING_Lift_fromFtoE, V_fromFtoE, ...
                                             Wing_unit_load_factor, V_unit_load_factor, ...
+                                            VA, VG, ...
                                             Reg, Aircraft_name)
         % FUNCTION DETAILED DESCRIPTION
         %  fig1 = V_n_diagram(WING_Lift_posstall, VSpos, WING_Lift_negstall, VSneg, ...
@@ -833,14 +857,32 @@ classdef csvla
         hold on
         grid on 
         grid minor
-        % ylim([min(HT_Lift_posstall)-0.5 max(HT_Lift_fromDtoE)+0.5])
-        % xlim([0 max(V_fromDtoE)+10])
+        index_va = dsearchn(VSpos, VA);
+        index_vg = dsearchn(VSneg, VG);
+        ylim([min(WING_Lift_fromFtoE)-20 max(WING_Lift_fromCtoD)+20])
+        xlim([18 max(V_fromDtoE)+7])
         plot(VSpos, WING_Lift_posstall, '-r', 'LineWidth', 1)
         plot(VSneg, WING_Lift_negstall, '-r', 'LineWidth', 1)
         plot(V_fromCtoD, WING_Lift_fromCtoD, '-r', 'LineWidth', 1)
         plot(V_fromDtoE, WING_Lift_fromDtoE, '-r', 'LineWidth', 1)
         plot(V_fromFtoE, WING_Lift_fromFtoE, '-r', 'LineWidth', 1)
         plot(V_unit_load_factor, Wing_unit_load_factor, '-.k', 'LineWidth', 2)
+        plot(VSpos(1), WING_Lift_posstall(1),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(VSpos(index_va), WING_Lift_posstall(index_va),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromCtoD(1), WING_Lift_fromCtoD(1),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromCtoD(end), WING_Lift_fromCtoD(end),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(VSneg(index_vg), WING_Lift_negstall(index_vg),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromFtoE(1), WING_Lift_fromFtoE(1),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromFtoE(end), WING_Lift_fromFtoE(end),'k.','MarkerSize', 10,'LineStyle','none');
+        % ---------------------------------------------------------------------
+        text(VSpos(1), 75, '\fontname{Courier} Point S')
+        text(38, 360, '\fontname{Courier} Point A')
+        text(V_fromCtoD(1)+3, WING_Lift_fromCtoD(1)+0.2, '\fontname{Courier} Point C')
+        text(V_fromCtoD(end)-0.2, WING_Lift_fromCtoD(end)+0.2, '\fontname{Courier} Point D')
+        text(VSneg(index_vg)-1.0, WING_Lift_negstall(index_vg)+40, '\fontname{Courier} Point G')
+        text(V_fromFtoE(1)+1.0, -285, '\fontname{Courier} Point F')
+        text(V_fromFtoE(end)-0.2, -120, '\fontname{Courier} Point E')        
+        % ---------------------------------------------------------------------
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Main wing lift - $L$ (daN)", "Interpreter", "latex")
         title("Main wing airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
