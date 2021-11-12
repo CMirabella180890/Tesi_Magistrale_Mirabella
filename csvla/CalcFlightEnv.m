@@ -27,8 +27,9 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_VS.Attributes.un
 % This function identifies (following CS-VLA airworthiness reg.)
 % maximum cruise speed (Point C) for flight envelope calculations. 
 % To have a complete documentation check the class file csvla.m
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value = calcvc(obj, Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value, ...                        % Wing Loading in SI units
-                                                                                           Aircraft.Certification.Regulation.SubpartC.Flightloads.Max_Continuous_Power_Speed_VH.value); % VH design speed for max continous power
+% VH design speed for max continous power: this airspeed is not available
+% but must be known. From CS - VLA Airworthiness rules
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value = calcvc(obj, Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value); 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.Attributes.unit = "m/s";
 % -------------------------------------------------------------------------
 %% x = calcvd(obj, MinDesignCruiseSpeed, CruiseSpeedVC)
@@ -48,13 +49,16 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VE.Attributes.
 %% Point A definition
 % Assign speed at Point A (Maneuver point) equals to the maximum
 % permissible positive load factor stall speed. 
+
+% index = dsearchn(Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value);
 tol = 1E-2;
 for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value)
     if abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value - Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value(i)) < tol
-        temp = i;               
+        index = i;               
     end
 end
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value(temp);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value(index);
+clear index
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.Attributes.unit = "m/s";
 % -------------------------------------------------------------------------
 %% Point G definition
@@ -69,11 +73,38 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvri
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.Attributes.unit = "m/s";
 % -------------------------------------------------------------------------
 
+% POSITIVE STALL SPEED 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.print_positive_vs.value = calcvs(obj, Aircraft.Certification.ISA_Condition.rho.value, ...         % Standard atmosphere density
+                                                                                 Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value, ...   % Wing Loading in SI units 
+                                                                                 Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value, ... % Maximum Lift coefficient
+                                                                                 1.0);                                                                   % A vector of load factors
+Aircraft.Certification.Regulation.SubpartC.Flightloads.print_positive_vs.Attributes.unit = "m/s";
+
+% NEGATIVE STALL SPEED 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.print_negative_vs.value = calcvs(obj, Aircraft.Certification.ISA_Condition.rho.value, ...         % Standard atmosphere density
+                                                                                 Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value, ...   % Wing Loading in SI units 
+                                                                                 Aircraft.Certification.Aerodynamic_data.Max_Inverted_Lift_Coefficient.value, ... % Maximum Lift coefficient
+                                                                                 1.0);                                                                   % A vector of load factors
+Aircraft.Certification.Regulation.SubpartC.Flightloads.print_negative_vs.Attributes.unit = "m/s";
+
+
 %% INPUT TRACKING - VN DIAGRAM 
 % A possible way to track inputs for the various data will be provided
 % inside the .txt file used as a log for the program.
 
 disp(" ++++ INPUT TO V - N DIAGRAM ++++");
+
+% Horizontal tail loads increments
+Data1 = [  Aircraft.Certification.Regulation.SubpartC.Flightloads.print_positive_vs.value, ...
+           Aircraft.Certification.Regulation.SubpartC.Flightloads.print_negative_vs.value, ...
+           Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value, ... % Max positive value of load factors
+           Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.value];                 % VG = VD on the negative side of V - n diagram
+disp(" ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ ")
+format = ' %f          %f          %f          %f\n';
+label  = ' VS+                VS-                 VA                VG\n';
+fprintf(label);
+fprintf(format, Data1.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Horizontal tail loads increments
 Data1 = [  Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value, ...                       % Max positive value of load factors
@@ -86,20 +117,6 @@ label  = ' nmax                nmin                 VD                VE\n';
 fprintf(label);
 fprintf(format, Data1.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
-
-% Horizontal tail loads increments
-% Data2 = [ Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value, ... % Positive load factors
-%        Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value, ...    % Negative load factors
-%        Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value, ...              % Positive stall speed vectors
-%        Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_VS.value, ...              % Negative stall speed vectors
-%                                                                                        
-%         ];                 
-% disp(" ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ ")
-% format = ' %f          %f          %f          %f\n';
-% label  = ' n+                n-                 VS+                VS-\n';
-% fprintf(label);
-% fprintf(format, Data2.');
-% disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 %% OUTPUT 
 % x = V_n_diagram(npos, nneg, nmax, nmin, VSpos, VSneg, VD, VG, Reg, Aircraft_name)
@@ -118,7 +135,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.V_n_diagram.value = V_n_d
                                                                                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VE.value, ...              % VE = VD on the negative side of V - n diagram
                                                                                        Aircraft.Certification.Regulation.value, ...                                                 % Chosen certification 
                                                                                        Aircraft.Certification.Aircraft_Name.value);                                                 % Selected aircraft name
-pause(1);
 
 % Saving figures inside correct folder
 dir = pwd;
@@ -167,6 +183,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviatio
 % which contains gust load factors value, following CS-VLA
 % airworthiness prescription. To have a complete documentation
 % check the class file csvla.m
+
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value = calcngust(obj, Aircraft.Certification.ISA_Condition.rho.value, ...                                          % Standard atmosphere density
                                                                                             Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value, ...                       % Normal force curve slope [1/rad]
                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor.value, ...           % Gust alleviation factor KG
@@ -209,22 +226,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_d
 % A possible way to track inputs for the various data will be provided
 % inside the .txt file used as a log for the program.
 
-% disp(" ++++ INPUT GUST ENVELOPE ++++");
-% 
-% % Horizontal tail loads increments
-% Data3 = [  Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value, ...            % Airspeed resulting from gust when flight speed is V = VC
-%            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value, ...              % Airspeed resulting from gust when flight speed is V = VD
-%            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value, ...       % Positive load factors associated with wind gust, V = VC 
-%            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value, ...       % Negative load factors associated with wind gust, V = VC
-%            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value, ...         % Positive load factors associated with wind gust, V = VD
-%            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value];            % Negative load factors associated with wind gust, V = VD                 % VG = VD on the negative side of V - n diagram
-% disp(" ++++++++++ DATA USED TO PLOT GUST ENVELOPE ++++++++++ ")
-% format = ' %f          %f           %f          %f          %f          %f\n';
-% label  = ' Gust at VC      Gust at VD      Gust n+ at VC      Gust n- at VC      Gust n+ at VD      Gust n- at VD\n';
-% fprintf(label);
-% fprintf(format, Data3.');
-% disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
-
 %% OUTPUT
 % x = Gust_envelope(npos, nneg, VSpos, VSneg, VD, nmax, nmin, VG, ...
 %                   V_cruise, V_dive, ngust_plus_cruise, ngust_neg_cruise, ...
@@ -250,7 +251,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_envelope.v
                                                                                            Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value, ...         % Negative load factors associated with wind gust, V = VD
                                                                                            Aircraft.Certification.Regulation.value, ...                                               % Airworthiness rules applied 
                                                                                            Aircraft.Certification.Aircraft_Name.value);                                               % Selected aircraft name
-pause(1);
 
 % Saving figures inside correct folder
 fprintf('Saving Gustenvelope.pdf in: ');
@@ -276,22 +276,46 @@ twod_vect = stall_speed_limit1(obj, Aircraft.Certification.Regulation.SubpartC.F
                                                   Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value, ...          % Airspeed from gust envelope, V = VC
                                                   Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value, ...  % Positive load factor vector
                                                   Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value, ...     % Positive load factor resulting from gust, V = VC
-                                                  Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value);                      % Max positive load factor
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value = twod_vect(:, 1);        % Store output from calculations inside the struct variable AIRCRAFT
+                                                  Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value, ...
+                                                  Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value);                      % Max positive load factor
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value = twod_vect(:, 1); % Store output from calculations inside the struct variable AIRCRAFT
+index = 1;
+y = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(end);
+for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value)
+    x = abs(y - Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(i));
+    if x < 1e-1
+        index = i;
+    end
+end
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(index:end)];
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.Attributes.unit = 'm/s';                                                                           
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value = twod_vect(:, 2);  % Store output from calculations inside the struct variable AIRCRAFT
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value(index:end)];
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.Attributes.unit = 'g';
+clear index y;
 % Testing functions for the final envelope
 twod_vect = stall_speed_limit1(obj, Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.value, ...
                                                                                                               Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_VS.value, ...
                                                                                                               Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value, ...
                                                                                                               Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value, ...
                                                                                                               Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value, ...
-                                                                                                              Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.value);
+                                                                                                              Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.value, ...
+                                                                                                              Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value = twod_vect(:, 1);
+index = 1;
+y = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value(end);
+for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value)
+    x = abs(y - Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(i));
+    if x < 1e-1
+        index = i;
+    end
+end
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(index:end)];
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.Attributes.unit = 'm/s';                                                                           
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = twod_vect(:, 2);  
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = twod_vect(:, 2); 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value(index:end)]; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.Attributes.unit = 'g';
+clear index;
 % -------------------------------------------------------------------------
 % [vAD; nAD] =  back_envelope_points(obj, vgust, ngust, VD, vstall, nstall, nmax)    
 %  This function is able to obtain a stall speed vector which
@@ -384,7 +408,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Diagram.va
                                                                                          Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.value, ...
                                                                                          Aircraft.Certification.Regulation.value, ... 
                                                                                          Aircraft.Certification.Aircraft_Name.value);
-pause(1);
+
 
 % Saving figures inside correct folder
 fprintf('Saving Finalenvelope.pdf in: ');
@@ -407,7 +431,7 @@ Aircraft.Certification.Aerodynamic_data.Polars = AeroPlot(Aircraft.Certification
                                                           Aircraft.Certification.Aerodynamic_data.CL.value, ...
                                                           Aircraft.Certification.Aerodynamic_data.CD.value, ...
                                                           Aircraft.Certification.Aerodynamic_data.CM.value);
-pause(1);
+
 % Saving figures inside correct folder
 fprintf('Saving Polars.pdf in: ');
 fprintf('\n'); 
