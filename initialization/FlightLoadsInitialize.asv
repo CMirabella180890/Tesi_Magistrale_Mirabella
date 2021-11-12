@@ -283,10 +283,6 @@ Aircraft.Geometry.Horizontal.Movable.cf_c_outer.value = NaN;
 Aircraft.Geometry.Horizontal.Movable.cf_c_outer.Attributes.unit = "percentage";
 Aircraft.Geometry.Horizontal.Movable.max_deflection.value = 25.0;
 Aircraft.Geometry.Horizontal.Movable.max_deflection.Attributes.unit = "degrees";
-Aircraft.Geometry.Horizontal.Movable.total_deflection_time.value = NaN;
-Aircraft.Geometry.Horizontal.Movable.total_deflection_time.Attributes.unit = "seconds";
-Aircraft.Geometry.Horizontal.Movable.total_deflection_time.Attributes.flag1 = "Commuter";
-Aircraft.Geometry.Horizontal.Movable.total_deflection_time.Attributes.flag2 = "Wheel";
 
 % -------------------------------------------------------------------------
 % Engine

@@ -178,20 +178,10 @@
 %
 % =========================================================================
 %% CS - VLA 423 - METHOD A - MANOEUVRING AIRSPEED VA 
-Aircraft.Geometry.Horizontal.Movable.max_deflection.value = 25.0;
-Aircraft.Geometry.Horizontal.Movable.max_deflection.Attributes.unit = "degrees";
-Aircraft.Geometry.Fuselage.Non_dim_radius_of_gyration.value = 0.34;
-Aircraft.Geometry.Fuselage.Non_dim_radius_of_gyration.Attributes.unit = "Non dimensional";
-Aircraft.Geometry.Fuselage.Radius_of_gyration.value = Aircraft.Geometry.Fuselage.length.value*Aircraft.Geometry.Fuselage.Non_dim_radius_of_gyration.value*0.5;
-Aircraft.Geometry.Fuselage.Radius_of_gyration.Attributes.unit = "meters";
-% Aircraft.Weight.I_Level.IY.value = (Aircraft.Weight.I_Level.W_maxTakeOff.value)*(Aircraft.Geometry.Fuselage.Radius_of_gyration.value)^2;
-Aircraft.Weight.I_Level.IY.value = 100.0;
-Aircraft.Weight.I_Level.IY.Attributes.unit = "kg * m^2";
-% BE CAREFUL: Here it must be provided a switch case for 
-% (a) ELEVATOR (CONVENTIONAL HORIZONTAL PLANE);
-% (b) STABILATOR (FULL MOVABLE HORIZ. TAIL);
-Aircraft.Geometry.Horizontal.tau.value = 0.50; 
-Aircraft.Geometry.Horizontal.tau.Attributes.unit = "Non dimensional";
+if Aircraft.Certification.Aerodynamic_data.Horizontal.tau.Attributes.flag == "Conventional"
+    Aircraft.Certification.Aerodynamic_data.Horizontal.tau.value = 0.50;
+elseif 
+end
 
 % OPTION (a) OF THE CS VLA 423
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_a.l_tail.value = Aircraft.Geometry.Horizontal.l.value; 
@@ -593,10 +583,6 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up
     length(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.delta_tail_airloads.value))';
 % Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_positivestall.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_fromCtoD.value];
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.Attributes.unit = "daN";
-
-lb = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.value;
-lm = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.delta_tail_airloads.value;
-v  = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.airspeed_vector.value;
 
 % TOTAL AIRLOADS ASSOCIATED WITH THE PITCH UP MANOEUVRE
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.total_tail_airloads.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.delta_tail_airloads.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Option_b.pitch_up.balancing_tail_airloads.value;

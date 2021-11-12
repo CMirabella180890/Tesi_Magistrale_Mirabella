@@ -18,7 +18,6 @@ fprintf('### Current directory ###');
 fprintf('\n');
 fprintf('%s\n', dir);
 obj1 = aero_model; 
-pause(5/1000);
 
 %% MAX LIFT COEFFICIENT - WING BODY CONFIGURATION
 % -------------------------------------------------------------------------
@@ -45,7 +44,6 @@ fprintf('### Current directory ###');
 fprintf('\n');
 fprintf('%s\n', dir);
 obj1 = aero_model; 
-pause(5/1000);
 
 %% LIFT CHARACTERISTIC
 % Before to start the balancing loads analysis, it is required to plot lift
@@ -104,7 +102,7 @@ Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmo
     Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value, ...
     Aircraft.Certification.Aerodynamic_data.CL.value, ...
     Aircraft.Certification.Aerodynamic_data.alpha.value);
-pause(1);
+
 exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelStraightAndInverted.pdf', 'ContentType', 'vector');
 % Saving figures inside correct folder
 fprintf('Saving FullLiftModelStraightAndInverted.pdf in: ');
