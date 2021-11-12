@@ -279,18 +279,20 @@ twod_vect = stall_speed_limit1(obj, Aircraft.Certification.Regulation.SubpartC.F
                                                   Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value, ...
                                                   Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value);                      % Max positive load factor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value = twod_vect(:, 1); % Store output from calculations inside the struct variable AIRCRAFT
-% index = 1.0;
-% for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value)
-%     x = abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value - Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(i));
-%     if x < 1e-2
-%         index = i;
-%     end
-% end
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(1:index);
+index = 1;
+y = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(end);
+for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value)
+    x = abs(y - Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(i));
+    if x < 1e-1
+        index = i;
+    end
+end
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(index:end)];
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.Attributes.unit = 'm/s';                                                                           
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value = twod_vect(:, 2);  % Store output from calculations inside the struct variable AIRCRAFT
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value(1:index);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value(index:end)];
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.Attributes.unit = 'g';
+clear index y;
 % Testing functions for the final envelope
 twod_vect = stall_speed_limit1(obj, Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.value, ...
                                                                                                               Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_VS.value, ...
@@ -300,16 +302,18 @@ twod_vect = stall_speed_limit1(obj, Aircraft.Certification.Regulation.SubpartC.F
                                                                                                               Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.value, ...
                                                                                                               Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value = twod_vect(:, 1);
-% for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value)
-%     x = abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.value - Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value(i));
-%     if x < 1e-2
-%         index = i;
-%     end
-% end
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value(1:index);
+index = 1;
+y = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value(end);
+for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value)
+    x = abs(y - Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(i));
+    if x < 1e-1
+        index = i;
+    end
+end
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(index:end)];
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.Attributes.unit = 'm/s';                                                                           
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = twod_vect(:, 2); 
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value(1:index);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value(index:end)]; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.Attributes.unit = 'g';
 clear index;
 % -------------------------------------------------------------------------

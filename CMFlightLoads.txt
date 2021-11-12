@@ -63,7 +63,7 @@ Gust load factor is greater or lower than max load factor
  ++++ INPUT FINAL ENVELOPE ++++
  ++++++++++ DATA USED TO PLOT FINAL ENVELOPE ++++++++++ 
  VC            nC             VD            nD            VF            nF
- 19.840611    1.005210     58.402226    3.717672    30.556409    -1.509018
+ 46.721781    5.348275     58.402226    3.717672    46.721781    -3.348275
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ DATA USED TO PLOT FINAL ENVELOPE ++++++++++ 
  VE            nE             VA            nA            VG            nG
@@ -119,27 +119,27 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT A OF THE FINAL ENVELOPE ++++++++++ 
  V [m/s]           n [g]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
- 38.614737          3.800000          913.297481          1.631673          0.227419          11.547234          385.813621          -3.277328
+ 38.614737          3.800000          913.297481          1.631673          0.227419          11.547234          385.813621          -18.662085
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT C OF THE FINAL ENVELOPE ++++++++++ 
  V [m/s]           n [g]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
- 19.840611          1.005210          241.110535          1.631673          0.227419          11.547234          101.854796          -3.277328
+ 46.721781          5.348275          1337.041440          1.569068          0.198594          10.473367          543.148738          -18.662085
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT D OF THE FINAL ENVELOPE ++++++++++ 
  V [m/s]           n [g]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
- 58.402226          3.717672          2089.127250          -0.217282          0.053694          3.411090          -117.522411          -50.923685
+ 58.402226          3.717672          2089.127250          0.746495          0.067306          7.382850          403.760508          -39.181412
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT F OF THE FINAL ENVELOPE ++++++++++ 
  V [m/s]           n [g]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
- 58.402226          -1.717672          2089.127250          -0.217282          0.053694          2.379869          -117.522411          -50.923685
+ 58.402226          -1.717672          2089.127250          -0.840374          0.084272          9.204536          -290.903932          -37.449722
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT G OF THE FINAL ENVELOPE ++++++++++ 
  V [m/s]           n [g]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
- 30.556409          -1.500000          571.887655          -0.662335          0.066710          7.254494          -98.066500          -16.184300
+ 30.556409          -1.500000          571.887655          -0.662335          0.066710          7.254494          -98.066500          -16.018227
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT E OF THE FINAL ENVELOPE ++++++++++ 
  V [m/s]           n [g]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]
- 30.556409          -1.509018          571.887655          -0.217282          0.053694          12.413852          -117.522411          -50.923685
+ 46.721781          -3.348275          1337.041440          -0.217282          0.053694          12.413852          -117.522411          -50.923685
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ FIGURE 11 - LIFT MODELS AND FLIGHT ENVELOPE POINTS ++++ 
 Saving LiftComparisonWithPoints.pdf in: 
@@ -181,16 +181,600 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 to 'image' for better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.] 
 Saving CmInterpolationdiag.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-{Unrecognized field name "value".
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ ++++ FIGURE 17 - POINT D SHEAR, BENDING, TORSION ++++ 
+Saving ShearBendingTorsionDiagramPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ ++++ FIGURE 18 - POINT F SHEAR, BENDING, TORSION ++++ 
+Saving ShearBendingTorsionDiagramPointF.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ ++++ FIGURE 19 - POINT G SHEAR, BENDING, TORSION ++++ 
+Saving ShearBendingTorsionDiagramPointG.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ ++++ FIGURE 20 - POINT E SHEAR, BENDING, TORSION ++++ 
+Saving ShearBendingTorsionDiagramPointE.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 21 - SHEAR COMPARISON ++++ 
+Saving ShearComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 22 - BENDING COMPARISON ++++ 
+Saving BendingComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 23 - TORSION COMPARISON ++++ 
+Saving TorsionComparison.pdf Output in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 24 - SPANWISE LIFT COMPARISON ++++ 
+Saving clComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 25 - SPANWISE DRAG COMPARISON ++++ 
+Saving cdComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 26 - SPANWISE PITCH MOMENT COMPARISON ++++ 
+Saving cmComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 27 - POINT A SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+Saving CmComparisonPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 28 - POINT A PARTIAL LOAD - UNSYMM. TORSION ++++ 
+Saving UnsymmetricalTorsionSeventyPerCentPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 29 - POINT A FULL LOAD - UNSYMM. TORSION ++++ 
+Saving in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 30 -POINT C SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+Saving CmComparisonPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 31 - POINT C PARTIAL LOAD - UNSYMM. TORSION ++++ 
+Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 32 - POINT C FULL LOAD - UNSYMM. TORSION ++++ 
+Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 33 -POINT D SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+Saving CmComparisonPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 34 - POINT D PARTIAL LOAD - UNSYMM. TORSION ++++ 
+Saving UnsymmetricalTorsionSeventyPerCentPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 35 - POINT D FULL LOAD - UNSYMM. TORSION ++++ 
+Saving UnsymmetricalTorsionFullPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 36 - FULL LOAD UNSYMM. TORSION COMPARISON ++++ 
+Saving UnsymmetricalLoadsComparisonFullLoad.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 37 - PARTIAL LOAD UNSYMM. TORSION COMPARISON ++++ 
+Saving UnsymmetricalLoadsComparisonSeventyPerCentLoad.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+    0.1526
 
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcShearBendTorsMom', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcShearBendTorsMom.m', 1012)" style="font-weight:bold">CalcShearBendTorsMom</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcShearBendTorsMom.m',1012,0)">line 1012</a>)
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.value =
-times(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value',
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.value);
+   4.5792e-04
 
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 80)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',80,0)">line 80</a>)
-        CalcShearBendTorsMom
+   6.8322e-04
 
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)
-Aircraft = ApplyRegulation(Aircraft);
-} 
+   5.3080e-06
+
+    0.0044
+
+    0.3051
+
+    0.0018
+
+    0.0027
+
+   2.1226e-05
+
+    0.0089
+
+    0.4572
+
+    0.0041
+
+    0.0061
+
+   4.7734e-05
+
+    0.0133
+
+    0.6089
+
+    0.0073
+
+    0.0109
+
+   8.4807e-05
+
+    0.0177
+
+    0.7603
+
+    0.0114
+
+    0.0170
+
+   1.3242e-04
+
+    0.0221
+
+    0.9113
+
+    0.0164
+
+    0.0245
+
+   1.9055e-04
+
+    0.0265
+
+    1.0620
+
+    0.0224
+
+    0.0334
+
+   2.5917e-04
+
+    0.0309
+
+    1.2122
+
+    0.0292
+
+    0.0435
+
+   3.3825e-04
+
+    0.0353
+
+    1.3622
+
+    0.0369
+
+    0.0551
+
+   4.2777e-04
+
+    0.0396
+
+    1.5117
+
+    0.0455
+
+    0.0679
+
+   5.2771e-04
+
+    0.0440
+
+    1.6610
+
+    0.0550
+
+    0.0821
+
+   6.3804e-04
+
+    0.0483
+
+    1.8098
+
+    0.0655
+
+    0.0977
+
+   7.5873e-04
+
+    0.0527
+
+    1.9583
+
+    0.0768
+
+    0.1145
+
+   8.8977e-04
+
+    0.0570
+
+    2.1065
+
+    0.0890
+
+    0.1327
+
+    0.0010
+
+    0.0613
+
+    2.2543
+
+    0.1020
+
+    0.1522
+
+    0.0012
+
+    0.0656
+
+    2.4017
+
+    0.1160
+
+    0.1731
+
+    0.0013
+
+    0.0699
+
+    2.5488
+
+    0.1309
+
+    0.1952
+
+    0.0015
+
+    0.0742
+
+    2.6955
+
+    0.1466
+
+    0.2187
+
+    0.0017
+
+    0.0784
+
+    2.8419
+
+    0.1632
+
+    0.2435
+
+    0.0019
+
+    0.0827
+
+    2.9880
+
+    0.1807
+
+    0.2696
+
+    0.0021
+
+    0.0870
+
+    3.1336
+
+    0.1991
+
+    0.2970
+
+    0.0023
+
+    0.0912
+
+    3.2790
+
+    0.2183
+
+    0.3257
+
+    0.0025
+
+    0.0954
+
+    3.4240
+
+    0.2384
+
+    0.3557
+
+    0.0028
+
+    0.0996
+
+    3.5686
+
+    0.2594
+
+    0.3870
+
+    0.0030
+
+    0.1039
+
+    3.7129
+
+    0.2812
+
+    0.4196
+
+    0.0033
+
+    0.1080
+
+    3.8569
+
+    0.3039
+
+    0.4535
+
+    0.0035
+
+    0.1122
+
+    4.0005
+
+    0.3275
+
+    0.4886
+
+    0.0038
+
+    0.1164
+
+    4.1438
+
+    0.3519
+
+    0.5251
+
+    0.0041
+
+    0.1206
+
+    4.2867
+
+    0.3772
+
+    0.5628
+
+    0.0044
+
+    0.1247
+
+    4.4293
+
+    0.4034
+
+    0.6018
+
+    0.0047
+
+    0.1289
+
+    4.5716
+
+    0.4304
+
+    0.6421
+
+    0.0050
+
+    0.1330
+
+    4.7135
+
+    0.4582
+
+    0.6837
+
+    0.0053
+
+    0.1372
+
+    4.8550
+
+    0.4869
+
+    0.7265
+
+    0.0056
+
+    0.1413
+
+    4.9963
+
+    0.5165
+
+    0.7706
+
+    0.0060
+
+    0.1454
+
+    5.1372
+
+    0.5469
+
+    0.8160
+
+    0.0063
+
+    0.1495
+
+    5.2777
+
+    0.5781
+
+    0.8626
+
+    0.0067
+
+    0.1536
+
+    5.4180
+
+    0.6102
+
+    0.9105
+
+    0.0071
+
+    0.1577
+
+    5.5578
+
+    0.6432
+
+    0.9596
+
+    0.0075
+
+    0.1617
+
+    5.6974
+
+    0.6769
+
+    1.0100
+
+    0.0078
+
+    0.1658
+
+    5.8366
+
+    0.7115
+
+    1.0616
+
+    0.0082
+
+    0.1698
+
+    5.9755
+
+    0.7470
+
+    1.1145
+
+    0.0087
+
+    0.1739
+
+    6.1141
+
+    0.7832
+
+    1.1686
+
+    0.0091
+
+    0.1779
+
+    6.2523
+
+    0.8203
+
+    1.2239
+
+    0.0095
+
+    0.1819
+
+    6.3902
+
+    0.8583
+
+    1.2805
+
+    0.0099
+
+    0.1860
+
+    6.5278
+
+    0.8970
+
+    1.3383
+
+    0.0104
+
+    0.1900
+
+    6.6650
+
+    0.9366
+
+    1.3974
+
+    0.0109
+
+    0.1940
+
+    6.8019
+
+    0.9770
+
+    1.4577
+
+    0.0113
+
+    0.1979
+
+    6.9385
+
+    1.0182
+
+    1.5192
+
+    0.0118
+
+    0.2019
+
+    7.0748
+
+    1.0603
+
+    1.5819
+
+    0.0123
+
+    0.2059
+
+ ++++ METHOD CS - VLA 423 (a) ++++
+ ++++ UNCHECKED ++++
+ ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
+VA                 
+47.305999          
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+VA
+0.000000
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
+Case 1              Case 2             Case 3             Case 4  
+-41.996801          41.996801          37.497144          -37.497144
+-41.996801          41.996801          40.761978          -40.761978
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+Case 1              Case 2             Case 3             Case 4  
+-60.658886          -54.410924          18.835060          -53.515371
+-79.446523          -92.920487          -10.161708          -79.943390
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
