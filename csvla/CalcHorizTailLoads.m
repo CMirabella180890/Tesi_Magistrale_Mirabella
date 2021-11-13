@@ -1205,3 +1205,7 @@ label  = 'Case 1              Case 2             Case 3             Case 4  \n';
 fprintf(label);
 fprintf(format, Total.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
+%% GUST LOAD - CS - VLA 425 
+
+
