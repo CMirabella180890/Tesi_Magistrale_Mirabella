@@ -18,7 +18,6 @@ fprintf('### Current directory ###');
 fprintf('\n');
 fprintf('%s\n', dir);
 obj1 = aero_model; 
-pause(5/1000);
 
 %% MAX LIFT COEFFICIENT - WING BODY CONFIGURATION
 % -------------------------------------------------------------------------
@@ -45,7 +44,6 @@ fprintf('### Current directory ###');
 fprintf('\n');
 fprintf('%s\n', dir);
 obj1 = aero_model; 
-pause(5/1000);
 
 %% LIFT CHARACTERISTIC
 % Before to start the balancing loads analysis, it is required to plot lift
@@ -68,20 +66,20 @@ Aircraft.Certification.Aerodynamic_data.CL_Linear.value = Aircraft.Certification
 Aircraft.Certification.Aerodynamic_data.CL_Linear.Attributes.unit = "Non dimensional";
 
 % Lift model comparison
-disp(" ++++ FIGURE 5 - SELECTED INTERPOLATION CURVES FOR AERO DATA ++++ ");
-Aircraft.Certification.Aerodynamic_data.CL_comparison_diagram.value = Lift_comparison(Aircraft.Certification.Aerodynamic_data.AOA_aux.value, ... 
-                  Aircraft.Certification.Aerodynamic_data.CL_NonLinear.value, ...
-                  Aircraft.Certification.Aerodynamic_data.CL_Linear.value, ...
-                  Aircraft.Certification.Aerodynamic_data.CL.value, ...
-                  Aircraft.Certification.Aerodynamic_data.alpha.value);
-pause(1);
-exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_comparison_diagram.value, 'LiftComparison.pdf', 'ContentType', 'vector');
-% Saving figures inside correct folder
-fprintf('Saving LiftComparison.pdf in: ');
-fprintf('\n'); 
-fprintf('%s\n', SaveFolder);
-% Moving file inside correct folder
-movefile LiftComparison.pdf Output
+% disp(" ++++ FIGURE 5 - SELECTED INTERPOLATION CURVES FOR AERO DATA ++++ ");
+% Aircraft.Certification.Aerodynamic_data.CL_comparison_diagram.value = Lift_comparison(Aircraft.Certification.Aerodynamic_data.AOA_aux.value, ... 
+%                   Aircraft.Certification.Aerodynamic_data.CL_NonLinear.value, ...
+%                   Aircraft.Certification.Aerodynamic_data.CL_Linear.value, ...
+%                   Aircraft.Certification.Aerodynamic_data.CL.value, ...
+%                   Aircraft.Certification.Aerodynamic_data.alpha.value);
+% pause(1);
+% exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_comparison_diagram.value, 'LiftComparison.pdf', 'ContentType', 'vector');
+% % Saving figures inside correct folder
+% fprintf('Saving LiftComparison.pdf in: ');
+% fprintf('\n'); 
+% fprintf('%s\n', SaveFolder);
+% % Moving file inside correct folder
+% movefile LiftComparison.pdf Output
               
 % Lift curve - Full model
 Aircraft.Certification.Aerodynamic_data.CL_Full_model.value = CL_WB_CompleteCurve(obj1, ...
@@ -104,7 +102,7 @@ Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmo
     Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value, ...
     Aircraft.Certification.Aerodynamic_data.CL.value, ...
     Aircraft.Certification.Aerodynamic_data.alpha.value);
-pause(1);
+
 exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelStraightAndInverted.pdf', 'ContentType', 'vector');
 % Saving figures inside correct folder
 fprintf('Saving FullLiftModelStraightAndInverted.pdf in: ');
@@ -1031,6 +1029,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTailAirlo
                 V_fromFtoE, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_unit_load_factor.value, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value, ...
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value, ...
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.value, ...
                 Aircraft.Certification.Regulation.value, ... 
                 Aircraft.Certification.Aircraft_Name.value);
 pause(1);
@@ -1154,6 +1154,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WingAirloa
                 V_fromFtoE, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Wing_Lift_unit_load_factor.value, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value, ...
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value, ...
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.value, ...
                 Aircraft.Certification.Regulation.value, ... 
                 Aircraft.Certification.Aircraft_Name.value);
 pause(1);
