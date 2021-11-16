@@ -268,209 +268,31 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++ METHOD CS - VLA 423 (a) ++++
  ++++ UNCHECKED ++++
  ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
-VA                 
-47.301778          
+Pitch-up at VA                 Pitch-down at VA
+-37.841422          47.301778
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++ METHOD CS - VLA 423 (b) ++++
+ ++++ CHECKED ++++
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-VA
+At VA
 -88.812799
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
- ++++ METHOD CS - VLA 423 (B) - PITCH DOWN ++++
+ ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-VA
+At VA
 42.666416
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
- ++++ CRITICAL CONDITION: METHOD (B) PITCH DOWN ++++
- ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
-Case 1              Case 2             Case 3             Case 4  
--41.996801          41.996801          37.497144          -37.497144
--41.996801          41.996801          40.761978          -40.761978
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
- +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-Case 1              Case 2             Case 3             Case 4  
--60.658886          -54.410924          18.835060          -53.515371
--79.446523          -92.920487          -10.161708          -79.765532
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-% Total horizontal tail increment
-Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_four.Total_airloads.value; ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_four.Total_airloads.value];
-disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
- +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-format = '%f          %f          %f          %f\n';
-label  = 'Case 1              Case 2            Case 3             Case 4  \n';
-fprintf(label);
-Case 1              Case 2            Case 3             Case 4  
-fprintf(format, Total.');
--60.658886          -54.410924          18.835060          -53.515371
--79.446523          -92.920487          -10.161708          -79.765532
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-% Total horizontal tail increment
-Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_four.Total_airloads.value; ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_four.Total_airloads.value];
-disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
- +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-format = '%f          %f         %f          %f\n';
-label  = 'Case 1              Case 2             Case 3             Case 4  \n';
-fprintf(label);
-Case 1              Case 2             Case 3             Case 4  
-fprintf(format, Total.');
--60.658886          -54.410924         18.835060          -53.515371
--79.446523          -92.920487         -10.161708          -79.765532
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-% Total horizontal tail increment
-Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_four.Total_airloads.value; ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_four.Total_airloads.value];
-disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
- +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-format = '%f          %f        %f         %f\n';
-label  = 'Case 1              Case 2             Case 3             Case 4  \n';
-fprintf(label);
-Case 1              Case 2             Case 3             Case 4  
-fprintf(format, Total.');
--60.658886          -54.410924        18.835060         -53.515371
--79.446523          -92.920487        -10.161708         -79.765532
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-% Total horizontal tail increment
-Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_four.Total_airloads.value; ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_four.Total_airloads.value];
-disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
- +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-format = '%f          %f         %f         %f\n';
-label  = 'Case 1              Case 2             Case 3             Case 4  \n';
-fprintf(label);
-Case 1              Case 2             Case 3             Case 4  
-fprintf(format, Total.');
--60.658886          -54.410924         18.835060         -53.515371
--79.446523          -92.920487         -10.161708         -79.765532
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-% Total horizontal tail increment
-Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_four.Total_airloads.value; ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_four.Total_airloads.value];
-disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
- +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-format = '%f          %f         %f          %f\n';
-label  = 'Case 1              Case 2             Case 3             Case 4  \n';
-fprintf(label);
-Case 1              Case 2             Case 3             Case 4  
-fprintf(format, Total.');
--60.658886          -54.410924         18.835060          -53.515371
--79.446523          -92.920487         -10.161708          -79.765532
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-% Horizontal tail loads increments
-Increment = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_one.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_two.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_three.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_four.Manoeuvring_Critical_Load_Increment.value; ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_one.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_two.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_three.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_four.Manoeuvring_Critical_Load_Increment.value];
-disp(" ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ ")
- ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
-format = '%f          %f          %f          %f\n';
-label  = 'Case 1              Case 2             Case 3             Case 4  \n';
-fprintf(label);
-Case 1              Case 2             Case 3             Case 4  
-fprintf(format, Increment.');
--41.996801          41.996801          37.497144          -37.497144
--41.996801          41.996801          40.761978          -40.761978
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-disp(" ++++ METHOD CS - VLA 423 (a) ++++");
- ++++ METHOD CS - VLA 423 (a) ++++
-disp(" ++++ UNCHECKED ++++");
- ++++ UNCHECKED ++++
+ ++++ CRITICAL CONDITION: METHOD (b) PITCH DOWN ++++
+{Unrecognized field name "value".
 
-% Horizontal tail loads increments
-Increment = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.DeltaLimitLTail.value];
-disp(" ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ ")
- ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
-format = '%f          \n';
-label  = 'VA                 \n';
-fprintf(label);
-VA                 
-fprintf(format, Increment.');
-47.301778          
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-%% PRINT RESULTS 
-disp(" ++++++++++ CS - VLA 423 - METHOD D ++++++++++ ")
- ++++++++++ CS - VLA 423 - METHOD D ++++++++++ 
-disp(" +++++++++++++++++++++++++++++++++++++++++++++ ")
- +++++++++++++++++++++++++++++++++++++++++++++ 
-% Horizontal tail loads increments
-Increment = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_one.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_two.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_three.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_four.Manoeuvring_Critical_Load_Increment.value; ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_one.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_two.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_three.Manoeuvring_Critical_Load_Increment.value, ...
-    Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_four.Manoeuvring_Critical_Load_Increment.value];
-disp(" ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ ")
- ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
-format = '%f          %f          %f          %f\n';
-label  = 'Case 1              Case 2             Case 3             Case 4  \n';
-fprintf(label);
-Case 1              Case 2             Case 3             Case 4  
-fprintf(format, Increment.');
--41.996801          41.996801          37.497144          -37.497144
--41.996801          41.996801          40.761978          -40.761978
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcHorizTailLoads', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcHorizTailLoads.m', 927)" style="font-weight:bold">CalcHorizTailLoads</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcHorizTailLoads.m',927,0)">line 927</a>)
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.upward_defl.TotalLoads.value =
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.BalancingLoad.value +
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.upward_defl.DeltaLHorizoTail.value;
 
-% Total horizontal tail increment
-Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VA.case_four.Total_airloads.value; ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_one.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_two.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_three.Total_airloads.value, ...
-         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.VD.case_four.Total_airloads.value];
-disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
- +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-format = '%f          %f         %f          %f\n';
-label  = 'Case 1              Case 2             Case 3             Case 4  \n';
-fprintf(label);
-Case 1              Case 2             Case 3             Case 4  
-fprintf(format, Total.');
--60.658886          -54.410924         18.835060          -53.515371
--79.446523          -92.920487         -10.161708          -79.765532
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 84)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',84,0)">line 84</a>)
+        CalcHorizTailLoads
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)
+Aircraft = ApplyRegulation(Aircraft);
+} 
