@@ -1464,5 +1464,67 @@ fprintf(format, Total.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 %% GUST LOAD - CS - VLA 425 
+% CS - VLA 425 Gust loads 
+%  (a) Each horizontal tail surface must be designed for loads resulting
+%      from
+%      (1) Gust velocities specified in CS - VLA 333 (c) with flaps
+%          retracted; and 
+%      (2) Positive and negative gusts of 7.62 m/s nominal intensity at VF
+%          corresponding to the flight conditions specified in CS - VLA 345
+%          (a)(2). 
+%  (b) The average loadings in figure B3 and the distribution of figure B8 
+%      may be used to determine the incremental gust loads for the
+%      requiremenets of subparagraph (a) applied as both up and down
+%      increments for subparagraph (c). 
+%  (c) When determining the total load on the horizontal tail for the
+%      conditions specified in subparagraph (a) of this paragraph, the 
+%      initial balancing tail loads for steady unaccelerated flight at the
+%      pertinent design speeds VF, VC and VD must first be determined. The
+%      incremental tail load resulting from the gusts must be added to the
+%      initial balancing tailload to obtain the total tail load.
+%  (d) In the abscence of a more rational analysis, the incremental tail
+%      load due to the gust, must be computed as follows: 
+%  
+%                   K_g * U_de * V * a_ht * S_ht   /    d epsilon \
+%      Delta L_ht = ---------------------------- * |1 - --------- | 
+%                              16 * 3              \     d alpha  /
+% 
+%      where 
+%      Delta L_ht       = incremental horizontal tail load (daN) 
+%      K_g              = gust alleviation factor defined in CS - VLA 341
+%      U_de             = derived gust velocity (m/s) 
+%      V                = aeroplane equivalent speed (m/s) 
+%      a_ht             = slope of horizonta tail lift curve per radian 
+%      S_ht             = area of horizontal tail (m^2) 
+%      
+%      /    d epsilon \
+%      |1 - --------- | = downwash factor
+%      \     d alpha  /
+%
+% REMIND THAT: 
+% ++++++++++++++++++++
+%       (0.88) * mu_g |
+% K_g = --------------| 
+%         5.3 + mu_g  |
+% ++++++++++++++++++++|
+%          2 * (M/S)  |
+% mu_g = -------------|
+%        rho * MAC * a|
+% ++++++++++++++++++++|
 
-
+% DATA REQUIRED FOR GUST CALCULATION
+% POINT F
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VF.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHTail_F.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VF.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VF.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VF.Attributes.unit = "m/s";
+% POINT C
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VC.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTail_C.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VC.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VC.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VC.Attributes.unit = "m/s";
+% POINT D
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VD.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VD.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VD.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VD.Attributes.unit = "m/s";

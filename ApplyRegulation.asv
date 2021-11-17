@@ -49,10 +49,11 @@ switch (Aircraft.Certification.Regulation.value)
         fprintf('### Current directory ###');
         fprintf('\n');
         fprintf('%s\n', dir);
+        
         %% STARTING OPEN VSP CALCULATION
         % Main_UAS
         % +++ ISTRUZIONE IMPORTANTE +++
-        disp(" ++++ ST
+        disp(" ++++ STARTING OPEN VSP CALCULATIONS ++++ ");
         diary off
         Main_PROSIB_WT 
         % +++ ISTRUZIONE IMPORTANTE +++
@@ -64,6 +65,7 @@ switch (Aircraft.Certification.Regulation.value)
         cd ..
         cd ..
         diary CMFlightLoads.txt
+        disp(" ++++ FIGURE 9 - OPEN VSP RESULTS ++++ ");
         cd csvla
         % The 'dir' variable contains working directory path saved as a
         % char value
@@ -80,8 +82,8 @@ switch (Aircraft.Certification.Regulation.value)
         CalcUnsymmLoads
         % CALCULATE HORIZONTAL TAIL LOADS 
         CalcHorizTailLoads
-%     case 'CS23'
-%     case 'CS22'
+    case 'CS23'
+    case 'CS22'
 end
 %% DISPLAYING RESULTS
 end
