@@ -248,6 +248,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 32 - POINT C FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 33 -POINT D SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
@@ -304,4 +305,12 @@ Case 1              Case 2             Case 3             Case 4
 Case 1              Case 2             Case 3             Case 4  
 -60.658886          -54.410924         18.835060          -53.515371
 -79.446523          -92.920487         -10.161708          -79.765532
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+DeltaL_ht VF       DeltaL_ht VC      DeltaL_ht VD
+59.608176          95.122759         59.608176
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+Gust L_ht VF       Gust L_ht VC      Gust L_ht VD
+22.158454          76.460675         20.604622
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
