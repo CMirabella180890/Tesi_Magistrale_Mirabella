@@ -303,17 +303,17 @@ twod_vect = stall_speed_limit1(obj, Aircraft.Certification.Regulation.SubpartC.F
                                                                                                               Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value = twod_vect(:, 1);
 index = 1;
-y = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(end);
+y = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value(end);
 for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value)
     x = abs(y - Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(i));
     if x < 1e-1
         index = i;
     end
 end
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value(1:index);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(index:end)];
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.Attributes.unit = 'm/s';                                                                           
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = twod_vect(:, 2); 
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value(1:index);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value(index:end)]; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.Attributes.unit = 'g';
 clear index;
 % -------------------------------------------------------------------------
@@ -348,6 +348,25 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_f
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.Attributes.unit = 'g';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.value = point_env(2, 2);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.Attributes.unit = 'g';
+% CHECK ON LOAD FACTORS AND SPEED
+Check1 = abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value - Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value);
+if Check1 < 1e-1
+    Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value;
+end
+%
+V_check2 = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(end) Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value(end)]'
+n_check2 = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value(end) Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value(end)]'
+V_interp = linspace(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(end), Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value(end), 1000)'
+N_straight_line = interp1(V_check2, n_check2, V_interp);
+for i = 1:length(N_straight_line)
+    Check2 = abs(N_straight_line(i) - Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value);
+    if Check2 < 1e-1
+        V_final_gust = V_interp(i);
+        N_final_gust = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value;
+    end
+end
+
+
 
 %% INPUT TO THE FINAL ENVELOPE DIAGRAM 
 

@@ -635,8 +635,8 @@ classdef csvla
         end
         %% FINAL ENVELOPE - METHOD
         function obj = Final_envelope(obj, npos, nneg, VSpos, VSneg, VC, nC, ...
-                                      VD, nD, VF, nF, VE, nE, VA, nA, VG, nG, ...
-                                      Reg, Aircraft_name)
+                                      V_fg, n_fg, VD, nD, VF, nF, VE, nE, VA, ...
+                                      nA, VG, nG, Reg, Aircraft_name)
         % FUNCTION DETAILED DESCRIPTION
         %  fig1 = V_n_diagram(npos, nneg, VSpos, VSneg, VD, VG, VA, VE, Reg, Aircraft_name)
         %  This function plot the V - n diagram, based on the applied regulation.
@@ -681,8 +681,9 @@ classdef csvla
         plot([VSpos(1) VSpos(1)], [npos(1) 0.0], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
         plot([VSneg(1) VSneg(1)], [nneg(1) 0.0], '-b.', 'LineWidth', 1, 'MarkerSize', 10)
         plot(VA, nA, 'r.', 'MarkerSize', 10)
-        plot([VC VD], ...
-             [nC nD], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
+        plot([VC V_fg], ...
+             [nC n_fg], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
+        plot([V_fg VD], [n_fg nD], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
         plot([VF VD], ...
              [nF nE], '-b.', 'LineWidth', 1, 'MarkerSize', 10)
         plot(VG, nG, 'b.', 'MarkerSize', 10)
