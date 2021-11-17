@@ -706,7 +706,8 @@ classdef csvla
         %% BALANCING LOADS - METHOD
         function obj = Balancing_loads(obj, HT_Lift_posstall, VSpos, ...
                                             HT_Lift_negstall, VSneg, ... 
-                                            HT_Lift_fromCtoD, V_fromCtoD, ...
+                                            HT_Lift_fromCtofg, V_fromCtofg, ...
+                                            HT_Lift_fromfgtoD, V_fromfgtoD, ...
                                             HT_Lift_fromDtoE, V_fromDtoE, ...
                                             HT_Lift_fromFtoE, V_fromFtoE, ...
                                             HT_Lift_unit_load_factor, V_unit_load_factor, ...
@@ -770,14 +771,15 @@ classdef csvla
         xlim([18.0 max(V_fromDtoE)+5])
         plot(VSpos, HT_Lift_posstall, '-r', 'LineWidth', 1)
         plot(VSneg, HT_Lift_negstall, '-r', 'LineWidth', 1)
-        plot(V_fromCtoD, HT_Lift_fromCtoD, '-r', 'LineWidth', 1)
+        plot(V_fromCtofg, HT_Lift_fromCtofg, '-r', 'LineWidth', 1)
+        plot(V_fromfgtoD, HT_Lift_fromfgtoD, '-r', 'LineWidth', 1)
         plot(V_fromDtoE, HT_Lift_fromDtoE, '-r', 'LineWidth', 1)
         plot(V_fromFtoE, HT_Lift_fromFtoE, '-r', 'LineWidth', 1)
         plot(V_unit_load_factor, HT_Lift_unit_load_factor, '-.k', 'LineWidth', 2)
         plot(VSpos(1), HT_Lift_posstall(1),'k.','MarkerSize', 10,'LineStyle','none');
         plot(VSpos(index_va), HT_Lift_posstall(index_va),'k.','MarkerSize', 10,'LineStyle','none');
-        plot(V_fromCtoD(1), HT_Lift_fromCtoD(1),'k.','MarkerSize', 10,'LineStyle','none');
-        plot(V_fromCtoD(end), HT_Lift_fromCtoD(end),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromCtofg(1), HT_Lift_fromCtofg(1),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromfgtoD(end), HT_Lift_fromfgtoD(end),'k.','MarkerSize', 10,'LineStyle','none');
         plot(VSneg(index_vg), HT_Lift_negstall(index_vg),'k.','MarkerSize', 10,'LineStyle','none');
         plot(V_fromFtoE(1), HT_Lift_fromFtoE(1),'k.','MarkerSize', 10,'LineStyle','none');
         plot(V_fromFtoE(end), HT_Lift_fromFtoE(end),'k.','MarkerSize', 10,'LineStyle','none');
@@ -785,7 +787,7 @@ classdef csvla
         text(20, -1.0, '\fontname{Courier} Point S')
         text(VSpos(index_va)+0.1, HT_Lift_posstall(index_va)+ 2.0, '\fontname{Courier} Point A')
         % text(V_fromCtoD(1)-0.2, HT_Lift_fromCtoD(1)+0.2, '\fontname{Courier} Point C')
-        text(46, HT_Lift_fromCtoD(1)+ 2.0, '\fontname{Courier} Point C')
+        text(46, HT_Lift_fromCtofg(1)+ 2.0, '\fontname{Courier} Point C')
         text(57, -36.5, '\fontname{Courier} Point D')
         % text(VSneg(index_vg)-1.0, HT_Lift_negstall(index_vg)+0.2, '\fontname{Courier} Point G')
         text(22, HT_Lift_negstall(index_vg)+0.2, '\fontname{Courier} Point G')
@@ -800,7 +802,8 @@ classdef csvla
         %% BALANCING LOADS - WING LOADS DIAGRAM
         function obj = Mainwing_loads(obj, WING_Lift_posstall, VSpos, ...
                                             WING_Lift_negstall, VSneg, ... 
-                                            WING_Lift_fromCtoD, V_fromCtoD, ...
+                                            WING_Lift_fromCtofg, V_fromCtofg, ...
+                                            WING_Lift_fromfgtoD, V_fromfgtoD, ...
                                             WING_Lift_fromDtoE, V_fromDtoE, ...
                                             WING_Lift_fromFtoE, V_fromFtoE, ...
                                             Wing_unit_load_factor, V_unit_load_factor, ...
@@ -862,26 +865,27 @@ classdef csvla
         grid minor
         index_va = dsearchn(VSpos, VA);
         index_vg = dsearchn(VSneg, VG);
-        ylim([min(WING_Lift_fromFtoE)-20 max(WING_Lift_fromCtoD)+20])
+        ylim([min(WING_Lift_fromFtoE)-20 max(WING_Lift_fromCtofg)+20])
         xlim([18 max(V_fromDtoE)+7])
         plot(VSpos, WING_Lift_posstall, '-r', 'LineWidth', 1)
         plot(VSneg, WING_Lift_negstall, '-r', 'LineWidth', 1)
-        plot(V_fromCtoD, WING_Lift_fromCtoD, '-r', 'LineWidth', 1)
+        plot(V_fromCtofg, WING_Lift_fromCtofg, '-r', 'LineWidth', 1)
+        plot(V_fromfgtoD, WING_Lift_fromfgtoD, '-r', 'LineWidth', 1)
         plot(V_fromDtoE, WING_Lift_fromDtoE, '-r', 'LineWidth', 1)
         plot(V_fromFtoE, WING_Lift_fromFtoE, '-r', 'LineWidth', 1)
         plot(V_unit_load_factor, Wing_unit_load_factor, '-.k', 'LineWidth', 2)
         plot(VSpos(1), WING_Lift_posstall(1),'k.','MarkerSize', 10,'LineStyle','none');
         plot(VSpos(index_va), WING_Lift_posstall(index_va),'k.','MarkerSize', 10,'LineStyle','none');
-        plot(V_fromCtoD(1), WING_Lift_fromCtoD(1),'k.','MarkerSize', 10,'LineStyle','none');
-        plot(V_fromCtoD(end), WING_Lift_fromCtoD(end),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromCtofg(1), WING_Lift_fromCtofg(1),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromfgtoD(end), WING_Lift_fromfgtoD(end),'k.','MarkerSize', 10,'LineStyle','none');
         plot(VSneg(index_vg), WING_Lift_negstall(index_vg),'k.','MarkerSize', 10,'LineStyle','none');
         plot(V_fromFtoE(1), WING_Lift_fromFtoE(1),'k.','MarkerSize', 10,'LineStyle','none');
         plot(V_fromFtoE(end), WING_Lift_fromFtoE(end),'k.','MarkerSize', 10,'LineStyle','none');
         % ---------------------------------------------------------------------
         text(VSpos(1), 75, '\fontname{Courier} Point S')
         text(38, 360, '\fontname{Courier} Point A')
-        text(V_fromCtoD(1)+3, WING_Lift_fromCtoD(1)+0.2, '\fontname{Courier} Point C')
-        text(V_fromCtoD(end)-0.2, WING_Lift_fromCtoD(end)+0.2, '\fontname{Courier} Point D')
+        text(V_fromCtofg(1)+3, WING_Lift_fromCtofg(1)+0.2, '\fontname{Courier} Point C')
+        text(V_fromfgtoD(end)-0.2, WING_Lift_fromfgtoD(end)+0.2, '\fontname{Courier} Point D')
         text(VSneg(index_vg)-1.0, WING_Lift_negstall(index_vg)+40, '\fontname{Courier} Point G')
         text(V_fromFtoE(1)+1.0, -285, '\fontname{Courier} Point F')
         text(V_fromFtoE(end)-0.2, -120, '\fontname{Courier} Point E')        
