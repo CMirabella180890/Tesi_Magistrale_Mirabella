@@ -1512,6 +1512,19 @@ disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 %        rho * MAC * a|
 % ++++++++++++++++++++|
 
+% MEAN AERODYNAMIC CHORD CALCULATOR OF THE HORIZONTAL TAIL 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.taper_ratio_ht.value = Aircraft.Geometry.Horizontal.ctip.value/Aircraft.Geometry.Horizontal.croot.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.taper_ratio_ht.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.y_ht.value = linspace(0, 0.5*Aircraft.Geometry.Horizontal.b.value, 1000)';
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.y_ht.Attributes.unit = "meters";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.eta_ht.value = 2*(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.y_ht.value/Aircraft.Geometry.Horizontal.b.value);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.eta_ht.Attributes.unit = "Non dimensional";
+
+% CHORD DISTRIBUTION
+chord_distr_ht = @(eta) (2*(Aircraft.Geometry.Horizontal.S.value/Aircraft.Geometry.Horizontal.b.value)*(1/(1+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.taper_ratio_ht.value)))*(1 - ((1-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.taper_ratio_ht.value)/Aircraft.Geometry.Horizontal.b.value)*abs(eta))
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.taper_ratio_ht.value
+
+
 % DATA REQUIRED FOR GUST CALCULATION
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.a_tail_rad.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.a_tail_rad.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.a_tail_rad.Attributes.unit = "1/rad"; 
@@ -1557,13 +1570,13 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VD.Attributes.unit = "daN";
 
 % PRINT PARTIAL RESULTS
-% Total horizontal tail increment
+% DeltaL_ht horizontal tail increment
 Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VF.value, ...
          Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VC.value, ...
          Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VD.value];
 disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
 format = '%f          %f         %f\n';
-label  = 'DeltaL_ht VF              DeltaL_ht VC             DeltaL_ht VD\n';
+label  = 'DeltaL_ht VF       DeltaL_ht VC      DeltaL_ht VD\n';
 fprintf(label);
 fprintf(format, Total.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -1573,8 +1586,19 @@ disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VF.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VF.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VF.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VF.Attributes.unit = "daN";
 % POINT C
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VC.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VC.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VF.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VC.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VC.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VC.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VC.Attributes.unit = "daN";
 % POINT D
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VD.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VD.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VF.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VD.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VD.value + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VD.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VD.Attributes.unit = "daN";
+
+% PRINT TOTAL GUST LOADS
+Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VF.value, ...
+         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VC.value, ...
+         Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VD.value];
+disp(" +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ ")
+format = '%f          %f         %f\n';
+label  = 'Gust L_ht VF       Gust L_ht VC      Gust L_ht VD\n';
+fprintf(label);
+fprintf(format, Total.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")

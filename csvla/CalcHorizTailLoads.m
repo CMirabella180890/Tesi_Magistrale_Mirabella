@@ -1512,10 +1512,27 @@ disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 %        rho * MAC * a|
 % ++++++++++++++++++++|
 
+% MEAN AERODYNAMIC CHORD CALCULATOR OF THE HORIZONTAL TAIL 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.taper_ratio_ht.value = Aircraft.Geometry.Horizontal.ctip.value/Aircraft.Geometry.Horizontal.croot.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.taper_ratio_ht.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.y_ht.value = linspace(0, 0.5*Aircraft.Geometry.Horizontal.b.value, 1000)';
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.y_ht.Attributes.unit = "meters";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.eta_ht.value = 2*(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.y_ht.value/Aircraft.Geometry.Horizontal.b.value);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.eta_ht.Attributes.unit = "Non dimensional";
+
+% CHORD DISTRIBUTION
+chord_distr_ht = @(eta) (2*(Aircraft.Geometry.Horizontal.S.value/Aircraft.Geometry.Horizontal.b.value)*(1/(1+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.taper_ratio_ht.value)))*(1 - ((1-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.taper_ratio_ht.value)/Aircraft.Geometry.Horizontal.b.value)*abs(eta));
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Chord_distribution_ht.value = chord_distr_ht(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.eta_ht.value);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Chord_distribution_ht.Attributes.unit = "meters";
+
+% MEAN AERODYNAMIC CHORD 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.MAC_ht.value = (2/Aircraft.Geometry.Horizontal.S.value)*trapz( Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.y_ht.value, (Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Chord_distribution_ht.value).^2);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.MAC_ht.Attributes.unit = "meters";
+
 % DATA REQUIRED FOR GUST CALCULATION
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.a_tail_rad.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.a_tail_rad.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.a_tail_rad.Attributes.unit = "1/rad"; 
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.mu_g.value = 2*(Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value/Aircraft.Constants.g.value)/(Aircraft.Certification.ISA_Condition.rho0.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.a_tail_rad.value*Aircraft.Geometry.Horizontal.croot.value);
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.mu_g.value = 2*(Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value/Aircraft.Constants.g.value)/(Aircraft.Certification.ISA_Condition.rho0.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.a_tail_rad.value*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.MAC_ht.value);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.mu_g.Attributes.unit = "Non dimensional";
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.K_g.value = (0.88*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.mu_g.value)/(5.3 + Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.mu_g.value);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.K_g.Attributes.unit = "Non dimensional";
