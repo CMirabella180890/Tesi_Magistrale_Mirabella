@@ -265,36 +265,58 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++ FIGURE 37 - PARTIAL LOAD UNSYMM. TORSION COMPARISON ++++ 
 Saving UnsymmetricalLoadsComparisonSeventyPerCentLoad.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
  ++++ METHOD CS - VLA 423 (a) ++++
+ ---------------------------------
  ++++ UNCHECKED ++++
  ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
 Pitch-up at VA                 Pitch-down at VA
 -37.841422          47.301778
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++++++++ Total Critical Horizontal Tail loads - Method (a) [daN] ++++++++++ 
+Total critical load at VA
+28.639693
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
  ++++ METHOD CS - VLA 423 (b) ++++
+ ---------------------------------
  ++++ CHECKED ++++
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
 At VA
 -88.812799
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
  ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
+ ----------------------------------------------
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
 At VA
 42.666416
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
- ++++ CRITICAL CONDITION: METHOD (b) PITCH DOWN ++++
- ++++ METHOD CS - VLA 423 (c) - DeltaLtail ++++
+ ++++ CRITICAL CONDITION: METHOD (a) PITCH UP ++++
+ 
+ ++++ METHOD CS - VLA 423 (a)+(b) ++++
+ ----------------------------------------------
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+At VA
+-56.503507
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (c) - DeltaLtail ++++ 
+ ---------------------------------------------- 
  +++++++++++++++++ Delta Tail loads [daN] +++++++++++++++++ 
 Upward defl. VA    Downward defl. VA    Upward defl. VD    Downward defl. VD
 -37.841422         47.301778         -36.066902         36.066902
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
- ++++ METHOD CS - VLA 423 (c) - BTL_1 + DeltaLtail ++++
+ ++++ METHOD CS - VLA 423 (c) - BTL_1 + DeltaLtail ++++ 
+ ------------------------------------------------------ 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
 Upward defl. VA    Downward defl. VA    Upward defl. VD    Downward defl. VD
 -56.301789         28.841412         -81.109715         -8.975910
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
  ++++++++++ CS - VLA 423 - METHOD D ++++++++++ 
- +++++++++++++++++++++++++++++++++++++++++++++ 
+ --------------------------------------------- 
  ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
 Case 1              Case 2             Case 3             Case 4  
 -41.996801          41.996801          37.497144          -37.497144
@@ -317,7 +339,7 @@ DeltaL_ht VF       DeltaL_ht VC      DeltaL_ht VD
 36.719272          58.596633         36.719272
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  +++++++++++++++++ Total Horizontal Tail loads - Positive Gust [daN] +++++++++++++++++ 
-Gust+ L_ht VF       Gust+ L_ht VC      Gust+ L_ht VD
+Gust+ L_ht VF      Gust+ L_ht VC     Gust+ L_ht VD
 -0.730450          39.934549         -2.284283
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  +++++++++++++++++ Total Horizontal Tail loads - Negative Gust [daN] +++++++++++++++++ 
