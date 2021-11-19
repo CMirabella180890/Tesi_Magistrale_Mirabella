@@ -148,7 +148,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ 
-[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 Saving ShearBendingTorsionDiagramPointS.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
@@ -306,11 +305,22 @@ Case 1              Case 2             Case 3             Case 4
 -60.658886          -54.410924         18.835060          -53.515371
 -79.446523          -92.920487         -10.161708          -79.765532
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ AIRWORTHINESS RULES: CS - VLA 425 
+ --------------------------------- 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-DeltaL_ht VF       DeltaL_ht VC      DeltaL_ht VD
-59.852413          95.512512         59.852413
+L_ht VF             L_ht VC            L_ht VD
+-37.449722          -18.662085         -39.003554
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-Gust L_ht VF       Gust L_ht VC      Gust L_ht VD
-22.402691          76.850428         20.848859
+DeltaL_ht VF       DeltaL_ht VC      DeltaL_ht VD
+36.719272          58.596633         36.719272
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads - Positive Gust [daN] +++++++++++++++++ 
+Gust+ L_ht VF       Gust+ L_ht VC      Gust+ L_ht VD
+-0.730450          39.934549         -2.284283
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads - Negative Gust [daN] +++++++++++++++++ 
+Gust- L_ht VF       Gust- L_ht VC      Gust- L_ht VD
+-74.168994          -77.258718         -75.722826
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
