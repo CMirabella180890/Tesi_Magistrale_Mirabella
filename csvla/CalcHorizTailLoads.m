@@ -1633,7 +1633,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.UnsymmetricalLoad
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.UnsymmetricalLoads.Partial_load_side.Attributes.unit = "daN";
 
 disp(" ")
-disp(" UNSYMMETRICAL LOADS PER CS - VLA 427 "
+disp(" UNSYMMETRICAL LOADS PER CS - VLA 427 ")
 % PRINT TOTAL UNSYMM. LOADS
 Total = [Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.UnsymmetricalLoads.Full_load_side.value, ...
          Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.UnsymmetricalLoads.Partial_load_side.value];
