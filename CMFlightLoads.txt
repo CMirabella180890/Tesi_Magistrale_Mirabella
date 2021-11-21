@@ -281,3 +281,16 @@ ans =
 
   378.9800
 
+[0.0 20.0]'
+
+ans =
+
+     0
+    20
+
+Unrecognized field name "S_ratio".
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcVertTailLoads', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcVertTailLoads.m', 132)" style="font-weight:bold">CalcVertTailLoads</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcVertTailLoads.m',132,0)">line 132</a>)
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_dividedby_Sratio.value =
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY.value/Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.value;
+
