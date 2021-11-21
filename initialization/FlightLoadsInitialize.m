@@ -145,6 +145,8 @@ Aircraft.Certification.Aerodynamic_data.Horizontal.CM_alpha_dot.value = -5.23;
 Aircraft.Certification.Aerodynamic_data.Horizontal.CM_alpha_dot.Attributes.unit = "1/radians"; 
 Aircraft.Certification.Aerodynamic_data.Horizontal.eta_horizontal.value = 1.0; 
 Aircraft.Certification.Aerodynamic_data.Horizontal.eta_horizontal.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Aerodynamic_data.Vertical.a_vt.value = 3.6528578;
+Aircraft.Certification.Aerodynamic_data.Vertical.a_vt.Attributes.unit = "1/rad";
 
 % -------------------------------------------------------------------------
 % Aileron
@@ -287,7 +289,10 @@ Aircraft.Geometry.Horizontal.Movable.total_deflection_time.value = NaN;
 Aircraft.Geometry.Horizontal.Movable.total_deflection_time.Attributes.unit = "seconds";
 Aircraft.Geometry.Horizontal.Movable.total_deflection_time.Attributes.flag1 = "Commuter";
 Aircraft.Geometry.Horizontal.Movable.total_deflection_time.Attributes.flag2 = "Wheel";
-
+Aircraft.Geometry.Vertical.MAC.value = 0.2335363;
+Aircraft.Geometry.Vertical.MAC.Attributes.unit = "m";
+Aircraft.Geometry.Vertical.l_vt.value = 1.650;
+Aircraft.Geometry.Vertical.l_vt.Attributes.unit = "m";
 % -------------------------------------------------------------------------
 % Engine
 % -------------------------------------------------------------------------
