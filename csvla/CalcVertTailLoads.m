@@ -159,6 +159,9 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_singl
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_kilograms.value = (1/(Aircraft.Constants.g.value))*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force.value*0.5;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_kilograms.Attributes.unit = "kg"; 
 
+%% CS - VLA 441 CASE (a)(2)
+
+
 %% CS - VLA 443 GUST LOADS 
 %  
 %  (a) Vertical tail surfaces must be designed to whithstand, in
