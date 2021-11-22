@@ -1,0 +1,318 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Document Part Templates</title>
+    <link rel="StyleSheet" href="./stylesheets/root.css" type="text/css" />
+    
+</head>
+<body>
+<dplibrary>
+
+	<!-- TITLE PAGE -->
+    <dptemplate name="TitlePageTitle">
+        <p class="TitlePageTitle" align="center" style="font-size:22pt; font-weight:bold"><hole id="Content">TITLE</hole></p>
+    </dptemplate>
+
+    <dptemplate name="TitlePageSubtitle">
+        <p class="TitlePageSubtitle" align="center" style="font-size:18pt; font-weight:bold"><hole id="Content">SUBTITLE</hole></p>
+    </dptemplate>
+
+    <dptemplate name="TitlePageImage">
+        <p class="TitlePageImage" align="center"><hole id="Content">IMAGE</hole></p>
+    </dptemplate>
+
+    <dptemplate name="TitlePageAuthor">
+        <p class="TitlePageAuthor" align="center" style="font-size:14pt"><hole id="Content">AUTHOR</hole></p>
+    </dptemplate>
+
+    <dptemplate name="TitlePagePublisher">
+        <p class="TitlePagePublisher" align="center" style="font-size:14pt; font-style:italic"><hole id="Content">PUBLISHER</hole></p>
+    </dptemplate>
+
+    <dptemplate name="TitlePagePubDate">
+        <p class="TitlePagePubDate" align="center"><hole id="Content">PUBLICATION_DATE</hole></p>
+    </dptemplate>
+
+    <!-- NOTE: temporary in the template library until the DOM supports a source without template name -->      
+    <dptemplate name="TitlePage">
+        <layout style="page-margin: 10mm 20mm 12.5mm 12.5mm 10mm 12mm 0mm; page-size: 210mm 297mm portrait">
+		</layout>
+		
+		<!-- Nota: non è un header vera e propria, è un'immagine messa qui -->
+		<p><img src="images/headerDAF_SMUP.svg" width="100%" align="center"></img></p>
+		
+		<BR/>
+
+        <!-- filled with TitlePageTitle template. See docpart_templates.html -->
+        <hole id="Title">TITLE</hole> 
+
+        <!-- Note: use closed tag <BR/> to add vertical separation between holes. -->
+
+
+        <!-- filled with TitlePageSubtitle template. See docpart_templates.html  -->
+        <hole id="Subtitle">SUBTITLE</hole> 
+
+        <!-- filled with TitlePageImage template. See docpart_templates.html  -->
+        <hole id="Image">IMAGE</hole> 
+
+		<BR/>
+        <!-- filled with TitlePageAuthor template. See docpart_templates.html  -->
+        <hole id="Author">AUTHOR</hole> 
+		
+		<BR/>
+        <!-- filled with TitlePagePublisher template. See docpart_templates.html  -->
+        <hole id="Publisher">PUBLISHER</hole> 
+
+		<BR/>
+        <!-- filled with TitlePagePubDate template. See docpart_templates.html  -->
+        <hole id="PubDate">PUBLICATION_DATE</hole> 
+    </dptemplate>
+	
+	
+	
+	<!-- TABLE OF CONTENTS -->
+	<!-- TableOfContents reporter template with 2 block holes -->
+    <dptemplate name="TableOfContents">
+        <layout style="page-margin: 15mm 20mm 12.5mm 12.5mm 30mm 12mm 0mm; page-size: 210mm 297mm portrait">
+            <!-- <pheader type="first" template-name="rgTableOfContentsFirstPageHeader"/> -->
+            <!-- <pfooter type="first" template-name="rgTableOfContentsFirstPageFooter"/> -->
+            <!-- <pheader type="default" template-name="rgTableOfContentsDefaultPageHeader"/> -->
+            <!-- <pfooter type="default" template-name="rgTableOfContentsDefaultPageFooter"/> -->
+            <!-- <pheader type="even" template-name="rgTableOfContentsEvenPageHeader"/> -->
+            <!-- <pfooter type="even" template-name="rgTableOfContentsEvenPageFooter"/> -->
+			<pheader type="first" template-name="SectionFirstPageHeader"/>
+            <pfooter type="first" template-name="SectionFirstPageFooter"/>
+            <pheader type="default" template-name="SectionDefaultPageHeader"/>
+            <pfooter type="default" template-name="SectionDefaultPageFooter"/>
+            <pheader type="even" template-name="SectionEvenPageHeader"/>
+            <pfooter type="even" template-name="SectionEvenPageFooter"/>
+            <pnumber format="i" />
+        </layout>
+        <hole id="Title" default-style-name="TableOfContentsTitle">TITLE</hole>
+        <hole id="TOCObj">TOC_OBJECT</hole>
+    </dptemplate>
+    
+    <!-- TableOfContents Title template used by the TableOfContents reporter -->       
+    <dptemplate name="TableOfContentsTitle">
+         <p class="TableOfContentsTitle" style="font-size: 18pt; font-weight: bold; color: rgb(54,95,145)"
+         ><hole id="Content" default-style-name="TableOfContentsTitle">title text</hole
+         ></p>
+		 <BR/>
+    </dptemplate>         
+       
+    <!-- TableOfContents page header and footer templates -->
+    <dptemplate name = "rgTableOfContentsFirstPageHeader">
+        <p class="TableOfContentsTitleHeader"></p>
+    </dptemplate>
+    
+    <dptemplate name = "rgTableOfContentsFirstPageFooter">
+        <p class="TableOfContentsTitleFooter"><page/></p>
+    </dptemplate>
+    
+    <dptemplate name = "rgTableOfContentsDefaultPageHeader">
+        <p class="TableOfContentsTitleHeader"></p>
+    </dptemplate>
+    
+    <dptemplate name = "rgTableOfContentsDefaultPageFooter">
+        <hr/>
+        <p class="TableOfContentsTitleFooter"><page/></p>
+    </dptemplate>
+    
+    <dptemplate name = "rgTableOfContentsEvenPageHeader">
+        <p class="TableOfContentsTitleHeader"></p>
+    </dptemplate>
+    
+    <dptemplate name = "rgTableOfContentsEvenPageFooter">
+        <hr/>
+        <p class="TableOfContentsTitleFooter"><page/></p>
+    </dptemplate>
+	
+	
+	
+	
+	
+	<!-- SECTION -->
+    <dptemplate name="Section1">
+        <layout style="page-margin: 15mm 20mm 12.5mm 12.5mm 30mm 12mm 0mm; page-size: 210mm 297mm portrait">
+            <pheader type="first" template-name="SectionFirstPageHeader"/>
+            <pfooter type="first" template-name="SectionFirstPageFooter"/>
+            <pheader type="default" template-name="SectionDefaultPageHeader"/>
+            <pfooter type="default" template-name="SectionDefaultPageFooter"/>
+            <pheader type="even" template-name="SectionEvenPageHeader"/>
+            <pfooter type="even" template-name="SectionEvenPageFooter"/>
+            <pnumber format="1"/>
+        </layout>
+        <hole id="Title" default-style-name="SectionTitle1">TITLE</hole>
+        <hole id="Content" default-style-name="SectionContent">CONTENT</hole>
+    </dptemplate>
+    <dptemplate name="Section2">
+        <hole id="Title" default-style-name="SectionTitle2">TITLE</hole>
+        <hole id="Content" default-style-name="SectionContent">CONTENT</hole>
+    </dptemplate>
+    <dptemplate name="Section3">
+        <hole id="Title" default-style-name="SectionTitle3">TITLE</hole>
+        <hole id="Content" default-style-name="SectionContent">CONTENT</hole>
+    </dptemplate>
+    <dptemplate name="Section4">
+        <hole id="Title" default-style-name="SectionTitle4">TITLE</hole>
+        <hole id="Content" default-style-name="SectionContent">CONTENT</hole>
+    </dptemplate>
+    <dptemplate name="Section5">
+        <hole id="Title" default-style-name="SectionTitle5">TITLE</hole>
+        <hole id="Content" default-style-name="SectionContent">CONTENT</hole>
+    </dptemplate>
+    <dptemplate name="Section6">
+        <hole id="Title" default-style-name="SectionTitle6">TITLE</hole>
+        <hole id="Content" default-style-name="SectionContent">CONTENT</hole>
+    </dptemplate>
+    
+    <dptemplate name="SectionNumberedTitle1">
+         <h1 class="SectionTitle1" style="counter-increment:sect1;counter-reset:sect2 sect3 sect4 sect5 sect6 figure table;"
+         ><hole id="NumberPrefix">NUMBER_PREFIX</hole
+         ><autonumber stream-name="sect1"></autonumber
+         ><hole id="NumberSuffix" >NUMBER_SUFFIX</hole
+         ><hole id="Content">TITLE CONTENT</hole
+         ></h1>
+    </dptemplate>         
+    <dptemplate name="SectionTitle1">
+         <h1 class="SectionTitle1" 
+         ><hole id="Content">title text</hole
+         ></h1>
+    </dptemplate>         
+    
+    <dptemplate name="SectionNumberedTitle2">
+         <h2 class="SectionTitle2" style="counter-increment:sect2;counter-reset:sect3 sect4 sect5 sect6;"
+         ><hole id="NumberPrefix">NUMBER_PREFIX</hole
+         ><autonumber stream-name="sect1"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect2"></autonumber
+         ><hole id="NumberSuffix" >NUMBER_SUFFIX</hole
+         ><hole id="Content">TITLE CONTENT</hole
+         ></h2>
+    </dptemplate>         
+    <dptemplate name="SectionTitle2">
+         <h2 class="SectionTitle2" 
+         ><hole id="Content" default-style-name="SectionTitle1">title text</hole
+         ></h2>
+    </dptemplate>         
+    
+    <dptemplate name="SectionNumberedTitle3">
+         <h3 class="SectionTitle3" style="counter-increment:sect3;counter-reset:sect4 sect5 sect6;"
+         ><hole id="NumberPrefix">NUMBER_PREFIX</hole
+         ><autonumber stream-name="sect1"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect2"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect3"></autonumber
+         ><hole id="NumberSuffix" >NUMBER_SUFFIX</hole
+         ><hole id="Content">TITLE CONTENT</hole
+         ></h3>
+    </dptemplate>         
+    <dptemplate name="SectionTitle3">
+         <h3 class="SectionTitle3" 
+         ><hole id="Content" default-style-name="SectionTitle1">title text</hole
+         ></h3>
+    </dptemplate>         
+    
+    <dptemplate name="SectionNumberedTitle4">
+         <h4 class="SectionTitle4" style="counter-increment:sect4;counter-reset:sect5 sect6;"
+         ><hole id="NumberPrefix">NUMBER_PREFIX</hole
+         ><autonumber stream-name="sect1"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect2"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect3"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect4"></autonumber
+         ><hole id="NumberSuffix" >NUMBER_SUFFIX</hole
+         ><hole id="Content">TITLE CONTENT</hole
+         ></h4>
+    </dptemplate>         
+    <dptemplate name="SectionTitle4">
+         <h4 class="SectionTitle4" 
+         ><hole id="Content" default-style-name="SectionTitle1">title text</hole
+         ></h4>
+    </dptemplate>         
+
+    <dptemplate name="SectionNumberedTitle5">
+         <h5 class="SectionTitle5" style="counter-increment:sect5;counter-reset:sect6;"
+         ><hole id="NumberPrefix">NUMBER_PREFIX</hole
+         ><autonumber stream-name="sect1"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect2"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect3"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect4"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect5"></autonumber
+         ><hole id="NumberSuffix" >NUMBER_SUFFIX</hole
+         ><hole id="Content">TITLE CONTENT</hole
+         ></h5>
+    </dptemplate>         
+    <dptemplate name="SectionTitle5">
+         <h5 class="SectionTitle5" 
+         ><hole id="Content" default-style-name="SectionTitle1">title text</hole
+         ></h5>
+    </dptemplate>         
+    
+    <dptemplate name="SectionNumberedTitle6">
+         <h6 class="SectionTitle6" style="counter-increment:sect6"
+         ><hole id="NumberPrefix">NUMBER_PREFIX</hole
+         ><autonumber stream-name="sect1"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect2"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect3"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect4"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect5"></autonumber
+         ><span>.</span
+         ><autonumber stream-name="sect6"></autonumber
+         ><hole id="NumberSuffix" >NUMBER_SUFFIX</hole
+         ><hole id="Content">TITLE CONTENT</hole
+         ></h6>
+    </dptemplate>         
+    <dptemplate name="SectionTitle6">
+         <h6 class="SectionTitle6" 
+         ><hole id="Content" default-style-name="SectionTitle1">title text</hole
+         ></h6>
+    </dptemplate>         
+
+    <!-- SectionTitle1 page header and footer templates -->
+    <dptemplate name = "SectionFirstPageHeader">
+        <p class="SectionTitleHeader"><img src="images/headerDAF_SMUP.svg" width="100%" align="center"></img></p>
+        <!-- <hr/> -->
+    </dptemplate>
+    
+    <dptemplate name = "SectionFirstPageFooter">
+        <hr/>
+        <p class="SectionTitleFooter" align="center"><page/></p>
+    </dptemplate>
+    
+    <dptemplate name = "SectionDefaultPageHeader">
+	<!-- <StyleRef style-name="SectionTitle1"/> stava dentro p qua sotto -->
+        <p class="SectionTitleHeader"><img src="images/headerDAF_SMUP.svg" width="100%" align="center"></img></p>
+        <!-- <hr/> -->
+    </dptemplate>
+    
+    <dptemplate name = "SectionDefaultPageFooter">
+        <hr/>
+        <p class="SectionTitleFooter" align="center"><page/></p>
+    </dptemplate>
+    
+    <dptemplate name = "SectionEvenPageHeader">
+	<!-- <StyleRef style-name="SectionTitle1"/> stava dentro p qua sotto -->
+        <p class="SectionTitleHeader"><img src="images/headerDAF_SMUP.svg" width="100%" align="center"></img></p>
+        <!-- <hr/> -->
+    </dptemplate>
+    
+    <dptemplate name = "SectionEvenPageFooter">
+        <hr/>
+        <p class="SectionTitleFooter" align="center"><page/></p>
+    </dptemplate>
+    
+</dplibrary>
+</body>
+</html>
