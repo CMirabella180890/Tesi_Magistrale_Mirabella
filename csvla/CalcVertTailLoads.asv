@@ -2,6 +2,14 @@
 %  Digitalization of the airworthiness rules for the vertical tail loads
 %  calculation and structural sizing. 
 
+disp(" ");
+disp(" ++++ STARTING VERTICAL TAIL LOADS CALCULATION ++++ ");
+disp(" ");
+disp(" ---------------------------------------------------------------- ");
+disp(" ++++ CS - VLA 441 - VERTICAL TAIL LOADS - MANOEUVRING LOADS ++++ ");
+disp(" ---------------------------------------------------------------- ");
+
+
 %% CS - VLA 441 MANOEUVRING LOADS 
 %
 %  (a) At speeds up to VA, the vertical tail surfaces must be designed to
@@ -163,6 +171,20 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_singl
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_kilograms.value = (1/(Aircraft.Constants.g.value))*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force.value*0.5;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_kilograms.Attributes.unit = "kg"; 
 
+% DISPLAYING RESULTS 
+disp( " ")
+disp(" ++++ CS - VLA 441 - CASE (a)(1) ++++ ");
+disp(" ------------------------------------ ");
+
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_decanewton.value];
+disp(" ++++++++++ Vertical tail loads - CASE (a)(1) [daN] ++++++++++ ")
+format = '%f\n';
+label  = 'Y\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
 %% CS - VLA 441 CASE (a)(2)
 
 % DYNAMIC PRESSURE AT VA
@@ -205,6 +227,20 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_fo
 % LATERAL FORCE ON A SINGLE FIN - KILOGRAMS
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_kilograms.value = (0.5)*(1/(Aircraft.Constants.g.value))*2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_kilograms.Attributes.unit = "N";
+
+% DISPLAYING RESULTS 
+disp( " ")
+disp(" ++++ CS - VLA 441 - CASE (a)(2) ++++ ");
+disp(" ------------------------------------ ");
+
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_decanewton.value];
+disp(" ++++++++++ Vertical tail loads - CASE (a)(2) [daN] ++++++++++ ")
+format = '%f\n';
+label  = 'Y\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 %% CS - VLA 441 CASE (a)(3)
 
@@ -249,6 +285,43 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_fo
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_kilograms.value = (0.5)*(1/(Aircraft.Constants.g.value))*2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_kilograms.Attributes.unit = "N";
 
+% DISPLAYING RESULTS 
+disp( " ")
+disp(" ++++ CS - VLA 441 - CASE (a)(3) ++++ ");
+disp(" ------------------------------------ ");
+
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.value];
+disp(" ++++++++++ Vertical tail loads - CASE (a)(3) [daN] ++++++++++ ")
+format = '%f\n';
+label  = 'Y\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
+%% DEFINING CRITICAL LOADS FOR THE VERTICAL FINS
+tl_0 = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_decanewton.value;
+tl_1 = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_decanewton.value;
+tl_2 = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.value;
+if (abs(tl_0)>abs(tl_1)) && (abs(tl_0)>abs(tl_2)) 
+    disp(" ++++++++++ Vertical tail loads - MOST CRITICAL LOADS [daN] ++++++++++ ");
+    disp(" CRITICAL LOADS PER ---> CS - VLA 441 (a)(1) "); 
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value = tl_0;
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.Attributes.unit = "daN"; 
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.Attributes.flag = " CS - VLA 441 (a)(1) ";
+elseif (abs(tl_1)>abs(tl_0)) && (abs(tl_1)>abs(tl_0))
+    disp(" ++++++++++ Vertical tail loads - MOST CRITICAL LOADS [daN] ++++++++++ ");
+    disp(" CRITICAL LOADS PER ---> CS - VLA 441 (a)(2) "); 
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value = tl_1;
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.Attributes.unit = "daN"; 
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.Attributes.flag = " CS - VLA 441 (a)(2) ";
+elseif (abs(tl_2)>abs(tl_1)) && (abs(tl_2)>abs(tl_0))    
+    disp(" ++++++++++ Vertical tail loads - MOST CRITICAL LOADS [daN] ++++++++++ ");
+    disp(" CRITICAL LOADS PER ---> CS - VLA 441 (a)(3) "); 
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value = tl_2;
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.Attributes.unit = "daN"; 
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.Attributes.flag = " CS - VLA 441 (a)(3) ";
+end
 
 %% CS - VLA 443 GUST LOADS 
 %  
@@ -397,7 +470,13 @@ k_g = @(mu_g) ((0.88)*mu_g)/(5.3 + mu_g);
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.K_g.value = k_g(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.mu_g.value);
 
 % GUST LOADS - VC
-Gust_loads = @()
+Gust_loads = @(K_gt, U_de, V, a_vt, S_vt) (K_gt * U_de * V * a_vt * S_vt)/(16.3);
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.value = Gust_loads(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.K_g.value, ...
+                                                                                                           Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.U_atVC.value, ...
+                                                                                                           Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VC.value, ...
+                                                                                                           Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.a_vt.value, ...
+                                                                                                           Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.value);
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.Attributes.unit = "m/s";                                                                                                       
 
 % ++++++++++++++++
 % GUST LOADS AT VD 
@@ -415,5 +494,32 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.mu_g.v
 % GUST ALLEVIATION FACTOR - VD
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.K_g.value = k_g(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.mu_g.value);
 
+% GUST LOADS - VD
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.value = Gust_loads(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.K_g.value, ...
+                                                                                                           Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.U_atVD.value, ...
+                                                                                                           Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VD.value, ...
+                                                                                                           Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.a_vt.value, ...
+                                                                                                           Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.value);
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.Attributes.unit = "m/s"; 
 
+% DISPLAYING RESULTS 
+disp( " ")
+disp(" ++++ CS - VLA 445 ++++ ");
+disp(" ---------------------- ");
 
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.value, ...
+             Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.value];
+disp(" ++++++++++ Vertical tail - GUST LOADS [daN] ++++++++++ ")
+format = '%f         %f\n';
+label  = 'GUST - VC         GUST - VD\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
+% CRITICAL GUST LOADS 
+gl_0 = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.value;
+gl_1 = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.value;
+
+if (abs(gl_0)>abs(gl_1))
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.
