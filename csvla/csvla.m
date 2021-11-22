@@ -235,6 +235,12 @@ classdef csvla
         ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
         title("V~-~n diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
         text(5, 4, Aircraft_name)                                % Aircraft name inside the plot
+        text(47.0, nmax-0.2, '\fontname{Courier} C')
+        text(59.0, nmin+0.2, '\fontname{Courier} F')
+        text(59.0, nmax-0.2, '\fontname{Courier} D')
+        text(59.0, nmin+0.2, '\fontname{Courier} E')
+        text(VSpos(x), nmax-0.2, '\fontname{Courier} A')
+        text(VSneg(y), nmin-0.2, '\fontname{Courier} G')
         exportgraphics(obj,'vndiagram.pdf','ContentType','vector')
         end
     end
@@ -465,6 +471,12 @@ classdef csvla
         plot(V_dive, ngust_neg_dive, 'color', '#80B3FF' , 'LineWidth',1)  
         plot([V_cruise(end), V_dive(end)], [ngust_plus_cruise(end), ngust_plus_dive(end)], 'color', '#80B3FF')
         plot([V_cruise(end), V_dive(end)], [ngust_neg_cruise(end), ngust_neg_dive(end)], 'color', '#80B3FF')
+        text(47.0, nmax-0.2, '\fontname{Courier} C')
+        text(59.0, nmin+0.2, '\fontname{Courier} F')
+        text(59.0, nmax-0.2, '\fontname{Courier} D')
+        text(59.0, nmin+0.2, '\fontname{Courier} E')
+        text(VSpos(temp1), nmax-0.2, '\fontname{Courier} A')
+        text(VSneg(temp2), nmin-0.2, '\fontname{Courier} G')
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
         title("Gust envelope per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
@@ -786,10 +798,9 @@ classdef csvla
         % ---------------------------------------------------------------------
         text(20, -1.0, '\fontname{Courier} Point S')
         text(VSpos(index_va)+0.1, HT_Lift_posstall(index_va)+ 2.0, '\fontname{Courier} Point A')
-        % text(V_fromCtoD(1)-0.2, HT_Lift_fromCtoD(1)+0.2, '\fontname{Courier} Point C')
+        text(41.5, -18, 'n = 1')
         text(46, HT_Lift_fromCtofg(1)+ 2.0, '\fontname{Courier} Point C')
         text(57, -36.5, '\fontname{Courier} Point D')
-        % text(VSneg(index_vg)-1.0, HT_Lift_negstall(index_vg)+0.2, '\fontname{Courier} Point G')
         text(22, HT_Lift_negstall(index_vg)+0.2, '\fontname{Courier} Point G')
         text(41, -40, '\fontname{Courier} Point F')
         text(52.5, -54, '\fontname{Courier} Point E')
@@ -888,7 +899,8 @@ classdef csvla
         text(V_fromfgtoD(end)-0.2, WING_Lift_fromfgtoD(end)+0.2, '\fontname{Courier} Point D')
         text(VSneg(index_vg)-1.0, WING_Lift_negstall(index_vg)+40, '\fontname{Courier} Point G')
         text(V_fromFtoE(1)+1.0, -285, '\fontname{Courier} Point F')
-        text(V_fromFtoE(end)-0.2, -120, '\fontname{Courier} Point E')        
+        text(V_fromFtoE(end)-0.2, -120, '\fontname{Courier} Point E')  
+        text(40.0, 90.0, 'n = 1') 
         % ---------------------------------------------------------------------
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Main wing lift - $L$ (daN)", "Interpreter", "latex")

@@ -335,7 +335,7 @@ Case 1              Case 2             Case 3             Case 4
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ Critical conditions - CS - VLA 423 Method (d) [daN] ++++++++++ 
 Critical conditions
-92.920487
+-92.920487
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  AIRWORTHINESS RULES: CS - VLA 425 GUST AIRLOADS
@@ -360,13 +360,13 @@ Gust - L_ht VF       Gust - L_ht VC      Gust - L_ht VD
  Final results from CS - VLA 423 Airworthiness prescriptions 
  +++++++++++++++++ Total Horizontal Tail loads - Maximum Symmetrical load [daN] +++++++++++++++++ 
 Maximum symmetrical load
-92.920487
+-92.920487
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  UNSYMMETRICAL LOADS PER CS - VLA 427 
  +++++++++++++++++ Total Horizontal Tail loads - Unsymmetrical conditions [daN] +++++++++++++++++ 
 Full load side       Partial load side
-46.460243          66.902750
+-46.460243          -66.902750
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ STARTING VERTICAL TAIL LOADS CALCULATION ++++ 
