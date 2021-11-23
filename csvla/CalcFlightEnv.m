@@ -149,6 +149,7 @@ fprintf('%s\n', SaveFolder);
 % SaveFolder
 % Moving file inside correct folder
 movefile Vndiagram.pdf Output
+movefile Vndiagram.png Output
 % -------------------------------------------------------------------------
 %% GUST ENVELOPE 
 % Vectors with airspeed values
@@ -258,6 +259,7 @@ fprintf('\n');
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile Gustenvelope.pdf Output
+movefile Gustenvelope.png Output 
 % -----------------------------------------------------------------
 %% FINAL ENVELOPE 
 % Testing functions for the final envelope. In this part of the code, it is
@@ -442,6 +444,7 @@ fprintf('\n');
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile Finalenvelope.pdf Output
+movefile Finalenvelope.png Output
 % -------------------------------------------------------------------------
 % Aerodynamic Data useful to calculate balancing loads. It is useful to
 % store data inside the struct variable AIRCRAFT. The following lines are 
@@ -464,6 +467,7 @@ fprintf('\n');
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile Polars.pdf Output
+movefile Polars.png Output
 % -------------------------------------------------------------------------
 %% Evaluation of the balancing loads 
 % BalancingLoads

@@ -104,12 +104,15 @@ Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmo
     Aircraft.Certification.Aerodynamic_data.alpha.value);
 
 exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelStraightAndInverted.pdf', 'ContentType', 'vector');
+exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelStraightAndInverted.png', 'ContentType', 'vector');
+
 % Saving figures inside correct folder
 fprintf('Saving FullLiftModelStraightAndInverted.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile FullLiftModelStraightAndInverted.pdf Output
+movefile FullLiftModelStraightAndInverted.png Output
               
 %% CL CALCULATIONS - POSITIVE LOAD FACTORS
 % ------------------------------------------------------------------------- 
@@ -1200,6 +1203,7 @@ fprintf('\n');
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile Balancingloads.pdf Output
+movefile Balancingloads.png Output
 
 %% MAIN WING LOADS DIAGRAM 
 %   In this section we have to take into account the lift coefficient
@@ -1345,6 +1349,7 @@ fprintf('\n');
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile Wingairloads.pdf Output
+movefile Wingairloads.png Output
 
 %% RETURN INSIDE UTILITIES
 cd .. 

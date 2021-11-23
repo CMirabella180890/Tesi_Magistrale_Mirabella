@@ -47,11 +47,13 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  3.800000          -1.500000          58.402226          58.402226
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ FIGURE 1 - FLIGHT ENVELOP DIAGRAM ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 --------------------------------------
 ### Saving outpus inside correct Folder ###
 Saving Vndiagram.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 2 - GUST ENVELOPE ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Gustenvelope.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 Stall speed must be changed
@@ -70,9 +72,11 @@ Gust load factor is greater or lower than max load factor
  58.402226    -1.717672     38.614737    3.800000    30.556409    -1.500000
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ FIGURE 3 - FINAL ENVELOPE PLOT ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Finalenvelope.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 4 - AERODYNAMIC DATA ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Polars.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
@@ -82,15 +86,18 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 6 - LIFT CURVES COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving FullLiftModelStraightAndInverted.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 7 - HORIZONTAL EMPENNAGE AIRLOADS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Balancingloads.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 8 - MAIN WING AIRLOADS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Wingairloads.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
@@ -107,6 +114,8 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++ FIGURE 10 - 3D INTERPOLATION OF SPANWISE LIFT DISTR. ++++ 
 [Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType'
 to 'image' for better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ClInterpolation3dplot.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ POINT OF THE FINAL ENVELOPE ++++
@@ -139,6 +148,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  46.721781          -3.348275          1337.041440          -0.217282          0.053694          12.413852          -117.522411          -50.923685
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ FIGURE 11 - LIFT MODELS AND FLIGHT ENVELOPE POINTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving LiftComparisonWithPoints.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
@@ -148,6 +158,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointS.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
@@ -157,6 +168,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 13 - POINT A SHEAR, BENDING, TORSION
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointA.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
@@ -166,16 +178,19 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 14 - POINT C SHEAR, BENDING, TORSION
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 15 - DRAG SPANWISE DISTRIBUTION INTERPOLATION ++++ 
 [Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType'
 to 'image' for better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.] 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving CdInterpolationdiag.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 16 - PITCH MOM. SPANWISE DISTRIBUTION INTERPOLATION ++++ 
 [Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType'
 to 'image' for better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.] 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving CmInterpolationdiag.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
@@ -185,6 +200,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 17 - POINT D SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointD.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
@@ -194,6 +210,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 18 - POINT F SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointF.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
@@ -203,6 +220,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 19 - POINT G SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointG.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
@@ -212,57 +230,75 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 20 - POINT E SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointE.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 21 - SHEAR COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearComparison.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 22 - BENDING COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving BendingComparison.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 23 - TORSION COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving TorsionComparison.pdf Output in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 24 - SPANWISE LIFT COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving clComparison.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 25 - SPANWISE DRAG COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving cdComparison.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 26 - SPANWISE PITCH MOMENT COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving cmComparison.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 27 - POINT A SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving CmComparisonPointA.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 28 - POINT A PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalTorsionSeventyPerCentPointA.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 29 - POINT A FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 30 -POINT C SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving CmComparisonPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 31 - POINT C PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 32 - POINT C FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 33 -POINT D SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving CmComparisonPointD.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 34 - POINT D PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalTorsionSeventyPerCentPointD.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 35 - POINT D FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalTorsionFullPointD.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 36 - FULL LOAD UNSYMM. TORSION COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalLoadsComparisonFullLoad.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 37 - PARTIAL LOAD UNSYMM. TORSION COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalLoadsComparisonSeventyPerCentLoad.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
@@ -366,7 +402,7 @@ Maximum symmetrical load
  UNSYMMETRICAL LOADS PER CS - VLA 427 
  +++++++++++++++++ Total Horizontal Tail loads - Unsymmetrical conditions [daN] +++++++++++++++++ 
 Full load side       Partial load side
--46.460243          -66.902750
+-46.460243          -33.451375
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ STARTING VERTICAL TAIL LOADS CALCULATION ++++ 

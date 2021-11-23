@@ -30,12 +30,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value, XI_cl, YI_cl); 
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving ClInterpolation3dplot.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ClInterpolation3dplot.pdf Output
+movefile ClInterpolation3dplot.png Output
 
 % For a more in depth description, look ahead in this file
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = cl_unit_lift(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.CL.value(3), ...
@@ -397,12 +400,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Diagram_li
                            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Diagram_lift_coefficient_comparison.value, 'LiftComparisonWithPoints.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Diagram_lift_coefficient_comparison.value, 'LiftComparisonWithPoints.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving LiftComparisonWithPoints.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile LiftComparisonWithPoints.pdf Output
+movefile LiftComparisonWithPoints.png Output
 
 %% LOAD A CLASS OF FUNCTIONS USEFUL TO EVALUATE ALL THE REQUIRED DATA
 obj2 = ShearBendingTorsion; 
@@ -633,12 +639,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.She
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value);
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointS.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointS.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving ShearBendingTorsionDiagramPointS.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ShearBendingTorsionDiagramPointS.pdf Output
+movefile ShearBendingTorsionDiagramPointS.png Output
 
 %% POINT A CALCULATIONS                 
 % Lift coefficient distribution along the span at the Point A
@@ -775,12 +784,14 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.She
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value);
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointA.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointA.png', 'ContentType', 'vector')
 % Saving figures inside correct folder
 fprintf('Saving ShearBendingTorsionDiagramPointA.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ShearBendingTorsionDiagramPointA.pdf Output
+movefile ShearBendingTorsionDiagramPointA.png Output
 
 %% POINT C CALCULATIONS                 
 % Lift coefficient distribution along the span at the Point C
@@ -925,12 +936,14 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.She
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value);
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointC.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointC.png', 'ContentType', 'vector')
 % Saving figures inside correct folder
 fprintf('Saving ShearBendingTorsionDiagramPointC.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ShearBendingTorsionDiagramPointC.pdf Output
+movefile ShearBendingTorsionDiagramPointC.png Output
 
 %% POINT D CALCULATIONS                 
 % Lift coefficient distribution along the span at the Point D
@@ -964,6 +977,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_
 
 disp(" ++++ FIGURE 15 - DRAG SPANWISE DISTRIBUTION INTERPOLATION ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_Interpolation_Graph.value, 'CdInterpolationdiag.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_Interpolation_Graph.value, 'CdInterpolationdiag.png', 'ContentType', 'vector')
 % Saving figures inside correct folder
 fprintf('Saving CdInterpolationdiag.pdf in: ');
 fprintf('\n'); 
@@ -975,6 +989,7 @@ movefile CdInterpolationdiag.pdf Output
 
 disp(" ++++ FIGURE 16 - PITCH MOM. SPANWISE DISTRIBUTION INTERPOLATION ++++ ");
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_Interpolation_Graph.value, 'CmInterpolationdiag.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_Interpolation_Graph.value, 'CmInterpolationdiag.png', 'ContentType', 'vector')
 % Saving figures inside correct folder
 fprintf('Saving CmInterpolationdiag.pdf in: ');
 fprintf('\n'); 
@@ -1124,12 +1139,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.She
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value);
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointD.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointD.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving ShearBendingTorsionDiagramPointD.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ShearBendingTorsionDiagramPointD.pdf Output
+movefile ShearBendingTorsionDiagramPointD.png Output
 
 %% POINT F CALCULATIONS                 
 % Lift coefficient distribution along the span at the Point F
@@ -1288,12 +1306,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.She
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value);
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointF.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointF.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving ShearBendingTorsionDiagramPointF.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ShearBendingTorsionDiagramPointF.pdf Output
+movefile ShearBendingTorsionDiagramPointF.png Output
 
 %% POINT G CALCULATIONS                 
 % Lift coefficient distribution along the span at the Point G
@@ -1446,12 +1467,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.She
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value);
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointG.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointG.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving ShearBendingTorsionDiagramPointG.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ShearBendingTorsionDiagramPointG.pdf Output
+movefile ShearBendingTorsionDiagramPointG.png Output
 
 %% POINT E CALCULATIONS                 
 % Lift coefficient distribution along the span at the Point E
@@ -1604,12 +1628,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.She
                                                                                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointE.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Shear_BendMom_diagram.value, 'ShearBendingTorsionDiagramPointE.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving ShearBendingTorsionDiagramPointE.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ShearBendingTorsionDiagramPointE.pdf Output
+movefile ShearBendingTorsionDiagramPointE.png Output
 
 %% COMPARING SHEAR CURVES 
 disp(" ++++ FIGURE 21 - SHEAR COMPARISON ++++ ");
@@ -1631,12 +1658,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.poi
 % Saving
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value, 'ShearComparison.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value, 'ShearComparison.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving ShearComparison.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile ShearComparison.pdf Output
+movefile ShearComparison.png Output
 
 %% COMPARING BENDING CURVES 
 disp(" ++++ FIGURE 22 - BENDING COMPARISON ++++ ");
@@ -1658,12 +1688,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.poi
 % Saving
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value, 'BendingComparison.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value, 'BendingComparison.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving BendingComparison.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile BendingComparison.pdf Output
+movefile BendingComparison.png Output
 
 %% COMPARING TORSION CURVES 
 disp(" ++++ FIGURE 23 - TORSION COMPARISON ++++ ");
@@ -1685,12 +1718,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.poi
 % Saving
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value, 'TorsionComparison.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value, 'TorsionComparison.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving TorsionComparison.pdf Output in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile TorsionComparison.pdf Output
+movefile TorsionComparison.png Output
 
 %% COMPARING DISTRIBUTION ALONG THE SPAN OF CL, CD, CM
 % =========================================================================================================================================================
@@ -1713,12 +1749,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.poi
 % Saving
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value, 'clComparison.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value, 'clComparison.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving clComparison.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile clComparison.pdf Output
+movefile clComparison.png Output
 % =========================================================================================================================================================
 disp(" ++++ FIGURE 25 - SPANWISE DRAG COMPARISON ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = Compare_cd_curves(Aircraft.Geometry.Wing.y.value, ...
@@ -1739,12 +1778,16 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.poi
 % Saving
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value, 'cdComparison.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value, 'cdComparison.png', 'ContentType', 'vector')
+
 % Saving figures inside correct folder
 fprintf('Saving cdComparison.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile cdComparison.pdf Output
+movefile cdComparison.png Output
+
 % =========================================================================================================================================================
 disp(" ++++ FIGURE 26 - SPANWISE PITCH MOMENT COMPARISON ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value = Compare_cm_curves(Aircraft.Geometry.Wing.y.value, ...
@@ -1765,10 +1808,12 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.poi
 % Saving
 
 exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value, 'cmComparison.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value, 'cmComparison.png', 'ContentType', 'vector')
 % Saving figures inside correct folder
 fprintf('Saving cmComparison.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile cmComparison.pdf Output
+movefile cmComparison.png Output
 % =========================================================================================================================================================

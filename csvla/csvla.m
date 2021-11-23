@@ -236,12 +236,13 @@ classdef csvla
         title("V~-~n diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
         text(5, 4, Aircraft_name)                                % Aircraft name inside the plot
         text(47.0, nmax-0.2, '\fontname{Courier} C')
-        text(59.0, nmin+0.2, '\fontname{Courier} F')
+        text(49.0, nmin+0.2, '\fontname{Courier} F')
         text(59.0, nmax-0.2, '\fontname{Courier} D')
         text(59.0, nmin+0.2, '\fontname{Courier} E')
         text(VSpos(x), nmax-0.2, '\fontname{Courier} A')
         text(VSneg(y), nmin-0.2, '\fontname{Courier} G')
         exportgraphics(obj,'vndiagram.pdf','ContentType','vector')
+        exportgraphics(obj,'vndiagram.png','ContentType','vector')
         end
     end
     %% FUNCTIONS USED TO PLOT THE V - N DIAGRAM     
@@ -472,7 +473,7 @@ classdef csvla
         plot([V_cruise(end), V_dive(end)], [ngust_plus_cruise(end), ngust_plus_dive(end)], 'color', '#80B3FF')
         plot([V_cruise(end), V_dive(end)], [ngust_neg_cruise(end), ngust_neg_dive(end)], 'color', '#80B3FF')
         text(47.0, nmax-0.2, '\fontname{Courier} C')
-        text(59.0, nmin+0.2, '\fontname{Courier} F')
+        text(49.0, nmin+0.2, '\fontname{Courier} F')
         text(59.0, nmax-0.2, '\fontname{Courier} D')
         text(59.0, nmin+0.2, '\fontname{Courier} E')
         text(VSpos(temp1), nmax-0.2, '\fontname{Courier} A')
@@ -482,6 +483,7 @@ classdef csvla
         title("Gust envelope per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
         text(5, 4, Aircraft_name)                                % Aircraft name inside the plot
         exportgraphics(obj,'Gustenvelope.pdf','ContentType','vector')
+        exportgraphics(obj,'Gustenvelope.png','ContentType','vector')
         end
     end
     %% FUNCTIONS USED TO TRACK THE FINAL ENVELOPE    
@@ -714,6 +716,7 @@ classdef csvla
         text(VA+0.0, nA+0.0, '\fontname{Courier} Point A')
         text(VG+0.0, nG+0.1, '\fontname{Courier} Point G')
         exportgraphics(obj,'Finalenvelope.pdf','ContentType','vector')
+        exportgraphics(obj,'Finalenvelope.png','ContentType','vector')
         end
         %% BALANCING LOADS - METHOD
         function obj = Balancing_loads(obj, HT_Lift_posstall, VSpos, ...
@@ -809,6 +812,7 @@ classdef csvla
         title("Horizontal empennage airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
         text(51, -9, Aircraft_name)                                              % Aircraft name inside the plot
         exportgraphics(obj, 'Balancingloads.pdf', 'ContentType', 'vector')
+        exportgraphics(obj, 'Balancingloads.png', 'ContentType', 'vector')
         end
         %% BALANCING LOADS - WING LOADS DIAGRAM
         function obj = Mainwing_loads(obj, WING_Lift_posstall, VSpos, ...
@@ -907,6 +911,7 @@ classdef csvla
         title("Main wing airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
         text(16, 500, Aircraft_name)                                              % Aircraft name inside the plot
         exportgraphics(obj, 'Wingairloads.pdf', 'ContentType', 'vector')
+        exportgraphics(obj, 'Wingairloads.png', 'ContentType', 'vector')
         end
     end
 end
