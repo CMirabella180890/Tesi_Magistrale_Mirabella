@@ -1,5 +1,4 @@
-function outputArg1 = Lift_coefficients_Points(AoA, CL_fullmodel, CL_inverted, ...
-                                               alpha_S, alpha_A, alpha_C, alpha_D, alpha_F, alpha_G, alpha_E, ...
+function outputArg1 = Lift_coefficients_Points(alpha_S, alpha_A, alpha_C, alpha_D, alpha_F, alpha_G, alpha_E, ...
                                                CL_S,    CL_A,    CL_C,    CL_D,    CL_F,    CL_G,    CL_E, ...
                                                Point_S, Point_A, Point_C, Point_D, Point_F, Point_G, Point_E)
 % Lift_comparison(AoA, CL_NonLin, CL_Lin, CL_Data)
@@ -18,8 +17,8 @@ outputArg1 = figure;
 hold on
 grid on 
 grid minor
-plot(AoA, CL_fullmodel, '-r', 'LineWidth', 1.5)
-plot(AoA, CL_inverted, '-b', 'LineWidth', 1.5)
+% plot(AoA, CL_fullmodel, '-r', 'LineWidth', 1.5)
+% plot(AoA, CL_inverted, '-b', 'LineWidth', 1.5)
 plot(alpha_S, CL_S, '.', ...
     'LineWidth', 2, ...
     'MarkerSize', 20, ...
@@ -61,6 +60,6 @@ xlabel("Angle of attack - $\alpha$ $(deg)$", "Interpreter", "latex")
 ylabel("Wing Body Lift coefficient - $(C_L)_wb$", "Interpreter", "latex")
 title("Lift curve model", "Interpreter", "latex")
 % legend({'Full model','Inverted','Data'}, 'Interpreter', 'latex', 'Location', 'northeast')
-legend({'Normal flight', 'Inverted flight', Point_S, Point_A, Point_C, Point_D, Point_F, Point_G, Point_E}, 'Interpreter', 'latex', 'Location', 'northwestoutside')
+legend({Point_S, Point_A, Point_C, Point_D, Point_F, Point_G, Point_E}, 'Interpreter', 'latex', 'Location', 'northwestoutside')
 
 end
