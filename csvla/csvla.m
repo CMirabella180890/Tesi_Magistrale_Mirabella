@@ -235,6 +235,12 @@ classdef csvla
         ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
         title("V~-~n diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
         text(5, 4, Aircraft_name)                                % Aircraft name inside the plot
+        text(47.0, nmax-0.2, '\fontname{Courier} C')
+        text(59.0, nmin+0.2, '\fontname{Courier} F')
+        text(59.0, nmax-0.2, '\fontname{Courier} D')
+        text(59.0, nmin+0.2, '\fontname{Courier} E')
+        text(VSpos(x), nmax-0.2, '\fontname{Courier} A')
+        text(VSneg(y), nmin-0.2, '\fontname{Courier} G')
         exportgraphics(obj,'vndiagram.pdf','ContentType','vector')
         end
     end
@@ -459,10 +465,18 @@ classdef csvla
              [0.0 nneg(temp4)], '-b', 'LineWidth',1)
         plot(VSpos(temp3:temp1), npos(temp3:temp1), '-r', 'LineWidth',1)
         plot(VSneg(temp4:temp2), nneg(temp4:temp2), '-b', 'LineWidth',1)
-        plot(V_cruise, ngust_plus_cruise, '-.k', 'LineWidth',1)
-        plot(V_cruise, ngust_neg_cruise, '-.k', 'LineWidth',1)
-        plot(V_dive, ngust_plus_dive, '-.g', 'LineWidth',1)
-        plot(V_dive, ngust_neg_dive, '-.g', 'LineWidth',1)        
+        plot(V_cruise, ngust_plus_cruise, 'color', '#80B3FF', 'LineWidth',1)
+        plot(V_cruise, ngust_neg_cruise,'color', '#80B3FF', 'LineWidth',1)
+        plot(V_dive, ngust_plus_dive, 'color', '#80B3FF', 'LineWidth',1)
+        plot(V_dive, ngust_neg_dive, 'color', '#80B3FF' , 'LineWidth',1)  
+        plot([V_cruise(end), V_dive(end)], [ngust_plus_cruise(end), ngust_plus_dive(end)], 'color', '#80B3FF')
+        plot([V_cruise(end), V_dive(end)], [ngust_neg_cruise(end), ngust_neg_dive(end)], 'color', '#80B3FF')
+        text(47.0, nmax-0.2, '\fontname{Courier} C')
+        text(59.0, nmin+0.2, '\fontname{Courier} F')
+        text(59.0, nmax-0.2, '\fontname{Courier} D')
+        text(59.0, nmin+0.2, '\fontname{Courier} E')
+        text(VSpos(temp1), nmax-0.2, '\fontname{Courier} A')
+        text(VSneg(temp2), nmin-0.2, '\fontname{Courier} G')
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
         title("Gust envelope per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
@@ -633,8 +647,8 @@ classdef csvla
         end
         %% FINAL ENVELOPE - METHOD
         function obj = Final_envelope(obj, npos, nneg, VSpos, VSneg, VC, nC, ...
-                                      VD, nD, VF, nF, VE, nE, VA, nA, VG, nG, ...
-                                      Reg, Aircraft_name)
+                                      V_fg, n_fg, VD, nD, VF, nF, VE, nE, VA, ...
+                                      nA, VG, nG, Reg, Aircraft_name)
         % FUNCTION DETAILED DESCRIPTION
         %  fig1 = V_n_diagram(npos, nneg, VSpos, VSneg, VD, VG, VA, VE, Reg, Aircraft_name)
         %  This function plot the V - n diagram, based on the applied regulation.
@@ -679,8 +693,9 @@ classdef csvla
         plot([VSpos(1) VSpos(1)], [npos(1) 0.0], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
         plot([VSneg(1) VSneg(1)], [nneg(1) 0.0], '-b.', 'LineWidth', 1, 'MarkerSize', 10)
         plot(VA, nA, 'r.', 'MarkerSize', 10)
-        plot([VC VD], ...
-             [nC nD], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
+        plot([VC V_fg], ...
+             [nC n_fg], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
+        plot([V_fg VD], [n_fg nD], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
         plot([VF VD], ...
              [nF nE], '-b.', 'LineWidth', 1, 'MarkerSize', 10)
         plot(VG, nG, 'b.', 'MarkerSize', 10)
@@ -703,7 +718,8 @@ classdef csvla
         %% BALANCING LOADS - METHOD
         function obj = Balancing_loads(obj, HT_Lift_posstall, VSpos, ...
                                             HT_Lift_negstall, VSneg, ... 
-                                            HT_Lift_fromCtoD, V_fromCtoD, ...
+                                            HT_Lift_fromCtofg, V_fromCtofg, ...
+                                            HT_Lift_fromfgtoD, V_fromfgtoD, ...
                                             HT_Lift_fromDtoE, V_fromDtoE, ...
                                             HT_Lift_fromFtoE, V_fromFtoE, ...
                                             HT_Lift_unit_load_factor, V_unit_load_factor, ...
@@ -767,24 +783,24 @@ classdef csvla
         xlim([18.0 max(V_fromDtoE)+5])
         plot(VSpos, HT_Lift_posstall, '-r', 'LineWidth', 1)
         plot(VSneg, HT_Lift_negstall, '-r', 'LineWidth', 1)
-        plot(V_fromCtoD, HT_Lift_fromCtoD, '-r', 'LineWidth', 1)
+        plot(V_fromCtofg, HT_Lift_fromCtofg, '-r', 'LineWidth', 1)
+        plot(V_fromfgtoD, HT_Lift_fromfgtoD, '-r', 'LineWidth', 1)
         plot(V_fromDtoE, HT_Lift_fromDtoE, '-r', 'LineWidth', 1)
         plot(V_fromFtoE, HT_Lift_fromFtoE, '-r', 'LineWidth', 1)
         plot(V_unit_load_factor, HT_Lift_unit_load_factor, '-.k', 'LineWidth', 2)
         plot(VSpos(1), HT_Lift_posstall(1),'k.','MarkerSize', 10,'LineStyle','none');
         plot(VSpos(index_va), HT_Lift_posstall(index_va),'k.','MarkerSize', 10,'LineStyle','none');
-        plot(V_fromCtoD(1), HT_Lift_fromCtoD(1),'k.','MarkerSize', 10,'LineStyle','none');
-        plot(V_fromCtoD(end), HT_Lift_fromCtoD(end),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromCtofg(1), HT_Lift_fromCtofg(1),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromfgtoD(end), HT_Lift_fromfgtoD(end),'k.','MarkerSize', 10,'LineStyle','none');
         plot(VSneg(index_vg), HT_Lift_negstall(index_vg),'k.','MarkerSize', 10,'LineStyle','none');
         plot(V_fromFtoE(1), HT_Lift_fromFtoE(1),'k.','MarkerSize', 10,'LineStyle','none');
         plot(V_fromFtoE(end), HT_Lift_fromFtoE(end),'k.','MarkerSize', 10,'LineStyle','none');
         % ---------------------------------------------------------------------
         text(20, -1.0, '\fontname{Courier} Point S')
         text(VSpos(index_va)+0.1, HT_Lift_posstall(index_va)+ 2.0, '\fontname{Courier} Point A')
-        % text(V_fromCtoD(1)-0.2, HT_Lift_fromCtoD(1)+0.2, '\fontname{Courier} Point C')
-        text(46, HT_Lift_fromCtoD(1)+ 2.0, '\fontname{Courier} Point C')
+        text(41.5, -18, 'n = 1')
+        text(46, HT_Lift_fromCtofg(1)+ 2.0, '\fontname{Courier} Point C')
         text(57, -36.5, '\fontname{Courier} Point D')
-        % text(VSneg(index_vg)-1.0, HT_Lift_negstall(index_vg)+0.2, '\fontname{Courier} Point G')
         text(22, HT_Lift_negstall(index_vg)+0.2, '\fontname{Courier} Point G')
         text(41, -40, '\fontname{Courier} Point F')
         text(52.5, -54, '\fontname{Courier} Point E')
@@ -797,7 +813,8 @@ classdef csvla
         %% BALANCING LOADS - WING LOADS DIAGRAM
         function obj = Mainwing_loads(obj, WING_Lift_posstall, VSpos, ...
                                             WING_Lift_negstall, VSneg, ... 
-                                            WING_Lift_fromCtoD, V_fromCtoD, ...
+                                            WING_Lift_fromCtofg, V_fromCtofg, ...
+                                            WING_Lift_fromfgtoD, V_fromfgtoD, ...
                                             WING_Lift_fromDtoE, V_fromDtoE, ...
                                             WING_Lift_fromFtoE, V_fromFtoE, ...
                                             Wing_unit_load_factor, V_unit_load_factor, ...
@@ -859,29 +876,31 @@ classdef csvla
         grid minor
         index_va = dsearchn(VSpos, VA);
         index_vg = dsearchn(VSneg, VG);
-        ylim([min(WING_Lift_fromFtoE)-20 max(WING_Lift_fromCtoD)+20])
+        ylim([min(WING_Lift_fromFtoE)-20 max(WING_Lift_fromCtofg)+20])
         xlim([18 max(V_fromDtoE)+7])
         plot(VSpos, WING_Lift_posstall, '-r', 'LineWidth', 1)
         plot(VSneg, WING_Lift_negstall, '-r', 'LineWidth', 1)
-        plot(V_fromCtoD, WING_Lift_fromCtoD, '-r', 'LineWidth', 1)
+        plot(V_fromCtofg, WING_Lift_fromCtofg, '-r', 'LineWidth', 1)
+        plot(V_fromfgtoD, WING_Lift_fromfgtoD, '-r', 'LineWidth', 1)
         plot(V_fromDtoE, WING_Lift_fromDtoE, '-r', 'LineWidth', 1)
         plot(V_fromFtoE, WING_Lift_fromFtoE, '-r', 'LineWidth', 1)
         plot(V_unit_load_factor, Wing_unit_load_factor, '-.k', 'LineWidth', 2)
         plot(VSpos(1), WING_Lift_posstall(1),'k.','MarkerSize', 10,'LineStyle','none');
         plot(VSpos(index_va), WING_Lift_posstall(index_va),'k.','MarkerSize', 10,'LineStyle','none');
-        plot(V_fromCtoD(1), WING_Lift_fromCtoD(1),'k.','MarkerSize', 10,'LineStyle','none');
-        plot(V_fromCtoD(end), WING_Lift_fromCtoD(end),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromCtofg(1), WING_Lift_fromCtofg(1),'k.','MarkerSize', 10,'LineStyle','none');
+        plot(V_fromfgtoD(end), WING_Lift_fromfgtoD(end),'k.','MarkerSize', 10,'LineStyle','none');
         plot(VSneg(index_vg), WING_Lift_negstall(index_vg),'k.','MarkerSize', 10,'LineStyle','none');
         plot(V_fromFtoE(1), WING_Lift_fromFtoE(1),'k.','MarkerSize', 10,'LineStyle','none');
         plot(V_fromFtoE(end), WING_Lift_fromFtoE(end),'k.','MarkerSize', 10,'LineStyle','none');
         % ---------------------------------------------------------------------
         text(VSpos(1), 75, '\fontname{Courier} Point S')
         text(38, 360, '\fontname{Courier} Point A')
-        text(V_fromCtoD(1)+3, WING_Lift_fromCtoD(1)+0.2, '\fontname{Courier} Point C')
-        text(V_fromCtoD(end)-0.2, WING_Lift_fromCtoD(end)+0.2, '\fontname{Courier} Point D')
+        text(V_fromCtofg(1)+3, WING_Lift_fromCtofg(1)+0.2, '\fontname{Courier} Point C')
+        text(V_fromfgtoD(end)-0.2, WING_Lift_fromfgtoD(end)+0.2, '\fontname{Courier} Point D')
         text(VSneg(index_vg)-1.0, WING_Lift_negstall(index_vg)+40, '\fontname{Courier} Point G')
         text(V_fromFtoE(1)+1.0, -285, '\fontname{Courier} Point F')
-        text(V_fromFtoE(end)-0.2, -120, '\fontname{Courier} Point E')        
+        text(V_fromFtoE(end)-0.2, -120, '\fontname{Courier} Point E')  
+        text(40.0, 90.0, 'n = 1') 
         % ---------------------------------------------------------------------
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Main wing lift - $L$ (daN)", "Interpreter", "latex")

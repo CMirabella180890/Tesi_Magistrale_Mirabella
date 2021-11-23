@@ -82,6 +82,8 @@ switch (Aircraft.Certification.Regulation.value)
         CalcUnsymmLoads
         % CALCULATE HORIZONTAL TAIL LOADS 
         CalcHorizTailLoads
+        % CALCULATE VERTICAL TAIL LOADS
+        CalcVertTailLoads
 %     case 'CS23'
 %     case 'CS22'
 end

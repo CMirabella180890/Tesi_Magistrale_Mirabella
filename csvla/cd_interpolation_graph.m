@@ -41,8 +41,8 @@ grid on
 mesh(XI, YI, Cd_interp, 'FaceAlpha', '0.15')
 
 % Axis and title
-xlabel("X", "Interpreter", "latex")
-ylabel("Y", "Interpreter", "latex")
+xlabel("Spanwise points", "Interpreter", "latex")
+ylabel("Alpha - $\alpha$", "Interpreter", "latex")
 zlabel("Cd = Cd(y)", "Interpreter", "latex")
 title("Interpolation of the Cd values", "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
 

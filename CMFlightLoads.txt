@@ -47,7 +47,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  3.800000          -1.500000          58.402226          58.402226
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ FIGURE 1 - FLIGHT ENVELOP DIAGRAM ++++ 
-[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 --------------------------------------
 ### Saving outpus inside correct Folder ###
 Saving Vndiagram.pdf in: 
@@ -63,8 +62,8 @@ Case 2
 Gust load factor is greater or lower than max load factor
  ++++ INPUT FINAL ENVELOPE ++++
  ++++++++++ DATA USED TO PLOT FINAL ENVELOPE ++++++++++ 
- VC            nC             VD            nD            VF            nF
- 46.721781    5.348275     58.402226    3.800000    46.721781    -3.348275
+ VC            nC             V_fg             n_fg             VD            nD            VF            nF
+ 46.721781    5.348275     57.817619    3.800000    58.402226    3.800000    46.721781    -3.348275
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ DATA USED TO PLOT FINAL ENVELOPE ++++++++++ 
  VE            nE             VA            nA            VG            nG
@@ -89,7 +88,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  ++++ FIGURE 7 - HORIZONTAL EMPENNAGE AIRLOADS ++++ 
-[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 Saving Balancingloads.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 8 - MAIN WING AIRLOADS ++++ 
@@ -267,22 +265,64 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++ FIGURE 37 - PARTIAL LOAD UNSYMM. TORSION COMPARISON ++++ 
 Saving UnsymmetricalLoadsComparisonSeventyPerCentLoad.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
  ++++ METHOD CS - VLA 423 (a) ++++
+ ---------------------------------
  ++++ UNCHECKED ++++
  ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
-VA                 
-47.301778          
+Pitch-up at VA                 Pitch-down at VA
+-37.841422          47.301778
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++++++++ Total Critical Horizontal Tail loads - Method (a) [daN] ++++++++++ 
+Total critical load at VA
+28.639693
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (b) ++++
+ ---------------------------------
+ ++++ CHECKED ++++
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-VA
+At VA
 -88.812799
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
- ++++ METHOD CS - VLA 423 (B) - PITCH DOWN ++++
- +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
-VA
+ 
+ ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
+ ----------------------------------------------
+ +++++++++++++++++ Horizontal Tail loads [daN] +++++++++++++++++ 
+At VA
 42.666416
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
- ++++ CRITICAL CONDITION: METHOD (B) PITCH DOWN ++++
+ 
+ ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
+ ----------------------------------------------
+ +++++++++++++++++ Total Horizontal Tail loads - Method (b) [daN] +++++++++++++++++ 
+At VA
+-88.812799
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (a)+(b) ++++
+ ----------------------------------------------
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+At VA
+-56.503507
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (c) - DeltaLtail ++++ 
+ ---------------------------------------------- 
+ +++++++++++++++++ Delta Tail loads [daN] +++++++++++++++++ 
+Upward defl. VA    Downward defl. VA    Upward defl. VD    Downward defl. VD
+-37.841422         47.301778         -36.066902         36.066902
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++ METHOD CS - VLA 423 (c) - BTL_1 + DeltaLtail ++++ 
+ ------------------------------------------------------ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+Upward defl. VA    Downward defl. VA    Upward defl. VD    Downward defl. VD
+-56.301789         28.841412         -81.109715         -8.975910
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++++++++ CS - VLA 423 - METHOD D ++++++++++ 
+ --------------------------------------------- 
  ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
 Case 1              Case 2             Case 3             Case 4  
 -41.996801          41.996801          37.497144          -37.497144
@@ -290,6 +330,82 @@ Case 1              Case 2             Case 3             Case 4
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
 Case 1              Case 2             Case 3             Case 4  
--60.658886          -54.410924          18.835060          -53.515371
--79.446523          -92.920487          -10.161708          -79.765532
+-60.658886          -54.410924         18.835060          -53.515371
+-79.446523          -92.920487         -10.161708          -79.765532
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Critical conditions - CS - VLA 423 Method (d) [daN] ++++++++++ 
+Critical conditions
+-92.920487
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ AIRWORTHINESS RULES: CS - VLA 425 GUST AIRLOADS
+ --------------------------------- 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+L_ht VF             L_ht VC            L_ht VD
+-37.449722          -18.662085         -39.003554
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Delta Horizontal Tail loads [daN] +++++++++++++++++ 
+DeltaL_ht VF       DeltaL_ht VC      DeltaL_ht VD
+36.719272          58.596633         36.719272
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads - Positive Gust [daN] +++++++++++++++++ 
+Gust + L_ht VF      Gust + L_ht VC     Gust + L_ht VD
+-0.730450          39.934549         -2.284283
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads - Negative Gust [daN] +++++++++++++++++ 
+Gust - L_ht VF       Gust - L_ht VC      Gust - L_ht VD
+-74.168994          -77.258718         -75.722826
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ Final results from CS - VLA 423 Airworthiness prescriptions 
+ +++++++++++++++++ Total Horizontal Tail loads - Maximum Symmetrical load [daN] +++++++++++++++++ 
+Maximum symmetrical load
+-92.920487
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ UNSYMMETRICAL LOADS PER CS - VLA 427 
+ +++++++++++++++++ Total Horizontal Tail loads - Unsymmetrical conditions [daN] +++++++++++++++++ 
+Full load side       Partial load side
+-46.460243          -66.902750
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ STARTING VERTICAL TAIL LOADS CALCULATION ++++ 
+ 
+ ---------------------------------------------------------------- 
+ ++++ CS - VLA 441 - VERTICAL TAIL LOADS - MANOEUVRING LOADS ++++ 
+ ---------------------------------------------------------------- 
+ 
+ ++++ CS - VLA 441 - CASE (a)(1) ++++ 
+ ------------------------------------ 
+ ++++++++++ Vertical tail loads - CASE (a)(1) [daN] ++++++++++ 
+Y
+4.576816
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ CS - VLA 441 - CASE (a)(2) ++++ 
+ ------------------------------------ 
+ ++++++++++ Vertical tail loads - CASE (a)(2) [daN] ++++++++++ 
+Y
+5.793092
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ CS - VLA 441 - CASE (a)(3) ++++ 
+ ------------------------------------ 
+ ++++++++++ Vertical tail loads - CASE (a)(3) [daN] ++++++++++ 
+Y
+5.509348
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Vertical tail loads - MOST CRITICAL LOADS [daN] ++++++++++ 
+ CRITICAL LOADS PER ---> CS - VLA 441 (a)(2) 
+ 
+ ++++ CS - VLA 445 ++++ 
+ ---------------------- 
+ ++++++++++ Vertical tail - GUST LOADS [daN] ++++++++++ 
+GUST - VC         GUST - VD
+8.841785         5.526115
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Vertical tail - CRITICAL GUST LOADS [daN] ++++++++++ 
+MAX GUST LOADS: AT VC
+CRITICAL GUST LOADS
+8.841785
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 

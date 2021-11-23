@@ -348,6 +348,28 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_f
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.Attributes.unit = 'g';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.value = point_env(2, 2);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.Attributes.unit = 'g';
+% CHECK ON LOAD FACTORS AND SPEED
+Check1 = abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value - Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value);
+if Check1 < 1e-1
+    Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value;
+end
+%
+V_check2 = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(end) Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value(end)]';
+n_check2 = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value(end) Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value(end)]';
+V_interp = linspace(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(end), Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value(end), 1000)';
+N_straight_line = interp1(V_check2, n_check2, V_interp);
+for i = 1:length(N_straight_line)
+    Check2 = abs(N_straight_line(i) - Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value);
+    if Check2 < 1e-3
+        V_final_gust = V_interp(i);
+        N_final_gust = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value;
+    end
+end
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_speed.value = V_final_gust;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_speed.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_load_factor.value = N_final_gust;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_load_factor.Attributes.unit = "m/s";
+
 
 %% INPUT TO THE FINAL ENVELOPE DIAGRAM 
 
@@ -356,13 +378,15 @@ disp(" ++++ INPUT FINAL ENVELOPE ++++");
 % Horizontal tail loads increments
 Data4 = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.value, ...
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.value, ...
+         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_speed.value, ...
+         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_load_factor.value, ...
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value, ...
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value, ...
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.value, ...
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.value];            % Negative load factors associated with wind gust, V = VD                 % VG = VD on the negative side of V - n diagram
 disp(" ++++++++++ DATA USED TO PLOT FINAL ENVELOPE ++++++++++ ")
-format = ' %f    %f     %f    %f    %f    %f\n';
-label  = ' VC            nC             VD            nD            VF            nF\n';
+format = ' %f    %f     %f    %f    %f    %f    %f    %f\n';
+label  = ' VC            nC             V_fg             n_fg             VD            nD            VF            nF\n';
 fprintf(label);
 fprintf(format, Data4.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -396,6 +420,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Diagram.va
                                                                                          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value, ...
                                                                                          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.value, ...
                                                                                          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.value, ...
+                                                                                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_speed.value, ...
+                                                                                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_load_factor.value, ...
                                                                                          Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value, ...
                                                                                          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value, ...
                                                                                          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.value, ...
