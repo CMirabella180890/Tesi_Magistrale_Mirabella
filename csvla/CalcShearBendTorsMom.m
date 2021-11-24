@@ -274,8 +274,8 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LHTail_S.value];
 disp(" ++++++++++ POINT S OF THE FINAL ENVELOPE ++++++++++ ")
-format = ' %f          %f          %f          %f          %f          %f          %f          %f\n';
-label  = ' V [m/s]           n [g]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+format = ' %6.6f  %6.6f  %6.6f  %6.6f  %6.6f  %6.6f  %6.6f  %6.6f\n';
+label  = ' V [m/s]    n [g]     q [Pa]      CL        CD        alpha [°]  L [daN]     LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -420,7 +420,6 @@ movefile LiftComparisonWithPoints.png Output
 
 %% LOAD A CLASS OF FUNCTIONS USEFUL TO EVALUATE ALL THE REQUIRED DATA
 obj2 = ShearBendingTorsion; 
-pause(5/1000);
 % Test speed
 % To check the work, a test case issue is provided. OpenVSP is called with
 % the following value of the airspeed. Also, the chosen flight condition is
@@ -635,6 +634,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tor
                                                                                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.m_distr.value)*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tors_mom_distr.Attributes.unit = "daN*m";
 
+disp(" ");
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Bend_mom_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tors_mom_distr.value];
+disp(" ++++++++++ POINT S OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ ")
+format = ' %6.6f          %6.6f          %6.6f\n';
+label  = ' Shear [daN]           Bending [daN * m]             Torsion [daN * m]\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
 % Subplots with Shear, Bending moment and Torsion
 %  fig1 = Bending_Shear_diag(y, Shear, Bend_mom, Torsion, Point)
 % A complete description of this function is included inside the class file
@@ -782,6 +793,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.m_d
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value = calc_tors_mom(obj2, Aircraft.Geometry.Wing.y.value, ...
                                                                                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.m_distr.value)*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.Attributes.unit = "daN*m";
+
+disp(" ")
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value];
+disp(" ++++++++++ POINT A OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ ")
+format = ' %6.6f          %6.6f          %6.6f\n';
+label  = ' Shear [daN]           Bending [daN * m]             Torsion [daN * m]\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Subplots with Shear, Bending moment and Torsion
 disp(" ++++ FIGURE 13 - POINT A SHEAR, BENDING, TORSION");
@@ -934,6 +957,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.m_d
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value = calc_tors_mom(obj2, Aircraft.Geometry.Wing.y.value, ...
                                                                                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.m_distr.value)*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.Attributes.unit = "daN*m";
+
+disp(" ")
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Bend_mom_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value];
+disp(" ++++++++++ POINT C OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ ")
+format = ' %6.6f          %6.6f          %6.6f\n';
+label  = ' Shear [daN]           Bending [daN * m]             Torsion [daN * m]\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Subplots with shear, bending moment and torsion diagram
 disp(" ++++ FIGURE 14 - POINT C SHEAR, BENDING, TORSION");
@@ -1138,6 +1173,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tor
                                                                                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.m_distr.value)*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.Attributes.unit = "daN*m";
 
+disp(" ")
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value];
+disp(" ++++++++++ POINT D OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ ")
+format = ' %6.6f          %6.6f          %6.6f\n';
+label  = ' Shear [daN]           Bending [daN * m]             Torsion [daN * m]\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
 % Subplots with shear, bending moment and torsion 
 disp(" ++++ FIGURE 17 - POINT D SHEAR, BENDING, TORSION ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_BendMom_diagram.value = Shear_Bending_Torsion_diag(obj2, flip(Aircraft.Geometry.Wing.y.value), ...
@@ -1222,10 +1269,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA
                                        Aircraft.Certification.Aerodynamic_data.CL_star.value, ...
                                        Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value, ...
                                        p) - Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value;
-% alpha_calc_lin(obj1, ...
-%                                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.value, ...
-%                                         Aircraft.Certification.Aerodynamic_data.CL0.value, ...
-%                                         Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value) - Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_alongspan_deg.Attributes.unit = "degrees"; 
 
 % Convert to radians 
@@ -1305,6 +1348,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tor
                                                                                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.m_distr.value)*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.Attributes.unit = "daN*m";
 
+disp(" ")
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Shear_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Bend_mom_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.value];
+disp(" ++++++++++ POINT F OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ ")
+format = ' %6.6f          %6.6f          %6.6f\n';
+label  = ' Shear [daN]           Bending [daN * m]             Torsion [daN * m]\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
 % Subplots with shear, bending moment and torsion
 disp(" ++++ FIGURE 18 - POINT F SHEAR, BENDING, TORSION ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Shear_BendMom_diagram.value = Shear_Bending_Torsion_diag(obj2, flip(Aircraft.Geometry.Wing.y.value), ...
@@ -1383,10 +1438,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA
                                        Aircraft.Certification.Aerodynamic_data.CL_star.value, ...
                                        Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value, ...
                                        p) - Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value;
-%                          alpha_calc_lin(obj1, ...
-%                                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.value, ...
-%                                         Aircraft.Certification.Aerodynamic_data.CL0.value, ...
-%                                         Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value) - Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_alongspan_deg.Attributes.unit = "degrees"; 
 
 % Convert to radians 
@@ -1465,6 +1516,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.m_d
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.value = calc_tors_mom(obj2, Aircraft.Geometry.Wing.y.value, ...
                                                                                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.m_distr.value)*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.Attributes.unit = "daN*m";
+
+disp(" ")
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Shear_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Bend_mom_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.value];
+disp(" ++++++++++ POINT G OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ ")
+format = ' %6.6f          %6.6f          %6.6f\n';
+label  = ' Shear [daN]           Bending [daN * m]             Torsion [daN * m]\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Subplots with shear, bending moment and torsion diagram
 disp(" ++++ FIGURE 19 - POINT G SHEAR, BENDING, TORSION ++++ ");
@@ -1626,6 +1689,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.m_d
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.value = calc_tors_mom(obj2, Aircraft.Geometry.Wing.y.value, ...
                                                                                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.m_distr.value)*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.Attributes.unit = "daN*m";
+
+disp(" ")
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Shear_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Bend_mom_distr.value, ...
+             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.value];
+disp(" ++++++++++ POINT E OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ ")
+format = ' %6.6f          %6.6f          %6.6f\n';
+label  = ' Shear [daN]           Bending [daN * m]             Torsion [daN * m]\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % Subplots with shear, bending moment and torsion diagram
 disp(" ++++ FIGURE 20 - POINT E SHEAR, BENDING, TORSION ++++ ");

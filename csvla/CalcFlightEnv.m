@@ -100,7 +100,7 @@ Data1 = [  Aircraft.Certification.Regulation.SubpartC.Flightloads.print_positive
            Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value, ... % Max positive value of load factors
            Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.value];                 % VG = VD on the negative side of V - n diagram
 disp(" ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ ")
-format = ' %f          %f          %f          %f\n';
+format = ' %6.6f          %6.6f          %6.6f          %6.6f\n';
 label  = ' VS+                VS-                 VA                VG\n';
 fprintf(label);
 fprintf(format, Data1.');
@@ -112,7 +112,7 @@ Data1 = [  Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value, ..
            Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value, ...              % Max dive speed from V - n diagram
            Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VE.value];                 % VG = VD on the negative side of V - n diagram
 disp(" ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ ")
-format = ' %f          %f          %f          %f\n';
+format = ' %6.6f          %6.6f          %6.6f          %6.6f\n';
 label  = ' nmax                nmin                 VD                VE\n';
 fprintf(label);
 fprintf(format, Data1.');
@@ -387,8 +387,8 @@ Data4 = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.M
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.value, ...
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.value];            % Negative load factors associated with wind gust, V = VD                 % VG = VD on the negative side of V - n diagram
 disp(" ++++++++++ DATA USED TO PLOT FINAL ENVELOPE ++++++++++ ")
-format = ' %f    %f     %f    %f    %f    %f    %f    %f\n';
-label  = ' VC            nC             V_fg             n_fg             VD            nD            VF            nF\n';
+format = ' %6.6f    %6.6f     %6.6f    %6.6f    %6.6f    %6.6f    %6.6f    %6.6f\n';
+label  = ' VC           nC           V_fg         n_fg        VD           nD          VF            nF\n';
 fprintf(label);
 fprintf(format, Data4.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -401,8 +401,8 @@ Data5 = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.va
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.value, ...
          Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.value];            % Negative load factors associated with wind gust, V = VD                 % VG = VD on the negative side of V - n diagram
 disp(" ++++++++++ DATA USED TO PLOT FINAL ENVELOPE ++++++++++ ")
-format = ' %f    %f     %f    %f    %f    %f\n';
-label  = ' VE            nE             VA            nA            VG            nG\n';
+format = ' %6.6f    %6.6f     %6.6f    %6.6f    %6.6f    %6.6f\n';
+label  = ' VE            nE           VA           nA          VG            nG\n';
 fprintf(label);
 fprintf(format, Data5.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
