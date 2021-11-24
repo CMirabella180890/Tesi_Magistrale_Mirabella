@@ -92,8 +92,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.print_negative_vs.Attribu
 % A possible way to track inputs for the various data will be provided
 % inside the .txt file used as a log for the program.
 
+disp(" ")
 disp(" ++++ INPUT TO V - N DIAGRAM ++++");
-
 % Horizontal tail loads increments
 Data1 = [  Aircraft.Certification.Regulation.SubpartC.Flightloads.print_positive_vs.value, ...
            Aircraft.Certification.Regulation.SubpartC.Flightloads.print_negative_vs.value, ...
@@ -106,6 +106,7 @@ fprintf(label);
 fprintf(format, Data1.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
+disp(" ")
 % Horizontal tail loads increments
 Data1 = [  Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value, ...                       % Max positive value of load factors
            Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.value, ...                       % Min (negative) value of load factors
@@ -124,6 +125,8 @@ disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 % flight envelope of the aircraft, following CS-VLA airworthiness
 % prescription. To have a complete documentation check the class
 % file csvla.m
+
+disp(" ")
 disp(" ++++ FIGURE 1 - FLIGHT ENVELOP DIAGRAM ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.V_n_diagram.value = V_n_diagram(obj, Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value, ... % Positive load factors
                                                                                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value, ...      % Negative load factors
@@ -235,6 +238,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_d
 % gust envelope of the aircraft, following CS-VLA airworthiness
 % prescription. To have a complete documentation check the class
 % file csvla.m 
+
+disp(" ")
 disp(" ++++ FIGURE 2 - GUST ENVELOPE ++++ "); 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_envelope.value = Gust_envelope(obj, Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value, ... % Vector which contains positive load factor values
                                                                                            Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value, ...    % Vector which contains negative load factor values 
@@ -375,8 +380,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust
 
 %% INPUT TO THE FINAL ENVELOPE DIAGRAM 
 
+disp(" ")
 disp(" ++++ INPUT FINAL ENVELOPE ++++");
-
 % Horizontal tail loads increments
 Data4 = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.value, ...
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.value, ...
@@ -393,6 +398,7 @@ fprintf(label);
 fprintf(format, Data4.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
+disp(" ")
 % Horizontal tail loads increments
 Data5 = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value, ...
          Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.value, ...
@@ -407,6 +413,7 @@ fprintf(label);
 fprintf(format, Data5.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
+disp(" ")
 disp(" ++++ FIGURE 3 - FINAL ENVELOPE PLOT ++++ ");
 % -------------------------------------------------------------------------
 %  fig1 = V_n_diagram(npos, nneg, VSpos, VSneg, VD, VG, VA, VE, Reg, Aircraft_name)
@@ -455,6 +462,8 @@ Aircraft.Certification.Aerodynamic_data.CL.value    = str2num(Aircraft.Certifica
 Aircraft.Certification.Aerodynamic_data.CD.value    = str2num(Aircraft.Certification.Aerodynamic_data.CD.value);    % A vector which contains CD values 
 Aircraft.Certification.Aerodynamic_data.CM.value    = str2num(Aircraft.Certification.Aerodynamic_data.CM.value);    % A vector which contains CM values 
 % A figure with polars subplots is automatically generated from the vectors
+
+disp(" ")
 disp(" ++++ FIGURE 4 - AERODYNAMIC DATA ++++ ");
 Aircraft.Certification.Aerodynamic_data.Polars = AeroPlot(Aircraft.Certification.Aerodynamic_data.alpha.value, ...
                                                           Aircraft.Certification.Aerodynamic_data.CL.value, ...

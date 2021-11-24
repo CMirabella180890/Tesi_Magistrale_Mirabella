@@ -96,6 +96,8 @@ Aircraft.Certification.Aerodynamic_data.CL_Full_model.Attributes.unit = "Non dim
 Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value =  -(1/Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value) + Aircraft.Certification.Aerodynamic_data.CL_Full_model.value;
 
 % Complete lift curve diagram 
+
+disp(" ")
 disp(" ++++ FIGURE 6 - LIFT CURVES COMPARISON ++++ ");
 Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmodel_curve(Aircraft.Certification.Aerodynamic_data.AOA_aux.value, ...
     Aircraft.Certification.Aerodynamic_data.CL_Full_model.value, ...
@@ -1176,6 +1178,8 @@ fprintf('%s\n', dir);
 %
 % A complete documentation of this function is included inside the file
 % csvla.m
+
+disp(" ")
 disp(" ++++ FIGURE 7 - HORIZONTAL EMPENNAGE AIRLOADS ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTailAirloadsDiagram.value = Balancing_loads(obj, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_positivestall.value, ...
@@ -1322,6 +1326,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fro
 %
 % A complete documentation of this function is included inside the file
 % csvla.m
+
+disp(" ")
 disp(" ++++ FIGURE 8 - MAIN WING AIRLOADS ++++ ");                                
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WingAirloadsDiagram.value = Mainwing_loads(obj, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_posstall_new.value, ...
