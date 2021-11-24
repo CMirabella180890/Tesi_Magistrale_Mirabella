@@ -78,10 +78,13 @@ classdef csvla
             %  OUTPUT 
             %  n    = Vector of load factor values
             
+            % indexes =500;
+            indexes = 1e5;
+            
             if nmax > 0.0
-            obj = linspace(0.0, 2*nmax, 500)';  
+            obj = linspace(0.0, 2*nmax, indexes)';  
             elseif nmax < 0.0 
-            obj = linspace(0.0, 2*nmax, 500)';  
+            obj = linspace(0.0, 2*nmax, indexes)';  
             end
         end
         %% FLIGHT ENVELOPE - SECOND METHOD
@@ -368,10 +371,14 @@ classdef csvla
             %         --> 'negative_cruise'
             %         --> 'positive_dive'
             %         --> 'negative_dive'
+            
+            % indexes = 500;
+            indexes = 1e5;
+            
             if Ude == abs(15.24) 
-                V = linspace(0.0, VC, 500)';
+                V = linspace(0.0, VC, indexes)';
             elseif Ude == abs(7.62) 
-                V = linspace(0.0, VD, 500)';
+                V = linspace(0.0, VD, indexes)';
             end
             % -------------------------------------------------------------
             switch (caso)
@@ -541,7 +548,7 @@ classdef csvla
         temp4 = 1;
         temp5 = 1;
         temp6 = 1;
-        tol  = 1E-1;
+        tol  = 1E-2;
         vs    = abs(vstall);
         vg    = abs(vgust);
         va    = abs(VA); 
@@ -577,7 +584,7 @@ classdef csvla
                  disp('Stall speed is unchanged by gust');
              elseif abs(ng(temp1) - nm) > tol 
                  disp('Stall speed must be changed');
-                         tol  = 1E-4;
+                        % tol  = 1E-4;
                  for i = 1:length(ns) 
                      for j = 1:length(ng) 
                          if abs(ns(i) - ng(j)) < tol
@@ -589,13 +596,13 @@ classdef csvla
         % -------------------------------------
         if nmax < 0
                 for i = 1:length(ns) 
-                    if abs(ns(i) - 1.0) < 0.01
+                    if abs(ns(i) - 1.0) < tol
                         temp4 = i;
                     end
                 end
         elseif nmax > 0 
                 for i = 1:length(ns) 
-                    if abs(1.0 - ns(i)) < 0.01
+                    if abs(1.0 - ns(i)) < tol
                         temp4 = i;
                     end
                 end
@@ -630,7 +637,7 @@ classdef csvla
         ng  = abs(ngust);
         ns  = abs(nstall);
         nm  = abs(nmax); 
-        tol = 1E-4; 
+        tol = 1E-3; 
             if abs(ng(end) - nm) < tol 
                 disp('Case 1')
                 disp('Gust load factor are nearly equal to max load factor')
@@ -692,6 +699,7 @@ classdef csvla
         % xlim([0 VD+10])
         plot(VSpos, npos, '-r', 'LineWidth', 1)
         plot(VSneg, nneg, '-b', 'LineWidth', 1)
+        plot(VSpos(end), npos(end), 'k.', 'MarkerSize', 10)
         plot([VSpos(1) VSpos(1)], [npos(1) 0.0], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
         plot([VSneg(1) VSneg(1)], [nneg(1) 0.0], '-b.', 'LineWidth', 1, 'MarkerSize', 10)
         plot(VA, nA, 'r.', 'MarkerSize', 10)
