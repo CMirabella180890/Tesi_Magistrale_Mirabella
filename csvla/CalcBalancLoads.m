@@ -51,8 +51,24 @@ obj1 = aero_model;
 % and non-linear calculation are compared with raw data available. The
 % selected range is -2.0<CL<2.0. To find a complete documentation of the
 % function 'CL_Non_linear_model(...)' search inside aero_model.m file. 
-Aircraft.Certification.Aerodynamic_data.AOA_aux.value = linspace(-20.0, 20.0, 650);
+
+% Alpha_star and Alpha_max 
+a = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value;
+b = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value;
+c = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value;
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CL_WB_model = @(alpha) a*alpha.^2 + b*alpha + c; 
+alpha_plus  = @(CL) (-b + sqrt(b^2 - 4*a*(c - CL)))/(2*a);
+alpha_meno  = @(CL) (-b - sqrt(b^2 - 4*a*(c - CL)))/(2*a);
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+alpha_star = alpha_plus(Aircraft.Certification.Aerodynamic_data.CL_star.value);
+alpha_max  = alpha_meno(Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value);
+
+% Lift coefficient curve
+Aircraft.Certification.Aerodynamic_data.AOA_aux.value = linspace(-8.0, 25*alpha_star*1e-3 - alpha_star, 1000)';
 Aircraft.Certification.Aerodynamic_data.AOA_aux.Attributes.unit = "degree";
+Aircraft.Certification.Aerodynamic_data.AOA_aux1.value = linspace(alpha_star + 50*alpha_star*1e-3, 13.0 , 1000)';
+Aircraft.Certification.Aerodynamic_data.AOA_aux1.Attributes.unit = "degrees";
 
 % Non linear lift curve
 Aircraft.Certification.Aerodynamic_data.CL_NonLinear.value = CL_Non_linear_model(obj1, ...
@@ -61,9 +77,17 @@ Aircraft.Certification.Aerodynamic_data.CL_NonLinear.value = CL_Non_linear_model
     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value);
 Aircraft.Certification.Aerodynamic_data.CL_NonLinear.Attributes.unit = "Non dimensional";
 
-% Linear lift curve
-Aircraft.Certification.Aerodynamic_data.CL_Linear.value = Aircraft.Certification.Aerodynamic_data.CL0.value + Aircraft.Certification.Aerodynamic_data.AOA_aux.value*Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value;
+% Linear and non linear lift curve
+Aircraft.Certification.Aerodynamic_data.CL_Linear.value = (Aircraft.Certification.Aerodynamic_data.CL0.value+0.01) + Aircraft.Certification.Aerodynamic_data.AOA_aux.value*Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value;
 Aircraft.Certification.Aerodynamic_data.CL_Linear.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Aerodynamic_data.CL_Non_Linear.value = CL_WB_model(Aircraft.Certification.Aerodynamic_data.AOA_aux1.value);
+Aircraft.Certification.Aerodynamic_data.CL_Non_Linear.Attributes.unit = "Non dimensional";
+
+% Full lift model 
+Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value = [Aircraft.Certification.Aerodynamic_data.CL_Linear.value; Aircraft.Certification.Aerodynamic_data.CL_Non_Linear.value];
+Aircraft.Certification.Aerodynamic_data.CL_fullmodel.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value = [Aircraft.Certification.Aerodynamic_data.AOA_aux.value; Aircraft.Certification.Aerodynamic_data.AOA_aux1.value];
+Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.Attributes.unit = "degrees";
 
 % Lift model comparison
 % disp(" ++++ FIGURE 5 - SELECTED INTERPOLATION CURVES FOR AERO DATA ++++ ");
@@ -99,11 +123,14 @@ Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value =  -(
 
 disp(" ")
 disp(" ++++ FIGURE 6 - LIFT CURVES COMPARISON ++++ ");
-Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmodel_curve(Aircraft.Certification.Aerodynamic_data.AOA_aux.value, ...
-    Aircraft.Certification.Aerodynamic_data.CL_Full_model.value, ...
-    Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value, ...
+Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmodel_curve(Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value, ...
+    Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value, ...
     Aircraft.Certification.Aerodynamic_data.CL.value, ...
     Aircraft.Certification.Aerodynamic_data.alpha.value);
+
+%     Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value, ...
+%     Aircraft.Certification.Aerodynamic_data.CL.value, ...
+%     Aircraft.Certification.Aerodynamic_data.alpha.value);
 
 exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelStraightAndInverted.pdf', 'ContentType', 'vector');
 exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelStraightAndInverted.png', 'ContentType', 'vector');

@@ -51,7 +51,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VE.Attributes.
 % permissible positive load factor stall speed. 
 
 % index = dsearchn(Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value);
-tol = 1E-3;
+tol = 1E-2;
 for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value)
     if abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value - Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value(i)) < tol
         index = i;               
@@ -160,7 +160,7 @@ movefile Vndiagram.png Output
 % 1st ---> [0, VC] where VC = MaxCruiseSpeed
 % 2nd ---> [0, VD] where VD = MaxDiveSpeed
 % indexes = 500;
-indexes = 1e5;
+indexes = 1e4;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value = linspace(0.0, Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value, indexes)'; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.Attributes.unit = 'm/s';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value = linspace(0.0, Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value, indexes)'; 
@@ -280,6 +280,7 @@ movefile Gustenvelope.png Output
 %  include the gust speed lines tracked with respect the cruise
 %  speed of the aircraft. This function can be used for positive
 %  and negative stall speed and load factors values. 
+
 tol = 1e-2;
 twod_vect = stall_speed_limit1(obj, Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value, ... % Design manoeuvring speed VA
                                                   Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value, ...            % Positive stall speed vector
@@ -297,6 +298,7 @@ for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustload
         index = i;
     end
 end
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.NLOADS_FIRST_ATTEMPT.value = twod_vect(:, 2);
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(index:end)];
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.Attributes.unit = 'm/s';                                                                           
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value = twod_vect(:, 2);  % Store output from calculations inside the struct variable AIRCRAFT
@@ -308,9 +310,17 @@ for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustload
         index_load_factor = i;
     end
 end
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(index_load_factor:end)];
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.Attributes.unit = 'm/s';    
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value(index_load_factor:end)];
+% check_pos_load1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value(end);
+% check_pos_load2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value;
+% for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value)
+%    if abs(check_pos_load1 - check_pos_load2(i)) < tol
+%        new_index = i;
+%    end
+% end
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(1:end-200); Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(index-140:end)];
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.Attributes.unit = 'm/s';  
+
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value(1:end-200); Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value(index-140:end)];
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.Attributes.unit = 'g';
 clear index y;
 % Testing functions for the final envelope

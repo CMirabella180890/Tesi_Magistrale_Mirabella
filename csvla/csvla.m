@@ -79,7 +79,7 @@ classdef csvla
             %  n    = Vector of load factor values
             
             % indexes =500;
-            indexes = 1e5;
+            indexes = 1e4;
             
             if nmax > 0.0
             obj = linspace(0.0, 2*nmax, indexes)';  
@@ -373,7 +373,7 @@ classdef csvla
             %         --> 'negative_dive'
             
             % indexes = 500;
-            indexes = 1e5;
+            indexes = 1e4;
             
             if Ude == abs(15.24) 
                 V = linspace(0.0, VC, indexes)';
@@ -548,7 +548,7 @@ classdef csvla
         temp4 = 1;
         temp5 = 1;
         temp6 = 1;
-        tol  = 1E-2;
+        tol  = 1E-3;
         vs    = abs(vstall);
         vg    = abs(vgust);
         va    = abs(VA); 
