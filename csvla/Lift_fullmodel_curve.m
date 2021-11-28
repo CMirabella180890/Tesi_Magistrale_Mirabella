@@ -23,6 +23,6 @@ ylim([0.0 1.80]);
 xlabel("Angle of attack - $\alpha$ $(deg)$", "Interpreter", "latex")
 ylabel("Lift coefficient - $C_L$", "Interpreter", "latex")
 title("Lift curve model", "Interpreter", "latex")
-legend({'Full model','Inverted','Data'}, 'Interpreter', 'latex', 'Location', 'northeast')
+legend({'Full model','Data points','Data'}, 'Interpreter', 'latex', 'Location', 'northeast')
 
 end

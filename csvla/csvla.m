@@ -818,7 +818,7 @@ classdef csvla
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Horizontal tail lift - $L_{ht}$ (daN)", "Interpreter", "latex")
         title("Horizontal empennage airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
-        text(51, -9, Aircraft_name)                                              % Aircraft name inside the plot
+        % text(51, -9, Aircraft_name)                                              % Aircraft name inside the plot
         exportgraphics(obj, 'Balancingloads.pdf', 'ContentType', 'vector')
         exportgraphics(obj, 'Balancingloads.png', 'ContentType', 'vector')
         end
@@ -917,7 +917,7 @@ classdef csvla
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Main wing lift - $L$ (daN)", "Interpreter", "latex")
         title("Main wing airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
-        text(16, 500, Aircraft_name)                                              % Aircraft name inside the plot
+        % text(16, 500, Aircraft_name)                                              % Aircraft name inside the plot
         exportgraphics(obj, 'Wingairloads.pdf', 'ContentType', 'vector')
         exportgraphics(obj, 'Wingairloads.png', 'ContentType', 'vector')
         end

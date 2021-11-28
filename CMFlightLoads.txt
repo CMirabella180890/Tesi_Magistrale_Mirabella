@@ -37,6 +37,8 @@ CSVLA
 -----------------
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+-----------------
+### Flight Envelope - per CS - VLA ###
  
  ++++ INPUT TO V - N DIAGRAM ++++
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
@@ -88,23 +90,25 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving Polars.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
+### Balancing loads - per CS - VLA ###
+-----------------
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
 -----------------
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
  
- ++++ FIGURE 6 - LIFT CURVES COMPARISON ++++ 
+ ++++ FIGURE 6 - LIFT CURVE INTERPOLATION ++++ 
 [Warning: Ignoring extra legend entries.] 
 [> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>process_inputs', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m', 587)" style="font-weight:bold">legend>process_inputs</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m',587,0)">line 587</a>)
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m', 315)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m',315,0)">line 315</a>)
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m',259,0)">line 259</a>)
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Lift_fullmodel_curve', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Lift_fullmodel_curve.m', 26)" style="font-weight:bold">Lift_fullmodel_curve</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Lift_fullmodel_curve.m',26,0)">line 26</a>)
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcBalancLoads', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m', 126)" style="font-weight:bold">CalcBalancLoads</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m',126,0)">line 126</a>)
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 38)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',38,0)">line 38</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcBalancLoads', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m', 128)" style="font-weight:bold">CalcBalancLoads</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m',128,0)">line 128</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 46)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',46,0)">line 46</a>)
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Saving FullLiftModelStraightAndInverted.pdf in: 
+Saving FullLiftModelInterpolation.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
 ### Current directory ###
@@ -148,23 +152,23 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  38.624298  3.800000  913.749791  1.580000  0.227419  10.659011  386.004695  -18.662085
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT C OF THE FINAL ENVELOPE ++++++++++ 
- V [m/s]    n [g]     q [Pa]      CL        CD        alpha [°]  L [daN]     LH [daN]
+ V [m/s]    n [g]     q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]
  46.721781  5.348275  1337.041440  1.580000  0.198594  10.659011  543.148738  -18.662085
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT D OF THE FINAL ENVELOPE ++++++++++ 
- V [m/s]    n [g]     q [Pa]      CL        CD        alpha [°]  L [daN]     LH [daN]
+ V [m/s]    n [g]     q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]
  58.402226  3.717672  2089.127250  0.688981  0.068081  -1.456418  411.656254  -39.003554
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT F OF THE FINAL ENVELOPE ++++++++++ 
- V [m/s]    n [g]     q [Pa]      CL        CD        alpha [°]  L [daN]     LH [daN]
+ V [m/s]    n [g]      q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]
  46.721781  -1.717672  1337.041440  -0.948560  0.084272  -19.392250  -290.903932  -37.449722
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT G OF THE FINAL ENVELOPE ++++++++++ 
- V [m/s]    n [g]     q [Pa]      CL        CD        alpha [°]  L [daN]     LH [daN]
+ V [m/s]    n [g]      q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]
  30.563829  -1.500000  572.165425  -1.000000  0.088090  -19.955664  -148.133628  -16.026007
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ POINT E OF THE FINAL ENVELOPE ++++++++++ 
- V [m/s]    n [g]     q [Pa]      CL        CD        alpha [°]  L [daN]     LH [daN]
+ V [m/s]    n [g]      q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]
  58.402226  -1.717672  2089.127250  -0.311433  0.053694  -12.413852  -117.522411  -50.923685
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
@@ -189,37 +193,37 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  6.935536          1.185970          -0.136374
  8.319560          1.707855          -0.164062
  9.702124          2.324386          -0.191397
- 11.083195          3.035463          -0.218647
- 12.463215          3.840998          -0.246117
- 13.842407          4.740927          -0.273699
+ 11.083196          3.035463          -0.218647
+ 12.463217          3.840998          -0.246117
+ 13.842408          4.740927          -0.273699
  15.220809          5.735195          -0.301189
  16.598598          6.823754          -0.328726
  17.975433          8.006550          -0.356550
  19.351482          9.283523          -0.384569
- 20.726809          10.654622          -0.412517
+ 20.726809          10.654623          -0.412517
  22.101429          12.119799          -0.440511
  23.474623          13.678980          -0.468777
- 24.846605          15.332074          -0.497160
- 26.218968          17.079054          -0.525358
- 27.591688          18.919945          -0.553241
- 28.963971          20.854744          -0.581148
- 30.335922          22.883425          -0.609538
- 31.707676          25.005969          -0.638381
- 33.079303          27.222365          -0.667859
- 34.450680          29.532602          -0.698023
- 35.821819          31.936661          -0.728510
- 37.192604          34.434523          -0.759141
- 38.563068          37.026164          -0.790231
- 39.933401          39.711570          -0.821872
- 41.303677          42.490733          -0.853596
- 42.674103          45.363657          -0.885709
- 44.044728          48.330354          -0.918505
- 45.415222          51.390826          -0.952936
- 46.785672          54.545067          -0.988334
- 48.155870          57.793067          -1.024032
- 49.525448          61.134796          -1.059317
- 50.894644          64.570220          -1.090702
- 52.263163          68.099303          -1.112232
+ 24.846605          15.332075          -0.497160
+ 26.218968          17.079055          -0.525358
+ 27.591688          18.919946          -0.553243
+ 28.963971          20.854744          -0.581152
+ 30.335922          22.883425          -0.609542
+ 31.707676          25.005969          -0.638385
+ 33.079303          27.222366          -0.667863
+ 34.450680          29.532602          -0.698027
+ 35.821819          31.936661          -0.728514
+ 37.192604          34.434523          -0.759148
+ 38.563068          37.026164          -0.790239
+ 39.933401          39.711570          -0.821880
+ 41.303677          42.490733          -0.853604
+ 42.674103          45.363657          -0.885717
+ 44.044728          48.330354          -0.918513
+ 45.415222          51.390826          -0.952944
+ 46.785672          54.545067          -0.988342
+ 48.155870          57.793067          -1.024040
+ 49.525448          61.134796          -1.059325
+ 50.894644          64.570221          -1.090710
+ 52.263163          68.099303          -1.112240
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ 
@@ -243,37 +247,37 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  26.414061          4.516780          -0.519383
  31.685133          6.504384          -0.624831
  36.950642          8.852450          -0.728939
- 42.210468          11.560593          -0.832721
- 47.466288          14.628482          -0.937340
- 52.718955          18.055872          -1.042385
- 57.968611          21.842552          -1.147081
- 63.215938          25.988339          -1.251956
- 68.459626          30.493029          -1.357923
- 73.700326          35.356396          -1.464634
- 78.938273          40.578243          -1.571074
- 84.173526          46.158383          -1.677693
- 89.403351          52.096540          -1.785341
- 94.628560          58.392368          -1.893440
- 99.855217          65.045760          -2.000833
- 105.083237          72.056813          -2.107025
- 110.309592          79.425515          -2.213310
- 115.534680          87.151766          -2.321431
- 120.759021          95.235498          -2.431281
- 125.982877          103.676668          -2.543548
- 131.205782          112.475228          -2.658427
- 136.427778          121.631113          -2.774537
- 141.648429          131.144246          -2.891198
- 146.867853          141.014540          -3.009603
- 152.086781          151.241935          -3.130107
- 157.305492          161.826408          -3.250929
- 162.524776          172.767970          -3.373231
- 167.744813          184.066666          -3.498137
- 172.964355          195.722506          -3.629265
- 178.183731          207.735467          -3.764082
- 183.402144          220.105510          -3.900038
- 188.618194          232.832522          -4.034420
- 193.832792          245.916371          -4.153948
- 199.044814          259.356921          -4.235948
+ 42.210471          11.560593          -0.832721
+ 47.466295          14.628482          -0.937340
+ 52.718958          18.055873          -1.042385
+ 57.968611          21.842553          -1.147081
+ 63.215938          25.988340          -1.251956
+ 68.459626          30.493030          -1.357923
+ 73.700326          35.356397          -1.464634
+ 78.938273          40.578244          -1.571074
+ 84.173526          46.158384          -1.677693
+ 89.403351          52.096541          -1.785341
+ 94.628560          58.392369          -1.893440
+ 99.855217          65.045761          -2.000833
+ 105.083237          72.056814          -2.107033
+ 110.309592          79.425516          -2.213325
+ 115.534680          87.151767          -2.321447
+ 120.759021          95.235499          -2.431296
+ 125.982877          103.676669          -2.543563
+ 131.205782          112.475229          -2.658442
+ 136.427778          121.631114          -2.774553
+ 141.648429          131.144247          -2.891221
+ 146.867853          141.014541          -3.009634
+ 152.086781          151.241936          -3.130138
+ 157.305492          161.826409          -3.250960
+ 162.524776          172.767971          -3.373262
+ 167.744813          184.066667          -3.498168
+ 172.964355          195.722507          -3.629296
+ 178.183731          207.735468          -3.764113
+ 183.402144          220.105511          -3.900069
+ 188.618194          232.832523          -4.034451
+ 193.832792          245.916372          -4.153979
+ 199.044814          259.356922          -4.235979
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ FIGURE 13 - POINT A SHEAR, BENDING, TORSION
@@ -297,37 +301,37 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  38.650289          6.609163          -0.759986
  46.363169          9.517518          -0.914282
  54.067907          12.953318          -1.066617
- 61.764331          16.916000          -1.218476
- 69.454893          21.405079          -1.371559
- 77.140841          26.420196          -1.525266
- 84.822384          31.961043          -1.678463
- 92.500518          38.027353          -1.831921
- 100.173327          44.618827          -1.986977
- 107.841765          51.735132          -2.143122
- 115.506174          59.375983          -2.298870
- 123.166642          67.541106          -2.454878
- 130.819166          76.230094          -2.612395
- 138.464936          85.442445          -2.770569
- 146.112824          95.178000          -2.927712
- 153.762708          105.436899          -3.083097
- 161.410156          116.219129          -3.238618
- 169.055748          127.524541          -3.396827
- 176.700249          139.353036          -3.557564
- 184.344040          151.704551          -3.721838
- 191.986438          164.579015          -3.889934
- 199.627507          177.976334          -4.059833
- 207.266608          191.896396          -4.230536
- 214.903913          206.339072          -4.403791
- 222.540493          221.304275          -4.580119
- 230.176754          236.791970          -4.756911
- 237.813855          252.802175          -4.935870
- 245.452058          269.334957          -5.118638
- 253.089535          286.390327          -5.310510
- 260.726770          303.968253          -5.507781
- 268.362597          322.068679          -5.706718
- 275.994965          340.691438          -5.903353
- 283.625209          359.836338          -6.078252
- 291.251683          379.503179          -6.198237
+ 61.764336          16.916000          -1.218476
+ 69.454904          21.405080          -1.371559
+ 77.140846          26.420197          -1.525266
+ 84.822384          31.961045          -1.678463
+ 92.500518          38.027355          -1.831921
+ 100.173327          44.618828          -1.986977
+ 107.841765          51.735134          -2.143122
+ 115.506174          59.375984          -2.298870
+ 123.166642          67.541107          -2.454878
+ 130.819166          76.230095          -2.612395
+ 138.464936          85.442446          -2.770569
+ 146.112824          95.178001          -2.927712
+ 153.762708          105.436901          -3.083109
+ 161.410156          116.219130          -3.238641
+ 169.055748          127.524543          -3.396849
+ 176.700249          139.353038          -3.557586
+ 184.344040          151.704553          -3.721861
+ 191.986438          164.579016          -3.889957
+ 199.627507          177.976336          -4.059855
+ 207.266608          191.896397          -4.230570
+ 214.903913          206.339073          -4.403837
+ 222.540493          221.304277          -4.580164
+ 230.176754          236.791972          -4.756957
+ 237.813855          252.802177          -4.935915
+ 245.452058          269.334958          -5.118683
+ 253.089535          286.390328          -5.310556
+ 260.726770          303.968255          -5.507826
+ 268.362597          322.068680          -5.706763
+ 275.994965          340.691439          -5.903398
+ 283.625209          359.836340          -6.078297
+ 291.251683          379.503181          -6.198283
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ FIGURE 14 - POINT C SHEAR, BENDING, TORSION
@@ -357,44 +361,44 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++++++++ POINT D OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
  Shear [daN]           Bending [daN * m]             Torsion [daN * m]
  0.000000          0.000000          0.000000
- 5.314579          0.181815          -0.347582
- 10.630871          0.727317          -0.696734
- 15.947296          1.636570          -1.045890
- 21.262717          2.909544          -1.396553
- 26.577219          4.546173          -1.748880
- 31.891002          6.546402          -2.100602
- 37.204281          8.910188          -2.450630
- 42.517073          11.637497          -2.800065
- 47.829491          14.728301          -3.150274
- 53.141614          18.182576          -3.500919
- 58.453455          22.000302          -3.851200
- 63.765074          26.181462          -4.201740
- 69.076380          30.726038          -4.553562
- 74.387430          35.634010          -4.906228
- 79.698253          40.905363          -5.258557
- 85.008849          46.540079          -5.611002
- 90.318974          52.538136          -5.964503
- 95.628701          58.899504          -6.318436
- 100.938550          65.624173          -6.671511
- 106.248512          72.712152          -7.022599
- 111.558330          80.163438          -7.373324
- 116.868036          87.978025          -7.727001
- 122.177676          96.155904          -8.083610
- 127.487279          104.697074          -8.443307
- 132.796806          113.601529          -8.806178
- 138.106259          122.869266          -9.170555
- 143.415606          132.500277          -9.535723
- 148.724852          142.494556          -9.903220
- 154.034052          152.852097          -10.273410
- 159.343231          163.572899          -10.644148
- 164.652449          174.656962          -11.017008
- 169.961723          186.104289          -11.392531
- 175.270961          197.914880          -11.775524
- 180.580194          210.088736          -12.164079
- 185.889372          222.625852          -12.555248
- 191.198362          235.526222          -12.942810
- 196.507242          248.789835          -13.302585
- 201.815863          262.416678          -13.593107
+ 5.314579          0.181815          -0.347565
+ 10.630871          0.727317          -0.696717
+ 15.947296          1.636570          -1.045873
+ 21.262717          2.909544          -1.396536
+ 26.577219          4.546173          -1.748863
+ 31.891002          6.546402          -2.100585
+ 37.204281          8.910188          -2.450613
+ 42.517073          11.637497          -2.800048
+ 47.829491          14.728301          -3.150259
+ 53.141614          18.182576          -3.500907
+ 58.453454          22.000302          -3.851188
+ 63.765073          26.181462          -4.201727
+ 69.076379          30.726038          -4.553549
+ 74.387430          35.634010          -4.906215
+ 79.698252          40.905362          -5.258545
+ 85.008849          46.540079          -5.610973
+ 90.318974          52.538136          -5.964457
+ 95.628701          58.899504          -6.318392
+ 100.938550          65.624173          -6.671469
+ 106.248512          72.712151          -7.022557
+ 111.558330          80.163438          -7.373282
+ 116.868035          87.978024          -7.726959
+ 122.177676          96.155904          -8.083568
+ 127.487279          104.697073          -8.443265
+ 132.796805          113.601529          -8.806136
+ 138.106259          122.869265          -9.170513
+ 143.415605          132.500277          -9.535681
+ 148.724852          142.494555          -9.903178
+ 154.034052          152.852097          -10.273368
+ 159.343231          163.572899          -10.644106
+ 164.652449          174.656961          -11.016966
+ 169.961723          186.104288          -11.392489
+ 175.270961          197.914880          -11.775481
+ 180.580194          210.088735          -12.164035
+ 185.889372          222.625852          -12.555205
+ 191.198362          235.526222          -12.942767
+ 196.507242          248.789835          -13.302542
+ 201.815863          262.416678          -13.593064
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ FIGURE 17 - POINT D SHEAR, BENDING, TORSION ++++ 
@@ -411,44 +415,44 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++++++++ POINT F OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
  Shear [daN]           Bending [daN * m]             Torsion [daN * m]
  0.000000          0.000000          0.000000
- -4.558497          -0.155949          -0.214869
- -9.131128          -0.624278          -0.430726
- -13.705318          -1.405525          -0.646553
- -18.271907          -2.499482          -0.863426
- -22.831457          -3.905650          -1.081508
- -27.385458          -5.623597          -1.299178
- -31.935501          -7.652998          -1.515641
- -36.481686          -9.993586          -1.731708
- -41.024949          -12.645129          -1.948368
- -45.565893          -15.607447          -2.165345
- -50.104624          -18.880386          -2.382047
- -54.641626          -22.463811          -2.598930
- -59.176142          -26.357576          -2.816735
- -63.708624          -30.561529          -3.035148
- -68.239281          -35.075536          -3.253316
- -72.768136          -39.899474          -3.471570
- -77.293237          -45.033153          -3.690595
- -81.815162          -50.476335          -3.909946
- -86.338075          -56.228945          -4.128676
- -90.861899          -62.291050          -4.346029
- -95.384580          -68.662640          -4.563167
- -99.906370          -75.343646          -4.782341
- -104.427641          -82.334020          -5.003514
- -108.948615          -89.633734          -5.226853
- -113.468970          -97.242757          -5.452444
- -117.988738          -105.161047          -5.679116
- -122.507645          -113.388555          -5.906332
- -127.025745          -121.925223          -6.135164
- -131.543485          -130.771013          -6.365891
- -136.061055          -139.925905          -6.597000
- -140.578955          -149.389905          -6.829584
- -145.097320          -159.163041          -7.064089
- -149.615385          -169.245318          -7.303894
- -154.133391          -179.636723          -7.547563
- -158.650921          -190.337239          -7.793073
- -163.166940          -201.346797          -8.036401
- -167.682057          -212.665316          -8.261449
- -172.195164          -224.292694          -8.440867
+ -4.558497          -0.155949          -0.214859
+ -9.131128          -0.624278          -0.430717
+ -13.705318          -1.405525          -0.646544
+ -18.271907          -2.499482          -0.863417
+ -22.831457          -3.905650          -1.081498
+ -27.385458          -5.623597          -1.299168
+ -31.935501          -7.652998          -1.515631
+ -36.481686          -9.993586          -1.731699
+ -41.024949          -12.645129          -1.948355
+ -45.565893          -15.607447          -2.165328
+ -50.104628          -18.880386          -2.382030
+ -54.641632          -22.463811          -2.598913
+ -59.176147          -26.357577          -2.816718
+ -63.708630          -30.561530          -3.035131
+ -68.239287          -35.075538          -3.253299
+ -72.768142          -39.899476          -3.471543
+ -77.293244          -45.033155          -3.690560
+ -81.815169          -50.476338          -3.909906
+ -86.338081          -56.228949          -4.128633
+ -90.861906          -62.291054          -4.345986
+ -95.384587          -68.662644          -4.563124
+ -99.906374          -75.343651          -4.782297
+ -104.427643          -82.334025          -5.003471
+ -108.948618          -89.633739          -5.226810
+ -113.468972          -97.242762          -5.452401
+ -117.988740          -105.161052          -5.679073
+ -122.507648          -113.388560          -5.906289
+ -127.025748          -121.925229          -6.135121
+ -131.543487          -130.771018          -6.365848
+ -136.061057          -139.925911          -6.596957
+ -140.578958          -149.389911          -6.829541
+ -145.097322          -159.163047          -7.064045
+ -149.615387          -169.245324          -7.303852
+ -154.133394          -179.636730          -7.547522
+ -158.650924          -190.337246          -7.793032
+ -163.166942          -201.346804          -8.036359
+ -167.682060          -212.665323          -8.261407
+ -172.195167          -224.292702          -8.440826
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ FIGURE 18 - POINT F SHEAR, BENDING, TORSION ++++ 
@@ -465,44 +469,44 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++++++++ POINT G OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
  Shear [daN]           Bending [daN * m]             Torsion [daN * m]
  0.000000          0.000000          0.000000
- -2.051717          -0.070190          -0.090612
- -4.110185          -0.280992          -0.181645
- -6.169469          -0.632665          -0.272659
- -8.225234          -1.125115          -0.364134
- -10.277726          -1.758111          -0.456151
- -12.327631          -2.531452          -0.547988
- -14.375677          -3.444986          -0.639287
- -16.421905          -4.498588          -0.730415
- -18.466764          -5.692148          -0.821813
- -20.510534          -7.025581          -0.913353
- -22.553267          -8.498817          -1.004769
- -24.595191          -10.111790          -1.096265
- -26.635941          -11.864434          -1.188173
- -28.675733          -13.756676          -1.280353
- -30.714662          -15.788452          -1.372423
- -32.752740          -17.959706          -1.464531
- -34.789048          -20.270346          -1.556986
- -36.823857          -22.720261          -1.649589
- -38.859132          -25.309416          -1.741915
- -40.894841          -28.037841          -1.833635
- -42.930009          -30.905534          -1.925267
- -44.964760          -33.912460          -2.017793
- -46.999265          -37.058597          -2.111194
- -49.033629          -40.343933          -2.205553
- -51.067701          -43.768453          -2.300915
- -53.101495          -47.332136          -2.396759
- -55.134881          -51.034959          -2.492843
- -57.167884          -54.876896          -2.589640
- -59.200718          -58.857927          -2.687276
- -61.233473          -62.978044          -2.785082
- -63.266386          -67.237250          -2.883537
- -65.299521          -71.635557          -2.982852
- -67.332512          -76.172969          -3.084523
- -69.365474          -80.849479          -3.187898
- -71.398204          -85.665078          -3.292084
- -73.430218          -90.619735          -3.395353
- -75.461804          -95.713409          -3.490717
- -77.492449          -100.946055          -3.566329
+ -2.051717          -0.070190          -0.090609
+ -4.110185          -0.280992          -0.181642
+ -6.169469          -0.632665          -0.272656
+ -8.225234          -1.125115          -0.364131
+ -10.277726          -1.758111          -0.456148
+ -12.327631          -2.531452          -0.547985
+ -14.375677          -3.444986          -0.639285
+ -16.421905          -4.498588          -0.730412
+ -18.466764          -5.692148          -0.821807
+ -20.510535          -7.025581          -0.913344
+ -22.553270          -8.498817          -1.004760
+ -24.595195          -10.111791          -1.096256
+ -26.635945          -11.864435          -1.188164
+ -28.675737          -13.756677          -1.280344
+ -30.714667          -15.788454          -1.372414
+ -32.752745          -17.959707          -1.464520
+ -34.789053          -20.270348          -1.556972
+ -36.823862          -22.720263          -1.649572
+ -38.859137          -25.309418          -1.741895
+ -40.894846          -28.037844          -1.833615
+ -42.930014          -30.905537          -1.925247
+ -44.964763          -33.912463          -2.017772
+ -46.999266          -37.058601          -2.111174
+ -49.033631          -40.343937          -2.205533
+ -51.067702          -43.768456          -2.300895
+ -53.101496          -47.332140          -2.396739
+ -55.134882          -51.034963          -2.492823
+ -57.167886          -54.876900          -2.589619
+ -59.200720          -58.857931          -2.687256
+ -61.233475          -62.978048          -2.785061
+ -63.266388          -67.237254          -2.883517
+ -65.299523          -71.635562          -2.982831
+ -67.332514          -76.172973          -3.084504
+ -69.365476          -80.849484          -3.187879
+ -71.398206          -85.665083          -3.292064
+ -73.430220          -90.619740          -3.395334
+ -75.461805          -95.713414          -3.490697
+ -77.492451          -100.946060          -3.566310
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ FIGURE 19 - POINT G SHEAR, BENDING, TORSION ++++ 
@@ -520,44 +524,44 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++++++++ POINT E OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
  Shear [daN]           Bending [daN * m]             Torsion [daN * m]
  0.000000          0.000000          0.000000
- -2.413618          -0.082571          -0.361075
- -4.835050          -0.330552          -0.723764
- -7.256682          -0.744216          -1.086520
- -9.673110          -1.323393          -1.450624
- -12.084854          -2.067745          -1.816114
- -14.492963          -2.976986          -2.181054
- -16.898592          -4.050908          -2.544533
- -19.301851          -5.289344          -2.907451
- -21.703262          -6.692150          -3.270972
- -24.103209          -8.259214          -3.634856
- -26.501758          -9.990436          -3.998450
- -28.899212          -11.885733          -4.362293
- -31.295150          -13.945014          -4.727226
- -33.689850          -16.168185          -5.092876
- -36.083459          -18.555166          -5.458242
- -38.475979          -21.105884          -5.823691
- -40.866219          -23.820222          -6.190015
- -43.254540          -26.698038          -6.556698
- -45.643443          -29.739284          -6.922660
- -48.032871          -32.944000          -7.286860
- -50.421599          -36.312180          -7.650687
- -52.809783          -39.843780          -8.017156
- -55.197650          -43.538771          -8.386301
- -57.585347          -47.397136          -8.758172
- -59.972674          -51.418858          -9.132792
- -62.359653          -55.603911          -9.508718
- -64.746127          -59.952267          -9.885360
- -67.132124          -64.463891          -10.264085
- -69.517891          -69.138760          -10.645183
- -71.903547          -73.976862          -11.026779
- -74.289384          -78.978199          -11.410262
- -76.675479          -84.142787          -11.795990
- -79.061407          -89.470628          -12.188211
- -81.447323          -94.961716          -12.585356
- -83.833006          -100.616043          -12.984711
- -86.217802          -106.433570          -13.380183
- -88.602084          -112.414251          -13.748814
- -90.985064          -118.558022          -14.050629
+ -2.413618          -0.082571          -0.361070
+ -4.835050          -0.330552          -0.723759
+ -7.256682          -0.744216          -1.086515
+ -9.673110          -1.323393          -1.450619
+ -12.084854          -2.067745          -1.816109
+ -14.492963          -2.976986          -2.181049
+ -16.898592          -4.050908          -2.544528
+ -19.301851          -5.289344          -2.907446
+ -21.703262          -6.692150          -3.270969
+ -24.103209          -8.259214          -3.634854
+ -26.501758          -9.990436          -3.998448
+ -28.899211          -11.885733          -4.362291
+ -31.295149          -13.945013          -4.727224
+ -33.689849          -16.168184          -5.092874
+ -36.083457          -18.555166          -5.458240
+ -38.475978          -21.105883          -5.823684
+ -40.866217          -23.820222          -6.190003
+ -43.254539          -26.698037          -6.556687
+ -45.643441          -29.739284          -6.922651
+ -48.032869          -32.944000          -7.286851
+ -50.421598          -36.312179          -7.650678
+ -52.809782          -39.843778          -8.017147
+ -55.197650          -43.538770          -8.386292
+ -57.585346          -47.397135          -8.758163
+ -59.972674          -51.418857          -9.132783
+ -62.359652          -55.603910          -9.508709
+ -64.746127          -59.952266          -9.885351
+ -67.132124          -64.463890          -10.264076
+ -69.517891          -69.138759          -10.645174
+ -71.903547          -73.976861          -11.026770
+ -74.289383          -78.978198          -11.410253
+ -76.675478          -84.142785          -11.795981
+ -79.061406          -89.470626          -12.188202
+ -81.447323          -94.961714          -12.585346
+ -83.833005          -100.616041          -12.984702
+ -86.217801          -106.433569          -13.380174
+ -88.602083          -112.414249          -13.748804
+ -90.985063          -118.558020          -14.050620
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ FIGURE 20 - POINT E SHEAR, BENDING, TORSION ++++ 
@@ -781,4 +785,570 @@ Critical conditions
 MAX GUST LOADS: AT VC
  CRITICAL GUST LOADS
  8.841785
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+pi
+
+ans =
+
+    3.1416
+
+
+%% SUPPLEMENTARY CONDITIONS FOR TAIL SURFACES 
+%  ------------------------------------------
+%
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%  CS - VLA 447 COMBINED LOADS ON TAIL SURFACES 
+%  
+%  (a) With the aeroplane in a loading condition correspondint to point A
+%      or point D in the V - n diagram (whichever condition leads to the
+%      higher balance load) the loads on the horizontal tail must be
+%      combined with those on the vertical tail as specified in CS - VLA
+%      441. 
+%  (b) 75% of the loads according to CS - VLA 423 for the horizontal tail
+%      and CS - VLA 441 for the vertical tail must be assumed acting
+%      simultaneously. 
+%
+%  AMC S 447
+%   For aeroplanes where the horizontal stabilising surfaces are arranged
+%   considerably above or below the centre of area of the vertical
+%   stabilising surfaces, the stabilising surfaces and their supporting
+%   structure including the rear portion of the fuselage should be designed
+%   to whitstand combined horizontal and vertical loads. In this case, the
+%   prescribed loadings on the vertical stabilising surfaces and the roll
+%   moments induced at the horizontal stabilising surfaces should be
+%   accounted for. 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% Horizontal tail loads
+TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D;
+TailLoadsA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LHTail.value = TailLoadsA;
+end
+{Check for incorrect argument data type or missing argument in call to function 'abs'.
+} 
+% Horizontal tail loads
+TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D;
+TailLoadsA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LHTail.value = TailLoadsA;
+end
+{Check for incorrect argument data type or missing argument in call to function 'abs'.
+} 
+
+% Horizontal tail loads
+TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+TailLoadsA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LHTail.value = TailLoadsA;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.theta.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.theta.Attributes.unit = "rad"; 
+rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.theta.value )
+
+ans =
+
+  261.5477
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.LTail.value*cos(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.theta.value)
+
+ans =
+
+   -5.7960
+
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value
+
+ans =
+
+    5.7960
+
+% SUBPARAGRAPH (a)
+% Horizontal tail loads
+TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+TailLoadsA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsA;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "degrees"; 
+
+% SUBPARAGRAPH (b)
+% Horizontal tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value = 0.75*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.CriticalLoads.Maximum.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "degrees"; 
+
+%% CRITICAL COMBINED LOADS 
+Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
+Tailloads_subpar_b = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value;
+
+if abs(Tailload_subpar_a) > abs(Tailloads_subpar_b) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_a;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
+elseif abs(Tailload_subpar_b) > abs(Tailloads_subpar_a) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_b;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
+end
+{Unrecognized function or variable 'Tailload_subpar_a'.
+} 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value
+
+ans =
+
+   39.4318
+
+
+%% SUPPLEMENTARY CONDITIONS FOR TAIL SURFACES 
+%  ------------------------------------------
+%
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%  CS - VLA 447 COMBINED LOADS ON TAIL SURFACES 
+%  
+%  (a) With the aeroplane in a loading condition correspondint to point A
+%      or point D in the V - n diagram (whichever condition leads to the
+%      higher balance load) the loads on the horizontal tail must be
+%      combined with those on the vertical tail as specified in CS - VLA
+%      441. 
+%  (b) 75% of the loads according to CS - VLA 423 for the horizontal tail
+%      and CS - VLA 441 for the vertical tail must be assumed acting
+%      simultaneously. 
+%
+%  AMC S 447
+%   For aeroplanes where the horizontal stabilising surfaces are arranged
+%   considerably above or below the centre of area of the vertical
+%   stabilising surfaces, the stabilising surfaces and their supporting
+%   structure including the rear portion of the fuselage should be designed
+%   to whitstand combined horizontal and vertical loads. In this case, the
+%   prescribed loadings on the vertical stabilising surfaces and the roll
+%   moments induced at the horizontal stabilising surfaces should be
+%   accounted for. 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% SUBPARAGRAPH (a)
+% Horizontal tail loads
+TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+TailLoadsA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsA;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "degrees"; 
+
+% SUBPARAGRAPH (b)
+% Horizontal tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value = 0.75*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.CriticalLoads.Maximum.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "degrees"; 
+
+%% CRITICAL COMBINED LOADS 
+Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
+Tailloads_subpar_b = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value;
+
+if abs(Tailload_subpar_a) > abs(Tailloads_subpar_b) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_a;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
+elseif abs(Tailload_subpar_b) > abs(Tailloads_subpar_a) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_b;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
+end
+{Unrecognized function or variable 'Tailload_subpar_a'.
+} 
+
+
+%% SUPPLEMENTARY CONDITIONS FOR TAIL SURFACES 
+%  ------------------------------------------
+%
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%  CS - VLA 447 COMBINED LOADS ON TAIL SURFACES 
+%  
+%  (a) With the aeroplane in a loading condition correspondint to point A
+%      or point D in the V - n diagram (whichever condition leads to the
+%      higher balance load) the loads on the horizontal tail must be
+%      combined with those on the vertical tail as specified in CS - VLA
+%      441. 
+%  (b) 75% of the loads according to CS - VLA 423 for the horizontal tail
+%      and CS - VLA 441 for the vertical tail must be assumed acting
+%      simultaneously. 
+%
+%  AMC S 447
+%   For aeroplanes where the horizontal stabilising surfaces are arranged
+%   considerably above or below the centre of area of the vertical
+%   stabilising surfaces, the stabilising surfaces and their supporting
+%   structure including the rear portion of the fuselage should be designed
+%   to whitstand combined horizontal and vertical loads. In this case, the
+%   prescribed loadings on the vertical stabilising surfaces and the roll
+%   moments induced at the horizontal stabilising surfaces should be
+%   accounted for. 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% SUBPARAGRAPH (a)
+% Horizontal tail loads
+TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+TailLoadsA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsA;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "degrees"; 
+
+% SUBPARAGRAPH (b)
+% Horizontal tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value = 0.75*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.CriticalLoads.Maximum.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "degrees"; 
+
+%% CRITICAL COMBINED LOADS 
+Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
+Tailloads_subpar_b = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value;
+
+if abs(Tailloads_subpar_a) > abs(Tailloads_subpar_b) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_a;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
+elseif abs(Tailloads_subpar_b) > abs(Tailloads_subpar_a) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_b;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "degrees";
+
+disp(" ")
+ 
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value];
+disp(" ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ ")
+ ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
+format = ' %6.6f          %6.6f          %6.6f\n';
+label  = ' L_Tail Subpar. (a)           L_Tail Subpar. (a)          L_Tail Critical\n';
+fprintf(label);
+ L_Tail Subpar. (a)           L_Tail Subpar. (a)          L_Tail Critical
+fprintf(format, Increment.');
+ 39.431845          69.930967          69.930967
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+
+
+%% SUPPLEMENTARY CONDITIONS FOR TAIL SURFACES 
+%  ------------------------------------------
+%
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%  CS - VLA 447 COMBINED LOADS ON TAIL SURFACES 
+%  
+%  (a) With the aeroplane in a loading condition correspondint to point A
+%      or point D in the V - n diagram (whichever condition leads to the
+%      higher balance load) the loads on the horizontal tail must be
+%      combined with those on the vertical tail as specified in CS - VLA
+%      441. 
+%  (b) 75% of the loads according to CS - VLA 423 for the horizontal tail
+%      and CS - VLA 441 for the vertical tail must be assumed acting
+%      simultaneously. 
+%
+%  AMC S 447
+%   For aeroplanes where the horizontal stabilising surfaces are arranged
+%   considerably above or below the centre of area of the vertical
+%   stabilising surfaces, the stabilising surfaces and their supporting
+%   structure including the rear portion of the fuselage should be designed
+%   to whitstand combined horizontal and vertical loads. In this case, the
+%   prescribed loadings on the vertical stabilising surfaces and the roll
+%   moments induced at the horizontal stabilising surfaces should be
+%   accounted for. 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% SUBPARAGRAPH (a)
+% Horizontal tail loads
+TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+TailLoadsA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsA;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "degrees"; 
+
+% SUBPARAGRAPH (b)
+% Horizontal tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value = 0.75*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.CriticalLoads.Maximum.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "degrees"; 
+
+%% CRITICAL COMBINED LOADS 
+Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
+Tailloads_subpar_b = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value;
+
+if abs(Tailloads_subpar_a) > abs(Tailloads_subpar_b) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_a;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
+elseif abs(Tailloads_subpar_b) > abs(Tailloads_subpar_a) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_b;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "degrees";
+
+disp(" ")
+ 
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value];
+disp(" ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ ")
+ ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
+format = ' %6.6f          %6.6f          %6.6f\n';
+label  = ' L_Tail Subpar. (a)  L_Tail Subpar. (b)  L_Tail Critical\n';
+fprintf(label);
+ L_Tail Subpar. (a)  L_Tail Subpar. (b)  L_Tail Critical
+fprintf(format, Increment.');
+ 39.431845          69.930967          69.930967
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+
+
+%% SUPPLEMENTARY CONDITIONS FOR TAIL SURFACES 
+%  ------------------------------------------
+%
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%  CS - VLA 447 COMBINED LOADS ON TAIL SURFACES 
+%  
+%  (a) With the aeroplane in a loading condition correspondint to point A
+%      or point D in the V - n diagram (whichever condition leads to the
+%      higher balance load) the loads on the horizontal tail must be
+%      combined with those on the vertical tail as specified in CS - VLA
+%      441. 
+%  (b) 75% of the loads according to CS - VLA 423 for the horizontal tail
+%      and CS - VLA 441 for the vertical tail must be assumed acting
+%      simultaneously. 
+%
+%  AMC S 447
+%   For aeroplanes where the horizontal stabilising surfaces are arranged
+%   considerably above or below the centre of area of the vertical
+%   stabilising surfaces, the stabilising surfaces and their supporting
+%   structure including the rear portion of the fuselage should be designed
+%   to whitstand combined horizontal and vertical loads. In this case, the
+%   prescribed loadings on the vertical stabilising surfaces and the roll
+%   moments induced at the horizontal stabilising surfaces should be
+%   accounted for. 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% SUBPARAGRAPH (a)
+% Horizontal tail loads
+TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+TailLoadsA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsA;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "degrees"; 
+
+% SUBPARAGRAPH (b)
+% Horizontal tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value = 0.75*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.CriticalLoads.Maximum.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "degrees"; 
+
+%% CRITICAL COMBINED LOADS 
+Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
+Tailloads_subpar_b = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value;
+
+if abs(Tailloads_subpar_a) > abs(Tailloads_subpar_b) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_a;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
+elseif abs(Tailloads_subpar_b) > abs(Tailloads_subpar_a) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_b;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "degrees";
+
+disp(" ")
+ 
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value];
+disp(" ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ ")
+ ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
+format = ' %6.6f           %6.6f           %6.6f\n';
+label  = ' L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical\n';
+fprintf(label);
+ L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical
+fprintf(format, Increment.');
+ 39.431845           69.930967           69.930967
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 

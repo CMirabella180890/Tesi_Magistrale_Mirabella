@@ -70,12 +70,12 @@ Aircraft.Certification.Aerodynamic_data.AOA_aux.Attributes.unit = "degree";
 Aircraft.Certification.Aerodynamic_data.AOA_aux1.value = linspace(alpha_star + 50*alpha_star*1e-3, 13.0 , 1000)';
 Aircraft.Certification.Aerodynamic_data.AOA_aux1.Attributes.unit = "degrees";
 
-% Non linear lift curve
-Aircraft.Certification.Aerodynamic_data.CL_NonLinear.value = CL_Non_linear_model(obj1, ...
-    Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value, ...
-    Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value, ...
-    Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value);
-Aircraft.Certification.Aerodynamic_data.CL_NonLinear.Attributes.unit = "Non dimensional";
+% % Non linear lift curve
+% Aircraft.Certification.Aerodynamic_data.CL_NonLinear.value = CL_Non_linear_model(obj1, ...
+%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value, ...
+%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value, ...
+%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value);
+% Aircraft.Certification.Aerodynamic_data.CL_NonLinear.Attributes.unit = "Non dimensional";
 
 % Linear and non linear lift curve
 Aircraft.Certification.Aerodynamic_data.CL_Linear.value = (Aircraft.Certification.Aerodynamic_data.CL0.value+0.01) + Aircraft.Certification.Aerodynamic_data.AOA_aux.value*Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value;
@@ -89,6 +89,7 @@ Aircraft.Certification.Aerodynamic_data.CL_fullmodel.Attributes.unit = "Non dime
 Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value = [Aircraft.Certification.Aerodynamic_data.AOA_aux.value; Aircraft.Certification.Aerodynamic_data.AOA_aux1.value];
 Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.Attributes.unit = "degrees";
 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Lift model comparison
 % disp(" ++++ FIGURE 5 - SELECTED INTERPOLATION CURVES FOR AERO DATA ++++ ");
 % Aircraft.Certification.Aerodynamic_data.CL_comparison_diagram.value = Lift_comparison(Aircraft.Certification.Aerodynamic_data.AOA_aux.value, ... 
@@ -105,43 +106,41 @@ Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.Attributes.unit = "deg
 % % Moving file inside correct folder
 % movefile LiftComparison.pdf Output
               
-% Lift curve - Full model
-Aircraft.Certification.Aerodynamic_data.CL_Full_model.value = CL_WB_CompleteCurve(obj1, ...
-    Aircraft.Certification.Aerodynamic_data.CL0.value, ...
-    Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value, ...
-    Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value, ...
-    Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value, ...
-    Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value, ...
-    Aircraft.Certification.Aerodynamic_data.CL_star.value, ...
-    Aircraft.Certification.Aerodynamic_data.AOA_aux.value);
-Aircraft.Certification.Aerodynamic_data.CL_Full_model.Attributes.unit = "Non dimensional";
-
-% Lift curve - Full model - Inverted flight
-Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value =  -(1/Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value) + Aircraft.Certification.Aerodynamic_data.CL_Full_model.value;
-
-% Complete lift curve diagram 
+% % Lift curve - Full model
+% Aircraft.Certification.Aerodynamic_data.CL_Full_model.value = CL_WB_CompleteCurve(obj1, ...
+%     Aircraft.Certification.Aerodynamic_data.CL0.value, ...
+%     Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value, ...
+%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value, ...
+%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value, ...
+%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value, ...
+%     Aircraft.Certification.Aerodynamic_data.CL_star.value, ...
+%     Aircraft.Certification.Aerodynamic_data.AOA_aux.value);
+% Aircraft.Certification.Aerodynamic_data.CL_Full_model.Attributes.unit = "Non dimensional";
+% 
+% % Lift curve - Full model - Inverted flight
+% Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value =  -(1/Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value) + Aircraft.Certification.Aerodynamic_data.CL_Full_model.value;
+% 
+% % Complete lift curve diagram 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 disp(" ")
-disp(" ++++ FIGURE 6 - LIFT CURVES COMPARISON ++++ ");
+disp(" ++++ FIGURE 6 - LIFT CURVE INTERPOLATION ++++ ");
 Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmodel_curve(Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value, ...
     Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value, ...
     Aircraft.Certification.Aerodynamic_data.CL.value, ...
     Aircraft.Certification.Aerodynamic_data.alpha.value);
 
-%     Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value, ...
-%     Aircraft.Certification.Aerodynamic_data.CL.value, ...
-%     Aircraft.Certification.Aerodynamic_data.alpha.value);
-
-exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelStraightAndInverted.pdf', 'ContentType', 'vector');
-exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelStraightAndInverted.png', 'ContentType', 'vector');
+% SAVING FIGURES
+exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelInterpolation.pdf', 'ContentType', 'vector');
+exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelInterpolation.png', 'ContentType', 'vector');
 
 % Saving figures inside correct folder
-fprintf('Saving FullLiftModelStraightAndInverted.pdf in: ');
+fprintf('Saving FullLiftModelInterpolation.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
-movefile FullLiftModelStraightAndInverted.pdf Output
-movefile FullLiftModelStraightAndInverted.png Output
+movefile FullLiftModelInterpolation.pdf Output
+movefile FullLiftModelInterpolation.png Output
               
 %% CL CALCULATIONS - POSITIVE LOAD FACTORS
 % ------------------------------------------------------------------------- 
@@ -1375,7 +1374,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WingAirloa
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_Design_manoeuvring_speed_VG.value, ...
                 Aircraft.Certification.Regulation.value, ... 
                 Aircraft.Certification.Aircraft_Name.value);
-pause(1);
 % Saving figures inside correct folder
 fprintf('Saving Wingairloads.pdf in: ');
 fprintf('\n'); 

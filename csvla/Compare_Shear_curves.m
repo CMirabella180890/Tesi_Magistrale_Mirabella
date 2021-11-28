@@ -25,7 +25,7 @@ plot(y, Shear_G, 'LineWidth', 1.5)
 plot(y, Shear_E, 'LineWidth', 1.5)
 
 xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
-ylabel("Shear load $(daN \cdot m)$", "Interpreter", "latex")
+ylabel("Shear load $(daN / m)$", "Interpreter", "latex")
 title("Shear loads comparison", "Interpreter", "latex")
 legend({PointS,PointA,PointC,PointD,PointF,PointG,PointE}, 'Interpreter', 'latex', 'Location', 'southeast')
 

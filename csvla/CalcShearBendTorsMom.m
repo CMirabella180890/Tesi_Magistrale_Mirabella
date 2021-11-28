@@ -64,13 +64,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.Attributes.unit = "N/m^2";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value(1); 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.Attributes.unit = "g's"; 
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value = CL_calc(obj1, ...
-%                                               Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value, ...
-%                                               Aircraft.Weight.I_Level.W_maxTakeOff.value, ...
-%                                               Aircraft.Constants.g.value, ...
-%                                               Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value, ...
-%                                               Aircraft.Certification.ISA_Condition.rho0.value, ...
-%                                               Aircraft.Geometry.Wing.S.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.Attributes.unit = "Non dimensional"; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_positivestall.value(1);  
@@ -81,7 +74,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alp
                                        Aircraft.Certification.Aerodynamic_data.CL_star.value, ...
                                        Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value, ...
                                        p);
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alpha_S.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_posstall_new.value(1); 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alpha_S.Attributes.unit = "Degrees";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_posstall_new.value(1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS.Attributes.unit = "daN"; 
@@ -121,8 +113,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alp
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA.value = (0.5)*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value^2)* ...
         (Aircraft.Certification.ISA_Condition.rho.value)*(Aircraft.Geometry.Wing.S.value)*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_posstall_new.value(1))*(1E-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA.Attributes.unit = "daN"; 
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value = (0.5)*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value^2)* ...
-%         (Aircraft.Geometry.Wing.S.value)*(Aircraft.Certification.ISA_Condition.rho.value)*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_Tail_positivestall.value(1))*(1E-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.HTail_Lift_positivestall.value(end);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.Attributes.unit = "daN";
 
@@ -146,7 +136,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alp
                                        Aircraft.Certification.Aerodynamic_data.CL_star.value, ...
                                        Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value, ...
                                        p);
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alpha_C.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_posstall_new.value(end); 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alpha_C.Attributes.unit = "Degrees";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_posstall_new.value(end);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC.Attributes.unit = "daN"; 
@@ -218,7 +207,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.Attributes.unit = "g";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value = Aircraft.Certification.Aerodynamic_data.Min_Lift_Coefficient.value;
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value = -(1/Aircraft.Geometry.Wing.S.value)*((Aircraft.Weight.I_Level.W_maxTakeOff.value*Aircraft.Constants.g.value)/Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.Attributes.unit = "Non dimensional";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value = Aircraft.Certification.Aerodynamic_data.CD0.value + (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value^2)/(pi*Aircraft.Certification.Aerodynamic_data.e.value*Aircraft.Geometry.Wing.AR.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.Attributes.unit = "Non dimensional";  
@@ -228,8 +216,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alp
                                        Aircraft.Certification.Aerodynamic_data.CL_star.value, ...
                                        Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value, ...
                                        p);
-%                                       p) - Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value;
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alpha_G.value = ((Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value - Aircraft.Certification.Aerodynamic_data.CL0.value)/(Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value)) - Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alpha_G.Attributes.unit = "degrees"; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.value*Aircraft.Geometry.Wing.S.value*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG.Attributes.unit = "daN";   
@@ -256,7 +242,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alp
                                        Aircraft.Certification.Aerodynamic_data.CL_star.value, ...
                                        Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value, ...
                                        p);
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alpha_E.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_fromDtoE_new.value(end) - Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alpha_E.Attributes.unit = "Degrees"; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromFtoE_new.value(end);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE.Attributes.unit = "daN";
@@ -309,8 +294,8 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTail_C.value];
 disp(" ++++++++++ POINT C OF THE FINAL ENVELOPE ++++++++++ ")
-% format = ' %f          %f          %f         %f          %f          %f          %f\n';
-% label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+format = ' %6.6f  %6.6f  %6.6f  %6.6f  %6.6f  %6.6f  %6.6f  %6.6f\n';
+label  = ' V [m/s]    n [g]     q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -341,8 +326,8 @@ Increment = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelo
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF.value, ...
              Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHTail_F.value];
 disp(" ++++++++++ POINT F OF THE FINAL ENVELOPE ++++++++++ ")
-% format = ' %f          %f          %f        %f          %f          %f          %f\n';
-% label  = ' V [m/s]           q [Pa]             CL                CD                alpha [deg°]        L [daN]             LH [daN]\n';
+format = ' %6.6f  %6.6f  %6.6f  %6.6f  %6.6f  %6.6f  %6.6f  %6.6f\n';
+label  = ' V [m/s]    n [g]      q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
