@@ -12,6 +12,9 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.val
 % This function defines a vector with stall airspeed for the chosen
 % aircraft, within the precribed range of load factors. Check the
 % class file csvla.m to have a complete documentation.
+Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value = (Aircraft.Weight.I_Level.W_maxTakeOff.value*Aircraft.Constants.g.value)/(Aircraft.Geometry.Wing.S.value);
+Aircraft.Certification.Performance.I_Level.Wing_loading_SI.Attributes.unit = "Pa";
+
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value = calcvs(obj, Aircraft.Certification.ISA_Condition.rho.value, ...                            % Standard atmosphere density
                                                                                  Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value, ...                % Wing Loading in SI units 
                                                                                  Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value, ...              % Maximum Lift coefficient

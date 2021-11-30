@@ -12,6 +12,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.val
 % This function defines a vector with stall airspeed for the chosen
 % aircraft, within the precribed range of load factors. Check the
 % class file csvla.m to have a complete documentation.
+(Aircraft.Weight.I_Level.W_maxTakeOff.value*Aircraft.Constants.g.value)/;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value = calcvs(obj, Aircraft.Certification.ISA_Condition.rho.value, ...                            % Standard atmosphere density
                                                                                  Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value, ...                % Wing Loading in SI units 
                                                                                  Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value, ...              % Maximum Lift coefficient
@@ -324,7 +325,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_s
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.Attributes.unit = 'g';
 
 % STORE THE POINT INSIDE A VARIABLE 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Postivie_stall_end_point.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(1:end-200), ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_end_point.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(1:end-200), ...
                                                                                                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value(1:end-200);]';
 
 clear index y;
@@ -350,8 +351,12 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_s
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = twod_vect(:, 2); 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value(index:end)]; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.Attributes.unit = 'g';
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value; Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_cruise.value(index_load_factor:end)];
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.Attributes.unit = 'm/s';                                                                           
+
+
+% STORE THE POINT INSIDE A VARIABLE 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_end_point.value = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value(end), ...
+                                                                                                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value(end);]';
+
 
 clear index;
 % -------------------------------------------------------------------------

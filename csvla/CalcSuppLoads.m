@@ -25,6 +25,8 @@
 %   accounted for. 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+disp(" ")
+disp("  ")
 % SUBPARAGRAPH (a)
 % Horizontal tail loads
 TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
