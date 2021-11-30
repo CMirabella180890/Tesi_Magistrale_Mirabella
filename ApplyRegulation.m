@@ -94,6 +94,8 @@ switch (Aircraft.Certification.Regulation.value)
         CalcVertTailLoads
         % CALCULATE SUPPLEMENTARY CONDITIONS 
         CalcSuppLoads
+        % FLIGHT ENVELOPE WITH FLAPS DEPLOYED
+        CalcFlapsEnvelope
 %     case 'CS23'
 %     case 'CS22'
 end

@@ -26,7 +26,7 @@
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 disp(" ")
-disp("  ")
+disp(" ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ ")
 % SUBPARAGRAPH (a)
 % Horizontal tail loads
 TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;

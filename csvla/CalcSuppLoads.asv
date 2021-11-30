@@ -25,6 +25,8 @@
 %   accounted for. 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+disp(" ")
+disp(" ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ ")
 % SUBPARAGRAPH (a)
 % Horizontal tail loads
 TailLoadsD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
@@ -73,11 +75,28 @@ Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_de
 Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
 Tailloads_subpar_b = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value;
 
-if abs(Tailload_subpar_a) > abs(Tailloads_subpar_b) 
+if abs(Tailloads_subpar_a) > abs(Tailloads_subpar_b) 
     Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_a;
     Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value;
     Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
-elseif abs(Tailload_subpar_b) > abs(Tailloads_subpar_a) 
+elseif abs(Tailloads_subpar_b) > abs(Tailloads_subpar_a) 
     Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_b;
     Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value;
-    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "degrees";
+
+disp(" ")
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value];
+disp(" ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ ")
+format = ' %6.6f           %6.6f           %6.6f\n';
+label  = ' L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical\n';
+fprintf(label);
+fprintf(format, Increment.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
