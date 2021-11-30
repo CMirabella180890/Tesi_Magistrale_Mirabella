@@ -5,8 +5,8 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-ch8 = Chapter();
-ch8.Title = 'V-n Envelope';
+ch = Chapter();
+ch.Title = 'V-n Envelope';
 
 str = ['ADD HERE V-n Envelope'];
 para = Paragraph(str);
@@ -19,16 +19,14 @@ cd ..
 
  cd (RepDir);
 
-fig = FormalImage([results_path,'Finalenvelope.pdf']);
+fig = FormalImage([results_path,'Finalenvelope.png']);
          fig.Caption = 'Maneuver and Gust load factors and diagram';
          fig.Height = '5in';
          fig.LinkTarget='maneuver_ref';
-         add(ch8,fig);
-
-%add(ch7,sec1);
+         add(ch,fig);
 
 
-add(ch8,para)
+add(ch,para)
 %% END chapter
 %Adding chapters
-add(rpt,ch8);
+add(rpt,ch);

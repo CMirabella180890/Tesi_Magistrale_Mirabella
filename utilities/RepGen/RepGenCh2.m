@@ -4,11 +4,9 @@ import mlreportgen.report.*  % import report API(report related methods
 import mlreportgen.dom.*     % import document object model DOM API (DOM related method
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
-ch1 = Chapter();
-ch1.Title = 'Introduction';
 
-ch2 = Chapter();
-ch2.Title = 'References';
+ch = Chapter();
+ch.Title = 'References';
 
 str = ['HERE BELOW AN EXAMPLE OF REFERENCES TO BE EDITED'];
 para = Paragraph(str);
@@ -25,11 +23,11 @@ ref7 = 'ABCD-WB-08-00 Weight and Balance Report, EASA.';
 ol = OrderedList({ref1, ref2, ref3,...
     ref4, ref5,ref6,ref7});
 
-append(ch2,ol);
+append(ch,ol);
 
 % append(para,InternalLink('tlarTableRef','refTabella'));
-add(ch2,para)
+add(ch,para)
 
 %% END chapter
 %Adding chapters
-add(rpt,ch2);
+add(rpt,ch);

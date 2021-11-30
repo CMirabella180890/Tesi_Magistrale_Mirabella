@@ -4,8 +4,9 @@ import mlreportgen.report.*  % import report API(report related methods
 import mlreportgen.dom.*     % import document object model DOM API (DOM related method
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
-ch1 = Chapter();
-ch1.Title = 'Introduction';
+
+ch = Chapter();
+ch.Title = 'Introduction';
 
 para = Paragraph();
 
@@ -19,7 +20,7 @@ append(para, Text(strcat('This document defines the SUBPART C - Structure - Flig
     'speed markings, aeroplane flight manual (limitations), load calculations and need to be verified by flight test.')));
 para.WhiteSpace = 'preserve';
 para.Style = {HAlign('justify')};
-add(ch1,para)
+add(ch,para)
 %% END chapter
 %Adding chapters
-add(rpt,ch1);
+add(rpt,ch);

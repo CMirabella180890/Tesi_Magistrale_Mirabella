@@ -5,32 +5,32 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-ch5 = Chapter();
-ch5.Title = 'Design Airspeeds';
+ch = Chapter();
+ch.Title = 'Design Airspeeds';
 
 str = ['This chapter defines the operating and design airspeeds as required for certification REFFFF'];
 para = Paragraph(str);
 % append(para,InternalLink('tlarTableRef','refTabella'));
-add(ch5,para)
+add(ch,para)
 
 %         %% CHAPTER 5 - SECTION 1
 %         % VH
-sec1 = Section();
-sec1.Title = 'Maximum speed in level flight VH';
+sec = Section();
+sec.Title = 'Maximum speed in level flight VH';
 
 para = Paragraph(strcat('According to flight tests [5] at maximum weight and maximum continuous ',...
     'power at sea level conditions, the maximum speed in level flight has been determined:',...
     'V_H=130\ kts'));
 % append(para,InternalLink('tlarTableRef','refTabella'));
 para.Style = {HAlign('justify')};
-add(sec1,para)
+add(sec,para)
 
-add(ch5,sec1);
+add(ch,sec);
 
 %         %% CHAPTER 5 - SECTION 2
 %         % VS, VS0, VS1
-sec2 = Section();
-sec2.Title = 'Stall speeds VS, VS0, VS1';
+sec = Section();
+sec.Title = 'Stall speeds VS, VS0, VS1';
 para = Paragraph(strcat('These speeds will be verified by flight test according to requirement 4.4.1 [1]',... 
 'In order to calculate the stall speed, the maximum lift coefficient of the aeroplane as a whole is determined first.',...
 'The maximum lift coefficient of the aeroplane has been calculated starting from the polar curve of the wing profile',...
@@ -40,12 +40,12 @@ para = Paragraph(strcat('These speeds will be verified by flight test according 
 'the total aeroplane lift coefficient has been lowered by 15% with respect to the one of the profile.'));
 % append(para,InternalLink('tlarTableRef','refTabella'));
 para.Style = {HAlign('justify')};
-add(sec2,para)
+add(sec,para)
 
 %VS
 WMTOM   = 9.81*Aircraft.Weight.I_Level.W_maxTakeOff.value;
 rho     = 1.225;
-CLMAX   = max(Aircraft.Certification.Aerodynamic_data.CLMAX.value);
+CLMAX   = max(Aircraft.Certification.Aerodynamic_data.CLMAX.value); % CLMAX clean, CLMAX TO, CLMAX LAN
 S       = Aircraft.Geometry.Wing.S.value; 
 vs      = Aircraft.Certification.Regulation.SubpartC.Flightloads.print_positive_vs.value;
 vs_un      = Aircraft.Certification.Regulation.SubpartC.Flightloads.print_positive_vs.Attributes.unit;
@@ -64,7 +64,7 @@ myNumEq = strcat (' = \sqrt{\frac{2*',...
 % latex interprete with $ simbol
 para = Paragraph('Flaps retracted(cleam configuration):');
 para.Style = {HAlign('left')};
-add(sec2,para)
+add(sec,para)
 myEq = "$ V_{S} = \sqrt{\frac{2 W_{MTOM}}{\rho_{0}C_{L_{MAX_{Clean}}}S}}";
 eq = Equation(strcat(myEq, myNumEq));
 eq.DisplayInline = true;
@@ -75,14 +75,14 @@ if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
 elseif(rpt.Type == "docx") 
     eqImg.Style = {VerticalAlign("-5pt")};
 end
-append(sec2,eqImg);
+append(sec,eqImg);
 
 %VS0
 % latex interprete with $ simbol
 para = Paragraph('Flaps extended(Landing configuration):');
 % append(para,InternalLink('tlarTableRef','refTabella'));
 para.Style = {HAlign('left')};
-add(sec2,para)
+add(sec,para)
 myEq = "$ V_{S_0} = \sqrt{\frac{2 W_{MTOM}}{\rho_{0}C_{L_{MAX_{Landing}}}S}}";
 eq = Equation(myEq);
 eq.DisplayInline = true;
@@ -93,14 +93,14 @@ if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
 elseif(rpt.Type == "docx") 
     eqImg.Style = {VerticalAlign("-5pt")};
 end
-append(sec2,eqImg);
+append(sec,eqImg);
 
 %VS1
 % latex interprete with $ simbol
 para = Paragraph('Flaps extended(Take-off configuration):');
 % append(para,InternalLink('tlarTableRef','refTabella'));
 para.Style = {HAlign('left')};
-add(sec2,para)
+add(sec,para)
 myEq = "$ V_{S_1} = \sqrt{\frac{2 W_{MTOM}}{\rho_{0}C_{L_{MAX_{Takeoff}}}S}}";
 eq = Equation(myEq);
 eq.DisplayInline = true;
@@ -111,14 +111,14 @@ if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
 elseif(rpt.Type == "docx") 
     eqImg.Style = {VerticalAlign("-5pt")};
 end
-append(sec2,eqImg);
+append(sec,eqImg);
 
 para = Paragraph(strcat('Therefore aeroplane lift coefficient is estimated to',...
         'c_(L_clean⁡_max)=0.85*1.35=1.15',...
         'and for the landing configuration (since the span extension of the flaps is half of the span of the wing):',...
         'c_(L_flaps_max)=(c_(L⁡_profile_flapped_max)+ c_(L_profile_max))/2*0.85=(2.15+1.35)/2*0.85=1.49'));
 % append(para,InternalLink('tlarTableRef','refTabella'));
-add(sec2,para)
+add(sec,para)
 
 %
 para = Paragraph(strcat('The stall speed in landing configuration (flaps fully extended to ', 'xxx degrees', ' degrees)',...
@@ -126,7 +126,7 @@ para = Paragraph(strcat('The stall speed in landing configuration (flaps fully e
             'In Take-Off configuration (flaps extended to , ', 'xxx degrees', 'degrees) the stall speed is , ', 'xxx', 'kts.'));
 % append(para,InternalLink('tlarTableRef','refTabella'));
 para.Style = {HAlign('left')};
-add(sec2,para)
+add(sec,para)
 
 %
 para = Paragraph(strcat('(Note: These speeds are estimates. The methods for the estimation can be various.',...
@@ -136,103 +136,119 @@ para = Paragraph(strcat('(Note: These speeds are estimates. The methods for the 
 % append(para,InternalLink('tlarTableRef','refTabella'));
 para.Style = {HAlign('left')};
 para.BackgroundColor = "green";% = {Underline('yellow')};
-add(sec2,para)
+add(sec,para)
 
 
 
-add(ch5,sec2);
+add(ch,sec);
 
 %         %% CHAPTER 5 - SECTION 3
 %         % VA
-sec3 = Section();
-sec3.Title = 'Design manoeuvring speed VA         ';
+sec = Section();
+sec.Title = 'Design manoeuvring speed VA         ';
 
-para = Paragraph('ADD TEXTS:');
+para = Paragraph(strcat ('According to requirement ',...
+                 'ADD here reference REGULATION paragraph'));
 % append(para,InternalLink('tlarTableRef','refTabella'));
-add(sec3,para)
+add(sec,para)
 
 
 
-add(ch5,sec3);
+add(ch,sec);
 
 
 %         %% CHAPTER 5 - SECTION 4
 %         %
-sec4 = Section();
-sec4.Title = 'Flaps maximum operating speed VF';
+sec = Section();
+sec.Title = 'Flaps maximum operating speed VF';
 
-para = Paragraph('ADD TEXTS:');
-% append(para,InternalLink('tlarTableRef','refTabella'));
-add(sec4,para)
+para = Paragraph(strcat('According to requirement ',...
+                        'ADD HERE REF, ',...
+                        'such speed shall be not less than the greater of ',...
+                        'example 1.4VS ',...
+                        '1.8VS0'));                  
+add(sec,para)
+para = Paragraph(strcat('The speed has been selected as: ',...
+                        'ADD HERE value of VF, '));                  
+add(sec,para)
 
-
-add(ch5,sec4);
+add(ch,sec);
 
 %         %% CHAPTER 5 - SECTION 5
 %         %
-sec5 = Section();
-sec5.Title = 'Flaps maximum operating speed VFE';
+sec = Section();
+sec.Title = 'Flaps maximum operating speed VFE';
 
-para = Paragraph('ADD TEXTS:');
-% append(para,InternalLink('tlarTableRef','refTabella'));
-add(sec5,para)
+para = Paragraph(strcat('On this aeroplane the maximum flap extension speed is identical to the flap operating speed VF.',...
+                 'V_{FE}=V_F=90\ kts',...
+                 'This speed is the maximum speed for flaps in take-off and landing configuration.'));
 
+add(sec,para)
 
-
-add(ch5,sec5);
+add(ch,sec);
 
 %         %% CHAPTER 5 - SECTION 6
 %         %
-sec6 = Section();
-sec6.Title = 'Design cruising speed VC';
+sec = Section();
+sec.Title = 'Design cruising speed VC';
 
-para = Paragraph('ADD TEXTS:');
+para = Paragraph(strcat('According to requirement ',...
+    'ADD req. par',...
+    ' V_C may not be less than: ',...	
+    'V_{Cmin}=4.77\sqrt{\frac{\ W_{MTOM}}{S}}=\ 4.77\ \sqrt{\frac{600\ast9.81}{15.1\ }}=94\ kts',...
+    'and need not be greater than: ',...
+    'V_{Cmax}={0.9\ V}_H=0.9\ast140\ =126\ kts',...
+    'The speed has been selected as: ',...
+    ' V_C=120\ kts '));
 % append(para,InternalLink('tlarTableRef','refTabella'));
-add(sec6,para)
+add(sec,para)
 
 
-add(ch5,sec6);
+add(ch,sec);
 
 
 %         %% CHAPTER 5 - SECTION 7
 %         %
-sec7 = Section();
-sec7.Title = 'Design dive speed VD';
+sec = Section();
+sec.Title = 'Design dive speed VD';
 
-para = Paragraph('ADD TEXTS:');
-% append(para,InternalLink('tlarTableRef','refTabella'));
-add(sec7,para)
+para = Paragraph(strcat('According to requirement ',...
+    'ADD req par',...
+    'V_D=1.4\ V_{Cmin}=1.4\ \ast94\ =132\ kts',...
+    'For V_D a higher value than the one above has been chosen: ',...
+    'V_D=160\ kts'));
+add(sec,para)
 
 
-add(ch5,sec7);
+add(ch,sec);
 
 
 %         %% CHAPTER 5 - SECTION 8
 %         %
-sec8 = Section();
-sec8.Title = 'Demonstrated dive speed VDF';
+sec = Section();
+sec.Title = 'Demonstrated dive speed VDF';
 
 para = Paragraph('ADD TEXTS:');
 % append(para,InternalLink('tlarTableRef','refTabella'));
-add(sec8,para)
+add(sec,para)
 
 
-add(ch5,sec8);
+add(ch,sec);
 
 %         %% CHAPTER 5 - SECTION 9
 %         %
-sec9 = Section();
-sec9.Title = 'Never exceed speed VNE';
+sec = Section();
+sec.Title = 'Never exceed speed VNE';
 
 para = Paragraph('ADD TEXTS:');
 % append(para,InternalLink('tlarTableRef','refTabella'));
-add(sec9,para)
+add(sec,para)
 
 
-add(ch5,sec9);
+add(ch,sec);
 
 
 
 %% END chapter
 %Adding chapters
-add(rpt,ch5);
+add(rpt,ch);

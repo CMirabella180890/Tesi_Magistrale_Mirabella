@@ -10,52 +10,86 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-% chapter_number = 9;
+% chapter_number = 11;
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
-ch.Title = 'Loads on the aeroplane';
+ch.Title = 'Loads on the horizontal tail';
 
-str = ['ADD HERE details for balancing Equation'];
+str = ['ADD HERE details '];
 para = Paragraph(str);
 add(ch,para);
+
 
 %sec
 sec = Section();
-sec.Title = 'Reference axes and sign convention';
-str = ['ADD HERE details for balancing Equation'];
+sec.Title = 'Balancing loads';
+str = ['ADD HERE details '];
 para = Paragraph(str);
 add(ch,para);
+add(ch,sec);
+
+%sec
+sec = Section();
+sec.Title = 'Manouevring loads';
+str = ['ADD HERE details '];
+para = Paragraph(str);
+add(ch,para);
+%sub
 subsec = Section();
-subsec.Title = 'aaaaa';
+subsec.Title = 'Unchecked manoeuvre';
 
 add(sec,subsec);
+
+%sub
+subsec = Section();
+subsec.Title = 'Checked manoeuvre';
+
+add(sec,subsec);
+
+%sub
+subsec = Section();
+subsec.Title = 'Gust loads';
+
+add(sec,subsec);
+
+
 add(ch,sec);
 
 %sec
 sec = Section();
-sec.Title = 'Symmetrical flight conditions';
-str = ['ADD HERE details for balancing Equation'];
+sec.Title = 'Horizontal tail loads summary';
+str = ['ADD HERE details '];
 para = Paragraph(str);
 add(ch,para);
+
 add(ch,sec);
+
 
 %sec
 sec = Section();
-sec.Title = 'Aerodynamic centre';
-str = ['ADD HERE details for balancing Equation'];
+sec.Title = 'Unsysmmetrical loads';
+str = ['ADD HERE details '];
 para = Paragraph(str);
 add(ch,para);
-add(ch,sec);
 
-%sec
-sec = Section();
-sec.Title = 'Pitching moment of the wing';
-str = ['ADD HERE details for balancing Equation'];
-para = Paragraph(str);
-add(ch,para);
 add(ch,sec);
 
 
+%moving to another path for figure
+% cd ..
+% cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+%  results_path = [pwd '\' regulation '\Output\'];
+% 
+%  cd (RepDir);
+% 
+% fig = FormalImage([results_path,'Finalenvelope.pdf']);
+%          fig.Caption = 'Maneuver and Gust load factors and diagram';
+%          fig.Height = '5in';
+%          fig.LinkTarget='maneuver_ref';
+%          add(ch,fig);
+
+%add(ch7,sec1);
 
 
 %% END chapter

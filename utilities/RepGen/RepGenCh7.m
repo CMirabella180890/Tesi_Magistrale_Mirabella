@@ -5,10 +5,10 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-ch7 = Chapter();
-ch7.Title = 'Manoeuvring and Gust load factors n';
+ch = Chapter();
+ch.Title = 'Manoeuvring and Gust load factors n';
 
-str = ['ADD HERE Manoeuvring and Gust load factors n, figures, tables....ecc. ecc. '];
+str = ['Summary of limit load factors according to certification specifications and gust requirements.'];
 para = Paragraph(str);
 
 %moving to another path for figure
@@ -19,17 +19,17 @@ cd ..
 
  cd (RepDir);
 
-fig = FormalImage([results_path,'Gustenvelope.pdf']);
+fig = FormalImage([results_path,'Gustenvelope.png']);
          fig.Caption = 'Maneuver and Gust load factors and diagram';
          fig.Height = '5in';
          fig.LinkTarget='maneuver_ref';
-         add(ch7,fig);
+         add(ch,fig);
 
 %add(ch7,sec1);
 
 
 
-add(ch7,para)
+add(ch,para)
 %% END chapter
 %Adding chapters
-add(rpt,ch7);
+add(rpt,ch);

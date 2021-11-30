@@ -5,13 +5,26 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-ch6 = Chapter();
-ch6.Title = 'Altitude';
+ch = Chapter();
+ch.Title = 'Altitude';
 
-str = ['ADD HERE ALTITUDE DETAILS'];
+str = strcat('The maximum permissible operational altitude is ADD H13000ft.',...
+            'Despite the CS-LSA requirements do not require to accounts for the effects of altitude, ',... 
+    'such effects have been considered up to 10000 ft. In fact the gust load factor have been ',... 
+    'calculated at such altitude. This is considered acceptable since it covers the operational ',...
+    'range within which the aeroplane will fly most of the time.');
 para = Paragraph(str);
-% append(para,InternalLink('tlarTableRef','refTabella'));
-add(ch6,para)
+para.Style = {HAlign('justify')};
+add(ch,para)
+
+str = strcat('(Note: the CS-LSA requirement does not require to account for the effects of altitude. ',...
+            'Calculating the loads at sea level would be acceptable.',... 
+            'In this case, the choice to consider such effect up to 10000 ft is a decision of a designer, which would be accepted by the team.)');
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+
+add(ch,para)
+
 %% END chapter
 %Adding chapters
-add(rpt,ch6);
+add(rpt,ch);

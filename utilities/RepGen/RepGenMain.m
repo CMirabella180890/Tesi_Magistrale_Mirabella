@@ -5,7 +5,6 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-
 %%EXAMPLES (figure, table, equation)
 % figure
 % cross reference in para
@@ -62,6 +61,22 @@ import mlreportgen.utils.*
 % end
 % append(sec,eqImg);
 
+% %List ordered/unordered
+% item1 = 'ASTM F2245-12d,” ASTM.“ASTM F2245-12d, ASTM.';
+% item2 = 'ABCD-FL-57-00 Wing Load Calculation, EASA.';
+% item3 = 'ISO 2533:1975, International Standardization Organization, 1975.';
+% item4 = 'CS-LSA Certification Specifications and Acceptable Means of Compliance, Amnd.1 29.Jul.2013, EASA, 2013.';
+% item5 = '“ABCD-FTR-01-00 Flight Test Report,” EASA.';
+% item6 = 'L. Smith, “NACA technical note 1945, ‘Aerodynamic characteristics of 15 NACA airfoil sections at seven Reynolds numbers from 0.7x10E6 to 9x10E6,” 1949.';
+% item7 = 'ABCD-WB-08-00 Weight and Balance Report, EASA.';
+% 
+% ol = OrderedList({item1, item2, item3,...
+%     item4, item5,item6,item7});
+% 
+% % ol = UnorderedList({item1, item2, item3,...
+%     item4, item5,item6,item7});
+% append(ch,ol);
+
 
 
 %% Report set-up
@@ -80,11 +95,15 @@ disp(str)
 Aircraft.Report.template = 'No Template';
 %Mytemplate.template = 'DAF_template'; % Other availabe
 str = strcat("The report template is " , " ",Aircraft.Report.template);
+disp(str)
+
+%report format
 Aircraft.Report.Type = 'pdf';
+str = strcat("The report format is " , " ",Aircraft.Report.Type);
+disp(str)
 %pdf
 %docx
 %html
-disp(str)
 
 %%%
 
@@ -136,15 +155,23 @@ lot.Title = "List of Tables";
 append(rpt,lot);
 
 %% CHAPTERS
-RepGenCh1
-RepGenCh2
-RepGenCh3
-RepGenCh4
-RepGenCh5
-RepGenCh6
-RepGenCh7
-RepGenCh8
-RepGenCh9
+RepGenCh1       %Introduction
+RepGenCh2       %References
+RepGenCh3       %List of Abbreviations
+RepGenCh4       %Aircraft data
+RepGenCh5       %Design Airspeeds
+RepGenCh6       %Altitude
+RepGenCh7       %Manoeuvring and Gust load factors n
+RepGenCh8       %V-n Envelope
+RepGenCh9       %Loads on the aeroplane
+RepGenCh10      %Loads on the wing
+RepGenCh11      %Loads on the horizontal tail
+RepGenCh12      %Loads on the vertical tail
+RepGenCh13      %Loads on the wing flaps
+RepGenCh14      %Loads on the control surfaces
+RepGenCh15      %Power plant
+
+
 
 %% END OF REPORT
 close(rpt)

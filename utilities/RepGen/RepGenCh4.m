@@ -5,26 +5,26 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-ch4 = Chapter();
-ch4.Title = 'Aircraft data';
+ch = Chapter();
+ch.Title = 'Aircraft data';
 
 str = ['Add here all the aircraft geometrical, aero and inertial and masses data useful for following paragraph'];
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
 % append(para,InternalLink('tlarTableRef','refTabella'));
-add(ch4,para)
+add(ch,para)
 
 %         %% CHAPTER 4 - SECTION 1
 %         % geometry
-sec1 = Section();
-sec1.Title = 'Geometry';
+sec = Section();
+sec.Title = 'Geometry';
 
 para = Paragraph('The aircraft reference geometry is summarized in table:');
 
 % wing
 if isfield(Aircraft.Geometry, 'Wing')==1
 append(para,InternalLink('wingTableRef','Ref:wing'));
-add(sec1,para)
+add(sec,para)
          wing = fieldnames(Aircraft.Geometry.Wing);
          fieldValue = cell(length(wing),1);
          fieldUnit = cell(length(wing),1);
@@ -61,13 +61,13 @@ add(sec1,para)
         tbl = BaseTable(tbl);
         tbl.Title = 'Wing Geometrical Parameters';
         tbl.LinkTarget = 'wingTableRef';     
-        add(sec1,tbl);
+        add(sec,tbl);
 end
 %
 %horizontal
 if isfield(Aircraft.Geometry, 'Horizontal')==1
 append(para,InternalLink('horiTableRef','Ref:hori'));
-add(sec1,para)
+add(sec,para)
          horizontal = fieldnames(Aircraft.Geometry.Horizontal);
          fieldValue = cell(length(horizontal),1);
          fieldUnit = cell(length(horizontal),1);
@@ -104,13 +104,13 @@ add(sec1,para)
         tbl = BaseTable(tbl);
         tbl.Title = 'horizontal Geometrical Parameters';
         tbl.LinkTarget = 'horizontalTableRef';     
-        add(sec1,tbl);
+        add(sec,tbl);
 end
 
 %vertical
 if isfield(Aircraft.Geometry, 'Vertical')==1
 append(para,InternalLink('verTableRef','Ref:vert'));
-add(sec1,para)
+add(sec,para)
          vertical = fieldnames(Aircraft.Geometry.Vertical);
          fieldValue = cell(length(vertical),1);
          fieldUnit = cell(length(vertical),1);
@@ -147,17 +147,22 @@ add(sec1,para)
         tbl = BaseTable(tbl);
         tbl.Title = 'Vertical Geometrical Parameters';
         tbl.LinkTarget = 'verticalTableRef';     
-        add(sec1,tbl);
+        add(sec,tbl);
 end
 
 %fuselage
 if isfield(Aircraft.Geometry, 'Fuselage')==1
+    %remove fields
+     Aircraft.Geometry.Fuselage = rmfield (Aircraft.Geometry.Fuselage, 'id');
+     Aircraft.Geometry.Fuselage = rmfield (Aircraft.Geometry.Fuselage, 'type');
+         
 append(para,InternalLink('verTableRef','Ref:fus'));
-add(sec1,para)
+add(sec,para)
          fuselage = fieldnames(Aircraft.Geometry.Fuselage);
          fieldValue = cell(length(fuselage),1);
          fieldUnit = cell(length(fuselage),1);
          for i = 1:length(fuselage)
+
              fieldValue{i} = Aircraft.Geometry.Fuselage.(fuselage{i}).value;
              % significant digits
              if isnumeric(fieldValue{i})
@@ -190,13 +195,13 @@ add(sec1,para)
         tbl = BaseTable(tbl);
         tbl.Title = 'Fuselage Geometrical Parameters';
         tbl.LinkTarget = 'fuselageTableRef';     
-        add(sec1,tbl);
+        add(sec,tbl);
 end
 
 %landing gear
 if isfield(Aircraft.Geometry, 'LandGear')==1
 append(para,InternalLink('lgTableRef','Ref:lg'));
-add(sec1,para)
+add(sec,para)
         landGear = fieldnames(Aircraft.Geometry.LandGear);
          fieldValue = cell(length(landGear),1);
          fieldUnit = cell(length(fuselage),1);
@@ -232,20 +237,19 @@ add(sec1,para)
         tbl = BaseTable(tbl);
         tbl.Title = 'Landing Gear Geometrical Parameters';
         tbl.LinkTarget = 'landGearTableRef';     
-        add(sec1,tbl);
+        add(sec,tbl);
 end
 
-
-add(ch4,sec1);
+add(ch,sec);
 
 %         %% CHAPTER 4 - SECTION 2
 %         % aero
-sec2 = Section();
-sec2.Title = 'Aerodynamic';
+sec = Section();
+sec.Title = 'Aerodynamic';
 
 para = Paragraph('The aircraft reference aerodynamic is in figure:');
 % append(para,InternalLink('tlarTableRef','refTabella'));
-add(sec2,para)
+add(sec,para)
 
 append(para,InternalLink('lgTableRef','polars_wb'));
 
@@ -255,26 +259,17 @@ cd ..
  regulation = Aircraft.Certification.Regulation.value;
  results_path = [pwd '\' regulation '\Output\'];
 
- cd (RepDir);
+cd (RepDir);
 
-fig = FormalImage([results_path,'Polars.pdf']);
+fig = FormalImage([results_path,'Polars.png']);
          fig.Caption = 'Wing-Body reference Aerodynamics';
          fig.Height = '5in';
          fig.LinkTarget='polars_wb';
-         add(sec2,fig);
+         add(sec,fig);
 
-add(ch4,sec2);
+add(ch,sec);
 
 
 %% END chapter
 %Adding chapters
-add(rpt,ch4);
-
-%% CHAPTER 5 - Design Airspeeds
-ch5 = Chapter();
-ch5.Title = 'Design Airspeeds';
-
-str = ['This chapter defines the operating and design airspeeds as required for certification REFFFF'];
-para = Paragraph(str);
-% append(para,InternalLink('tlarTableRef','refTabella'));
-add(ch5,para)
+add(rpt,ch);
