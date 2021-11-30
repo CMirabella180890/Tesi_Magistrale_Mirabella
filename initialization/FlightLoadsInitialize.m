@@ -210,26 +210,9 @@ Aircraft.Geometry.Wing.camberloc.value = NaN;
 Aircraft.Geometry.Wing.camberloc.Attributes.unit = "percentage";
 Aircraft.Geometry.Wing.thickchord.value = NaN; 
 Aircraft.Geometry.Wing.thickchord.Attributes.unit = "percentage";
-% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-% Aircraft.Geometry.Wing.Movable.eta_inner.value = [0.10; 0.627];
-% Aircraft.Geometry.Wing.Movable.eta_inner.Attributes.unit = "percentage";
-% Aircraft.Geometry.Wing.Movable.eta_outer.value = [0.627; 0.976];
-% Aircraft.Geometry.Wing.Movable.cf_c_inner.value = [0.25; 0.3];
-% Aircraft.Geometry.Wing.Movable.cf_c_inner.Attributes.unit = "percentage";
-% Aircraft.Geometry.Wing.Movable.cf_c_outer.value = [0.3; 0.3]; 
-% Aircraft.Geometry.Wing.Movable.cf_c_outer.Attributes.unit = "percentage";
-% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Aircraft.Geometry.Movable.Wing.eta_inner.value = [0.10; 0.627];
-Aircraft.Geometry.Movable.Wing.eta_inner.Attributes.unit = "percentage";
-Aircraft.Geometry.Movable.Wing.eta_outer.value = [0.627; 0.976];
-Aircraft.Geometry.Movable.Wing.cf_c_inner.value = [0.25; 0.3];
-Aircraft.Geometry.Movable.Wing.cf_c_inner.Attributes.unit = "percentage";
-Aircraft.Geometry.Movable.Wing.cf_c_outer.value = [0.3; 0.3]; 
-Aircraft.Geometry.Movable.Wing.cf_c_outer.Attributes.unit = "percentage";
 
-% -------------------------------------------------------------------------
-% Fuselage
-% -------------------------------------------------------------------------
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Vertical
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Aircraft.Geometry.Vertical.xle.value = 0.95; %of fuselage lenght
 Aircraft.Geometry.Vertical.xle.Attributes.unit = "% of fuselage length"; 
@@ -245,6 +228,9 @@ Aircraft.Geometry.Vertical.b.Attributes.unit = "m";
 Aircraft.Geometry.Vertical.zpos.value = 1.0; % % of df
 Aircraft.Geometry.Vertical.zpos.Attributes.unit = "% of df";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% -------------------------------------------------------------------------
+% Fuselage
+% -------------------------------------------------------------------------
 Aircraft.Geometry.Fuselage.id   = "Fuselage";
 Aircraft.Geometry.Fuselage.type = 'TransportFuse';     % OpenVSP component type
 Aircraft.Geometry.Fuselage.length.value = NaN;
@@ -321,20 +307,38 @@ Aircraft.Geometry.Horizontal.dihedral.Attributes.unit = "degrees";
 % In questo modo si semplifica la struttura e si tengono ben separate le
 % quantità di interesse. 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Aircraft.Geometry.Movable.Horizontal.eta_inner.value = NaN;
-Aircraft.Geometry.Movable.Horizontal.eta_inner.Attributes.unit = "percentage";
-Aircraft.Geometry.Movable.Horizontal.eta_outer.value = NaN;
-Aircraft.Geometry.Movable.Horizontal.eta_outer.Attributes.unit = "percentage";
-Aircraft.Geometry.Movable.Horizontal.cf_c_inner.value = NaN;
-Aircraft.Geometry.Movable.Horizontal.cf_c_inner.Attributes.unit = "percentage";
-Aircraft.Geometry.Movable.Horizontal.cf_c_outer.value = NaN;
-Aircraft.Geometry.Movable.Horizontal.cf_c_outer.Attributes.unit = "percentage";
-Aircraft.Geometry.Movable.Horizontal.max_deflection.value = 25.0;
-Aircraft.Geometry.Movable.Horizontal.max_deflection.Attributes.unit = "degrees";
-Aircraft.Geometry.Movable.Horizontal.total_deflection_time.value = NaN;
-Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.unit = "seconds";
-Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.flag1 = "Commuter";
-Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.flag2 = "Wheel";
+% ELEVATOR
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Aircraft.Geometry.Elevator.eta_inner.value = NaN;
+Aircraft.Geometry.Elevator.eta_inner.Attributes.unit = "percentage";
+Aircraft.Geometry.Elevator.eta_outer.value = NaN;
+Aircraft.Geometry.Elevator.eta_outer.Attributes.unit = "percentage";
+Aircraft.Geometry.Elevator.cf_c_inner.value = NaN;
+Aircraft.Geometry.Elevator.cf_c_inner.Attributes.unit = "percentage";
+Aircraft.Geometry.Elevator.cf_c_outer.value = NaN;
+Aircraft.Geometry.Elevator.cf_c_outer.Attributes.unit = "percentage";
+Aircraft.Geometry.Elevator.max_deflection.value = 25.0;
+Aircraft.Geometry.Elevator.max_deflection.Attributes.unit = "degrees";
+Aircraft.Geometry.Elevator.total_deflection_time.value = NaN;
+Aircraft.Geometry.Elevator.total_deflection_time.Attributes.unit = "seconds";
+Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 = "Commuter";
+Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 = "Wheel";
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Aircraft.Geometry.Movable.Horizontal.eta_inner.value = NaN;
+% Aircraft.Geometry.Movable.Horizontal.eta_inner.Attributes.unit = "percentage";
+% Aircraft.Geometry.Movable.Horizontal.eta_outer.value = NaN;
+% Aircraft.Geometry.Movable.Horizontal.eta_outer.Attributes.unit = "percentage";
+% Aircraft.Geometry.Movable.Horizontal.cf_c_inner.value = NaN;
+% Aircraft.Geometry.Movable.Horizontal.cf_c_inner.Attributes.unit = "percentage";
+% Aircraft.Geometry.Movable.Horizontal.cf_c_outer.value = NaN;
+% Aircraft.Geometry.Movable.Horizontal.cf_c_outer.Attributes.unit = "percentage";
+% Aircraft.Geometry.Movable.Horizontal.max_deflection.value = 25.0;
+% Aircraft.Geometry.Movable.Horizontal.max_deflection.Attributes.unit = "degrees";
+% Aircraft.Geometry.Movable.Horizontal.total_deflection_time.value = NaN;
+% Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.unit = "seconds";
+% Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.flag1 = "Commuter";
+% Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.flag2 = "Wheel";
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Aircraft.Geometry.Vertical.MAC.value = 0.2335363;
 Aircraft.Geometry.Vertical.MAC.Attributes.unit = "m";
 Aircraft.Geometry.Vertical.l_vt.value = 1.650;

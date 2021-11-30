@@ -663,7 +663,7 @@ classdef aero_model
             %         function. This is done here for illustration
             %         purposes.
             
-            AOA_aux = linspace(-20.0, 20.0, 650);
+            AOA_aux = linspace(-20.0, 20.0, 1000);
             vect    = a.*(AOA_aux.^2) + b.*AOA_aux + c;
             obj     = vect;
         end

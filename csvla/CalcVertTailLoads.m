@@ -179,8 +179,8 @@ disp(" ------------------------------------ ");
 % Horizontal tail loads increments
 Increment = [Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_decanewton.value];
 disp(" ++++++++++ Vertical tail loads - CASE (a)(1) [daN] ++++++++++ ")
-format = '%f\n';
-label  = 'Y\n';
+format = ' %6.6f\n';
+label  = ' Y\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -236,8 +236,8 @@ disp(" ------------------------------------ ");
 % Horizontal tail loads increments
 Increment = [Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_decanewton.value];
 disp(" ++++++++++ Vertical tail loads - CASE (a)(2) [daN] ++++++++++ ")
-format = '%f\n';
-label  = 'Y\n';
+format = ' %6.6f\n';
+label  = ' Y\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -293,8 +293,8 @@ disp(" ------------------------------------ ");
 % Horizontal tail loads increments
 Increment = [Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.value];
 disp(" ++++++++++ Vertical tail loads - CASE (a)(3) [daN] ++++++++++ ")
-format = '%f\n';
-label  = 'Y\n';
+format = ' %f\n';
+label  = ' Y\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -511,8 +511,8 @@ disp(" ---------------------- ");
 Increment = [Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.value, ...
              Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.value];
 disp(" ++++++++++ Vertical tail - GUST LOADS [daN] ++++++++++ ")
-format = '%f         %f\n';
-label  = 'GUST - VC         GUST - VD\n';
+format = ' %6.6f         %6.6f\n';
+label  = ' GUST - VC        GUST - VD\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
@@ -535,8 +535,8 @@ end
 Increment = [Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.value];
 disp(" ++++++++++ Vertical tail - CRITICAL GUST LOADS [daN] ++++++++++ ")
 disp( Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.Attributes.flag );
-format = '%f\n';
-label  = 'CRITICAL GUST LOADS\n';
+format = ' %6.6f\n';
+label  = ' CRITICAL GUST LOADS\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")

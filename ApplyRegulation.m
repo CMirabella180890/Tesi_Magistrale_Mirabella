@@ -32,9 +32,17 @@ switch (Aircraft.Certification.Regulation.value)
         fprintf('\n');
         fprintf('%s\n', dir);
         % Call the class csvla.m
+        fprintf('-----------------');
+        fprintf('\n');
+        fprintf('### Flight Envelope - per CS - VLA ###');
+        fprintf('\n');
         obj = csvla;
         % Apply all the methods required
         CalcFlightEnv
+        fprintf('-----------------');
+        fprintf('\n');
+        fprintf('### Balancing loads - per CS - VLA ###');
+        fprintf('\n');
         CalcBalancLoads
         % CHANGE DIRECTORY TO CALCULATES C_l = C_l(y)
         cd .. 
@@ -84,6 +92,8 @@ switch (Aircraft.Certification.Regulation.value)
         CalcHorizTailLoads
         % CALCULATE VERTICAL TAIL LOADS
         CalcVertTailLoads
+        % CALCULATE SUPPLEMENTARY CONDITIONS 
+        CalcSuppLoads
 %     case 'CS23'
 %     case 'CS22'
 end

@@ -67,5 +67,6 @@ xlabel("$\alpha$", "Interpreter", "latex")
 ylabel("$C_M$", "Interpreter", "latex")
 title('Subplot 3: $C_M$ vs $\alpha$', "Interpreter", "latex"')
 exportgraphics(out,'Polars.pdf','ContentType','vector')
+exportgraphics(out,'Polars.png','ContentType','vector')
 end
 

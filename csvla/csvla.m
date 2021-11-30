@@ -78,10 +78,13 @@ classdef csvla
             %  OUTPUT 
             %  n    = Vector of load factor values
             
+            % indexes =500;
+            indexes = 1e4;
+            
             if nmax > 0.0
-            obj = linspace(0.0, 2*nmax, 500)';  
+            obj = linspace(0.0, 2*nmax, indexes)';  
             elseif nmax < 0.0 
-            obj = linspace(0.0, 2*nmax, 500)';  
+            obj = linspace(0.0, 2*nmax, indexes)';  
             end
         end
         %% FLIGHT ENVELOPE - SECOND METHOD
@@ -236,12 +239,13 @@ classdef csvla
         title("V~-~n diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
         text(5, 4, Aircraft_name)                                % Aircraft name inside the plot
         text(47.0, nmax-0.2, '\fontname{Courier} C')
-        text(59.0, nmin+0.2, '\fontname{Courier} F')
+        text(49.0, nmin+0.2, '\fontname{Courier} F')
         text(59.0, nmax-0.2, '\fontname{Courier} D')
         text(59.0, nmin+0.2, '\fontname{Courier} E')
         text(VSpos(x), nmax-0.2, '\fontname{Courier} A')
         text(VSneg(y), nmin-0.2, '\fontname{Courier} G')
         exportgraphics(obj,'vndiagram.pdf','ContentType','vector')
+        exportgraphics(obj,'vndiagram.png','ContentType','vector')
         end
     end
     %% FUNCTIONS USED TO PLOT THE V - N DIAGRAM     
@@ -367,10 +371,14 @@ classdef csvla
             %         --> 'negative_cruise'
             %         --> 'positive_dive'
             %         --> 'negative_dive'
+            
+            % indexes = 500;
+            indexes = 1e4;
+            
             if Ude == abs(15.24) 
-                V = linspace(0.0, VC, 500)';
+                V = linspace(0.0, VC, indexes)';
             elseif Ude == abs(7.62) 
-                V = linspace(0.0, VD, 500)';
+                V = linspace(0.0, VD, indexes)';
             end
             % -------------------------------------------------------------
             switch (caso)
@@ -472,7 +480,7 @@ classdef csvla
         plot([V_cruise(end), V_dive(end)], [ngust_plus_cruise(end), ngust_plus_dive(end)], 'color', '#80B3FF')
         plot([V_cruise(end), V_dive(end)], [ngust_neg_cruise(end), ngust_neg_dive(end)], 'color', '#80B3FF')
         text(47.0, nmax-0.2, '\fontname{Courier} C')
-        text(59.0, nmin+0.2, '\fontname{Courier} F')
+        text(49.0, nmin+0.2, '\fontname{Courier} F')
         text(59.0, nmax-0.2, '\fontname{Courier} D')
         text(59.0, nmin+0.2, '\fontname{Courier} E')
         text(VSpos(temp1), nmax-0.2, '\fontname{Courier} A')
@@ -482,6 +490,7 @@ classdef csvla
         title("Gust envelope per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
         text(5, 4, Aircraft_name)                                % Aircraft name inside the plot
         exportgraphics(obj,'Gustenvelope.pdf','ContentType','vector')
+        exportgraphics(obj,'Gustenvelope.png','ContentType','vector')
         end
     end
     %% FUNCTIONS USED TO TRACK THE FINAL ENVELOPE    
@@ -539,7 +548,7 @@ classdef csvla
         temp4 = 1;
         temp5 = 1;
         temp6 = 1;
-        tol  = 1E-1;
+        tol  = 1E-3;
         vs    = abs(vstall);
         vg    = abs(vgust);
         va    = abs(VA); 
@@ -575,7 +584,7 @@ classdef csvla
                  disp('Stall speed is unchanged by gust');
              elseif abs(ng(temp1) - nm) > tol 
                  disp('Stall speed must be changed');
-                         tol  = 1E-4;
+                        % tol  = 1E-4;
                  for i = 1:length(ns) 
                      for j = 1:length(ng) 
                          if abs(ns(i) - ng(j)) < tol
@@ -587,13 +596,13 @@ classdef csvla
         % -------------------------------------
         if nmax < 0
                 for i = 1:length(ns) 
-                    if abs(ns(i) - 1.0) < 0.01
+                    if abs(ns(i) - 1.0) < tol
                         temp4 = i;
                     end
                 end
         elseif nmax > 0 
                 for i = 1:length(ns) 
-                    if abs(1.0 - ns(i)) < 0.01
+                    if abs(1.0 - ns(i)) < tol
                         temp4 = i;
                     end
                 end
@@ -628,7 +637,7 @@ classdef csvla
         ng  = abs(ngust);
         ns  = abs(nstall);
         nm  = abs(nmax); 
-        tol = 1E-4; 
+        tol = 1E-3; 
             if abs(ng(end) - nm) < tol 
                 disp('Case 1')
                 disp('Gust load factor are nearly equal to max load factor')
@@ -690,6 +699,7 @@ classdef csvla
         % xlim([0 VD+10])
         plot(VSpos, npos, '-r', 'LineWidth', 1)
         plot(VSneg, nneg, '-b', 'LineWidth', 1)
+        plot(VSpos(end), npos(end), 'k.', 'MarkerSize', 10)
         plot([VSpos(1) VSpos(1)], [npos(1) 0.0], '-r.', 'LineWidth', 1, 'MarkerSize', 10)
         plot([VSneg(1) VSneg(1)], [nneg(1) 0.0], '-b.', 'LineWidth', 1, 'MarkerSize', 10)
         plot(VA, nA, 'r.', 'MarkerSize', 10)
@@ -714,6 +724,7 @@ classdef csvla
         text(VA+0.0, nA+0.0, '\fontname{Courier} Point A')
         text(VG+0.0, nG+0.1, '\fontname{Courier} Point G')
         exportgraphics(obj,'Finalenvelope.pdf','ContentType','vector')
+        exportgraphics(obj,'Finalenvelope.png','ContentType','vector')
         end
         %% BALANCING LOADS - METHOD
         function obj = Balancing_loads(obj, HT_Lift_posstall, VSpos, ...
@@ -807,8 +818,9 @@ classdef csvla
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Horizontal tail lift - $L_{ht}$ (daN)", "Interpreter", "latex")
         title("Horizontal empennage airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
-        text(51, -9, Aircraft_name)                                              % Aircraft name inside the plot
+        % text(51, -9, Aircraft_name)                                              % Aircraft name inside the plot
         exportgraphics(obj, 'Balancingloads.pdf', 'ContentType', 'vector')
+        exportgraphics(obj, 'Balancingloads.png', 'ContentType', 'vector')
         end
         %% BALANCING LOADS - WING LOADS DIAGRAM
         function obj = Mainwing_loads(obj, WING_Lift_posstall, VSpos, ...
@@ -905,8 +917,9 @@ classdef csvla
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Main wing lift - $L$ (daN)", "Interpreter", "latex")
         title("Main wing airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
-        text(16, 500, Aircraft_name)                                              % Aircraft name inside the plot
+        % text(16, 500, Aircraft_name)                                              % Aircraft name inside the plot
         exportgraphics(obj, 'Wingairloads.pdf', 'ContentType', 'vector')
+        exportgraphics(obj, 'Wingairloads.png', 'ContentType', 'vector')
         end
     end
 end
