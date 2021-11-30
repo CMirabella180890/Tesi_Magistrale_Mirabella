@@ -233,6 +233,12 @@ Aircraft.Geometry.Vertical.zpos.Attributes.unit = "% of df";
 % -------------------------------------------------------------------------
 Aircraft.Geometry.Fuselage.id   = "Fuselage";
 Aircraft.Geometry.Fuselage.type = 'TransportFuse';     % OpenVSP component type
+% Here we can select a flag to properly model the tail empennage: 
+% - Double fin 
+% - Conventional
+% - T tail 
+% - Others
+Aircraft.Geometry.Fuselage.empennage = "Double fin"; 
 Aircraft.Geometry.Fuselage.length.value = NaN;
 Aircraft.Geometry.Fuselage.length.Attributes.unit = "meters"; % length
 Aircraft.Geometry.Fuselage.diameter.value = NaN;              % diameter

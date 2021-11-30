@@ -793,3 +793,1487 @@ MAX GUST LOADS: AT VC
  L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical
  39.406924           69.912958           69.912958
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+new_fig = figure 
+
+new_fig = 
+
+  <a href="matlab:helpPopup matlab.ui.Figure" style="font-weight:bold">Figure</a> (37) with properties:
+
+      Number: 37
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [403 246 560 420]
+       Units: 'pixels'
+
+  Show <a href="matlab:if exist('new_fig', 'var'), matlab.graphics.internal.getForDisplay('new_fig', new_fig, 'matlab.ui.Figure'), else, matlab.graphics.internal.getForDisplay('new_fig'), end">all properties</a>
+
+plot([-Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 0])
+hold on 
+plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value])
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([-Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+{Unrecognized field name "empennage".
+} 
+Aircraft.Geometry.Fuselage.empennage = "Double fin"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([-Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([-Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        xlim([-(Aircraft.Geometry.Horizontal.b.value+0.5) (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-Aircraft.Geometry.Vertical.b.value Aircraft.Geometry.Vertical.b.value+0.5]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([-Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        xlim([-(Aircraft.Geometry.Horizontal.b.value+0.5) (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-Aircraft.Geometry.Vertical.b.value Aircraft.Geometry.Vertical.b.value+0.5]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([-Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        xlim([-(Aircraft.Geometry.Horizontal.b.value+0.5) (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+
+%% SUPPLEMENTARY CONDITIONS FOR TAIL SURFACES 
+%  ------------------------------------------
+%
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%  CS - VLA 447 COMBINED LOADS ON TAIL SURFACES 
+%  
+%  (a) With the aeroplane in a loading condition correspondint to point A
+%      or point D in the V - n diagram (whichever condition leads to the
+%      higher balance load) the loads on the horizontal tail must be
+%      combined with those on the vertical tail as specified in CS - VLA
+%      441. 
+%  (b) 75% of the loads according to CS - VLA 423 for the horizontal tail
+%      and CS - VLA 441 for the vertical tail must be assumed acting
+%      simultaneously. 
+%
+%  AMC S 447
+%   For aeroplanes where the horizontal stabilising surfaces are arranged
+%   considerably above or below the centre of area of the vertical
+%   stabilising surfaces, the stabilising surfaces and their supporting
+%   structure including the rear portion of the fuselage should be designed
+%   to whitstand combined horizontal and vertical loads. In this case, the
+%   prescribed loadings on the vertical stabilising surfaces and the roll
+%   moments induced at the horizontal stabilising surfaces should be
+%   accounted for. 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+disp(" ")
+ 
+disp(" ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ ")
+ ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ 
+% SUBPARAGRAPH (a)
+% Horizontal tail loads
+TailLoadsD = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+TailLoadsA = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsA;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "degrees"; 
+
+% SUBPARAGRAPH (b)
+% Horizontal tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value = 0.75*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.CriticalLoads.Maximum.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value = pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "degrees"; 
+
+%% CRITICAL COMBINED LOADS 
+Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
+Tailloads_subpar_b = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value;
+
+if abs(Tailloads_subpar_a) > abs(Tailloads_subpar_b) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_a;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
+elseif abs(Tailloads_subpar_b) > abs(Tailloads_subpar_a) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_b;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "degrees";
+
+disp(" ")
+ 
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value];
+disp(" ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ ")
+ ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
+format = ' %6.6f           %6.6f           %6.6f\n';
+label  = ' L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical\n';
+fprintf(label);
+ L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical
+fprintf(format, Increment.');
+ 20.332115           69.912958           69.912958
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+%% GRAPHICAL REPRESENTATION OF THE SUPPLEMENTARY LOAD CONDITIONS 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([-Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        xlim([-(Aircraft.Geometry.Horizontal.b.value+0.5) (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([-Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value], ...
+            [Aircraft.Geometry.Vertical.b.value*0.25 Aircraft.Geometry.Vertical.b.value*0.25], 'g')
+        
+        xlim([-(Aircraft.Geometry.Horizontal.b.value+0.5) (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([-Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value], ...
+            [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75], 'g')
+        
+        % xlim([-(Aircraft.Geometry.Horizontal.b.value+0.5) (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        X = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value];
+        Y = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        annotation('arrow',X,Y)
+        plot(X, Y, 'g')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('annotation', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\annotation.m', 109)" style="font-weight:bold">annotation</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\annotation.m',109,0)">line 109</a>)
+X and Y values must be between 0 and 1.
+} 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        X = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value];
+        Y = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        % annotation('arrow',X,Y)
+        plot(X, Y, 'g')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        plot([-Aircraft.Geometry.Horizontal.b.value -Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        X = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value];
+        Y = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        % annotation('arrow',X,Y)
+        plot(X, Y, 'g')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        X = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value];
+        Y = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        % annotation('arrow',X,Y)
+        plot(X, Y, 'g')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value
+
+ans =
+
+    5.7929
+
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad));
+        VTail_comp    = critical_load*(cos(theta_rad));
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value
+
+ans =
+
+    5.7929
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value
+
+ans =
+
+    4.4235
+
+rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value)
+
+ans =
+
+  253.4462
+
+
+%% SUPPLEMENTARY CONDITIONS FOR TAIL SURFACES 
+%  ------------------------------------------
+%
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%  CS - VLA 447 COMBINED LOADS ON TAIL SURFACES 
+%  
+%  (a) With the aeroplane in a loading condition correspondint to point A
+%      or point D in the V - n diagram (whichever condition leads to the
+%      higher balance load) the loads on the horizontal tail must be
+%      combined with those on the vertical tail as specified in CS - VLA
+%      441. 
+%  (b) 75% of the loads according to CS - VLA 423 for the horizontal tail
+%      and CS - VLA 441 for the vertical tail must be assumed acting
+%      simultaneously. 
+%
+%  AMC S 447
+%   For aeroplanes where the horizontal stabilising surfaces are arranged
+%   considerably above or below the centre of area of the vertical
+%   stabilising surfaces, the stabilising surfaces and their supporting
+%   structure including the rear portion of the fuselage should be designed
+%   to whitstand combined horizontal and vertical loads. In this case, the
+%   prescribed loadings on the vertical stabilising surfaces and the roll
+%   moments induced at the horizontal stabilising surfaces should be
+%   accounted for. 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+disp(" ")
+ 
+disp(" ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ ")
+ ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ 
+% SUBPARAGRAPH (a)
+% Horizontal tail loads
+TailLoadsD = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+TailLoadsA = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsA;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value = 2*pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "degrees"; 
+
+% SUBPARAGRAPH (b)
+% Horizontal tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value = 0.75*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.CriticalLoads.Maximum.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.unit = "daN";
+x = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value/Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value = 2*pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "degrees"; 
+
+%% CRITICAL COMBINED LOADS 
+Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
+Tailloads_subpar_b = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value;
+
+if abs(Tailloads_subpar_a) > abs(Tailloads_subpar_b) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_a;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
+elseif abs(Tailloads_subpar_b) > abs(Tailloads_subpar_a) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_b;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "degrees";
+
+disp(" ")
+ 
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value];
+disp(" ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ ")
+ ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
+format = ' %6.6f           %6.6f           %6.6f\n';
+label  = ' L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical\n';
+fprintf(label);
+ L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical
+fprintf(format, Increment.');
+ 20.332115           69.912958           69.912958
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+%% GRAPHICAL REPRESENTATION OF THE SUPPLEMENTARY LOAD CONDITIONS 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad));
+        VTail_comp    = critical_load*(cos(theta_rad));
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 ];
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value)
+
+ans =
+
+  445.2471
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value 
+
+ans =
+
+    7.7710
+
+
+%% SUPPLEMENTARY CONDITIONS FOR TAIL SURFACES 
+%  ------------------------------------------
+%
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%  CS - VLA 447 COMBINED LOADS ON TAIL SURFACES 
+%  
+%  (a) With the aeroplane in a loading condition correspondint to point A
+%      or point D in the V - n diagram (whichever condition leads to the
+%      higher balance load) the loads on the horizontal tail must be
+%      combined with those on the vertical tail as specified in CS - VLA
+%      441. 
+%  (b) 75% of the loads according to CS - VLA 423 for the horizontal tail
+%      and CS - VLA 441 for the vertical tail must be assumed acting
+%      simultaneously. 
+%
+%  AMC S 447
+%   For aeroplanes where the horizontal stabilising surfaces are arranged
+%   considerably above or below the centre of area of the vertical
+%   stabilising surfaces, the stabilising surfaces and their supporting
+%   structure including the rear portion of the fuselage should be designed
+%   to whitstand combined horizontal and vertical loads. In this case, the
+%   prescribed loadings on the vertical stabilising surfaces and the roll
+%   moments induced at the horizontal stabilising surfaces should be
+%   accounted for. 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+disp(" ")
+ 
+disp(" ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ ")
+ ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ 
+% SUBPARAGRAPH (a)
+% Horizontal tail loads
+TailLoadsD = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+TailLoadsA = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
+
+% Choosing design condition 
+if abs(TailLoadsD) > abs(TailLoadsA) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsD;
+elseif abs(TailLoadsA) > abs(TailLoadsD) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value = TailLoadsA;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.unit = "daN";
+x = abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value)/abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value = 2*pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "degrees"; 
+
+% SUBPARAGRAPH (b)
+% Horizontal tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value = 0.75*Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.CriticalLoads.Maximum.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.Attributes.unit = "daN";
+
+% Vertical tail loads 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Critical_load.value;
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.Attributes.unit = "daN";
+
+% Total loads acting on the tail 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value^2);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.unit = "daN";
+x = abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value)/abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value = 2*pi - atan(x);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value);
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "degrees"; 
+
+%% CRITICAL COMBINED LOADS 
+Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
+Tailloads_subpar_b = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value;
+
+if abs(Tailloads_subpar_a) > abs(Tailloads_subpar_b) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_a;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
+elseif abs(Tailloads_subpar_b) > abs(Tailloads_subpar_a) 
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_b;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value;
+    Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "degrees";
+
+disp(" ")
+ 
+% Horizontal tail loads increments
+Increment = [Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value, ...
+             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value];
+disp(" ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ ")
+ ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
+format = ' %6.6f           %6.6f           %6.6f\n';
+label  = ' L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical\n';
+fprintf(label);
+ L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical
+fprintf(format, Increment.');
+ 20.332115           69.912958           69.912958
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+%% GRAPHICAL REPRESENTATION OF THE SUPPLEMENTARY LOAD CONDITIONS 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad));
+        VTail_comp    = critical_load*(cos(theta_rad));
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 ];
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+rad2deg(theta_rad)
+
+ans =
+
+  274.7529
+
+close all 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad));
+        VTail_comp    = critical_load*(cos(theta_rad));
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+plot(X_horizontal, Y_horizontal, 'b')
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value*100], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value*100 Aircraft.Geometry.Horizontal.b.value*100], [0 Aircraft.Geometry.Vertical.b.value*100], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad));
+        VTail_comp    = critical_load*(cos(theta_rad));
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value*100], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value*100 Aircraft.Geometry.Horizontal.b.value*100], [0 Aircraft.Geometry.Vertical.b.value*100], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad));
+        VTail_comp    = critical_load*(cos(theta_rad));
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value*100 Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [100*Aircraft.Geometry.Vertical.b.value*0.75 100*Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [100*Aircraft.Geometry.Horizontal.b.value*0.75 100*Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+%% GRAPHICAL REPRESENTATION OF THE SUPPLEMENTARY LOAD CONDITIONS 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad));
+        VTail_comp    = critical_load*(cos(theta_rad));
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))/Aircraft.Geometry.Horizontal.b.value;
+        VTail_comp    = critical_load*(cos(theta_rad))/Aircraft.Geometry.Horizontal.b.value;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.5;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.5;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all 
+%% GRAPHICAL REPRESENTATION OF THE SUPPLEMENTARY LOAD CONDITIONS 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.75;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.75;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.1;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.1;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.1;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.05;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.005;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.1;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.005;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.1;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        % xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        % ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.005;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.1;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.007;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.05;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.007;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.007;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.01;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.01;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.025;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.025;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.02;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.02;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.015;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.015;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.0125;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.0125;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.0125;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.0125;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75+VTail_comp], ...
+             [HTail_comp HTail_comp], '--b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.0125;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.0125;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75+VTail_comp], ...
+             [HTail_comp HTail_comp], '--b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.0125;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.0125;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [HTail_comp HTail_comp], '--b')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all 
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.0125;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.0125;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b')
+        
+        plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [HTail_comp HTail_comp], '--b')
+        plot([Aircraft.Geometry.Horizontal.b.value+VTail_comp Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [Aircraft.Geometry.Vertical.b.value*0.75 HTail_comp], '--g') 
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+close all 
+%% GRAPHICAL REPRESENTATION OF THE SUPPLEMENTARY LOAD CONDITIONS 
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.0125;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.0125;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g.')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b.')
+        
+        plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [HTail_comp HTail_comp], '--b.', 'LineWidth', 0.5)
+        plot([Aircraft.Geometry.Horizontal.b.value+VTail_comp Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [Aircraft.Geometry.Vertical.b.value*0.75 HTail_comp], '--g.', 'LineWidth', 0.5) 
+        plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [Aircraft.Geometry.Vertical.b.value*0.75 HTail_comp], 'r.')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.0125;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.0125;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, 'g.')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, 'b.')
+        
+        plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [HTail_comp HTail_comp], '--b.', 'LineWidth', 0.5)
+        plot([Aircraft.Geometry.Horizontal.b.value+VTail_comp Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [Aircraft.Geometry.Vertical.b.value*0.75 HTail_comp], '--g.', 'LineWidth', 0.5) 
+        plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [Aircraft.Geometry.Vertical.b.value*0.75 HTail_comp], '-r.')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.0125;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.0125;
+        X_vertical = [Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value+VTail_comp];
+        Y_vertical = [Aircraft.Geometry.Vertical.b.value*0.75 Aircraft.Geometry.Vertical.b.value*0.75];
+        plot(X_vertical, Y_vertical, '-g.')
+        
+        X_horizontal = [Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value*0.75];
+        Y_horizontal = [0.0 HTail_comp];
+        plot(X_horizontal, Y_horizontal, '-b.')
+        
+        plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [HTail_comp HTail_comp], '--b.', 'LineWidth', 0.5)
+        plot([Aircraft.Geometry.Horizontal.b.value+VTail_comp Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [Aircraft.Geometry.Vertical.b.value*0.75 HTail_comp], '--g.', 'LineWidth', 0.5) 
+        plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
+             [Aircraft.Geometry.Vertical.b.value*0.75 HTail_comp], '-r.')
+        
+        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+    case 'Conventional'
+        
+    case 'T tail'
+        
+    case 'Others'
+end
+Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Graphical_representation.value = figure;
+hold on; grid on; grid minor; 
+
+% SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
+switch(Aircraft.Geometry.Fuselage.empennage)
+    case 'Double fin'
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k', 'LineWidth', 2.5);
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k', 'LineWidth', 2.5);
+        critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+        theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
+        HTail_comp    = critical_load*(sin(theta_rad))*0.0125;
+        VTail_comp    = critical_load*(cos(theta_rad))*0.0125;
+        X_ver
