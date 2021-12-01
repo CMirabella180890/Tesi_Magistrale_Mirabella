@@ -1019,6 +1019,7 @@ fprintf('\n');
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile CdInterpolationdiag.pdf Output
+movefile CdInterpolationdiag.png Output
 
 % Cd interpolation and saving diagram
 
@@ -1031,6 +1032,7 @@ fprintf('\n');
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile CmInterpolationdiag.pdf Output
+movefile CmInterpolationdiag.png Output
             
 % Integrate along semi-span and assign drag and pitching moment along span
 Aircraft.Geometry.Wing.half_span_y.value = linspace(0, ...

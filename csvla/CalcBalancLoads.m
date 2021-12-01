@@ -25,11 +25,11 @@ obj1 = aero_model;
 % A complete documentation of the function CLMax(...) used here is inside
 % the class file aero_model.m, which can be found inside the 'utilities'
 % folder of this library.
-Aircraft.Certification.Aerodynamic_data.CLMAX.value = CLMax(obj1, ...
+Aircraft.Certification.Aerodynamic_data.CLMAX_wingbody.value = CLMax(obj1, ...
                                                       Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value, ...
                                                       Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value, ...
                                                       Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value); 
-Aircraft.Certification.Aerodynamic_data.CLMAX.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Aerodynamic_data.CLMAX_wingbody.Attributes.unit = "Non dimensional";
 
 %% RETURN INSIDE CSVLA
 cd .. 

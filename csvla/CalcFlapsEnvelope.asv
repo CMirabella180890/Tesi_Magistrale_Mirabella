@@ -90,22 +90,31 @@ Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.nF.value = Aircraft
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.nF.Attributes.unit = "g's"; 
 
 % VECTOR OF STALL AIRSPEED TO PLOT THE ENVELOPE 
+% n_plot         = linspace(1.0, nmax, 1e4);
+% VSpos_vec_plot = calcvs(obj, rho, WS, CLmax, n_plot);
 Reg            = Aircraft.Certification.Regulation.value;
 Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
 VS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value;
 VF             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
 VSpos          = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value;
-npos           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.value;
+npos           = 
 
-Aircraft.Certification.Regulation.SubpartC.Flapsloads.Flaps_envelope.value = flapsenvelope_diagram(obj, npos, nmax, VSpos, VS, VF, Reg, Aircraft_name);
+flapsenvelope_diagram(obj, npos, nmax, VSpos, VS, VF, Reg, Aircraft_name);
 
-% Saving figures inside correct folder
-fprintf('Saving flapsenvelopediagram.pdf in: ');
-fprintf('\n'); 
-fprintf('%s\n', SaveFolder);
-% Moving file inside correct folder
-movefile flapsenvelopediagram.pdf Output
-movefile flapsenvelopediagram.png Output
 
+
+% tol = 1e-2;
+% for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value)
+%     x = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value(i);
+%     if abs(Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value - x) < tol
+%         temp1 = i;
+%     end
+% end
+% for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value)
+%     x = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value(i);
+%     if abs(Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value - x) < tol
+%         temp2 = i;
+%     end
+% end
 
 

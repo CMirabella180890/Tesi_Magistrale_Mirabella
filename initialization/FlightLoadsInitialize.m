@@ -147,7 +147,8 @@ Aircraft.Certification.Aerodynamic_data.Horizontal.eta_horizontal.value = 1.0;
 Aircraft.Certification.Aerodynamic_data.Horizontal.eta_horizontal.Attributes.unit = "Non dimensional";
 Aircraft.Certification.Aerodynamic_data.Vertical.a_vt.value = 3.6528578;
 Aircraft.Certification.Aerodynamic_data.Vertical.a_vt.Attributes.unit = "1/rad";
-
+Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.value = 1.9; 
+Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.Attributes.unit = "Non dimensional";
 % -------------------------------------------------------------------------
 % Aileron
 % -------------------------------------------------------------------------
@@ -419,5 +420,8 @@ Aircraft.Certification.Performance.I_Level.Power_loading_SI.Attributes.unit = "k
 % -------------------------------------------------------------------------
 Aircraft.Constants.g.value = 9.80665;
 Aircraft.Constants.g.Attributes.unit = 'm/s^2'; 
+% -------------------------------------------------------------------------
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value = 2.0;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.Attributes.unit = "g's";
 end
 
