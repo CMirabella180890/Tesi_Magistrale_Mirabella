@@ -107,5 +107,76 @@ fprintf('%s\n', SaveFolder);
 movefile flapsenvelopediagram.pdf Output
 movefile flapsenvelopediagram.png Output
 
+%% FLAPS DEPLOYED GUST ENVELOPE 
+VF  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+WS  = Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value;
+rho = Aircraft.Certification.ISA_Condition.rho0.value;
+MAC = Aircraft.Geometry.Wing.mac.value; 
+a   = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
+g   = Aircraft.Constants.g.value;
+Ude = 7.62; % Gust magnitude
 
+% CALCULATION OF THE MASS FACTOR
+mu_g = calcmug(obj, WS, MAC, a, rho, g); 
 
+% GUST ALLEVIATION FACTOR 
+Kg   = calckg(obj, mu_g);
+
+% CALCULATION OF THE GUST LOAD FACTOR AT V = VF 
+nGUST  = @(V) 1.0 + V*((0.5*rho*a*Kg*Ude)/(WS));
+V_gust = linspace(0.0, VF, 1e4); 
+n_gust = nGUST(V_gust);
+
+% STORE VALUES 
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.mu_g.value = mu_g;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.mu_g.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.Kg.value = Kg;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.Kg.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.Vgust.value = V_gust;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.ngust.value = n_gust;
+
+% GUST ENVELOPE AND FLIGHT ENVELOPE SUPERPOSITION 
+Reg            = Aircraft.Certification.Regulation.value;
+Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
+VS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value;
+VF             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+VSpos          = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value;
+npos           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.value;
+
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.diagram = flaps_gust_envelope_diagram(obj, ...
+                                                                                                         npos, ...
+                                                                                                         nmax, ...
+                                                                                                         VSpos, ...
+                                                                                                         n_gust, ...
+                                                                                                         V_gust, ...
+                                                                                                         VS, VF, ...
+                                                                                                         Reg, Aircraft_name);
+% Saving figures inside correct folder
+fprintf('Saving flapsenvelopediagram.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile flaps_gust_envelopediagram.pdf Output
+movefile flaps_gust_envelopediagram.png Output
+
+%% FINAL ENVELOPE WITH FLAPS DEPLOYED 
+nmax           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
+npos           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.value;
+VSpos          = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value;
+VS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value;
+V_g            = linspace(VS, VF, 1e4); 
+n_g            = nGUST(V_g);
+nS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value;
+VF             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+nF             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.nF.value;
+Reg            = Aircraft.Certification.Regulation.value;
+Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
+
+Final_gust_envelope(obj, nmax, npos, VSpos, V_g, n_g, VS, nS, VF, nF, Reg, Aircraft_name)
+% Saving figures inside correct folder
+fprintf('Saving flapsenvelopediagram.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile Final_flap_envelope.pdf Output
+movefile Final_flap_envelope.png Output

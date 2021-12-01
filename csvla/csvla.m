@@ -1090,12 +1090,155 @@ classdef csvla
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
         title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
-        text(20, 2.8, Aircraft_name)                                % Aircraft name inside the plot
-        text(VSpos(temp1)-5.0, 1.2, '\fontname{Courier} S')
-        text(VSpos(x)-5.0, nmax+0.2, '\fontname{Courier} F')
+        text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
+        text(VSpos(temp1)-2.0, 1.2, '\fontname{Courier} S')
+        text(VF-2.0, nmax+0.2, '\fontname{Courier} F')
         exportgraphics(obj,'flapsenvelopediagram.pdf','ContentType','vector')
         exportgraphics(obj,'flapsenvelopediagram.png','ContentType','vector')
         end
+        %
+        function obj = flaps_gust_envelope_diagram(obj, npos, nmax, VSpos, ngust, Vgust, VS, VF, Reg, Aircraft_name)
+        % FUNCTION DETAILED DESCRIPTION
+        % fig1 = V_n_diagram(npos, nneg, VSpos, VSneg, VD, VG, VA, VE, Reg, Aircraft_name)
+        %    This function plot the V - n diagram, based on the applied regulation.
+        %    The applied regulation is stored inside the local variable 'Reg' for
+        %    convenience and it is used to automatically change the output figure
+        %    title name. Also, the selected aircraft name is stored inside the
+        %    variable 'Aircraft_name' and is inserted in the diagram as plain text.
+        %    This might be a useful feature. 
+        %    INPUTS 
+        %         npos          --> An array of positive load factors
+        %         nneg          --> An array of negative load factors 
+        %         nmax          --> Positive maximum load factor
+        %         nmin          --> Negative minimum load factor
+        %         VSpos         --> An array of positive stall speeds 
+        %         VSneg         --> An array of negative stall speeds
+        %         VD            --> Aircraft dive speed (positive side)
+        %         VG            --> Aircraft dive speed (negative side)
+        %         VA            --> Aircraft positive manoeuvring speed
+        %         VE            --> Aircraft negative manoeuvring speed 
+        %         Reg           --> Applied regulation from 'Aircraft' struct 
+        %         Aircraft_name --> Aircraft name from 'Aircraft' struct
+        %    OUTPUT
+        %         fig1          --> The V-N diagram
+        %    
+        %    FURTER REFERENCES
+        %         The V-N diagram is based on: 
+        %
+        %         CS-VLA 333 FLIGHT ENVELOPE, pag. 39/190
+        %         
+        %         EASA Airworthiness rules can be find at 
+        %         url: https://www.easa.europa.eu/sites/default/files/dfu/Easy Access Rules CS-VLA (Amendment 1).pdf
+        %    
+        obj = figure;
+        hold on
+        grid on 
+        grid minor
+        ylim([-0.5 nmax+0.5])
+        xlim([0 VF+10])
+        plot(VSpos, npos, ':r', 'LineWidth',0.2)
+        tol = 1E-3;
+        for i = 1:length(npos)
+            if abs(nmax - npos(i)) < tol
+                x = i;               
+            end
+        end
+        temp1 = 1;
+        for i = 1:length(npos)
+            if abs(1 - npos(i)) < tol 
+                temp1 = i;
+            end
+        end
+        plot(VSpos(temp1:x), npos(temp1:x), '-r', 'LineWidth',1)
+        plot([VSpos(x) VF], ...
+             [nmax nmax], '-b', 'LineWidth',1)
+        plot([VF VF], ...
+             [nmax 0], '-b', 'LineWidth',1)
+        plot([VSpos(temp1) VSpos(temp1)], ...
+             [npos(temp1) 0.0], '-b', 'LineWidth',1)
+        plot(Vgust, ngust, '-k', 'LineWidth',1)
+        xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+        ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+        title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+        text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
+        text(VSpos(temp1)-2.5, 1.2, '\fontname{Courier} S')
+        text(VF-2.5, nmax+0.2, '\fontname{Courier} F')
+        exportgraphics(obj,'flaps_gust_envelopediagram.pdf','ContentType','vector')
+        exportgraphics(obj,'flaps_gust_envelopediagram.png','ContentType','vector')
+        end
+        %
+        function obj = Final_gust_envelope(obj, nmax, npos, VSpos, V_g, n_g, VS, nS, VF, nF, Reg, Aircraft_name)
+        % FUNCTION DETAILED DESCRIPTION
+        %  fig1 = V_n_diagram(npos, nneg, VSpos, VSneg, VD, VG, VA, VE, Reg, Aircraft_name)
+        %  This function plot the V - n diagram, based on the applied regulation.
+        %  The applied regulation is stored inside the local variable 'Reg' for
+        %  convenience and it is used to automatically change the output figure
+        %  title name. Also, the selected aircraft name is stored inside the
+        %  variable 'Aircraft_name' and is inserted in the diagram as plain text.
+        %  This might be a useful feature. 
+        %      INPUTS 
+        %       +++ POSITIVE SIDE OF THE FLIGHT ENVELOPE DIAGRAM +++
+        %       npos          --> An array of positive load factors
+        %       VSpos         --> An array of positive stall speeds 
+        %       VC            --> Max positive cruise speed
+        %       VD            --> Aircraft dive speed (positive side) 
+        %       +++ NEGATIVE SIDE OF THE FLIGHT ENVELOPE DIAGRAM +++ 
+        %       nneg          --> An array of negative load factors 
+        %       VSneg         --> An array of negative stall speeds
+        %       VF            --> Max negative cruise speed
+        %       VE            --> Aircraft dive speed (negative side)
+        %       +++ INFORMATION RELATED TO AIRCRAFT AND REGULATION +++
+        %       Reg           --> Applied regulation from 'Aircraft' struct 
+        %       Aircraft_name --> Aircraft name from 'Aircraft' struct
+        %      OUTPUT
+        %       fig3          --> Final Flight Envelope
+        %            
+        %      FURTER REFERENCES
+        %       The V-N diagram is based on: 
+        %         
+        %              CS-VLA 333 FLIGHT ENVELOPE, pag. 39/190
+        %                 
+        %       EASA Airworthiness rules can be find at 
+        %        url: https://www.easa.europa.eu/sites/default/files/dfu/Easy Access Rules CS-VLA (Amendment 1).pdf
+
+        obj = figure;
+        hold on
+        grid on 
+        grid minor
+        % ylim([nF-0.5 nC+0.5])
+        % xlim([0 VD+10])
+        plot(VSpos, npos, ':r', 'LineWidth', 1)  
+        tol = 1e-3;
+        for i = 1:length(npos)
+            if abs(nmax - npos(i)) < tol
+                temp1 = i;               
+            end
+        end
+        for i = 1:length(npos)
+            x = n_g(i);
+            y = abs(x - npos(i));
+            if (y < tol) 
+                temp2 = i;
+            end
+        end
+        for i = 1:length(npos)
+            if abs(1.0 - npos(i)) < tol
+                temp3 = i;               
+            end
+        end
+        plot(V_g, n_g, '--k', 'LineWidth', 0.25)
+        plot(VSpos(temp3:temp2), npos(temp3:temp2), '-r', 'LineWidth', 1)
+        plot([VSpos(temp2) VF], [npos(temp2) nmax], 'r', 'LineWidth', 1)
+        plot([VF VF], [nmax 0.0], 'r', 'LineWidth', 1)
+        plot([VSpos(temp3) VSpos(temp3)], [1.0 0.0], 'r', 'LineWidth', 1)
+        xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+        ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+        title("Final envelope per ", Reg, "Interpreter", "latex")     % Applied regulation from 'Aircraft' struct
+        text(12.5, 1.5, Aircraft_name)                                 % Aircraft name inside the plot
+        text(VSpos(temp3), 1.2, '\fontname{Courier} Point S')
+        text(VF+1.0, nF+0.2, '\fontname{Courier} Point F')
+        exportgraphics(obj,'Final_flap_envelope.pdf','ContentType','vector')
+        exportgraphics(obj,'Final_flap_envelope.png','ContentType','vector')
+     end
     end
 end
-
