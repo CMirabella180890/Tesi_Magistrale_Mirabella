@@ -510,8 +510,33 @@ fprintf(label);
 fprintf(format, Data1.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
+% FROM 0 TO S_inverted
+n_from0toSinv = linspace(0.0, -1.0, numb)';
+VS_inv        = Vstall(WS, rho, abs(CLMAX_clean_inverted), abs(-1.0));
+nS_inv        = -1.0;
+V_from0toSinv = VS_inv*ones(numb, 1);
+
 % FROM S_inverted TO G
-Vstall(WS, rho, CLMAX_clean_inverte, n);
+n_fromSinvtoG = linspace(-1.0, nG, numb)';
+V_fromSinvtoG = Vstall(WS, rho, abs(CLMAX_clean_inverted), abs(n_fromSinvtoG));
+
+% FROM G TO F
+V_fromGtoF = linspace(VG, VC, numb)';
+n_fromGtoF = nGust_inverted(rho, V, CLalfa, KG, Ude_cruise, WS);
+VF = VC;
+nF = n_fromG
+
+% FROM F TO E
+n_fromGtoE = linspace(double(nG), n_gust_dive_neg(end), numb)';
+nE         = n_fromGtoE(end);
+p          = polyfit([double(nG) nE], ...
+                     [V_gust_cruise(end) V_gust_dive(end)], 1);
+V_fromGtoE = polyval(p, n_fromGtoE);
+VE         = V_fromGtoE(end);
+
+% FROM E TO ZERO 
+n_fromEto0 = linspace(n_fromGtoE(end), 0.0, numb)';
+V_fromEto0 = VD*ones(numb, 1);
 
 %% FINAL ENVELOPE DIAGRAM 
 
@@ -519,21 +544,30 @@ final_envelope = figure;
 hold on; grid on; grid minor;
 ylim([nmin-2.0 nmax+2.0])
 xlim([0 VD+10])
-plot(V_from0toS, n_from0toS, 'r', 'LineWidth', 1.5)
+plot(V_from0toSinv, n_from0toSinv, 'r', 'LineWidth', 1.5)
 plot(V_fromStoA, n_fromStoA, 'r', 'LineWidth', 1.5)
 plot(V_fromAtoC, n_fromAtoC, 'r', 'LineWidth', 1.5)
 plot(V_fromCtoFG, n_fromCtoFG, 'r', 'LineWidth', 1.5)
 plot(V_fromFGtoD, n_fromFGtoD, 'r', 'LineWidth', 1.5)
 plot(V_fromDto0, n_fromDto0, 'r', 'LineWidth', 1.5)
+plot(V_from0toS, n_from0toS, 'r', 'LineWidth', 1.5)
+plot(V_fromSinvtoG, n_fromSinvtoG, 'r', 'LineWidth', 1.5)
+plot(V_fromGtoF, n_fromGtoF, 'r', 'LineWidth', 1.5)
+plot(V_fromEto0, n_fromEto0, 'r', 'LineWidth', 1.5)
 plot(VD, nD, 'k.', 'MarkerSize', 12);
 plot(V_fromCtoFG(end), n_fromCtoFG(end), 'k.', 'MarkerSize', 12)
+plot(VG, nG, 'k.', 'MarkerSize', 12);
 plot(VC, nC, 'k.', 'MarkerSize', 12)
 plot(VA, nA, 'k.', 'MarkerSize', 12)
 plot(VS, 1.0, 'k.', 'MarkerSize', 12)
+plot(VE, nE, 'k.', 'MarkerSize', 12)
+plot(V_from0toSinv(1), -1.0, 'k.', 'MarkerSize', 12)
 text(VD, nD, '  D', 'FontSize', 6)
 text(VC, nC, '  C', 'FontSize', 6)
 text(VA, nA, '  A', 'FontSize', 6)
 text(VS, 1.0, ' S', 'FontSize', 6)
+text(VG, nG, '  G', 'FontSize', 6)
+text(V_from0toSinv(1), -1.0, '  S inv.', 'FontSize', 6)
 xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
 ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
 title("V~-~n diagram per ", Reg, "Interpreter", "latex")

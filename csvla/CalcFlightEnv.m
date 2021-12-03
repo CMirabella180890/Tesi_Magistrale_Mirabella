@@ -512,11 +512,31 @@ disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % FROM 0 TO S_inverted
 n_from0toSinv = linspace(0.0, -1.0, numb)';
-V_from0toSinv = Vstall(WS, rho, abs(CLMAX_clean_inverted), abs(-1.0))*ones(numb, 1);
+VS_inv        = Vstall(WS, rho, abs(CLMAX_clean_inverted), abs(-1.0));
+nS_inv        = -1.0;
+V_from0toSinv = VS_inv*ones(numb, 1);
 
 % FROM S_inverted TO G
 n_fromSinvtoG = linspace(-1.0, nG, numb)';
 V_fromSinvtoG = Vstall(WS, rho, abs(CLMAX_clean_inverted), abs(n_fromSinvtoG));
+
+% FROM G TO F
+V_fromGtoF = linspace(VG, VC, numb)';
+n_fromGtoF = nGust_inverted(rho, V_fromGtoF, CLalfa, KG, Ude_cruise, WS);
+VF = VC;
+nF = n_fromGtoF(end);
+
+% FROM F TO E
+n_fromFtoE = linspace(n_fromGtoF(end), n_gust_dive_neg(end), numb)';
+nE         = n_fromFtoE(end);
+p          = polyfit([n_gust_cruise_neg(end) n_gust_dive_neg(end)], ...
+                     [V_gust_cruise(end) V_gust_dive(end)], 1);
+V_fromFtoE = polyval(p, double(n_fromFtoE));
+VE         = V_fromFtoE(end);
+
+% FROM E TO ZERO 
+n_fromEto0 = linspace(n_fromFtoE(end), 0.0, numb)';
+V_fromEto0 = VD*ones(numb, 1);
 
 %% FINAL ENVELOPE DIAGRAM 
 
@@ -532,12 +552,16 @@ plot(V_fromFGtoD, n_fromFGtoD, 'r', 'LineWidth', 1.5)
 plot(V_fromDto0, n_fromDto0, 'r', 'LineWidth', 1.5)
 plot(V_from0toS, n_from0toS, 'r', 'LineWidth', 1.5)
 plot(V_fromSinvtoG, n_fromSinvtoG, 'r', 'LineWidth', 1.5)
+plot(V_fromGtoF, n_fromGtoF, 'r', 'LineWidth', 1.5)
+plot(V_fromFtoE, n_fromFtoE, 'r', 'LineWidth', 1.5)
+plot(V_fromEto0, n_fromEto0, 'r', 'LineWidth', 1.5)
 plot(VD, nD, 'k.', 'MarkerSize', 12);
 plot(V_fromCtoFG(end), n_fromCtoFG(end), 'k.', 'MarkerSize', 12)
 plot(VG, nG, 'k.', 'MarkerSize', 12);
 plot(VC, nC, 'k.', 'MarkerSize', 12)
 plot(VA, nA, 'k.', 'MarkerSize', 12)
 plot(VS, 1.0, 'k.', 'MarkerSize', 12)
+plot(VE, nE, 'k.', 'MarkerSize', 12)
 plot(V_from0toSinv(1), -1.0, 'k.', 'MarkerSize', 12)
 text(VD, nD, '  D', 'FontSize', 6)
 text(VC, nC, '  C', 'FontSize', 6)
