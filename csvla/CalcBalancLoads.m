@@ -1,4 +1,17 @@
-
+% ==== USEFUL FUNCTION DEFINED LOCALLY ====
+% -------------------------------------------------------------------------
+% CLMAX FUNCTION
+CLmax_func = @(rho, S, V, WS, n) (2 / rho) * (1 / V^2) * (WS) * n;
+% -------------------------------------------------------------------------
+% GUST LOAD FACTOR - POSITIVE FLIGHT
+nGust  = @(rho, V, a, kG, Ude, WS) 1 + (0.5 * rho * V * a * kG * Ude)/(WS); 
+% -------------------------------------------------------------------------
+% GUST LOAD FACTOR - INVERTED FLIGHT
+nGust_inverted  = @(rho, V, a, kG, Ude, WS) 1 - (0.5 * rho * V * a * kG * Ude)/(WS); 
+% -------------------------------------------------------------------------
+% STALL SPEED FUNCTION
+Vstall = @(WS, rho, CLmax, n) sqrt(WS * (2/rho) * (1/CLmax).*n); 
+% -------------------------------------------------------------------------
 %% Script to evaluate balancing horizontal tail loads
 %   DESCRIPTION
 %    In this script, all the methods relative to the calculation of
@@ -51,6 +64,9 @@ obj1 = aero_model;
 % and non-linear calculation are compared with raw data available. The
 % selected range is -2.0<CL<2.0. To find a complete documentation of the
 % function 'CL_Non_linear_model(...)' search inside aero_model.m file. 
+
+% NUMBER OF ELEMENTS
+numb = 1e3;
 
 % Alpha_star and Alpha_max 
 a = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value;
@@ -127,8 +143,8 @@ disp(" ")
 disp(" ++++ FIGURE 6 - LIFT CURVE INTERPOLATION ++++ ");
 Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmodel_curve(Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value, ...
     Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value, ...
-    Aircraft.Certification.Aerodynamic_data.CL.value, ...
-    Aircraft.Certification.Aerodynamic_data.alpha.value);
+    str2num(Aircraft.Certification.Aerodynamic_data.CL.value), ...
+    str2num(Aircraft.Certification.Aerodynamic_data.alpha.value));
 
 % SAVING FIGURES
 exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value, 'FullLiftModelInterpolation.pdf', 'ContentType', 'vector');
@@ -379,8 +395,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromDto
 %% ALPHA CALCULATION - POSITIVE LOAD FACTOR
 
 % Interpolation coefficient from actual aerodynamic data
-CL_supp    = Aircraft.Certification.Aerodynamic_data.CL.value;
-alpha_supp = Aircraft.Certification.Aerodynamic_data.alpha.value;
+CL_supp    = str2num(Aircraft.Certification.Aerodynamic_data.CL.value);
+alpha_supp = str2num(Aircraft.Certification.Aerodynamic_data.alpha.value);
 x          = 0.03*ones(length(CL_supp), 1);
 p = polyfit(CL_supp + x, alpha_supp, 2);
 

@@ -288,7 +288,7 @@ set.h                       = 0;                      % altitude
 set.mu                      = ...                     % freestream dynamic viscosity
      (1.4580e-06*set.T^(1.5))/(set.T+110.4);
 % set.Mach                    = 0.1;                  % freestream Mach number
-set.Vinf                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(1);       % freestream speed
+set.Vinf                    = double(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(1));       % freestream speed
 set.Mach                    = set.Vinf/set.a;         % freestream Mach number
 % set.rho                     = 1.225;                % freestream density
 % set.Vinf                    = 34.0;                 % freestream speed

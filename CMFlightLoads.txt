@@ -68,3 +68,729 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  VG                nG
  43.295809          -3.031162
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+-----------------
+### Balancing loads - per CS - VLA ###
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ ++++ FIGURE 6 - LIFT CURVE INTERPOLATION ++++ 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>process_inputs', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m', 587)" style="font-weight:bold">legend>process_inputs</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m',587,0)">line 587</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m', 315)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m',315,0)">line 315</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m',259,0)">line 259</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Lift_fullmodel_curve', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Lift_fullmodel_curve.m', 26)" style="font-weight:bold">Lift_fullmodel_curve</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Lift_fullmodel_curve.m',26,0)">line 26</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcBalancLoads', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m', 144)" style="font-weight:bold">CalcBalancLoads</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m',144,0)">line 144</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 46)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',46,0)">line 46</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)] 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving FullLiftModelInterpolation.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ ++++ FIGURE 7 - HORIZONTAL EMPENNAGE AIRLOADS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving Balancingloads.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 8 - MAIN WING AIRLOADS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving Wingairloads.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\OpenVSP
+ ++++ STARTING OPEN VSP CALCULATIONS ++++ 
+ ++++ FIGURE 9 - OPEN VSP RESULTS ++++ 
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ ++++ FIGURE 10 - 3D INTERPOLATION OF SPANWISE LIFT DISTR. ++++ 
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType'
+to 'image' for better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.] 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ClInterpolation3dplot.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ POINT OF THE FINAL ENVELOPE ++++
+ ++++++++++ POINT S OF THE FINAL ENVELOPE ++++++++++ 
+ V [m/s]    n [g]     q [Pa]      CL        CD        alpha [°]  L [daN]     LH [daN]
+ 19.783937  1.000000  239.735052  1.580000  0.227814  10.659011  101.324000  -12.378499
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ POINT A OF THE FINAL ENVELOPE ++++++++++ 
+ V [m/s]    n [g]     q [Pa]      CL        CD        alpha [°]  L [daN]     LH [daN]
+ 38.565993  3.800000  910.993199  1.580000  0.227814  10.659011  385.031199  -18.644671
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ POINT C OF THE FINAL ENVELOPE ++++++++++ 
+ V [m/s]    n [g]     q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]
+ 46.709536  5.349006  1336.340718  1.580000  0.199019  10.659011  543.202939  -18.644671
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ POINT D OF THE FINAL ENVELOPE ++++++++++ 
+ V [m/s]    n [g]     q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]
+ 58.386920  3.718129  2088.032373  0.689342  0.068100  -1.452461  411.631511  -38.978811
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ POINT F OF THE FINAL ENVELOPE ++++++++++ 
+ V [m/s]    n [g]      q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]
+ 46.709536  -1.718129  1336.340718  -0.949265  0.084323  -19.399964  -290.989804  -37.435464
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ POINT G OF THE FINAL ENVELOPE ++++++++++ 
+ V [m/s]    n [g]      q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]
+ 30.456984  -1.500000  568.172074  -1.000000  0.088090  -19.955664  -147.099750  -15.916439
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ POINT E OF THE FINAL ENVELOPE ++++++++++ 
+ V [m/s]    n [g]      q [Pa]       CL        CD        alpha [°]  L [daN]     LH [daN]
+ 58.386920  -1.718129  2088.032373  -0.311679  0.053700  -12.416547  -117.590927  -50.899928
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ FIGURE 11 - LIFT MODELS AND FLIGHT ENVELOPE POINTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving LiftComparisonWithPoints.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ ++++++++++ POINT S OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
+ Shear [daN]           Bending [daN * m]             Torsion [daN * m]
+ 0.000000          0.000000          0.000000
+ 1.381570          0.047264          -0.026948
+ 2.769332          0.189269          -0.054067
+ 4.158486          0.426273          -0.081141
+ 5.545383          0.758248          -0.108506
+ 6.930099          1.185040          -0.136267
+ 8.313038          1.706516          -0.163933
+ 9.694518          2.322564          -0.191247
+ 11.074507          3.033083          -0.218476
+ 12.453445          3.837987          -0.245924
+ 13.831556          4.737211          -0.273484
+ 15.208878          5.730699          -0.300953
+ 16.585588          6.818405          -0.328468
+ 17.961343          8.000273          -0.356270
+ 19.336314          9.276246          -0.384267
+ 20.710563          10.646271          -0.412193
+ 22.084105          12.110299          -0.440166
+ 23.456223          13.668257          -0.468409
+ 24.827130          15.320056          -0.496770
+ 26.198416          17.065667          -0.524946
+ 27.570061          18.905115          -0.552809
+ 28.941268          20.838397          -0.580697
+ 30.312143          22.865488          -0.609066
+ 31.682822          24.986368          -0.637889
+ 33.053374          27.201027          -0.667344
+ 34.423676          29.509453          -0.697484
+ 35.793740          31.911628          -0.727947
+ 37.163451          34.407531          -0.758554
+ 38.532840          36.997141          -0.789620
+ 39.902098          39.680442          -0.821236
+ 41.271300          42.457427          -0.852935
+ 42.640653          45.328099          -0.885023
+ 44.010203          48.292470          -0.917793
+ 45.379622          51.350543          -0.952197
+ 46.748999          54.502312          -0.987568
+ 48.118122          57.747766          -1.023238
+ 49.486626          61.086876          -1.058495
+ 50.854749          64.519607          -1.089855
+ 52.222196          68.045923          -1.111368
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointS.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ ++++++++++ POINT A OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
+ Shear [daN]           Bending [daN * m]             Torsion [daN * m]
+ 0.000000          0.000000          0.000000
+ 5.249968          0.179604          -0.102403
+ 10.523463          0.719222          -0.205455
+ 15.802246          1.619838          -0.308336
+ 21.072455          2.881341          -0.412323
+ 26.334375          4.503153          -0.517816
+ 31.589546          6.484761          -0.622946
+ 36.839169          8.825744          -0.726740
+ 42.083128          11.525717          -0.830209
+ 47.323092          14.584351          -0.934512
+ 52.559913          18.001401          -1.039240
+ 57.793736          21.776657          -1.143621
+ 63.025236          25.909938          -1.248179
+ 68.253105          30.401039          -1.353827
+ 73.477995          35.249735          -1.460216
+ 78.700140          40.455829          -1.566335
+ 83.919600          46.019136          -1.672631
+ 89.133647          51.939378          -1.779955
+ 94.343093          58.216214          -1.887728
+ 99.553982          64.849535          -1.994797
+ 104.766230          71.839437          -2.100676
+ 109.976819          79.185910          -2.206648
+ 115.186143          86.888853          -2.314451
+ 120.394724          94.948199          -2.423977
+ 125.602821          103.363904          -2.535906
+ 130.809969          112.135921          -2.650438
+ 136.016211          121.264185          -2.766198
+ 141.221113          130.748619          -2.882507
+ 146.424791          140.589137          -3.000554
+ 151.627974          150.785679          -3.120695
+ 156.830941          161.338221          -3.241153
+ 162.034480          172.246775          -3.363086
+ 167.238770          183.511386          -3.487615
+ 172.442565          195.132063          -3.618347
+ 177.646195          207.108784          -3.752757
+ 182.848865          219.441510          -3.888303
+ 188.049180          232.130127          -4.022280
+ 193.248046          245.174506          -4.141448
+ 198.444345          258.574509          -4.223200
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ FIGURE 13 - POINT A SHEAR, BENDING, TORSION
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ ++++++++++ POINT C OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
+ Shear [daN]           Bending [daN * m]             Torsion [daN * m]
+ 0.000000          0.000000          0.000000
+ 7.701205          0.263462          -0.150215
+ 15.436924          1.055030          -0.301383
+ 23.180398          2.376149          -0.452300
+ 30.911295          4.226654          -0.604839
+ 38.630033          6.605699          -0.759587
+ 46.338871          9.512530          -0.913803
+ 54.039571          12.946530          -1.066058
+ 61.731961          16.907135          -1.217837
+ 69.418493          21.393861          -1.370840
+ 77.100412          26.406350          -1.524467
+ 84.777935          31.944293          -1.677583
+ 92.452050          38.007424          -1.830960
+ 100.120839          44.595444          -1.985935
+ 107.785257          51.708021          -2.141998
+ 115.445650          59.344868          -2.297665
+ 123.102103          67.505712          -2.453592
+ 130.750616          76.190147          -2.611026
+ 138.392379          85.397671          -2.769117
+ 146.036260          95.128124          -2.926178
+ 153.682134          105.381648          -3.081493
+ 161.325574          116.158228          -3.236944
+ 168.967160          127.457716          -3.395081
+ 176.607654          139.280012          -3.555745
+ 184.247439          151.625055          -3.719933
+ 191.885831          164.492772          -3.887941
+ 199.522896          177.883071          -4.057750
+ 207.157994          191.795838          -4.228365
+ 214.791297          206.230945          -4.401529
+ 222.423873          221.188306          -4.577764
+ 230.056133          236.667886          -4.754464
+ 237.689231          252.669701          -4.933328
+ 245.323432          269.193818          -5.116000
+ 252.956906          286.240251          -5.307773
+ 260.590139          303.808965          -5.504939
+ 268.221963          321.899906          -5.703772
+ 275.850331          340.512905          -5.900304
+ 283.476576          359.647773          -6.075112
+ 291.099053          379.304308          -6.195034
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ FIGURE 14 - POINT C SHEAR, BENDING, TORSION
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 15 - DRAG SPANWISE DISTRIBUTION INTERPOLATION ++++ 
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType'
+to 'image' for better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.] 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CdInterpolationdiag.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 16 - PITCH MOM. SPANWISE DISTRIBUTION INTERPOLATION ++++ 
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType'
+to 'image' for better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.] 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CmInterpolationdiag.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ ++++++++++ POINT D OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
+ Shear [daN]           Bending [daN * m]             Torsion [daN * m]
+ 0.000000          0.000000          0.000000
+ 5.314588          0.181815          -0.347383
+ 10.630892          0.727318          -0.696352
+ 15.947330          1.636573          -1.045325
+ 21.262762          2.909550          -1.395804
+ 26.577274          4.546183          -1.747945
+ 31.891064          6.546415          -2.099482
+ 37.204349          8.910206          -2.449326
+ 42.517147          11.637520          -2.798579
+ 47.829570          14.728329          -3.148604
+ 53.141697          18.182609          -3.499065
+ 58.453541          22.000341          -3.849163
+ 63.765163          26.181507          -4.199519
+ 69.076472          30.726089          -4.551156
+ 74.387524          35.634068          -4.903637
+ 79.698348          40.905427          -5.255782
+ 85.008945          46.540150          -5.608026
+ 90.319070          52.538214          -5.961324
+ 95.628797          58.899588          -6.315074
+ 100.938646          65.624264          -6.667966
+ 106.248607          72.712249          -7.018870
+ 111.558425          80.163542          -7.369411
+ 116.868129          87.978135          -7.722903
+ 122.177768          96.156021          -8.079325
+ 127.487371          104.697196          -8.438834
+ 132.796896          113.601658          -8.801514
+ 138.106348          122.869401          -9.165700
+ 143.415693          132.500418          -9.530677
+ 148.724938          142.494703          -9.897981
+ 154.034136          152.852250          -10.267977
+ 159.343313          163.573057          -10.638521
+ 164.652529          174.657126          -11.011186
+ 169.961802          186.104458          -11.386512
+ 175.271039          197.915055          -11.769303
+ 180.580270          210.088916          -12.157654
+ 185.889446          222.626038          -12.548619
+ 191.198434          235.526413          -12.935978
+ 196.507311          248.790030          -13.295563
+ 201.815929          262.416878          -13.585933
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ FIGURE 17 - POINT D SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ ++++++++++ POINT F OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
+ Shear [daN]           Bending [daN * m]             Torsion [daN * m]
+ 0.000000          0.000000          0.000000
+ -4.559293          -0.155976          -0.214747
+ -9.132719          -0.624387          -0.430492
+ -13.707704          -1.405770          -0.646205
+ -18.275087          -2.499918          -0.862964
+ -22.835434          -3.906330          -1.080933
+ -27.390231          -5.624577          -1.298490
+ -31.941071          -7.654332          -1.514841
+ -36.488052          -9.995328          -1.730795
+ -41.032111          -12.647334          -1.947341
+ -45.573853          -15.610169          -2.164204
+ -50.113384          -18.883680          -2.380793
+ -54.651185          -22.467731          -2.597562
+ -59.186498          -26.362178          -2.815254
+ -63.719778          -30.566867          -3.033551
+ -68.251233          -35.081664          -3.251605
+ -72.780885          -39.906447          -3.469736
+ -77.306784          -45.041025          -3.688637
+ -81.829508          -50.485162          -3.907869
+ -86.353219          -56.238781          -4.126481
+ -90.877841          -62.301949          -4.343720
+ -95.401320          -68.674657          -4.560744
+ -99.923908          -75.356836          -4.779802
+ -104.445978          -82.348438          -5.000860
+ -108.967751          -89.649434          -5.224082
+ -113.488904          -97.259793          -5.449555
+ -118.009470          -105.179474          -5.676108
+ -122.529176          -113.408428          -5.903205
+ -127.048075          -121.946597          -6.131917
+ -131.566613          -130.793941          -6.362523
+ -136.084981          -139.950443          -6.593511
+ -140.603680          -149.416108          -6.825973
+ -145.122843          -159.190963          -7.060355
+ -149.641706          -169.275013          -7.300035
+ -154.160512          -179.668247          -7.543577
+ -158.678840          -190.370646          -7.788959
+ -163.195657          -201.382142          -8.032159
+ -167.711574          -212.702652          -8.257089
+ -172.225479          -224.332078          -8.436413
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ FIGURE 18 - POINT F SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointF.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ ++++++++++ POINT G OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
+ Shear [daN]           Bending [daN * m]             Torsion [daN * m]
+ 0.000000          0.000000          0.000000
+ -2.037397          -0.069700          -0.089976
+ -4.081498          -0.279031          -0.180374
+ -6.126410          -0.628249          -0.270753
+ -8.167827          -1.117262          -0.361590
+ -10.205994          -1.745840          -0.452965
+ -12.241592          -2.513784          -0.544162
+ -14.275343          -3.420943          -0.634825
+ -16.307291          -4.467191          -0.725317
+ -18.337877          -5.652420          -0.816077
+ -20.367384          -6.976547          -0.906978
+ -22.395862          -8.439501          -0.997756
+ -24.423535          -10.041217          -1.088613
+ -26.450043          -11.781629          -1.179880
+ -28.475598          -13.660664          -1.271416
+ -30.500297          -15.678260          -1.362844
+ -32.524151          -17.834360          -1.454306
+ -34.546246          -20.128873          -1.546113
+ -36.566853          -22.561690          -1.638067
+ -38.587924          -25.132774          -1.729746
+ -40.609424          -27.842157          -1.820826
+ -42.630389          -30.689835          -1.911818
+ -44.650938          -33.675775          -2.003698
+ -46.671243          -36.799955          -2.096447
+ -48.691409          -40.062362          -2.190148
+ -50.711284          -43.462980          -2.284844
+ -52.730883          -47.001791          -2.380019
+ -54.750078          -50.678771          -2.475433
+ -56.768892          -54.493894          -2.571554
+ -58.787539          -58.447140          -2.668509
+ -60.806106          -62.538502          -2.765632
+ -62.824831          -66.767981          -2.863400
+ -64.843776          -71.135591          -2.962021
+ -66.862578          -75.641335          -3.062984
+ -68.881351          -80.285206          -3.165637
+ -70.899894          -85.067196          -3.269096
+ -72.917725          -89.987273          -3.371645
+ -74.935132          -95.045397          -3.466343
+ -76.951605          -100.241522          -3.541428
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ FIGURE 19 - POINT G SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointG.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ 
+ ++++++++++ POINT E OF THE FINAL ENVELOPE - SHEAR, BENDING AND TORSION ++++++++++ 
+ Shear [daN]           Bending [daN * m]             Torsion [daN * m]
+ 0.000000          0.000000          0.000000
+ -2.414217          -0.082592          -0.360881
+ -4.836246          -0.330634          -0.723380
+ -7.258475          -0.744401          -1.085946
+ -9.675502          -1.323721          -1.449859
+ -12.087846          -2.068256          -1.815157
+ -14.496555          -2.977723          -2.179905
+ -16.902785          -4.051911          -2.543193
+ -19.306645          -5.290654          -2.905921
+ -21.708659          -6.693809          -3.269252
+ -24.109207          -8.261263          -3.632945
+ -26.508359          -9.992916          -3.996348
+ -28.906416          -11.888685          -4.360000
+ -31.302957          -13.948479          -4.724742
+ -33.698261          -16.172205          -5.090200
+ -36.092473          -18.559783          -5.455375
+ -38.485598          -21.111138          -5.820628
+ -40.876442          -23.826155          -6.186755
+ -43.265369          -26.704691          -6.553247
+ -45.654876          -29.746699          -6.919019
+ -48.044909          -32.952218          -7.283028
+ -50.434243          -36.321242          -7.646664
+ -52.823031          -39.853727          -8.012941
+ -55.211504          -43.549646          -8.381892
+ -57.599806          -47.408980          -8.753569
+ -59.987739          -51.431712          -9.127992
+ -62.375323          -55.617817          -9.503721
+ -64.762403          -59.967265          -9.880166
+ -67.149006          -64.480024          -10.258692
+ -69.535379          -69.156069          -10.639591
+ -71.921640          -73.995388          -11.020987
+ -74.308083          -78.997983          -11.404269
+ -76.694783          -84.163871          -11.789795
+ -79.081317          -89.493053          -12.181810
+ -81.467839          -94.985525          -12.578746
+ -83.854127          -100.641276          -12.977892
+ -86.239529          -106.460270          -13.373157
+ -88.624418          -112.442457          -13.741595
+ -91.008004          -118.587777          -14.043252
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ FIGURE 20 - POINT E SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointE.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 21 - SHEAR COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 22 - BENDING COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving BendingComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 23 - TORSION COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving TorsionComparison.pdf Output in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 24 - SPANWISE LIFT COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving clComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 25 - SPANWISE DRAG COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving cdComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 26 - SPANWISE PITCH MOMENT COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving cmComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 27 - POINT A SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CmComparisonPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 28 - POINT A PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 29 - POINT A FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 30 -POINT C SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CmComparisonPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 31 - POINT C PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 32 - POINT C FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 33 -POINT D SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CmComparisonPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 34 - POINT D PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 35 - POINT D FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionFullPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 36 - FULL LOAD UNSYMM. TORSION COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalLoadsComparisonFullLoad.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 37 - PARTIAL LOAD UNSYMM. TORSION COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalLoadsComparisonSeventyPerCentLoad.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ METHOD CS - VLA 423 (a) ++++
+ ---------------------------------
+ ++++ UNCHECKED ++++
+ ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
+ Pitch-up at VA     Pitch-down at VA
+-37.748689          47.185861
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++++++++ Total Critical Horizontal Tail loads - Method (a) [daN] ++++++++++ 
+ Total critical load at VA
+ 28.541190
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (b) ++++
+ ---------------------------------
+ ++++ CHECKED ++++
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+ At VA
+ -88.927604
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
+ ----------------------------------------------
+ +++++++++++++++++ Horizontal Tail loads [daN] +++++++++++++++++ 
+ At VA
+ 39.604175
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
+ ----------------------------------------------
+ +++++++++++++++++ Total Horizontal Tail loads - Method (b) [daN] +++++++++++++++++ 
+ At VA
+ -88.927604
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (a)+(b) ++++
+ ----------------------------------------------
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+ At VA
+ -56.393360
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (c) - DeltaLtail ++++ 
+ ---------------------------------------------- 
+ +++++++++++++++++ Delta Tail loads [daN] +++++++++++++++++ 
+  Upward defl. VA   Downward defl. VA    Upward defl. VD  Downward defl. VD
+ -37.748689         47.185861            -36.050619         36.050619
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++ METHOD CS - VLA 423 (c) - BTL_1 + DeltaLtail ++++ 
+ ------------------------------------------------------ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+  Upward defl. VA   Downward defl. VA     Upward defl. VD    Downward defl. VD
+ -56.277524         28.657026            -81.076995         -8.975757
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++++++++ CS - VLA 423 - METHOD D ++++++++++ 
+ --------------------------------------------- 
+ ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
+  Case 1             Case 2             Case 3              Case 4  
+ -41.996801          41.996801          37.497144          -37.497144
+ -41.996801          41.996801          40.768823          -40.768823
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+ Case 1              Case 2             Case 3             Case 4  
+ -60.641472          -54.375300         18.852473          -53.413583
+ -79.432265          -92.896729         -10.131104          -79.747634
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Critical conditions - CS - VLA 423 Method (d) [daN] ++++++++++ 
+Critical conditions
+ -92.896729
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ AIRWORTHINESS RULES: CS - VLA 425 GUST AIRLOADS
+ --------------------------------- 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+  L_ht VF             L_ht VC            L_ht VD
+ -37.435464          -18.644671         -38.978811
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Delta Horizontal Tail loads [daN] +++++++++++++++++ 
+ DeltaL_ht VF       DeltaL_ht VC      DeltaL_ht VD
+ 29.365684          58.577218         36.707106
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads - Positive Gust [daN] +++++++++++++++++ 
+  Gust + L_ht VF    Gust + L_ht VC     Gust + L_ht VD
+ -8.069779          39.932547         -2.271705
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads - Negative Gust [daN] +++++++++++++++++ 
+  Gust - L_ht VF      Gust - L_ht VC     Gust - L_ht VD
+ -66.801148          -77.221889         -75.685917
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ Final results from CS - VLA 423 Airworthiness prescriptions 
+ +++++++++++++++++ Total Horizontal Tail loads - Maximum Symmetrical load [daN] +++++++++++++++++ 
+  Maximum symmetrical load
+ -92.896729
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ UNSYMMETRICAL LOADS PER CS - VLA 427 
+ +++++++++++++++++ Total Horizontal Tail loads - Unsymmetrical conditions [daN] +++++++++++++++++ 
+  Full load side      Partial load side
+ -46.448365          -33.442823
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ STARTING VERTICAL TAIL LOADS CALCULATION ++++ 
+ 
+ ---------------------------------------------------------------- 
+ ++++ CS - VLA 441 - VERTICAL TAIL LOADS - MANOEUVRING LOADS ++++ 
+ ---------------------------------------------------------------- 
+ 
+ ++++ CS - VLA 441 - CASE (a)(1) ++++ 
+ ------------------------------------ 
+ ++++++++++ Vertical tail loads - CASE (a)(1) [daN] ++++++++++ 
+ Y
+ 4.565268
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ CS - VLA 441 - CASE (a)(2) ++++ 
+ ------------------------------------ 
+ ++++++++++ Vertical tail loads - CASE (a)(2) [daN] ++++++++++ 
+ Y
+ 5.778475
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ CS - VLA 441 - CASE (a)(3) ++++ 
+ ------------------------------------ 
+ ++++++++++ Vertical tail loads - CASE (a)(3) [daN] ++++++++++ 
+ Y
+ 5.495448
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Vertical tail loads - MOST CRITICAL LOADS [daN] ++++++++++ 
+ CRITICAL LOADS PER ---> CS - VLA 441 (a)(2) 
+ 
+ ++++ CS - VLA 445 ++++ 
+ ---------------------- 
+ ++++++++++ Vertical tail - GUST LOADS [daN] ++++++++++ 
+ GUST - VC        GUST - VD
+ 8.839467         5.524667
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Vertical tail - CRITICAL GUST LOADS [daN] ++++++++++ 
+MAX GUST LOADS: AT VC
+ CRITICAL GUST LOADS
+ 8.839467
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ 
+ 
+ ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
+ L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical
+ 20.328003           69.911763           69.911763
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving flapsenvelopediagram.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving flapsenvelopediagram.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+
+ans = 
+
+  <a href="matlab:helpPopup matlab.ui.Figure" style="font-weight:bold">Figure</a> (39) with properties:
+
+      Number: 39
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [403 246 560 420]
+       Units: 'pixels'
+
+  Show <a href="matlab:if exist('ans', 'var'), matlab.graphics.internal.getForDisplay('ans', ans, 'matlab.ui.Figure'), else, matlab.graphics.internal.getForDisplay('ans'), end">all properties</a>
+
+Saving flapsenvelopediagram.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output

@@ -373,7 +373,7 @@ classdef csvla
             %         --> 'negative_dive'
             
             % indexes = 500;
-            indexes = 1e5;
+            indexes = 1e3;
             
             if Ude == abs(15.24) 
                 V = linspace(0.0, VC, indexes)';
