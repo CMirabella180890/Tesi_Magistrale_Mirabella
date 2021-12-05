@@ -986,7 +986,7 @@ classdef csvla
             %  n    = Vector of load factor values
             
             % indexes =500;
-            indexes = 1e4;
+            indexes = 1e3;
             
             if nmax > 0.0
             obj = linspace(0.0, 2*nmax, indexes)';  
