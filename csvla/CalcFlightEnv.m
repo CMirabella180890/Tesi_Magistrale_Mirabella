@@ -331,12 +331,12 @@ plot(VE, nE, 'k.', 'MarkerSize', 12)
 plot(VG, nG, 'k.', 'MarkerSize', 12)
 plot(VS, 1.0, 'k.', 'MarkerSize', 12)
 plot(VS_inv, -1.0, 'k.', 'MarkerSize', 12)
-text(VA, nA, 'Point A')
-text(VC, nC, 'Point C')
-text(VD, nD, 'Point D')
-text(VE, nE, 'Point E')
-text(VG, nG, 'Point G')
-text(VS, 1.0, 'Point S')
+text(VA, nA, 'Point A', 'FontSize', 6)
+text(VC, nC, 'Point C', 'FontSize', 6)
+text(VD, nD, 'Point D', 'FontSize', 6)
+text(VE, nE, 'Point E', 'FontSize', 6)
+text(VG, nG, 'Point G', 'FontSize', 6)
+text(VS, 1.0, 'Point S', 'FontSize', 6)
 text(VS_inv, -1.0, 'Point S invert.')
 xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
 ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
@@ -481,12 +481,12 @@ plot(V_gust_cruise, n_gust_cruise_plus, '--k', 'LineWidth', 0.25)
 plot(V_gust_cruise, n_gust_cruise_neg, '--k', 'LineWidth', 0.25)
 plot(V_gust_dive, n_gust_dive_plus, '--k', 'LineWidth', 0.25)
 plot(V_gust_dive, n_gust_dive_neg, '--k', 'LineWidth', 0.25)
-text(VA, nA, 'Point A')
-text(VC, nC, 'Point C')
-text(VD, nD, 'Point D')
-text(VE, nE, 'Point E')
-text(VG, nG, 'Point G')
-text(VS, 1.0, 'Point S')
+text(VA, nA, 'Point A', 'FontSize', 6)
+text(VC, nC, 'Point C', 'FontSize', 6)
+text(VD, nD, 'Point D', 'FontSize', 6)
+text(VE, nE, 'Point E', 'FontSize', 6)
+text(VG, nG, 'Point G', 'FontSize', 6)
+text(VS, 1.0, 'Point S', 'FontSize', 6)
 text(VS_inv, -1.0, 'Point S invert.')
 xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
 ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
@@ -521,7 +521,7 @@ Solution = vpasolve(eqn, V);
 % WE MUST DECIDE THE NEW MANOEUVRING AIRSPEED
 for i = 1:length(Solution) 
     if Solution(i) > 0 
-        new_VA = Solution(i);
+        new_VA = cast(Solution(i), 'double');
         if VA > new_VA
             VA = VA;
             nA = nmax; 
@@ -580,7 +580,7 @@ Solution = vpasolve(eqn, V);
 % WE MUST DECIDE THE NEW MANOEUVRING AIRSPEED
 for i = 1:length(Solution) 
     if (Solution(i) > 0) && (abs(Solution(i)) > VG)
-        new_VG = Solution(i);
+        new_VG = cast(Solution(i), 'double');
         if VG > new_VA
             VG = VG;
             nG = nmin; 
@@ -649,16 +649,16 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_s
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.value                   = nC; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.Attributes.unit         = "g's";
 % ------------------------------------------------------------------------------------------------------------------
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value           = VD; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.Attributes.unit = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value                               = VD; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.Attributes.unit                     = "m/s"; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value           = nmax;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.Attributes.unit = "g's";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.value           = VF;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.value                 = VF;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.Attributes.unit       = "m/s";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.value           = nF;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.Attributes.unit = "g's";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VE.value           = VE;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VE.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VE.value                 = VE;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VE.Attributes.unit       = "m/s";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.value           = nE;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.Attributes.unit = "g's";
 % ------------------------------------------------------------------------------------------------------------------
@@ -701,98 +701,139 @@ xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
 ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
 title("V~-~n diagram per ", Reg, "Interpreter", "latex")
 
+% EXPORT FIGURE
+exportgraphics(final_envelope, 'Finalenvelope.pdf', 'ContentType', 'vector')
+exportgraphics(final_envelope, 'Finalenvelope.png', 'ContentType', 'vector')
+
+% Saving figures inside correct folder
+fprintf('Saving Finalenvelope.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile Finalenvelope.pdf Output
+movefile Finalenvelope.png Output 
+% -----------------------------------------------------------------
+
 % AIRCRAFT STRUCT VARIABLE FILLING
 % POINT S
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value = VS; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.Attributes.unit = "m/s"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value = 1.0; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.Attributes.unit = "g's"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value = CLmax_func(rho, S, VS, WS, 1.0);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value    = 'Point S';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value            = VS; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.Attributes.unit  = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value            = 1.0; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.Attributes.unit  = "g's"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value          = CLmax_func(rho, S, VS, WS, 1.0);
 CL_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.Attribute.unit = "Non dimensional";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.value = 0.5*rho*VS^2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.value            = 0.5*rho*VS^2;
 qS = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.value;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.Attributes.unit = "Pa"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS.value = CL_S*qS*S;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.Attributes.unit  = "Pa"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS.value            = CL_S*qS*S*1e-1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS.Attributes.unit  = "daN";
 
 % POINT A
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value = VA; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit = "m/s"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value = nA; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit = "g's"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value = CLmax_func(rho, S, VA, WS, nA);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value    = 'Point A';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value            = VA; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit  = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value            = nA; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit  = "g's"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value          = CLmax_func(rho, S, VA, WS, nA);
 CL_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.Attribute.unit = "Non dimensional";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value = 0.5*rho*VA^2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value            = 0.5*rho*VA^2;
 qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.Attributes.unit = "Pa"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA.value = CL_A*qA*S;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.Attributes.unit  = "Pa"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA.value            = CL_A*qA*S*1e-1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA.Attributes.unit  = "daN";
 
 % POINT C
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value = VC; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.Attributes.unit = "m/s"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value = nC; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.Attributes.unit = "g's"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value = CLmax_func(rho, S, VC, WS, nC);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value    = 'Point C';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value            = VC; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.Attributes.unit  = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value            = nC; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.Attributes.unit  = "g's"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value          = CLmax_func(rho, S, VC, WS, nC);
 CL_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.Attribute.unit = "Non dimensional";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value = 0.5*rho*VC^2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value            = 0.5*rho*VC^2;
 qC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.Attributes.unit = "Pa"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC.value = CL_C*qC*S;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.Attributes.unit  = "Pa"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC.value            = CL_C*qC*S*1e-1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC.Attributes.unit  = "daN";
 
 % POINT D
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value = VD; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.Attributes.unit = "m/s"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value = nmax; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.Attributes.unit = "g's"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value = CLmax_func(rho, S, VD, WS, nmax);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value = 'Point D';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value            = VD; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.Attributes.unit  = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value            = nmax; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.Attributes.unit  = "g's"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value          = CLmax_func(rho, S, VD, WS, nmax);
 CL_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.Attribute.unit = "Non dimensional";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value = 0.5*rho*VD^2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value            = 0.5*rho*VD^2;
 qD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.Attributes.unit = "Pa"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LD.value = CL_D*qD*S;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.Attributes.unit  = "Pa"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LD.value            = CL_D*qD*S*1e-1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LD.Attributes.unit  = "daN";
 
 % POINT S_inv
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.VS_inverted.value = VS_inv; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.VS_inverted.Attributes.unit = "m/s"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.nS_inverted.value = -1.0; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.nS_inverted.Attributes.unit = "g's"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.CL_S_inverted.value = abs(CLMAX_clean_inverted);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.point_name.value             = 'Point S inv.';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.VS_inverted.value            = VS_inv; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.VS_inverted.Attributes.unit  = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.nS_inverted.value            = -1.0; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.nS_inverted.Attributes.unit  = "g's"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.CL_S_inverted.value          = abs(CLMAX_clean_inverted);
 CL_S_inverted = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.CL_S_inverted.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.CL_S_inverted.Attribute.unit = "Non dimensional";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.qS_inverted.value = 0.5*rho*VS_inv^2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.qS_inverted.value            = 0.5*rho*VS_inv^2;
 qS_inverted = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.qS_inverted.value;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.qS_inverted.Attributes.unit = "Pa"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.LD.value = CL_S_inverted*qS_inverted*S;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.qS_inverted.Attributes.unit  = "Pa"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.LS_inverted.value            = CL_S_inverted*qS_inverted*S*1e-1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inverted.LS_inverted.Attributes.unit  = "daN";
 
 % POINT G
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value = VG; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.Attributes.unit = "m/s"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value = nG; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.Attributes.unit = "g's"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value = CLmax_func(rho, S, VG, WS, abs(nG));
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value    = 'Point G';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value            = VG; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.Attributes.unit  = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value            = nG; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.Attributes.unit  = "g's"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value          = CLmax_func(rho, S, VG, WS, abs(nG));
 CL_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.Attribute.unit = "Non dimensional";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.value = 0.5*rho*VG^2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.value            = 0.5*rho*VG^2;
 qG = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.value;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.Attributes.unit = "Pa"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG.value = CL_G*qG*S;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.Attributes.unit  = "Pa"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG.value            = CL_G*qG*S*1e-1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG.Attributes.unit  = "daN";
+
+% POINT F
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value    = 'Point G';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value            = VF; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.Attributes.unit  = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value            = nF; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.Attributes.unit  = "g's"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value          = CLmax_func(rho, S, VF, WS, abs(nF));
+CL_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.Attribute.unit = "Non dimensional";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.qF.value            = 0.5*rho*VF^2;
+qF = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.qF.value;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.qF.Attributes.unit  = "Pa"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF.value            = CL_F*qF*S*1e-1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF.Attributes.unit  = "daN";
 
 % POINT E
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value = VE; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.Attributes.unit = "m/s"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value = nE; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.Attributes.unit = "g's"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value = CLmax_func(rho, S, VG, WS, abs(nE));
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value    = 'Point E';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value            = VE; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.Attributes.unit  = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value            = nE; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.Attributes.unit  = "g's"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value          = CLmax_func(rho, S, VG, WS, abs(nE));
 CL_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.Attribute.unit = "Non dimensional";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.qE.value = 0.5*rho*VD^2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.qE.value            = 0.5*rho*VD^2;
 qE = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.qE.value;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.qE.Attributes.unit = "Pa"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE.value = CL_E*qE*S;
-
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.qE.Attributes.unit  = "Pa"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE.value            = CL_E*qE*S*1e-1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE.Attributes.unit  = "daN";
 
 % % x = calcn(obj, nmax) - from csvla.m
 % % This function defines a vector with load factor values between two pre-
