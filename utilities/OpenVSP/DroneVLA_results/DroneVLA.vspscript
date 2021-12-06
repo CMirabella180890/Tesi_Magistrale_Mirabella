@@ -54,7 +54,7 @@ Update();
 
 // wing airfoil 1
 
-ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),0),"airfoil/Nasa_Langley_GAW1_0417.dat");
+ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),0),"airfoil/e205_Selig.dat");
 SetParmVal(wing,"ThickChord","XSecCurve_0",0.18);
 
 SetParmVal(wing,"Twist","XSec_0",3);
@@ -63,7 +63,7 @@ SetParmVal(wing,"Twist_Location","XSec_0",0);
 Update(); 
 // wing airfoil 2
 
-ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),1),"airfoil/Nasa_Langley_GAW1_0417.dat");
+ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),1),"airfoil/e205_Selig.dat");
 SetParmVal(wing,"ThickChord","XSecCurve_1",0.18);
 
 SetParmVal(wing,"Twist","XSec_1",3);
