@@ -125,8 +125,7 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'Aircraft.Geometry.Wing.freccia_posizione', ...
          'Aircraft.Geometry.Wing.dihedral', ...
          'Aircraft.Certification.ISA_Condition.Sea_level', ...
-         'Operative_ceiling', ...
-         'Theoretical_ceiling'};
+         'Operative_ceiling'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -379,9 +378,9 @@ if LengthIndex==length(VarText)
     p = strcmp('Operative_ceiling', label);
     Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit = char(table2array(unit(p==1,1))); 
-    p = strcmp('Theoretical_ceiling', label);
-    Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.value = str2double(table2array(value(p==1, 1)));
-    Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('O_ceiling', label);
+    Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

@@ -74,7 +74,7 @@ Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.Attributes.
 
 % CALCULATION OF VS - CLEAN STALL SPEED
 n     = 1.0; 
-rho   = Aircraft.Certification.ISA_Condition.rho0.value;
+rho   = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
 WS    = Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value;
 CLmax = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
 VS    = calcvs(obj, rho, WS, CLmax, n);
@@ -168,7 +168,7 @@ movefile flapsenvelopediagram.png Output
 %% FLAPS DEPLOYED GUST ENVELOPE 
 VF  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
 WS  = Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value;
-rho = Aircraft.Certification.ISA_Condition.rho0.value;
+rho = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
 MAC = Aircraft.Geometry.Wing.mac.value; 
 a   = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
 g   = Aircraft.Constants.g.value;
