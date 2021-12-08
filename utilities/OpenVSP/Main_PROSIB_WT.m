@@ -50,7 +50,8 @@ ac.wing.type        = 'WING';                  % OpenVSP component type
 ac.wing.airfoil     = 'XS_FILE_AIRFOIL';         % OpenVSP airfoil standard type
 
 % Define the airfoil for each section in a cell array and point to the airfoil folder
-ac.wing.affile = {'Nasa_Langley_GAW1_0417.dat', 'Nasa_Langley_GAW1_0417.dat'};
+% ac.wing.affile = {'Nasa_Langley_GAW1_0417.dat', 'Nasa_Langley_GAW1_0417.dat'};
+ac.wing.affile = {'e205_Selig.dat', 'e205_Selig.dat'};
 ac.wing.affile = strcat('airfoil/',ac.wing.affile); 
 
 ac.wing.idealcl     = [0.6 0.6];           % camber of each airfoil
@@ -287,7 +288,7 @@ set.h                       = 0;                      % altitude
 set.mu                      = ...                     % freestream dynamic viscosity
      (1.4580e-06*set.T^(1.5))/(set.T+110.4);
 % set.Mach                    = 0.1;                  % freestream Mach number
-set.Vinf                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(1);       % freestream speed
+set.Vinf                    = double(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(1));       % freestream speed
 set.Mach                    = set.Vinf/set.a;         % freestream Mach number
 % set.rho                     = 1.225;                % freestream density
 % set.Vinf                    = 34.0;                 % freestream speed

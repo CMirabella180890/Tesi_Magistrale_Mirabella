@@ -79,7 +79,7 @@ classdef csvla
             %  n    = Vector of load factor values
             
             % indexes =500;
-            indexes = 1e4;
+            indexes = 1e5;
             
             if nmax > 0.0
             obj = linspace(0.0, 2*nmax, indexes)';  
@@ -373,7 +373,7 @@ classdef csvla
             %         --> 'negative_dive'
             
             % indexes = 500;
-            indexes = 1e4;
+            indexes = 1e3;
             
             if Ude == abs(15.24) 
                 V = linspace(0.0, VC, indexes)';
@@ -717,12 +717,12 @@ classdef csvla
         ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
         title("Final envelope per ", Reg, "Interpreter", "latex")     % Applied regulation from 'Aircraft' struct
         text(2.5, 5.2, Aircraft_name)                                 % Aircraft name inside the plot
-        text(VC-1.0, nC+0.2, '\fontname{Courier} Point C')
-        text(VF+1.0, nF-0.2, '\fontname{Courier} Point F')
-        text(VD-0.5, nD+0.2, '\fontname{Courier} Point D')
-        text(VD-0.5, nE-0.2, '\fontname{Courier} Point E')
-        text(VA+0.0, nA+0.0, '\fontname{Courier} Point A')
-        text(VG+0.0, nG+0.1, '\fontname{Courier} Point G')
+        text(VC-1.0, nC+0.2, '\fontname{Courier}   C')
+        text(VF+1.0, nF-0.2, '\fontname{Courier}   F')
+        text(VD-0.5, nD+0.2, '\fontname{Courier}   D')
+        text(VD-0.5, nE-0.2, '\fontname{Courier}   E')
+        text(VA+0.0, nA+0.0, '\fontname{Courier}   A')
+        text(VG+0.0, nG+0.1, '\fontname{Courier}   G')
         exportgraphics(obj,'Finalenvelope.pdf','ContentType','vector')
         exportgraphics(obj,'Finalenvelope.png','ContentType','vector')
         end
@@ -807,14 +807,14 @@ classdef csvla
         plot(V_fromFtoE(1), HT_Lift_fromFtoE(1),'k.','MarkerSize', 10,'LineStyle','none');
         plot(V_fromFtoE(end), HT_Lift_fromFtoE(end),'k.','MarkerSize', 10,'LineStyle','none');
         % ---------------------------------------------------------------------
-        text(20, -1.0, '\fontname{Courier} Point S')
-        text(VSpos(index_va)+0.1, HT_Lift_posstall(index_va)+ 2.0, '\fontname{Courier} Point A')
+        text(VSpos(1), HT_Lift_posstall(1), '\fontname{Courier} Point S', 'FontSize', 6)
+        text(VSpos(index_va), HT_Lift_posstall(index_va), '\fontname{Courier} Point A', 'FontSize', 6)
         text(41.5, -18, 'n = 1')
-        text(46, HT_Lift_fromCtofg(1)+ 2.0, '\fontname{Courier} Point C')
-        text(57, -36.5, '\fontname{Courier} Point D')
-        text(22, HT_Lift_negstall(index_vg)+0.2, '\fontname{Courier} Point G')
-        text(41, -40, '\fontname{Courier} Point F')
-        text(52.5, -54, '\fontname{Courier} Point E')
+        text(V_fromCtofg(1), HT_Lift_fromCtofg(1), '\fontname{Courier} Point C', 'FontSize', 6)
+        text(V_fromfgtoD(end), HT_Lift_fromfgtoD(end), '\fontname{Courier} Point D', 'FontSize', 6)
+        text(VSneg(index_vg), HT_Lift_negstall(index_vg), '\fontname{Courier} Point G', 'FontSize', 6)
+        text(V_fromFtoE(1), HT_Lift_fromFtoE(1), '\fontname{Courier} Point F', 'FontSize', 6)
+        text(V_fromFtoE(end), HT_Lift_fromFtoE(end), '\fontname{Courier} Point E', 'FontSize', 6)
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Horizontal tail lift - $L_{ht}$ (daN)", "Interpreter", "latex")
         title("Horizontal empennage airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
@@ -905,13 +905,13 @@ classdef csvla
         plot(V_fromFtoE(1), WING_Lift_fromFtoE(1),'k.','MarkerSize', 10,'LineStyle','none');
         plot(V_fromFtoE(end), WING_Lift_fromFtoE(end),'k.','MarkerSize', 10,'LineStyle','none');
         % ---------------------------------------------------------------------
-        text(VSpos(1), 75, '\fontname{Courier} Point S')
-        text(38, 360, '\fontname{Courier} Point A')
-        text(V_fromCtofg(1)+3, WING_Lift_fromCtofg(1)+0.2, '\fontname{Courier} Point C')
-        text(V_fromfgtoD(end)-0.2, WING_Lift_fromfgtoD(end)+0.2, '\fontname{Courier} Point D')
-        text(VSneg(index_vg)-1.0, WING_Lift_negstall(index_vg)+40, '\fontname{Courier} Point G')
-        text(V_fromFtoE(1)+1.0, -285, '\fontname{Courier} Point F')
-        text(V_fromFtoE(end)-0.2, -120, '\fontname{Courier} Point E')  
+        text(VSpos(1), WING_Lift_posstall(1), '\fontname{Courier} Point S', 'FontSize', 6)
+        text(VSpos(index_va), WING_Lift_posstall(index_va), '\fontname{Courier} Point A', 'FontSize', 6)
+        text(V_fromCtofg(1), WING_Lift_fromCtofg(1), '\fontname{Courier} Point C', 'FontSize', 6)
+        text(V_fromfgtoD(end), WING_Lift_fromfgtoD(end), '\fontname{Courier} Point D', 'FontSize', 6)
+        text(VSneg(index_vg), WING_Lift_negstall(index_vg), '\fontname{Courier} Point G', 'FontSize', 6)
+        text(V_fromFtoE(1), WING_Lift_fromFtoE(1), '\fontname{Courier} Point F', 'FontSize', 6)
+        text(V_fromFtoE(end), WING_Lift_fromFtoE(end), '\fontname{Courier} Point E', 'FontSize', 6)  
         text(40.0, 90.0, 'n = 1') 
         % ---------------------------------------------------------------------
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
@@ -922,5 +922,323 @@ classdef csvla
         exportgraphics(obj, 'Wingairloads.png', 'ContentType', 'vector')
         end
     end
-end
+%% FLAPS DEPLOYED FLIGHT ENVELOPE
+    properties
+        flapsenvelope
+    % CS - VLA 345 High lift devices 
+    %  
+    %  (a) If flaps or similar high lift devices to be used for take-off,
+    %      approach or landing are installed, the aeroplane, with the flaps
+    %      fully deflected at VF, is assumed to be subjected to symmetrical
+    %      manoeuvres and gusts resulting in limit load factors within the
+    %      range determined by 
+    %      (1) Manoeuvring to a positive limit load factor of 2.0; and 
+    %      (2) Positive and negative gust of 7.62 m/s acting normale to the
+    %          flight path in level flight.
+    %
+    %  (b) VF must be assumed to be not less than 1.4*VS or 1.8*VSF, whichever
+    %      is greater, where 
+    %      VS --> Is the computed stalling speed with flaps retracted at the
+    %             design weight; and 
+    %     VSF --> Is the computed stalling speed with flaps fully extended at
+    %             the design weight.
+    %      However, if an automatic flap load limiting device is used, the
+    %      aeroplane may be designed for the critical combinations of airspeed
+    %      and flap position allowed by that device. 
+    % 
+    %  (c) In designing the flaps and supporting structures the following must
+    %      be accounted for:
+    %      (1) A head-on gust of 7.62 m/s (Equivalent airspeed).
+    %      (2) The slipstream effects specified in CS - VLA 457 (b). 
+    %
+    %  (d) In determining external loads on the aeroplane as a whole, thrust, 
+    %      slipstream and pitching acceleration may be assumed to be zero.
+    %
+    %  (e) The requirements of CS - VLA 457 and this paragraph may be complied
+    %      with separately or in combination. 
+    %
+    % CS - VLA 457 Wing flaps 
+    %  (a) The wing flpas, their operating mechanisms and their supporting
+    %      structure must be designed for critical loads occurring in the
+    %      flaps-extended flight conditions with the flaps in any position.
+    %      However, if an automatic flap load limiting device is used, these
+    %      components may be designed for the critical combinations of airspeed
+    %      and flap position allowed by that device. 
+    %
+    %  (b) The effects of propeller slipstream, corresponding to take-off
+    %      power, must be taken into account not less than 1.4*VS, where VS is 
+    %      the computed stalling speed with flaps fully rectracted at the
+    %      design weight. For the investigation of slipstream effects, the load
+    %      factor may be assumed to be 1.0.
+    end
+    
+    methods
+        %% FLIGHT ENVELOPE - FIRST METHOD 
+        function obj = calcnflap(obj, nmax)
+            % n = calcn(obj, nmax)
+            %  Function that calculates load factors values along the
+            %  stall curve for flaps envelope calculation.
+            %
+            %  
+            %  INPUT
+            %  nmax = Appliable limit load factor 
+            %  OUTPUT 
+            %  n    = Vector of load factor values
+            
+            % indexes =500;
+            indexes = 1e3;
+            
+            if nmax > 0.0
+            obj = linspace(0.0, 2*nmax, indexes)';  
+            elseif nmax < 0.0 
+            obj = linspace(0.0, 2*nmax, indexes)';  
+            end
+        end
+        % FLAP SPEED CALCULATION
+        function obj = calcnVF(obj, VS, VS1)
+        % CS - VLA 345 High lift devices 
+        %  
+        %  (a) If flaps or similar high lift devices to be used for take-off,
+        %      approach or landing are installed, the aeroplane, with the flaps
+        %      fully deflected at VF, is assumed to be subjected to symmetrical
+        %      manoeuvres and gusts resulting in limit load factors within the
+        %      range determined by 
+        %      (1) Manoeuvring to a positive limit load factor of 2.0; and 
+        %      (2) Positive and negative gust of 7.62 m/s acting normale to the
+        %          flight path in level flight.
+        %
+        %  (b) VF must be assumed to be not less than 1.4*VS or 1.8*VSF, whichever
+        %      is greater, where 
+        %      VS --> Is the computed stalling speed with flaps retracted at the
+        %             design weight; and 
+        %     VSF --> Is the computed stalling speed with flaps fully extended at
+        %             the design weight.
+        %      However, if an automatic flap load limiting device is used, the
+        %      aeroplane may be designed for the critical combinations of airspeed
+        %      and flap position allowed by that device. 
+        vs  = 1.4*VS;
+        vs1 = 1.8*VS1; 
+        
+        if vs > vs1 
+            VF = vs;
+        elseif vs1 > vs 
+            VF = vs1;
+        end
+        obj = VF;
+        
+        end
+        %
+        function obj = flapsenvelope_diagram(obj, npos, nmax, VSpos, VS, VF, Reg, Aircraft_name)
+        % FUNCTION DETAILED DESCRIPTION
+        % fig1 = V_n_diagram(npos, nneg, VSpos, VSneg, VD, VG, VA, VE, Reg, Aircraft_name)
+        %    This function plot the V - n diagram, based on the applied regulation.
+        %    The applied regulation is stored inside the local variable 'Reg' for
+        %    convenience and it is used to automatically change the output figure
+        %    title name. Also, the selected aircraft name is stored inside the
+        %    variable 'Aircraft_name' and is inserted in the diagram as plain text.
+        %    This might be a useful feature. 
+        %    INPUTS 
+        %         npos          --> An array of positive load factors
+        %         nneg          --> An array of negative load factors 
+        %         nmax          --> Positive maximum load factor
+        %         nmin          --> Negative minimum load factor
+        %         VSpos         --> An array of positive stall speeds 
+        %         VSneg         --> An array of negative stall speeds
+        %         VD            --> Aircraft dive speed (positive side)
+        %         VG            --> Aircraft dive speed (negative side)
+        %         VA            --> Aircraft positive manoeuvring speed
+        %         VE            --> Aircraft negative manoeuvring speed 
+        %         Reg           --> Applied regulation from 'Aircraft' struct 
+        %         Aircraft_name --> Aircraft name from 'Aircraft' struct
+        %    OUTPUT
+        %         fig1          --> The V-N diagram
+        %    
+        %    FURTER REFERENCES
+        %         The V-N diagram is based on: 
+        %
+        %         CS-VLA 333 FLIGHT ENVELOPE, pag. 39/190
+        %         
+        %         EASA Airworthiness rules can be find at 
+        %         url: https://www.easa.europa.eu/sites/default/files/dfu/Easy Access Rules CS-VLA (Amendment 1).pdf
+        %    
+        obj = figure;
+        hold on
+        grid on 
+        grid minor
+        ylim([-0.5 nmax+0.5])
+        xlim([0 VF+10])
+        plot(VSpos, npos, ':r', 'LineWidth',0.2)
+        tol = 1E-3;
+        for i = 1:length(npos)
+            if abs(nmax - npos(i)) < tol
+                x = i;               
+            end
+        end
+        temp1 = 1;
+        for i = 1:length(npos)
+            if abs(1 - npos(i)) < tol 
+                temp1 = i;
+            end
+        end
+        plot(VSpos(temp1:x), npos(temp1:x), '-r', 'LineWidth',1)
+        plot([VSpos(x) VF], ...
+             [nmax nmax], '-b', 'LineWidth',1)
+        plot([VF VF], ...
+             [nmax 0], '-b', 'LineWidth',1)
+        plot([VSpos(temp1) VSpos(temp1)], ...
+             [npos(temp1) 0.0], '-b', 'LineWidth',1)
+        xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+        ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+        title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+        text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
+        text(VSpos(temp1)-2.0, 1.2, '\fontname{Courier} S')
+        text(VF-2.0, nmax+0.2, '\fontname{Courier} F')
+        exportgraphics(obj,'flapsenvelopediagram.pdf','ContentType','vector')
+        exportgraphics(obj,'flapsenvelopediagram.png','ContentType','vector')
+        end
+        %
+        function obj = flaps_gust_envelope_diagram(obj, npos, nmax, VSpos, ngust, Vgust, VS, VF, Reg, Aircraft_name)
+        % FUNCTION DETAILED DESCRIPTION
+        % fig1 = V_n_diagram(npos, nneg, VSpos, VSneg, VD, VG, VA, VE, Reg, Aircraft_name)
+        %    This function plot the V - n diagram, based on the applied regulation.
+        %    The applied regulation is stored inside the local variable 'Reg' for
+        %    convenience and it is used to automatically change the output figure
+        %    title name. Also, the selected aircraft name is stored inside the
+        %    variable 'Aircraft_name' and is inserted in the diagram as plain text.
+        %    This might be a useful feature. 
+        %    INPUTS 
+        %         npos          --> An array of positive load factors
+        %         nneg          --> An array of negative load factors 
+        %         nmax          --> Positive maximum load factor
+        %         nmin          --> Negative minimum load factor
+        %         VSpos         --> An array of positive stall speeds 
+        %         VSneg         --> An array of negative stall speeds
+        %         VD            --> Aircraft dive speed (positive side)
+        %         VG            --> Aircraft dive speed (negative side)
+        %         VA            --> Aircraft positive manoeuvring speed
+        %         VE            --> Aircraft negative manoeuvring speed 
+        %         Reg           --> Applied regulation from 'Aircraft' struct 
+        %         Aircraft_name --> Aircraft name from 'Aircraft' struct
+        %    OUTPUT
+        %         fig1          --> The V-N diagram
+        %    
+        %    FURTER REFERENCES
+        %         The V-N diagram is based on: 
+        %
+        %         CS-VLA 333 FLIGHT ENVELOPE, pag. 39/190
+        %         
+        %         EASA Airworthiness rules can be find at 
+        %         url: https://www.easa.europa.eu/sites/default/files/dfu/Easy Access Rules CS-VLA (Amendment 1).pdf
+        %    
+        obj = figure;
+        hold on
+        grid on 
+        grid minor
+        ylim([-0.5 nmax+0.5])
+        xlim([0 VF+10])
+        plot(VSpos, npos, ':r', 'LineWidth',0.2)
+        tol = 1E-3;
+        for i = 1:length(npos)
+            if abs(nmax - npos(i)) < tol
+                x = i;               
+            end
+        end
+        temp1 = 1;
+        for i = 1:length(npos)
+            if abs(1 - npos(i)) < tol 
+                temp1 = i;
+            end
+        end
+        plot(VSpos(temp1:x), npos(temp1:x), '-r', 'LineWidth',1)
+        plot([VSpos(x) VF], ...
+             [nmax nmax], '-b', 'LineWidth',1)
+        plot([VF VF], ...
+             [nmax 0], '-b', 'LineWidth',1)
+        plot([VSpos(temp1) VSpos(temp1)], ...
+             [npos(temp1) 0.0], '-b', 'LineWidth',1)
+        plot(Vgust, ngust, '-k', 'LineWidth',1)
+        xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+        ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+        title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+        text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
+        text(VSpos(temp1)-2.5, 1.2, '\fontname{Courier} S')
+        text(VF-2.5, nmax+0.2, '\fontname{Courier} F')
+        exportgraphics(obj,'flaps_gust_envelopediagram.pdf','ContentType','vector')
+        exportgraphics(obj,'flaps_gust_envelopediagram.png','ContentType','vector')
+        end
+        %
+        function obj = Final_gust_envelope(obj, nmax, npos, VSpos, V_g, n_g, VS, nS, VF, nF, Reg, Aircraft_name)
+        % FUNCTION DETAILED DESCRIPTION
+        %  fig1 = V_n_diagram(npos, nneg, VSpos, VSneg, VD, VG, VA, VE, Reg, Aircraft_name)
+        %  This function plot the V - n diagram, based on the applied regulation.
+        %  The applied regulation is stored inside the local variable 'Reg' for
+        %  convenience and it is used to automatically change the output figure
+        %  title name. Also, the selected aircraft name is stored inside the
+        %  variable 'Aircraft_name' and is inserted in the diagram as plain text.
+        %  This might be a useful feature. 
+        %      INPUTS 
+        %       +++ POSITIVE SIDE OF THE FLIGHT ENVELOPE DIAGRAM +++
+        %       npos          --> An array of positive load factors
+        %       VSpos         --> An array of positive stall speeds 
+        %       VC            --> Max positive cruise speed
+        %       VD            --> Aircraft dive speed (positive side) 
+        %       +++ NEGATIVE SIDE OF THE FLIGHT ENVELOPE DIAGRAM +++ 
+        %       nneg          --> An array of negative load factors 
+        %       VSneg         --> An array of negative stall speeds
+        %       VF            --> Max negative cruise speed
+        %       VE            --> Aircraft dive speed (negative side)
+        %       +++ INFORMATION RELATED TO AIRCRAFT AND REGULATION +++
+        %       Reg           --> Applied regulation from 'Aircraft' struct 
+        %       Aircraft_name --> Aircraft name from 'Aircraft' struct
+        %      OUTPUT
+        %       fig3          --> Final Flight Envelope
+        %            
+        %      FURTER REFERENCES
+        %       The V-N diagram is based on: 
+        %         
+        %              CS-VLA 333 FLIGHT ENVELOPE, pag. 39/190
+        %                 
+        %       EASA Airworthiness rules can be find at 
+        %        url: https://www.easa.europa.eu/sites/default/files/dfu/Easy Access Rules CS-VLA (Amendment 1).pdf
 
+        obj = figure;
+        hold on
+        grid on 
+        grid minor
+        % ylim([nF-0.5 nC+0.5])
+        % xlim([0 VD+10])
+        plot(VSpos, npos, ':r', 'LineWidth', 1)  
+        tol = 1e-3;
+        for i = 1:length(npos)
+            if abs(nmax - npos(i)) < tol
+                temp1 = i;               
+            end
+        end
+        for i = 1:length(npos)
+            x = n_g(i);
+            y = abs(x - npos(i));
+            if (y < tol) 
+                temp2 = i;
+            end
+        end
+        for i = 1:length(npos)
+            if abs(1.0 - npos(i)) < tol
+                temp3 = i;               
+            end
+        end
+        plot(V_g, n_g, '--k', 'LineWidth', 0.25)
+        plot(VSpos(temp3:temp2), npos(temp3:temp2), '-r', 'LineWidth', 1)
+        plot([VSpos(temp2) VF], [npos(temp2) nmax], 'r', 'LineWidth', 1)
+        plot([VF VF], [nmax 0.0], 'r', 'LineWidth', 1)
+        plot([VSpos(temp3) VSpos(temp3)], [1.0 0.0], 'r', 'LineWidth', 1)
+        xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+        ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+        title("Final envelope per ", Reg, "Interpreter", "latex")     % Applied regulation from 'Aircraft' struct
+        text(12.5, 1.5, Aircraft_name)                                 % Aircraft name inside the plot
+        text(VSpos(temp3), 1.2, '\fontname{Courier} Point S')
+        text(VF+1.0, nF+0.2, '\fontname{Courier} Point F')
+        exportgraphics(obj,'Final_flap_envelope.pdf','ContentType','vector')
+        exportgraphics(obj,'Final_flap_envelope.png','ContentType','vector')
+     end
+    end
+end

@@ -237,7 +237,7 @@ classdef ShearBendingTorsion
             grid minor
             % text(y(1)-0.2, Shear(1)+20.0, Reg) % Regulation applied
             % xlabel("Position along the span - $y$ (m)", "Interpreter", "latex")
-            ylabel("Shear $(daN/m)$", "Interpreter", "latex")
+            ylabel("Shear $(daN)$", "Interpreter", "latex")
             title('Subplot 1: Shear distribution')
 
             subplot(3,1,2); 
