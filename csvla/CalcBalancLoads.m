@@ -65,13 +65,34 @@ obj1 = aero_model;
 % selected range is -2.0<CL<2.0. To find a complete documentation of the
 % function 'CL_Non_linear_model(...)' search inside aero_model.m file. 
 
+% =========================================================================
+% DRAG POLYNOMIAL COEFFICIENTS DEFINITION 
+% =========================================================================
+Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.value = 0.079;                       % Coefficient inside an expression for the CD in polynomial form
+Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.value = 0.365;                       % Coefficient inside an expressione for the CD in polynomial form
+Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.Attributes.unit = "Non dimensional"; 
+k1 = Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.value;
+k2 = Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.value
+% =========================================================================
+% =========================================================================
+
 % NUMBER OF ELEMENTS
 numb = 1e3;
 
 % Alpha_star and Alpha_max 
-a = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value;
-b = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value;
-c = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value;
+a = -0.021837866;
+b = 0.436064773;
+c = -0.56312855;
+Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value = a;
+Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value = b;
+Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value = c;
+
+% Alpha_star and Alpha_max 
+% a = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value;
+% b = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value;
+% c = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value;
+
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 CL_WB_model = @(alpha) a*alpha.^2 + b*alpha + c; 
 alpha_plus  = @(CL) (-b + sqrt(b^2 - 4*a*(c - CL)))/(2*a);
