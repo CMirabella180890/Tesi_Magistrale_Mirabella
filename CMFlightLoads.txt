@@ -59,12 +59,12 @@ Density [kg/m^3]: 0.8632
  ++++ INPUT TO V - N DIAGRAM ++++
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
  VS+                VS-                 VA                VG
- 39.567874          49.736047          77.131986          60.913968
+ 27.270275          34.278205          53.159553          41.982055
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
  nmax                nmin                 VD                VE
- 3.800000          -1.500000          116.773840          116.773840
+ 3.800000          -1.500000          80.480815          80.480815
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 --------------------------------------
@@ -74,16 +74,13 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Gustenvelope.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-{Unrecognized function or variable 'VC1'.
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcFlightEnv', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcFlightEnv.m', 780)" style="font-weight:bold">CalcFlightEnv</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcFlightEnv.m',780,0)">line 780</a>)
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC1.value                        = VC1;
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 41)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',41,0)">line 41</a>)
-        CalcFlightEnv
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)
-Aircraft = ApplyRegulation(Aircraft);
-} 
-opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcFlightEnv.m',780,0)
-opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcFlightEnv.m',780,0)
+ 
+ ++++++++++ FINAL ENVELOPE - VA AND nA ++++++++++ 
+ Sol1                Sol2
+ -72.374113          16.235022
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving Finalenvelope.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+-----------------
+### Balancing loads - per CS - VLA ###
