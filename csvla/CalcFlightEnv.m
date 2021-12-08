@@ -432,7 +432,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.nE
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.CL_E.value = CLmax_func(rho0, S, VE, WS, abs(nE));
 CL_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.CL_E.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.CL_E.Attribute.unit = "Non dimensional";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.qE.value = 0.5*rho0*VD^2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.qE.value = 0.5*rho0*VE^2;
 qE = Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.qE.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.qE.Attributes.unit = "Pa"; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.LE.value = CL_E*qE*S;
@@ -517,7 +517,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.valu
                                                                                 WS, ...      % Wing loading in SI units
                                                                                 MAC, ...     % Mean Aerodynamic Chord in meters
                                                                                 CLalfa, ...  % Normal force curve slope (practically equal to lift curve slope)
-                                                                                rho0, ...     % Air density
+                                                                                rho_operative, ...     % Air density
                                                                                 g);          % Gravity acceleration g
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.Attributes.unit = 'Non dim.';
 mu_g = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.value;
@@ -538,7 +538,7 @@ KG = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_allev
 % airworthiness prescription. To have a complete documentation
 % check the class file csvla.m
 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value = calcngust(obj, rho0, ... % Standard atmosphere density
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value = calcngust(obj, rho_operative, ... % Standard atmosphere density
                                                                                             CLalfa, ...               % Normal force curve slope [1/rad]
                                                                                             KG, ...                   % Gust alleviation factor KG
                                                                                             Ude_cruise, ...           % Gust speed at cruise VC
@@ -549,7 +549,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_c
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.Attributes.unit = 'g';
 n_gust_cruise_plus = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value;
 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value = calcngust(obj, rho0, ... % Standard atmosphere density
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value = calcngust(obj, rho_operative, ... % Standard atmosphere density
                                                                                             CLalfa, ...               % Normal force curve slope [1/rad]
                                                                                             KG, ...                   % Gust alleviation factor KG
                                                                                             Ude_cruise, ...           % Gust speed at cruise V = VC
@@ -560,7 +560,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_c
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.Attributes.unit = 'g';
 n_gust_cruise_neg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value;
 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value = calcngust(obj, rho0, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value = calcngust(obj, rho_operative, ...
                                                                                             CLalfa, ...
                                                                                             KG, ...
                                                                                             Ude_dive, ...
@@ -571,7 +571,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_d
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.Attributes.unit = 'g';
 n_gust_dive_plus = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value;
 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value = calcngust(obj, rho0, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value = calcngust(obj, rho_operative, ...
                                                                                             CLalfa, ...
                                                                                             KG, ...
                                                                                             Ude_dive, ...
@@ -642,10 +642,13 @@ movefile Gustenvelope.png Output
 % the fact that the gust envelope and flight envelope must be combined to
 % obtain the final envelope. 
 
+final_envelope = figure;
+hold on; grid on; grid minor;
+
 % POSITIVE SIDE OF THE FINAL ENVELOPE
 syms a b c V
 a        = rho0 * CLMAX_clean;
-b        = rho0 * CLalfa * KG * Ude_cruise;
+b        = rho_operative * CLalfa * KG * Ude_cruise;
 c        = 2 * WS; 
 eqn      = a * V^2 - b * V - c ;
 Solution = vpasolve(eqn, V);
@@ -655,60 +658,191 @@ for i = 1:length(Solution)
     if Solution(i) > 0 
         new_VA = cast(Solution(i), 'double');
         if VA > new_VA
+            % Manoeuvring speed
             VA1 = VA;
             nA1 = nmax; 
+            % Cruise speed
+            VC  = VC;
+            nC  = nGust(rho_operative, VC, CLalfa, KG, Ude_cruise, WS);
+            
+            % FROM 0 TO S
+            n_from0toS = linspace(0.0, nS, numb)';
+            V_from0toS = VS * ones(numb, 1); 
+            
+            % FROM S TO A1 
+            n_fromStoA1 = linspace(nS, nA1, numb)';
+            V_fromStoA1 = Vstall(WS, rho0, CLMAX_clean, n_fromStoA1);
+            
+            % FROM A1 TO C1 
+            V_test       = linspace(VA1, VC, numb)';
+            n_test       = nGust_inverted(rho_operative, V_test, CLalfa, KG, Ude_cruise, WS);
+            row          = find(abs(n_test - nmax) < 1e-3);
+            VC1          = V_test(row);
+            V_fromA1toC1 = linspace(VA1, VC1, numb)';
+            n_fromA1toC1 = nmax*ones(length(V_fromA1toC1),1);
+            nC1          = nmax;
+            
+            % FROM C1 TO C 
+            V_fromC1toC = linspace(VC1, VC, numb)';
+            n_fromC1toC = nGust(rho_operative, V_fromC1toC, CLalfa, KG, Ude_cruise, WS);
+            
+            % FROM C TO C2 
+            p = polyfit([n_gust_cruise_plus(end) n_gust_dive_plus(end)], [V_gust_cruise(end) V_gust_dive(end)], 1);
+            n_fromCtoC2 = linspace(nC, nmax, numb)';
+            V_fromCtoC2 = polyval(p, n_fromCtoC2);
+            VC2         = V_fromCtoC2(end);
+            nC2         = n_fromCtoC2(end);
+            
+            % FROM C2 TO D 
+            V_fromC2toD = linspace(VC2, VD, numb)';
+            n_fromC2toD = nmax*ones(length(V_fromC2toD),1);
+            VD          = V_fromC2toD(end);
+            nD          = n_fromC2toD(end);
+            
+            % FROM D TO 0
+            V_fromDto0 = VD*ones(numb, 1); 
+            n_fromDto0 = linspace(nD, 0.0, numb)';
+ 
+% -----------------------------------------------------------------------------------------------------------------------------
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value                 = V_fromStoA1; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.Attribute.unit        = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value           = n_fromStoA1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.Attribute.unit  = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.value                         = VC;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.Attributes.unit               = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.value                   = nC; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.Attributes.unit         = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC1.value                        = VC1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC1.Attributes.unit              = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC1.value                  = nmax;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC1.Attributes.unit        = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC2.value                        = VC2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC2.Attributes.unit              = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC2.value                  = nmax;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC2.Attributes.unit        = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VD.value                         = VD;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VD.Attributes.unit               = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value                   = nD;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.Attributes.unit         = "g's";
+% -----------------------------------------------------------------------------------------------------------------------------
+           
+            plot(V_fromStoA1, n_fromStoA1, 'r', 'LineWidth', 1.5)
+            plot(V_fromA1toC1, n_fromA1toC1, 'r', 'LineWidth', 1.5)
+            plot(V_fromC1toC, n_fromC1toC, 'r', 'LineWidth', 1.5)
+            plot(V_fromCtoC2, n_fromCtoC2, 'r', 'LineWidth', 1.5)
+            plot(V_fromC2toD, n_fromC2toD, 'r', 'LineWidth', 1.5)
+            plot(V_fromDto0, n_fromDto0, 'r', 'LineWidth', 1.5)
+            plot(V_from0toS, n_from0toS, 'r', 'LineWidth', 1.5)
+
+            plot(VD, nD, 'k.', 'MarkerSize', 12);
+            plot(VC2, nC2, 'k.', 'MarkerSize', 12)
+            plot(VC1, nC1, 'k.', 'MarkerSize', 12)
+            plot(VC, nC, 'k.', 'MarkerSize', 12)
+            plot(VA1, nA1, 'k.', 'MarkerSize', 12)
+            plot(VS, nS, 'k.', 'MarkerSize', 12)
+            
+            text(VD, nD, '  D', 'FontSize', 6)
+            text(VC2, nC2, '  C2', 'FontSize', 6)
+            text(VC, nC, '  C', 'FontSize', 6)
+            text(VC1, nC1, '  C1', 'FontSize', 6)
+            text(VA1, nA1, '  A', 'FontSize', 6)
+            text(VS, nS, '  S', 'FontSize', 6)
+            
         elseif VA < new_VA
             VA1 = new_VA;
-            nA1 = nGust(rho0, VA1, CLalfa, KG, Ude_cruise, WS);
+            nA1 = nGust(rho_operative, VA1, CLalfa, KG, Ude_cruise, WS);
+            disp(" ")
+            % Input to the flight envelope
+            Data1 = [  VA1, ...            % Resulting Design Manoeuvring airspeed VA
+                       nA1];               % Load factor at V = VA
+            disp(" ++++++++++ FINAL ENVELOPE - VA AND nA ++++++++++ ")
+            format = ' %6.6f          %6.6f\n';
+            label  = ' VA1                nA1\n';
+            fprintf(label);
+            fprintf(format, Data1.');
+            disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
+            % POSITIVE SIDE FIRST SEGMENT
+            n_from0toS = linspace(0.0, nS, numb)';
+            V_from0toS = VS * ones(numb, 1); 
+
+            % POSITIVE STALL SPEED CALCULATION
+            % n_fromStoA = linspace(nS, nA, numb)';
+            % V_fromStoA = Vstall(WS, rho0, CLMAX_clean, n_fromStoA);
+
+            % POSITIVE STALL SPEED CALCULATION
+            n_fromStoA1 = linspace(nS, nA1, numb)';
+            V_fromStoA1 = Vstall(WS, rho0, CLMAX_clean, n_fromStoA1);
+
+            % FROM A1 TO C
+            V_fromA1toC = linspace(VA1, VC, numb)';
+            n_fromA1toC = nGust(rho_operative, V_fromA1toC, CLalfa, KG, Ude_cruise, WS);
+            nC         = n_fromA1toC(end);
+
+            % FROM C TO FINAL GUST 
+            p = polyfit([n_gust_cruise_plus(end) n_gust_dive_plus(end)], [V_gust_cruise(end) V_gust_dive(end)], 1);
+            n_fromCtoFG = linspace(n_gust_cruise_plus(end), nmax, numb)';
+            V_fromCtoFG = polyval(p, n_fromCtoFG);
+
+            % FROM FINAL GUST TO D
+            n_fromFGtoD = nmax * ones(numb, 1); 
+            V_fromFGtoD = linspace(V_fromCtoFG(end), VD, numb)';
+            nFG         = nmax;
+            VFG         = V_fromFGtoD(1);
+
+            % FROM D TO ZERO 
+            V_fromDto0 = VD * ones(numb, 1); 
+            n_fromDto0 = linspace(nmax, 0.0, numb)';
+            
+% -----------------------------------------------------------------------------------------------------------------------------
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value                 = [V_fromStoA1; V_fromA1toC]; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.Attribute.unit        = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value           = [n_fromStoA1; n_fromA1toC];
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.Attribute.unit  = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_speed.value                     = VFG;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_speed.Attributes.unit           = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_load_factor.value               = nFG;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_load_factor.Attributes.unit     = "g's"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.value                         = VC;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.Attributes.unit               = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.value                   = nC; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.Attributes.unit         = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VD.value                         = VD;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VD.Attributes.unit               = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value                   = nD;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.Attributes.unit         = "g's";
+% -----------------------------------------------------------------------------------------------------------------------------
+            
+            plot(V_fromStoA1, n_fromStoA1, 'r', 'LineWidth', 1.5)
+            plot(V_fromA1toC, n_fromA1toC, 'r', 'LineWidth', 1.5)
+            plot(V_fromCtoFG, n_fromCtoFG, 'r', 'LineWidth', 1.5)
+            plot(V_fromFGtoD, n_fromFGtoD, 'r', 'LineWidth', 1.5)
+            plot(V_fromDto0, n_fromDto0, 'r', 'LineWidth', 1.5)
+            plot(V_from0toS, n_from0toS, 'r', 'LineWidth', 1.5)
+
+            plot(VD, nD, 'k.', 'MarkerSize', 12);
+            plot(VFG, nFG, 'k.', 'MarkerSize', 12)
+            plot(VC, nC, 'k.', 'MarkerSize', 12)
+            plot(VA, nA, 'k.', 'MarkerSize', 12)
+            plot(VA1, nA1, 'k.', 'MarkerSize', 12)
+            plot(VS, nS, 'k.', 'MarkerSize', 12)
+            
+            text(VD, nD, '  D', 'FontSize', 6)
+            text(VFG, nFG, '   C2', 'FontSize', 6)
+            text(VC, nC, '  C', 'FontSize', 6)
+            text(VA1, nA1, '  A1', 'FontSize', 6)
+            text(VA, nA,   '  A', 'FontSize', 6)
+            text(VS, nS, '  S', 'FontSize', 6)
         end
     end
 end
 
-disp(" ")
-% Input to the flight envelope
-Data1 = [  VA1, ...            % Resulting Design Manoeuvring airspeed VA
-           nA1];               % Load factor at V = VA
-disp(" ++++++++++ FINAL ENVELOPE - VA AND nA ++++++++++ ")
-format = ' %6.6f          %6.6f\n';
-label  = ' VA1                nA1\n';
-fprintf(label);
-fprintf(format, Data1.');
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
-% POSITIVE SIDE FIRST SEGMENT
-n_from0toS = linspace(0.0, nS, numb)';
-V_from0toS = VS * ones(numb, 1); 
-
-% POSITIVE STALL SPEED CALCULATION
-% n_fromStoA = linspace(nS, nA, numb)';
-% V_fromStoA = Vstall(WS, rho0, CLMAX_clean, n_fromStoA);
-
-% POSITIVE STALL SPEED CALCULATION
-n_fromStoA1 = linspace(nS, nA1, numb)';
-V_fromStoA1 = Vstall(WS, rho0, CLMAX_clean, n_fromStoA1);
-
-% FROM A TO C
-V_fromA1toC = linspace(VA1, VC, numb)';
-n_fromA1toC = nGust(rho0, V_fromA1toC, CLalfa, KG, Ude_cruise, WS);
-nC         = n_fromA1toC(end);
-
-% FROM C TO FINAL GUST 
-p = polyfit([n_gust_cruise_plus(end) n_gust_dive_plus(end)], [V_gust_cruise(end) V_gust_dive(end)], 1);
-n_fromCtoFG = linspace(n_gust_cruise_plus(end), nmax, numb)';
-V_fromCtoFG = polyval(p, n_fromCtoFG);
-
-% FROM FINAL GUST TO D
-n_fromFGtoD = nmax * ones(numb, 1); 
-V_fromFGtoD = linspace(V_fromCtoFG(end), VD, numb)';
-
-% FROM D TO ZERO 
-V_fromDto0 = VD * ones(numb, 1); 
-n_fromDto0 = linspace(nmax, 0.0, numb)';
 
 % NEGATIVE SIDE OF THE FINAL ENVELOPE
 syms a b c V
 a        = rho0 * CLMAX_clean_inverted;
-b        = rho0 * CLalfa * KG * Ude_cruise;
+b        = rho_operative * CLalfa * KG * Ude_cruise;
 c        = 2 * WS; 
 eqn      = a * V^2 + b * V - c ;
 Solution = vpasolve(eqn, V);
@@ -718,81 +852,65 @@ for i = 1:length(Solution)
     if (Solution(i) > 0) && (abs(Solution(i)) > VG)
         new_VG = cast(Solution(i), 'double');
         if VG > new_VG
+            % Manoeuvring airspeed
             VG1 = VG;
             nG1 = nmin; 
-        elseif VG < new_VG
-            VG1 = new_VG;
-            nG1 = nGust_inverted(rho0, VG1, CLalfa, KG, Ude_cruise, WS);
-        end
-    end
-end
-
-disp(" ")
-% Input to the flight envelope
-Data1 = [  VG1, ...            % Resulting Design Manoeuvring airspeed VA
-           nG1];               % Load factor at V = VA
-disp(" ++++++++++ FINAL ENVELOPE - VG AND nG ++++++++++ ")
-format = ' %6.6f          %6.6f\n';
-label  = ' VG1                nG1\n';
-fprintf(label);
-fprintf(format, Data1.');
-disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
-
-% FROM 0 TO S_inverted
-nS_inv        = -1.0;
-n_from0toSinv = linspace(0.0, nS_inv, numb)';
-VS_inv        = Vstall(WS, rho0, abs(CLMAX_clean_inverted), abs(nS_inv));
-V_from0toSinv = VS_inv*ones(numb, 1);
-
-% FROM S_inverted TO G
-n_fromSinvtoG1 = linspace(nS_inv, nG1, numb)';
-V_fromSinvtoG1 = Vstall(WS, rho0, abs(CLMAX_clean_inverted), abs(n_fromSinvtoG1));
-
-% FROM S_inverted TO G
-% n_fromGinvtoG1 = linspace(nG, nG1, numb)';
-% V_fromGinvtoG1 = Vstall(WS, rho0, abs(CLMAX_clean_inverted), abs(n_fromGinvtoG1));
-
-% FROM G TO F
-V_fromG1toF = linspace(VG1, VC, numb)';
-n_fromG1toF = nGust_inverted(rho0, V_fromG1toF, CLalfa, KG, Ude_cruise, WS);
-VF = VC;
-nF = n_fromG1toF(end);
-
-% FROM F TO E
-n_fromFtoE = linspace(n_fromG1toF(end), n_gust_dive_neg(end), numb)';
-nE         = n_fromFtoE(end);
-p          = polyfit([n_gust_cruise_neg(end) n_gust_dive_neg(end)], ...
-                     [V_gust_cruise(end) V_gust_dive(end)], 1);
-V_fromFtoE = polyval(p, double(n_fromFtoE));
-VE         = V_fromFtoE(end);
-
-% FROM E TO ZERO 
-n_fromEto0 = linspace(n_fromFtoE(end), 0.0, numb)';
-V_fromEto0 = VD*ones(numb, 1);
-
-% AIRCRAFT STRUCT VARIABLE FILLING 
-% ------------------------------------------------------------------------------------------------------------------
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value                 = [V_fromStoA1; V_fromA1toC];
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.Attribute.unit        = "m/s";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value           = [n_fromStoA1; n_fromA1toC];
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.Attribute.unit  = "g's";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.value                         = VC;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.Attributes.unit               = "m/s";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_speed.value                     = V_fromCtoFG(end);
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_speed.Attributes.unit           = "m/s";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_load_factor.value               = nmax;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_load_factor.Attributes.unit     = "g's"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value                 = [V_fromSinvtoG1; V_fromG1toF];
+            % Cruise airspeed
+            VF  = VF; 
+            nF  = nGust_inverted(rho_operative, VF, CLalfa, KG, Ude_cruise, WS);
+            
+            %FROM 0 TO S_inverted 
+            nS_inv        = -1.0;
+            n_from0toSinv = linspace(0.0, nS_inv, numb)';
+            VS_inv        = Vstall(WS, rho0, abs(CLMAX_clean_inverted), abs(nS_inv));
+            V_from0toSinv = VS_inv*ones(numb, 1);
+            
+            % FROM S_inverted TO G
+            n_fromSinvtoG = linspace(nS_inv, nG, numb)';
+            V_fromSinvtoG = Vstall(WS, rho0, abs(CLMAX_clean_inverted), abs(n_fromSinvtoG));
+            
+            % FROM F TO F1
+            V_test      = linspace(VG, VF, numb)';
+            n_test      = nGust_inverted(rho_operative, V_test, CLalfa, KG, Ude_cruise, WS);
+            row         = find(abs(abs(n_test) - abs(nmin)) < 1e-3);
+            VF1         = V_test(row);
+            V_fromGtoF1 = linspace(VG, VF1, numb)';
+            n_fromGtoF1 = nmin*ones(length(V_fromGtoF1),1);
+            
+            % FROM F1 TO F 
+            V_fromF1toF = linspace(VF1, VF, numb)';
+            n_fromF1toF = nGust_inverted(rho_operative, V_fromF1toF, CLalfa, KG, Ude_cruise, WS);
+            
+            % FROM F TO F2 
+            n_fromFtoF2 = linspace(nF, nmax, numb)';
+            p           = polyfit([n_gust_cruise_neg(end) n_gust_dive_neg(end)], ...
+                                 [V_gust_cruise(end) V_gust_dive(end)], 1);
+            V_fromFtoF2 = polyval(p, double(n_fromFtoF2));    
+            nF2         = n_fromFtoF2(end);
+            VF2         = V_fromFtoF2(end);
+            
+            % FROM F2 TO E
+            V_fromF2toE = linspace(nF2, nE, numb)';
+            n_fromF2toE = nmin*ones(length(V_fromF2toE),1);
+            
+            % FROM E TO 0
+            V_fromEto0 = VE * ones(numb, 1);
+            n_fromEto0 = linspace(nE, 0.0, numb)';
+            
+% -----------------------------------------------------------------------------------------------------------------            
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value                 = V_fromSinvtoG1;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.Attributes.unit       = "m/s";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value           = [n_fromSinvtoG1; n_fromG1toF]; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value           = n_fromSinvtoG1;  
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.Attributes.unit = "g's";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.value                   = nC; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.Attributes.unit         = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF1.value                        = VF1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF1.Attributes.unit              = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF1.value                  = nF1;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF1.Attributes.unit        = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF2.value                        = VF2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF2.Attributes.unit              = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF2.value                  = nF2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF2.Attributes.unit        = "g's";
 % ------------------------------------------------------------------------------------------------------------------
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value                               = VD; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.Attributes.unit                     = "m/s"; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value           = nmax;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.Attributes.unit = "g's";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.value                 = VF;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.Attributes.unit       = "m/s";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.value           = nF;
@@ -803,46 +921,190 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_f
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.Attributes.unit = "g's";
 % ------------------------------------------------------------------------------------------------------------------
 
+            plot(V_from0toSinv, n_from0toSinv, 'r', 'LineWidth', 1.5)
+            plot(V_fromSinvtoG, n_fromSinvtoG, 'r', 'LineWidth', 1.5)
+            plot(V_fromG1toF, n_fromG1toF, 'r', 'LineWidth', 1.5)
+            plot(V_fromGtoF1, n_fromGtoF1, 'r', 'LineWidth', 1.5)
+            plot(V_fromF1toF, n_fromF1toF, 'r', 'LineWidth', 1.5)
+            plot(V_fromFtoF2, n_fromFtoF2, 'r', 'LineWidth', 1.5)
+            plot(V_fromF2toE, n_fromF2toE, 'r', 'LineWidth', 1.5)
+            plot(V_fromEto0, n_fromEto0, 'r', 'LineWidth', 1.5)
+            
+            plot(VS_inv, nS_inv, 'k.', 'MarkerSize', 12);
+            plot(VG1, nG1, 'k.', 'MarkerSize', 12)
+            plot(VE, nE, 'k.', 'MarkerSize', 12)
+            plot(VF, nF, 'k.', 'MarkerSize', 12)
+            plot(VF1, nF1, 'k.', 'MarkerSize', 12)
+            plot(VF2, nF2, 'k.', 'MarkerSize', 12)
+            
+            
+            text(VF, nF, '  F', 'FontSize', 6)
+            text(VF1, nF1, '  F1', 'FontSize', 6)
+            text(VF2, nF2, '  F2', 'FontSize', 6)
+            text(VG1, nG1, '  G', 'FontSize', 6)
+            text(VE, nE, '  E', 'FontSize', 6)
+            text(VS_inv, nS_inv, '  S inv.', 'FontSize', 6)
+            
+        elseif VG < new_VG
+            VG1 = new_VG;
+            nG1 = nGust_inverted(rho_operative, VG1, CLalfa, KG, Ude_cruise, WS);
+            disp(" ")
+            % Input to the flight envelope
+            Data1 = [  VG1, ...            % Resulting Design Manoeuvring airspeed VA
+                       nG1];               % Load factor at V = VA
+            disp(" ++++++++++ FINAL ENVELOPE - VG AND nG ++++++++++ ")
+            format = ' %6.6f          %6.6f\n';
+            label  = ' VG1                nG1\n';
+            fprintf(label);
+            fprintf(format, Data1.');
+            disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
+            % FROM 0 TO S_inverted
+            nS_inv        = -1.0;
+            n_from0toSinv = linspace(0.0, nS_inv, numb)';
+            VS_inv        = Vstall(WS, rho0, abs(CLMAX_clean_inverted), abs(nS_inv));
+            V_from0toSinv = VS_inv*ones(numb, 1);
+
+            % FROM S_inverted TO G1
+            n_fromSinvtoG1 = linspace(nS_inv, nG1, numb)';
+            V_fromSinvtoG1 = Vstall(WS, rho0, abs(CLMAX_clean_inverted), abs(n_fromSinvtoG1));
+
+            % FROM S_inverted TO G
+            % n_fromGinvtoG1 = linspace(nG, nG1, numb)';
+            % V_fromGinvtoG1 = Vstall(WS, rho0, abs(CLMAX_clean_inverted), abs(n_fromGinvtoG1));
+
+            % FROM G TO F
+            V_fromG1toF = linspace(VG1, VC, numb)';
+            n_fromG1toF = nGust_inverted(rho_operative, V_fromG1toF, CLalfa, KG, Ude_cruise, WS);
+            VF = VC;
+            nF = n_fromG1toF(end);
+
+            % FROM F TO E
+            n_fromFtoE = linspace(n_fromG1toF(end), n_gust_dive_neg(end), numb)';
+            nE         = n_fromFtoE(end);
+            p          = polyfit([n_gust_cruise_neg(end) n_gust_dive_neg(end)], ...
+                                 [V_gust_cruise(end) V_gust_dive(end)], 1);
+            V_fromFtoE = polyval(p, double(n_fromFtoE));
+            VE         = V_fromFtoE(end);
+
+            % FROM E TO ZERO 
+            n_fromEto0 = linspace(n_fromFtoE(end), 0.0, numb)';
+            V_fromEto0 = VD*ones(numb, 1);
+            
+% -----------------------------------------------------------------------------------------------------------------            
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value                 = [V_fromSinvtoG1; V_fromG1toF];
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.Attributes.unit       = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value           = [n_fromSinvtoG1; n_fromG1toF]; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.Attributes.unit = "g's";
+% ------------------------------------------------------------------------------------------------------------------
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.value                 = VF;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.Attributes.unit       = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.value           = nF;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.Attributes.unit = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VE.value                 = VE;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VE.Attributes.unit       = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.value           = nE;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.Attributes.unit = "g's";
+% ------------------------------------------------------------------------------------------------------------------
+            
+            plot(V_from0toSinv, n_from0toSinv, 'r', 'LineWidth', 1.5)
+            plot(V_fromSinvtoG1, n_fromSinvtoG1, 'r', 'LineWidth', 1.5)
+            plot(V_fromG1toF, n_fromG1toF, 'r', 'LineWidth', 1.5)
+            plot(V_fromFtoE, n_fromFtoE, 'r', 'LineWidth', 1.5)
+            plot(V_fromEto0, n_fromEto0, 'r', 'LineWidth', 1.5)
+            
+            plot(VS_inv, nS_inv, 'k.', 'MarkerSize', 12);
+            plot(VG1, nG1, 'k.', 'MarkerSize', 12)
+            plot(VE, nE, 'k.', 'MarkerSize', 12)
+            plot(VF, nF, 'k.', 'MarkerSize', 12)
+            
+            text(VF, nF, '  F', 'FontSize', 6)
+            text(VG1, nG1, '  G', 'FontSize', 6)
+            text(VE, nE, '  E', 'FontSize', 6)
+            text(VS_inv, nS_inv, '  S inv.', 'FontSize', 6)
+            
+        end
+    end
+end
+
+
+
+% AIRCRAFT STRUCT VARIABLE FILLING 
+% ------------------------------------------------------------------------------------------------------------------
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value                 = [V_fromStoA1; V_fromA1toC];
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.Attribute.unit        = "m/s";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value           = [n_fromStoA1; n_fromA1toC];
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.Attribute.unit  = "g's";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.value                         = VC;
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VC.Attributes.unit               = "m/s";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_speed.value                     = V_fromCtoFG(end);
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_speed.Attributes.unit           = "m/s";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_load_factor.value               = nmax;
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Final_gust_load_factor.Attributes.unit     = "g's"; 
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.value                 = [V_fromSinvtoG1; V_fromG1toF];
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_speed.Attributes.unit       = "m/s";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.value           = [n_fromSinvtoG1; n_fromG1toF]; 
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Negative_stall_load_factor.Attributes.unit = "g's";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.value                   = nC; 
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nC.Attributes.unit         = "g's";
+% ------------------------------------------------------------------------------------------------------------------
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value                               = VD; 
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.Attributes.unit                     = "m/s"; 
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.value           = nmax;
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nD.Attributes.unit = "g's";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.value                 = VF;
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VF.Attributes.unit       = "m/s";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.value           = nF;
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nF.Attributes.unit = "g's";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VE.value                 = VE;
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_speed_VE.Attributes.unit       = "m/s";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.value           = nE;
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Man_load_factor_nE.Attributes.unit = "g's";
+% ------------------------------------------------------------------------------------------------------------------
+
 %% FINAL ENVELOPE DIAGRAM 
 
-final_envelope = figure; 
-hold on; grid on; grid minor;
-ylim([nmin-2.0 nmax+2.0])
+% final_envelope = figure; 
+% hold on; grid on; grid minor;
+% ylim([nmin-2.0 nmax+2.0])
+% xlim([0 VD+10])
+% plot(V_from0toSinv, n_from0toSinv, 'r', 'LineWidth', 1.5)
+% plot(V_fromStoA1, n_fromStoA1, 'r', 'LineWidth', 1.5)
+% plot(V_fromA1toC, n_fromA1toC, 'r', 'LineWidth', 1.5)
+% plot(V_fromCtoFG, n_fromCtoFG, 'r', 'LineWidth', 1.5)
+% plot(V_fromFGtoD, n_fromFGtoD, 'r', 'LineWidth', 1.5)
+% plot(V_fromDto0, n_fromDto0, 'r', 'LineWidth', 1.5)
+% plot(V_from0toS, n_from0toS, 'r', 'LineWidth', 1.5)
+% plot(V_fromSinvtoG1, n_fromSinvtoG1, 'r', 'LineWidth', 1.5)
+% plot(V_fromG1toF, n_fromG1toF, 'r', 'LineWidth', 1.5)
+% plot(V_fromFtoE, n_fromFtoE, 'r', 'LineWidth', 1.5)
+% plot(V_fromEto0, n_fromEto0, 'r', 'LineWidth', 1.5)
+% plot(VD, nD, 'k.', 'MarkerSize', 12);
+% plot(V_fromCtoFG(end), n_fromCtoFG(end), 'k.', 'MarkerSize', 12)
+% plot(VF, nF, 'k.', 'MarkerSize', 12);
+% plot(VG, nG, 'k.', 'MarkerSize', 12);
+% plot(VG1, nG1, 'k.', 'MarkerSize', 12);
+% plot(VC, nC, 'k.', 'MarkerSize', 12)
+% plot(VA, nA, 'k.', 'MarkerSize', 12)
+% plot(VA1, nA1, 'k.', 'MarkerSize', 12)
+% plot(VS, nS, 'k.', 'MarkerSize', 12)
+% plot(VE, nE, 'k.', 'MarkerSize', 12)
+% plot(VS_inv, nS_inv, 'k.', 'MarkerSize', 12)
+% plot(V_from0toSinv(1), nS_inv, 'k.', 'MarkerSize', 12)
+% text(VD, nD, '  D', 'FontSize', 6)
+% text(VC, nC, '  C', 'FontSize', 6)
+% text(VA, nA, '  A', 'FontSize', 6)
+% text(VA1, nA1, '  A1', 'FontSize', 6)
+% text(VS, nS, '  S', 'FontSize', 6)
+% text(VF, nF, '  F', 'FontSize', 6)
+% text(VG, nG, '  G', 'FontSize', 6)
+% text(VG1, nG1, '  G1', 'FontSize', 6)
+% text(VE, nE, '  E', 'FontSize', 6)
+% text(VS_inv, nS_inv, '  S inv.', 'FontSize', 6)
+% text(V_from0toSinv(1), nS_inv, '  S inv.', 'FontSize', 6)
+
+ylim([nF-1.0 nC+1.0])
 xlim([0 VD+10])
-plot(V_from0toSinv, n_from0toSinv, 'r', 'LineWidth', 1.5)
-plot(V_fromStoA1, n_fromStoA1, 'r', 'LineWidth', 1.5)
-plot(V_fromA1toC, n_fromA1toC, 'r', 'LineWidth', 1.5)
-plot(V_fromCtoFG, n_fromCtoFG, 'r', 'LineWidth', 1.5)
-plot(V_fromFGtoD, n_fromFGtoD, 'r', 'LineWidth', 1.5)
-plot(V_fromDto0, n_fromDto0, 'r', 'LineWidth', 1.5)
-plot(V_from0toS, n_from0toS, 'r', 'LineWidth', 1.5)
-plot(V_fromSinvtoG1, n_fromSinvtoG1, 'r', 'LineWidth', 1.5)
-plot(V_fromG1toF, n_fromG1toF, 'r', 'LineWidth', 1.5)
-plot(V_fromFtoE, n_fromFtoE, 'r', 'LineWidth', 1.5)
-plot(V_fromEto0, n_fromEto0, 'r', 'LineWidth', 1.5)
-plot(VD, nD, 'k.', 'MarkerSize', 12);
-plot(V_fromCtoFG(end), n_fromCtoFG(end), 'k.', 'MarkerSize', 12)
-plot(VF, nF, 'k.', 'MarkerSize', 12);
-plot(VG, nG, 'k.', 'MarkerSize', 12);
-plot(VG1, nG1, 'k.', 'MarkerSize', 12);
-plot(VC, nC, 'k.', 'MarkerSize', 12)
-plot(VA, nA, 'k.', 'MarkerSize', 12)
-plot(VA1, nA1, 'k.', 'MarkerSize', 12)
-plot(VS, nS, 'k.', 'MarkerSize', 12)
-plot(VE, nE, 'k.', 'MarkerSize', 12)
-plot(VS_inv, nS_inv, 'k.', 'MarkerSize', 12)
-plot(V_from0toSinv(1), nS_inv, 'k.', 'MarkerSize', 12)
-text(VD, nD, '  D', 'FontSize', 6)
-text(VC, nC, '  C', 'FontSize', 6)
-text(VA, nA, '  A', 'FontSize', 6)
-text(VA1, nA1, '  A1', 'FontSize', 6)
-text(VS, nS, '  S', 'FontSize', 6)
-text(VF, nF, '  F', 'FontSize', 6)
-text(VG, nG, '  G', 'FontSize', 6)
-text(VG1, nG1, '  G1', 'FontSize', 6)
-text(VE, nE, '  E', 'FontSize', 6)
-text(VS_inv, nS_inv, '  S inv.', 'FontSize', 6)
-text(V_from0toSinv(1), nS_inv, '  S inv.', 'FontSize', 6)
 xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
 ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
 title("V~-~n diagram per ", Reg, "Interpreter", "latex")
