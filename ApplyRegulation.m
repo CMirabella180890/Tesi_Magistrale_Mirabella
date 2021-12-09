@@ -43,7 +43,7 @@ switch (Aircraft.Certification.Regulation.value)
         fprintf('\n');
         fprintf('### Balancing loads - per CS - VLA ###');
         fprintf('\n');
-%         CalcBalancLoads
+        CalcBalancLoads
 %         % CHANGE DIRECTORY TO CALCULATES C_l = C_l(y)
 %         cd .. 
 %         cd utilities\OpenVSP

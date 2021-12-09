@@ -658,6 +658,10 @@ for i = 1:length(Solution)
     if Solution(i) > 0 
         new_VA = cast(Solution(i), 'double');
         if VA > new_VA
+            
+            % CASE 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Straight_flight.value = 'Case 1';
+            
             % Manoeuvring speed
             VA1 = VA;
             nA1 = nmax; 
@@ -895,7 +899,8 @@ for i = 1:length(Solution)
                 text(VA1, nA1, '  A', 'FontSize', 6)
                 text(VS, nS, '  S', 'FontSize', 6)
                 
-            elseif abs(n_gust_cruise_plus) < nmax
+            elseif max(n_gust_cruise_plus) < nmax
+                
                 % FROM A1 TO C 
                 V_fromA1toC = linspace(VA1, VC, numb)';
                 n_fromA1toC = nmax*ones(numb, 1);
@@ -1028,6 +1033,10 @@ for i = 1:length(Solution)
             end
             
         elseif VA < new_VA
+            
+            % CASE 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Straight_flight.value = 'Case 2';
+            
             VA1 = new_VA;
             nA1 = nGust(rho_operative, VA1, CLalfa, KG, Ude_cruise, WS);
             disp(" ")
@@ -1239,6 +1248,10 @@ disp(" CHECK: ")
 if check_s == 0
     disp(check_s)
     disp(" WARNING: There are no solutions in the Real numbers") 
+    
+    % CASE 
+    Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Inverted_flight.value = 'Case 1';
+    
     if abs(min(n_gust_cruise_neg)) > abs(nmin)
         VG = VG; 
         nG = nmin; 
@@ -1602,6 +1615,10 @@ if check_s == 0
     end
     
 elseif check_s == 1
+    
+    % CASE 
+    Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Inverted_flight.value = 'Case 2';
+    
     disp(" Solutions are real numbers")
     disp(" ")
     % Input to the flight envelope

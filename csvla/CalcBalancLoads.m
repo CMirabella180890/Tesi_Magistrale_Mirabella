@@ -1,7 +1,26 @@
+% =========================================================================
+% Alpha_star and Alpha_max 
+% =========================================================================
+a = -0.021837866;
+b = 0.436064773;
+c = -0.56312855;
+Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value = a;
+Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value = b;
+Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value = c;
+% =========================================================================
+% ZERO LIFT COEFFICIENT
+CL0 = Aircraft.Certification.Aerodynamic_data.CL0.value;
+
 % ==== USEFUL FUNCTION DEFINED LOCALLY ====
 % -------------------------------------------------------------------------
 % CLMAX FUNCTION
-CLmax_func = @(rho, S, V, WS, n) (2 / rho) * (1 / V^2) * (WS) * n;
+CLmax_func = @(rho, S, V, WS, n) (2 / rho) * (1 / V.^2) * (WS) * n;
+% -------------------------------------------------------------------------
+% CLMAX NON LINEAR
+CLmax_non_lin = @(alfa) a*alfa^2 + b*alfa + c;
+% -------------------------------------------------------------------------
+% ALFA FUNCTION
+alfa_func = @(rho, S, V, WS, n, CLalfa, alfa_0lift) (2 / rho) * (1 / V.^2) * (1/CLalfa) * (WS) * n + alfa_0lift;
 % -------------------------------------------------------------------------
 % GUST LOAD FACTOR - POSITIVE FLIGHT
 nGust  = @(rho, V, a, kG, Ude, WS) 1 + (0.5 * rho * V * a * kG * Ude)/(WS); 
@@ -14,17 +33,6 @@ Vstall = @(WS, rho, CLmax, n) sqrt(WS * (2/rho) * (1/CLmax).*n);
 % -------------------------------------------------------------------------
 
 % =========================================================================
-% Alpha_star and Alpha_max 
-% =========================================================================
-a = -0.021837866;
-b = 0.436064773;
-c = -0.56312855;
-Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value = a;
-Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value = b;
-Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value = c;
-% =========================================================================
-
-% =========================================================================
 % DRAG POLYNOMIAL COEFFICIENTS DEFINITION 
 % =========================================================================
 Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.value = 0.079;                       % Coefficient inside an expression for the CD in polynomial form
@@ -34,6 +42,21 @@ Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.Attributes.unit = "Non dime
 k1 = Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.value;
 k2 = Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.value;
 % =========================================================================
+% OSWALDT EFFICIENCY FACTOR
+e   = Aircraft.Certification.Aerodynamic_data.e.value;
+
+% ASPECT RATIO 
+AR  = Aircraft.Geometry.Wing.AR.value;
+
+% ZERO-LIFT DRAG COEFFICIENT
+CD0 = Aircraft.Certification.Aerodynamic_data.CD0.value;
+
+% ENDING OF LINEAR PART OF LIFT CURVE
+CL_star = Aircraft.Certification.Aerodynamic_data.CL_star.value;
+
+% CLALFA IN DEG^-1
+CLalfa = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value;
+
 % =========================================================================
 
 %% Script to evaluate balancing horizontal tail loads
@@ -80,6 +103,8 @@ fprintf('\n');
 fprintf('### Current directory ###');
 fprintf('\n');
 fprintf('%s\n', dir);
+
+%% CLASS INSTANTIATION 
 obj1 = aero_model; 
 
 %% LIFT CHARACTERISTIC
@@ -97,8 +122,16 @@ CL_WB_model = @(alpha) a*alpha.^2 + b*alpha + c;
 alpha_plus  = @(CL) (-b + sqrt(b^2 - 4*a*(c - CL)))/(2*a);
 alpha_meno  = @(CL) (-b - sqrt(b^2 - 4*a*(c - CL)))/(2*a);
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-alpha_star = alpha_plus(Aircraft.Certification.Aerodynamic_data.CL_star.value);
-alpha_max  = alpha_meno(Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value);
+% Alpha zero lift
+Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value = alpha_calc_lin(obj1, ...
+                                                                               0.0, ...
+                                                                               Aircraft.Certification.Aerodynamic_data.CL0.value, ...
+                                                                               Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value);
+Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.Attributes.unit = "degree";
+
+alpha_zerol = Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value;
+alpha_star  = alpha_plus(Aircraft.Certification.Aerodynamic_data.CL_star.value);
+alpha_max   = alpha_meno(Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value);
 
 % Lift coefficient curve
 Aircraft.Certification.Aerodynamic_data.AOA_aux.value = linspace(-8.0, 25*alpha_star*1e-3 - alpha_star, numb)';
@@ -148,66 +181,238 @@ movefile FullLiftModelInterpolation.png Output
 % bit greater than the one obtained from V - n diagram flight condition to
 % take into account the extra lift produced by the horizontal empennage.
 
-% POSITIVE SIDE OF THE FINAL ENVELOPE
-syms a b c V
-a        = rho0 * CLMAX_clean;
-b        = rho_operative * CLalfa * KG * Ude_cruise;
-c        = 2 * WS; 
-eqn      = a * V^2 - b * V - c ;
-Solution = vpasolve(eqn, V);
+Straight_flight_Case = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Straight_flight.value;
 
-for i = 1:length(Solution)
-    if Solution(i) > 0 
-        new_VA = cast(Solution(i), 'double');
-        if VA > new_VA
-            
-            % *** From point S to point A1 ***
-            CL_positivestall = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value), 1);
-            for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value)
-                V = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(i);
-                n = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value(i);
-                
-                % A complete documentation of the function CL_calc(...) used here is
-                % inside the class file aero_model.m, which can be found inside the
-                % 'utilities' folder of this library.
-                CL_positivestall(i) = CL_calc(obj1, n, ...
-                                Aircraft.Weight.I_Level.W_maxTakeOff.value, ...
-                                Aircraft.Constants.g.value, ...
-                                V, ...
-                                Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value, ...
-                                Aircraft.Geometry.Wing.S.value);
-            end
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_positivestall.value = CL_positivestall;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_positivestall.Attributes.unit = "Non dimensional";
-            
-            if max(n_gust_cruise_plus) > nmax
-                
-                % *** From point A1 to point C1 ***
-                CL_positivestall = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value), 1);
-                for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value)
-                    V = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(i);
-                    n = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value(i);
-
-                    % A complete documentation of the function CL_calc(...) used here is
-                    % inside the class file aero_model.m, which can be found inside the
-                    % 'utilities' folder of this library.
-                    CL_positivestall(i) = CL_calc(obj1, n, ...
-                                    Aircraft.Weight.I_Level.W_maxTakeOff.value, ...
-                                    Aircraft.Constants.g.value, ...
-                                    V, ...
-                                    Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value, ...
-                                    Aircraft.Geometry.Wing.S.value);
-                end
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_positivestall.value = CL_positivestall;
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_positivestall.Attributes.unit = "Non dimensional";
-                
-            elseif max(n_gust_cruise_plus) < nmax
-                
+switch (Straight_flight_Case)
+    % CASE 1: VA greater than the intercept
+    case 'Case 1'       
+        % CL CALCULATIONS - POSITIVE LOAD FACTORS
+        % ------------------------------------------------------------------------- 
+        % Calculation of the CL for the wing - body configuration. It must be
+        % noticed that the calculations relative to lift coefficient in this
+        % particular range of airspeed V and load factor n are going to give a
+        % constant as a results, which is the maximum lift coefficient following
+        % the lift curve of the aircrat. The previously defined CLMAX is a little
+        % bit greater than the one obtained from V - n diagram flight condition to
+        % take into account the extra lift produced by the horizontal empennage.
+        % =================================================================
+        % FROM 0 TO S
+        CL_from0toS   = zeros(length(V_from0toS), 1);
+        alfa_from0toS = zeros(length(V_from0toS), 1);
+        for i = 1:length(V_from0toS)
+            alfa_from0toS(i) = alfa_func(rho0, S, V_from0toS(i), WS, n_from0toS, CLalfa);
+            if CL_from0toS(i) < CL_star
+                CL_from0toS(i) = CL_calc(obj1, n_from0toS(i), Mass, g, V_from0toS(i), rho0, S);
+            elseif CL_from0toS(i) > CL_star
+                CL_from0toS(i) = CLmax_non_lin(alfa_from0toS(i));
             end
         end
-    end
-end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS.value = CL_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS.Attributes.unit = "Non dimensional";
+        % =================================================================
+        % FROM S TO A1
+        CL_fromStoA1 = zeros(length(V_fromStoA1), 1);
+        for i = 1:length(V_from0toS)
+            CL_fromStoA1(i) = CL_calc(obj1, n_fromStoA1(i), Mass, g, V_fromStoA1(i), rho0, S);
+        end
+        % ================================================================= 
+        % CD CALCULATION - POSITIVE LOAD FACTOR
+        % FROM 0 TO S
+        CD_from0toS = cd_calc(obj1, CD0, CL_from0toS, AR, e, k1, k2);
+        % ================================================================= 
+        % FROM S TO A1
+        CD_fromStoA1 = cd_calc(obj1, CD0, CL_fromStoA1, AR, e, k1, k2);
+        
+        if max(n_gust_cruise_plus) > nmax
+            % CL CALCULATIONS - POSITIVE LOAD FACTORS
+            % ------------------------------------------------------------------------- 
+            % Calculation of the CL for the wing - body configuration. It must be
+            % noticed that the calculations relative to lift coefficient in this
+            % particular range of airspeed V and load factor n are going to give a
+            % constant as a results, which is the maximum lift coefficient following
+            % the lift curve of the aircrat. The previously defined CLMAX is a little
+            % bit greater than the one obtained from V - n diagram flight condition to
+            % take into account the extra lift produced by the horizontal empennage.
+            % =============================================================
+            % FROM A1 TO C1
+            CL_fromA1toC1 = CLmax_func(rho0, S, V_fromA1toC1, WS, n_fromA1toC1);  
+            % =============================================================
+            % FROM C1 TO C
+            CL_fromC1toC = CLmax_func(rho0, S, V_fromC1toC, WS, n_fromC1toC);
+            % =============================================================
+            % FROM C TO C2
+            CL_fromCtoC2 = CLmax_func(rho0, S, V_fromCtoC2, WS, n_fromCtoC2);
+            % =============================================================
+            % FROM C2 TO D
+            CL_fromC2toD = CLmax_func(rho0, S, V_fromC2toD, WS, n_fromC2toD);
+            % =============================================================
+            % FROM D TO 0
+            CL_fromDto0 = CLmax_func(rho0, S, V_fromDto0, WS, n_fromDto0);
+            % =============================================================            
+        elseif max(n_gust_cruise_plus) < nmax
+            % CL CALCULATIONS - POSITIVE LOAD FACTORS
+            % ------------------------------------------------------------------------- 
+            % Calculation of the CL for the wing - body configuration. It must be
+            % noticed that the calculations relative to lift coefficient in this
+            % particular range of airspeed V and load factor n are going to give a
+            % constant as a results, which is the maximum lift coefficient following
+            % the lift curve of the aircrat. The previously defined CLMAX is a little
+            % bit greater than the one obtained from V - n diagram flight condition to
+            % take into account the extra lift produced by the horizontal empennage.            
+            % =============================================================
+            % FROM A1 TO C
+            CL_fromA1toC = CLmax_func(rho0, S, V_fromA1toC, WS, n_fromA1toC);
+            % =============================================================
+            % FROM C TO D
+            CL_fromCtoD = CLmax_func(rho0, S, V_fromCtoD, WS, n_fromCtoD);
+            % =============================================================
+            % FROM D TO 0
+            CL_fromDto0 = CLmax_func(rho0, S, V_fromDto0, WS, n_fromDto0);
+            % =============================================================
+        end
+     
+    % CASE 2: VA lower than the intercept    
+    case 'Case 2'
+        % CL CALCULATIONS - POSITIVE LOAD FACTORS
+        % ------------------------------------------------------------------------- 
+        % Calculation of the CL for the wing - body configuration. It must be
+        % noticed that the calculations relative to lift coefficient in this
+        % particular range of airspeed V and load factor n are going to give a
+        % constant as a results, which is the maximum lift coefficient following
+        % the lift curve of the aircrat. The previously defined CLMAX is a little
+        % bit greater than the one obtained from V - n diagram flight condition to
+        % take into account the extra lift produced by the horizontal empennage.
+        % =================================================================        
+        % FROM 0 TO S
+        CL_from0toS   = zeros(length(V_from0toS), 1);
+        alfa_from0toS = zeros(length(V_from0toS), 1);
+        CD_from0toS   = zeros(length(V_from0toS), 1);
+        for i = 1:length(V_from0toS)
+            alfa_from0toS(i) = alfa_func(rho0, S, V_from0toS(i), WS, n_from0toS(i), CLalfa, alpha_zerol);
+            CL_from0toS(i)   = CL_calc(obj1, n_from0toS(i), Mass, g, V_from0toS(i), rho0, S);
+            if CL_from0toS(i) < CL_star
+                CL_from0toS(i) = CL_calc(obj1, n_from0toS(i), Mass, g, V_from0toS(i), rho0, S);
+            elseif CL_from0toS(i) > CL_star
+                CL_from0toS(i) = CLmax_non_lin(alfa_from0toS(i));
+            end
+            CD_from0toS(i) = cd_calc(obj1, CD0, CL_from0toS(i), AR, e, k1, k2);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS.value = CL_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS.value = alfa_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_from0toS.value = CD_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_from0toS.Attributes.unit = "Non dimensional"; 
+        % =================================================================
+        % FROM S TO A1
+        CL_fromStoA1   = zeros(length(V_fromStoA1), 1);
+        alfa_fromStoA1 = zeros(length(V_fromStoA1), 1);
+        CD_fromStoA1   = zeros(length(V_fromStoA1), 1);
+        for i = 1:length(V_fromStoA1)
+            alfa_fromStoA1(i) = alfa_func(rho0, S, V_fromStoA1(i), WS, n_fromStoA1(i), CLalfa, alpha_zerol);
+            CL_fromStoA1(i)   = CL_calc(obj1, n_fromStoA1(i), Mass, g, V_fromStoA1(i), rho0, S);
+            if CL_fromStoA1(i) < CL_star
+                CL_fromStoA1(i) = CL_calc(obj1, n_fromStoA1(i), Mass, g, V_fromStoA1(i), rho0, S);
+            elseif CL_fromStoA1(i) > CL_star
+                CL_fromStoA1(i) = CLmax_non_lin(alfa_fromStoA1(i));
+            end
+            CD_fromStoA1(i) = cd_calc(obj1, CD0, CL_fromStoA1(i), AR, e, k1, k2);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromStoA1.value = CL_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromStoA1.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromStoA1.value = alfa_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromStoA1.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromStoA1.value = CD_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromStoA1.Attributes.unit = "Non dimensional";         
+        % =================================================================  
+        % FROM A1 TO C
+        CL_fromA1toC   = zeros(length(V_fromA1toC), 1);
+        alfa_fromA1toC = zeros(length(V_fromA1toC), 1);
+        CD_fromA1toC   = zeros(length(V_fromA1toC), 1);
+        for i = 1:length(V_fromA1toC)
+            alfa_fromA1toC(i) = alfa_func(rho0, S, V_fromA1toC(i), WS, n_fromA1toC(i), CLalfa, alpha_zerol);
+            CL_fromA1toC(i)   = CL_calc(obj1, n_fromA1toC(i), Mass, g, V_fromA1toC(i), rho0, S);
+            if CL_fromA1toC(i) < CL_star
+                CL_fromA1toC(i) = CL_calc(obj1, n_fromA1toC(i), Mass, g, V_fromA1toC(i), rho0, S);
+            elseif CL_fromA1toC(i) > CL_star
+                CL_fromA1toC(i) = CLmax_non_lin(alfa_fromA1toC(i));
+            end
+            CD_fromA1toC(i) = cd_calc(obj1, CD0, CL_fromA1toC(i), AR, e, k1, k2);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA1toC.value = CL_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA1toC.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA1toC.value = alfa_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA1toC.Attributes.unit = "degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromA1toC.value = CD_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromA1toC.Attributes.unit = "Non dimensional";        
+        % =================================================================  
+        % FROM C TO A2
+        CL_fromCtoA2   = zeros(length(V_fromCtoA2), 1);
+        alfa_fromCtoA2 = zeros(length(V_fromCtoA2), 1);
+        CD_fromCtoA2   = zeros(length(V_fromCtoA2), 1);
+        for i = 1:length(V_fromCtoA2)
+            alfa_fromCtoA2(i) = alfa_func(rho0, S, V_fromCtoA2(i), WS, n_fromCtoA2(i), CLalfa, alpha_zerol);
+            CL_fromCtoA2(i)   = CL_calc(obj1, n_fromCtoA2(i), Mass, g, V_fromCtoA2(i), rho0, S);
+            if CL_fromCtoA2(i) < CL_star
+                CL_fromCtoA2(i) = CL_calc(obj1, n_fromCtoA2(i), Mass, g, V_fromCtoA2(i), rho0, S);
+            elseif CL_fromCtoA2(i) > CL_star
+                CL_fromCtoA2(i) = CLmax_non_lin(alfa_fromCtoA2(i));
+            end
+            CD_fromCtoA2(i) = cd_calc(obj1, CD0, CL_fromCtoA2(i), AR, e, k1, k2);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromCtoA2.value = CL_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromCtoA2.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromCtoA2.value = alfa_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromCtoA2.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromCtoA2.value = CD_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromCtoA2.Attributes.unit = "Non dimensional";
+        % =================================================================
+        % FROM A2 TO D
+        CL_fromA2toD   = zeros(length(V_fromA2toD), 1);
+        alfa_fromA2toD = zeros(length(V_fromA2toD), 1);
+        CD_fromA2toD   = zeros(length(V_fromA2toD), 1);
+        for i = 1:length(V_fromA2toD)
+            alfa_fromA2toD(i) = alfa_func(rho0, S, V_fromA2toD(i), WS, n_fromA2toD(i), CLalfa, alpha_zerol);
+            CL_fromA2toD(i)   = CL_calc(obj1, n_fromA2toD(i), Mass, g, V_fromA2toD(i), rho0, S);
+            if CL_fromA2toD(i) < CL_star
+                CL_fromA2toD(i) = CL_calc(obj1, n_fromA2toD(i), Mass, g, V_fromA2toD(i), rho0, S);
+            elseif CL_fromA2toD(i) > CL_star
+                CL_fromA2toD(i) = CLmax_non_lin(alfa_fromA2toD(i));
+            end
+            CD_fromA2toD(i) = cd_calc(obj1, CD0, CL_fromA2toD(i), AR, e, k1, k2);
+        end        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA2toD.value = CL_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA2toD.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA2toD.value = alfa_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA2toD.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromA2toD.value = CD_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromA2toD.Attributes.unit = "Non dimensional";
+        % =================================================================
+        % FROM D TO 0
+        CL_fromDto0   = zeros(length(V_fromDto0), 1);
+        alfa_fromDto0 = zeros(length(V_fromDto0), 1);
+        CD_fromDto0   = zeros(length(V_fromDto0), 1);
+        for i = 1:length(V_fromDto0)
+            alfa_fromDto0(i) = alfa_func(rho0, S, V_fromDto0(i), WS, n_fromDto0(i), CLalfa, alpha_zerol);
+            CL_fromDto0(i)   = CL_calc(obj1, n_fromDto0(i), Mass, g, V_fromDto0(i), rho0, S);
+            if CL_fromDto0(i) < CL_star
+                CL_fromDto0(i) = CL_calc(obj1, n_fromDto0(i), Mass, g, V_fromDto0(i), rho0, S);
+            elseif CL_fromA2toD(i) > CL_star
+                CL_fromDto0(i) = CLmax_non_lin(alfa_fromDto0(i));
+            end
+            CD_fromDto0(i) = cd_calc(obj1, CD0, CL_fromDto0(i), AR, e, k1, k2);
+        end           
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromDto0.value = CL_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromDto0.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromDto0.value = alfa_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromDto0.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromDto0.value = CD_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromDto0.Attributes.unit = "Non dimensional";        
+        % =================================================================
               
+end
+
+Inverted_flight_Case = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Inverted_flight.value;              
 % %% CL CALCULATIONS - POSITIVE LOAD FACTORS
 % % ------------------------------------------------------------------------- 
 % % Calculation of the CL for the wing - body configuration. It must be

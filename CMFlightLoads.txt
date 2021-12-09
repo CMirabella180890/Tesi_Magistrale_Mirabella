@@ -92,3 +92,22 @@ Saving Finalenvelope.pdf in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
 ### Balancing loads - per CS - VLA ###
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla
+ 
+ ++++ FIGURE 6 - LIFT CURVE INTERPOLATION ++++ 
+[Warning: Ignoring extra legend entries.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>process_inputs', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m', 587)" style="font-weight:bold">legend>process_inputs</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m',587,0)">line 587</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend>make_legend', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m', 315)" style="font-weight:bold">legend>make_legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m',315,0)">line 315</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('legend', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m', 259)" style="font-weight:bold">legend</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\scribe\legend.m',259,0)">line 259</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Lift_fullmodel_curve', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Lift_fullmodel_curve.m', 26)" style="font-weight:bold">Lift_fullmodel_curve</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Lift_fullmodel_curve.m',26,0)">line 26</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcBalancLoads', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m', 157)" style="font-weight:bold">CalcBalancLoads</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m',157,0)">line 157</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 46)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',46,0)">line 46</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)] 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving FullLiftModelInterpolation.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
