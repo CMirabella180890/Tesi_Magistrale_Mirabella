@@ -12,6 +12,30 @@ nGust_inverted  = @(rho, V, a, kG, Ude, WS) 1 - (0.5 * rho * V * a * kG * Ude)/(
 % STALL SPEED FUNCTION
 Vstall = @(WS, rho, CLmax, n) sqrt(WS * (2/rho) * (1/CLmax).*n); 
 % -------------------------------------------------------------------------
+
+% =========================================================================
+% Alpha_star and Alpha_max 
+% =========================================================================
+a = -0.021837866;
+b = 0.436064773;
+c = -0.56312855;
+Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value = a;
+Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value = b;
+Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value = c;
+% =========================================================================
+
+% =========================================================================
+% DRAG POLYNOMIAL COEFFICIENTS DEFINITION 
+% =========================================================================
+Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.value = 0.079;                       % Coefficient inside an expression for the CD in polynomial form
+Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.value = 0.365;                       % Coefficient inside an expressione for the CD in polynomial form
+Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.Attributes.unit = "Non dimensional"; 
+k1 = Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.value;
+k2 = Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.value;
+% =========================================================================
+% =========================================================================
+
 %% Script to evaluate balancing horizontal tail loads
 %   DESCRIPTION
 %    In this script, all the methods relative to the calculation of
@@ -65,33 +89,8 @@ obj1 = aero_model;
 % selected range is -2.0<CL<2.0. To find a complete documentation of the
 % function 'CL_Non_linear_model(...)' search inside aero_model.m file. 
 
-% =========================================================================
-% DRAG POLYNOMIAL COEFFICIENTS DEFINITION 
-% =========================================================================
-Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.value = 0.079;                       % Coefficient inside an expression for the CD in polynomial form
-Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.Attributes.unit = "Non dimensional";
-Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.value = 0.365;                       % Coefficient inside an expressione for the CD in polynomial form
-Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.Attributes.unit = "Non dimensional"; 
-k1 = Aircraft.Certification.Aerodynamic_data.Pol_coeff_k1.value;
-k2 = Aircraft.Certification.Aerodynamic_data.Pol_coeff_k2.value
-% =========================================================================
-% =========================================================================
-
 % NUMBER OF ELEMENTS
 numb = 1e3;
-
-% Alpha_star and Alpha_max 
-a = -0.021837866;
-b = 0.436064773;
-c = -0.56312855;
-Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value = a;
-Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value = b;
-Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value = c;
-
-% Alpha_star and Alpha_max 
-% a = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value;
-% b = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value;
-% c = Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value;
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 CL_WB_model = @(alpha) a*alpha.^2 + b*alpha + c; 
@@ -102,17 +101,10 @@ alpha_star = alpha_plus(Aircraft.Certification.Aerodynamic_data.CL_star.value);
 alpha_max  = alpha_meno(Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value);
 
 % Lift coefficient curve
-Aircraft.Certification.Aerodynamic_data.AOA_aux.value = linspace(-8.0, 25*alpha_star*1e-3 - alpha_star, 1000)';
+Aircraft.Certification.Aerodynamic_data.AOA_aux.value = linspace(-8.0, 25*alpha_star*1e-3 - alpha_star, numb)';
 Aircraft.Certification.Aerodynamic_data.AOA_aux.Attributes.unit = "degree";
-Aircraft.Certification.Aerodynamic_data.AOA_aux1.value = linspace(alpha_star + 50*alpha_star*1e-3, 13.0 , 1000)';
+Aircraft.Certification.Aerodynamic_data.AOA_aux1.value = linspace(alpha_star + 50*alpha_star*1e-3, 13.0 , numb)';
 Aircraft.Certification.Aerodynamic_data.AOA_aux1.Attributes.unit = "degrees";
-
-% % Non linear lift curve
-% Aircraft.Certification.Aerodynamic_data.CL_NonLinear.value = CL_Non_linear_model(obj1, ...
-%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value, ...
-%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value, ...
-%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value);
-% Aircraft.Certification.Aerodynamic_data.CL_NonLinear.Attributes.unit = "Non dimensional";
 
 % Linear and non linear lift curve
 Aircraft.Certification.Aerodynamic_data.CL_Linear.value = (Aircraft.Certification.Aerodynamic_data.CL0.value+0.01) + Aircraft.Certification.Aerodynamic_data.AOA_aux.value*Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value;
@@ -125,41 +117,8 @@ Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value = [Aircraft.Certifica
 Aircraft.Certification.Aerodynamic_data.CL_fullmodel.Attributes.unit = "Non dimensional";
 Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value = [Aircraft.Certification.Aerodynamic_data.AOA_aux.value; Aircraft.Certification.Aerodynamic_data.AOA_aux1.value];
 Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.Attributes.unit = "degrees";
-
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-% Lift model comparison
-% disp(" ++++ FIGURE 5 - SELECTED INTERPOLATION CURVES FOR AERO DATA ++++ ");
-% Aircraft.Certification.Aerodynamic_data.CL_comparison_diagram.value = Lift_comparison(Aircraft.Certification.Aerodynamic_data.AOA_aux.value, ... 
-%                   Aircraft.Certification.Aerodynamic_data.CL_NonLinear.value, ...
-%                   Aircraft.Certification.Aerodynamic_data.CL_Linear.value, ...
-%                   Aircraft.Certification.Aerodynamic_data.CL.value, ...
-%                   Aircraft.Certification.Aerodynamic_data.alpha.value);
-% pause(1);
-% exportgraphics(Aircraft.Certification.Aerodynamic_data.CL_comparison_diagram.value, 'LiftComparison.pdf', 'ContentType', 'vector');
-% % Saving figures inside correct folder
-% fprintf('Saving LiftComparison.pdf in: ');
-% fprintf('\n'); 
-% fprintf('%s\n', SaveFolder);
-% % Moving file inside correct folder
-% movefile LiftComparison.pdf Output
-              
-% % Lift curve - Full model
-% Aircraft.Certification.Aerodynamic_data.CL_Full_model.value = CL_WB_CompleteCurve(obj1, ...
-%     Aircraft.Certification.Aerodynamic_data.CL0.value, ...
-%     Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value, ...
-%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_a.value, ...
-%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value, ...
-%     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value, ...
-%     Aircraft.Certification.Aerodynamic_data.CL_star.value, ...
-%     Aircraft.Certification.Aerodynamic_data.AOA_aux.value);
-% Aircraft.Certification.Aerodynamic_data.CL_Full_model.Attributes.unit = "Non dimensional";
-% 
-% % Lift curve - Full model - Inverted flight
-% Aircraft.Certification.Aerodynamic_data.CL_Full_model_invertedflight.value =  -(1/Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value) + Aircraft.Certification.Aerodynamic_data.CL_Full_model.value;
-% 
-% % Complete lift curve diagram 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 disp(" ")
 disp(" ++++ FIGURE 6 - LIFT CURVE INTERPOLATION ++++ ");
 Aircraft.Certification.Aerodynamic_data.CL_fullmodel_diagram.value = Lift_fullmodel_curve(Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value, ...
