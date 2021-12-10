@@ -171,7 +171,37 @@ fprintf('%s\n', SaveFolder);
 movefile FullLiftModelInterpolation.pdf Output
 movefile FullLiftModelInterpolation.png Output
 
-%% CL CALCULATIONS - POSITIVE LOAD FACTORS
+% INSTANTIATION OF SOME CONSTANTS IMPORTANT TO MOMENT CONTRIB. CALCULATIONS
+XAC         = Aircraft.Certification.Aerodynamic_data.XAC_nondim.value;
+XCG         = Aircraft.Certification.Aerodynamic_data.XCG_nondim.value;
+bCG         = Aircraft.Certification.Aerodynamic_data.bcg.value;
+MAC         = Aircraft.Geometry.Wing.mac.value;
+Thrust_axes = Aircraft.Geometry.Engine.Primary.Thrust_axes.value;
+l_ht        = Aircraft.Geometry.Horizontal.l.value;
+
+% OTHER AERODYNAMIC COEFFICIENTS
+CM_landing_gear = Aircraft.Certification.Aerodynamic_data.CM_landing_gear.value;
+CM0             = Aircraft.Certification.Aerodynamic_data.CM0.value;
+CM_slope        = Aircraft.Certification.Aerodynamic_data.CMCL.value;
+
+% %% TAIL BALANCING LOADS - N = 1.0 
+% 
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value), 1);
+% VS = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value(1);
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value(1) = VS;
+% VD = V_fromfgtoD(end);
+% for i = 2:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value)
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value(i) = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value(i-1) + (VD - VS)*(1/length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value));
+% end
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.Attributes.unit = "m/s";
+% 
+% % DYNAMIC PRESSURE
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_unit_load_factor.value = 0.5*Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value.^2);
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_unit_load_factor.Attributes.unit = "Pa";
+% 
+
+
+%% BALANCING LOADS CALCULATIONS - POSITIVE LOAD FACTORS
 % ------------------------------------------------------------------------- 
 % Calculation of the CL for the wing - body configuration. It must be
 % noticed that the calculations relative to lift coefficient in this
@@ -273,8 +303,8 @@ switch (Straight_flight_Case)
      
     % CASE 2: VA lower than the intercept    
     case 'Case 2'
-        % CL CALCULATIONS - POSITIVE LOAD FACTORS
-        % ------------------------------------------------------------------------- 
+        % CL, ALFA, CD CALCULATIONS - POSITIVE LOAD FACTORS
+        % ----------------------------------------------------------------- 
         % Calculation of the CL for the wing - body configuration. It must be
         % noticed that the calculations relative to lift coefficient in this
         % particular range of airspeed V and load factor n are going to give a
@@ -282,11 +312,28 @@ switch (Straight_flight_Case)
         % the lift curve of the aircrat. The previously defined CLMAX is a little
         % bit greater than the one obtained from V - n diagram flight condition to
         % take into account the extra lift produced by the horizontal empennage.
+        % WING BODY LIFT CALCULATION
+        % ----------------------------------------------------------------- 
+        % In this section of the code the following formula is applied to evaluate
+        % the wing-body lift with the formula 
+        %        
+        %   L = 0.5*rho*(V^2)*Sw*CL 
+        %
+        % using the previously calculated lift coefficients, coming from the 
+        % various curves of the final envelope diagram.
         % =================================================================        
         % FROM 0 TO S
         CL_from0toS   = zeros(length(V_from0toS), 1);
         alfa_from0toS = zeros(length(V_from0toS), 1);
         CD_from0toS   = zeros(length(V_from0toS), 1);
+        q_from0toS    = zeros(length(V_from0toS), 1);
+        WBL_from0toS  = zeros(length(V_from0toS), 1);
+        CMCL_from0toS = zeros(length(V_from0toS), 1);
+        CMCD_from0toS = zeros(length(V_from0toS), 1);
+        CMCT_from0toS = zeros(length(V_from0toS), 1);
+        CMCG_from0toS = zeros(length(V_from0toS), 1); 
+        CLHT_from0toS = zeros(length(V_from0toS), 1);
+        LHT_from0toS  = zeros(length(V_from0toS), 1);
         for i = 1:length(V_from0toS)
             alfa_from0toS(i) = alfa_func(rho0, S, V_from0toS(i), WS, n_from0toS(i), CLalfa, alpha_zerol);
             CL_from0toS(i)   = CL_calc(obj1, n_from0toS(i), Mass, g, V_from0toS(i), rho0, S);
@@ -295,19 +342,57 @@ switch (Straight_flight_Case)
             elseif CL_from0toS(i) > CL_star
                 CL_from0toS(i) = CLmax_non_lin(alfa_from0toS(i));
             end
-            CD_from0toS(i) = cd_calc(obj1, CD0, CL_from0toS(i), AR, e, k1, k2);
+            CD_from0toS(i)   = cd_calc(obj1, CD0, CL_from0toS(i), AR, e, k1, k2);
+            q_from0toS(i)    = 0.5*rho0*(V_from0toS(i))^2;
+            WBL_from0toS(i)  = q_from0toS(i)*S*CL_from0toS(i)*1e-1;
+            CMCL_from0toS(i) = CLWB_contrib(obj1, CL_from0toS(i), deg2rad(alfa_from0toS(i)), XAC, XCG, bCG, MAC);
+            CMCD_from0toS(i) = CDWB_contrib(obj1, CL_from0toS(i), deg2rad(alfa_from0toS(i)), XAC, XCG, bCG, MAC);
+            CMCT_from0toS(i) = CT_contr(obj1, CD_from0toS(i), Thrust_axes, MAC);
+            CMCG_from0toS(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_from0toS(i));
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_from0toS(i) = CL_Tail(obj1, CMCL_from0toS(i), CMCD_from0toS(i), ...
+                                             CMCT_from0toS(i), CMCG_from0toS(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_from0toS(i)));
+            % HORIZONTAL TAIL LIFT
+            LHT_from0toS(i) = (0.5)*(V_from0toS(i)^2)*(S)*(rho0)*(CLHT_from0toS(i))*(1e-1);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS.value = CL_from0toS;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS.Attributes.unit = "Non dimensional"; 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS.value = alfa_from0toS;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS_rad.value = deg2rad(alfa_from0toS);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS_rad.Attributes.unit = "rad";        
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_from0toS.value = CD_from0toS;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_from0toS.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_from0toS.value = q_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_from0toS.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_from0toS.value = WBL_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_from0toS.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_from0toS.value = CMCL_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_from0toS.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_from0toS.value = CMCD_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_from0toS.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_from0toS.value = CMCT_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_from0toS.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_from0toS.value = CMCG_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_from0toS.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_from0toS.value = CLHT_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_from0toS.Attributes.unit = "Non dimensional";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_from0toS.value = LHT_from0toS;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_from0toS.Attributes.unit = "daN";        
         % =================================================================
         % FROM S TO A1
         CL_fromStoA1   = zeros(length(V_fromStoA1), 1);
         alfa_fromStoA1 = zeros(length(V_fromStoA1), 1);
         CD_fromStoA1   = zeros(length(V_fromStoA1), 1);
+        q_fromStoA1    = zeros(length(V_fromStoA1), 1);
+        WBL_fromStoA1  = zeros(length(V_fromStoA1), 1); 
+        CMCL_fromStoA1 = zeros(length(V_fromStoA1), 1);
+        CMCD_fromStoA1 = zeros(length(V_fromStoA1), 1);
+        CMCT_fromStoA1 = zeros(length(V_fromStoA1), 1);
+        CMCG_fromStoA1 = zeros(length(V_fromStoA1), 1);    
+        CLHT_fromStoA1 = zeros(length(V_fromStoA1), 1); 
+        LHT_fromStoA1  = zeros(length(V_fromStoA1), 1);    
         for i = 1:length(V_fromStoA1)
             alfa_fromStoA1(i) = alfa_func(rho0, S, V_fromStoA1(i), WS, n_fromStoA1(i), CLalfa, alpha_zerol);
             CL_fromStoA1(i)   = CL_calc(obj1, n_fromStoA1(i), Mass, g, V_fromStoA1(i), rho0, S);
@@ -316,19 +401,57 @@ switch (Straight_flight_Case)
             elseif CL_fromStoA1(i) > CL_star
                 CL_fromStoA1(i) = CLmax_non_lin(alfa_fromStoA1(i));
             end
-            CD_fromStoA1(i) = cd_calc(obj1, CD0, CL_fromStoA1(i), AR, e, k1, k2);
+            CD_fromStoA1(i)   = cd_calc(obj1, CD0, CL_fromStoA1(i), AR, e, k1, k2);
+            q_fromStoA1(i)    = 0.5*rho0*(V_fromStoA1(i))^2;
+            WBL_fromStoA1(i)  = q_fromStoA1(i)*S*CL_fromStoA1(i)*1e-1;   
+            CMCL_fromStoA1(i) = CLWB_contrib(obj1, CL_fromStoA1(i), deg2rad(alfa_fromStoA1(i)), XAC, XCG, bCG, MAC);
+            CMCD_fromStoA1(i) = CDWB_contrib(obj1, CL_fromStoA1(i), deg2rad(alfa_fromStoA1(i)), XAC, XCG, bCG, MAC);
+            CMCT_fromStoA1(i) = CT_contr(obj1, CD_fromStoA1(i), Thrust_axes, MAC);
+            CMCG_fromStoA1(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_fromStoA1(i));
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_fromStoA1(i) = CL_Tail(obj1, CMCL_fromStoA1(i), CMCD_fromStoA1(i), ...
+                                              CMCT_fromStoA1(i), CMCG_fromStoA1(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_fromStoA1(i)));
+            % HORIZONTAL TAIL LIFT
+            LHT_fromStoA1(i) = (0.5)*(V_fromStoA1(i)^2)*(S)*(rho0)*(CLHT_fromStoA1(i))*(1e-1);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromStoA1.value = CL_fromStoA1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromStoA1.Attributes.unit = "Non dimensional"; 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromStoA1.value = alfa_fromStoA1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromStoA1.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromStoA1_rad.value = deg2rad(alfa_fromStoA1);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromStoA1_rad.Attributes.unit = "rad";         
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromStoA1.value = CD_fromStoA1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromStoA1.Attributes.unit = "Non dimensional";         
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromStoA1.Attributes.unit = "Non dimensional";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromStoA1.value = q_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromStoA1.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBL_fromStoA1.value = WBL_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBL_fromStoA1.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromStoA1.value = CMCL_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromStoA1.Attributes.unit = "Non dimensional";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromStoA1.value = CMCD_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromStoA1.Attributes.unit = "Non dimensional";      
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromStoA1.value = CMCT_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromStoA1.Attributes.unit = "Non dimensional";       
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromStoA1.value = CMCG_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromStoA1.Attributes.unit = "Non dimensional";         
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromStoA1.value = CLHT_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromStoA1.Attributes.unit = "Non dimensional";          
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromStoA1.value = LHT_fromStoA1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromStoA1.Attributes.unit = "daN";    
         % =================================================================  
         % FROM A1 TO C
         CL_fromA1toC   = zeros(length(V_fromA1toC), 1);
         alfa_fromA1toC = zeros(length(V_fromA1toC), 1);
         CD_fromA1toC   = zeros(length(V_fromA1toC), 1);
+        q_fromA1toC    = zeros(length(V_fromA1toC), 1);
+        WBL_fromA1toC  = zeros(length(V_fromA1toC), 1);   
+        CMCL_fromA1toC = zeros(length(V_fromA1toC), 1);
+        CMCD_fromA1toC = zeros(length(V_fromA1toC), 1);
+        CMCT_fromA1toC = zeros(length(V_fromA1toC), 1);
+        CMCG_fromA1toC = zeros(length(V_fromA1toC), 1);    
+        CLHT_fromA1toC = zeros(length(V_fromA1toC), 1); 
+        LHT_fromA1toC  = zeros(length(V_fromA1toC), 1);
         for i = 1:length(V_fromA1toC)
             alfa_fromA1toC(i) = alfa_func(rho0, S, V_fromA1toC(i), WS, n_fromA1toC(i), CLalfa, alpha_zerol);
             CL_fromA1toC(i)   = CL_calc(obj1, n_fromA1toC(i), Mass, g, V_fromA1toC(i), rho0, S);
@@ -337,19 +460,57 @@ switch (Straight_flight_Case)
             elseif CL_fromA1toC(i) > CL_star
                 CL_fromA1toC(i) = CLmax_non_lin(alfa_fromA1toC(i));
             end
-            CD_fromA1toC(i) = cd_calc(obj1, CD0, CL_fromA1toC(i), AR, e, k1, k2);
+            CD_fromA1toC(i)   = cd_calc(obj1, CD0, CL_fromA1toC(i), AR, e, k1, k2);
+            q_fromA1toC(i)    = 0.5*rho0*(V_fromA1toC(i))^2;
+            WBL_fromA1toC(i)  = q_fromA1toC(i)*S*CL_fromA1toC(i)*1e-1; 
+            CMCL_fromA1toC(i) = CLWB_contrib(obj1, CL_fromA1toC(i), deg2rad(alfa_fromA1toC(i)), XAC, XCG, bCG, MAC);
+            CMCD_fromA1toC(i) = CDWB_contrib(obj1, CL_fromA1toC(i), deg2rad(alfa_fromA1toC(i)), XAC, XCG, bCG, MAC);
+            CMCT_fromA1toC(i) = CT_contr(obj1, CD_fromA1toC(i), Thrust_axes, MAC);
+            CMCG_fromA1toC(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_fromA1toC(i));
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_fromA1toC(i) = CL_Tail(obj1, CMCL_fromA1toC(i), CMCD_fromA1toC(i), ...
+                                              CMCT_fromA1toC(i), CMCG_fromA1toC(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_fromA1toC(i))); 
+            % HORIZONTAL TAIL LIFT
+            LHT_fromA1toC(i) = (0.5)*(V_fromA1toC(i)^2)*(S)*(rho0)*(CLHT_fromA1toC(i))*(1e-1);           
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA1toC.value = CL_fromA1toC;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA1toC.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA1toC.value = alfa_fromA1toC;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA1toC.Attributes.unit = "degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA1toC_rad.value = deg2rad(alfa_fromA1toC);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA1toC_rad.Attributes.unit = "rad";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromA1toC.value = CD_fromA1toC;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromA1toC.Attributes.unit = "Non dimensional";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromA1toC.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromA1toC.value = q_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromA1toC.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBL_fromA1toC.value = WBL_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBL_fromA1toC.Attributes.unit = "daN";    
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromA1toC.value = CMCL_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromA1toC.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromA1toC.value = CMCD_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromA1toC.Attributes.unit = "Non dimensional";  
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromA1toC.value = CMCT_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromA1toC.Attributes.unit = "Non dimensional";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromA1toC.value = CMCG_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromA1toC.Attributes.unit = "Non dimensional";    
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromA1toC.value = CLHT_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromA1toC.Attributes.unit = "Non dimensional";            
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromA1toC.value = LHT_fromA1toC;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromA1toC.Attributes.unit = "daN";    
         % =================================================================  
         % FROM C TO A2
         CL_fromCtoA2   = zeros(length(V_fromCtoA2), 1);
         alfa_fromCtoA2 = zeros(length(V_fromCtoA2), 1);
         CD_fromCtoA2   = zeros(length(V_fromCtoA2), 1);
+        q_fromCtoA2    = zeros(length(V_fromCtoA2), 1);
+        WBL_fromCtoA2  = zeros(length(V_fromCtoA2), 1);   
+        CMCL_fromCtoA2 = zeros(length(V_fromCtoA2), 1);
+        CMCD_fromCtoA2 = zeros(length(V_fromCtoA2), 1);
+        CMCT_fromCtoA2 = zeros(length(V_fromCtoA2), 1);
+        CMCG_fromCtoA2 = zeros(length(V_fromCtoA2), 1);    
+        CLHT_fromCtoA2 = zeros(length(V_fromCtoA2), 1); 
+        LHT_fromCtoA2  = zeros(length(V_fromCtoA2), 1);
         for i = 1:length(V_fromCtoA2)
             alfa_fromCtoA2(i) = alfa_func(rho0, S, V_fromCtoA2(i), WS, n_fromCtoA2(i), CLalfa, alpha_zerol);
             CL_fromCtoA2(i)   = CL_calc(obj1, n_fromCtoA2(i), Mass, g, V_fromCtoA2(i), rho0, S);
@@ -358,19 +519,57 @@ switch (Straight_flight_Case)
             elseif CL_fromCtoA2(i) > CL_star
                 CL_fromCtoA2(i) = CLmax_non_lin(alfa_fromCtoA2(i));
             end
-            CD_fromCtoA2(i) = cd_calc(obj1, CD0, CL_fromCtoA2(i), AR, e, k1, k2);
+            CD_fromCtoA2(i)   = cd_calc(obj1, CD0, CL_fromCtoA2(i), AR, e, k1, k2);
+            q_fromCtoA2(i)    = 0.5*rho0*(V_fromCtoA2(i))^2;
+            WBL_fromCtoA2(i)  = q_fromCtoA2(i)*S*CL_fromCtoA2(i)*1e-1;    
+            CMCL_fromCtoA2(i) = CLWB_contrib(obj1, CL_fromCtoA2(i), deg2rad(alfa_fromCtoA2(i)), XAC, XCG, bCG, MAC);    
+            CMCD_fromCtoA2(i) = CDWB_contrib(obj1, CL_fromCtoA2(i), deg2rad(alfa_fromCtoA2(i)), XAC, XCG, bCG, MAC);
+            CMCT_fromCtoA2(i) = CT_contr(obj1, CD_fromCtoA2(i), Thrust_axes, MAC);   
+            CMCG_fromCtoA2(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_fromCtoA2(i));      
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_fromCtoA2(i) = CL_Tail(obj1, CMCL_fromCtoA2(i), CMCD_fromCtoA2(i), ...
+                                              CMCT_fromCtoA2(i), CMCG_fromCtoA2(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_fromCtoA2(i)));   
+            % HORIZONTAL TAIL LIFT
+            LHT_fromCtoA2(i) = (0.5)*(V_fromCtoA2(i)^2)*(S)*(rho0)*(CLHT_fromCtoA2(i))*(1e-1); 
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromCtoA2.value = CL_fromCtoA2;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromCtoA2.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromCtoA2.value = alfa_fromCtoA2;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromCtoA2.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromCtoA2_rad.value = deg2rad(alfa_fromCtoA2);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromCtoA2_rad.Attributes.unit = "rad";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromCtoA2.value = CD_fromCtoA2;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromCtoA2.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromCtoA2.value = q_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromCtoA2.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBL_fromCtoA2.value = WBL_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBL_fromCtoA2.Attributes.unit = "daN";    
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromCtoA2.value = CMCL_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromCtoA2.Attributes.unit = "Non dimensional";       
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromCtoA2.value = CMCD_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromCtoA2.Attributes.unit = "Non dimensional";          
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromCtoA2.value = CMCT_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromCtoA2.Attributes.unit = "Non dimensional";           
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromCtoA2.value = CMCG_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromCtoA2.Attributes.unit = "Non dimensional";           
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromCtoA2.value = CLHT_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromCtoA2.Attributes.unit = "Non dimensional";             
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromCtoA2.value = LHT_fromCtoA2;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromCtoA2.Attributes.unit = "daN";  
         % =================================================================
         % FROM A2 TO D
         CL_fromA2toD   = zeros(length(V_fromA2toD), 1);
         alfa_fromA2toD = zeros(length(V_fromA2toD), 1);
         CD_fromA2toD   = zeros(length(V_fromA2toD), 1);
+        q_fromA2toD    = zeros(length(V_fromA2toD), 1);
+        WBL_fromA2toD  = zeros(length(V_fromA2toD), 1);   
+        CMCL_fromA2toD = zeros(length(V_fromA2toD), 1);
+        CMCD_fromA2toD = zeros(length(V_fromA2toD), 1);
+        CMCT_fromA2toD = zeros(length(V_fromA2toD), 1);
+        CMCG_fromA2toD = zeros(length(V_fromA2toD), 1);      
+        CLHT_fromA2toD = zeros(length(V_fromA2toD), 1);    
+        LHT_fromA2toD  = zeros(length(V_fromA2toD), 1);    
         for i = 1:length(V_fromA2toD)
             alfa_fromA2toD(i) = alfa_func(rho0, S, V_fromA2toD(i), WS, n_fromA2toD(i), CLalfa, alpha_zerol);
             CL_fromA2toD(i)   = CL_calc(obj1, n_fromA2toD(i), Mass, g, V_fromA2toD(i), rho0, S);
@@ -380,18 +579,56 @@ switch (Straight_flight_Case)
                 CL_fromA2toD(i) = CLmax_non_lin(alfa_fromA2toD(i));
             end
             CD_fromA2toD(i) = cd_calc(obj1, CD0, CL_fromA2toD(i), AR, e, k1, k2);
+            q_fromA2toD(i)   = 0.5*rho0*(V_fromA2toD(i))^2;
+            WBL_fromA2toD(i) = q_fromA2toD(i)*S*CL_fromA2toD(i)*1e-1;   
+            CMCL_fromA2toD(i) = CLWB_contrib(obj1, CL_fromA2toD(i), deg2rad(alfa_fromA2toD(i)), XAC, XCG, bCG, MAC);    
+            CMCD_fromA2toD(i) = CDWB_contrib(obj1, CL_fromA2toD(i), deg2rad(alfa_fromA2toD(i)), XAC, XCG, bCG, MAC);
+            CMCT_fromA2toD(i) = CT_contr(obj1, CD_fromA2toD(i), Thrust_axes, MAC);   
+            CMCG_fromA2toD(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_fromA2toD(i));      
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_fromA2toD(i) = CL_Tail(obj1, CMCL_fromA2toD(i), CMCD_fromA2toD(i), ...
+                                              CMCT_fromA2toD(i), CMCG_fromA2toD(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_fromA2toD(i)));   
+            % HORIZONTAL TAIL LIFT
+            LHT_fromA2toD(i) = (0.5)*(V_fromA2toD(i)^2)*(S)*(rho0)*(CLHT_fromA2toD(i))*(1e-1);
         end        
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA2toD.value = CL_fromA2toD;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA2toD.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA2toD.value = alfa_fromA2toD;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA2toD.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA2toD_rad.value = deg2rad(alfa_fromA2toD);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromA2toD_rad.Attributes.unit = "rad";        
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromA2toD.value = CD_fromA2toD;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromA2toD.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromA2toD.value = q_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromA2toD.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBL_fromA2toD.value = WBL_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBL_fromA2toD.Attributes.unit = "daN"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromA2toD.value = CMCL_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromA2toD.Attributes.unit = "Non dimensional";    
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromA2toD.value = CMCD_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromA2toD.Attributes.unit = "Non dimensional";    
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromA2toD.value = CMCT_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromA2toD.Attributes.unit = "Non dimensional";       
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromA2toD.value = CMCG_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromA2toD.Attributes.unit = "Non dimensional";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromA2toD.value = CLHT_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromA2toD.Attributes.unit = "Non dimensional";              
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromA2toD.value = LHT_fromA2toD;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromA2toD.Attributes.unit = "daN";
         % =================================================================
         % FROM D TO 0
         CL_fromDto0   = zeros(length(V_fromDto0), 1);
         alfa_fromDto0 = zeros(length(V_fromDto0), 1);
         CD_fromDto0   = zeros(length(V_fromDto0), 1);
+        q_fromDto0    = zeros(length(V_fromDto0), 1);
+        WBL_fromDto0  = zeros(length(V_fromDto0), 1);   
+        CMCL_fromDto0 = zeros(length(V_fromDto0), 1);  
+        CMCD_fromDto0 = zeros(length(V_fromDto0), 1);
+        CMCT_fromDto0 = zeros(length(V_fromDto0), 1); 
+        CMCG_fromDto0 = zeros(length(V_fromDto0), 1);        
+        CLHT_fromDto0 = zeros(length(V_fromDto0), 1);      
+        LHT_fromDto0  = zeros(length(V_fromDto0), 1);  
         for i = 1:length(V_fromDto0)
             alfa_fromDto0(i) = alfa_func(rho0, S, V_fromDto0(i), WS, n_fromDto0(i), CLalfa, alpha_zerol);
             CL_fromDto0(i)   = CL_calc(obj1, n_fromDto0(i), Mass, g, V_fromDto0(i), rho0, S);
@@ -401,18 +638,436 @@ switch (Straight_flight_Case)
                 CL_fromDto0(i) = CLmax_non_lin(alfa_fromDto0(i));
             end
             CD_fromDto0(i) = cd_calc(obj1, CD0, CL_fromDto0(i), AR, e, k1, k2);
+            q_fromDto0(i)   = 0.5*rho0*(V_fromDto0(i))^2;
+            WBL_fromDto0(i) = q_fromDto0(i)*S*CL_fromDto0(i)*1e-1;     
+            CMCL_fromDto0(i) = CLWB_contrib(obj1, CL_fromDto0(i), deg2rad(alfa_fromDto0(i)), XAC, XCG, bCG, MAC);      
+            CMCD_fromDto0(i) = CDWB_contrib(obj1, CL_fromDto0(i), deg2rad(alfa_fromDto0(i)), XAC, XCG, bCG, MAC);
+            CMCT_fromDto0(i) = CT_contr(obj1, CD_fromDto0(i), Thrust_axes, MAC);   
+            CMCG_fromDto0(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_fromDto0(i));       
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_fromDto0(i) = CL_Tail(obj1, CMCL_fromDto0(i), CMCD_fromDto0(i), ...
+                                             CMCT_fromDto0(i), CMCG_fromDto0(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_fromDto0(i)));    
+            % HORIZONTAL TAIL LIFT
+            LHT_fromDto0(i) = (0.5)*(V_fromDto0(i)^2)*(S)*(rho0)*(CLHT_fromDto0(i))*(1e-1);       
         end           
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromDto0.value = CL_fromDto0;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromDto0.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromDto0.value = alfa_fromDto0;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromDto0.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromDto0_rad.value = deg2rad(alfa_fromDto0);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromDto0_rad.Attributes.unit = "rad";         
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromDto0.value = CD_fromDto0;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromDto0.Attributes.unit = "Non dimensional";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromDto0.Attributes.unit = "Non dimensional";  
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromDto0.value = q_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromDto0.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBL_fromDto0.value = WBL_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBL_fromDto0.Attributes.unit = "daN";  
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromDto0.value = CMCL_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromDto0.Attributes.unit = "Non dimensional";    
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromDto0.value = CMCD_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromDto0.Attributes.unit = "Non dimensional";     
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromDto0.value = CMCT_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromDto0.Attributes.unit = "Non dimensional";      
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromDto0.value = CMCG_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromDto0.Attributes.unit = "Non dimensional";      
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromDto0.value = CLHT_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromDto0.Attributes.unit = "Non dimensional";               
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromDto0.value = LHT_fromDto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromDto0.Attributes.unit = "daN";     
         % =================================================================
-              
+        % TAIL LOADS DIAGRAM - POSITIVE SIDE   
+        HT_balancing_loads = figure(5); 
+        hold on; grid on; grid minor; 
+        
+%         ylim([min(HT_Lift_posstall)-0.5 max(HT_Lift_fromDtoE)+0.5])
+%         xlim([18.0 max(V_fromDtoE)+5])
+        
+        plot(V_from0toS,  LHT_from0toS,  '-r', 'LineWidth', 1)
+        plot(V_fromStoA1, LHT_fromStoA1, '-r', 'LineWidth', 1)
+        plot(V_fromA1toC, LHT_fromA1toC, '-r', 'LineWidth', 1)
+        plot(V_fromCtoA2, LHT_fromCtoA2, '-r', 'LineWidth', 1)
+        plot(V_fromA2toD, LHT_fromA2toD, '-r', 'LineWidth', 1)
+        plot(V_fromDto0,  LHT_fromDto0,  '-r', 'LineWidth', 1)
+        % ---------------------------------------------------------------------
+        plot(V_from0toS(1),    LHT_from0toS(1),    'k.', 'MarkerSize', 10)
+        plot(V_from0toS(end),  LHT_from0toS(end),  'k.', 'MarkerSize', 10)
+        plot(V_fromStoA1(end), LHT_fromStoA1(end), 'k.', 'MarkerSize', 10)
+        plot(V_fromA1toC(end), LHT_fromA1toC(end), 'k.', 'MarkerSize', 10)
+        plot(V_fromCtoA2(end), LHT_fromCtoA2(end), 'k.', 'MarkerSize', 10)
+        plot(V_fromA2toD(end), LHT_fromA2toD(end), 'k.', 'MarkerSize', 10)
+        plot(V_fromDto0(end),  LHT_fromDto0(end),  'k.', 'MarkerSize', 10)
+        % ---------------------------------------------------------------------
+        text(V_fromStoA1(1),   LHT_fromStoA1(1),   '\fontname{Courier}  S',  'FontSize', 6)
+        text(V_fromStoA1(end), LHT_fromStoA1(end), '\fontname{Courier}  A1', 'FontSize', 6)
+        text(V_fromA1toC(end), LHT_fromA1toC(end), '\fontname{Courier}  C',  'FontSize', 6)
+        text(V_fromCtoA2(end), LHT_fromCtoA2(end), '\fontname{Courier}  A2', 'FontSize', 6)
+        text(V_fromA2toD(end), V_fromA2toD(end),   '\fontname{Courier}  D',  'FontSize', 6)
+        text(41.5, -18, 'n = 1')
+        % ---------------------------------------------------------------------
+        xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+        ylabel("Horizontal tail lift - $L_{ht}$ (daN)", "Interpreter", "latex")
+        title("Horizontal empennage airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+        
 end
 
-Inverted_flight_Case = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Inverted_flight.value;              
+Inverted_flight_Case = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Inverted_flight.value; 
+switch (Inverted_flight_Case)
+    % CASE 1: Complex solutions of the intercept
+    case 'Case 1' 
+    % CASE 2: Real solutions of the intercept     
+    case 'Case 2'
+        % CL, ALFA, CD CALCULATIONS - POSITIVE LOAD FACTORS
+        % ----------------------------------------------------------------- 
+        % Calculation of the CL for the wing - body configuration. It must be
+        % noticed that the calculations relative to lift coefficient in this
+        % particular range of airspeed V and load factor n are going to give a
+        % constant as a results, which is the maximum lift coefficient following
+        % the lift curve of the aircrat. The previously defined CLMAX is a little
+        % bit greater than the one obtained from V - n diagram flight condition to
+        % take into account the extra lift produced by the horizontal empennage.
+        % WING BODY LIFT CALCULATION
+        % ----------------------------------------------------------------- 
+        % In this section of the code the following formula is applied to evaluate
+        % the wing-body lift with the formula 
+        %        
+        %   L = 0.5*rho*(V^2)*Sw*CL 
+        %
+        % using the previously calculated lift coefficients, coming from the 
+        % various curves of the final envelope diagram.
+        % =================================================================       
+        % FROM 0 TO S_INVERTED 
+        CL_from0toSinv   = zeros(length(V_from0toSinv), 1);
+        alfa_from0toSinv = zeros(length(V_from0toSinv), 1);
+        CD_from0toSinv   = zeros(length(V_from0toSinv), 1);
+        q_from0toSinv    = zeros(length(V_from0toSinv), 1);
+        WBL_from0toSinv  = zeros(length(V_from0toSinv), 1);
+        CMCL_from0toSinv = zeros(length(V_from0toSinv), 1);
+        CMCD_from0toSinv = zeros(length(V_from0toSinv), 1);
+        CMCT_from0toSinv = zeros(length(V_from0toSinv), 1);
+        CMCG_from0toSinv = zeros(length(V_from0toSinv), 1); 
+        CLHT_from0toSinv = zeros(length(V_from0toSinv), 1);
+        LHT_from0toSinv  = zeros(length(V_from0toSinv), 1);
+        for i = 1:length(V_from0toSinv)
+            alfa_from0toSinv(i) = alfa_func(rho0, S, V_from0toSinv(i), WS, n_from0toSinv(i), CLalfa, alpha_zerol);
+            CL_from0toSinv(i)   = CL_calc(obj1, n_from0toSinv(i), Mass, g, V_from0toSinv(i), rho0, S);
+            if CL_from0toSinv(i) < CL_star
+                CL_from0toSinv(i) = CL_calc(obj1, n_from0toSinv(i), Mass, g, V_from0toSinv(i), rho0, S);
+            elseif CL_from0toSinv(i) > CL_star
+                CL_from0toSinv(i) = CLmax_non_lin(alfa_from0toSinv(i));
+            end
+            CD_from0toSinv(i)   = cd_calc(obj1, CD0, CL_from0toSinv(i), AR, e, k1, k2);
+            q_from0toSinv(i)    = 0.5*rho0*(V_from0toSinv(i))^2;
+            WBL_from0toSinv(i)  = q_from0toSinv(i)*S*CL_from0toSinv(i)*1e-1;
+            CMCL_from0toSinv(i) = CLWB_contrib(obj1, CL_from0toSinv(i), deg2rad(alfa_from0toSinv(i)), XAC, XCG, bCG, MAC);
+            CMCD_from0toSinv(i) = CDWB_contrib(obj1, CL_from0toSinv(i), deg2rad(alfa_from0toSinv(i)), XAC, XCG, bCG, MAC);
+            CMCT_from0toSinv(i) = CT_contr(obj1, CD_from0toSinv(i), Thrust_axes, MAC);
+            CMCG_from0toSinv(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_from0toSinv(i));
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_from0toSinv(i) = CL_Tail(obj1, CMCL_from0toSinv(i), CMCD_from0toSinv(i), ...
+                                             CMCT_from0toSinv(i), CMCG_from0toSinv(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_from0toSinv(i)));
+            % HORIZONTAL TAIL LIFT
+            LHT_from0toSinv(i) = (0.5)*(V_from0toSinv(i)^2)*(S)*(rho0)*(CLHT_from0toSinv(i))*(1e-1);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv.value = CL_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toSinv.value = alfa_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toSinv.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toSinv_rad.value = deg2rad(alfa_from0toSinv);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toSinv_rad.Attributes.unit = "rad";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_from0toSinv.value = CD_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_from0toSinv.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_from0toSinv.value = q_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_from0toSinv.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_from0toSinv.value = WBL_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_from0toSinv.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_from0toSinv.value = CMCL_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_from0toSinv.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_from0toSinv.value = CMCD_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_from0toSinv.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_from0toSinv.value = CMCT_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_from0toSinv.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_from0toSinv.value = CMCG_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_from0toSinv.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_from0toSinv.value = CLHT_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_from0toSinv.Attributes.unit = "Non dimensional";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_from0toSinv.value = LHT_from0toSinv;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_from0toSinv.Attributes.unit = "daN";        
+        % =================================================================  
+        % FROM G1 TO F  
+        CL_fromSinvtoG1   = zeros(length(V_fromSinvtoG1), 1);
+        alfa_fromSinvtoG1 = zeros(length(V_fromSinvtoG1), 1);
+        CD_fromSinvtoG1   = zeros(length(V_fromSinvtoG1), 1);
+        q_fromSinvtoG1    = zeros(length(V_fromSinvtoG1), 1);
+        WBL_fromSinvtoG1  = zeros(length(V_fromSinvtoG1), 1);
+        CMCL_fromSinvtoG1 = zeros(length(V_fromSinvtoG1), 1);
+        CMCD_fromSinvtoG1 = zeros(length(V_fromSinvtoG1), 1);
+        CMCT_fromSinvtoG1 = zeros(length(V_fromSinvtoG1), 1);
+        CMCG_fromSinvtoG1 = zeros(length(V_fromSinvtoG1), 1); 
+        CLHT_fromSinvtoG1 = zeros(length(V_fromSinvtoG1), 1);
+        LHT_fromSinvtoG1  = zeros(length(V_fromSinvtoG1), 1);
+        for i = 1:length(V_fromSinvtoG1)
+            alfa_fromSinvtoG1(i) = alfa_func(rho0, S, V_fromSinvtoG1(i), WS, n_fromSinvtoG1(i), CLalfa, alpha_zerol);
+            CL_fromSinvtoG1(i)   = CL_calc(obj1, n_fromSinvtoG1(i), Mass, g, V_fromSinvtoG1(i), rho0, S);
+            if CL_fromSinvtoG1(i) < CL_star
+                CL_fromSinvtoG1(i) = CL_calc(obj1, n_fromSinvtoG1(i), Mass, g, V_fromSinvtoG1(i), rho0, S);
+            elseif CL_fromSinvtoG1(i) > CL_star
+                CL_fromSinvtoG1(i) = CLmax_non_lin(alfa_fromSinvtoG1(i));
+            end
+            CD_fromSinvtoG1(i)   = cd_calc(obj1, CD0, CL_fromSinvtoG1(i), AR, e, k1, k2);
+            q_fromSinvtoG1(i)    = 0.5*rho0*(V_fromSinvtoG1(i))^2;
+            WBL_fromSinvtoG1(i)  = q_fromSinvtoG1(i)*S*CL_fromSinvtoG1(i)*1e-1;
+            CMCL_fromSinvtoG1(i) = CLWB_contrib(obj1, CL_fromSinvtoG1(i), deg2rad(alfa_fromSinvtoG1(i)), XAC, XCG, bCG, MAC);
+            CMCD_fromSinvtoG1(i) = CDWB_contrib(obj1, CL_fromSinvtoG1(i), deg2rad(alfa_fromSinvtoG1(i)), XAC, XCG, bCG, MAC);
+            CMCT_fromSinvtoG1(i) = CT_contr(obj1, CD_fromSinvtoG1(i), Thrust_axes, MAC);
+            CMCG_fromSinvtoG1(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_fromSinvtoG1(i));
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_fromSinvtoG1(i) = CL_Tail(obj1, CMCL_fromSinvtoG1(i), CMCD_fromSinvtoG1(i), ...
+                                             CMCT_fromSinvtoG1(i), CMCG_fromSinvtoG1(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_fromSinvtoG1(i)));
+            % HORIZONTAL TAIL LIFT
+            LHT_fromSinvtoG1(i) = (0.5)*(V_fromSinvtoG1(i)^2)*(S)*(rho0)*(CLHT_fromSinvtoG1(i))*(1e-1);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromSinvtoG1.value = CL_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromSinvtoG1.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromSinvtoG1.value = alfa_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromSinvtoG1.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromSinvtoG1_rad.value = deg2rad(alfa_fromSinvtoG1);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromSinvtoG1_rad.Attributes.unit = "rad";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromSinvtoG1.value = CD_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromSinvtoG1.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromSinvtoG1.value = q_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromSinvtoG1.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromSinvtoG1.value = WBL_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromSinvtoG1.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromSinvtoG1.value = CMCL_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromSinvtoG1.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromSinvtoG1.value = CMCD_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromSinvtoG1.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromSinvtoG1.value = CMCT_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromSinvtoG1.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromSinvtoG1.value = CMCG_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromSinvtoG1.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromSinvtoG1.value = CLHT_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromSinvtoG1.Attributes.unit = "Non dimensional";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromSinvtoG1.value = LHT_fromSinvtoG1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromSinvtoG1.Attributes.unit = "daN";  
+        % =================================================================
+        % FROM G1 TO F 
+        CL_fromG1toF   = zeros(length(V_fromG1toF), 1);
+        alfa_fromG1toF = zeros(length(V_fromG1toF), 1);
+        CD_fromG1toF   = zeros(length(V_fromG1toF), 1);
+        q_fromG1toF    = zeros(length(V_fromG1toF), 1);
+        WBL_fromG1toF  = zeros(length(V_fromG1toF), 1);
+        CMCL_fromG1toF = zeros(length(V_fromG1toF), 1);
+        CMCD_fromG1toF = zeros(length(V_fromG1toF), 1);
+        CMCT_fromG1toF = zeros(length(V_fromG1toF), 1);
+        CMCG_fromG1toF = zeros(length(V_fromG1toF), 1); 
+        CLHT_fromG1toF = zeros(length(V_fromG1toF), 1);
+        LHT_fromG1toF  = zeros(length(V_fromG1toF), 1);
+        for i = 1:length(V_fromG1toF)
+            alfa_fromG1toF(i) = alfa_func(rho0, S, V_fromG1toF(i), WS, n_fromG1toF(i), CLalfa, alpha_zerol);
+            CL_fromG1toF(i)   = CL_calc(obj1, n_fromG1toF(i), Mass, g, V_fromG1toF(i), rho0, S);
+            if CL_fromG1toF(i) < CL_star
+                CL_fromG1toF(i) = CL_calc(obj1, n_fromG1toF(i), Mass, g, V_fromG1toF(i), rho0, S);
+            elseif CL_fromG1toF(i) > CL_star
+                CL_fromG1toF(i) = CLmax_non_lin(alfa_fromG1toF(i));
+            end
+            CD_fromG1toF(i)   = cd_calc(obj1, CD0, CL_fromG1toF(i), AR, e, k1, k2);
+            q_fromG1toF(i)    = 0.5*rho0*(V_fromG1toF(i))^2;
+            WBL_fromG1toF(i)  = q_fromG1toF(i)*S*CL_fromG1toF(i)*1e-1;
+            CMCL_fromG1toF(i) = CLWB_contrib(obj1, CL_fromG1toF(i), deg2rad(alfa_fromG1toF(i)), XAC, XCG, bCG, MAC);
+            CMCD_fromG1toF(i) = CDWB_contrib(obj1, CL_fromG1toF(i), deg2rad(alfa_fromG1toF(i)), XAC, XCG, bCG, MAC);
+            CMCT_fromG1toF(i) = CT_contr(obj1, CD_fromG1toF(i), Thrust_axes, MAC);
+            CMCG_fromG1toF(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_fromG1toF(i));
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_fromG1toF(i) = CL_Tail(obj1, CMCL_fromG1toF(i), CMCD_fromG1toF(i), ...
+                                             CMCT_fromG1toF(i), CMCG_fromG1toF(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_fromG1toF(i)));
+            % HORIZONTAL TAIL LIFT
+            LHT_fromG1toF(i) = (0.5)*(V_fromG1toF(i)^2)*(S)*(rho0)*(CLHT_fromG1toF(i))*(1e-1);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromG1toF.value = CL_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromG1toF.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromG1toF.value = alfa_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromG1toF.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromG1toF_rad.value = deg2rad(alfa_fromG1toF);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromG1toF_rad.Attributes.unit = "rad";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromG1toF.value = CD_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromG1toF.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromG1toF.value = q_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromG1toF.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromG1toF.value = WBL_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromG1toF.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromG1toF.value = CMCL_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromG1toF.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromG1toF.value = CMCD_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromG1toF.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromG1toF.value = CMCT_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromG1toF.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromG1toF.value = CMCG_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromG1toF.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromG1toF.value = CLHT_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromG1toF.Attributes.unit = "Non dimensional";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromG1toF.value = LHT_fromG1toF;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromG1toF.Attributes.unit = "daN";         
+        % ================================================================= 
+        % FROM F TO E
+        CL_fromFtoE   = zeros(length(V_fromFtoE), 1);
+        alfa_fromFtoE = zeros(length(V_fromFtoE), 1);
+        CD_fromFtoE   = zeros(length(V_fromFtoE), 1);
+        q_fromFtoE    = zeros(length(V_fromFtoE), 1);
+        WBL_fromFtoE  = zeros(length(V_fromFtoE), 1);
+        CMCL_fromFtoE = zeros(length(V_fromFtoE), 1);
+        CMCD_fromFtoE = zeros(length(V_fromFtoE), 1);
+        CMCT_fromFtoE = zeros(length(V_fromFtoE), 1);
+        CMCG_fromFtoE = zeros(length(V_fromFtoE), 1); 
+        CLHT_fromFtoE = zeros(length(V_fromFtoE), 1);
+        LHT_fromFtoE  = zeros(length(V_fromFtoE), 1);
+        for i = 1:length(V_fromFtoE)
+            alfa_fromFtoE(i) = alfa_func(rho0, S, V_fromFtoE(i), WS, n_fromFtoE(i), CLalfa, alpha_zerol);
+            CL_fromFtoE(i)   = CL_calc(obj1, n_fromFtoE(i), Mass, g, V_fromFtoE(i), rho0, S);
+            if CL_fromFtoE(i) < CL_star
+                CL_fromFtoE(i) = CL_calc(obj1, n_fromFtoE(i), Mass, g, V_fromFtoE(i), rho0, S);
+            elseif CL_fromFtoE(i) > CL_star
+                CL_fromFtoE(i) = CLmax_non_lin(alfa_fromFtoE(i));
+            end
+            CD_fromFtoE(i)   = cd_calc(obj1, CD0, CL_fromFtoE(i), AR, e, k1, k2);
+            q_fromFtoE(i)    = 0.5*rho0*(V_fromFtoE(i))^2;
+            WBL_fromFtoE(i)  = q_fromFtoE(i)*S*CL_fromFtoE(i)*1e-1;
+            CMCL_fromFtoE(i) = CLWB_contrib(obj1, CL_fromFtoE(i), deg2rad(alfa_fromFtoE(i)), XAC, XCG, bCG, MAC);
+            CMCD_fromFtoE(i) = CDWB_contrib(obj1, CL_fromFtoE(i), deg2rad(alfa_fromFtoE(i)), XAC, XCG, bCG, MAC);
+            CMCT_fromFtoE(i) = CT_contr(obj1, CD_fromFtoE(i), Thrust_axes, MAC);
+            CMCG_fromFtoE(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_fromFtoE(i));
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_fromFtoE(i) = CL_Tail(obj1, CMCL_fromFtoE(i), CMCD_fromFtoE(i), ...
+                                             CMCT_fromFtoE(i), CMCG_fromFtoE(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_fromFtoE(i)));
+            % HORIZONTAL TAIL LIFT
+            LHT_fromFtoE(i) = (0.5)*(V_fromFtoE(i)^2)*(S)*(rho0)*(CLHT_fromFtoE(i))*(1e-1);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromFtoE.value = CL_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromFtoE.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromFtoE.value = alfa_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromFtoE.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromFtoE_rad.value = deg2rad(alfa_fromFtoE);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromFtoE_rad.Attributes.unit = "rad";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromFtoE.value = CD_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromFtoE.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromFtoE.value = q_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromFtoE.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromFtoE.value = WBL_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromFtoE.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromFtoE.value = CMCL_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromFtoE.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromFtoE.value = CMCD_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromFtoE.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromFtoE.value = CMCT_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromFtoE.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromFtoE.value = CMCG_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromFtoE.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromFtoE.value = CLHT_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromFtoE.Attributes.unit = "Non dimensional";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromFtoE.value = LHT_fromFtoE;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromFtoE.Attributes.unit = "daN";        
+        % =================================================================
+        % FROM E TO 0
+        CL_fromEto0   = zeros(length(V_fromEto0), 1);
+        alfa_fromEto0 = zeros(length(V_fromEto0), 1);
+        CD_fromEto0   = zeros(length(V_fromEto0), 1);
+        q_fromEto0    = zeros(length(V_fromEto0), 1);
+        WBL_fromEto0  = zeros(length(V_fromEto0), 1);
+        CMCL_fromEto0 = zeros(length(V_fromEto0), 1);
+        CMCD_fromEto0 = zeros(length(V_fromEto0), 1);
+        CMCT_fromEto0 = zeros(length(V_fromEto0), 1);
+        CMCG_fromEto0 = zeros(length(V_fromEto0), 1); 
+        CLHT_fromEto0 = zeros(length(V_fromEto0), 1);
+        LHT_fromEto0  = zeros(length(V_fromEto0), 1);
+        for i = 1:length(V_fromEto0)
+            alfa_fromEto0(i) = alfa_func(rho0, S, V_fromEto0(i), WS, n_fromEto0(i), CLalfa, alpha_zerol);
+            CL_fromEto0(i)   = CL_calc(obj1, n_fromEto0(i), Mass, g, V_fromEto0(i), rho0, S);
+            if CL_fromEto0(i) < CL_star
+                CL_fromEto0(i) = CL_calc(obj1, n_fromEto0(i), Mass, g, V_fromEto0(i), rho0, S);
+            elseif CL_fromEto0(i) > CL_star
+                CL_fromEto0(i) = CLmax_non_lin(alfa_fromEto0(i));
+            end
+            CD_fromEto0(i)   = cd_calc(obj1, CD0, CL_fromEto0(i), AR, e, k1, k2);
+            q_fromEto0(i)    = 0.5*rho0*(V_fromEto0(i))^2;
+            WBL_fromEto0(i)  = q_fromEto0(i)*S*CL_fromEto0(i)*1e-1;
+            CMCL_fromEto0(i) = CLWB_contrib(obj1, CL_fromEto0(i), deg2rad(alfa_fromEto0(i)), XAC, XCG, bCG, MAC);
+            CMCD_fromEto0(i) = CDWB_contrib(obj1, CL_fromEto0(i), deg2rad(alfa_fromEto0(i)), XAC, XCG, bCG, MAC);
+            CMCT_fromEto0(i) = CT_contr(obj1, CD_fromEto0(i), Thrust_axes, MAC);
+            CMCG_fromEto0(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_fromEto0(i));
+            % HORIZONTAL TAIL LIFT COEFFICIENT
+            CLHT_fromEto0(i) = CL_Tail(obj1, CMCL_fromEto0(i), CMCD_fromEto0(i), ...
+                                             CMCT_fromEto0(i), CMCG_fromEto0(i), ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_fromEto0(i)));
+            % HORIZONTAL TAIL LIFT
+            LHT_fromEto0(i) = (0.5)*(V_fromEto0(i)^2)*(S)*(rho0)*(CLHT_fromEto0(i))*(1e-1);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromEto0.value = CL_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromEto0.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromEto0.value = alfa_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromEto0.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromEto0_rad.value = deg2rad(alfa_fromEto0);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_fromEto0_rad.Attributes.unit = "rad";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromEto0.value = CD_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_fromEto0.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromEto0.value = q_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_fromEto0.Attributes.unit = "Pa";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromEto0.value = WBL_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.WBLift_fromEto0.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromEto0.value = CMCL_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCL_fromEto0.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromEto0.value = CMCD_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCD_fromEto0.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromEto0.value = CMCT_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCT_fromEto0.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromEto0.value = CMCG_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CMCG_fromEto0.Attributes.unit = "Non dimensional"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromEto0.value = CLHT_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromEto0.Attributes.unit = "Non dimensional";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromEto0.value = LHT_fromEto0;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromEto0.Attributes.unit = "daN"; 
+        % =================================================================
+        % TAIL LOADS DIAGRAM - NEGATIVE SIDE 
+        figure(5); 
+        % hold on; grid on; grid minor; 
+        % ---------------------------------------------------------------------
+        plot(V_from0toSinv,  LHT_from0toSinv,  '-r', 'LineWidth', 1)
+        plot(V_fromSinvtoG1, LHT_fromSinvtoG1, '-r', 'LineWidth', 1)
+        plot(V_fromG1toF,    LHT_fromG1toF,    '-r', 'LineWidth', 1)
+        plot(V_fromFtoE,    LHT_fromFtoE,      '-r', 'LineWidth', 1)
+        plot(V_fromEto0,    LHT_fromEto0,      '-r', 'LineWidth', 1)
+        % ---------------------------------------------------------------------
+        plot(V_from0toSinv(1),    LHT_from0toSinv(1),    'k.', 'MarkerSize', 10)
+        plot(V_from0toSinv(end),  LHT_from0toSinv(end),  'k.', 'MarkerSize', 10)
+        plot(V_fromSinvtoG1(end), LHT_fromSinvtoG1(end), 'k.', 'MarkerSize', 10)
+        plot(V_fromG1toF(end),    LHT_fromG1toF(end),    'k.', 'MarkerSize', 10)
+        plot(V_fromFtoE(end),     LHT_fromFtoE(end),     'k.', 'MarkerSize', 10)
+        plot(V_fromEto0(end),     LHT_fromEto0(end),     'k.', 'MarkerSize', 10)
+        % ---------------------------------------------------------------------
+        text(V_from0toSinv(end),  LHT_from0toSinv(end),  '\fontname{Courier} S inv.', 'FontSize', 6)
+        text(V_fromSinvtoG1(end), LHT_fromSinvtoG1(end), '\fontname{Courier} G1',     'FontSize', 6)
+        text(V_fromG1toF(end),    LHT_fromG1toF(end),    '\fontname{Courier} F',      'FontSize', 6)
+        text(V_fromFtoE(end),     LHT_fromFtoE(end),     '\fontname{Courier} E',      'FontSize', 6)
+
+end
+% -------------------------------------------------------------------------
+% SAVING FIGURE 5 - HORIZONTAL TAIL BALANCING LOADS
+% -------------------------------------------------------------------------
+exportgraphics(HT_balancing_loads, 'Balancingloads.pdf', 'ContentType', 'vector')
+exportgraphics(HT_balancing_loads, 'Balancingloads.png', 'ContentType', 'vector')   
+
+% Saving figures inside correct folder
+fprintf('Saving Balancingloads.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile Balancingloads.pdf Output
+movefile Balancingloads.png Output 
+% -------------------------------------------------------------------------
 % %% CL CALCULATIONS - POSITIVE LOAD FACTORS
 % % ------------------------------------------------------------------------- 
 % % Calculation of the CL for the wing - body configuration. It must be
