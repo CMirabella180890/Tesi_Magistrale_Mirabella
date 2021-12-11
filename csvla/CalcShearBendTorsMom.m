@@ -97,6 +97,15 @@ fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
 movefile CmInterpolation3dplot.pdf Output
 movefile CmInterpolation3dplot.png Output
+
+% Half-span stations vector 
+b      = Aircraft.Geometry.Wing.b.value;
+b_half = b*0.5;
+N      = length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(1,:));
+
+% Half-span vector
+half_span = linspace(0, b_half, N);
+
 % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 % For a more in depth description, look ahead in this file
@@ -104,11 +113,6 @@ movefile CmInterpolation3dplot.png Output
 %                                                                                          Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.CL.value(4), ...
 %                                                                                          Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value(3,:)', ...
 %                                                                                          Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value(4,:)'); 
-
-% Half-span stations vector 
-half_span = linspace(0, ...
-    Aircraft.Geometry.Wing.b.value*0.5, ...
-    length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(1,:)));
 
 % Point S of the final envelope
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.y_half_span.value = half_span;
