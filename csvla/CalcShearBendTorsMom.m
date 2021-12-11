@@ -25,9 +25,9 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpo
                                                                         XI_cl, YI_cl, 'spline');
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";
 
-% FIGURE 10 - INTERPOLATION OF SPANWISE LIFT DISTRIBUCTION
+% FIGURE 8 - INTERPOLATION OF SPANWISE LIFT DISTRIBUCTION
 disp(" ")
-disp(" ++++ FIGURE 10 - 3D INTERPOLATION OF SPANWISE LIFT DISTR. ++++ ");
+disp(" ++++ FIGURE 8 - 3D INTERPOLATION OF SPANWISE LIFT DISTR. ++++ ");
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph = cl_interpolation_graph(x_cl, y_cl, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value, ... 
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value, XI_cl, YI_cl); 
@@ -53,20 +53,50 @@ xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingl
 yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
 [XX,YY] = meshgrid(x,y);
 [XI,YI] = meshgrid(xi,yi);
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Cd.value = interp2(XX, YY, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value = interp2(XX, YY, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value, ...
                                                                         XI, YI, 'spline');
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Cd.Attributes.unit = 'Non dimensional';
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_Interpolation_Graph.value = cd_interpolation_graph(x, y, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.Attributes.unit = 'Non dimensional';
+
+% FIGURE 9 - INTERPOLATION OF SPANWISE DRAG DISTRIBUCTION
+disp(" ")
+disp(" ++++ FIGURE 9 - 3D INTERPOLATION OF SPANWISE LIFT DISTR. ++++ ");
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.CD_Interpolation_Graph.value = cd_interpolation_graph(x, y, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value, ... 
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Cd.value, XI, YI);            
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value, XI, YI);            
+
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.CD_Interpolation_Graph.value, 'CdInterpolation3dplot.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.CD_Interpolation_Graph.value, 'CdInterpolation3dplot.png', 'ContentType', 'vector')
+
+% Saving figures inside correct folder
+fprintf('Saving CdInterpolation3dplot.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile CdInterpolation3dplot.pdf Output
+movefile CdInterpolation3dplot.png Output            
             
 % Pitching moment interpolation along the span
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Cm.value = interp2(XX, YY, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value = interp2(XX, YY, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value, ...
                                                                         XI, YI, 'spline'); 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Cm.Attributes.unit = 'Non dimensional';
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_Interpolation_Graph.value = cm_interpolation_graph(x, y, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.Attributes.unit = 'Non dimensional';
+
+% FIGURE 10 - INTERPOLATION OF SPANWISE DRAG DISTRIBUCTION
+disp(" ")
+disp(" ++++ FIGURE 10 - 3D INTERPOLATION OF SPANWISE LIFT DISTR. ++++ ");
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.CM_Interpolation_Graph.value = cm_interpolation_graph(x, y, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value, ... 
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Cm.value, XI, YI);
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value, XI, YI);
+            
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.CM_Interpolation_Graph.value, 'CmInterpolation3dplot.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.CM_Interpolation_Graph.value, 'CmInterpolation3dplot.png', 'ContentType', 'vector')
+
+% Saving figures inside correct folder
+fprintf('Saving CmInterpolation3dplot.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile CmInterpolation3dplot.pdf Output
+movefile CmInterpolation3dplot.png Output
 % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 % For a more in depth description, look ahead in this file
