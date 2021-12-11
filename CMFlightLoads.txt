@@ -59,12 +59,12 @@ Density [kg/m^3]: 0.8632
  ++++ INPUT TO V - N DIAGRAM ++++
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
  VS+                VS-                 VA                VG
- 19.783937          24.868023          38.565993          30.456984
+ 27.270275          34.278205          53.159553          41.982055
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
  nmax                nmin                 VD                VE
- 3.800000          -1.500000          58.386920          58.386920
+ 3.800000          -1.500000          80.480815          80.480815
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 --------------------------------------
@@ -75,18 +75,10 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving Gustenvelope.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
- ++++++++++ FINAL ENVELOPE - VA AND nA ++++++++++ 
- VA1                nA1
- 42.104337          4.529270
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
- 
  CHECK: 
- Solutions are real numbers
- 
- ++++++++++ FINAL ENVELOPE - VA AND nA ++++++++++ 
- Sol1                Sol2
- 18.614274          33.222814
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+   0
+
+ WARNING: There are no solutions in the Real numbers
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Finalenvelope.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -117,4 +109,3 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Wingairloads.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-close all 
