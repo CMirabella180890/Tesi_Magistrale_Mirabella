@@ -2206,6 +2206,7 @@ switch (Inverted_flight_Case)
     % CASE 1: Complex solutions of the intercept
     case 'Case 1'
         if abs(min(n_gust_cruise_neg)) > abs(nmin)
+            % S_inv - G - G1 - F - G2 - E
             % =============================================================
             % FROM 0 TO S_INVERTED 
             CL_from0toSinv   = zeros(length(V_from0toSinv), 1);
@@ -2832,7 +2833,8 @@ switch (Inverted_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CM_E.value = CMCG_fromG2toE(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CM_E.Attributes.unit = "Non dimensional";           
             
-        elseif abs(min(n_gust_cruise_neg)) < abs(nmin)             
+        elseif abs(min(n_gust_cruise_neg)) < abs(nmin)       
+            % S_inv - G - F - E           
             % =============================================================
             % FROM 0 TO S_INVERTED 
             CL_from0toSinv   = zeros(length(V_from0toSinv), 1);
@@ -3286,6 +3288,7 @@ switch (Inverted_flight_Case)
         
     % CASE 2: Real solutions of the intercept     
     case 'Case 2'
+        % S_inv - G1 - F - E 
         % CL, ALFA, CD CALCULATIONS - POSITIVE LOAD FACTORS
         % ----------------------------------------------------------------- 
         % Calculation of the CL for the wing - body configuration. It must be

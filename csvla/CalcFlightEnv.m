@@ -1356,7 +1356,7 @@ if check_s == 0
         % ------------------------------------------------------------------------------------------------------------------
 
         % POINT S_INV
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.point_name.value        = 'Point S_inv';
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.point_name.value        = 'Point S inv';
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.value            = VS_inv; 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.Attributes.unit  = "m/s"; 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.nS_inv.value            = nS_inv; 
@@ -1553,7 +1553,7 @@ if check_s == 0
         % ------------------------------------------------------------------------------------------------------------------
 
         % POINT S_INV
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.point_name.value        = 'Point S_inv';
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.point_name.value        = 'Point S inv';
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.value            = VS_inv; 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.Attributes.unit  = "m/s"; 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.nS_inv.value            = nS_inv; 
@@ -1722,7 +1722,7 @@ elseif check_s == 1
             % ------------------------------------------------------------------------------------------------------------------            
 
             % POINT S_INV
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.point_name.value        = 'Point S_inv';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.point_name.value        = 'Point S inv';
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.value            = VS_inv; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.Attributes.unit  = "m/s"; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.nS_inv.value            = nS_inv; 
