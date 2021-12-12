@@ -143,19 +143,25 @@ switch (Straight_flight_Case)
             disp(" ")
             disp(" ++++ FIGURE 11 - LIFT MODELS AND FLIGHT ENVELOPE POINTS ++++ ");
             % ---------------------------------------------------------------------------------------------
-            CL_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value;
-            CL_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CL_A1.value;
-            CL_C  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
-            CL_D  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
+            CL_S   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value;
+            CL_A1  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CL_A1.value;
+            CL_C1  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CL_C1.value;
+            CL_C   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
+            CL_C2  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CL_C2.value;
+            CL_D   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
             % ---------------------------------------------------------------------------------------------
             alfaS  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
             alfaA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.value;
+            alfaC1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.alfaC1.value;
             alfaC  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+            alfaC2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.alfaC2.value;
             alfaD  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
             % ---------------------------------------------------------------------------------------------
             PointS  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value;
             PointA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.point_name.value;
+            PointC1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.point_name.value;
             PointC  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value;
+            PointC2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.point_name.value;
             PointD  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value;
             % ---------------------------------------------------------------------------------------------
             AOA_aux_fullmodel = Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value;
@@ -219,8 +225,772 @@ switch (Straight_flight_Case)
             chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
             % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";            
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+
+            %% POINT S CALCULATIONS                 
+            % Lift coefficient distribution along the span at the Point S
+            cl_S = CL_S*CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.value = cl_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.Attributes.unit = "Non dimensional";
+
+            % Drag coefficient ditribution along the span at the Point S (close to
+            % stall)
+            cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
+
+            % Pitching moment coefficient distribution along the span at Point S
+            cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
+
+            % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
+            % In this section of the code two vectors are defined to store the product 
+            % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
+            cCl_distr_S = times(chord_distr, cl_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.value = cCl_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.Attributes.unit = "m";
+            cCd_distr_S = times(chord_distr, cd_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.value = cCd_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.Attributes.unit = "m";
+
+            % AoA_Tot = AoA + Twist_angle of the main wing
+            twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
+            AoA_Tot_S     = alfaS + twist_angle;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.value = AoA_Tot_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+
+            % Convert in radians 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.value = deg2rad(AoA_Tot_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "Radians";   
+
+            % Calculation of the normal force coefficient
+            % N = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the normal force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCz_S = calc_normal_force(obj2, AoA_Tot_S, cCl_distr_S, cCd_distr_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.value = cCz_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.Attributes.unit = "m"; 
+
+            % Calculation of the axial force coefficient 
+            % A = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the axial force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCa_S = calc_axial_force(obj2, AoA_Tot_S, cCl_distr_S, cCd_distr_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.value = cCa_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.Attributes.unit = "m"; 
+
+            % Normal force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            qS             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.value;
+            Normal_force_S = cCz_S * qS;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.value = Normal_force_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.Attributes.unit = "N/m";
+
+            % Axial force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            Axial_force_S = cCa_S * qS;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.value = Axial_force_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.Attributes.unit = "N/m";        
+
+            % SHEAR FORCE CALCULATION 
+            % A = calc_shear_force(AoA_Tot, y, cCZ)
+            % A complete description of this function is available inside the class
+            % file ShearBendingTorsion.m 
+            Shear_distr_S = calc_shear_force(obj2, half_span, Normal_force_S)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_distr.value = Shear_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_distr.Attributes.unit = "daN";
+
+            % BENDING MOMENT CALCULATION 
+            % BM = calc_bend_mom(y, S)
+            % A complete description of this function is included inside the class file
+            % ShearBendingTorsion.m
+            Bend_mom_distr_S = calc_bend_mom(obj2, half_span, Shear_distr_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Bend_mom_distr.value = Bend_mom_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Bend_mom_distr.Attributes.unit = "daN*m";
+
+            % PLANS FOR THE STRUCTURAL DIMENSIONING
+            % To correctly size the aerostructures of the main lifting surface 
+            % it is necessary to apply the procedure just developed to the 
+            % critical points coming from the V-N diagram. Those point represents 
+            % the most demanding flight conditions that our aircraft could survive. 
+            % Those points are all stored inside: 
+            % --> Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
+            % Retrieve the values and apply formulas to them. 
+
+            % Pitching moment per unit length
+            m_distr_S = zeros(length(cm_S), 1);
+            for i = 1:length(cm_S)
+                m_distr_S(i) = cm_S(i) * qS *((chord_distr(i))^2);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.m_distr.value = m_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.m_distr.Attributes.unit = "N";   
+
+            % Torque applied
+            % T = calc_tors_mom(obj, y, m)
+            % A complete distribution of this function is included inside the class
+            % file ShearBendingTorsion.m
+            Tors_mom_distr_S = calc_tors_mom(obj2, half_span, m_distr_S)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tors_mom_distr.value = Tors_mom_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tors_mom_distr.Attributes.unit = "daN*m";   
+
+            disp(" ")
+            disp(" ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ ");
+            Shear_BendMom_diagram_S = Shear_Bending_Torsion_diag(obj2, flip(half_span), Shear_distr_S, Bend_mom_distr_S, ...
+                                                               Tors_mom_distr_S, PointS);
+
+            exportgraphics(Shear_BendMom_diagram_S, 'ShearBendingTorsionDiagramPointS.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_BendMom_diagram_S, 'ShearBendingTorsionDiagramPointS.png', 'ContentType', 'vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_BendMom_diagram.value = Shear_BendMom_diagram_S;
+            % Saving figures inside correct folder
+            fprintf('Saving ShearBendingTorsionDiagramPointS.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearBendingTorsionDiagramPointS.pdf Output
+            movefile ShearBendingTorsionDiagramPointS.png Output        
+            % =================================================================            
+            
+            %% POINT A1 CALCULATIONS                 
+            % Lift coefficient distribution along the span at the Point A1
+            cl_A1 = CL_A1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A1.value = cl_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A1.Attributes.unit = "Non dimensional";
+
+            % Drag coefficient ditribution along the span at the Point A1 (close to
+            % stall)
+            cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
+
+            % Pitching moment coefficient distribution along the span at Point A1
+            cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
+
+            % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
+            % In this section of the code two vectors are defined to store the product 
+            % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
+            cCl_distr_A1 = times(chord_distr, cl_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.value = cCl_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.Attributes.unit = "m";
+            cCd_distr_A1 = times(chord_distr, cd_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.value = cCd_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.Attributes.unit = "m";
+
+            % AoA_Tot = AoA + Twist_angle of the main wing
+            AoA_Tot_A1     = alfaA1 + twist_angle;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.value = AoA_Tot_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+
+            % Convert in radians 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.value = deg2rad(AoA_Tot_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "Radians";   
+
+            % Calculation of the normal force coefficient
+            % N = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the normal force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCz_A1 = calc_normal_force(obj2, AoA_Tot_A1, cCl_distr_A1, cCd_distr_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.value = cCz_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.Attributes.unit = "m"; 
+
+            % Calculation of the axial force coefficient 
+            % A = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the axial force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCa_A1 = calc_axial_force(obj2, AoA_Tot_A1, cCl_distr_A1, cCd_distr_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.value = cCa_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.Attributes.unit = "m"; 
+
+            % Normal force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            qA1             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.qA1.value;
+            Normal_force_A1 = cCz_A1 * qA1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.value = Normal_force_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.Attributes.unit = "N/m";
+
+            % Axial force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            Axial_force_A1 = cCa_A1 * qA1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.value = Axial_force_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.Attributes.unit = "N/m";        
+
+            % SHEAR FORCE CALCULATION 
+            % A = calc_shear_force(AoA_Tot, y, cCZ)
+            % A complete description of this function is available inside the class
+            % file ShearBendingTorsion.m 
+            Shear_distr_A1 = calc_shear_force(obj2, half_span, Normal_force_A1)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Shear_distr.value = Shear_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Shear_distr.Attributes.unit = "daN";
+
+            % BENDING MOMENT CALCULATION 
+            % BM = calc_bend_mom(y, S)
+            % A complete description of this function is included inside the class file
+            % ShearBendingTorsion.m
+            Bend_mom_distr_A1 = calc_bend_mom(obj2, half_span, Shear_distr_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Bend_mom_distr.value = Bend_mom_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Bend_mom_distr.Attributes.unit = "daN*m";
+
+            % PLANS FOR THE STRUCTURAL DIMENSIONING
+            % To correctly size the aerostructures of the main lifting surface 
+            % it is necessary to apply the procedure just developed to the 
+            % critical points coming from the V-N diagram. Those point represents 
+            % the most demanding flight conditions that our aircraft could survive. 
+            % Those points are all stored inside: 
+            % --> Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
+            % Retrieve the values and apply formulas to them. 
+
+            % Pitching moment per unit length
+            m_distr_A1 = zeros(length(cm_A1), 1);
+            for i = 1:length(cm_A1)
+                m_distr_A1(i) = cm_A1(i) * qA1 *((chord_distr(i))^2);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.m_distr.value = m_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.m_distr.Attributes.unit = "N";   
+
+            % Torque applied
+            % T = calc_tors_mom(obj, y, m)
+            % A complete distribution of this function is included inside the class
+            % file ShearBendingTorsion.m
+            Tors_mom_distr_A1 = calc_tors_mom(obj2, half_span, m_distr_A1)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Tors_mom_distr.value = Tors_mom_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Tors_mom_distr.Attributes.unit = "daN*m";   
+
+            disp(" ")
+            disp(" ++++ FIGURE 13 - POINT A1 SHEAR, BENDING, TORSION ++++ ");
+            Shear_BendMom_diagram_A1 = Shear_Bending_Torsion_diag(obj2, flip(half_span), Shear_distr_A1, Bend_mom_distr_A1, ...
+                                                               Tors_mom_distr_A1, PointA1);
+
+            exportgraphics(Shear_BendMom_diagram_A1, 'ShearBendingTorsionDiagramPointA1.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_BendMom_diagram_A1, 'ShearBendingTorsionDiagramPointA1.png', 'ContentType', 'vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Shear_BendMom_diagram.value = Shear_BendMom_diagram_A1;
+            % Saving figures inside correct folder
+            fprintf('Saving ShearBendingTorsionDiagramPointA1.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearBendingTorsionDiagramPointA1.pdf Output
+            movefile ShearBendingTorsionDiagramPointA1.png Output    
+            
+            %% POINT C1 CALCULATIONS                 
+            % Lift coefficient distribution along the span at the Point C1
+            cl_C1 = CL_C1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cl_C.value = cl_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cl_C.Attributes.unit = "Non dimensional";
+
+            % Drag coefficient ditribution along the span at the Point C1 (close to
+            % stall)
+            cd_C1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cd_C.value = cd_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cd_C.Attributes.unit = "Non dimensional";
+
+            % Pitching moment coefficient distribution along the span at Point C1
+            cm_C1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cm_C.value = cm_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cm_C.Attributes.unit = "Non dimensional";
+
+            % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
+            % In this section of the code two vectors are defined to store the product 
+            % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
+            cCl_distr_C1 = times(chord_distr, cl_C1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCl_distr.value = cCl_distr_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCl_distr.Attributes.unit = "m";
+            cCd_distr_C1 = times(chord_distr, cd_C1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCd_distr.value = cCd_distr_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCd_distr.Attributes.unit = "m";
+
+            % AoA_Tot = AoA + Twist_angle of the main wing
+            AoA_Tot_C1     = alfaC1 + twist_angle;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_deg.value = AoA_Tot_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+
+            % Convert in radians 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_rad.value = deg2rad(AoA_Tot_C1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_rad.Attributes.unit = "Radians";   
+
+            % Calculation of the normal force coefficient
+            % N = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the normal force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCz_C1 = calc_normal_force(obj2, AoA_Tot_C1, cCl_distr_C1, cCd_distr_C1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCz.value = cCz_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCz.Attributes.unit = "m"; 
+
+            % Calculation of the axial force coefficient 
+            % A = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the axial force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCa_C1 = calc_axial_force(obj2, AoA_Tot_C1, cCl_distr_C1, cCd_distr_C1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCa.value = cCa_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCa.Attributes.unit = "m"; 
+
+            % Normal force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            qC1             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.qC1.value;
+            Normal_force_C1 = cCz_C1 * qC1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Normal_force.value = Normal_force_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Normal_force.Attributes.unit = "N/m";
+
+            % Axial force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            Axial_force_C1 = cCa_C1 * qC1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Axial_force.value = Axial_force_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Axial_force.Attributes.unit = "N/m";        
+
+            % SHEAR FORCE CALCULATION 
+            % A = calc_shear_force(AoA_Tot, y, cCZ)
+            % A complete description of this function is available inside the class
+            % file ShearBendingTorsion.m 
+            Shear_distr_C1 = calc_shear_force(obj2, half_span, Normal_force_C1)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Shear_distr.value = Shear_distr_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Shear_distr.Attributes.unit = "daN";
+
+            % BENDING MOMENT CALCULATION 
+            % BM = calc_bend_mom(y, S)
+            % A complete description of this function is included inside the class file
+            % ShearBendingTorsion.m
+            Bend_mom_distr_C1 = calc_bend_mom(obj2, half_span, Shear_distr_C1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Bend_mom_distr.value = Bend_mom_distr_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Bend_mom_distr.Attributes.unit = "daN*m";
+
+            % PLANS FOR THE STRUCTURAL DIMENSIONING
+            % To correctly size the aerostructures of the main lifting surface 
+            % it is necessary to apply the procedure just developed to the 
+            % critical points coming from the V-N diagram. Those point represents 
+            % the most demanding flight conditions that our aircraft could survive. 
+            % Those points are all stored inside: 
+            % --> Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
+            % Retrieve the values and apply formulas to them. 
+
+            % Pitching moment per unit length
+            m_distr_C1 = zeros(length(cm_C1), 1);
+            for i = 1:length(cm_C1)
+                m_distr_C1(i) = cm_C1(i) * qC1 *((chord_distr(i))^2);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.m_distr.value = m_distr_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.m_distr.Attributes.unit = "N";   
+
+            % Torque applied
+            % T = calc_tors_mom(obj, y, m)
+            % A complete distribution of this function is included inside the class
+            % file ShearBendingTorsion.m
+            Tors_mom_distr_C1 = calc_tors_mom(obj2, half_span, m_distr_C1)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Tors_mom_distr.value = Tors_mom_distr_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Tors_mom_distr.Attributes.unit = "daN*m";   
+
+            disp(" ")
+            disp(" ++++ FIGURE 14 - POINT C1 SHEAR, BENDING, TORSION ++++ ");
+            Shear_BendMom_diagram_C1 = Shear_Bending_Torsion_diag(obj2, flip(half_span), Shear_distr_C1, Bend_mom_distr_C1, ...
+                                                               Tors_mom_distr_C1, PointC1);
+
+            exportgraphics(Shear_BendMom_diagram_C1, 'ShearBendingTorsionDiagramPointC1.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_BendMom_diagram_C1, 'ShearBendingTorsionDiagramPointC1.png', 'ContentType', 'vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Shear_BendMom_diagram.value = Shear_BendMom_diagram_C1;
+            % Saving figures inside correct folder
+            fprintf('Saving ShearBendingTorsionDiagramPointC1.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearBendingTorsionDiagramPointC1.pdf Output
+            movefile ShearBendingTorsionDiagramPointC1.png Output             
         
+            %% POINT C CALCULATIONS                 
+            % Lift coefficient distribution along the span at the Point C
+            cl_C = CL_C * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.value = cl_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.Attributes.unit = "Non dimensional";
+
+            % Drag coefficient ditribution along the span at the Point C (close to
+            % stall)
+            cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
+
+            % Pitching moment coefficient distribution along the span at Point C
+            cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
+
+            % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
+            % In this section of the code two vectors are defined to store the product 
+            % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
+            cCl_distr_C = times(chord_distr, cl_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.value = cCl_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.Attributes.unit = "m";
+            cCd_distr_C = times(chord_distr, cd_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.value = cCd_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.Attributes.unit = "m";
+
+            % AoA_Tot = AoA + Twist_angle of the main wing
+            AoA_Tot_C     = alfaC + twist_angle;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.value = AoA_Tot_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+
+            % Convert in radians 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.value = deg2rad(AoA_Tot_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "Radians";   
+
+            % Calculation of the normal force coefficient
+            % N = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the normal force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCz_C = calc_normal_force(obj2, AoA_Tot_C, cCl_distr_C, cCd_distr_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.value = cCz_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.Attributes.unit = "m"; 
+
+            % Calculation of the axial force coefficient 
+            % A = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the axial force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCa_C = calc_axial_force(obj2, AoA_Tot_C, cCl_distr_C, cCd_distr_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.value = cCa_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.Attributes.unit = "m"; 
+
+            % Normal force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            qC             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value;
+            Normal_force_C = cCz_C * qC;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.value = Normal_force_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.Attributes.unit = "N/m";
+
+            % Axial force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            Axial_force_C = cCa_C * qC;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.value = Axial_force_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.Attributes.unit = "N/m";        
+
+            % SHEAR FORCE CALCULATION 
+            % A = calc_shear_force(AoA_Tot, y, cCZ)
+            % A complete description of this function is available inside the class
+            % file ShearBendingTorsion.m 
+            Shear_distr_C = calc_shear_force(obj2, half_span, Normal_force_C)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value = Shear_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.Attributes.unit = "daN";
+
+            % BENDING MOMENT CALCULATION 
+            % BM = calc_bend_mom(y, S)
+            % A complete description of this function is included inside the class file
+            % ShearBendingTorsion.m
+            Bend_mom_distr_C = calc_bend_mom(obj2, half_span, Shear_distr_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Bend_mom_distr.value = Bend_mom_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Bend_mom_distr.Attributes.unit = "daN*m";
+
+            % PLANS FOR THE STRUCTURAL DIMENSIONING
+            % To correctly size the aerostructures of the main lifting surface 
+            % it is necessary to apply the procedure just developed to the 
+            % critical points coming from the V-N diagram. Those point represents 
+            % the most demanding flight conditions that our aircraft could survive. 
+            % Those points are all stored inside: 
+            % --> Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
+            % Retrieve the values and apply formulas to them. 
+
+            % Pitching moment per unit length
+            m_distr_C = zeros(length(cm_C), 1);
+            for i = 1:length(cm_C)
+                m_distr_C(i) = cm_C(i) * qC *((chord_distr(i))^2);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.m_distr.value = m_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.m_distr.Attributes.unit = "N";   
+
+            % Torque applied
+            % T = calc_tors_mom(obj, y, m)
+            % A complete distribution of this function is included inside the class
+            % file ShearBendingTorsion.m
+            Tors_mom_distr_C = calc_tors_mom(obj2, half_span, m_distr_C)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value = Tors_mom_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.Attributes.unit = "daN*m";   
+
+            disp(" ")
+            disp(" ++++ FIGURE 15 - POINT C SHEAR, BENDING, TORSION ++++ ");
+            Shear_BendMom_diagram_C = Shear_Bending_Torsion_diag(obj2, flip(half_span), Shear_distr_C, Bend_mom_distr_C, ...
+                                                               Tors_mom_distr_C, PointC);
+
+            exportgraphics(Shear_BendMom_diagram_C, 'ShearBendingTorsionDiagramPointC.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_BendMom_diagram_C, 'ShearBendingTorsionDiagramPointC.png', 'ContentType', 'vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_BendMom_diagram.value = Shear_BendMom_diagram_C;
+            % Saving figures inside correct folder
+            fprintf('Saving ShearBendingTorsionDiagramPointC.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearBendingTorsionDiagramPointC.pdf Output
+            movefile ShearBendingTorsionDiagramPointC.png Output
+            
+            %% POINT C2 CALCULATIONS                 
+            % Lift coefficient distribution along the span at the Point C2
+            cl_C2 = CL_C2 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cl_C.value = cl_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cl_C.Attributes.unit = "Non dimensional";
+
+            % Drag coefficient ditribution along the span at the Point C2 (close to
+            % stall)
+            cd_C2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cd_C.value = cd_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cd_C.Attributes.unit = "Non dimensional";
+
+            % Pitching moment coefficient distribution along the span at Point C2
+            cm_C2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cm_C.value = cm_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cm_C.Attributes.unit = "Non dimensional";
+
+            % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
+            % In this section of the code two vectors are defined to store the product 
+            % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
+            cCl_distr_C2 = times(chord_distr, cl_C2);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCl_distr.value = cCl_distr_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCl_distr.Attributes.unit = "m";
+            cCd_distr_C2 = times(chord_distr, cd_C2);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCd_distr.value = cCd_distr_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCd_distr.Attributes.unit = "m";
+
+            % AoA_Tot = AoA + Twist_angle of the main wing
+            AoA_Tot_C2     = alfaC2 + twist_angle;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_deg.value = AoA_Tot_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+
+            % Convert in radians 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_rad.value = deg2rad(AoA_Tot_C2);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_rad.Attributes.unit = "Radians";   
+
+            % Calculation of the normal force coefficient
+            % N = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the normal force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCz_C2 = calc_normal_force(obj2, AoA_Tot_C2, cCl_distr_C2, cCd_distr_C2);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCz.value = cCz_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCz.Attributes.unit = "m"; 
+
+            % Calculation of the axial force coefficient 
+            % A = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the axial force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCa_C2 = calc_axial_force(obj2, AoA_Tot_C2, cCl_distr_C2, cCd_distr_C2);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCa.value = cCa_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCa.Attributes.unit = "m"; 
+
+            % Normal force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            qC2             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.qC2.value;
+            Normal_force_C2 = cCz_C2 * qC2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Normal_force.value = Normal_force_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Normal_force.Attributes.unit = "N/m";
+
+            % Axial force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            Axial_force_C2 = cCa_C2 * qC2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Axial_force.value = Axial_force_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Axial_force.Attributes.unit = "N/m";        
+
+            % SHEAR FORCE CALCULATION 
+            % A = calc_shear_force(AoA_Tot, y, cCZ)
+            % A complete description of this function is available inside the class
+            % file ShearBendingTorsion.m 
+            Shear_distr_C2 = calc_shear_force(obj2, half_span, Normal_force_C2)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Shear_distr.value = Shear_distr_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Shear_distr.Attributes.unit = "daN";
+
+            % BENDING MOMENT CALCULATION 
+            % BM = calc_bend_mom(y, S)
+            % A complete description of this function is included inside the class file
+            % ShearBendingTorsion.m
+            Bend_mom_distr_C2 = calc_bend_mom(obj2, half_span, Shear_distr_C2);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Bend_mom_distr.value = Bend_mom_distr_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Bend_mom_distr.Attributes.unit = "daN*m";
+
+            % PLANS FOR THE STRUCTURAL DIMENSIONING
+            % To correctly size the aerostructures of the main lifting surface 
+            % it is necessary to apply the procedure just developed to the 
+            % critical points coming from the V-N diagram. Those point represents 
+            % the most demanding flight conditions that our aircraft could survive. 
+            % Those points are all stored inside: 
+            % --> Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
+            % Retrieve the values and apply formulas to them. 
+
+            % Pitching moment per unit length
+            m_distr_C2 = zeros(length(cm_C2), 1);
+            for i = 1:length(cm_C2)
+                m_distr_C2(i) = cm_C2(i) * qC2 *((chord_distr(i))^2);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.m_distr.value = m_distr_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.m_distr.Attributes.unit = "N";   
+
+            % Torque applied
+            % T = calc_tors_mom(obj, y, m)
+            % A complete distribution of this function is included inside the class
+            % file ShearBendingTorsion.m
+            Tors_mom_distr_C2 = calc_tors_mom(obj2, half_span, m_distr_C2)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Tors_mom_distr.value = Tors_mom_distr_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Tors_mom_distr.Attributes.unit = "daN*m";   
+
+            disp(" ")
+            disp(" ++++ FIGURE 16 - POINT C2 SHEAR, BENDING, TORSION ++++ ");
+            Shear_BendMom_diagram_C2 = Shear_Bending_Torsion_diag(obj2, flip(half_span), Shear_distr_C2, Bend_mom_distr_C2, ...
+                                                               Tors_mom_distr_C2, PointC2);
+
+            exportgraphics(Shear_BendMom_diagram_C2, 'ShearBendingTorsionDiagramPointC2.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_BendMom_diagram_C2, 'ShearBendingTorsionDiagramPointC2.png', 'ContentType', 'vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Shear_BendMom_diagram.value = Shear_BendMom_diagram_C2;
+            % Saving figures inside correct folder
+            fprintf('Saving ShearBendingTorsionDiagramPointC2.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearBendingTorsionDiagramPointC2.pdf Output
+            movefile ShearBendingTorsionDiagramPointC2.png Output     
+            
+            %% POINT D CALCULATIONS                 
+            % Lift coefficient distribution along the span at the Point D
+            cl_D = CL_D * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cl_D.value = cl_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cl_D.Attributes.unit = "Non dimensional";
+
+            % Support variables to interpolate
+            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
+
+            % Selection of the interpolated distribution of CD and CM
+            CD_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
+            Interpolated_Global_CD_D = zeros(length(yi), 1);
+            for i = 1:length(yi)
+                Interpolated_Global_CD_D(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-2
+                   cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                   cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                end
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.value = Interpolated_Global_CD_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.value = cd_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value = cm_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.Attributes.unit = "Non dimensional";
+
+            % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
+            % In this section of the code two vectors are defined to store the product 
+            % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
+            cCl_distr_D = times(chord_distr, cl_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.value = cCl_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.Attributes.unit = "m";
+            cCd_distr_D = times(chord_distr, cd_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.value = cCd_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.Attributes.unit = "m";
+
+            % AoA_Tot = AoA + Twist_angle of the main wing
+            AoA_Tot_D     = alfaD + twist_angle;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.value = AoA_Tot_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+
+            % Convert in radians 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.value = deg2rad(AoA_Tot_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "Radians";   
+
+            % Calculation of the normal force coefficient
+            % N = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the normal force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCz_D = calc_normal_force(obj2, AoA_Tot_D, cCl_distr_D, cCd_distr_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.value = cCz_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.Attributes.unit = "m"; 
+
+            % Calculation of the axial force coefficient 
+            % A = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the axial force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCa_D = calc_axial_force(obj2, AoA_Tot_D, cCl_distr_D, cCd_distr_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.value = cCa_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.Attributes.unit = "m"; 
+
+            % Normal force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            qD             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value;
+            Normal_force_D = cCz_D * qD;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.value = Normal_force_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.Attributes.unit = "N/m";
+
+            % Axial force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            Axial_force_D = cCa_D * qD;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.value = Axial_force_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.Attributes.unit = "N/m";        
+
+            % SHEAR FORCE CALCULATION 
+            % A = calc_shear_force(AoA_Tot, y, cCZ)
+            % A complete description of this function is available inside the class
+            % file ShearBendingTorsion.m 
+            Shear_distr_D = calc_shear_force(obj2, half_span, Normal_force_D)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.value = Shear_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.Attributes.unit = "daN";
+
+            % BENDING MOMENT CALCULATION 
+            % BM = calc_bend_mom(y, S)
+            % A complete description of this function is included inside the class file
+            % ShearBendingTorsion.m
+            Bend_mom_distr_D = calc_bend_mom(obj2, half_span, Shear_distr_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.value = Bend_mom_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.Attributes.unit = "daN*m";
+
+            % PLANS FOR THE STRUCTURAL DIMENSIONING
+            % To correctly size the aerostructures of the main lifting surface 
+            % it is necessary to apply the procedure just developed to the 
+            % critical points coming from the V-N diagram. Those point represents 
+            % the most demanding flight conditions that our aircraft could survive. 
+            % Those points are all stored inside: 
+            % --> Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
+            % Retrieve the values and apply formulas to them. 
+
+            % Pitching moment per unit length
+            m_distr_D = zeros(length(cm_D), 1);
+            for i = 1:length(cm_C)
+                m_distr_D(i) = cm_D(i) * qD *((chord_distr(i))^2);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.m_distr.value = m_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.m_distr.Attributes.unit = "N";   
+
+            % Torque applied
+            % T = calc_tors_mom(obj, y, m)
+            % A complete distribution of this function is included inside the class
+            % file ShearBendingTorsion.m
+            Tors_mom_distr_D = calc_tors_mom(obj2, half_span, m_distr_D)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value = Tors_mom_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.Attributes.unit = "daN*m";   
+
+            disp(" ")
+            disp(" ++++ FIGURE 16 - POINT D SHEAR, BENDING, TORSION ++++ ");
+            Shear_BendMom_diagram_D = Shear_Bending_Torsion_diag(obj2, flip(half_span), Shear_distr_D, Bend_mom_distr_D, ...
+                                                               Tors_mom_distr_D, PointD);
+
+            exportgraphics(Shear_BendMom_diagram_D, 'ShearBendingTorsionDiagramPointD.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_BendMom_diagram_D, 'ShearBendingTorsionDiagramPointD.png', 'ContentType', 'vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_BendMom_diagram.value = Shear_BendMom_diagram_D;
+            % Saving figures inside correct folder
+            fprintf('Saving ShearBendingTorsionDiagramPointD.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearBendingTorsionDiagramPointD.pdf Output
+            movefile ShearBendingTorsionDiagramPointD.png Output              
+            
         % =================================================================
         elseif max(n_gust_cruise_plus) < nmax
         % ================================================================= 
@@ -255,10 +1025,10 @@ switch (Straight_flight_Case)
             alfaC  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
             alfaD  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
             % ---------------------------------------------------------------------------------------------
-            PointS = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value;
+            PointS  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value;
             PointA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.point_name.value;
-            PointC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value;
-            PointD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value;
+            PointC  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value;
+            PointD  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value;
             % ---------------------------------------------------------------------------------------------
             AOA_aux_fullmodel = Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value;
             CL_fullmodel      = Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value;
@@ -323,6 +1093,520 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";
         
+            % =================================================================
+            %% POINT S CALCULATIONS                 
+            % Lift coefficient distribution along the span at the Point S
+            cl_S = CL_S*CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.value = cl_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.Attributes.unit = "Non dimensional";
+
+            % Drag coefficient ditribution along the span at the Point S (close to
+            % stall)
+            cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
+
+            % Pitching moment coefficient distribution along the span at Point S
+            cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
+
+            % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
+            % In this section of the code two vectors are defined to store the product 
+            % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
+            cCl_distr_S = times(chord_distr, cl_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.value = cCl_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.Attributes.unit = "m";
+            cCd_distr_S = times(chord_distr, cd_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.value = cCd_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.Attributes.unit = "m";
+
+            % AoA_Tot = AoA + Twist_angle of the main wing
+            twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
+            AoA_Tot_S     = alfaS + twist_angle;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.value = AoA_Tot_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+
+            % Convert in radians 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.value = deg2rad(AoA_Tot_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "Radians";   
+
+            % Calculation of the normal force coefficient
+            % N = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the normal force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCz_S = calc_normal_force(obj2, AoA_Tot_S, cCl_distr_S, cCd_distr_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.value = cCz_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.Attributes.unit = "m"; 
+
+            % Calculation of the axial force coefficient 
+            % A = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the axial force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCa_S = calc_axial_force(obj2, AoA_Tot_S, cCl_distr_S, cCd_distr_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.value = cCa_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.Attributes.unit = "m"; 
+
+            % Normal force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            qS             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.value;
+            Normal_force_S = cCz_S * qS;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.value = Normal_force_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.Attributes.unit = "N/m";
+
+            % Axial force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            Axial_force_S = cCa_S * qS;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.value = Axial_force_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.Attributes.unit = "N/m";        
+
+            % SHEAR FORCE CALCULATION 
+            % A = calc_shear_force(AoA_Tot, y, cCZ)
+            % A complete description of this function is available inside the class
+            % file ShearBendingTorsion.m 
+            Shear_distr_S = calc_shear_force(obj2, half_span, Normal_force_S)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_distr.value = Shear_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_distr.Attributes.unit = "daN";
+
+            % BENDING MOMENT CALCULATION 
+            % BM = calc_bend_mom(y, S)
+            % A complete description of this function is included inside the class file
+            % ShearBendingTorsion.m
+            Bend_mom_distr_S = calc_bend_mom(obj2, half_span, Shear_distr_S);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Bend_mom_distr.value = Bend_mom_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Bend_mom_distr.Attributes.unit = "daN*m";
+
+            % PLANS FOR THE STRUCTURAL DIMENSIONING
+            % To correctly size the aerostructures of the main lifting surface 
+            % it is necessary to apply the procedure just developed to the 
+            % critical points coming from the V-N diagram. Those point represents 
+            % the most demanding flight conditions that our aircraft could survive. 
+            % Those points are all stored inside: 
+            % --> Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
+            % Retrieve the values and apply formulas to them. 
+
+            % Pitching moment per unit length
+            m_distr_S = zeros(length(cm_S), 1);
+            for i = 1:length(cm_S)
+                m_distr_S(i) = cm_S(i) * qS *((chord_distr(i))^2);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.m_distr.value = m_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.m_distr.Attributes.unit = "N";   
+
+            % Torque applied
+            % T = calc_tors_mom(obj, y, m)
+            % A complete distribution of this function is included inside the class
+            % file ShearBendingTorsion.m
+            Tors_mom_distr_S = calc_tors_mom(obj2, half_span, m_distr_S)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tors_mom_distr.value = Tors_mom_distr_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tors_mom_distr.Attributes.unit = "daN*m";   
+
+            disp(" ")
+            disp(" ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ ");
+            Shear_BendMom_diagram_S = Shear_Bending_Torsion_diag(obj2, flip(half_span), Shear_distr_S, Bend_mom_distr_S, ...
+                                                               Tors_mom_distr_S, PointS);
+
+            exportgraphics(Shear_BendMom_diagram_S, 'ShearBendingTorsionDiagramPointS.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_BendMom_diagram_S, 'ShearBendingTorsionDiagramPointS.png', 'ContentType', 'vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_BendMom_diagram.value = Shear_BendMom_diagram_S;
+            % Saving figures inside correct folder
+            fprintf('Saving ShearBendingTorsionDiagramPointS.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearBendingTorsionDiagramPointS.pdf Output
+            movefile ShearBendingTorsionDiagramPointS.png Output        
+            % =================================================================
+            %% POINT A1 CALCULATIONS                 
+            % Lift coefficient distribution along the span at the Point A1
+            cl_A1 = CL_A1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A.value = cl_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A.Attributes.unit = "Non dimensional";
+
+            % Drag coefficient ditribution along the span at the Point A1 (close to
+            % stall)
+            cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
+
+            % Pitching moment coefficient distribution along the span at Point A1
+            cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
+
+            % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
+            % In this section of the code two vectors are defined to store the product 
+            % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
+            cCl_distr_A1 = times(chord_distr, cl_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.value = cCl_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.Attributes.unit = "m";
+            cCd_distr_A1 = times(chord_distr, cd_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.value = cCd_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.Attributes.unit = "m";
+
+            % AoA_Tot = AoA + Twist_angle of the main wing
+            AoA_Tot_A1     = alfaA1 + twist_angle;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.value = AoA_Tot_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+
+            % Convert in radians 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.value = deg2rad(AoA_Tot_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "Radians";   
+
+            % Calculation of the normal force coefficient
+            % N = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the normal force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCz_A1 = calc_normal_force(obj2, AoA_Tot_A1, cCl_distr_A1, cCd_distr_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.value = cCz_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.Attributes.unit = "m"; 
+
+            % Calculation of the axial force coefficient 
+            % A = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the axial force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCa_A1 = calc_axial_force(obj2, AoA_Tot_A1, cCl_distr_A1, cCd_distr_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.value = cCa_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.Attributes.unit = "m"; 
+
+            % Normal force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            qA1             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.qA1.value;
+            Normal_force_A1 = cCz_A1 * qA1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.value = Normal_force_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.Attributes.unit = "N/m";
+
+            % Axial force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            Axial_force_A1 = cCa_A1 * qA1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.value = Axial_force_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.Attributes.unit = "N/m";        
+
+            % SHEAR FORCE CALCULATION 
+            % A = calc_shear_force(AoA_Tot, y, cCZ)
+            % A complete description of this function is available inside the class
+            % file ShearBendingTorsion.m 
+            Shear_distr_A1 = calc_shear_force(obj2, half_span, Normal_force_A1)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Shear_distr.value = Shear_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Shear_distr.Attributes.unit = "daN";
+
+            % BENDING MOMENT CALCULATION 
+            % BM = calc_bend_mom(y, S)
+            % A complete description of this function is included inside the class file
+            % ShearBendingTorsion.m
+            Bend_mom_distr_A1 = calc_bend_mom(obj2, half_span, Shear_distr_A1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Bend_mom_distr.value = Bend_mom_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Bend_mom_distr.Attributes.unit = "daN*m";
+
+            % PLANS FOR THE STRUCTURAL DIMENSIONING
+            % To correctly size the aerostructures of the main lifting surface 
+            % it is necessary to apply the procedure just developed to the 
+            % critical points coming from the V-N diagram. Those point represents 
+            % the most demanding flight conditions that our aircraft could survive. 
+            % Those points are all stored inside: 
+            % --> Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
+            % Retrieve the values and apply formulas to them. 
+
+            % Pitching moment per unit length
+            m_distr_A1 = zeros(length(cm_A1), 1);
+            for i = 1:length(cm_A1)
+                m_distr_A1(i) = cm_A1(i) * qA1 *((chord_distr(i))^2);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.m_distr.value = m_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.m_distr.Attributes.unit = "N";   
+
+            % Torque applied
+            % T = calc_tors_mom(obj, y, m)
+            % A complete distribution of this function is included inside the class
+            % file ShearBendingTorsion.m
+            Tors_mom_distr_A1 = calc_tors_mom(obj2, half_span, m_distr_A1)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Tors_mom_distr.value = Tors_mom_distr_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Tors_mom_distr.Attributes.unit = "daN*m";   
+
+            disp(" ")
+            disp(" ++++ FIGURE 13 - POINT A1 SHEAR, BENDING, TORSION ++++ ");
+            Shear_BendMom_diagram_A1 = Shear_Bending_Torsion_diag(obj2, flip(half_span), Shear_distr_A1, Bend_mom_distr_A1, ...
+                                                               Tors_mom_distr_A1, PointA1);
+
+            exportgraphics(Shear_BendMom_diagram_A1, 'ShearBendingTorsionDiagramPointA1.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_BendMom_diagram_A1, 'ShearBendingTorsionDiagramPointA1.png', 'ContentType', 'vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Shear_BendMom_diagram.value = Shear_BendMom_diagram_A1;
+            % Saving figures inside correct folder
+            fprintf('Saving ShearBendingTorsionDiagramPointA1.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearBendingTorsionDiagramPointA1.pdf Output
+            movefile ShearBendingTorsionDiagramPointA1.png Output                     
+
+            %% POINT C CALCULATIONS                 
+            % Lift coefficient distribution along the span at the Point C
+            cl_C = CL_C * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.value = cl_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.Attributes.unit = "Non dimensional";
+
+            % Drag coefficient ditribution along the span at the Point C (close to
+            % stall)
+            cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
+
+            % Pitching moment coefficient distribution along the span at Point C
+            cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
+
+            % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
+            % In this section of the code two vectors are defined to store the product 
+            % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
+            cCl_distr_C = times(chord_distr, cl_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.value = cCl_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.Attributes.unit = "m";
+            cCd_distr_C = times(chord_distr, cd_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.value = cCd_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.Attributes.unit = "m";
+
+            % AoA_Tot = AoA + Twist_angle of the main wing
+            AoA_Tot_C     = alfaC + twist_angle;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.value = AoA_Tot_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+
+            % Convert in radians 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.value = deg2rad(AoA_Tot_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "Radians";   
+
+            % Calculation of the normal force coefficient
+            % N = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the normal force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCz_C = calc_normal_force(obj2, AoA_Tot_C, cCl_distr_C, cCd_distr_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.value = cCz_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.Attributes.unit = "m"; 
+
+            % Calculation of the axial force coefficient 
+            % A = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the axial force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCa_C = calc_axial_force(obj2, AoA_Tot_C, cCl_distr_C, cCd_distr_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.value = cCa_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.Attributes.unit = "m"; 
+
+            % Normal force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            qC             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value;
+            Normal_force_C = cCz_C * qC;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.value = Normal_force_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.Attributes.unit = "N/m";
+
+            % Axial force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            Axial_force_C = cCa_C * qC;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.value = Axial_force_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.Attributes.unit = "N/m";        
+
+            % SHEAR FORCE CALCULATION 
+            % A = calc_shear_force(AoA_Tot, y, cCZ)
+            % A complete description of this function is available inside the class
+            % file ShearBendingTorsion.m 
+            Shear_distr_C = calc_shear_force(obj2, half_span, Normal_force_C)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value = Shear_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.Attributes.unit = "daN";
+
+            % BENDING MOMENT CALCULATION 
+            % BM = calc_bend_mom(y, S)
+            % A complete description of this function is included inside the class file
+            % ShearBendingTorsion.m
+            Bend_mom_distr_C = calc_bend_mom(obj2, half_span, Shear_distr_C);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Bend_mom_distr.value = Bend_mom_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Bend_mom_distr.Attributes.unit = "daN*m";
+
+            % PLANS FOR THE STRUCTURAL DIMENSIONING
+            % To correctly size the aerostructures of the main lifting surface 
+            % it is necessary to apply the procedure just developed to the 
+            % critical points coming from the V-N diagram. Those point represents 
+            % the most demanding flight conditions that our aircraft could survive. 
+            % Those points are all stored inside: 
+            % --> Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
+            % Retrieve the values and apply formulas to them. 
+
+            % Pitching moment per unit length
+            m_distr_C = zeros(length(cm_C), 1);
+            for i = 1:length(cm_C)
+                m_distr_C(i) = cm_C(i) * qC *((chord_distr(i))^2);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.m_distr.value = m_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.m_distr.Attributes.unit = "N";   
+
+            % Torque applied
+            % T = calc_tors_mom(obj, y, m)
+            % A complete distribution of this function is included inside the class
+            % file ShearBendingTorsion.m
+            Tors_mom_distr_C = calc_tors_mom(obj2, half_span, m_distr_C)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value = Tors_mom_distr_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.Attributes.unit = "daN*m";   
+
+            disp(" ")
+            disp(" ++++ FIGURE 14 - POINT C SHEAR, BENDING, TORSION ++++ ");
+            Shear_BendMom_diagram_C = Shear_Bending_Torsion_diag(obj2, flip(half_span), Shear_distr_C, Bend_mom_distr_C, ...
+                                                               Tors_mom_distr_C, PointC);
+
+            exportgraphics(Shear_BendMom_diagram_C, 'ShearBendingTorsionDiagramPointC.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_BendMom_diagram_C, 'ShearBendingTorsionDiagramPointC.png', 'ContentType', 'vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_BendMom_diagram.value = Shear_BendMom_diagram_C;
+            % Saving figures inside correct folder
+            fprintf('Saving ShearBendingTorsionDiagramPointC.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearBendingTorsionDiagramPointC.pdf Output
+            movefile ShearBendingTorsionDiagramPointC.png Output
+            
+            %% POINT D CALCULATIONS                 
+            % Lift coefficient distribution along the span at the Point D
+            cl_D = CL_D * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cl_D.value = cl_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cl_D.Attributes.unit = "Non dimensional";
+
+            % Support variables to interpolate
+            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
+
+            % Selection of the interpolated distribution of CD and CM
+            CD_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
+            Interpolated_Global_CD_D = zeros(length(yi), 1);
+            for i = 1:length(yi)
+                Interpolated_Global_CD_D(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-2
+                   cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                   cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                end
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.value = Interpolated_Global_CD_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.value = cd_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value = cm_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.Attributes.unit = "Non dimensional";
+
+            % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
+            % In this section of the code two vectors are defined to store the product 
+            % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
+            cCl_distr_D = times(chord_distr, cl_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.value = cCl_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.Attributes.unit = "m";
+            cCd_distr_D = times(chord_distr, cd_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.value = cCd_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.Attributes.unit = "m";
+
+            % AoA_Tot = AoA + Twist_angle of the main wing
+            AoA_Tot_D     = alfaD + twist_angle;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.value = AoA_Tot_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+
+            % Convert in radians 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.value = deg2rad(AoA_Tot_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "Radians";   
+
+            % Calculation of the normal force coefficient
+            % N = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the normal force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCz_D = calc_normal_force(obj2, AoA_Tot_D, cCl_distr_D, cCd_distr_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.value = cCz_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.Attributes.unit = "m"; 
+
+            % Calculation of the axial force coefficient 
+            % A = calc_normal_force(AoA_Tot, cCl, cCd)
+            % This function will be used to evaluate the axial force coefficients
+            % distribution along the span; it is possible to fin a complete
+            % documentation inside the class file ShearBendingTorsion.m 
+            cCa_D = calc_axial_force(obj2, AoA_Tot_D, cCl_distr_D, cCd_distr_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.value = cCa_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.Attributes.unit = "m"; 
+
+            % Normal force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            qD             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value;
+            Normal_force_D = cCz_D * qD;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.value = Normal_force_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.Attributes.unit = "N/m";
+
+            % Axial force 
+            % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
+            Axial_force_D = cCa_D * qD;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.value = Axial_force_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.Attributes.unit = "N/m";        
+
+            % SHEAR FORCE CALCULATION 
+            % A = calc_shear_force(AoA_Tot, y, cCZ)
+            % A complete description of this function is available inside the class
+            % file ShearBendingTorsion.m 
+            Shear_distr_D = calc_shear_force(obj2, half_span, Normal_force_D)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.value = Shear_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.Attributes.unit = "daN";
+
+            % BENDING MOMENT CALCULATION 
+            % BM = calc_bend_mom(y, S)
+            % A complete description of this function is included inside the class file
+            % ShearBendingTorsion.m
+            Bend_mom_distr_D = calc_bend_mom(obj2, half_span, Shear_distr_D);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.value = Bend_mom_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.Attributes.unit = "daN*m";
+
+            % PLANS FOR THE STRUCTURAL DIMENSIONING
+            % To correctly size the aerostructures of the main lifting surface 
+            % it is necessary to apply the procedure just developed to the 
+            % critical points coming from the V-N diagram. Those point represents 
+            % the most demanding flight conditions that our aircraft could survive. 
+            % Those points are all stored inside: 
+            % --> Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
+            % Retrieve the values and apply formulas to them. 
+
+            % Pitching moment per unit length
+            m_distr_D = zeros(length(cm_D), 1);
+            for i = 1:length(cm_C)
+                m_distr_D(i) = cm_D(i) * qD *((chord_distr(i))^2);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.m_distr.value = m_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.m_distr.Attributes.unit = "N";   
+
+            % Torque applied
+            % T = calc_tors_mom(obj, y, m)
+            % A complete distribution of this function is included inside the class
+            % file ShearBendingTorsion.m
+            Tors_mom_distr_D = calc_tors_mom(obj2, half_span, m_distr_D)*(1e-1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value = Tors_mom_distr_D;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.Attributes.unit = "daN*m";   
+
+            disp(" ")
+            disp(" ++++ FIGURE 15 - POINT D SHEAR, BENDING, TORSION ++++ ");
+            Shear_BendMom_diagram_D = Shear_Bending_Torsion_diag(obj2, flip(half_span), Shear_distr_D, Bend_mom_distr_D, ...
+                                                               Tors_mom_distr_D, PointD);
+
+            exportgraphics(Shear_BendMom_diagram_D, 'ShearBendingTorsionDiagramPointD.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_BendMom_diagram_D, 'ShearBendingTorsionDiagramPointD.png', 'ContentType', 'vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_BendMom_diagram.value = Shear_BendMom_diagram_D;
+            % Saving figures inside correct folder
+            fprintf('Saving ShearBendingTorsionDiagramPointD.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearBendingTorsionDiagramPointD.pdf Output
+            movefile ShearBendingTorsionDiagramPointD.png Output                        
+            
         end
     % CASE 1: VA lower than the intercept
     case 'Case 2'  
@@ -1076,6 +2360,50 @@ end
 switch (Inverted_flight_Case)
     % CASE 1: Complex solutions of the intercept
     case 'Case 1'
+        if abs(min(n_gust_cruise_neg)) > abs(nmin)
+            % =============================================================
+            % S_inv - G - G1 - F - G2 - E
+            % STORE USEFUL VALUES INSIDE THE AIRCRAFT STRUCT VARIABLE 
+            % Point S_inv
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.Attributes.unit = "m";
+            % Point G
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.Attributes.unit = "m";
+            % Point G1
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.Attributes.unit = "m";
+            % Point F
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.Attributes.unit = "m";
+            % Point G2
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.yG2.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.yG2.Attributes.unit = "m";
+            % Point E
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.Attributes.unit = "m";            
+            
+        elseif abs(min(n_gust_cruise_neg)) < abs(nmin)
+            % =============================================================  
+            % S_inv - G - G1 - F - E    
+            % STORE USEFUL VALUES INSIDE THE AIRCRAFT STRUCT VARIABLE 
+            % Point S_inv
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.Attributes.unit = "m";
+            % Point G
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.Attributes.unit = "m";
+            % Point G1
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.Attributes.unit = "m";
+            % Point F
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.Attributes.unit = "m";
+            % Point E
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.value = half_span;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.Attributes.unit = "m";             
+            
+        end
     % CASE 2: Real solutions of the intercept
     case 'Case 2'  
         % STORE USEFUL VALUES INSIDE THE AIRCRAFT STRUCT VARIABLE 
