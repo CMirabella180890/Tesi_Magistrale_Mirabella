@@ -3367,9 +3367,9 @@ switch (Inverted_flight_Case)
         % =================================================================  
         % POINT G 
         alfa_G = alfa_func(rho0, S, VG, WS, nG, CLalfa, alpha_zerol);
-        CL_G   = CL_calc(obj1, abs(nG), Mass, g, VG, rho0, S);
+        CL_G   = CL_calc(obj1, nG, Mass, g, VG, rho0, S);
             if CL_G < CL_star - 0.03
-                CL_G = CL_calc(obj1, abs(nG), Mass, g, VG, rho0, S);
+                CL_G = CL_calc(obj1, nG, Mass, g, VG, rho0, S);
             elseif CL_G > CL_star + 0.03
                 CL_G = CLmax_non_lin(alfa_G);
             end
