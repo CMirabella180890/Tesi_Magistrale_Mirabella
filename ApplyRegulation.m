@@ -84,8 +84,8 @@ switch (Aircraft.Certification.Regulation.value)
         fprintf('### Current directory ###');
         fprintf('\n');
         fprintf('%s\n', dir);
-%        % CALCULATE SHEAR, BENDING, AND TORSION MOMENT
-%        CalcShearBendTorsMom
+        % CALCULATE SHEAR, BENDING, AND TORSION MOMENT
+        CalcShearBendTorsMom
 %         % CALCULATE UNSYMMETRICAL LOADS
 %         CalcUnsymmLoads
 %         % CALCULATE HORIZONTAL TAIL LOADS 
