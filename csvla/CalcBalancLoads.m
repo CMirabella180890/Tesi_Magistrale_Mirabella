@@ -1607,7 +1607,50 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromStoA1.value = CLHT_fromStoA1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_fromStoA1.Attributes.unit = "Non dimensional";          
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromStoA1.value = LHT_fromStoA1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromStoA1.Attributes.unit = "daN";    
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_fromStoA1.Attributes.unit = "daN";   
+        % =================================================================  
+        % POINT A 
+        alfa_A = alfa_func(rho0, S, VA, WS, nA, CLalfa, alpha_zerol);
+        CL_A   = CL_calc(obj1, nA, Mass, g, VA, rho0, S);
+            if CL_A < CL_star - 0.03
+                CL_A = CL_calc(obj1, nA, Mass, g, VA, rho0, S);
+            elseif CL_A > CL_star + 0.03
+                CL_A = CLmax_non_lin(alfa_A);
+            end
+        CD_A   = cd_calc(obj1, CD0, CL_A, AR, e, k1, k2);
+        q_A    = 0.5*rho0*(VA)^2;
+        WBL_A  = q_A*S*CL_A*1e-1; 
+        CMCL_A = CLWB_contrib(obj1, CL_A, deg2rad(alfa_A), XAC, XCG, bCG, MAC);
+        CMCD_A = CDWB_contrib(obj1, CL_A, deg2rad(alfa_A), XAC, XCG, bCG, MAC);
+        CMCT_A = CT_contr(obj1, CD_A, Thrust_axes, MAC);
+        CMCG_A = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_A);
+        % HORIZONTAL TAIL LIFT COEFFICIENT
+        CLHT_A = CL_Tail(obj1, CMCL_A, CMCD_A, CMCT_A, CMCG_A, l_ht, MAC, XAC, XCG, deg2rad(alfa_A)); 
+        % HORIZONTAL TAIL LIFT
+        LHT_A = (0.5)*(VA^2)*(S)*(rho0)*(CLHT_A)*(1e-1);
+        % NEW LIFT COEFFICIENT
+        CL_A_new = CL_A - CLHT_A;
+        % NEW LIFT COEFFICIENT
+        LW_A_new = q_A*S*CL_A_new*1e-1;
+        
+        % STORE ALL THE DATA INSIDE THE STRUCT VARIABLE
+        % POINT A
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value = q_A;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.Attributes.unit = "Pa";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA_new.value = LW_A_new;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA_new.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTA.value = LHT_A;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTA.Attributes.unit = "daN";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value = alfa_A;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA_rad.value = deg2rad(alfa_A);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA_rad.Attributes.unit = "rad";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CLHT_A.value = CLHT_A;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CLHT_A.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CD_A.value = CD_A;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CD_A.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CM_A.value = CMCG_A;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CM_A.Attributes.unit = "Non dimensional";          
         % =================================================================  
         % FROM A1 TO C
         CL_fromA1toC   = zeros(length(V_fromA1toC), 1);
@@ -1624,9 +1667,9 @@ switch (Straight_flight_Case)
         for i = 1:length(V_fromA1toC)
             alfa_fromA1toC(i) = alfa_func(rho0, S, V_fromA1toC(i), WS, n_fromA1toC(i), CLalfa, alpha_zerol);
             CL_fromA1toC(i)   = CL_calc(obj1, n_fromA1toC(i), Mass, g, V_fromA1toC(i), rho0, S);
-            if CL_fromA1toC(i) < CL_star
+            if CL_fromA1toC(i) < CL_star - 0.03
                 CL_fromA1toC(i) = CL_calc(obj1, n_fromA1toC(i), Mass, g, V_fromA1toC(i), rho0, S);
-            elseif CL_fromA1toC(i) > CL_star
+            elseif CL_fromA1toC(i) > CL_star + 0.03
                 CL_fromA1toC(i) = CLmax_non_lin(alfa_fromA1toC(i));
             end
             CD_fromA1toC(i)   = cd_calc(obj1, CD0, CL_fromA1toC(i), AR, e, k1, k2);
@@ -1966,6 +2009,7 @@ switch (Straight_flight_Case)
         plot(V_from0toS(1),    LHT_from0toS(1),    'k.', 'MarkerSize', 10)
         plot(V_from0toS(end),  LHT_from0toS(end),  'k.', 'MarkerSize', 10)
         plot(V_fromStoA1(end), LHT_fromStoA1(end), 'k.', 'MarkerSize', 10)
+        plot(VA,               LHT_A,              'k.', 'MarkerSize', 10)
         plot(V_fromA1toC(end), LHT_fromA1toC(end), 'k.', 'MarkerSize', 10)
         plot(V_fromCtoA2(end), LHT_fromCtoA2(end), 'k.', 'MarkerSize', 10)
         plot(V_fromA2toD(end), LHT_fromA2toD(end), 'k.', 'MarkerSize', 10)
@@ -1973,6 +2017,7 @@ switch (Straight_flight_Case)
         % ---------------------------------------------------------------------
         text(V_fromStoA1(1),   LHT_fromStoA1(1),   '  S',  'FontSize', 6)
         text(V_fromStoA1(end), LHT_fromStoA1(end), '  A1', 'FontSize', 6)
+        text(VA,               LHT_A,              '  A',  'FontSize', 6)
         text(V_fromA1toC(end), LHT_fromA1toC(end), '  C',  'FontSize', 6)
         text(V_fromCtoA2(end), LHT_fromCtoA2(end), '  A2', 'FontSize', 6)
         text(V_fromA2toD(end), LHT_fromA2toD(end), '  D',  'FontSize', 6)
@@ -2047,6 +2092,7 @@ switch (Straight_flight_Case)
         % ---------------------------------------------------------------------
         plot(V_from0toS(1),    LW_from0toS_new(1),    'k.', 'MarkerSize', 10)
         plot(V_from0toS(end),  LW_from0toS_new(end),  'k.', 'MarkerSize', 10)
+        plot(VA,               LW_A_new,              'k.', 'MarkerSize', 10)
         plot(V_fromStoA1(end), LW_fromStoA1_new(end), 'k.', 'MarkerSize', 10)
         plot(V_fromA1toC(end), LW_fromA1toC_new(end), 'k.', 'MarkerSize', 10)
         plot(V_fromCtoA2(end), LW_fromCtoA2_new(end), 'k.', 'MarkerSize', 10)
@@ -2054,6 +2100,7 @@ switch (Straight_flight_Case)
         plot(V_fromDto0(end),  LW_fromDto0_new(end),  'k.', 'MarkerSize', 10)
         % ---------------------------------------------------------------------
         text(V_fromStoA1(1),   LW_fromStoA1_new(1),   '  S',  'FontSize', 6)
+        text(VA,               LW_A_new,              '  A',  'FontSize', 6)
         text(V_fromStoA1(end), LW_fromStoA1_new(end), '  A1', 'FontSize', 6)
         text(V_fromA1toC(end), LW_fromA1toC_new(end), '  C',  'FontSize', 6)
         text(V_fromCtoA2(end), LW_fromCtoA2_new(end), '  A2', 'FontSize', 6)
@@ -3315,7 +3362,51 @@ switch (Inverted_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_from0toSinv.value = CLHT_from0toSinv;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLHT_from0toSinv.Attributes.unit = "Non dimensional";   
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_from0toSinv.value = LHT_from0toSinv;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_from0toSinv.Attributes.unit = "daN";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_from0toSinv.Attributes.unit = "daN";   
+        
+        % =================================================================  
+        % POINT G 
+        alfa_G = alfa_func(rho0, S, VG, WS, nG, CLalfa, alpha_zerol);
+        CL_G   = CL_calc(obj1, abs(nG), Mass, g, VG, rho0, S);
+            if CL_G < CL_star - 0.03
+                CL_G = CL_calc(obj1, abs(nG), Mass, g, VG, rho0, S);
+            elseif CL_G > CL_star + 0.03
+                CL_G = CLmax_non_lin(alfa_G);
+            end
+        CD_G   = cd_calc(obj1, CD0, CL_G, AR, e, k1, k2);
+        q_G    = 0.5*rho0*(VG)^2;
+        WBL_G  = q_G*S*CL_G*1e-1; 
+        CMCL_G = CLWB_contrib(obj1, CL_G, deg2rad(alfa_G), XAC, XCG, bCG, MAC);
+        CMCD_G = CDWB_contrib(obj1, CL_G, deg2rad(alfa_G), XAC, XCG, bCG, MAC);
+        CMCT_G = CT_contr(obj1, CD_G, Thrust_axes, MAC);
+        CMCG_G = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_G);
+        % HORIZONTAL TAIL LIFT COEFFICIENT
+        CLHT_G = CL_Tail(obj1, CMCL_G, CMCD_G, CMCT_G, CMCG_G, l_ht, MAC, XAC, XCG, deg2rad(alfa_G)); 
+        % HORIZONTAL TAIL LIFT
+        LHT_G = (0.5)*(VG^2)*(S)*(rho0)*(CLHT_G)*(1e-1);
+        % NEW LIFT COEFFICIENT
+        CL_G_new = CL_G - CLHT_G;
+        % NEW LIFT COEFFICIENT
+        LW_G_new = q_G*S*CL_G_new*1e-1;
+        
+        % STORE ALL THE DATA INSIDE THE STRUCT VARIABLE
+        % POINT G
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.value = q_G;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.Attributes.unit = "Pa";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG_new.value = LW_G_new;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG_new.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHTG.value = LHT_G;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHTG.Attributes.unit = "daN";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value = alfa_G;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG_rad.value = deg2rad(alfa_G);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG_rad.Attributes.unit = "rad";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CLHT_G.value = CLHT_G;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CLHT_G.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value = CD_G;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CM_G.value = CMCG_G;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CM_G.Attributes.unit = "Non dimensional";          
         % =================================================================  
         % FROM Sinv TO G1  
         CL_fromSinvtoG1   = zeros(length(V_fromSinvtoG1), 1);
@@ -3565,12 +3656,14 @@ switch (Inverted_flight_Case)
         % ---------------------------------------------------------------------
         plot(V_from0toSinv(1),    LHT_from0toSinv(1),    'k.', 'MarkerSize', 10)
         plot(V_from0toSinv(end),  LHT_from0toSinv(end),  'k.', 'MarkerSize', 10)
+        plot(VG,                  LHT_G,                 'k.', 'MarkerSize', 10)
         plot(V_fromSinvtoG1(end), LHT_fromSinvtoG1(end), 'k.', 'MarkerSize', 10)
         plot(V_fromG1toF(end),    LHT_fromG1toF(end),    'k.', 'MarkerSize', 10)
         plot(V_fromFtoE(end),     LHT_fromFtoE(end),     'k.', 'MarkerSize', 10)
         plot(V_fromEto0(end),     LHT_fromEto0(end),     'k.', 'MarkerSize', 10)
         % ---------------------------------------------------------------------
         text(V_from0toSinv(end),  LHT_from0toSinv(end),  ' S inv.', 'FontSize', 6)
+        text(VG,                  LHT_G,                 ' G',      'FontSize', 6)
         text(V_fromSinvtoG1(end), LHT_fromSinvtoG1(end), ' G1',     'FontSize', 6)
         text(V_fromG1toF(end),    LHT_fromG1toF(end),    ' F',      'FontSize', 6)
         text(V_fromFtoE(end),     LHT_fromFtoE(end),     ' E',      'FontSize', 6)
@@ -3621,17 +3714,19 @@ switch (Inverted_flight_Case)
         plot(V_from0toSinv,  LW_from0toSinv_new,  '-r', 'LineWidth', 1)
         plot(V_fromSinvtoG1, LW_fromSinvtoG1_new, '-r', 'LineWidth', 1)
         plot(V_fromG1toF,    LW_fromG1toF_new,    '-r', 'LineWidth', 1)
-        plot(V_fromFtoE,    LW_fromFtoE_new,      '-r', 'LineWidth', 1)
-        plot(V_fromEto0,    LW_fromEto0_new,      '-r', 'LineWidth', 1)
+        plot(V_fromFtoE,     LW_fromFtoE_new,     '-r', 'LineWidth', 1)
+        plot(V_fromEto0,     LW_fromEto0_new,     '-r', 'LineWidth', 1)
         % ---------------------------------------------------------------------
         plot(V_from0toSinv(1),    LW_from0toSinv_new(1),    'k.', 'MarkerSize', 10)
         plot(V_from0toSinv(end),  LW_from0toSinv_new(end),  'k.', 'MarkerSize', 10)
+        plot(VG,                  LW_G_new,                 'k.', 'MarkerSize', 10)
         plot(V_fromSinvtoG1(end), LW_fromSinvtoG1_new(end), 'k.', 'MarkerSize', 10)
         plot(V_fromG1toF(end),    LW_fromG1toF_new(end),    'k.', 'MarkerSize', 10)
         plot(V_fromFtoE(end),     LW_fromFtoE_new(end),     'k.', 'MarkerSize', 10)
         plot(V_fromEto0(end),     LW_fromEto0_new(end),     'k.', 'MarkerSize', 10)
         % ---------------------------------------------------------------------
         text(V_from0toSinv(end),  LW_from0toSinv_new(end),  ' S inv.', 'FontSize', 6)
+        text(VG,                  LW_G_new,                 ' G',      'FontSize', 6)
         text(V_fromSinvtoG1(end), LW_fromSinvtoG1_new(end), ' G1',     'FontSize', 6)
         text(V_fromG1toF(end),    LW_fromG1toF_new(end),    ' F',      'FontSize', 6)
         text(V_fromFtoE(end),     LW_fromFtoE_new(end),     ' E',      'FontSize', 6)  
