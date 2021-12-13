@@ -955,7 +955,7 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTC.Attributes.unit = "daN";   
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value = alfa_fromC1toC(1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.Attributes.unit = "degrees";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_rad.value = deDrad(alfa_fromC1toC(1));
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_rad.value = deg2rad(alfa_fromC1toC(1));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_rad.Attributes.unit = "rad";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.value = CLHT_fromC1toC(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.Attributes.unit = "Non dimensional";
@@ -972,7 +972,7 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.LHTC2.Attributes.unit = "daN";   
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.alfaC2.value = alfa_fromCtoC2(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.alfaC2.Attributes.unit = "degrees";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.alfaC2_rad.value = deDrad(alfa_fromCtoC2(end));
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.alfaC2_rad.value = deg2rad(alfa_fromCtoC2(end));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.alfaC2_rad.Attributes.unit = "rad"; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CLHT_C2.value = CLHT_fromCtoC2(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CLHT_C2.Attributes.unit = "Non dimensional";
@@ -989,7 +989,7 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTD.Attributes.unit = "daN";   
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value = alfa_fromC2toD(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.Attributes.unit = "degrees";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_rad.value = deDrad(alfa_fromC2toD(end));
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_rad.value = deg2rad(alfa_fromC2toD(end));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_rad.Attributes.unit = "rad";  
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.value = CLHT_fromC2toD(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.Attributes.unit = "Non dimensional";
