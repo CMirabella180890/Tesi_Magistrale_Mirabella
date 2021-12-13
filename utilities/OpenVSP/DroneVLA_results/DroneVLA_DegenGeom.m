@@ -5,7 +5,7 @@
 degenGeom = [];
 degenGeom(end+1).type = 'LIFTING_SURFACE';
 degenGeom(end).name = 'wing';
-degenGeom(end).geom_id = 'YXMEUVFSEJ';
+degenGeom(end).geom_id = 'JHAJMUJHSD';
 degenGeom(end).surf_index = 0;
 degenGeom(end).main_surf_index = 0;
 degenGeom(end).sym_copy_index = 0;
@@ -2470,7 +2470,7 @@ degenGeom(end).point.cgSolidz = 8.644260222838203583e-03;
 
 degenGeom(end+1).type = 'LIFTING_SURFACE';
 degenGeom(end).name = 'wing';
-degenGeom(end).geom_id = 'YXMEUVFSEJ';
+degenGeom(end).geom_id = 'JHAJMUJHSD';
 degenGeom(end).surf_index = 1;
 degenGeom(end).main_surf_index = 0;
 degenGeom(end).sym_copy_index = 1;

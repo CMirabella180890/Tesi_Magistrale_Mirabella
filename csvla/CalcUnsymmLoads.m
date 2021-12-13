@@ -61,7 +61,7 @@ Aircraft.Geometry.Aileron.Max_deflection.value = 15.0;
 Aircraft.Geometry.Aileron.Max_deflection.Attributes.unit = "degrees";
 
 %% PITCH MOMENT COEFFICIENT ALONG THE SPAN DISTRIBUTION - POINT A
-Aircraft.Geometry.Aileron.y_span.value = zeros(length(Aircraft.Geometry.Wing.half_span_y.value), 1);
+Aircraft.Geometry.Aileron.y_span.value = zeros(length(half_span), 1);
 Aircraft.Geometry.Aileron.y_span.Attributes.unit = "m"; 
 
 % Aileron helix angle (pb/2V)
@@ -81,28 +81,28 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.F_A
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.F_Aileron_A.Attributes.unit = "N/m^2";
 
 % Initialization of the Unsymmetrical_load field - Point A
-% Aircraft.Geometry.Wing.half_span_y.value = flip(Aircraft.Geometry.Wing.half_span_y.value);
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value = zeros(length(Aircraft.Geometry.Wing.half_span_y.value), 1);
+% half_span = flip(half_span);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value = zeros(length(half_span), 1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.Attributes.unit = "Non dimensional";
-for i = 1:length(Aircraft.Geometry.Wing.half_span_y.value')
+for i = 1:length(half_span')
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value(i) = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value(i);
-    if (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_iniziale.value) < 1e-1) && (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_finale.value) > 1e-1)  
+    if (abs(half_span(i) - Aircraft.Geometry.Aileron.y_iniziale.value) < 1e-1) && (abs(half_span(i) - Aircraft.Geometry.Aileron.y_finale.value) > 1e-1)  
         j = i;
     end
 end
-for i = 1:length(Aircraft.Geometry.Wing.half_span_y.value')
-    if (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_finale.value) < 1e-1) && (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_iniziale.value) > 1e-1)
+for i = 1:length(half_span')
+    if (abs(half_span(i) - Aircraft.Geometry.Aileron.y_finale.value) < 1e-1) && (abs(half_span(i) - Aircraft.Geometry.Aileron.y_iniziale.value) > 1e-1)
         k = i;
     end
 end
 for z = j:k 
-    Aircraft.Geometry.Aileron.y_span.value(z) = Aircraft.Geometry.Wing.half_span_y.value(z);
+    Aircraft.Geometry.Aileron.y_span.value(z) = half_span(z);
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value(z) = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value(z) - 0.01*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A.value;
 end
 
 % Pitching moment coefficient diagram 
 disp(" ++++ FIGURE 27 - POINT A SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Pitching_moment_diagram_comparison.value = Pitching_moment_coefficients_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Pitching_moment_diagram_comparison.value = Pitching_moment_coefficients_diagram(half_span, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value);
@@ -126,7 +126,7 @@ for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_en
 end
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.mdistr_full_A.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value.*(Aircraft.Certification.Regulation.SubpartC.Balancingloads.chord_distr.value.^2)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.mdistr_full_A.Attributes.unit = "N";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value = calc_tors_mom(obj2, Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value = calc_tors_mom(obj2, half_span, ...
                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.mdistr_full_A.value))*(1e-1);
 ircraft.Certification.Regulation.SubpartC.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.Attributes.unit = "daN*m";
 
@@ -141,17 +141,17 @@ for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_en
 end
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.mdistr_seventy_A.value = 0.7*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value.*(Aircraft.Certification.Regulation.SubpartC.Balancingloads.chord_distr.value.^2)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.mdistr_seventy_A.Attributes.unit = "N";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value = calc_tors_mom(obj2, Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value = calc_tors_mom(obj2, half_span, ...
                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.mdistr_seventy_A.value))*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.Attributes.unit = "daN*m";
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value = 0.7*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value*Aircraft.Geometry.Wing.S.value*Aircraft.Geometry.Wing.mac.value;
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.Attributes.unit = "N*m";
 
 % Global torsion on the wing                                                                                                                                      
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value = trapz(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value = trapz(half_span, ...
                                                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = trapz(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = trapz(half_span, ...
                                                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
 
@@ -164,7 +164,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Uns
 
 % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point A 
 disp(" ++++ FIGURE 28 - POINT A PARTIAL LOAD - UNSYMM. TORSION ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, ...
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value), ...
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value), ...
                                                                                                                                           Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value);
@@ -181,7 +181,7 @@ movefile UnsymmetricalTorsionSeventyPerCentPointA.pdf Output
 movefile UnsymmetricalTorsionSeventyPerCentPointA.png Output
 
 % Unsymmetrical torsion load due to aileron deflection diagram - FULL AIRLOADS - Point A 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load = Unsymm_load_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load = Unsymm_load_diagram(half_span, ...
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value), ...
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value), ...
                                                                                                                                           Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value);
@@ -213,26 +213,26 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_A
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_Aileron_C.Attributes.unit = "N/m^2";
 
 % Initialization of the Unsymmetrical_load field - Point C
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.cm_C.value = zeros(length(Aircraft.Geometry.Wing.half_span_y.value), 1);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.cm_C.value = zeros(length(half_span), 1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.cm_C.Attributes.unit = "Non dimensional";
-for i = 1:length(Aircraft.Geometry.Wing.half_span_y.value')
+for i = 1:length(half_span')
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.cm_C.value(i) = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value(i);
-    if (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_iniziale.value) < 1e-2) && (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_finale.value) > 1e-2)  
+    if (abs(half_span(i) - Aircraft.Geometry.Aileron.y_iniziale.value) < 1e-2) && (abs(half_span(i) - Aircraft.Geometry.Aileron.y_finale.value) > 1e-2)  
         j = i;
     end
 end
-for i = 1:length(Aircraft.Geometry.Wing.half_span_y.value')
-    if (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_finale.value) < 1e-2) && (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_iniziale.value) > 1e-2)
+for i = 1:length(half_span')
+    if (abs(half_span(i) - Aircraft.Geometry.Aileron.y_finale.value) < 1e-2) && (abs(half_span(i) - Aircraft.Geometry.Aileron.y_iniziale.value) > 1e-2)
         k = i;
     end
 end
 for z = j:k 
-    Aircraft.Geometry.Aileron.y_span.value(z) = Aircraft.Geometry.Wing.half_span_y.value(z);
+    Aircraft.Geometry.Aileron.y_span.value(z) = half_span(z);
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.cm_C.value(z) = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value(z) - 0.01*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.delta_C.value;
 end
 
 % Pitching moment coefficient diagram 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Pitching_moment_diagram_comparison.value = Pitching_moment_coefficients_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Pitching_moment_diagram_comparison.value = Pitching_moment_coefficients_diagram(half_span, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.cm_C.value, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value);
@@ -257,7 +257,7 @@ for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_en
 end
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_full_C.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.cm_C.value.*(Aircraft.Certification.Regulation.SubpartC.Balancingloads.chord_distr.value.^2)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_full_C.Attributes.unit = "N";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_full_airloads.value = calc_tors_mom(obj2, Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_full_airloads.value = calc_tors_mom(obj2, half_span, ...
                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_full_C.value))*(1e-1);
 ircraft.Certification.Regulation.SubpartC.Final_envelope.PointC.Unsymmetrical_loads.TC_full_airloads.Attributes.unit = "daN*m";
 
@@ -272,7 +272,7 @@ for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_en
 end
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_seventy_C.value = 0.7*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.cm_C.value.*(Aircraft.Certification.Regulation.SubpartC.Balancingloads.chord_distr.value.^2)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_seventy_C.Attributes.unit = "N";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_70_airloads.value = calc_tors_mom(obj2, Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_70_airloads.value = calc_tors_mom(obj2, half_span, ...
                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_seventy_C.value))*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_70_airloads.Attributes.unit = "daN*m";
 
@@ -280,15 +280,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Uns
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_70_airloads.Attributes.unit = "N*m";
 
 % Global torsion on the wing                                                                                                                                      
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value = trapz(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value = trapz(half_span, ...
                                                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_full_airloads.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = trapz(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = trapz(half_span, ...
                                                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_70_airloads.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
                                                                                                                                         
 % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point C 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, ...
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_70_airloads.value), ...
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value), ...
                                                                                                                                           Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value);
@@ -306,7 +306,7 @@ movefile UnsymmetricalTorsionSeventyPerCentPointC.pdf Output
 movefile UnsymmetricalTorsionSeventyPerCentPointC.png Output
 
 % Unsymmetrical torsion load due to aileron deflection diagram - FULL AIRLOADS - Point C 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load = Unsymm_load_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load = Unsymm_load_diagram(half_span, ...
                                                                                                                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_full_airloads.value), ...
                                                                                                                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value), ...
                                                                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value);
@@ -338,26 +338,26 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_A
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_Aileron_D.Attributes.unit = "N/m^2";
 
 % Initialization of the Unsymmetrical_load field - Point C
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.cm_D.value = zeros(length(Aircraft.Geometry.Wing.half_span_y.value), 1);
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.cm_D.value = zeros(length(half_span), 1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.cm_D.Attributes.unit = "Non dimensional";
-for i = 1:length(Aircraft.Geometry.Wing.half_span_y.value')
+for i = 1:length(half_span')
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.cm_D.value(i) = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value(i);
-    if (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_iniziale.value) < 1e-2) && (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_finale.value) > 1e-2)  
+    if (abs(half_span(i) - Aircraft.Geometry.Aileron.y_iniziale.value) < 1e-2) && (abs(half_span(i) - Aircraft.Geometry.Aileron.y_finale.value) > 1e-2)  
         j = i;
     end
 end
-for i = 1:length(Aircraft.Geometry.Wing.half_span_y.value')
-    if (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_finale.value) < 1e-2) && (abs(Aircraft.Geometry.Wing.half_span_y.value(i) - Aircraft.Geometry.Aileron.y_iniziale.value) > 1e-2)
+for i = 1:length(half_span')
+    if (abs(half_span(i) - Aircraft.Geometry.Aileron.y_finale.value) < 1e-2) && (abs(half_span(i) - Aircraft.Geometry.Aileron.y_iniziale.value) > 1e-2)
         k = i;
     end
 end
 for z = j:k 
-    Aircraft.Geometry.Aileron.y_span.value(z) = Aircraft.Geometry.Wing.half_span_y.value(z);
+    Aircraft.Geometry.Aileron.y_span.value(z) = half_span(z);
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.cm_D.value(z) = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value(z) - 0.01*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.delta_D.value;
 end
 
 % Pitching moment coefficient diagram 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Pitching_moment_diagram_comparison.value = Pitching_moment_coefficients_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Pitching_moment_diagram_comparison.value = Pitching_moment_coefficients_diagram(half_span, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.cm_D.value, ...
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value);
@@ -382,7 +382,7 @@ for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_en
 end
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.mdistr_full_D.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.cm_D.value.*(Aircraft.Certification.Regulation.SubpartC.Balancingloads.chord_distr.value.^2)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.mdistr_full_D.Attributes.unit = "N";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_full_airloads.value = calc_tors_mom(obj2, Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_full_airloads.value = calc_tors_mom(obj2, half_span, ...
                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.mdistr_full_D.value))*(1e-1);
 ircraft.Certification.Regulation.SubpartC.Final_envelope.PointD.Unsymmetrical_loads.TD_full_airloads.Attributes.unit = "daN*m";
 
@@ -397,7 +397,7 @@ for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_en
 end
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.mdistr_seventy_D.value = 0.7*(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.cm_D.value.*(Aircraft.Certification.Regulation.SubpartC.Balancingloads.chord_distr.value.^2)*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.mdistr_seventy_D.Attributes.unit = "N";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_70_airloads.value = calc_tors_mom(obj2, Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_70_airloads.value = calc_tors_mom(obj2, half_span, ...
                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.mdistr_seventy_D.value))*(1e-1);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_70_airloads.Attributes.unit = "daN*m";
 
@@ -406,15 +406,15 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Uns
 
 
 % Global torsion on the wing                                                                                                                                      
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value = trapz(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value = trapz(half_span, ...
                                                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_full_airloads.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = trapz(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = trapz(half_span, ...
                                                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_70_airloads.value);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
                                                                                                                                         
 % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point D 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, ...
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_70_airloads.value), ...
                                                                                                                                           flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value), ... 
                                                                                                                                           Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value);
@@ -432,7 +432,7 @@ movefile UnsymmetricalTorsionSeventyPerCentPointD.pdf Output
 movefile UnsymmetricalTorsionSeventyPerCentPointD.png Output
 
 % Unsymmetrical torsion load due to aileron deflection diagram - FULL AIRLOADS - Point D 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load = Unsymm_load_diagram(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load = Unsymm_load_diagram(half_span, ...
                                                                                                                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_full_airloads.value), ...
                                                                                                                                             flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value), ...
                                                                                                                                             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value);
@@ -452,7 +452,7 @@ movefile UnsymmetricalTorsionFullPointD.png Output
 
 %% COMPARISON BETWEEN TORSION DISTRIBUTIONS 
 % Full load torsion loads
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetrical_loads_comparison.value = Compare_unsymm_load(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetrical_loads_comparison.value = Compare_unsymm_load(half_span, ...
     flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value), ...
     flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_full_airloads.value), ...
     flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_full_airloads.value), ... 
@@ -475,7 +475,7 @@ movefile UnsymmetricalLoadsComparisonFullLoad.pdf Output
 movefile UnsymmetricalLoadsComparisonFullLoad.png Output
 
 % 70% torsion loads
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetrical_loads_comparison.value = Compare_unsymm_load(Aircraft.Geometry.Wing.half_span_y.value, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetrical_loads_comparison.value = Compare_unsymm_load(half_span, ...
     flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value), ...
     flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_70_airloads.value), ...
     flip(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_70_airloads.value), ... 
