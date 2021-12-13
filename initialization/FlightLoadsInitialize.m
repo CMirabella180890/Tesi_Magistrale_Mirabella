@@ -346,6 +346,13 @@ Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 = "Wheel";
 % Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.flag1 = "Commuter";
 % Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.flag2 = "Wheel";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% AILERON
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% MAX AILERON FLAP DEFLECTION
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Aircraft.Geometry.Aileron.Max_deflection.value = 15.0; 
+Aircraft.Geometry.Aileron.Max_deflection.Attributes.unit = "degrees";
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Aircraft.Geometry.Vertical.MAC.value = 0.2335363;
 Aircraft.Geometry.Vertical.MAC.Attributes.unit = "m";
 Aircraft.Geometry.Vertical.l_vt.value = 1.650;
