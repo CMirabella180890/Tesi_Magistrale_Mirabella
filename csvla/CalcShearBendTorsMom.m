@@ -989,8 +989,52 @@ switch (Straight_flight_Case)
             fprintf('%s\n', SaveFolder);
             % Moving file inside correct folder
             movefile ShearBendingTorsionDiagramPointD.pdf Output
-            movefile ShearBendingTorsionDiagramPointD.png Output              
+            movefile ShearBendingTorsionDiagramPointD.png Output   
             
+            % =================================================================  
+            %% COMPARING SHEAR CURVES                    
+            Shear_comparison = figure(22);
+            hold on; grid on; grid minor;
+            
+            plot(flip(half_span), Shear_distr_S,  'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_C1,  'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_C,  'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_C2,  'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_D,  'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Shear load $(daN)$", "Interpreter", "latex")
+            title("Shear loads comparison", "Interpreter", "latex")               
+            
+            %% COMPARING BENDING CURVES 
+
+            Bending_comparison = figure(23);
+            hold on; grid on; grid minor;
+            plot(flip(half_span), Bend_mom_distr_S, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_C1, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_C, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_C2, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_D, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Bending load $(daN\cdot m)$", "Interpreter", "latex")
+            title("Bending loads comparison", "Interpreter", "latex")              
+
+            %% COMPARING TORSION CURVES 
+            Torsion_comparison = figure(24);
+            hold on; grid on; grid minor;
+            plot(flip(half_span), Tors_mom_distr_S, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_C1, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_C, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_C2, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_D, 'LineWidth', 1.5)
+            
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Torsion load $(daN\cdot m)$", "Interpreter", "latex")
+            title("Torsion loads comparison", "Interpreter", "latex") 
         % =================================================================
         elseif max(n_gust_cruise_plus) < nmax
         % ================================================================= 
@@ -1605,7 +1649,48 @@ switch (Straight_flight_Case)
             fprintf('%s\n', SaveFolder);
             % Moving file inside correct folder
             movefile ShearBendingTorsionDiagramPointD.pdf Output
-            movefile ShearBendingTorsionDiagramPointD.png Output                        
+            movefile ShearBendingTorsionDiagramPointD.png Output   
+            
+            % =================================================================  
+            %% COMPARING SHEAR CURVES
+            Shear_comparison = figure(22);
+            hold on; grid on; grid minor;
+            plot(flip(half_span), Shear_distr_S,  'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_C,  'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_D,  'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Shear load $(daN)$", "Interpreter", "latex")
+            title("Shear loads comparison", "Interpreter", "latex")
+            legend({PointS,PointA1,PointC,PointD}, 'Interpreter', 'latex', 'Location', 'southeast')    
+
+            %% COMPARING BENDING CURVES 
+
+            Bending_comparison = figure(23);
+            hold on; grid on; grid minor;
+            plot(flip(half_span), Bend_mom_distr_S, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_C, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_D, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Bending load $(daN\cdot m)$", "Interpreter", "latex")
+            title("Bending loads comparison", "Interpreter", "latex")              
+            
+            %% COMPARING TORSION CURVES 
+
+            Torsion_comparison = figure(24);
+            hold on; grid on; grid minor;
+
+            plot(flip(half_span), Tors_mom_distr_S, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_C, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_D, 'LineWidth', 1.5)   
+           
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Torsion load $(daN\cdot m)$", "Interpreter", "latex")
+            title("Torsion loads comparison", "Interpreter", "latex") 
             
         end
     % CASE 1: VA lower than the intercept
@@ -2352,7 +2437,46 @@ switch (Straight_flight_Case)
         fprintf('%s\n', SaveFolder);
         % Moving file inside correct folder
         movefile ShearBendingTorsionDiagramPointD.pdf Output
-        movefile ShearBendingTorsionDiagramPointD.png Output         
+        movefile ShearBendingTorsionDiagramPointD.png Output    
+        
+        % =================================================================  
+        %% COMPARING SHEAR CURVES
+        Shear_comparison = figure(22);
+        hold on; grid on; grid minor;
+        plot(flip(half_span), Shear_distr_S,     'LineWidth', 1.5)
+        plot(flip(half_span), Shear_distr_A,     'LineWidth', 1.5)
+        plot(flip(half_span), Shear_distr_A1,    'LineWidth', 1.5)
+        plot(flip(half_span), Shear_distr_C,     'LineWidth', 1.5)
+        plot(flip(half_span), Shear_distr_D,     'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("Shear load $(daN)$", "Interpreter", "latex")
+        title("Shear loads comparison", "Interpreter", "latex") 
+        
+        %% COMPARING BENDING CURVES 
+
+        Bending_comparison = figure(23);
+        hold on; grid on; grid minor;
+        plot(flip(half_span), Bend_mom_distr_S, 'LineWidth', 1.5)
+        plot(flip(half_span), Bend_mom_distr_A, 'LineWidth', 1.5)
+        plot(flip(half_span), Bend_mom_distr_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), Bend_mom_distr_C, 'LineWidth', 1.5)
+        plot(flip(half_span), Bend_mom_distr_D, 'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("Bending load $(daN\cdot m)$", "Interpreter", "latex")
+        title("Bending loads comparison", "Interpreter", "latex")     
+        
+        %% COMPARING TORSION CURVES 
+        
+        Torsion_comparison = figure(24);
+        hold on; grid on; grid minor;
+
+        plot(flip(half_span), Tors_mom_distr_S, 'LineWidth', 1.5)
+        plot(flip(half_span), Tors_mom_distr_A, 'LineWidth', 1.5)
+        plot(flip(half_span), Tors_mom_distr_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), Tors_mom_distr_C, 'LineWidth', 1.5)
+        plot(flip(half_span), Tors_mom_distr_D, 'LineWidth', 1.5)     
         
 end
 
@@ -3325,7 +3449,93 @@ switch (Inverted_flight_Case)
             % Moving file inside correct folder
             movefile ShearBendingTorsionDiagramPointE.pdf Output
             movefile ShearBendingTorsionDiagramPointE.png Output        
-            % =================================================================              
+            % =================================================================   
+            % =================================================================  
+            %% COMPARING SHEAR CURVES
+            figure(22);
+
+            plot(flip(half_span), Shear_distr_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_G,     'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_G1,    'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_F,     'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_G2,    'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_E,     'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Shear load $(daN)$", "Interpreter", "latex")
+            title("Shear loads comparison", "Interpreter", "latex")
+            legend({PointS,PointA1,PointC1,PointC,PointC2,PointD, ...
+                    PointS_inv,PointG,PointG1,PointF,PointG2,PointE}, 'Interpreter', 'latex', 'Location', 'southeast')               
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value = Shear_comparison;
+            exportgraphics(Shear_comparison, 'ShearComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_comparison, 'ShearComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving ShearComparison.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearComparison.pdf Output
+            movefile ShearComparison.png Output
+            
+            %% COMPARING BENDING CURVES 
+
+            figure(23);
+
+            plot(flip(half_span), Bend_mom_distr_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_G, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_F, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_G2, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Bending load $(daN\cdot m)$", "Interpreter", "latex")
+            title("Bending loads comparison", "Interpreter", "latex") 
+            legend({PointS,PointA1,PointC1,PointC,PointC2,PointD, ...
+                    PointS_inv,PointG,PointG1,PointF,PointG2,PointE}, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value = Bending_comparison;
+            exportgraphics(Bending_comparison, 'BendingComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(Bending_comparison, 'BendingComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving BendingComparison.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile BendingComparison.pdf Output
+            movefile BendingComparison.png Output 
+            
+           %% COMPARING TORSION CURVES 
+        
+            figure(24);
+
+            plot(flip(half_span), Tors_mom_distr_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_G, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_F, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_G2, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Torsion load $(daN\cdot m)$", "Interpreter", "latex")
+            title("Torsion loads comparison", "Interpreter", "latex") 
+            legend({PointS,PointA1,PointC1,PointC,PointC2,PointD, ...
+                    PointS_inv,PointG,PointG1,PointF,PointG2,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value = Torsion_comparison;    
+            exportgraphics(Torsion_comparison, 'TorsionComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(Torsion_comparison, 'TorsionComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving TorsionComparison.pdf Output in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile TorsionComparison.pdf Output
+            movefile TorsionComparison.png Output              
             
         elseif abs(min(n_gust_cruise_neg)) < abs(nmin)
             % =============================================================  
@@ -4140,6 +4350,87 @@ switch (Inverted_flight_Case)
             movefile ShearBendingTorsionDiagramPointE.pdf Output
             movefile ShearBendingTorsionDiagramPointE.png Output        
             % =================================================================  
+            %% COMPARING SHEAR CURVES
+            
+            figure(22);
+
+            plot(flip(half_span), Shear_distr_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_G, 'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_F, 'LineWidth', 1.5)
+            plot(flip(half_span), Shear_distr_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Shear load $(daN)$", "Interpreter", "latex")
+            title("Shear loads comparison", "Interpreter", "latex")
+            legend({PointS,PointA1,PointC,PointD, ...
+                    PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'southeast')               
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value = Shear_comparison;
+            exportgraphics(Shear_comparison, 'ShearComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(Shear_comparison, 'ShearComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving ShearComparison.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile ShearComparison.pdf Output
+            movefile ShearComparison.png Output              
+
+            %% COMPARING BENDING CURVES 
+            figure(23);
+            plot(flip(half_span), Bend_mom_distr_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_G, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_F, 'LineWidth', 1.5)
+            plot(flip(half_span), Bend_mom_distr_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Bending load $(daN\cdot m)$", "Interpreter", "latex")
+            title("Bending loads comparison", "Interpreter", "latex") 
+            legend({PointS,PointA1,PointC,PointD, ...
+                    PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value = Bending_comparison;
+            exportgraphics(Bending_comparison, 'BendingComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(Bending_comparison, 'BendingComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving BendingComparison.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile BendingComparison.pdf Output
+            movefile BendingComparison.png Output
+            
+           %% COMPARING TORSION CURVES 
+        
+            figure(24);
+
+            plot(flip(half_span), Tors_mom_distr_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_G, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_F, 'LineWidth', 1.5)
+            plot(flip(half_span), Tors_mom_distr_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("Torsion load $(daN\cdot m)$", "Interpreter", "latex")
+            title("Torsion loads comparison", "Interpreter", "latex") 
+            legend({PointS,PointA1,PointC,PointD, ...
+                    PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value = Torsion_comparison;    
+            exportgraphics(Torsion_comparison, 'TorsionComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(Torsion_comparison, 'TorsionComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving TorsionComparison.pdf Output in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile TorsionComparison.pdf Output
+            movefile TorsionComparison.png Output   
         
         end
     % CASE 2: Real solutions of the intercept
@@ -4953,197 +5244,282 @@ switch (Inverted_flight_Case)
         % Moving file inside correct folder
         movefile ShearBendingTorsionDiagramPointE.pdf Output
         movefile ShearBendingTorsionDiagramPointE.png Output        
-        % =================================================================         
+        % =================================================================  
+        
+        %% COMPARING SHEAR CURVES 
+        
+        figure(22);
+
+        plot(flip(half_span), Shear_distr_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), Shear_distr_G, 'LineWidth', 1.5)
+        plot(flip(half_span), Shear_distr_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), Shear_distr_F, 'LineWidth', 1.5)
+        plot(flip(half_span), Shear_distr_E, 'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("Shear load $(daN)$", "Interpreter", "latex")
+        title("Shear loads comparison", "Interpreter", "latex") 
+        legend({PointS,PointA,PointA1,PointC,PointD, ...
+                PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)  
+        % Saving
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value = Shear_comparison;
+        exportgraphics(Shear_comparison, 'ShearComparison.pdf', 'ContentType', 'vector')
+        exportgraphics(Shear_comparison, 'ShearComparison.png', 'ContentType', 'vector')
+
+        % Saving figures inside correct folder
+        fprintf('Saving ShearComparison.pdf in: ');
+        fprintf('\n'); 
+        fprintf('%s\n', SaveFolder);
+        % Moving file inside correct folder
+        movefile ShearComparison.pdf Output
+        movefile ShearComparison.png Output        
+
+        %% COMPARING BENDING CURVES 
+        
+        figure(23);
+
+        plot(flip(half_span), Bend_mom_distr_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), Bend_mom_distr_G, 'LineWidth', 1.5)
+        plot(flip(half_span), Bend_mom_distr_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), Bend_mom_distr_F, 'LineWidth', 1.5)
+        plot(flip(half_span), Bend_mom_distr_E, 'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("Bending load $(daN\cdot m)$", "Interpreter", "latex")
+        title("Bending loads comparison", "Interpreter", "latex") 
+        legend({PointS,PointA,PointA1,PointC,PointD, ...
+                PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
+        % Saving
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value = Bending_comparison;
+        exportgraphics(Bending_comparison, 'BendingComparison.pdf', 'ContentType', 'vector')
+        exportgraphics(Bending_comparison, 'BendingComparison.png', 'ContentType', 'vector')
+
+        % Saving figures inside correct folder
+        fprintf('Saving BendingComparison.pdf in: ');
+        fprintf('\n'); 
+        fprintf('%s\n', SaveFolder);
+        % Moving file inside correct folder
+        movefile BendingComparison.pdf Output
+        movefile BendingComparison.png Output
+        
+        %% COMPARING TORSION CURVES 
+        
+        figure(24);
+
+        plot(flip(half_span), Tors_mom_distr_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), Tors_mom_distr_G, 'LineWidth', 1.5)
+        plot(flip(half_span), Tors_mom_distr_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), Tors_mom_distr_F, 'LineWidth', 1.5)
+        plot(flip(half_span), Tors_mom_distr_E, 'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("Torsion load $(daN\cdot m)$", "Interpreter", "latex")
+        title("Torsion loads comparison", "Interpreter", "latex") 
+        legend({PointS,PointA,PointA1,PointC,PointD, ...
+                PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)
+        % Saving
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value = Torsion_comparison;    
+        exportgraphics(Torsion_comparison, 'TorsionComparison.pdf', 'ContentType', 'vector')
+        exportgraphics(Torsion_comparison, 'TorsionComparison.png', 'ContentType', 'vector')
+        
+        % Saving figures inside correct folder
+        fprintf('Saving TorsionComparison.pdf Output in: ');
+        fprintf('\n'); 
+        fprintf('%s\n', SaveFolder);
+        % Moving file inside correct folder
+        movefile TorsionComparison.pdf Output
+        movefile TorsionComparison.png Output      
+        
 end
 
 %% COMPARING SHEAR CURVES 
 
-disp(" ")
-disp(" ++++ FIGURE 21 - SHEAR COMPARISON ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value = Compare_Shear_curves(flip(half_span), ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Shear_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Shear_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Shear_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
-% Saving
-
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value, 'ShearComparison.pdf', 'ContentType', 'vector')
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value, 'ShearComparison.png', 'ContentType', 'vector')
-
-% Saving figures inside correct folder
-fprintf('Saving ShearComparison.pdf in: ');
-fprintf('\n'); 
-fprintf('%s\n', SaveFolder);
-% Moving file inside correct folder
-movefile ShearComparison.pdf Output
-movefile ShearComparison.png Output
-
-%% COMPARING BENDING CURVES 
-
-disp(" ")
-disp(" ++++ FIGURE 22 - BENDING COMPARISON ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value = Compare_Bending_curves(flip(half_span), ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Bend_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Bend_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Bend_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Bend_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Bend_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
-% Saving
-
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value, 'BendingComparison.pdf', 'ContentType', 'vector')
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value, 'BendingComparison.png', 'ContentType', 'vector')
-
-% Saving figures inside correct folder
-fprintf('Saving BendingComparison.pdf in: ');
-fprintf('\n'); 
-fprintf('%s\n', SaveFolder);
-% Moving file inside correct folder
-movefile BendingComparison.pdf Output
-movefile BendingComparison.png Output
-
-%% COMPARING TORSION CURVES 
-
-disp(" ")
-disp(" ++++ FIGURE 23 - TORSION COMPARISON ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value = Compare_Torsion_curves(flip(half_span), ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tors_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value, ...
-- Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.value, ...
-- Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.value, ...
-- Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
-% Saving
-
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value, 'TorsionComparison.pdf', 'ContentType', 'vector')
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value, 'TorsionComparison.png', 'ContentType', 'vector')
-
-% Saving figures inside correct folder
-fprintf('Saving TorsionComparison.pdf Output in: ');
-fprintf('\n'); 
-fprintf('%s\n', SaveFolder);
-% Moving file inside correct folder
-movefile TorsionComparison.pdf Output
-movefile TorsionComparison.png Output
-
-%% COMPARING DISTRIBUTION ALONG THE SPAN OF CL, CD, CM
-% =========================================================================================================================================================
-
-disp(" ")
-disp(" ++++ FIGURE 24 - SPANWISE LIFT COMPARISON ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value = Compare_cl_curves(half_span, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cl_A.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cl_D.value, ...
-abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.value), ...
-abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.value), ...
-abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.value), ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
-% Saving
-
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value, 'clComparison.pdf', 'ContentType', 'vector')
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value, 'clComparison.png', 'ContentType', 'vector')
-
-% Saving figures inside correct folder
-fprintf('Saving clComparison.pdf in: ');
-fprintf('\n'); 
-fprintf('%s\n', SaveFolder);
-% Moving file inside correct folder
-movefile clComparison.pdf Output
-movefile clComparison.png Output
-% =========================================================================================================================================================
-
-disp(" ")
-disp(" ++++ FIGURE 25 - SPANWISE DRAG COMPARISON ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = Compare_cd_curves(half_span, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cd_F.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cd_G.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cd_E.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
-% Saving
-
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value, 'cdComparison.pdf', 'ContentType', 'vector')
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value, 'cdComparison.png', 'ContentType', 'vector')
-
-% Saving figures inside correct folder
-fprintf('Saving cdComparison.pdf in: ');
-fprintf('\n'); 
-fprintf('%s\n', SaveFolder);
-% Moving file inside correct folder
-movefile cdComparison.pdf Output
-movefile cdComparison.png Output
-
-% =========================================================================================================================================================
-
-disp(" ")
-disp(" ++++ FIGURE 26 - SPANWISE PITCH MOMENT COMPARISON ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value = Compare_cm_curves(half_span, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cm_F.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cm_G.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cm_E.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
-% Saving
-
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value, 'cmComparison.pdf', 'ContentType', 'vector')
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value, 'cmComparison.png', 'ContentType', 'vector')
-% Saving figures inside correct folder
-fprintf('Saving cmComparison.pdf in: ');
-fprintf('\n'); 
-fprintf('%s\n', SaveFolder);
-% Moving file inside correct folder
-movefile cmComparison.pdf Output
-movefile cmComparison.png Output
-% =========================================================================================================================================================
+% disp(" ")
+% disp(" ++++ FIGURE 21 - SHEAR COMPARISON ++++ ");
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value = Compare_Shear_curves(flip(half_span), ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Shear_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Shear_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Shear_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
+% % Saving
+% 
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value, 'ShearComparison.pdf', 'ContentType', 'vector')
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value, 'ShearComparison.png', 'ContentType', 'vector')
+% 
+% % Saving figures inside correct folder
+% fprintf('Saving ShearComparison.pdf in: ');
+% fprintf('\n'); 
+% fprintf('%s\n', SaveFolder);
+% % Moving file inside correct folder
+% movefile ShearComparison.pdf Output
+% movefile ShearComparison.png Output
+% 
+% %% COMPARING BENDING CURVES 
+% 
+% disp(" ")
+% disp(" ++++ FIGURE 22 - BENDING COMPARISON ++++ ");
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value = Compare_Bending_curves(flip(half_span), ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Bend_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Bend_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Bend_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Bend_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Bend_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
+% % Saving
+% 
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value, 'BendingComparison.pdf', 'ContentType', 'vector')
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Bending_Comparison.value, 'BendingComparison.png', 'ContentType', 'vector')
+% 
+% % Saving figures inside correct folder
+% fprintf('Saving BendingComparison.pdf in: ');
+% fprintf('\n'); 
+% fprintf('%s\n', SaveFolder);
+% % Moving file inside correct folder
+% movefile BendingComparison.pdf Output
+% movefile BendingComparison.png Output
+% 
+% %% COMPARING TORSION CURVES 
+% 
+% disp(" ")
+% disp(" ++++ FIGURE 23 - TORSION COMPARISON ++++ ");
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value = Compare_Torsion_curves(flip(half_span), ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tors_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value, ...
+% - Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.value, ...
+% - Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.value, ...
+% - Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
+% % Saving
+% 
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value, 'TorsionComparison.pdf', 'ContentType', 'vector')
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value, 'TorsionComparison.png', 'ContentType', 'vector')
+% 
+% % Saving figures inside correct folder
+% fprintf('Saving TorsionComparison.pdf Output in: ');
+% fprintf('\n'); 
+% fprintf('%s\n', SaveFolder);
+% % Moving file inside correct folder
+% movefile TorsionComparison.pdf Output
+% movefile TorsionComparison.png Output
+% 
+% %% COMPARING DISTRIBUTION ALONG THE SPAN OF CL, CD, CM
+% % =========================================================================================================================================================
+% 
+% disp(" ")
+% disp(" ++++ FIGURE 24 - SPANWISE LIFT COMPARISON ++++ ");
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value = Compare_cl_curves(half_span, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cl_A.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cl_D.value, ...
+% abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.value), ...
+% abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.value), ...
+% abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.value), ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
+% % Saving
+% 
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value, 'clComparison.pdf', 'ContentType', 'vector')
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value, 'clComparison.png', 'ContentType', 'vector')
+% 
+% % Saving figures inside correct folder
+% fprintf('Saving clComparison.pdf in: ');
+% fprintf('\n'); 
+% fprintf('%s\n', SaveFolder);
+% % Moving file inside correct folder
+% movefile clComparison.pdf Output
+% movefile clComparison.png Output
+% % =========================================================================================================================================================
+% 
+% disp(" ")
+% disp(" ++++ FIGURE 25 - SPANWISE DRAG COMPARISON ++++ ");
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = Compare_cd_curves(half_span, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cd_F.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cd_G.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cd_E.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
+% % Saving
+% 
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value, 'cdComparison.pdf', 'ContentType', 'vector')
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value, 'cdComparison.png', 'ContentType', 'vector')
+% 
+% % Saving figures inside correct folder
+% fprintf('Saving cdComparison.pdf in: ');
+% fprintf('\n'); 
+% fprintf('%s\n', SaveFolder);
+% % Moving file inside correct folder
+% movefile cdComparison.pdf Output
+% movefile cdComparison.png Output
+% 
+% % =========================================================================================================================================================
+% 
+% disp(" ")
+% disp(" ++++ FIGURE 26 - SPANWISE PITCH MOMENT COMPARISON ++++ ");
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value = Compare_cm_curves(half_span, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cm_F.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cm_G.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cm_E.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.point_name.value, ...
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value);
+% % Saving
+% 
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value, 'cmComparison.pdf', 'ContentType', 'vector')
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value, 'cmComparison.png', 'ContentType', 'vector')
+% % Saving figures inside correct folder
+% fprintf('Saving cmComparison.pdf in: ');
+% fprintf('\n'); 
+% fprintf('%s\n', SaveFolder);
+% % Moving file inside correct folder
+% movefile cmComparison.pdf Output
+% movefile cmComparison.png Output
+% % =========================================================================================================================================================
