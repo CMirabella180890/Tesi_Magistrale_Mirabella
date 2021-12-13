@@ -1034,7 +1034,53 @@ switch (Straight_flight_Case)
             
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("Torsion load $(daN\cdot m)$", "Interpreter", "latex")
-            title("Torsion loads comparison", "Interpreter", "latex") 
+            title("Torsion loads comparison", "Interpreter", "latex")            
+
+            %% CL ALONG THE SPAN COMPARISON
+            cl_Comparison = figure(25);
+            hold on; grid on; grid minor;
+            
+            plot(flip(half_span), cl_S, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_C1, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_C, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_C2, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_D, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$cl = cl(y)$", "Interpreter", "latex")
+            title("Lift distr. comparison", "Interpreter", "latex")
+
+            %% CD ALONG THE SPAN COMPARISON
+            cd_Comparison = figure(26);
+            hold on; grid on; grid minor;
+
+            plot(flip(half_span), cd_S,  'LineWidth', 1.5)
+            plot(flip(half_span), cd_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_C1,  'LineWidth', 1.5)
+            plot(flip(half_span), cd_C,  'LineWidth', 1.5)
+            plot(flip(half_span), cd_C2,  'LineWidth', 1.5)
+            plot(flip(half_span), cd_D,  'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$cl = cl(y)$", "Interpreter", "latex")
+            title("Lift distr. comparison", "Interpreter", "latex") 
+
+            %% CM ALONG THE SPAN COMPARISON
+            cm_Comparison = figure(27);
+            hold on; grid on; grid minor;
+
+            plot(flip(half_span), cm_S, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_C1, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_C, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_C2, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_D, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
+            title("Pitch mom. distr. comparison", "Interpreter", "latex")              
+            
         % =================================================================
         elseif max(n_gust_cruise_plus) < nmax
         % ================================================================= 
@@ -1691,6 +1737,45 @@ switch (Straight_flight_Case)
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("Torsion load $(daN\cdot m)$", "Interpreter", "latex")
             title("Torsion loads comparison", "Interpreter", "latex") 
+            
+            %% CL ALONG THE SPAN COMPARISON
+            cl_Comparison = figure(25);
+            hold on; grid on; grid minor;
+
+            plot(flip(half_span), cl_S, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_C, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_D, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$cl = cl(y)$", "Interpreter", "latex")
+            title("Lift distr. comparison", "Interpreter", "latex")           
+
+            %% CD ALONG THE SPAN COMPARISON
+            cd_Comparison = figure(26);
+            hold on; grid on; grid minor;
+
+            plot(flip(half_span), cd_S,  'LineWidth', 1.5)
+            plot(flip(half_span), cd_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_C,  'LineWidth', 1.5)
+            plot(flip(half_span), cd_D,  'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$cl = cl(y)$", "Interpreter", "latex")
+            title("Lift distr. comparison", "Interpreter", "latex")             
+
+            %% CM ALONG THE SPAN COMPARISON
+            cm_Comparison = figure(27);
+            hold on; grid on; grid minor;
+
+            plot(flip(half_span), cm_S, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_A1, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_C, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_D, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
+            title("Pitch mom. distr. comparison", "Interpreter", "latex")    
             
         end
     % CASE 1: VA lower than the intercept
@@ -2477,6 +2562,48 @@ switch (Straight_flight_Case)
         plot(flip(half_span), Tors_mom_distr_A1, 'LineWidth', 1.5)
         plot(flip(half_span), Tors_mom_distr_C, 'LineWidth', 1.5)
         plot(flip(half_span), Tors_mom_distr_D, 'LineWidth', 1.5)     
+        
+        %% CL ALONG THE SPAN COMPARISON
+        cl_Comparison = figure(25);
+        hold on; grid on; grid minor;
+
+        plot(flip(half_span), cl_S, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_A, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_C, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_D, 'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("$cl = cl(y)$", "Interpreter", "latex")
+        title("Lift distr. comparison", "Interpreter", "latex")           
+
+        %% CD ALONG THE SPAN COMPARISON
+        cd_Comparison = figure(26);
+        hold on; grid on; grid minor;
+
+        plot(flip(half_span), cd_S,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_A,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_C,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_D,  'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("$cl = cl(y)$", "Interpreter", "latex")
+        title("Lift distr. comparison", "Interpreter", "latex") 
+        
+        %% CM ALONG THE SPAN COMPARISON
+        cm_Comparison = figure(27);
+        hold on; grid on; grid minor;
+
+        plot(flip(half_span), cm_S, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_A, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_C, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_D, 'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
+        title("Pitch mom. distr. comparison", "Interpreter", "latex") 
         
 end
 
@@ -3535,7 +3662,95 @@ switch (Inverted_flight_Case)
             fprintf('%s\n', SaveFolder);
             % Moving file inside correct folder
             movefile TorsionComparison.pdf Output
-            movefile TorsionComparison.png Output              
+            movefile TorsionComparison.png Output
+            
+            %% CL ALONG THE SPAN COMPARISON
+            figure(25);
+
+            plot(flip(half_span), -cl_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_G, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_F, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_G2, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$cl = cl(y)$", "Interpreter", "latex")
+            title("Lift distr. comparison", "Interpreter", "latex") 
+%             legend({PointS,PointA1,PointC1,PointC,PointC2,PointD, ...
+%                     PointS_inv,PointG,PointG1,PointF,PointG2,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)        
+            legend({PointS,PointA1,PointC1,PointC,PointC2,PointD}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)        
+
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value = cl_Comparison; 
+            exportgraphics(cl_Comparison, 'clComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(cl_Comparison, 'clComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving clComparison.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile clComparison.pdf Output
+            movefile clComparison.png Output               
+
+            %% CD ALONG THE SPAN COMPARISON
+            figure(26);
+
+            plot(flip(half_span), cd_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_G, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_F, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_G2, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$cl = cl(y)$", "Interpreter", "latex")
+            title("Lift distr. comparison", "Interpreter", "latex") 
+            legend({PointS,PointA1,PointC1,PointC,PointC2,PointD, ...
+                    PointS_inv,PointG,PointG1,PointF,PointG2,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)        
+
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = cd_Comparison;
+            exportgraphics(cd_Comparison, 'cdComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(cd_Comparison, 'cdComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving cdComparison.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile cdComparison.pdf Output
+            movefile cdComparison.png Output                 
+
+            %% CM ALONG THE SPAN COMPARISON
+            figure(27);
+
+            plot(flip(half_span), cm_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_G, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_F, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_G2, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
+            title("Pitch mom. distr. comparison", "Interpreter", "latex") 
+    %         legend({PointS,PointA,PointA1,PointC,PointD, ...
+    %                 PointS_inv,PointG,PointG1,PointF,PointG2,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)        
+            legend({PointS,PointA,PointA1,PointC,PointD}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)           
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value = cm_Comparison;
+            exportgraphics(cm_Comparison, 'cmComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(cm_Comparison, 'cmComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving cdComparison.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile cmComparison.pdf Output
+            movefile cmComparison.png Output            
             
         elseif abs(min(n_gust_cruise_neg)) < abs(nmin)
             % =============================================================  
@@ -4431,6 +4646,90 @@ switch (Inverted_flight_Case)
             % Moving file inside correct folder
             movefile TorsionComparison.pdf Output
             movefile TorsionComparison.png Output   
+        
+            %% CL ALONG THE SPAN COMPARISON
+            figure(25);
+
+            plot(flip(half_span), -cl_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_G, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_F, 'LineWidth', 1.5)
+            plot(flip(half_span), cl_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$cl = cl(y)$", "Interpreter", "latex")
+            title("Lift distr. comparison", "Interpreter", "latex") 
+%             legend({PointS,PointA1,PointC,PointD, ...
+%                     PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)        
+            legend({PointS,PointA1,PointC,PointD}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value = cl_Comparison; 
+            exportgraphics(cl_Comparison, 'clComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(cl_Comparison, 'clComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving clComparison.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile clComparison.pdf Output
+            movefile clComparison.png Output              
+
+            %% CD ALONG THE SPAN COMPARISON
+            figure(26);
+
+            plot(flip(half_span), cd_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_G, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_F, 'LineWidth', 1.5)
+            plot(flip(half_span), cd_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$cl = cl(y)$", "Interpreter", "latex")
+            title("Lift distr. comparison", "Interpreter", "latex") 
+            legend({PointS,PointA,PointA1,PointC,PointD, ...
+                    PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)        
+
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = cd_Comparison;
+            exportgraphics(cd_Comparison, 'cdComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(cd_Comparison, 'cdComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving cdComparison.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile cdComparison.pdf Output
+            movefile cdComparison.png Output     
+
+            %% CM ALONG THE SPAN COMPARISON
+            figure(27);
+
+            plot(flip(half_span), cm_S_inv, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_G, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_F, 'LineWidth', 1.5)
+            plot(flip(half_span), cm_E, 'LineWidth', 1.5)
+
+            xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+            ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
+            title("Pitch mom. distr. comparison", "Interpreter", "latex") 
+    %         legend({PointS,PointA,PointA1,PointC,PointD, ...
+    %                 PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)        
+            legend({PointS,PointA,PointA1,PointC,PointD}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)           
+            % Saving
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value = cm_Comparison;
+            exportgraphics(cm_Comparison, 'cmComparison.pdf', 'ContentType', 'vector')
+            exportgraphics(cm_Comparison, 'cmComparison.png', 'ContentType', 'vector')
+
+            % Saving figures inside correct folder
+            fprintf('Saving cdComparison.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile cmComparison.pdf Output
+            movefile cmComparison.png Output
         
         end
     % CASE 2: Real solutions of the intercept
@@ -5328,7 +5627,91 @@ switch (Inverted_flight_Case)
         fprintf('%s\n', SaveFolder);
         % Moving file inside correct folder
         movefile TorsionComparison.pdf Output
-        movefile TorsionComparison.png Output      
+        movefile TorsionComparison.png Output    
+        
+        %% CL ALONG THE SPAN COMPARISON
+        figure(25);
+
+        plot(flip(half_span), -cl_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_G, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_F, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_E, 'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("$c_l = c_l(y)$", "Interpreter", "latex")
+        title("Lift distr. comparison", "Interpreter", "latex") 
+%         legend({PointS,PointA,PointA1,PointC,PointD, ...
+%                 PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)        
+        legend({PointS,PointA,PointA1,PointC,PointD}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)              
+        % Saving
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value = cl_Comparison; 
+        exportgraphics(cl_Comparison, 'clComparison.pdf', 'ContentType', 'vector')
+        exportgraphics(cl_Comparison, 'clComparison.png', 'ContentType', 'vector')
+        
+        % Saving figures inside correct folder
+        fprintf('Saving clComparison.pdf in: ');
+        fprintf('\n'); 
+        fprintf('%s\n', SaveFolder);
+        % Moving file inside correct folder
+        movefile clComparison.pdf Output
+        movefile clComparison.png Output        
+        
+        %% CM ALONG THE SPAN COMPARISON
+        figure(26);
+
+        plot(flip(half_span), cd_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_G, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_F, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_E, 'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("$c_d = c_d(y)$", "Interpreter", "latex")
+        title("Lift distr. comparison", "Interpreter", "latex") 
+%         legend({PointS,PointA,PointA1,PointC,PointD, ...
+%                 PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)        
+        legend({PointS,PointA,PointA1,PointC,PointD}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)           
+        % Saving
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = cd_Comparison;
+        exportgraphics(cd_Comparison, 'cdComparison.pdf', 'ContentType', 'vector')
+        exportgraphics(cd_Comparison, 'cdComparison.png', 'ContentType', 'vector')
+        
+        % Saving figures inside correct folder
+        fprintf('Saving cdComparison.pdf in: ');
+        fprintf('\n'); 
+        fprintf('%s\n', SaveFolder);
+        % Moving file inside correct folder
+        movefile cdComparison.pdf Output
+        movefile cdComparison.png Output        
+ 
+        %% CD ALONG THE SPAN COMPARISON
+        figure(27);
+
+        plot(flip(half_span), cm_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_G, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_F, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_E, 'LineWidth', 1.5)
+
+        xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
+        ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
+        title("Pitch mom. distr. comparison", "Interpreter", "latex") 
+%         legend({PointS,PointA,PointA1,PointC,PointD, ...
+%                 PointS_inv,PointG,PointG1,PointF,PointE}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)        
+        legend({PointS,PointA,PointA1,PointC,PointD}, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)           
+        % Saving
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value = cm_Comparison;
+        exportgraphics(cm_Comparison, 'cmComparison.pdf', 'ContentType', 'vector')
+        exportgraphics(cm_Comparison, 'cmComparison.png', 'ContentType', 'vector')
+        
+        % Saving figures inside correct folder
+        fprintf('Saving cdComparison.pdf in: ');
+        fprintf('\n'); 
+        fprintf('%s\n', SaveFolder);
+        % Moving file inside correct folder
+        movefile cmComparison.pdf Output
+        movefile cmComparison.png Output
         
 end
 
