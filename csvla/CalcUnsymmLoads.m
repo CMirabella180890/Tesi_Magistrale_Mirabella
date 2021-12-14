@@ -57,6 +57,8 @@
 % =========================================================================
 % MAXIMUM AILERON DEFLECTION;
 delta_max  = Aircraft.Geometry.Aileron.Max_deflection.value;
+y_iniziale = Aircraft.Geometry.Aileron.y_iniziale.value;
+y_finale   = Aircraft.Geometry.Aileron.y_finale.value;
 
 %% STRAIGHT FLIGHT
 switch (Straight_flight_Case)
@@ -69,7 +71,7 @@ switch (Straight_flight_Case)
         
         cm_A1      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value;
         delta_A1   = delta_max;
-        y_iniziale = Aircraft.Geometry.Aileron.y_iniziale.value;
+
         % Aileron deflection at Point A1
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.delta_A1.value = delta_A1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.delta_A1.Attributes.unit = "degree";
@@ -154,7 +156,7 @@ switch (Straight_flight_Case)
                 
         % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point A1 
         disp(" ++++ FIGURE 28 - POINT A1 PARTIAL LOAD - UNSYMM. TORSION ++++ ");
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TA1_70_airloads), flip(Tors_mom_distr_A1), PointA1);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TA1_70_airloads), flip(Tors_mom_distr_A1), PointA1);
         
         exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load, 'UnsymmetricalTorsionSeventyPerCentPointA1.pdf', 'ContentType', 'vector')
         exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load, 'UnsymmetricalTorsionSeventyPerCentPointA1.png', 'ContentType', 'vector')
@@ -169,10 +171,10 @@ switch (Straight_flight_Case)
         
         % Unsymmetrical torsion load due to aileron deflection diagram - FULL AIRLOADS - Point A1 
         disp(" ++++ FIGURE 29 - POINT A1 FULL LOAD - UNSYMM. TORSION ++++ ");
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load = Unsymm_load_diagram(half_span, flip(TA1_full_airloads), flip(Tors_mom_distr_A1), PointA1);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load = Unsymm_load_diagram(half_span, flip(TA1_full_airloads), flip(Tors_mom_distr_A1), PointA1);
         
-        exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointA1.pdf', 'ContentType', 'vector')
-        exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointA1.png', 'ContentType', 'vector')
+        exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointA1.pdf', 'ContentType', 'vector')
+        exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointA1.png', 'ContentType', 'vector')
         
         % Saving figures inside correct folder
         fprintf('Saving in: ');
@@ -203,12 +205,12 @@ switch (Straight_flight_Case)
         cm_C        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value;
         for i = 1:length(half_span')
             cm_C_unsymm(i) = cm_C(i);
-            if (abs(half_span(i) - y_iniziale) < 1e-2) && (abs(half_span(i) - y_iniziale) > 1e-2)  
+            if (abs(half_span(i) - y_iniziale) < 1e-1) && (abs(half_span(i) - y_finale) > 1e-1)  
                 j = i;
             end
         end
         for i = 1:length(half_span')
-            if (abs(half_span(i) - y_iniziale) < 1e-2) && (abs(half_span(i) - y_iniziale) > 1e-2)
+            if (abs(half_span(i) - y_finale) < 1e-1) && (abs(half_span(i) - y_iniziale) > 1e-1)
                 k = i;
             end
         end
@@ -252,7 +254,7 @@ switch (Straight_flight_Case)
         mdistr_seventy_C = zeros(length(cm_C_unsymm), 1);
         
         for i = 1:length(cm_C_unsymm)
-            mdistr_seventy_C(i) = 0.7 * cm_C_unsymm(i) * qC.value*((chord_distr(i))^2);
+            mdistr_seventy_C(i) = 0.7 * cm_C_unsymm(i) * qC*((chord_distr(i))^2);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_seventy_C.value = mdistr_seventy_C;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_seventy_C.Attributes.unit = "N";
@@ -418,10 +420,10 @@ switch (Straight_flight_Case)
         %% COMPARISON BETWEEN TORSION DISTRIBUTIONS 
         % Full load torsion loads
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetrical_loads_comparison.value = Compare_unsymm_load(half_span, ...
-                                                    flip(TA_full_airloads), ...
+                                                    flip(TA1_full_airloads), ...
                                                     flip(TC_full_airloads), ...
                                                     flip(TD_full_airloads), ... 
-                                                    PointA, ...
+                                                    PointA1, ...
                                                     PointC, ...
                                                     PointD, ...
                                                     'Full load');
@@ -441,10 +443,10 @@ switch (Straight_flight_Case)
         
         % 70% torsion loads
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetrical_loads_comparison.value = Compare_unsymm_load(half_span, ...
-                                                    flip(TA_70_airloads), ...
+                                                    flip(TA1_70_airloads), ...
                                                     flip(TC_70_airloads), ...
                                                     flip(TD_70_airloads), ... 
-                                                    PointA, ...
+                                                    PointA1, ...
                                                     PointC, ...
                                                     PointD, ...
                                                     '$70\%$ load');
@@ -462,28 +464,28 @@ switch (Straight_flight_Case)
         
         %% CRITICAL CONDITION FOR AILERON 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.value = NaN;
-        Condition1 = F_Aileron_C / F_Aileron_A;
-        Condition2 = F_Aileron_D / F_Aileron_A;
+        Condition1 = F_Aileron_C / F_Aileron_A1;
+        Condition2 = F_Aileron_D / F_Aileron_A1;
         if Condition1 > Condition2 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.value = Condition1; 
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.expression = "FC/FA";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.expression = "FC/FA1";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.description = 'Critical condition for aileron at Point C';
         elseif Condition2 > Condition1 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.value = Condition2; 
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.expression = "FD/FA";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.expression = "FD/FA1";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.description = 'Critical condition for aileron at Point D'; 
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.unit = "Non dimensional";
         
         %% CRITICAL CONDITION FOR TORSION DUE TO AILERON DEFLECTION
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = NaN;
-        if (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value))
+        if (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value))
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.Attributes.description = 'Critical condition for torsion at Point D';
-        elseif (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value))
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value; 
+        elseif (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value))
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.Attributes.description = 'Critical condition for torsion at Point A';
-        elseif (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value))
+        elseif (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value))
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.Attributes.description = 'Critical condition for torsion at Point C';
         end
@@ -506,7 +508,7 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.value = F_aileron_A1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.Attributes.unit = "N/m^2";
         
-        % Initialization of the Unsymmetrical_load field - Point A
+        % Initialization of the Unsymmetrical_load field - Point A1
         % half_span = flip(half_span);
         cm_A1_unsymm = zeros(length(half_span), 1);
 
@@ -580,7 +582,7 @@ switch (Straight_flight_Case)
                 
         % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point A1 
         disp(" ++++ FIGURE 28 - POINT A1 PARTIAL LOAD - UNSYMM. TORSION ++++ ");
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TA1_70_airloads), flip(Tors_mom_distr_A1), PointA1);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TA1_70_airloads), flip(Tors_mom_distr_A1), PointA1);
         
         exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load, 'UnsymmetricalTorsionSeventyPerCentPointA1.pdf', 'ContentType', 'vector')
         exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load, 'UnsymmetricalTorsionSeventyPerCentPointA1.png', 'ContentType', 'vector')
@@ -595,10 +597,10 @@ switch (Straight_flight_Case)
         
         % Unsymmetrical torsion load due to aileron deflection diagram - FULL AIRLOADS - Point A1 
         disp(" ++++ FIGURE 29 - POINT A1 FULL LOAD - UNSYMM. TORSION ++++ ");
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load = Unsymm_load_diagram(half_span, flip(TA1_full_airloads), flip(Tors_mom_distr_A1), PointA1);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load = Unsymm_load_diagram(half_span, flip(TA1_full_airloads), flip(Tors_mom_distr_A1), PointA1);
         
-        exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointA1.pdf', 'ContentType', 'vector')
-        exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointA1.png', 'ContentType', 'vector')
+        exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointA1.pdf', 'ContentType', 'vector')
+        exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Full_load, 'UnsymmetricalTorsionFullPointA1.png', 'ContentType', 'vector')
         
         % Saving figures inside correct folder
         fprintf('Saving in: ');
@@ -629,12 +631,12 @@ switch (Straight_flight_Case)
         cm_C        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value;
         for i = 1:length(half_span')
             cm_C_unsymm(i) = cm_C(i);
-            if (abs(half_span(i) - y_iniziale) < 1e-2) && (abs(half_span(i) - y_iniziale) > 1e-2)  
+            if (abs(half_span(i) - y_iniziale) < 1e-1) && (abs(half_span(i) - y_finale) > 1e-1) 
                 j = i;
             end
         end
         for i = 1:length(half_span')
-            if (abs(half_span(i) - y_iniziale) < 1e-2) && (abs(half_span(i) - y_iniziale) > 1e-2)
+            if (abs(half_span(i) - y_finale) < 1e-2) && (abs(half_span(i) - y_iniziale) > 1e-2)
                 k = i;
             end
         end
@@ -678,7 +680,7 @@ switch (Straight_flight_Case)
         mdistr_seventy_C = zeros(length(cm_C_unsymm), 1);
         
         for i = 1:length(cm_C_unsymm)
-            mdistr_seventy_C(i) = 0.7 * cm_C_unsymm(i) * qC.value*((chord_distr(i))^2);
+            mdistr_seventy_C(i) = 0.7 * cm_C_unsymm(i) * qC*((chord_distr(i))^2);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_seventy_C.value = mdistr_seventy_C;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_seventy_C.Attributes.unit = "N";
@@ -844,10 +846,10 @@ switch (Straight_flight_Case)
         %% COMPARISON BETWEEN TORSION DISTRIBUTIONS 
         % Full load torsion loads
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetrical_loads_comparison.value = Compare_unsymm_load(half_span, ...
-                                                    flip(TA_full_airloads), ...
+                                                    flip(TA1_full_airloads), ...
                                                     flip(TC_full_airloads), ...
                                                     flip(TD_full_airloads), ... 
-                                                    PointA, ...
+                                                    PointA1, ...
                                                     PointC, ...
                                                     PointD, ...
                                                     'Full load');
@@ -867,10 +869,10 @@ switch (Straight_flight_Case)
         
         % 70% torsion loads
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Unsymmetrical_loads_comparison.value = Compare_unsymm_load(half_span, ...
-                                                    flip(TA_70_airloads), ...
+                                                    flip(TA1_70_airloads), ...
                                                     flip(TC_70_airloads), ...
                                                     flip(TD_70_airloads), ... 
-                                                    PointA, ...
+                                                    PointA1, ...
                                                     PointC, ...
                                                     PointD, ...
                                                     '$70\%$ load');
@@ -888,28 +890,28 @@ switch (Straight_flight_Case)
         
         %% CRITICAL CONDITION FOR AILERON 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.value = NaN;
-        Condition1 = F_Aileron_C / F_Aileron_A;
-        Condition2 = F_Aileron_D / F_Aileron_A;
+        Condition1 = F_Aileron_C / F_Aileron_A1;
+        Condition2 = F_Aileron_D / F_Aileron_A1;
         if Condition1 > Condition2 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.value = Condition1; 
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.expression = "FC/FA";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.expression = "FC/FA1";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.description = 'Critical condition for aileron at Point C';
         elseif Condition2 > Condition1 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.value = Condition2; 
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.expression = "FD/FA";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.expression = "FD/FA1";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.description = 'Critical condition for aileron at Point D'; 
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.unit = "Non dimensional";
         
         %% CRITICAL CONDITION FOR TORSION DUE TO AILERON DEFLECTION
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = NaN;
-        if (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value))
+        if (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value))
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.Attributes.description = 'Critical condition for torsion at Point D';
-        elseif (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value))
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value; 
+        elseif (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value))
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.Attributes.description = 'Critical condition for torsion at Point A';
-        elseif (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value))
+        elseif (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value)) && (abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value) > abs(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value))
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.Attributes.description = 'Critical condition for torsion at Point C';
         end
@@ -1106,7 +1108,7 @@ switch (Straight_flight_Case)
         mdistr_seventy_C = zeros(length(cm_C_unsymm), 1);
         
         for i = 1:length(cm_C_unsymm)
-            mdistr_seventy_C(i) = 0.7 * cm_C_unsymm(i) * qC.value*((chord_distr(i))^2);
+            mdistr_seventy_C(i) = 0.7 * cm_C_unsymm(i) * qC*((chord_distr(i))^2);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_seventy_C.value = mdistr_seventy_C;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_seventy_C.Attributes.unit = "N";
@@ -1316,8 +1318,8 @@ switch (Straight_flight_Case)
         
         %% CRITICAL CONDITION FOR AILERON 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.value = NaN;
-        Condition1 = F_Aileron_C / F_Aileron_A;
-        Condition2 = F_Aileron_D / F_Aileron_A;
+        Condition1 = F_Aileron_C / F_aileron_A;
+        Condition2 = F_Aileron_D / F_aileron_A;
         if Condition1 > Condition2 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.value = Condition1; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.expression = "FC/FA";

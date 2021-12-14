@@ -59,12 +59,12 @@ Density [kg/m^3]: 0.8632
  ++++ INPUT TO V - N DIAGRAM ++++
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
  VS+                VS-                 VA                VG
- 27.978712          35.168696          54.540551          43.072680
+ 19.783937          24.868023          38.565993          30.456984
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
  nmax                nmin                 VD                VE
- 3.800000          -1.500000          82.571574          82.571574
+ 3.800000          -1.500000          58.386920          58.386920
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 --------------------------------------
@@ -75,10 +75,18 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving Gustenvelope.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
+ ++++++++++ FINAL ENVELOPE - VA AND nA ++++++++++ 
+ VA1                nA1
+ 42.104337          4.529270
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
  CHECK: 
-   0
-
- WARNING: There are no solutions in the Real numbers
+ Solutions are real numbers
+ 
+ ++++++++++ FINAL ENVELOPE - VA AND nA ++++++++++ 
+ Sol1                Sol2
+ 18.614274          33.222814
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Finalenvelope.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -149,27 +157,22 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving ShearBendingTorsionDiagramPointS.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
- ++++ FIGURE 13 - POINT A1 SHEAR, BENDING, TORSION ++++ 
+ ++++ FIGURE 13 - POINT A SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 14 - POINT A1 SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointA1.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
- ++++ FIGURE 14 - POINT C1 SHEAR, BENDING, TORSION ++++ 
-[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Saving ShearBendingTorsionDiagramPointC1.pdf in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
- 
- ++++ FIGURE 15 - POINT C SHEAR, BENDING, TORSION ++++ 
+ ++++ FIGURE 14 - POINT C SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
- ++++ FIGURE 16 - POINT C2 SHEAR, BENDING, TORSION ++++ 
-[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Saving ShearBendingTorsionDiagramPointC2.pdf in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
- 
- ++++ FIGURE 16 - POINT D SHEAR, BENDING, TORSION ++++ 
+ ++++ FIGURE 15 - POINT D SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointD.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -194,12 +197,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving ShearBendingTorsionDiagramPointF.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
- ++++ FIGURE 21 - POINT G2 SHEAR, BENDING, TORSION ++++ 
-[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Saving ShearBendingTorsionDiagramPointG2.pdf in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
- 
- ++++ FIGURE 22 - POINT E SHEAR, BENDING, TORSION ++++ 
+ ++++ FIGURE 21 - POINT E SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointE.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -220,4 +218,48 @@ Saving cdComparison.pdf in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving cdComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 27 - POINT A SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CmComparisonPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 28 - POINT A PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 29 - POINT A FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 30 -POINT C SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CmComparisonPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 31 - POINT C PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 32 - POINT C FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 33 -POINT D SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CmComparisonPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 34 - POINT D PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 35 - POINT D FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionFullPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 36 - FULL LOAD UNSYMM. TORSION COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalLoadsComparisonFullLoad.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 37 - PARTIAL LOAD UNSYMM. TORSION COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalLoadsComparisonSeventyPerCentLoad.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
