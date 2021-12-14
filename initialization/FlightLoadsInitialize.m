@@ -328,7 +328,7 @@ Aircraft.Geometry.Elevator.max_deflection.value = 25.0;
 Aircraft.Geometry.Elevator.max_deflection.Attributes.unit = "degrees";
 Aircraft.Geometry.Elevator.total_deflection_time.value = NaN;
 Aircraft.Geometry.Elevator.total_deflection_time.Attributes.unit = "seconds";
-Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 = "Commuter";
+Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 = "Normal";
 Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 = "Wheel";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Aircraft.Geometry.Movable.Horizontal.eta_inner.value = NaN;

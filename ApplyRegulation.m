@@ -88,8 +88,8 @@ switch (Aircraft.Certification.Regulation.value)
         CalcShearBendTorsMom
         % CALCULATE UNSYMMETRICAL LOADS
         CalcUnsymmLoads
-%         % CALCULATE HORIZONTAL TAIL LOADS 
-%         CalcHorizTailLoads
+        % CALCULATE HORIZONTAL TAIL LOADS 
+        CalcHorizTailLoads
 %         % CALCULATE VERTICAL TAIL LOADS
 %         CalcVertTailLoads
 %         % CALCULATE SUPPLEMENTARY CONDITIONS 
