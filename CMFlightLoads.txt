@@ -260,7 +260,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving UnsymmetricalLoadsComparisonFullLoad.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 37 - PARTIAL LOAD UNSYMM. TORSION COMPARISON ++++ 
-[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalLoadsComparisonSeventyPerCentLoad.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -360,4 +359,10 @@ Critical conditions
  +++++++++++++++++ Total Horizontal Tail loads - Maximum Symmetrical load [daN] +++++++++++++++++ 
   Maximum symmetrical load
  -92.311113
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ UNSYMMETRICAL LOADS PER CS - VLA 427 
+ +++++++++++++++++ Total Horizontal Tail loads - Unsymmetrical conditions [daN] +++++++++++++++++ 
+  Full load side      Partial load side
+ -46.155557          -33.232001
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
