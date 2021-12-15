@@ -318,9 +318,51 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
   Upward defl. VA   Downward defl. VA     Upward defl. VD    Downward defl. VD
  -58.437879         34.661912            -82.193643         -12.182678
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value
+ 
+ ++++++++++ CS - VLA 423 - METHOD D ++++++++++ 
+ --------------------------------------------- 
+ ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
+  Case 1             Case 2             Case 3              Case 4  
+ -41.996801          41.996801          37.497144          -37.497144
+ -41.996801          41.996801          37.497144          -37.497144
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+ Case 1              Case 2             Case 3             Case 4  
+ -54.520751          -45.292578         24.973195          -53.577992
+ -78.495279          -92.311113         -12.817168          -76.475955
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Critical conditions - CS - VLA 423 Method (d) [daN] ++++++++++ 
+Critical conditions
+ -92.311113
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ AIRWORTHINESS RULES: CS - VLA 425 GUST AIRLOADS
+ --------------------------------- 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+  L_ht VF             L_ht VC            L_ht VD
+ -36.498478          -19.581657         -38.978811
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Delta Horizontal Tail loads [daN] +++++++++++++++++ 
+ DeltaL_ht VF       DeltaL_ht VC      DeltaL_ht VD
+ 29.365684          58.577218         36.707106
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads - Positive Gust [daN] +++++++++++++++++ 
+  Gust + L_ht VF    Gust + L_ht VC     Gust + L_ht VD
+ -7.132793          38.995561         -2.271705
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads - Negative Gust [daN] +++++++++++++++++ 
+  Gust - L_ht VF      Gust - L_ht VC     Gust - L_ht VD
+ -65.864162          -78.158875         -75.685917
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+{Unrecognized field name "Tot_crit_loads".
 
-ans =
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcHorizTailLoads', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcHorizTailLoads.m', 1757)" style="font-weight:bold">CalcHorizTailLoads</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcHorizTailLoads.m',1757,0)">line 1757</a>)
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.CriticalLoads.Method_d.value =
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.Tot_crit_loads.value;
 
-    5.2339
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 92)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',92,0)">line 92</a>)
+        CalcHorizTailLoads
 
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)
+Aircraft = ApplyRegulation(Aircraft);
+} 
