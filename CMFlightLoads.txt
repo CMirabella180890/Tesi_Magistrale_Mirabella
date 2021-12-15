@@ -305,3 +305,22 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  At VA
  -50.272638
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (c) - DeltaLtail ++++ 
+ ---------------------------------------------- 
+ +++++++++++++++++ Delta Tail loads [daN] +++++++++++++++++ 
+  Upward defl. VA   Downward defl. VA    Upward defl. VD  Downward defl. VD
+ -37.748689         47.185861            -35.005482         35.005482
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++ METHOD CS - VLA 423 (c) - BTL_1 + DeltaLtail ++++ 
+ ------------------------------------------------------ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+  Upward defl. VA   Downward defl. VA     Upward defl. VD    Downward defl. VD
+ -58.437879         34.661912            -82.193643         -12.182678
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value
+
+ans =
+
+    5.2339
+
