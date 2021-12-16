@@ -16,8 +16,11 @@ CL0 = Aircraft.Certification.Aerodynamic_data.CL0.value;
 % CLMAX FUNCTION
 CLmax_func = @(rho, S, V, WS, n) (2 / rho) * (1 / V.^2) * (WS) * n;
 % -------------------------------------------------------------------------
+% CLMAX LINEAR
+CLmax_lin = @(CL_alfa, alfa) (CL0 + 0.01) + CL_alfa * alfa;
+% -------------------------------------------------------------------------
 % CLMAX NON LINEAR
-CLmax_non_lin = @(alfa) a*alfa^2 + b*alfa + c;
+CLmax_non_lin = @(alfa) a * alfa^2 + b * alfa + c;
 % -------------------------------------------------------------------------
 % ALFA FUNCTION
 alfa_func = @(rho, S, V, WS, n, CLalfa, alfa_0lift) (2 / rho) * (1 / V.^2) * (1/CLalfa) * (WS) * n + alfa_0lift;
@@ -133,22 +136,24 @@ alpha_zerol = Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value;
 alpha_star  = alpha_plus(Aircraft.Certification.Aerodynamic_data.CL_star.value);
 alpha_max   = alpha_meno(Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value);
 
-% Lift coefficient curve
-Aircraft.Certification.Aerodynamic_data.AOA_aux.value = linspace(-8.0, 25*alpha_star*1e-3 - alpha_star, numb)';
-Aircraft.Certification.Aerodynamic_data.AOA_aux.Attributes.unit = "degree";
-Aircraft.Certification.Aerodynamic_data.AOA_aux1.value = linspace(alpha_star + 50*alpha_star*1e-3, 13.0 , numb)';
-Aircraft.Certification.Aerodynamic_data.AOA_aux1.Attributes.unit = "degrees";
+% STORE INSIDE STRUCT VARIABLE
+Aircraft.Certification.Aerodynamic_data.alpha_star.value            = alpha_star;
+Aircraft.Certification.Aerodynamic_data.alpha_star.Attributes.unit  = "degree";
+Aircraft.Certification.Aerodynamic_data.alpha_max.value             = alpha_max;
+Aircraft.Certification.Aerodynamic_data.alpha_max.Attributes.unit   = "degree";
 
-% Linear and non linear lift curve
-Aircraft.Certification.Aerodynamic_data.CL_Linear.value = (Aircraft.Certification.Aerodynamic_data.CL0.value+0.01) + Aircraft.Certification.Aerodynamic_data.AOA_aux.value*Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value;
-Aircraft.Certification.Aerodynamic_data.CL_Linear.Attributes.unit = "Non dimensional";
-Aircraft.Certification.Aerodynamic_data.CL_Non_Linear.value = CL_WB_model(Aircraft.Certification.Aerodynamic_data.AOA_aux1.value);
-Aircraft.Certification.Aerodynamic_data.CL_Non_Linear.Attributes.unit = "Non dimensional";
+alpha_i = - 4.0;
+alpha_f = 13.0;
+alpha_interpolation_interval = linspace(alpha_i, alpha_f, numb)';
 
 % Full lift model 
-Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value = [Aircraft.Certification.Aerodynamic_data.CL_Linear.value; Aircraft.Certification.Aerodynamic_data.CL_Non_Linear.value];
+CL_interpolation = zeros(length(alpha_interpolation_interval), 1);
+for i = 1:length(alpha_interpolation_interval)
+    CL_interpolation(i) = CL_fullmodel(alpha_interpolation_interval(i));
+end
+Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value = CL_interpolation;
 Aircraft.Certification.Aerodynamic_data.CL_fullmodel.Attributes.unit = "Non dimensional";
-Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value = [Aircraft.Certification.Aerodynamic_data.AOA_aux.value; Aircraft.Certification.Aerodynamic_data.AOA_aux1.value];
+Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.value = alpha_interpolation_interval;
 Aircraft.Certification.Aerodynamic_data.AOA_aux_fullmodel.Attributes.unit = "degrees";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -199,7 +204,6 @@ CM_slope        = Aircraft.Certification.Aerodynamic_data.CMCL.value;
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_unit_load_factor.Attributes.unit = "Pa";
 % 
 
-
 %% BALANCING LOADS CALCULATIONS - POSITIVE LOAD FACTORS
 % ------------------------------------------------------------------------- 
 % Calculation of the CL for the wing - body configuration. It must be
@@ -248,12 +252,7 @@ switch (Straight_flight_Case)
         LHT_from0toS  = zeros(length(V_from0toS), 1);
         for i = 1:length(V_from0toS)
             alfa_from0toS(i) = alfa_func(rho0, S, V_from0toS(i), WS, n_from0toS(i), CLalfa, alpha_zerol);
-            CL_from0toS(i)   = CL_calc(obj1, n_from0toS(i), Mass, g, V_from0toS(i), rho0, S);
-            if CL_from0toS(i) < CL_star
-                CL_from0toS(i) = CL_calc(obj1, n_from0toS(i), Mass, g, V_from0toS(i), rho0, S);
-            elseif CL_from0toS(i) > CL_star
-                CL_from0toS(i) = CLmax_non_lin(alfa_from0toS(i));
-            end
+            CL_from0toS(i)   = CL_fullmodel(alfa_from0toS(i));
             CD_from0toS(i)   = cd_calc(obj1, CD0, CL_from0toS(i), AR, e, k1, k2);
             q_from0toS(i)    = 0.5*rho0*(V_from0toS(i))^2;
             WBL_from0toS(i)  = q_from0toS(i)*S*CL_from0toS(i)*1e-1;
@@ -307,12 +306,7 @@ switch (Straight_flight_Case)
         LHT_fromStoA1  = zeros(length(V_fromStoA1), 1);
         for i = 1:length(V_fromStoA1)
             alfa_fromStoA1(i) = alfa_func(rho0, S, V_fromStoA1(i), WS, n_fromStoA1(i), CLalfa, alpha_zerol);
-            CL_fromStoA1(i)   = CL_calc(obj1, n_fromStoA1(i), Mass, g, V_fromStoA1(i), rho0, S);
-            if CL_fromStoA1(i) < CL_star
-                CL_fromStoA1(i) = CL_calc(obj1, n_fromStoA1(i), Mass, g, V_fromStoA1(i), rho0, S);
-            elseif CL_fromStoA1(i) > CL_star
-                CL_fromStoA1(i) = CLmax_non_lin(alfa_fromStoA1(i));
-            end
+            CL_fromStoA1(i)   = CL_fullmodel(alfa_fromStoA1(i));
             CD_fromStoA1(i)   = cd_calc(obj1, CD0, CL_fromStoA1(i), AR, e, k1, k2);
             q_fromStoA1(i)    = 0.5*rho0*(V_fromStoA1(i))^2;
             WBL_fromStoA1(i)  = q_fromStoA1(i)*S*CL_fromStoA1(i)*1e-1;
@@ -378,12 +372,7 @@ switch (Straight_flight_Case)
             LHT_fromA1toC1  = zeros(length(V_fromA1toC1), 1);
             for i = 1:length(V_fromA1toC1)
                 alfa_fromA1toC1(i) = alfa_func(rho0, S, V_fromA1toC1(i), WS, n_fromA1toC1(i), CLalfa, alpha_zerol);
-                CL_fromA1toC1(i)   = CL_calc(obj1, n_fromA1toC1(i), Mass, g, V_fromA1toC1(i), rho0, S);
-                if CL_fromA1toC1(i) < CL_star
-                    CL_fromA1toC1(i) = CL_calc(obj1, n_fromA1toC1(i), Mass, g, V_fromA1toC1(i), rho0, S);
-                elseif CL_fromA1toC1(i) > CL_star
-                    CL_fromA1toC1(i) = CLmax_non_lin(alfa_fromA1toC1(i));
-                end
+                CL_fromA1toC1(i)   = CL_fullmodel(alfa_fromA1toC1(i));
                 CD_fromA1toC1(i)   = cd_calc(obj1, CD0, CL_fromA1toC1(i), AR, e, k1, k2);
                 q_fromA1toC1(i)    = 0.5*rho0*(V_fromA1toC1(i))^2;
                 WBL_fromA1toC1(i)  = q_fromA1toC1(i)*S*CL_fromA1toC1(i)*1e-1;
@@ -437,12 +426,7 @@ switch (Straight_flight_Case)
             LHT_fromC1toC  = zeros(length(V_fromC1toC), 1);
             for i = 1:length(V_fromC1toC)
                 alfa_fromC1toC(i) = alfa_func(rho0, S, V_fromC1toC(i), WS, n_fromC1toC(i), CLalfa, alpha_zerol);
-                CL_fromC1toC(i)   = CL_calc(obj1, n_fromC1toC(i), Mass, g, V_fromC1toC(i), rho0, S);
-                if CL_fromC1toC(i) < CL_star
-                    CL_fromC1toC(i) = CL_calc(obj1, n_fromC1toC(i), Mass, g, V_fromC1toC(i), rho0, S);
-                elseif CL_fromC1toC(i) > CL_star
-                    CL_fromC1toC(i) = CLmax_non_lin(alfa_fromC1toC(i));
-                end
+                CL_fromC1toC(i)   = CL_fullmodel(alfa_fromC1toC(i));
                 CD_fromC1toC(i)   = cd_calc(obj1, CD0, CL_fromC1toC(i), AR, e, k1, k2);
                 q_fromC1toC(i)    = 0.5*rho0*(V_fromC1toC(i))^2;
                 WBL_fromC1toC(i)  = q_fromC1toC(i)*S*CL_fromC1toC(i)*1e-1;
@@ -496,12 +480,7 @@ switch (Straight_flight_Case)
             LHT_fromCtoC2  = zeros(length(V_fromCtoC2), 1);
             for i = 1:length(V_fromCtoC2)
                 alfa_fromCtoC2(i) = alfa_func(rho0, S, V_fromCtoC2(i), WS, n_fromCtoC2(i), CLalfa, alpha_zerol);
-                CL_fromCtoC2(i)   = CL_calc(obj1, n_fromCtoC2(i), Mass, g, V_fromCtoC2(i), rho0, S);
-                if CL_fromCtoC2(i) < CL_star
-                    CL_fromCtoC2(i) = CL_calc(obj1, n_fromCtoC2(i), Mass, g, V_fromCtoC2(i), rho0, S);
-                elseif CL_fromCtoC2(i) > CL_star
-                    CL_fromCtoC2(i) = CLmax_non_lin(alfa_fromCtoC2(i));
-                end
+                CL_fromCtoC2(i)   = CL_fullmodel(alfa_fromCtoC2(i));
                 CD_fromCtoC2(i)   = cd_calc(obj1, CD0, CL_fromCtoC2(i), AR, e, k1, k2);
                 q_fromCtoC2(i)    = 0.5*rho0*(V_fromCtoC2(i))^2;
                 WBL_fromCtoC2(i)  = q_fromCtoC2(i)*S*CL_fromCtoC2(i)*1e-1;
@@ -555,12 +534,7 @@ switch (Straight_flight_Case)
             LHT_fromC2toD  = zeros(length(V_fromC2toD), 1);
             for i = 1:length(V_fromC2toD)
                 alfa_fromC2toD(i) = alfa_func(rho0, S, V_fromC2toD(i), WS, n_fromC2toD(i), CLalfa, alpha_zerol);
-                CL_fromC2toD(i)   = CL_calc(obj1, n_fromC2toD(i), Mass, g, V_fromC2toD(i), rho0, S);
-                if CL_fromC2toD(i) < CL_star
-                    CL_fromC2toD(i) = CL_calc(obj1, n_fromC2toD(i), Mass, g, V_fromC2toD(i), rho0, S);
-                elseif CL_fromC2toD(i) > CL_star
-                    CL_fromC2toD(i) = CLmax_non_lin(alfa_fromC2toD(i));
-                end
+                CL_fromC2toD(i)   = CL_fullmodel(alfa_fromC2toD(i));
                 CD_fromC2toD(i)   = cd_calc(obj1, CD0, CL_fromC2toD(i), AR, e, k1, k2);
                 q_fromC2toD(i)    = 0.5*rho0*(V_fromC2toD(i))^2;
                 WBL_fromC2toD(i)  = q_fromC2toD(i)*S*CL_fromC2toD(i)*1e-1;
@@ -614,12 +588,7 @@ switch (Straight_flight_Case)
             LHT_fromDto0  = zeros(length(V_fromDto0), 1);
             for i = 1:length(V_fromDto0)
                 alfa_fromDto0(i) = alfa_func(rho0, S, V_fromDto0(i), WS, n_fromDto0(i), CLalfa, alpha_zerol);
-                CL_fromDto0(i)   = CL_calc(obj1, n_fromDto0(i), Mass, g, V_fromDto0(i), rho0, S);
-                if CL_fromDto0(i) < CL_star
-                    CL_fromDto0(i) = CL_calc(obj1, n_fromDto0(i), Mass, g, V_fromDto0(i), rho0, S);
-                elseif CL_fromDto0(i) > CL_star
-                    CL_fromDto0(i) = CLmax_non_lin(alfa_fromDto0(i));
-                end
+                CL_fromDto0(i)   = CL_fullmodel(alfa_fromDto0(i));
                 CD_fromDto0(i)   = cd_calc(obj1, CD0, CL_fromDto0(i), AR, e, k1, k2);
                 q_fromDto0(i)    = 0.5*rho0*(V_fromDto0(i))^2;
                 WBL_fromDto0(i)  = q_fromDto0(i)*S*CL_fromDto0(i)*1e-1;
@@ -905,7 +874,10 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value = alfa_from0toS(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.Attributes.unit = "degrees";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS_rad.value = deg2rad(alfa_from0toS(end));
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS_rad.Attributes.unit = "rad"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS_rad.Attributes.unit = "rad";
+            alfaS = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value = CL_fullmodel(alfaS);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.Attributes.unit = "Non dimensional"; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CLHT_S.value = CLHT_from0toS(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CLHT_S.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value = CD_from0toS(end);
@@ -922,7 +894,10 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.value = alfa_fromStoA1(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.Attributes.unit = "degrees";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1_rad.value = deg2rad(alfa_fromStoA1(end));
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1_rad.Attributes.unit = "rad"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1_rad.Attributes.unit = "rad";
+            alfaA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.value;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CL_A1.value = CL_fullmodel(alfaA1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CL_A1.Attributes.unit = "Non dimensional"; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CLHT_A1.value = CLHT_fromStoA1(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CLHT_A1.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value = CD_fromStoA1(end);
@@ -940,6 +915,9 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.alfaC1.Attributes.unit = "degrees";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.alfaC1_rad.value = deg2rad(alfa_fromA1toC1(end));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.alfaC1_rad.Attributes.unit = "rad"; 
+            alfaC1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.alfaC1.value;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CL_C1.value = CL_fullmodel(alfaC1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CL_C1.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CLHT_C1.value = CLHT_fromA1toC1(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CLHT_C1.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CD_C1.value = CD_fromA1toC1(end);
@@ -957,6 +935,9 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.Attributes.unit = "degrees";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_rad.value = deg2rad(alfa_fromC1toC(1));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_rad.Attributes.unit = "rad";
+            alfaC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value = CL_fullmodel(alfaC);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.value = CLHT_fromC1toC(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value = CD_fromC1toC(end);
@@ -974,6 +955,9 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.alfaC2.Attributes.unit = "degrees";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.alfaC2_rad.value = deg2rad(alfa_fromCtoC2(end));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.alfaC2_rad.Attributes.unit = "rad"; 
+            alfaC2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.alfaC2.value;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CL_C2.value = CL_fullmodel(alfaC2);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CL_C2.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CLHT_C2.value = CLHT_fromCtoC2(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CLHT_C2.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CD_C2.value = CD_fromCtoC2(end);
@@ -991,6 +975,9 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.Attributes.unit = "degrees";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_rad.value = deg2rad(alfa_fromC2toD(end));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_rad.Attributes.unit = "rad";  
+            alfaD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value = CL_fullmodel(alfaD);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.value = CLHT_fromC2toD(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value = CD_fromC2toD(end);
@@ -1024,12 +1011,7 @@ switch (Straight_flight_Case)
             LHT_fromA1toC  = zeros(length(V_fromA1toC), 1);
             for i = 1:length(V_fromA1toC)
                 alfa_fromA1toC(i) = alfa_func(rho0, S, V_fromA1toC(i), WS, n_fromA1toC(i), CLalfa, alpha_zerol);
-                CL_fromA1toC(i)   = CL_calc(obj1, n_fromA1toC(i), Mass, g, V_fromA1toC(i), rho0, S);
-                if CL_fromA1toC(i) < CL_star
-                    CL_fromA1toC(i) = CL_calc(obj1, n_fromA1toC(i), Mass, g, V_fromA1toC(i), rho0, S);
-                elseif CL_fromA1toC(i) > CL_star
-                    CL_fromA1toC(i) = CLmax_non_lin(alfa_fromA1toC(i));
-                end
+                CL_fromA1toC(i)   = CL_fullmodel(alfa_fromA1toC(i));
                 CD_fromA1toC(i)   = cd_calc(obj1, CD0, CL_fromA1toC(i), AR, e, k1, k2);
                 q_fromA1toC(i)    = 0.5*rho0*(V_fromA1toC(i))^2;
                 WBL_fromA1toC(i)  = q_fromA1toC(i)*S*CL_fromA1toC(i)*1e-1;
@@ -1083,12 +1065,7 @@ switch (Straight_flight_Case)
             LHT_fromCtoD  = zeros(length(V_fromCtoD), 1);
             for i = 1:length(V_fromCtoD)
                 alfa_fromCtoD(i) = alfa_func(rho0, S, V_fromCtoD(i), WS, n_fromCtoD(i), CLalfa, alpha_zerol);
-                CL_fromCtoD(i)   = CL_calc(obj1, n_fromCtoD(i), Mass, g, V_fromCtoD(i), rho0, S);
-                if CL_fromCtoD(i) < CL_star
-                    CL_fromCtoD(i) = CL_calc(obj1, n_fromCtoD(i), Mass, g, V_fromCtoD(i), rho0, S);
-                elseif CL_fromCtoD(i) > CL_star
-                    CL_fromCtoD(i) = CLmax_non_lin(alfa_fromCtoD(i));
-                end
+                CL_fromCtoD(i)   = CL_fullmodel(alfa_fromCtoD(i));
                 CD_fromCtoD(i)   = cd_calc(obj1, CD0, CL_fromCtoD(i), AR, e, k1, k2);
                 q_fromCtoD(i)    = 0.5*rho0*(V_fromCtoD(i))^2;
                 WBL_fromCtoD(i)  = q_fromCtoD(i)*S*CL_fromCtoD(i)*1e-1;
@@ -1143,12 +1120,7 @@ switch (Straight_flight_Case)
             LHT_fromDto0  = zeros(length(V_fromDto0), 1);
             for i = 1:length(V_fromDto0)
                 alfa_fromDto0(i) = alfa_func(rho0, S, V_fromDto0(i), WS, n_fromDto0(i), CLalfa, alpha_zerol);
-                CL_fromDto0(i)   = CL_calc(obj1, n_fromDto0(i), Mass, g, V_fromDto0(i), rho0, S);
-                if CL_fromDto0(i) < CL_star
-                    CL_fromDto0(i) = CL_calc(obj1, n_fromDto0(i), Mass, g, V_fromDto0(i), rho0, S);
-                elseif CL_fromDto0(i) > CL_star
-                    CL_fromDto0(i) = CLmax_non_lin(alfa_fromDto0(i));
-                end
+                CL_fromDto0(i)   = CL_fullmodel(alfa_fromDto0(i));
                 CD_fromDto0(i)   = cd_calc(obj1, CD0, CL_fromDto0(i), AR, e, k1, k2);
                 q_fromDto0(i)    = 0.5*rho0*(V_fromDto0(i))^2;
                 WBL_fromDto0(i)  = q_fromDto0(i)*S*CL_fromDto0(i)*1e-1;
@@ -1410,6 +1382,9 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.Attributes.unit = "degrees";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS_rad.value = deg2rad(alfa_from0toS(end));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS_rad.Attributes.unit = "rad"; 
+            alfaS = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value = CL_fullmodel(alfaS);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CLHT_S.value = CLHT_from0toS(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CLHT_S.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value = CD_from0toS(end);
@@ -1427,6 +1402,9 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.Attributes.unit = "degrees";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1_rad.value = deg2rad(alfa_fromStoA1(end));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1_rad.Attributes.unit = "rad";
+            alfaA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.value;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CL_A1.value = CL_fullmodel(alfaA1);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CL_A1.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CLHT_A1.value = CLHT_fromStoA1(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CLHT_A1.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value = CD_fromStoA1(end);
@@ -1444,6 +1422,9 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.Attributes.unit = "degrees";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_rad.value = deg2rad(alfa_fromA1toC(1));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_rad.Attributes.unit = "rad"; 
+            alfaC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value = CL_fullmodel(alfaC);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.value = CLHT_fromA1toC(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value = CD_fromA1toC(end);
@@ -1461,6 +1442,9 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.Attributes.unit = "degrees";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_rad.value = deg2rad(alfa_fromCtoD(end));
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_rad.Attributes.unit = "rad";  
+            alfaD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value = CL_fullmodel(alfaD);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.value = CLHT_fromCtoD(end);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value = CD_fromCtoD(end);
@@ -1505,12 +1489,7 @@ switch (Straight_flight_Case)
         LHT_from0toS  = zeros(length(V_from0toS), 1);
         for i = 1:length(V_from0toS)
             alfa_from0toS(i) = alfa_func(rho0, S, V_from0toS(i), WS, n_from0toS(i), CLalfa, alpha_zerol);
-            CL_from0toS(i)   = CL_calc(obj1, n_from0toS(i), Mass, g, V_from0toS(i), rho0, S);
-            if CL_from0toS(i) < CL_star
-                CL_from0toS(i) = CL_calc(obj1, n_from0toS(i), Mass, g, V_from0toS(i), rho0, S);
-            elseif CL_from0toS(i) > CL_star
-                CL_from0toS(i) = CLmax_non_lin(alfa_from0toS(i));
-            end
+            CL_from0toS(i)   = CL_fullmodel(alfa_from0toS(i));
             CD_from0toS(i)   = cd_calc(obj1, CD0, CL_from0toS(i), AR, e, k1, k2);
             q_from0toS(i)    = 0.5*rho0*(V_from0toS(i))^2;
             WBL_from0toS(i)  = q_from0toS(i)*S*CL_from0toS(i)*1e-1;
@@ -1564,12 +1543,7 @@ switch (Straight_flight_Case)
         LHT_fromStoA1  = zeros(length(V_fromStoA1), 1);    
         for i = 1:length(V_fromStoA1)
             alfa_fromStoA1(i) = alfa_func(rho0, S, V_fromStoA1(i), WS, n_fromStoA1(i), CLalfa, alpha_zerol);
-            CL_fromStoA1(i)   = CL_calc(obj1, n_fromStoA1(i), Mass, g, V_fromStoA1(i), rho0, S);
-            if CL_fromStoA1(i) < CL_star
-                CL_fromStoA1(i) = CL_calc(obj1, n_fromStoA1(i), Mass, g, V_fromStoA1(i), rho0, S);
-            elseif CL_fromStoA1(i) > CL_star
-                CL_fromStoA1(i) = CLmax_non_lin(alfa_fromStoA1(i));
-            end
+            CL_fromStoA1(i)   = CL_fullmodel(alfa_fromStoA1(i));
             CD_fromStoA1(i)   = cd_calc(obj1, CD0, CL_fromStoA1(i), AR, e, k1, k2);
             q_fromStoA1(i)    = 0.5*rho0*(V_fromStoA1(i))^2;
             WBL_fromStoA1(i)  = q_fromStoA1(i)*S*CL_fromStoA1(i)*1e-1;   
@@ -1611,12 +1585,7 @@ switch (Straight_flight_Case)
         % =================================================================  
         % POINT A 
         alfa_A = alfa_func(rho0, S, VA, WS, nA, CLalfa, alpha_zerol);
-        CL_A   = CL_calc(obj1, nA, Mass, g, VA, rho0, S);
-            if CL_A < CL_star - 0.03
-                CL_A = CL_calc(obj1, nA, Mass, g, VA, rho0, S);
-            elseif CL_A > CL_star + 0.03
-                CL_A = CLmax_non_lin(alfa_A);
-            end
+        CL_A   = CL_fullmodel(alfa_A);
         CD_A   = cd_calc(obj1, CD0, CL_A, AR, e, k1, k2);
         q_A    = 0.5*rho0*(VA)^2;
         WBL_A  = q_A*S*CL_A*1e-1; 
@@ -1645,6 +1614,8 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.Attributes.unit = "degrees";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA_rad.value = deg2rad(alfa_A);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA_rad.Attributes.unit = "rad";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value = CL_fullmodel(alfa_A);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CLHT_A.value = CLHT_A;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CLHT_A.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CD_A.value = CD_A;
@@ -1666,12 +1637,7 @@ switch (Straight_flight_Case)
         LHT_fromA1toC  = zeros(length(V_fromA1toC), 1);
         for i = 1:length(V_fromA1toC)
             alfa_fromA1toC(i) = alfa_func(rho0, S, V_fromA1toC(i), WS, n_fromA1toC(i), CLalfa, alpha_zerol);
-            CL_fromA1toC(i)   = CL_calc(obj1, n_fromA1toC(i), Mass, g, V_fromA1toC(i), rho0, S);
-            if CL_fromA1toC(i) < CL_star - 0.03
-                CL_fromA1toC(i) = CL_calc(obj1, n_fromA1toC(i), Mass, g, V_fromA1toC(i), rho0, S);
-            elseif CL_fromA1toC(i) > CL_star + 0.03
-                CL_fromA1toC(i) = CLmax_non_lin(alfa_fromA1toC(i));
-            end
+            CL_fromA1toC(i)   = CL_fullmodel(alfa_fromA1toC(i));
             CD_fromA1toC(i)   = cd_calc(obj1, CD0, CL_fromA1toC(i), AR, e, k1, k2);
             q_fromA1toC(i)    = 0.5*rho0*(V_fromA1toC(i))^2;
             WBL_fromA1toC(i)  = q_fromA1toC(i)*S*CL_fromA1toC(i)*1e-1; 
@@ -1725,12 +1691,7 @@ switch (Straight_flight_Case)
         LHT_fromCtoA2  = zeros(length(V_fromCtoA2), 1);
         for i = 1:length(V_fromCtoA2)
             alfa_fromCtoA2(i) = alfa_func(rho0, S, V_fromCtoA2(i), WS, n_fromCtoA2(i), CLalfa, alpha_zerol);
-            CL_fromCtoA2(i)   = CL_calc(obj1, n_fromCtoA2(i), Mass, g, V_fromCtoA2(i), rho0, S);
-            if CL_fromCtoA2(i) < CL_star
-                CL_fromCtoA2(i) = CL_calc(obj1, n_fromCtoA2(i), Mass, g, V_fromCtoA2(i), rho0, S);
-            elseif CL_fromCtoA2(i) > CL_star
-                CL_fromCtoA2(i) = CLmax_non_lin(alfa_fromCtoA2(i));
-            end
+            CL_fromCtoA2(i)   = CL_fullmodel(alfa_fromCtoA2(i));
             CD_fromCtoA2(i)   = cd_calc(obj1, CD0, CL_fromCtoA2(i), AR, e, k1, k2);
             q_fromCtoA2(i)    = 0.5*rho0*(V_fromCtoA2(i))^2;
             WBL_fromCtoA2(i)  = q_fromCtoA2(i)*S*CL_fromCtoA2(i)*1e-1;    
@@ -1784,12 +1745,7 @@ switch (Straight_flight_Case)
         LHT_fromA2toD  = zeros(length(V_fromA2toD), 1);    
         for i = 1:length(V_fromA2toD)
             alfa_fromA2toD(i) = alfa_func(rho0, S, V_fromA2toD(i), WS, n_fromA2toD(i), CLalfa, alpha_zerol);
-            CL_fromA2toD(i)   = CL_calc(obj1, n_fromA2toD(i), Mass, g, V_fromA2toD(i), rho0, S);
-            if CL_fromA2toD(i) < CL_star
-                CL_fromA2toD(i) = CL_calc(obj1, n_fromA2toD(i), Mass, g, V_fromA2toD(i), rho0, S);
-            elseif CL_fromA2toD(i) > CL_star
-                CL_fromA2toD(i) = CLmax_non_lin(alfa_fromA2toD(i));
-            end
+            CL_fromA2toD(i)   = CL_fullmodel(alfa_fromA2toD(i));
             CD_fromA2toD(i) = cd_calc(obj1, CD0, CL_fromA2toD(i), AR, e, k1, k2);
             q_fromA2toD(i)   = 0.5*rho0*(V_fromA2toD(i))^2;
             WBL_fromA2toD(i) = q_fromA2toD(i)*S*CL_fromA2toD(i)*1e-1;   
@@ -1843,12 +1799,7 @@ switch (Straight_flight_Case)
         LHT_fromDto0  = zeros(length(V_fromDto0), 1);  
         for i = 1:length(V_fromDto0)
             alfa_fromDto0(i) = alfa_func(rho0, S, V_fromDto0(i), WS, n_fromDto0(i), CLalfa, alpha_zerol);
-            CL_fromDto0(i)   = CL_calc(obj1, n_fromDto0(i), Mass, g, V_fromDto0(i), rho0, S);
-            if CL_fromDto0(i) < CL_star
-                CL_fromDto0(i) = CL_calc(obj1, n_fromDto0(i), Mass, g, V_fromDto0(i), rho0, S);
-            elseif CL_fromA2toD(i) > CL_star
-                CL_fromDto0(i) = CLmax_non_lin(alfa_fromDto0(i));
-            end
+            CL_fromDto0(i)   = CL_fullmodel(alfa_fromDto0(i));
             CD_fromDto0(i) = cd_calc(obj1, CD0, CL_fromDto0(i), AR, e, k1, k2);
             q_fromDto0(i)   = 0.5*rho0*(V_fromDto0(i))^2;
             WBL_fromDto0(i) = q_fromDto0(i)*S*CL_fromDto0(i)*1e-1;     
@@ -2124,6 +2075,9 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.Attributes.unit = "degrees";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS_rad.value = deg2rad(alfa_from0toS(end));
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS_rad.Attributes.unit = "rad";
+        alfaS = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value = CL_fullmodel(alfaS);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CLHT_S.value = CLHT_from0toS(end);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CLHT_S.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value = CD_from0toS(end);
@@ -2141,6 +2095,9 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.Attributes.unit = "degrees";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1_rad.value = deg2rad(alfa_fromStoA1(end));
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1_rad.Attributes.unit = "rad";
+        alfaA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.value;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CL_A1.value = CL_fullmodel(alfaA1);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CL_A1.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CLHT_A1.value = CLHT_fromStoA1(end);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CLHT_A1.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value = CD_fromStoA1(end);
@@ -2158,6 +2115,9 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.Attributes.unit = "degrees";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_rad.value = deg2rad(alfa_fromA1toC(1));
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_rad.Attributes.unit = "rad"; 
+        alfaC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value = CL_fullmodel(alfaC);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.value = CLHT_fromA1toC(end);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value = CD_fromA1toC(end);
@@ -2175,6 +2135,9 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.alfaA2.Attributes.unit = "degrees";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.alfaA2_rad.value = deg2rad(alfa_fromCtoA2(end));
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.alfaA2_rad.Attributes.unit = "rad";
+        alfaA2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.alfaA2.value;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.CL_A2.value = CL_fullmodel(alfaA2);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.CL_A2.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.CLHT_A2.value = CLHT_fromCtoA2(end);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.CLHT_A2.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.CD_A2.value = CD_fromCtoA2(end);
@@ -2191,7 +2154,10 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value = alfa_fromA2toD(end);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.Attributes.unit = "degrees";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_rad.value = deg2rad(alfa_fromA2toD(end));
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_rad.Attributes.unit = "rad";  
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_rad.Attributes.unit = "rad"; 
+        alfaD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value = CL_fullmodel(alfaD);
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.Attributes.unit = "Non dimensional"; 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.value = CLHT_fromA2toD(end);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value = CD_fromA2toD(end);
