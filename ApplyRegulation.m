@@ -90,10 +90,10 @@ switch (Aircraft.Certification.Regulation.value)
         CalcUnsymmLoads
         % CALCULATE HORIZONTAL TAIL LOADS 
         CalcHorizTailLoads
-%         % CALCULATE VERTICAL TAIL LOADS
-%         CalcVertTailLoads
-%         % CALCULATE SUPPLEMENTARY CONDITIONS 
-%         CalcSuppLoads
+        % CALCULATE VERTICAL TAIL LOADS
+        CalcVertTailLoads
+        % CALCULATE SUPPLEMENTARY CONDITIONS 
+        CalcSuppLoads
 %         % FLIGHT ENVELOPE WITH FLAPS DEPLOYED
 %         CalcFlapsEnvelope
     case 'CS23'

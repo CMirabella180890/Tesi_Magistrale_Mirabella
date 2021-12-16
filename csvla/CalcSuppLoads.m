@@ -29,8 +29,8 @@ disp(" ")
 disp(" ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ ")
 % SUBPARAGRAPH (a)
 % Horizontal tail loads
-TailLoadsD = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
-TailLoadsA = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
+TailLoadsD = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTD.value;
+TailLoadsA = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTA.value;
 
 % Choosing design condition 
 if abs(TailLoadsD) > abs(TailLoadsA) 

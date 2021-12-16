@@ -29,7 +29,7 @@ disp(" ")
 disp(" ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ ")
 % SUBPARAGRAPH (a)
 % Horizontal tail loads
-TailLoadsD = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTail_D.value;
+TailLoadsD = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTD.value;
 TailLoadsA = 0.5*Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTail_A.value;
 
 % Choosing design condition 
@@ -108,8 +108,8 @@ hold on; grid on; grid minor;
 % SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
 switch(Aircraft.Geometry.Fuselage.empennage)
     case 'Double fin'
-        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], 'k.', 'LineWidth', 2.5, 'DisplayName', 'Horiz. tail');
-        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], 'k.', 'LineWidth', 2.5);
+        plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], '-k.', 'LineWidth', 2.5, 'DisplayName', 'Horiz. tail');
+        plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], '-k.', 'LineWidth', 2.5, 'DisplayName', 'Vert. tail');
         critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
         theta_rad     = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value;
         HTail_comp    = critical_load*(sin(theta_rad))*0.0125;
@@ -123,9 +123,9 @@ switch(Aircraft.Geometry.Fuselage.empennage)
         plot(X_horizontal, Y_horizontal, '-b.', 'MarkerSize', 15, 'DisplayName', 'Horiz. loads')
         
         plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
-             [HTail_comp HTail_comp], '--b.', 'LineWidth', 0.5, 'MarkerSize', 15)
+             [HTail_comp HTail_comp], '--b.', 'LineWidth', 0.5, 'MarkerSize', 15, 'DisplayName', 'Projection')
         plot([Aircraft.Geometry.Horizontal.b.value+VTail_comp Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
-             [Aircraft.Geometry.Vertical.b.value*0.75 HTail_comp], '--g.', 'LineWidth', 0.5, 'MarkerSize', 15) 
+             [Aircraft.Geometry.Vertical.b.value*0.75 HTail_comp], '--g.', 'LineWidth', 0.5, 'MarkerSize', 15, 'DisplayName', 'Projection') 
         plot([Aircraft.Geometry.Horizontal.b.value*0.75 Aircraft.Geometry.Horizontal.b.value+VTail_comp], ...
              [Aircraft.Geometry.Vertical.b.value*0.75 HTail_comp], '-r.', 'MarkerSize', 15, 'DisplayName', 'Crit. loads')
          
