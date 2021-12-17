@@ -1435,7 +1435,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.vd.case_
 %% TOTAL AIRLOADS = L_tail + DELTA L_tail
 
 % AIRSPEED VA - CASE 1 
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_one.Total_airloads.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_one.Manoeuvring_Critical_Load_Increment.value + Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTA.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_one.Total_airloads.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_one.Manoeuvring_Critical_Load_Increment.value + Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.LHTA1.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_one.Total_airloads.Attributes.unit = "daN";
 
 % AIRSPEED VA - CASE 2 
@@ -1443,7 +1443,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_two.Total_airloads.Attributes.unit = "daN";
 
 % AIRSPEED VA - CASE 3 
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_three.Total_airloads.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_three.Manoeuvring_Critical_Load_Increment.value + Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTA.value;
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_three.Total_airloads.value = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_three.Manoeuvring_Critical_Load_Increment.value + Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.LHTA1.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_three.Total_airloads.Attributes.unit = "daN";
 
 % AIRSPEED VA - CASE 4 

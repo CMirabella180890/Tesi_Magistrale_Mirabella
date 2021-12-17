@@ -77,22 +77,26 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.Attributes.unit = "g's";
 
         % CALCULATION OF VS - CLEAN STALL SPEED
-        n     = 1.0; 
-        rho   = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
-        WS    = Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value;
+        n1    = 1.0; 
+        rho0  = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
+        x     = 200;
+        Mass  = Aircraft.Weight.I_Level.W_maxTakeOff.value + x;
+        g     = Aircraft.Constants.g.value;
+        S     = Aircraft.Geometry.Wing.S.value;
+        WS    = ( Mass * g ) / S;
         CLmax = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
-        VS    = calcvs(obj, rho, WS, CLmax, n);
+        VS    = calcvs(obj, rho0, WS, CLmax, n1);
 
         % CALCULATION OF VS1 - FLAPS DEPLOYED STALL SPEED
-        CLmax = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.value;
-        VS1   = calcvs(obj, rho, WS, CLmax, n);
+        CLmax_flap = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.value;
+        VS1        = calcvs(obj, rho0, WS, CLmax_flap, n1);
 
         % EVALUATION OF VF - FLAPS DEPLOYED AIRSPEED 
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.value = calcnVF(obj, VS, VS1);
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.Attributes.unit = "m/s";
 
         % STALLING SPEED VECTOR
-        Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho, WS, CLmax, n_flaps_vector);
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_flap, n_flaps_vector);
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.Attributes.unit = "m/s";
 
         % EVALUATION OF STALL AND FLAP MANOEUVRING POINT 
@@ -103,7 +107,7 @@ switch (Straight_flight_Case)
         nS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value;
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.Attributes.unit = "g's"; 
         % POINT A
-        Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho, CLmax, nmax);
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho0, CLmax_flap, nmax);
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.Attributes.unit = "m/s"; 
         VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value;
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.nA.value = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
@@ -129,13 +133,13 @@ switch (Straight_flight_Case)
         V_from0toS     = VS*ones(numb, 1);
 
         n_fromStoA     = linspace(nS, nA, numb);
-        V_fromStoA     = Vstall(WS, rho, CLmax, n_fromStoA);
+        V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
 
         n_fromAtoF     = nmax*ones(numb, 1);
         V_fromAtoF     = linspace(VA, VF, numb);
 
         n_fromFto0     = linspace(nF, 0.0, numb);
-        V_fromFto0     = VF*ones(numb,1);
+        V_fromFto0     = VF*ones(numb, 1);
 
         flaps_envelope = figure;
         hold on
@@ -159,8 +163,6 @@ switch (Straight_flight_Case)
 
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Flaps_envelope.value = flaps_envelope;
 
-        % Aircraft.Certification.Regulation.SubpartC.Flapsloads.Flaps_envelope.value = flapsenvelope_diagram(obj, npos, nmax, VSpos, VS, VF, Reg, Aircraft_name);
-
         % Saving figures inside correct folder
         fprintf('Saving flapsenvelopediagram.pdf in: ');
         fprintf('\n'); 
@@ -169,9 +171,226 @@ switch (Straight_flight_Case)
         movefile flapsenvelopediagram.pdf Output
         movefile flapsenvelopediagram.png Output
         % -----------------------------------------------------------------
-        if max(n_gust_cruise_plus) > nmax
+        
+        % FLAPS DEPLOYED GUST ENVELOPE 
+        VF            = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+        rho_operative = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
+        MAC           = Aircraft.Geometry.Wing.mac.value; 
+        CLalfa_rad    = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
+        g             = Aircraft.Constants.g.value;
+        Ude           = 7.62; % Gust magnitude
+
+        % CALCULATION OF THE MASS FACTOR
+        mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho0, g); 
+
+        % GUST ALLEVIATION FACTOR 
+        Kg   = calckg(obj, mu_g);
+
+        % CALCULATION OF THE GUST LOAD FACTOR AT V = VF 
+        nGUST  = @(V) 1.0 + V * ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+        V_gust = linspace(0.0, VF, numb); 
+        n_gust = nGUST(V_gust);
+
+        % STORE VALUES 
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.mu_g.value           = mu_g;
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.mu_g.Attributes.unit = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.Kg.value             = Kg;
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.Kg.Attributes.unit   = "Non dimensional";
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.Vgust.value          = V_gust;
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.ngust.value          = n_gust;
             
-        elseif max(n_gust_cruis_plus) < nmax
+        % GUST ENVELOPE AND FLIGHT ENVELOPE SUPERPOSITION 
+        Reg            = Aircraft.Certification.Regulation.value;
+        Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
+        VS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value;
+        VF             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+        VSpos          = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value;
+        npos           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.value;
+
+        flapsgust_envelope = figure;
+        hold on
+        grid on 
+        grid minor
+        ylim([-0.5 nmax+0.5])
+        xlim([0 VF+10])
+        plot(V_gust, n_gust, ':k', 'LineWidth', 0.2)
+        plot(VSpos, npos, ':r', 'LineWidth', 0.2)
+        plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth',1)
+        plot(V_fromAtoF, n_fromAtoF, '-b', 'LineWidth',1)
+        plot(V_fromFto0, n_fromFto0, '-b', 'LineWidth',1)
+        plot(V_from0toS, n_from0toS, '-b', 'LineWidth',1)
+        xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+        ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+        title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+        text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
+        text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
+        text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)
+        exportgraphics(flapsgust_envelope,'flaps_gust_envelopediagram.pdf','ContentType','vector')
+        exportgraphics(flapsgust_envelope,'flaps_gust_envelopediagram.png','ContentType','vector')
+
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.diagram = flapsgust_envelope;
+        % Saving figures inside correct folder
+        fprintf('Saving flapsenvelopediagram.pdf in: ');
+        fprintf('\n'); 
+        fprintf('%s\n', SaveFolder);
+        % Moving file inside correct folder
+        movefile flaps_gust_envelopediagram.pdf Output
+        movefile flaps_gust_envelopediagram.png Output        
+            
+        % FINAL ENVELOPE WITH FLAPS DEPLOYED 
+        nmax           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
+        CLalfa_rad     = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
+        npos           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.value;
+        VSpos          = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value;
+        VS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value;
+        V_g            = linspace(VS, VF, numb); 
+        n_g            = nGUST(V_g);
+        nS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value;
+        VF             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+        nF             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.nF.value;
+        Reg            = Aircraft.Certification.Regulation.value;
+        Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
+
+        
+        if max(n_gust) > nA
+            
+            syms a b c V 
+            a        = (rho0 * CLmax_flap) / (2 * WS);
+            b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
+            c        = 1;
+            eqn      = a*V^2 - b*V - c;
+            Solution = vpasolve(eqn, V);
+
+            for i = 1:length(Solution)
+               new_VA = cast(Solution(i), 'double');
+               if abs(new_VA) > VA
+                   VA = abs(new_VA);
+                   nA = nGUST(VA);
+               elseif abs(new_VA) < VA
+                   VA = VA; 
+                   nA = nA;
+               end
+            end
+
+            % POINT A
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value           = Vstall(WS, rho0, CLmax_flap, nA);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.Attributes.unit = "m/s"; 
+            VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.nA.value           = nA;
+            nA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.nA.value;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.nA.Attributes.unit = "g's"; 
+
+            n_from0toS     = linspace(0.0, nS, numb);
+            V_from0toS     = VS*ones(numb, 1);
+
+            n_fromStoA     = linspace(nS, nA, numb);
+            V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+
+            n_fromAtoF     = [nA nF];
+            V_fromAtoF     = [VA VF];
+
+            n_fromFto0     = [nF 0.0];
+            V_fromFto0     = [VF VF];
+
+            final_envelope = figure;
+            hold on
+            grid on 
+            grid minor
+            ylim([-0.5 nmax+0.5])
+            xlim([0 VF+10])
+            plot(V_gust, n_gust, ':k', 'LineWidth', 0.2)
+            plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth',1)
+            plot(V_fromAtoF, n_fromAtoF, '-b', 'LineWidth',1)
+            plot(V_fromFto0, n_fromFto0, '-b', 'LineWidth',1)
+            plot(V_from0toS, n_from0toS, '-b', 'LineWidth',1)
+            xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+            ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+            title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+            text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
+            text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
+            text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)
+            exportgraphics(flapsgust_envelope,'flaps_final_envelopediagram.pdf','ContentType','vector')
+            exportgraphics(flapsgust_envelope,'flaps_final_envelopediagram.png','ContentType','vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.diagram = final_envelope;
+
+            % Saving figures inside correct folder
+            fprintf('Saving flaps_final_envelopediagram.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile flaps_final_envelopediagram.pdf Output
+            movefile flaps_final_envelopediagram.png Output
+            
+        elseif max(n_gust) > nA
+            
+            syms a b c V 
+            a        = (rho0 * CLmax_flap) / (2 * WS);
+            b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
+            c        = 1;
+            eqn      = a*V^2 - b*V - c;
+            Solution = vpasolve(eqn, V);
+
+            for i = 1:length(Solution)
+               new_VA = cast(Solution(i), 'double');
+               if abs(new_VA) > VA
+                   VA = abs(new_VA);
+                   nA = nGUST(VA);
+               elseif abs(new_VA) < VA
+                   VA = VA; 
+                   nA = nA;
+               end
+            end
+
+            % POINT A
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value           = Vstall(WS, rho0, CLmax_flap, nA);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.Attributes.unit = "m/s"; 
+            VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.nA.value           = nA;
+            nA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.nA.value;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.nA.Attributes.unit = "g's"; 
+
+            n_from0toS     = linspace(0.0, nS, numb);
+            V_from0toS     = VS*ones(numb, 1);
+
+            n_fromStoA     = linspace(nS, nA, numb);
+            V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+
+            n_fromAtoF     = [nA nF];
+            V_fromAtoF     = [VA VF];
+
+            n_fromFto0     = [nF 0.0];
+            V_fromFto0     = [VF VF];
+
+            final_envelope = figure;
+            hold on
+            grid on 
+            grid minor
+            ylim([-0.5 nmax+0.5])
+            xlim([0 VF+10])
+            plot(V_gust, n_gust, ':k', 'LineWidth', 0.2)
+            plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth',1)
+            plot(V_fromAtoF, n_fromAtoF, '-b', 'LineWidth',1)
+            plot(V_fromFto0, n_fromFto0, '-b', 'LineWidth',1)
+            plot(V_from0toS, n_from0toS, '-b', 'LineWidth',1)
+            xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+            ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+            title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+            text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
+            text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
+            text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)
+            exportgraphics(flapsgust_envelope,'flaps_final_envelopediagram.pdf','ContentType','vector')
+            exportgraphics(flapsgust_envelope,'flaps_final_envelopediagram.png','ContentType','vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.diagram = final_envelope;
+
+            % Saving figures inside correct folder
+            fprintf('Saving flaps_final_envelopediagram.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile flaps_final_envelopediagram.pdf Output
+            movefile flaps_final_envelopediagram.png Output
             
         end
         % -----------------------------------------------------------------
@@ -187,22 +406,26 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.Attributes.unit = "g's";
 
         % CALCULATION OF VS - CLEAN STALL SPEED
-        n     = 1.0; 
-        rho   = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
-        WS    = Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value;
-        CLmax = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
-        VS    = calcvs(obj, rho, WS, CLmax, n);
+        n1          = 1.0; 
+        rho0        = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
+        x           = 0;
+        Mass        = Aircraft.Weight.I_Level.W_maxTakeOff.value + x;
+        g           = Aircraft.Constants.g.value;
+        S           = Aircraft.Geometry.Wing.S.value;
+        WS          = ( Mass * g ) / S;
+        CLmax_clean = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
+        VS          = calcvs(obj, rho0, WS, CLmax_clean, n1);
 
         % CALCULATION OF VS1 - FLAPS DEPLOYED STALL SPEED
-        CLmax = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.value;
-        VS1   = calcvs(obj, rho, WS, CLmax, n);
+        CLmax_flap = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.value;
+        VS1        = calcvs(obj, rho0, WS, CLmax_flap, n1);
 
         % EVALUATION OF VF - FLAPS DEPLOYED AIRSPEED 
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.value = calcnVF(obj, VS, VS1);
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.Attributes.unit = "m/s";
 
         % STALLING SPEED VECTOR
-        Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho, WS, CLmax, n_flaps_vector);
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_flap, n_flaps_vector);
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.Attributes.unit = "m/s";
 
         % EVALUATION OF STALL AND FLAP MANOEUVRING POINT 
@@ -213,7 +436,7 @@ switch (Straight_flight_Case)
         nS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value;
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.Attributes.unit = "g's"; 
         % POINT A
-        Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho, CLmax, nmax);
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho0, CLmax_flap, nmax);
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.Attributes.unit = "m/s"; 
         VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value;
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.nA.value = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
@@ -239,7 +462,7 @@ switch (Straight_flight_Case)
         V_from0toS     = VS*ones(numb, 1);
 
         n_fromStoA     = linspace(nS, nA, numb);
-        V_fromStoA     = Vstall(WS, rho, CLmax, n_fromStoA);
+        V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
 
         n_fromAtoF     = nmax*ones(numb, 1);
         V_fromAtoF     = linspace(VA, VF, numb);
@@ -280,22 +503,21 @@ switch (Straight_flight_Case)
         movefile flapsenvelopediagram.png Output
 
         % FLAPS DEPLOYED GUST ENVELOPE 
-        VF  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
-        WS  = Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value;
-        rho = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
-        MAC = Aircraft.Geometry.Wing.mac.value; 
-        a   = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
-        g   = Aircraft.Constants.g.value;
-        Ude = 7.62; % Gust magnitude
+        VF            = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+        rho_operative = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
+        MAC           = Aircraft.Geometry.Wing.mac.value; 
+        CLalfa_rad    = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
+        g             = Aircraft.Constants.g.value;
+        Ude           = 7.62; % Gust magnitude
 
         % CALCULATION OF THE MASS FACTOR
-        mu_g = calcmug(obj, WS, MAC, a, rho, g); 
+        mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho0, g); 
 
         % GUST ALLEVIATION FACTOR 
         Kg   = calckg(obj, mu_g);
 
         % CALCULATION OF THE GUST LOAD FACTOR AT V = VF 
-        nGUST  = @(V) 1.0 + V*((0.5*rho*a*Kg*Ude)/(WS));
+        nGUST  = @(V) 1.0 + V * (( 0.5 * rho0 * CLalfa_rad * Kg * Ude) / (WS));
         V_gust = linspace(0.0, VF, numb); 
         n_gust = nGUST(V_gust);
 
@@ -347,7 +569,7 @@ switch (Straight_flight_Case)
 
         %% FINAL ENVELOPE WITH FLAPS DEPLOYED 
         nmax           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
-        CLalfa         = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
+        CLalfa_rad     = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
         npos           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.value;
         VSpos          = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value;
         VS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value;
@@ -360,8 +582,8 @@ switch (Straight_flight_Case)
         Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
 
         syms a b c V 
-        a        = (rho*CLmax)/(2*WS);
-        b        = (Kg*Ude*CLalfa*rho)/(2*WS);
+        a        = (rho0 * CLmax_flap) / (2 * WS);
+        b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
         c        = 1;
         eqn      = a*V^2 - b*V - c;
         Solution = vpasolve(eqn, V);
@@ -378,7 +600,7 @@ switch (Straight_flight_Case)
         end
 
         % POINT A
-        Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value           = Vstall(WS, rho, CLmax, nA);
+        Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value           = Vstall(WS, rho0, CLmax_flap, nA);
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.Attributes.unit = "m/s"; 
         VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value;
         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.nA.value           = nA;
@@ -389,7 +611,7 @@ switch (Straight_flight_Case)
         V_from0toS     = VS*ones(numb, 1);
 
         n_fromStoA     = linspace(nS, nA, numb);
-        V_fromStoA     = Vstall(WS, rho, CLmax, n_fromStoA);
+        V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
 
         n_fromAtoF     = [nA nF];
         V_fromAtoF     = [VA VF];

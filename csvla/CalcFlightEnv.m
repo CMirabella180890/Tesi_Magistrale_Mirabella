@@ -136,8 +136,8 @@ Reg = Aircraft.Certification.Regulation.value;
 g    = Aircraft.Constants.g.value;
 S1   = 0.0;
 S    = Aircraft.Geometry.Wing.S.value + S1;
-x    = 0;
-Mass = Aircraft.Weight.I_Level.W_maxTakeOff.value+x;
+x    = 200;
+Mass = Aircraft.Weight.I_Level.W_maxTakeOff.value + x;
 Aircraft.Certification.Performance.I_Level.Wing_loading_SI.value = (Mass*g)/(S);
 Aircraft.Certification.Performance.I_Level.Wing_loading_SI.Attributes.unit = "Pa";
 
