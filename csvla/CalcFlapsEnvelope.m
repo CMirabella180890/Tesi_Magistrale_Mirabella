@@ -449,7 +449,7 @@ for i = 1:length(Solution)
                 plot(V_fromFto0,  n_fromFto0,   '-b', 'LineWidth',   1)
 
                 plot(V_fromStoA(1),  n_fromStoA(1),  'k.', 'MarkerSize', 10)
-                plot(V_fromAtoF(1), n_fromAtoF(1), 'k.', 'MarkerSize', 10)
+                plot(V_fromAtoF(1),  n_fromAtoF(1), 'k.', 'MarkerSize', 10)
                 plot(V_fromFto0(1),  n_fromFto0(1),  'k.', 'MarkerSize', 10)
 
                 xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
