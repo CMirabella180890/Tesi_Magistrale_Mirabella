@@ -268,6 +268,37 @@ switch (Straight_flight_Case)
             % HORIZONTAL TAIL LIFT
             LHT_from0toS(i) = (0.5)*(V_from0toS(i)^2)*(S)*(rho0)*(CLHT_from0toS(i))*(1e-1);
             
+            % DRAFT VERSION OF ITERATION 
+            CL_tail         = CLHT_from0toS(i);
+            CL_wb           = CL_from0toS(i);
+            CL_new_from0toS = CL_wb - CL_tail;
+            tol             = 1e-3; 
+            n               = 1;
+            while abs(CL_wb - CL_tail) > tol
+               alfa_new_from0toS = alpha_fullmodel(CL_new_from0toS);
+               CD_wb             = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+               CMCL_new          = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_from0toS), XAC, XCG, bCG, MAC);
+               CMCD_new          = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_from0toS), XAC, XCG, bCG, MAC);
+               CMCT_new          = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+               CMCG_new          = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+               CLHT_new          = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_new_from0toS));
+               CL_tail           = CLHT_new;
+               CL_new_from0toS   = CL_from0toS(i) - CL_tail;
+               CL_wb             = CL_wb + (CL_new_from0toS - CL_wb) * 1e-1;
+               n                 = n + 1;
+               if n == 15
+                   break
+               end
+            end
+            CL_from0toS(i)   = CL_new_from0toS; 
+            CLHT_from0toS(i) = CL_tail;
+            alfa_from0toS(i) = alfa_new_from0toS;
+            WBL_from0toS(i)  = q_from0toS(i) * S * CL_from0toS(i) * 1e-1;
+            LHT_from0toS(i)  = (0.5)*(V_from0toS(i)^2)*(S)*(rho0)*(CLHT_from0toS(i))*(1e-1);
+            CMCL_from0toS(i) = CMCL_new;
+            CMCD_from0toS(i) = CMCD_new;
+            CMCG_from0toS(i) = CMCG_new;
         end 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS.value = CL_from0toS;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS.Attributes.unit = "Non dimensional"; 
@@ -322,6 +353,39 @@ switch (Straight_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_fromStoA1(i)));
             % HORIZONTAL TAIL LIFT
             LHT_fromStoA1(i) = (0.5)*(V_fromStoA1(i)^2)*(S)*(rho0)*(CLHT_fromStoA1(i))*(1e-1);
+            
+            % DRAFT VERSION OF ITERATION 
+            CL_tail          = CLHT_fromStoA1(i);
+            CL_wb            = CL_fromStoA1(i);
+            CL_new_fromStoA1 = CL_wb - CL_tail;
+            tol              = 1e-3; 
+            n                = 1;
+            while abs(CL_wb - CL_tail) > tol
+               alfa_new_fromStoA1 = alpha_fullmodel(CL_new_fromStoA1);
+               CD_wb             = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+               CMCL_new          = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromStoA1), XAC, XCG, bCG, MAC);
+               CMCD_new          = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromStoA1), XAC, XCG, bCG, MAC);
+               CMCT_new          = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+               CMCG_new          = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+               CLHT_new          = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                             l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromStoA1));
+               CL_tail           = CLHT_new;
+               CL_new_fromStoA1  = CL_fromStoA1(i) - CL_tail;
+               CL_wb             = CL_wb + (CL_new_fromStoA1 - CL_wb) * 1e-1;
+               n                 = n + 1;
+               if n == 15
+                   break
+               end
+            end
+            CL_fromStoA1(i)   = CL_new_fromStoA1; 
+            CLHT_fromStoA1(i) = CL_tail;
+            alfa_fromStoA1(i) = alfa_new_fromStoA1;
+            WBL_fromStoA1(i)  = q_fromStoA1(i) * S * CL_fromStoA1(i) * 1e-1;
+            LHT_fromStoA1(i)  = (0.5)*(V_fromStoA1(i)^2)*(S)*(rho0)*(CLHT_fromStoA1(i))*(1e-1);
+            CMCL_fromStoA1(i) = CMCL_new;
+            CMCD_fromStoA1(i) = CMCD_new;
+            CMCG_fromStoA1(i) = CMCG_new;
+            
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromStoA1.value = CL_fromStoA1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromStoA1.Attributes.unit = "Non dimensional"; 
@@ -388,6 +452,39 @@ switch (Straight_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromA1toC1(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromA1toC1(i) = (0.5)*(V_fromA1toC1(i)^2)*(S)*(rho0)*(CLHT_fromA1toC1(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail           = CLHT_fromA1toC1(i);
+                CL_wb             = CL_fromA1toC1(i);
+                CL_new_fromA1toC1 = CL_wb - CL_tail;
+                tol               = 1e-3; 
+                n                 = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromA1toC1 = alpha_fullmodel(CL_new_fromA1toC1);
+                   CD_wb               = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new            = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromA1toC1), XAC, XCG, bCG, MAC);
+                   CMCD_new            = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromA1toC1), XAC, XCG, bCG, MAC);
+                   CMCT_new            = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new            = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new            = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromA1toC1));
+                   CL_tail             = CLHT_new;
+                   CL_new_fromA1toC1   = CL_fromA1toC1(i) - CL_tail;
+                   CL_wb               = CL_wb + (CL_new_fromA1toC1 - CL_wb) * 1e-1;
+                   n                   = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromA1toC1(i)   = CL_new_fromA1toC1; 
+                CLHT_fromA1toC1(i) = CL_tail;
+                alfa_fromA1toC1(i) = alfa_new_fromA1toC1;
+                WBL_fromA1toC1(i)  = q_fromA1toC1(i) * S * CL_fromA1toC1(i) * 1e-1;
+                LHT_fromA1toC1(i)  = (0.5)*(V_fromA1toC1(i)^2)*(S)*(rho0)*(CLHT_fromA1toC1(i))*(1e-1);
+                CMCL_fromA1toC1(i) = CMCL_new;
+                CMCD_fromA1toC1(i) = CMCD_new;
+                CMCG_fromA1toC1(i) = CMCG_new;
+                
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA1toC1.value = CL_fromA1toC1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA1toC1.Attributes.unit = "Non dimensional"; 
@@ -442,6 +539,38 @@ switch (Straight_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromC1toC(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromC1toC(i) = (0.5)*(V_fromC1toC(i)^2)*(S)*(rho0)*(CLHT_fromC1toC(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail           = CLHT_fromC1toC(i);
+                CL_wb             = CL_fromC1toC(i);
+                CL_new_fromC1toC  = CL_wb - CL_tail;
+                tol               = 1e-3; 
+                n                 = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromC1toC = alpha_fullmodel(CL_new_fromC1toC);
+                   CD_wb             = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new          = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromC1toC), XAC, XCG, bCG, MAC);
+                   CMCD_new          = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromC1toC), XAC, XCG, bCG, MAC);
+                   CMCT_new          = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new          = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new          = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromC1toC));
+                   CL_tail           = CLHT_new;
+                   CL_new_fromC1toC  = CL_fromC1toC(i) - CL_tail;
+                   CL_wb             = CL_wb + (CL_new_fromC1toC - CL_wb) * 1e-1;
+                   n                 = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromC1toC(i)   = CL_new_fromC1toC; 
+                CLHT_fromC1toC(i) = CL_tail;
+                alfa_fromC1toC(i) = alfa_new_fromC1toC;
+                WBL_fromC1toC(i)  = q_fromC1toC(i) * S * CL_fromC1toC(i) * 1e-1;
+                LHT_fromC1toC(i)  = (0.5)*(V_fromC1toC(i)^2)*(S)*(rho0)*(CLHT_fromC1toC(i))*(1e-1);
+                CMCL_fromC1toC(i) = CMCL_new;
+                CMCD_fromC1toC(i) = CMCD_new;
+                CMCG_fromC1toC(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromC1toC.value = CL_fromC1toC;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromC1toC.Attributes.unit = "Non dimensional"; 
@@ -496,6 +625,38 @@ switch (Straight_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromCtoC2(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromCtoC2(i) = (0.5)*(V_fromCtoC2(i)^2)*(S)*(rho0)*(CLHT_fromCtoC2(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail           = CLHT_fromCtoC2(i);
+                CL_wb             = CL_fromCtoC2(i);
+                CL_new_fromCtoC2  = CL_wb - CL_tail;
+                tol               = 1e-3; 
+                n                 = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromCtoC2 = alpha_fullmodel(CL_new_fromCtoC2);
+                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromCtoC2), XAC, XCG, bCG, MAC);
+                   CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromCtoC2), XAC, XCG, bCG, MAC);
+                   CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new           = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new           = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromCtoC2));
+                   CL_tail            = CLHT_new;
+                   CL_new_fromCtoC2   = CL_fromCtoC2(i) - CL_tail;
+                   CL_wb              = CL_wb + (CL_new_fromCtoC2 - CL_wb) * 1e-1;
+                   n                  = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromCtoC2(i)   = CL_new_fromCtoC2; 
+                CLHT_fromCtoC2(i) = CL_tail;
+                alfa_fromCtoC2(i) = alfa_new_fromCtoC2;
+                WBL_fromCtoC2(i)  = q_fromCtoC2(i) * S * CL_fromCtoC2(i) * 1e-1;
+                LHT_fromCtoC2(i)  = (0.5)*(V_fromCtoC2(i)^2)*(S)*(rho0)*(CLHT_fromCtoC2(i))*(1e-1);
+                CMCL_fromCtoC2(i) = CMCL_new;
+                CMCD_fromCtoC2(i) = CMCD_new;
+                CMCG_fromCtoC2(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromCtoC2.value = CL_fromCtoC2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromCtoC2.Attributes.unit = "Non dimensional"; 
@@ -550,6 +711,38 @@ switch (Straight_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromC2toD(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromC2toD(i) = (0.5)*(V_fromC2toD(i)^2)*(S)*(rho0)*(CLHT_fromC2toD(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail           = CLHT_fromC2toD(i);
+                CL_wb             = CL_fromC2toD(i);
+                CL_new_fromC2toD  = CL_wb - CL_tail;
+                tol               = 1e-3; 
+                n                 = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromC2toD = alpha_fullmodel(CL_new_fromC2toD);
+                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromC2toD), XAC, XCG, bCG, MAC);
+                   CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromC2toD), XAC, XCG, bCG, MAC);
+                   CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new           = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new           = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromC2toD));
+                   CL_tail            = CLHT_new;
+                   CL_new_fromC2toD   = CL_fromC2toD(i) - CL_tail;
+                   CL_wb              = CL_wb + (CL_new_fromC2toD - CL_wb) * 1e-1;
+                   n                  = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromC2toD(i)   = CL_new_fromC2toD; 
+                CLHT_fromC2toD(i) = CL_tail;
+                alfa_fromC2toD(i) = alfa_new_fromC2toD;
+                WBL_fromC2toD(i)  = q_fromC2toD(i) * S * CL_fromC2toD(i) * 1e-1;
+                LHT_fromC2toD(i)  = (0.5)*(V_fromC2toD(i)^2)*(S)*(rho0)*(CLHT_fromC2toD(i))*(1e-1);
+                CMCL_fromC2toD(i) = CMCL_new;
+                CMCD_fromC2toD(i) = CMCD_new;
+                CMCG_fromC2toD(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromC2toD.value = CL_fromC2toD;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromC2toD.Attributes.unit = "Non dimensional"; 
@@ -604,6 +797,38 @@ switch (Straight_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromDto0(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromDto0(i) = (0.5)*(V_fromDto0(i)^2)*(S)*(rho0)*(CLHT_fromDto0(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail           = CLHT_fromDto0(i);
+                CL_wb             = CL_fromDto0(i);
+                CL_new_fromDto0  = CL_wb - CL_tail;
+                tol               = 1e-3; 
+                n                 = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromDto0  = alpha_fullmodel(CL_new_fromDto0);
+                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromDto0), XAC, XCG, bCG, MAC);
+                   CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromDto0), XAC, XCG, bCG, MAC);
+                   CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new           = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new           = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromDto0));
+                   CL_tail            = CLHT_new;
+                   CL_new_fromDto0    = CL_fromDto0(i) - CL_tail;
+                   CL_wb              = CL_wb + (CL_new_fromDto0 - CL_wb) * 1e-1;
+                   n                  = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromDto0(i)   = CL_new_fromDto0; 
+                CLHT_fromDto0(i) = CL_tail;
+                alfa_fromDto0(i) = alfa_new_fromDto0;
+                WBL_fromDto0(i)  = q_fromDto0(i) * S * CL_fromDto0(i) * 1e-1;
+                LHT_fromDto0(i)  = (0.5)*(V_fromDto0(i)^2)*(S)*(rho0)*(CLHT_fromDto0(i))*(1e-1);
+                CMCL_fromDto0(i) = CMCL_new;
+                CMCD_fromDto0(i) = CMCD_new;
+                CMCG_fromDto0(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromDto0.value = CL_fromDto0;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromDto0.Attributes.unit = "Non dimensional"; 
@@ -1027,6 +1252,38 @@ switch (Straight_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromA1toC(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromA1toC(i) = (0.5)*(V_fromA1toC(i)^2)*(S)*(rho0)*(CLHT_fromA1toC(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail           = CLHT_fromA1toC(i);
+                CL_wb             = CL_fromA1toC(i);
+                CL_new_fromA1toC  = CL_wb - CL_tail;
+                tol               = 1e-3; 
+                n                 = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromA1toC = alpha_fullmodel(CL_new_fromA1toC);
+                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromA1toC), XAC, XCG, bCG, MAC);
+                   CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromA1toC), XAC, XCG, bCG, MAC);
+                   CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new           = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new           = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromA1toC));
+                   CL_tail            = CLHT_new;
+                   CL_new_fromA1toC   = CL_fromA1toC(i) - CL_tail;
+                   CL_wb              = CL_wb + (CL_new_fromA1toC - CL_wb) * 1e-1;
+                   n                  = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromA1toC(i)   = CL_new_fromA1toC; 
+                CLHT_fromA1toC(i) = CL_tail;
+                alfa_fromA1toC(i) = alfa_new_fromA1toC;
+                WBL_fromA1toC(i)  = q_fromA1toC(i) * S * CL_fromA1toC(i) * 1e-1;
+                LHT_fromA1toC(i)  = (0.5)*(V_fromA1toC(i)^2)*(S)*(rho0)*(CLHT_fromA1toC(i))*(1e-1);
+                CMCL_fromA1toC(i) = CMCL_new;
+                CMCD_fromA1toC(i) = CMCD_new;
+                CMCG_fromA1toC(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA1toC.value = CL_fromA1toC;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromA1toC.Attributes.unit = "Non dimensional"; 
@@ -1081,6 +1338,38 @@ switch (Straight_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromCtoD(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromCtoD(i) = (0.5)*(V_fromCtoD(i)^2)*(S)*(rho0)*(CLHT_fromCtoD(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail           = CLHT_fromCtoD(i);
+                CL_wb             = CL_fromCtoD(i);
+                CL_new_fromCtoD  = CL_wb - CL_tail;
+                tol               = 1e-3; 
+                n                 = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromCtoD  = alpha_fullmodel(CL_new_fromCtoD);
+                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromCtoD), XAC, XCG, bCG, MAC);
+                   CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromCtoD), XAC, XCG, bCG, MAC);
+                   CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new           = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new           = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromCtoD));
+                   CL_tail            = CLHT_new;
+                   CL_new_fromCtoD    = CL_fromCtoD(i) - CL_tail;
+                   CL_wb              = CL_wb + (CL_new_fromCtoD - CL_wb) * 1e-1;
+                   n                  = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromCtoD(i)   = CL_new_fromCtoD; 
+                CLHT_fromCtoD(i) = CL_tail;
+                alfa_fromCtoD(i) = alfa_new_fromCtoD;
+                WBL_fromCtoD(i)  = q_fromCtoD(i) * S * CL_fromCtoD(i) * 1e-1;
+                LHT_fromCtoD(i)  = (0.5)*(V_fromCtoD(i)^2)*(S)*(rho0)*(CLHT_fromCtoD(i))*(1e-1);
+                CMCL_fromCtoD(i) = CMCL_new;
+                CMCD_fromCtoD(i) = CMCD_new;
+                CMCG_fromCtoD(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromCtoD.value = CL_fromCtoD;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromCtoD.Attributes.unit = "Non dimensional"; 
@@ -1136,6 +1425,38 @@ switch (Straight_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromDto0(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromDto0(i) = (0.5)*(V_fromDto0(i)^2)*(S)*(rho0)*(CLHT_fromDto0(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail           = CLHT_fromDto0(i);
+                CL_wb             = CL_fromDto0(i);
+                CL_new_fromDto0  = CL_wb - CL_tail;
+                tol               = 1e-3; 
+                n                 = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromDto0  = alpha_fullmodel(CL_new_fromDto0);
+                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromDto0), XAC, XCG, bCG, MAC);
+                   CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromDto0), XAC, XCG, bCG, MAC);
+                   CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new           = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new           = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromDto0));
+                   CL_tail            = CLHT_new;
+                   CL_new_fromDto0    = CL_fromDto0(i) - CL_tail;
+                   CL_wb              = CL_wb + (CL_new_fromDto0 - CL_wb) * 1e-1;
+                   n                  = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromDto0(i)   = CL_new_fromDto0; 
+                CLHT_fromDto0(i) = CL_tail;
+                alfa_fromDto0(i) = alfa_new_fromDto0;
+                WBL_fromDto0(i)  = q_fromDto0(i) * S * CL_fromDto0(i) * 1e-1;
+                LHT_fromDto0(i)  = (0.5)*(V_fromDto0(i)^2)*(S)*(rho0)*(CLHT_fromDto0(i))*(1e-1);
+                CMCL_fromDto0(i) = CMCL_new;
+                CMCD_fromDto0(i) = CMCD_new;
+                CMCG_fromDto0(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromDto0.value = CL_fromDto0;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromDto0.Attributes.unit = "Non dimensional"; 
@@ -1490,8 +1811,6 @@ switch (Straight_flight_Case)
         CLHT_from0toS = zeros(length(V_from0toS), 1);
         LHT_from0toS  = zeros(length(V_from0toS), 1);
         for i = 1:length(V_from0toS)
-%             alfa_from0toS(i) = alfa_func(rho0, S, V_from0toS(i), WS, n_from0toS(i), CLalfa, alpha_zerol);
-%             CL_from0toS(i)   = CL_fullmodel(alfa_from0toS(i));
             CL_from0toS(i)   = CLmax_func(rho0, V_from0toS(i), WS, n_from0toS(i));
             alfa_from0toS(i) = alpha_fullmodel(CL_from0toS(i));
             CD_from0toS(i)   = cd_calc(obj1, CD0, CL_from0toS(i), AR, e, k1, k2);
@@ -2440,6 +2759,38 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_from0toSinv(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_from0toSinv(i) = (0.5)*(V_from0toSinv(i)^2)*(S)*(rho0)*(CLHT_from0toSinv(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail         = CLHT_from0toSinv(i);
+                CL_wb           = CL_from0toSinv(i);
+                CL_from0toSinv  = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_from0toSinv = alpha_fullmodel(CL_new_from0toSinv);
+                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_from0toSinv), XAC, XCG, bCG, MAC);
+                   CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_from0toSinv), XAC, XCG, bCG, MAC);
+                   CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new             = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new             = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_from0toSinv));
+                   CL_tail              = CLHT_new;
+                   CL_new_from0toSinv   = CL_from0toSinv(i) - CL_tail;
+                   CL_wb                = CL_wb + (CL_new_from0toSinv - CL_wb) * 1e-1;
+                   n                    = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_from0toSinv(i)   = CL_new_from0toSinv; 
+                CLHT_from0toSinv(i) = CL_tail;
+                alfa_from0toSinv(i) = alfa_new_from0toSinv;
+                WBL_from0toSinv(i)  = q_from0toSinv(i) * S * CL_from0toSinv(i) * 1e-1;
+                LHT_from0toSinv(i)  = (0.5)*(V_from0toSinv(i)^2)*(S)*(rho0)*(CLHT_from0toSinv(i))*(1e-1);
+                CMCL_from0toSinv(i) = CMCL_new;
+                CMCD_from0toSinv(i) = CMCD_new;
+                CMCG_from0toSinv(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv.value = CL_from0toSinv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv.Attributes.unit = "Non dimensional"; 
@@ -2499,6 +2850,38 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromSinvtoG(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromSinvtoG(i) = (0.5)*(V_fromSinvtoG(i)^2)*(S)*(rho0)*(CLHT_fromSinvtoG(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail         = CLHT_fromSinvtoG(i);
+                CL_wb           = CL_fromSinvtoG(i);
+                CL_fromSinvtoG  = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromSinvtoG = alpha_fullmodel(CL_new_fromSinvtoG);
+                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromSinvtoG), XAC, XCG, bCG, MAC);
+                   CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromSinvtoG), XAC, XCG, bCG, MAC);
+                   CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new             = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new             = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromSinvtoG));
+                   CL_tail              = CLHT_new;
+                   CL_new_fromSinvtoG   = CL_fromSinvtoG(i) - CL_tail;
+                   CL_wb                = CL_wb + (CL_new_fromSinvtoG - CL_wb) * 1e-1;
+                   n                    = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromSinvtoG(i)   = CL_new_fromSinvtoG; 
+                CLHT_fromSinvtoG(i) = CL_tail;
+                alfa_fromSinvtoG(i) = alfa_new_fromSinvtoG;
+                WBL_fromSinvtoG(i)  = q_fromSinvtoG(i) * S * CL_fromSinvtoG(i) * 1e-1;
+                LHT_fromSinvtoG(i)  = (0.5)*(V_fromSinvtoG(i)^2)*(S)*(rho0)*(CLHT_fromSinvtoG(i))*(1e-1);
+                CMCL_fromSinvtoG(i) = CMCL_new;
+                CMCD_fromSinvtoG(i) = CMCD_new;
+                CMCG_fromSinvtoG(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromSinvtoG.value = CL_fromSinvtoG;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromSinvtoG.Attributes.unit = "Non dimensional"; 
@@ -2558,6 +2941,38 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromGtoG1(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromGtoG1(i) = (0.5)*(V_fromGtoG1(i)^2)*(S)*(rho0)*(CLHT_fromGtoG1(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail         = CLHT_fromGtoG1(i);
+                CL_wb           = CL_fromGtoG1(i);
+                CL_fromGtoG1    = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromGtoG1   = alpha_fullmodel(CL_new_fromGtoG1);
+                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromGtoG1), XAC, XCG, bCG, MAC);
+                   CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromGtoG1), XAC, XCG, bCG, MAC);
+                   CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new             = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new             = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromGtoG1));
+                   CL_tail              = CLHT_new;
+                   CL_new_fromGtoG1     = CL_fromGtoG1(i) - CL_tail;
+                   CL_wb                = CL_wb + (CL_new_fromGtoG1 - CL_wb) * 1e-1;
+                   n                    = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromGtoG1(i)   = CL_new_fromGtoG1; 
+                CLHT_fromGtoG1(i) = CL_tail;
+                alfa_fromGtoG1(i) = alfa_new_fromGtoG1;
+                WBL_fromGtoG1(i)  = q_fromGtoG1(i) * S * CL_fromGtoG1(i) * 1e-1;
+                LHT_fromGtoG1(i)  = (0.5)*(V_fromGtoG1(i)^2)*(S)*(rho0)*(CLHT_fromGtoG1(i))*(1e-1);
+                CMCL_fromGtoG1(i) = CMCL_new;
+                CMCD_fromGtoG1(i) = CMCD_new;
+                CMCG_fromGtoG1(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromGtoG1.value = CL_fromGtoG1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromGtoG1.Attributes.unit = "Non dimensional"; 
@@ -2617,6 +3032,38 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromG1toF(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromG1toF(i) = (0.5)*(V_fromG1toF(i)^2)*(S)*(rho0)*(CLHT_fromG1toF(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail         = CLHT_fromG1toF(i);
+                CL_wb           = CL_fromG1toF(i);
+                CL_fromG1toF    = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromG1toF   = alpha_fullmodel(CL_new_fromG1toF);
+                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromG1toF), XAC, XCG, bCG, MAC);
+                   CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromG1toF), XAC, XCG, bCG, MAC);
+                   CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new             = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new             = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromG1toF));
+                   CL_tail              = CLHT_new;
+                   CL_new_fromG1toF     = CL_fromG1toF(i) - CL_tail;
+                   CL_wb                = CL_wb + (CL_new_fromG1toF - CL_wb) * 1e-1;
+                   n                    = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromG1toF(i)   = CL_new_fromG1toF; 
+                CLHT_fromG1toF(i) = CL_tail;
+                alfa_fromG1toF(i) = alfa_new_fromG1toF;
+                WBL_fromG1toF(i)  = q_fromG1toF(i) * S * CL_fromG1toF(i) * 1e-1;
+                LHT_fromG1toF(i)  = (0.5)*(V_fromG1toF(i)^2)*(S)*(rho0)*(CLHT_fromG1toF(i))*(1e-1);
+                CMCL_fromG1toF(i) = CMCL_new;
+                CMCD_fromG1toF(i) = CMCD_new;
+                CMCG_fromG1toF(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromG1toF.value = CL_fromG1toF;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromG1toF.Attributes.unit = "Non dimensional"; 
@@ -2676,6 +3123,39 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromFtoG2(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromFtoG2(i) = (0.5)*(V_fromFtoG2(i)^2)*(S)*(rho0)*(CLHT_fromFtoG2(i))*(1e-1);
+ 
+                % DRAFT VERSION OF ITERATION 
+                CL_tail         = CLHT_fromFtoG2(i);
+                CL_wb           = CL_fromFtoG2(i);
+                CL_fromFtoG2    = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromFtoG2   = alpha_fullmodel(CL_new_fromFtoG2);
+                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromFtoG2), XAC, XCG, bCG, MAC);
+                   CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromFtoG2), XAC, XCG, bCG, MAC);
+                   CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new             = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new             = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromFtoG2));
+                   CL_tail              = CLHT_new;
+                   CL_new_fromFtoG2     = CL_fromFtoG2(i) - CL_tail;
+                   CL_wb                = CL_wb + (CL_new_fromFtoG2 - CL_wb) * 1e-1;
+                   n                    = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromFtoG2(i)   = CL_new_fromFtoG2; 
+                CLHT_fromFtoG2(i) = CL_tail;
+                alfa_fromFtoG2(i) = alfa_new_fromFtoG2;
+                WBL_fromFtoG2(i)  = q_fromFtoG2(i) * S * CL_fromFtoG2(i) * 1e-1;
+                LHT_fromFtoG2(i)  = (0.5)*(V_fromFtoG2(i)^2)*(S)*(rho0)*(CLHT_fromFtoG2(i))*(1e-1);
+                CMCL_fromFtoG2(i) = CMCL_new;
+                CMCD_fromFtoG2(i) = CMCD_new;
+                CMCG_fromFtoG2(i) = CMCG_new;               
+                
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromFtoG2.value = CL_fromFtoG2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromFtoG2.Attributes.unit = "Non dimensional"; 
@@ -2735,6 +3215,38 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromG2toE(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromG2toE(i) = (0.5)*(V_fromG2toE(i)^2)*(S)*(rho0)*(CLHT_fromG2toE(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail         = CLHT_fromG2toE(i);
+                CL_wb           = CL_fromG2toE(i);
+                CL_fromG2toE    = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromG2toE   = alpha_fullmodel(CL_new_fromG2toE);
+                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromG2toE), XAC, XCG, bCG, MAC);
+                   CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromG2toE), XAC, XCG, bCG, MAC);
+                   CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new             = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new             = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromG2toE));
+                   CL_tail              = CLHT_new;
+                   CL_new_fromG2toE     = CL_fromG2toE(i) - CL_tail;
+                   CL_wb                = CL_wb + (CL_new_fromG2toE - CL_wb) * 1e-1;
+                   n                    = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromG2toE(i)   = CL_new_fromG2toE; 
+                CLHT_fromG2toE(i) = CL_tail;
+                alfa_fromG2toE(i) = alfa_new_fromG2toE;
+                WBL_fromG2toE(i)  = q_fromG2toE(i) * S * CL_fromG2toE(i) * 1e-1;
+                LHT_fromG2toE(i)  = (0.5)*(V_fromG2toE(i)^2)*(S)*(rho0)*(CLHT_fromG2toE(i))*(1e-1);
+                CMCL_fromG2toE(i) = CMCL_new;
+                CMCD_fromG2toE(i) = CMCD_new;
+                CMCG_fromG2toE(i) = CMCG_new;  
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromG2toE.value = CL_fromG2toE;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromG2toE.Attributes.unit = "Non dimensional"; 
@@ -2794,6 +3306,38 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromEto0(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromEto0(i) = (0.5)*(V_fromEto0(i)^2)*(S)*(rho0)*(CLHT_fromEto0(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail         = CLHT_fromEto0(i);
+                CL_wb           = CL_fromEto0(i);
+                CL_fromEto0    = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromEto0   = alpha_fullmodel(CL_new_fromEto0);
+                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromEto0), XAC, XCG, bCG, MAC);
+                   CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromEto0), XAC, XCG, bCG, MAC);
+                   CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new             = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new             = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromEto0));
+                   CL_tail              = CLHT_new;
+                   CL_new_fromEto0     = CL_fromEto0(i) - CL_tail;
+                   CL_wb                = CL_wb + (CL_new_fromEto0 - CL_wb) * 1e-1;
+                   n                    = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromEto0(i)   = CL_new_fromEto0; 
+                CLHT_fromEto0(i) = CL_tail;
+                alfa_fromEto0(i) = alfa_new_fromEto0;
+                WBL_fromEto0(i)  = q_fromEto0(i) * S * CL_fromEto0(i) * 1e-1;
+                LHT_fromEto0(i)  = (0.5)*(V_fromEto0(i)^2)*(S)*(rho0)*(CLHT_fromEto0(i))*(1e-1);
+                CMCL_fromEto0(i) = CMCL_new;
+                CMCD_fromEto0(i) = CMCD_new;
+                CMCG_fromEto0(i) = CMCG_new;  
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromEto0.value = CL_fromEto0;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromEto0.Attributes.unit = "Non dimensional"; 
@@ -3068,6 +3612,39 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_from0toSinv(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_from0toSinv(i) = (0.5)*(V_from0toSinv(i)^2)*(S)*(rho0)*(CLHT_from0toSinv(i))*(1e-1);
+
+                % DRAFT VERSION OF ITERATION 
+                CL_tail         = CLHT_from0toSinv(i);
+                CL_wb           = CL_from0toSinv(i);
+                CL_from0toSinv  = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_from0toSinv = alpha_fullmodel(CL_new_from0toSinv);
+                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_from0toSinv), XAC, XCG, bCG, MAC);
+                   CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_from0toSinv), XAC, XCG, bCG, MAC);
+                   CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new             = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new             = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_from0toSinv));
+                   CL_tail              = CLHT_new;
+                   CL_new_from0toSinv   = CL_from0toSinv(i) - CL_tail;
+                   CL_wb                = CL_wb + (CL_new_from0toSinv - CL_wb) * 1e-1;
+                   n                    = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_from0toSinv(i)   = CL_new_from0toSinv; 
+                CLHT_from0toSinv(i) = CL_tail;
+                alfa_from0toSinv(i) = alfa_new_from0toSinv;
+                WBL_from0toSinv(i)  = q_from0toSinv(i) * S * CL_from0toSinv(i) * 1e-1;
+                LHT_from0toSinv(i)  = (0.5)*(V_from0toSinv(i)^2)*(S)*(rho0)*(CLHT_from0toSinv(i))*(1e-1);
+                CMCL_from0toSinv(i) = CMCL_new;
+                CMCD_from0toSinv(i) = CMCD_new;
+                CMCG_from0toSinv(i) = CMCG_new;                
+                
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv.value = CL_from0toSinv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv.Attributes.unit = "Non dimensional"; 
@@ -3127,6 +3704,39 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromSinvtoG(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromSinvtoG(i) = (0.5)*(V_fromSinvtoG(i)^2)*(S)*(rho0)*(CLHT_fromSinvtoG(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail         = CLHT_fromSinvtoG(i);
+                CL_wb           = CL_fromSinvtoG(i);
+                CL_fromSinvtoG  = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromSinvtoG = alpha_fullmodel(CL_new_fromSinvtoG);
+                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromSinvtoG), XAC, XCG, bCG, MAC);
+                   CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromSinvtoG), XAC, XCG, bCG, MAC);
+                   CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new             = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new             = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromSinvtoG));
+                   CL_tail              = CLHT_new;
+                   CL_new_fromSinvtoG   = CL_fromSinvtoG(i) - CL_tail;
+                   CL_wb                = CL_wb + (CL_new_fromSinvtoG - CL_wb) * 1e-1;
+                   n                    = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromSinvtoG(i)   = CL_new_fromSinvtoG; 
+                CLHT_fromSinvtoG(i) = CL_tail;
+                alfa_fromSinvtoG(i) = alfa_new_fromSinvtoG;
+                WBL_fromSinvtoG(i)  = q_fromSinvtoG(i) * S * CL_fromSinvtoG(i) * 1e-1;
+                LHT_fromSinvtoG(i)  = (0.5)*(V_fromSinvtoG(i)^2)*(S)*(rho0)*(CLHT_fromSinvtoG(i))*(1e-1);
+                CMCL_fromSinvtoG(i) = CMCL_new;
+                CMCD_fromSinvtoG(i) = CMCD_new;
+                CMCG_fromSinvtoG(i) = CMCG_new;     
+                
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromSinvtoG.value = CL_fromSinvtoG;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromSinvtoG.Attributes.unit = "Non dimensional"; 
@@ -3186,6 +3796,38 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromGtoF(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromGtoF(i) = (0.5)*(V_fromGtoF(i)^2)*(S)*(rho0)*(CLHT_fromGtoF(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail      = CLHT_fromGtoF(i);
+                CL_wb        = CL_fromGtoF(i);
+                CL_fromGtoF  = CL_wb - CL_tail;
+                tol          = 1e-3; 
+                n            = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromSinvtoG = alpha_fullmodel(CL_new_fromGtoF);
+                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromGtoF), XAC, XCG, bCG, MAC);
+                   CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromGtoF), XAC, XCG, bCG, MAC);
+                   CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new             = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new             = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromGtoF));
+                   CL_tail              = CLHT_new;
+                   CL_new_fromGtoF      = CL_fromGtoF(i) - CL_tail;
+                   CL_wb                = CL_wb + (CL_new_fromGtoF - CL_wb) * 1e-1;
+                   n                    = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromGtoF(i)   = CL_new_fromGtoF; 
+                CLHT_fromGtoF(i) = CL_tail;
+                alfa_fromGtoF(i) = alfa_new_fromGtoF;
+                WBL_fromGtoF(i)  = q_fromGtoF(i) * S * CL_fromGtoF(i) * 1e-1;
+                LHT_fromGtoF(i)  = (0.5)*(V_fromGtoF(i)^2)*(S)*(rho0)*(CLHT_fromGtoF(i))*(1e-1);
+                CMCL_fromGtoF(i) = CMCL_new;
+                CMCD_fromGtoF(i) = CMCD_new;
+                CMCG_fromGtoF(i) = CMCG_new;   
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromGtoF.value = CL_fromGtoF;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromGtoF.Attributes.unit = "Non dimensional"; 
@@ -3245,6 +3887,39 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromFtoE(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromFtoE(i) = (0.5)*(V_fromFtoE(i)^2)*(S)*(rho0)*(CLHT_fromFtoE(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail      = CLHT_fromFtoE(i);
+                CL_wb        = CL_fromFtoE(i);
+                CL_fromFtoE  = CL_wb - CL_tail;
+                tol          = 1e-3; 
+                n            = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromFtoE = alpha_fullmodel(CL_new_fromFtoE);
+                   CD_wb             = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new          = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromFtoE), XAC, XCG, bCG, MAC);
+                   CMCD_new          = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromFtoE), XAC, XCG, bCG, MAC);
+                   CMCT_new          = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new          = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new          = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromFtoE));
+                   CL_tail           = CLHT_new;
+                   CL_new_fromFtoE   = CL_fromFtoE(i) - CL_tail;
+                   CL_wb             = CL_wb + (CL_new_fromFtoE - CL_wb) * 1e-1;
+                   n                 = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromFtoE(i)   = CL_new_fromFtoE; 
+                CLHT_fromFtoE(i) = CL_tail;
+                alfa_fromFtoE(i) = alfa_new_fromFtoE;
+                WBL_fromFtoE(i)  = q_fromFtoE(i) * S * CL_fromFtoE(i) * 1e-1;
+                LHT_fromFtoE(i)  = (0.5)*(V_fromFtoE(i)^2)*(S)*(rho0)*(CLHT_fromFtoE(i))*(1e-1);
+                CMCL_fromFtoE(i) = CMCL_new;
+                CMCD_fromFtoE(i) = CMCD_new;
+                CMCG_fromFtoE(i) = CMCG_new;  
+                
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromFtoE.value = CL_fromFtoE;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromFtoE.Attributes.unit = "Non dimensional"; 
@@ -3304,6 +3979,39 @@ switch (Inverted_flight_Case)
                                                  l_ht, MAC, XAC, XCG, deg2rad(alfa_fromEto0(i)));
                 % HORIZONTAL TAIL LIFT
                 LHT_fromEto0(i) = (0.5)*(V_fromEto0(i)^2)*(S)*(rho0)*(CLHT_fromEto0(i))*(1e-1);
+                
+                % DRAFT VERSION OF ITERATION 
+                CL_tail      = CLHT_fromEto0(i);
+                CL_wb        = CL_fromEto0(i);
+                CL_fromEto0  = CL_wb - CL_tail;
+                tol          = 1e-3; 
+                n            = 1;
+                while abs(CL_wb - CL_tail) > tol
+                   alfa_new_fromEto0 = alpha_fullmodel(CL_new_fromEto0);
+                   CD_wb             = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   CMCL_new          = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromEto0), XAC, XCG, bCG, MAC);
+                   CMCD_new          = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromEto0), XAC, XCG, bCG, MAC);
+                   CMCT_new          = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
+                   CMCG_new          = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_wb);
+                   CLHT_new          = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
+                                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromEto0));
+                   CL_tail           = CLHT_new;
+                   CL_new_fromEto0   = CL_fromEto0(i) - CL_tail;
+                   CL_wb             = CL_wb + (CL_new_fromEto0 - CL_wb) * 1e-1;
+                   n                 = n + 1;
+                   if n == 15
+                       break
+                   end
+                end
+                CL_fromEto0(i)   = CL_new_fromEto0; 
+                CLHT_fromEto0(i) = CL_tail;
+                alfa_fromEto0(i) = alfa_new_fromEto0;
+                WBL_fromEto0(i)  = q_fromEto0(i) * S * CL_fromEto0(i) * 1e-1;
+                LHT_fromEto0(i)  = (0.5)*(V_fromEto0(i)^2)*(S)*(rho0)*(CLHT_fromEto0(i))*(1e-1);
+                CMCL_fromEto0(i) = CMCL_new;
+                CMCD_fromEto0(i) = CMCD_new;
+                CMCG_fromEto0(i) = CMCG_new;
+                
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromEto0.value = CL_fromEto0;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromEto0.Attributes.unit = "Non dimensional"; 

@@ -23,17 +23,21 @@ yi_cl  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Bal
 [XI_cl,YI_cl] = meshgrid(xi_cl, yi_cl);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value = interp2(XX_cl, YY_cl, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value, ...
                                                                         XI_cl, YI_cl, 'spline');
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.Attributes.unit = "Non dimensional";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % FIGURE 8 - INTERPOLATION OF SPANWISE LIFT DISTRIBUCTION
 disp(" ")
 disp(" ++++ FIGURE 8 - 3D INTERPOLATION OF SPANWISE LIFT DISTR. ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph = cl_interpolation_graph(x_cl, y_cl, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.Attributes.graph = cl_interpolation_graph(x_cl, y_cl, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value, ... 
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value, XI_cl, YI_cl); 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.pdf', 'ContentType', 'vector')
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.png', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.Attributes.graph, 'ClInterpolation3dplot.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.Attributes.graph, 'ClInterpolation3dplot.png', 'ContentType', 'vector')
+
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.pdf', 'ContentType', 'vector')
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.png', 'ContentType', 'vector')
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Saving figures inside correct folder
 fprintf('Saving ClInterpolation3dplot.pdf in: ');

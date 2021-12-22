@@ -23,7 +23,7 @@ yi_cl  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Bal
 [XI_cl,YI_cl] = meshgrid(xi_cl, yi_cl);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value = interp2(XX_cl, YY_cl, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value, ...
                                                                         XI_cl, YI_cl, 'spline');
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % FIGURE 8 - INTERPOLATION OF SPANWISE LIFT DISTRIBUCTION
 disp(" ")
@@ -2598,11 +2598,11 @@ switch (Straight_flight_Case)
         cl_Comparison = figure(25);
         hold on; grid on; grid minor;
 
-        plot(flip(half_span), cl_S, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_A, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_A1, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_C, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_D, 'LineWidth', 1.5)
+        plot(half_span, cl_S, 'LineWidth', 1.5)
+        plot(half_span, cl_A, 'LineWidth', 1.5)
+        plot(half_span, cl_A1, 'LineWidth', 1.5)
+        plot(half_span, cl_C, 'LineWidth', 1.5)
+        plot(half_span, cl_D, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -2613,11 +2613,11 @@ switch (Straight_flight_Case)
         cd_Comparison = figure(26);
         hold on; grid on; grid minor;
 
-        plot(flip(half_span), cd_S,  'LineWidth', 1.5)
-        plot(flip(half_span), cd_A,  'LineWidth', 1.5)
-        plot(flip(half_span), cd_A1, 'LineWidth', 1.5)
-        plot(flip(half_span), cd_C,  'LineWidth', 1.5)
-        plot(flip(half_span), cd_D,  'LineWidth', 1.5)
+        plot(half_span, cd_S,  'LineWidth', 1.5)
+        plot(half_span, cd_A,  'LineWidth', 1.5)
+        plot(half_span, cd_A1, 'LineWidth', 1.5)
+        plot(half_span, cd_C,  'LineWidth', 1.5)
+        plot(half_span, cd_D,  'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -2628,11 +2628,11 @@ switch (Straight_flight_Case)
         cm_Comparison = figure(27);
         hold on; grid on; grid minor;
 
-        plot(flip(half_span), cm_S, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_A, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_A1, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_C, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_D, 'LineWidth', 1.5)
+        plot(half_span, cm_S, 'LineWidth', 1.5)
+        plot(half_span, cm_A, 'LineWidth', 1.5)
+        plot(half_span, cm_A1, 'LineWidth', 1.5)
+        plot(half_span, cm_C, 'LineWidth', 1.5)
+        plot(half_span, cm_D, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
@@ -3632,7 +3632,7 @@ switch (Inverted_flight_Case)
             legenda{end + 1} = PointF;   
             legenda{end + 1} = PointG2;
             legenda{end + 1} = PointE;
-            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast')  
+            legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6) 
             
             % Saving
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value = Shear_comparison;
@@ -3662,7 +3662,7 @@ switch (Inverted_flight_Case)
             ylabel("Bending load $(daN\cdot m)$", "Interpreter", "latex")
             title("Bending loads comparison", "Interpreter", "latex")
             
-            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast')
+            legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
             
             % Saving
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Shear_Comparison.value = Bending_comparison;
@@ -3692,7 +3692,7 @@ switch (Inverted_flight_Case)
             ylabel("Torsion load $(daN\cdot m)$", "Interpreter", "latex")
             title("Torsion loads comparison", "Interpreter", "latex") 
 
-            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast')
+            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)
             
             % Saving
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value = Torsion_comparison;    
@@ -3721,7 +3721,7 @@ switch (Inverted_flight_Case)
             ylabel("$cl = cl(y)$", "Interpreter", "latex")
             title("Lift distr. comparison", "Interpreter", "latex") 
 
-            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast')   
+            legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)   
 
             % Saving
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value = cl_Comparison; 
@@ -3750,7 +3750,7 @@ switch (Inverted_flight_Case)
             ylabel("$cl = cl(y)$", "Interpreter", "latex")
             title("Lift distr. comparison", "Interpreter", "latex") 
 
-            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast')
+            legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
             
             % Saving
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = cd_Comparison;
@@ -3779,7 +3779,7 @@ switch (Inverted_flight_Case)
             ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
             title("Pitch mom. distr. comparison", "Interpreter", "latex") 
 
-            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast')      
+            legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)      
             
             % Saving
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value = cm_Comparison;
@@ -4680,7 +4680,7 @@ switch (Inverted_flight_Case)
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("Torsion load $(daN\cdot m)$", "Interpreter", "latex")
             title("Torsion loads comparison", "Interpreter", "latex") 
-            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast')
+            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)
             
             % Saving
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value = Torsion_comparison;    
@@ -4707,7 +4707,7 @@ switch (Inverted_flight_Case)
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$cl = cl(y)$", "Interpreter", "latex")
             title("Lift distr. comparison", "Interpreter", "latex") 
-            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast')
+            legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
             
             % Saving
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cl_Comparison.value = cl_Comparison; 
@@ -4734,7 +4734,7 @@ switch (Inverted_flight_Case)
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$cl = cl(y)$", "Interpreter", "latex")
             title("Lift distr. comparison", "Interpreter", "latex") 
-            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast')    
+            legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)    
 
             % Saving
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cd_Comparison.value = cd_Comparison;
@@ -4761,7 +4761,7 @@ switch (Inverted_flight_Case)
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
             title("Pitch mom. distr. comparison", "Interpreter", "latex") 
-            legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast')
+            legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
             
             % Saving
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.cm_Comparison.value = cm_Comparison;
@@ -4799,10 +4799,10 @@ switch (Inverted_flight_Case)
         
         % ---------------------------------------------------------------------------------------------
         CL_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv.value;
-        CL_G     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
-        CL_G1    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CL_G1.value;
-        CL_F     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
-        CL_E     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
+        CL_G     = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
+        CL_G1    = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CL_G1.value;
+        CL_F     = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
+        CL_E     = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
         % ---------------------------------------------------------------------------------------------
         CD_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CD_S_inv.value;
         CD_G     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value;
@@ -5667,7 +5667,7 @@ switch (Inverted_flight_Case)
         ylabel("Torsion load $(daN\cdot m)$", "Interpreter", "latex")
         title("Torsion loads comparison", "Interpreter", "latex") 
 
-        legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
+        legend(legenda, 'Interpreter', 'latex', 'Location', 'southeast', 'FontSize', 6)
         
         % Saving
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Torsion_Comparison.value = Torsion_comparison;    
@@ -5685,11 +5685,11 @@ switch (Inverted_flight_Case)
         %% CL ALONG THE SPAN COMPARISON
         figure(25);
 
-        plot(flip(half_span), cl_S_inv, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_G, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_G1, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_F, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_E, 'LineWidth', 1.5)
+        plot(half_span, -cl_S_inv, 'LineWidth', 1.5)
+        plot(half_span, -cl_G, 'LineWidth', 1.5)
+        plot(half_span, -cl_G1, 'LineWidth', 1.5)
+        plot(half_span, -cl_F, 'LineWidth', 1.5)
+        plot(half_span, -cl_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_l = c_l(y)$", "Interpreter", "latex")
@@ -5713,11 +5713,11 @@ switch (Inverted_flight_Case)
         %% CM ALONG THE SPAN COMPARISON
         figure(26);
 
-        plot(flip(half_span), cd_S_inv, 'LineWidth', 1.5)
-        plot(flip(half_span), cd_G, 'LineWidth', 1.5)
-        plot(flip(half_span), cd_G1, 'LineWidth', 1.5)
-        plot(flip(half_span), cd_F, 'LineWidth', 1.5)
-        plot(flip(half_span), cd_E, 'LineWidth', 1.5)
+        plot(half_span, cd_S_inv, 'LineWidth', 1.5)
+        plot(half_span, cd_G, 'LineWidth', 1.5)
+        plot(half_span, cd_G1, 'LineWidth', 1.5)
+        plot(half_span, cd_F, 'LineWidth', 1.5)
+        plot(half_span, cd_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_d = c_d(y)$", "Interpreter", "latex")
@@ -5741,11 +5741,11 @@ switch (Inverted_flight_Case)
         %% CD ALONG THE SPAN COMPARISON
         figure(27);
 
-        plot(flip(half_span), cm_S_inv, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_G, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_G1, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_F, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_E, 'LineWidth', 1.5)
+        plot(half_span, cm_S_inv, 'LineWidth', 1.5)
+        plot(half_span, cm_G, 'LineWidth', 1.5)
+        plot(half_span, cm_G1, 'LineWidth', 1.5)
+        plot(half_span, cm_F, 'LineWidth', 1.5)
+        plot(half_span, cm_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
