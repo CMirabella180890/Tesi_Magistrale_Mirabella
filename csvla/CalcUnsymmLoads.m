@@ -984,7 +984,7 @@ switch (Straight_flight_Case)
         end
         TA_full_airloads = calc_tors_mom(obj2, half_span, flip(mdistr_full_A))*(1e-1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value = TA_full_airloads;
-        Aircraft.Certification.Regulation.SubpartC.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.Attributes.unit = "daN*m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.Attributes.unit = "daN*m";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.mdistr_full_A.value = mdistr_full_A;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.mdistr_full_A.Attributes.unit = "N"; 
         
@@ -1101,7 +1101,7 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.mdistr_full_C.Attributes.unit = "N";
         TC_full_airloads = calc_tors_mom(obj2, half_span, flip(mdistr_full_C))*(1e-1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_full_airloads.value = TC_full_airloads;
-        Aircraft.Certification.Regulation.SubpartC.Final_envelope.PointC.Unsymmetrical_loads.TC_full_airloads.Attributes.unit = "daN*m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.TC_full_airloads.Attributes.unit = "daN*m";
         
         % Applied torsion associated with maximum aileron deflection at Point C on
         % the wing with 70% of the symmetric airloads
@@ -1219,7 +1219,7 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.mdistr_full_D.Attributes.unit = "N";
         TD_full_airloads = calc_tors_mom(obj2, half_span, flip(mdistr_full_D))*(1e-1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_full_airloads.value = TD_full_airloads;
-        Aircraft.Certification.Regulation.SubpartC.Final_envelope.PointD.Unsymmetrical_loads.TD_full_airloads.Attributes.unit = "daN*m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.TD_full_airloads.Attributes.unit = "daN*m";
         
         % Applied torsion associated with maximum aileron deflection at Point D on
         % the wing with 70% of the symmetric airloads

@@ -2598,11 +2598,11 @@ switch (Straight_flight_Case)
         cl_Comparison = figure(25);
         hold on; grid on; grid minor;
 
-        plot(flip(half_span), cl_S, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_A, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_A1, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_C, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_D, 'LineWidth', 1.5)
+        plot(half_span, cl_S, 'LineWidth', 1.5)
+        plot(half_span, cl_A, 'LineWidth', 1.5)
+        plot(half_span, cl_A1, 'LineWidth', 1.5)
+        plot(half_span, cl_C, 'LineWidth', 1.5)
+        plot(half_span, cl_D, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -2613,11 +2613,11 @@ switch (Straight_flight_Case)
         cd_Comparison = figure(26);
         hold on; grid on; grid minor;
 
-        plot(flip(half_span), cd_S,  'LineWidth', 1.5)
-        plot(flip(half_span), cd_A,  'LineWidth', 1.5)
-        plot(flip(half_span), cd_A1, 'LineWidth', 1.5)
-        plot(flip(half_span), cd_C,  'LineWidth', 1.5)
-        plot(flip(half_span), cd_D,  'LineWidth', 1.5)
+        plot(half_span, cd_S,  'LineWidth', 1.5)
+        plot(half_span, cd_A,  'LineWidth', 1.5)
+        plot(half_span, cd_A1, 'LineWidth', 1.5)
+        plot(half_span, cd_C,  'LineWidth', 1.5)
+        plot(half_span, cd_D,  'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -2628,11 +2628,11 @@ switch (Straight_flight_Case)
         cm_Comparison = figure(27);
         hold on; grid on; grid minor;
 
-        plot(flip(half_span), cm_S, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_A, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_A1, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_C, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_D, 'LineWidth', 1.5)
+        plot(half_span, cm_S, 'LineWidth', 1.5)
+        plot(half_span, cm_A, 'LineWidth', 1.5)
+        plot(half_span, cm_A1, 'LineWidth', 1.5)
+        plot(half_span, cm_C, 'LineWidth', 1.5)
+        plot(half_span, cm_D, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
@@ -4799,10 +4799,10 @@ switch (Inverted_flight_Case)
         
         % ---------------------------------------------------------------------------------------------
         CL_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv.value;
-        CL_G     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
-        CL_G1    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CL_G1.value;
-        CL_F     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
-        CL_E     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
+        CL_G     = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
+        CL_G1    = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CL_G1.value;
+        CL_F     = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
+        CL_E     = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
         % ---------------------------------------------------------------------------------------------
         CD_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CD_S_inv.value;
         CD_G     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value;
@@ -5685,11 +5685,11 @@ switch (Inverted_flight_Case)
         %% CL ALONG THE SPAN COMPARISON
         figure(25);
 
-        plot(flip(half_span), cl_S_inv, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_G, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_G1, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_F, 'LineWidth', 1.5)
-        plot(flip(half_span), cl_E, 'LineWidth', 1.5)
+        plot(half_span, -cl_S_inv, 'LineWidth', 1.5)
+        plot(half_span, -cl_G, 'LineWidth', 1.5)
+        plot(half_span, -cl_G1, 'LineWidth', 1.5)
+        plot(half_span, -cl_F, 'LineWidth', 1.5)
+        plot(half_span, -cl_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_l = c_l(y)$", "Interpreter", "latex")
@@ -5713,11 +5713,11 @@ switch (Inverted_flight_Case)
         %% CM ALONG THE SPAN COMPARISON
         figure(26);
 
-        plot(flip(half_span), cd_S_inv, 'LineWidth', 1.5)
-        plot(flip(half_span), cd_G, 'LineWidth', 1.5)
-        plot(flip(half_span), cd_G1, 'LineWidth', 1.5)
-        plot(flip(half_span), cd_F, 'LineWidth', 1.5)
-        plot(flip(half_span), cd_E, 'LineWidth', 1.5)
+        plot(half_span, cd_S_inv, 'LineWidth', 1.5)
+        plot(half_span, cd_G, 'LineWidth', 1.5)
+        plot(half_span, cd_G1, 'LineWidth', 1.5)
+        plot(half_span, cd_F, 'LineWidth', 1.5)
+        plot(half_span, cd_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_d = c_d(y)$", "Interpreter", "latex")
@@ -5741,11 +5741,11 @@ switch (Inverted_flight_Case)
         %% CD ALONG THE SPAN COMPARISON
         figure(27);
 
-        plot(flip(half_span), cm_S_inv, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_G, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_G1, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_F, 'LineWidth', 1.5)
-        plot(flip(half_span), cm_E, 'LineWidth', 1.5)
+        plot(half_span, cm_S_inv, 'LineWidth', 1.5)
+        plot(half_span, cm_G, 'LineWidth', 1.5)
+        plot(half_span, cm_G1, 'LineWidth', 1.5)
+        plot(half_span, cm_F, 'LineWidth', 1.5)
+        plot(half_span, cm_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_m = c_m(y)$", "Interpreter", "latex")

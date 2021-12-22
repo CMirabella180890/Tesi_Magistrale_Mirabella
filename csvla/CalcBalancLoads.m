@@ -1525,7 +1525,7 @@ switch (Straight_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_from0toS));
                CL_tail           = CLHT_new;
                CL_new_from0toS   = CL_from0toS(i) - CL_tail;
-               CL_wb             = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_wb             = CL_wb + (CL_new_from0toS - CL_wb) * 1e-1;
                n                 = n + 1;
                if n == 15
                    break
@@ -1611,7 +1611,7 @@ switch (Straight_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromStoA1));
                CL_tail           = CLHT_new;
                CL_new_fromStoA1  = CL_fromStoA1(i) - CL_tail;
-               CL_wb             = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_wb             = CL_wb + (CL_new_fromStoA1 - CL_wb) * 1e-1;
                n                 = n + 1;
                if n == 15
                    break
@@ -1688,9 +1688,9 @@ switch (Straight_flight_Case)
                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_A));
            CL_tail    = CLHT_new;
            CL_new_A   = CL_A - CL_tail;
-           CL_wb      = CL_wb + (CL_wb - CL_tail) * 1e-1;
+           CL_wb      = CL_wb + (CL_new_A - CL_wb) * 1e-1;
            n          = n + 1;
-           if n == 15
+           if n == 100
                break
            end
         end
@@ -1770,7 +1770,7 @@ switch (Straight_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromA1toC));
                CL_tail           = CLHT_new;
                CL_new_fromA1toC  = CL_fromA1toC(i) - CL_tail;
-               CL_wb             = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_wb             = CL_wb + (CL_new_fromA1toC - CL_wb) * 1e-1;
                n                 = n + 1;
                if n == 15
                    break
@@ -1857,7 +1857,7 @@ switch (Straight_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromCtoA2));
                CL_tail           = CLHT_new;
                CL_new_fromCtoA2  = CL_fromCtoA2(i) - CL_tail;
-               CL_wb             = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_wb             = CL_wb + (CL_new_fromCtoA2 - CL_wb) * 1e-1;
                n                 = n + 1;
                if n == 15
                    break
@@ -1944,7 +1944,7 @@ switch (Straight_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromA2toD));
                CL_tail           = CLHT_new;
                CL_new_fromA2toD  = CL_fromA2toD(i) - CL_tail;
-               CL_wb             = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_wb             = CL_wb + (CL_new_fromA2toD - CL_wb) * 1e-1;
                n                 = n + 1;
                if n == 15
                    break
@@ -2030,8 +2030,8 @@ switch (Straight_flight_Case)
                CLHT_new           = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromDto0));
                CL_tail           = CLHT_new;
-               CL_new_fromDto0  = CL_fromDto0(i) - CL_tail;
-               CL_wb             = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_new_fromDto0   = CL_fromDto0(i) - CL_tail;
+               CL_wb             = CL_wb + (CL_new_fromDto0 - CL_wb) * 1e-1;
                n                 = n + 1;
                if n == 15
                    break
@@ -2276,7 +2276,7 @@ switch (Straight_flight_Case)
         % ---------------------------------------------------------------------
         plot(V_from0toS(1),    LW_from0toS_new(1),    'k.', 'MarkerSize', 10)
         plot(V_from0toS(end),  LW_from0toS_new(end),  'k.', 'MarkerSize', 10)
-        plot(VA,               WBL_A,                 'k.', 'MarkerSize', 10)
+%         plot(VA,               WBL_A,                 'k.', 'MarkerSize', 10)
         plot(V_fromStoA1(end), LW_fromStoA1_new(end), 'k.', 'MarkerSize', 10)
         plot(V_fromA1toC(end), LW_fromA1toC_new(end), 'k.', 'MarkerSize', 10)
         plot(V_fromCtoA2(end), LW_fromCtoA2_new(end), 'k.', 'MarkerSize', 10)
@@ -2284,7 +2284,7 @@ switch (Straight_flight_Case)
         plot(V_fromDto0(end),  LW_fromDto0_new(end),  'k.', 'MarkerSize', 10)
         % ---------------------------------------------------------------------
         text(V_fromStoA1(1),   LW_fromStoA1_new(1),   '  S',  'FontSize',  6)
-        text(VA,               WBL_A,                  '  A',  'FontSize', 6)
+%         text(VA,               WBL_A,                  '  A',  'FontSize', 6)
         text(V_fromStoA1(end), LW_fromStoA1_new(end), '  A1', 'FontSize',  6)
         text(V_fromA1toC(end), LW_fromA1toC_new(end), '  C',  'FontSize',  6)
         text(V_fromCtoA2(end), LW_fromCtoA2_new(end), '  A2', 'FontSize',  6)
@@ -3560,7 +3560,7 @@ switch (Inverted_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_from0toSinv));
                CL_tail            = CLHT_new;
                CL_new_from0toSinv = CL_from0toSinv(i) - CL_tail;
-               CL_wb              = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_wb              = CL_wb + (CL_new_from0toSinv - CL_wb) * 1e-1;
                n                  = n + 1;
                if n == 15
                    break
@@ -3613,7 +3613,7 @@ switch (Inverted_flight_Case)
         alfa_G = alpha_fullmodel(CL_G);
         CD_G   = cd_calc(obj1, CD0, CL_G, AR, e, k1, k2);
         q_G    = 0.5*rho0*(VG)^2;
-        WBL_G  = q_G*S*CL_G*1e-1; 
+        WBL_G  = q_G * S * CL_G * 1e-1; 
         CMCL_G = CLWB_contrib(obj1, CL_G, deg2rad(alfa_G), XAC, XCG, bCG, MAC);
         CMCD_G = CDWB_contrib(obj1, CL_G, deg2rad(alfa_G), XAC, XCG, bCG, MAC);
         CMCT_G = CT_contr(obj1, CD_G, Thrust_axes, MAC);
@@ -3644,7 +3644,7 @@ switch (Inverted_flight_Case)
                                l_ht, MAC, XAC, XCG, deg2rad(alfa_new_G));
            CL_tail   = CLHT_new;
            CL_new_G  = CL_G - CL_tail;
-           CL_wb     = CL_wb + (CL_wb - CL_tail) * 1e-1;
+           CL_wb     = CL_wb + (CL_new_G - CL_wb) * 1e-1;
            n         = n + 1;
            if n == 15
                break
@@ -3732,7 +3732,7 @@ switch (Inverted_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromSinvtoG1));
                CL_tail            = CLHT_new;
                CL_new_fromSinvtoG1 = CL_fromSinvtoG1(i) - CL_tail;
-               CL_wb              = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_wb              = CL_wb + (CL_new_fromSinvtoG1 - CL_wb) * 1e-1;
                n                  = n + 1;
                if n == 15
                    break
@@ -3825,7 +3825,7 @@ switch (Inverted_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromG1toF));
                CL_tail            = CLHT_new;
                CL_new_fromG1toF = CL_fromG1toF(i) - CL_tail;
-               CL_wb              = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_wb              = CL_wb + (CL_new_fromG1toF - CL_wb) * 1e-1;
                n                  = n + 1;
                if n == 15
                    break
@@ -3918,7 +3918,7 @@ switch (Inverted_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromFtoE));
                CL_tail           = CLHT_new;
                CL_new_fromFtoE   = CL_fromFtoE(i) - CL_tail;
-               CL_wb             = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_wb             = CL_wb + (CL_new_fromFtoE - CL_wb) * 1e-1;
                n                 = n + 1;
                if n == 15
                    break
@@ -4011,7 +4011,7 @@ switch (Inverted_flight_Case)
                                              l_ht, MAC, XAC, XCG, deg2rad(alfa_new_fromEto0));
                CL_tail           = CLHT_new;
                CL_new_fromEto0   = CL_fromEto0(i) - CL_tail;
-               CL_wb             = CL_wb + (CL_wb - CL_tail) * 1e-1;
+               CL_wb             = CL_wb + (CL_new_fromEto0 - CL_wb) * 1e-1;
                n                 = n + 1;
                if n == 15
                    break
@@ -4074,6 +4074,8 @@ switch (Inverted_flight_Case)
         text(V_fromSinvtoG1(end), LHT_fromSinvtoG1(end), ' G1',     'FontSize', 6)
         text(V_fromG1toF(end),    LHT_fromG1toF(end),    ' F',      'FontSize', 6)
         text(V_fromFtoE(end),     LHT_fromFtoE(end),     ' E',      'FontSize', 6)
+        ylim padded;
+        xlim padded;
         
         % MAIN WING LOADS DIAGRAM        
         CL_from0toSinv_new  = CL_from0toSinv  - CLHT_from0toSinv;        
@@ -4126,17 +4128,19 @@ switch (Inverted_flight_Case)
         % ---------------------------------------------------------------------
         plot(V_from0toSinv(1),    LW_from0toSinv_new(1),    'k.', 'MarkerSize', 10)
         plot(V_from0toSinv(end),  LW_from0toSinv_new(end),  'k.', 'MarkerSize', 10)
-        plot(VG,                  WBL_G,                    'k.', 'MarkerSize', 10)
+%         plot(VG,                  WBL_G,                    'k.', 'MarkerSize', 10)
         plot(V_fromSinvtoG1(end), LW_fromSinvtoG1_new(end), 'k.', 'MarkerSize', 10)
         plot(V_fromG1toF(end),    LW_fromG1toF_new(end),    'k.', 'MarkerSize', 10)
         plot(V_fromFtoE(end),     LW_fromFtoE_new(end),     'k.', 'MarkerSize', 10)
         plot(V_fromEto0(end),     LW_fromEto0_new(end),     'k.', 'MarkerSize', 10)
         % ---------------------------------------------------------------------
         text(V_from0toSinv(end),  LW_from0toSinv_new(end),  ' S inv.', 'FontSize', 6)
-        text(VG,                  WBL_G,                    ' G',      'FontSize', 6)
+%         text(VG,                  WBL_G,                    ' G',      'FontSize', 6)
         text(V_fromSinvtoG1(end), LW_fromSinvtoG1_new(end), ' G1',     'FontSize', 6)
         text(V_fromG1toF(end),    LW_fromG1toF_new(end),    ' F',      'FontSize', 6)
-        text(V_fromFtoE(end),     LW_fromFtoE_new(end),     ' E',      'FontSize', 6)  
+        text(V_fromFtoE(end),     LW_fromFtoE_new(end),     ' E',      'FontSize', 6) 
+        ylim padded;
+        xlim padded;
         
         % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
         
