@@ -33,6 +33,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.val
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.Attributes.unit = "Positive g";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.Attributes.unit = "Negative g";
+% ---------------------------------------------------------------------------------------------------------
+% FLAG FOR SPANWISE AIRLOADS CALCULATIONS
+% OPTIONS: 
+% -------- 
+% 1. OPEN VSP: The code will run open vsp if available 
+% 2. SCHRENK: The code will perform airloads calculation with the Schrenk's
+%             method, but pitching moment will not be available and a model
+%             for the drag coefficiente must be developed (probably a
+%             parabolic approximation will be the choice). 
+% ---------------------------------------------------------------------------------------------------------
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attributes.case = NaN;
+% ---------------------------------------------------------------------------------------------------------
 % -------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.Attributes.unit = "m/s";                                                                              

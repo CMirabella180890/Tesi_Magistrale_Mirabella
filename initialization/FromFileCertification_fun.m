@@ -121,7 +121,8 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'Aircraft.Geometry.Wing.dihedral', ...
          'Aircraft.Certification.ISA_Condition.Sea_level', ...
          'Operative_ceiling', ...
-         'Theoretical_ceiling'};
+         'Theoretical_ceiling', ... 
+         'Airloads_flag'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -367,6 +368,8 @@ if LengthIndex==length(VarText)
     p = strcmp('Theoretical_ceiling', label);
     Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Airloads_flag', label);
+    Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attributes.case = char(table2array(value(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;
