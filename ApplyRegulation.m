@@ -112,6 +112,9 @@ switch (Aircraft.Certification.Regulation.value)
                 % STARTING SCHRENK'S METHOD CALCULATION
                 CalcSchrenk
                 
+                % INTERNAL FORCES 
+                CalcInternForces_Schrenk
+                
                 % -----------------------------------------------------------------
                 % CHANGE DIRECTORY TO APPLY AIRWORTHINESS RULES
                 cd .. 

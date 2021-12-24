@@ -26,8 +26,6 @@ Unit_Cl         = Results(:, 6);
 disp(" ")
 disp(" ++++ FIGURE 7 - SCHRENK SPANWISE LIFT DISTRIBUTION ++++ ");
 figure1 = Schrenk_Cl_diagram(eta, Unit_Cl);
-cd .. 
-cd csvla
 
 % EXPORT FIGURE
 exportgraphics(figure1, 'Unit_Cl.pdf', 'ContentType', 'vector')
