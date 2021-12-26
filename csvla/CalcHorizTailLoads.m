@@ -287,6 +287,7 @@ elseif Aircraft.Certification.Aerodynamic_data.Horizontal.tau.Attributes.flag ==
     prmpt = "Enter Horiz. control efficiency --> tau: ";
     Aircraft.Certification.Aerodynamic_data.Horizontal.tau.value = input(prmpt);
 end
+Aircraft.Certification.Aerodynamic_data.Horizontal.tau.Attributes.unit = "Non dimensional";
 
 % GENERAL VARIABLES FOR ALL THE CALCULATIONS
 l_ht                  = Aircraft.Geometry.Horizontal.l.value;
