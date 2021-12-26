@@ -139,6 +139,8 @@ reduction_ratio       = Aircraft.Engine.Reduction_ratio.value;
 g                     = Aircraft.Constants.g.value; 
 Limit_side_load       = Aircraft.Engine.Limit_side_load.value;
 Gust_limit_load       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.nA1.value;
+prop_polar_mom        = Aircraft.Engine.Propeller_polar_moment.value;
+normal_load_factor    = Aircraft.Engine.Engine_normal_load_factor.value;
 
 % ENGINE BLOCK MASS 
 Engine_mount_mass       = Aircraft.Engine.Engine_mount_mass.value;
@@ -153,22 +155,32 @@ Engine_block_weight = Engine_block_mass * g * (1e-1);
 Aircraft.Engine.Engine_block_weight.value = Engine_block_weight;
 Aircraft.Engine.Engine_block_weight.Attribute.unit = "daN";
 
-% PROPELLER ROTATIONAL SPEED 
-prop_rotational_speed = (takeoff_rpm) / (reduction_ratio);
-Aircraft.Engine.Propeller_rotational_speed.value = prop_rotational_speed;
-Aircraft.Engine.Propeller_rotational_speed.Attributes.unit = "RPM";
+% PROPELLER ROTATIONAL SPEED AT TAKEOFF POWER
+prop_rotational_speed_takeoff = (takeoff_rpm) / (reduction_ratio);
+Aircraft.Engine.Takeoff.Propeller_rotational_speed.value = prop_rotational_speed_takeoff;
+Aircraft.Engine.Takeoff.Propeller_rotational_speed.Attributes.unit = "RPM";
 
-% CONVERTS TO ROTATION PER SECONDS 
-prop_rotational_speed_sec = prop_rotational_speed * ( 1/60);
-Aircraft.Engine.Propeller_rotational_speed_sec.value = prop_rotational_speed_sec; 
-Aircraft.Engine.Propeller_rotational_speed_sec.Attributes.unit = "RPS";
+% PROPELLER ROTATIONAL SPEED AT MAX CONTINOUS POWER
+prop_rotational_speed_maxcontinous = (max_continous_rpm) / (reduction_ratio);
+Aircraft.Engine.Max_Continous.Propeller_rotational_speed.value = prop_rotational_speed_maxcontinous ;
+Aircraft.Engine.Max_Continous.Propeller_rotational_speed.Attributes.unit = "RPM";
+
+% CONVERTS TO ROTATION PER SECONDS - TAKEOFF
+prop_rotational_speed_takeoff_sec = prop_rotational_speed_takeoff * ( 1/60);
+Aircraft.Engine.Takeoff.Propeller_rotational_speed_sec.value = prop_rotational_speed_takeoff_sec; 
+Aircraft.Engine.Takeoff.Propeller_rotational_speed_sec.Attributes.unit = "rad/sec";
+
+% CONVERTS TO ROTATION PER SECONDS - MAX CONTINOUS
+prop_rotational_speed_maxcontinous_sec = prop_rotational_speed_maxcontinous * ( 1/60);
+Aircraft.Engine.Max_Continous.Propeller_rotational_speed_sec.value = prop_rotational_speed_maxcontinous_sec; 
+Aircraft.Engine.Max_Continous.Propeller_rotational_speed_sec.Attributes.unit = "rad/sec";
 
 % -------------------------------------------------------------------------
 % ++++++++++++++++++++++++++++++++ TAKEOFF ++++++++++++++++++++++++++++++++
 % -------------------------------------------------------------------------
 % MEAN ENGINE TORQUE AT MAX TAKEOFF POWER. REMEMBER: COMBINE THIS LOAD WITH
 % 0.75 THE LOAD ASSOCIATED WITH POINT A FLIGHT CONDITION
-Takeoff_mean_engine_torque = (takeoff_power) * ( (1e3) / (2 * pi * prop_rotational_speed_sec) );
+Takeoff_mean_engine_torque = (takeoff_power) * ( (1e3) / (2 * pi * prop_rotational_speed_takeoff_sec) );
 Aircraft.Engine.Takeoff.Mean_torque.value = Takeoff_mean_engine_torque;
 Aircraft.Engine.Takeoff.Mean_torque.Attributes.unit = "N * m";
 
@@ -183,7 +195,7 @@ Aircraft.Engine.Takeoff.Limit_torque.Attributes.unit = "N * m";
 % -------------------------------------------------------------------------
 % MEAN ENGINE TORQUE AT MAX CONTINOUS POWER. REMEMBER: COMBINE THIS LOAD WITH
 % 1.00 THE LOAD ASSOCIATED WITH POINT A FLIGHT CONDITION
-Max_continous_mean_engine_torque = (max_continous_power) * ( (1e3) / (2 * pi * prop_rotational_speed_sec) );
+Max_continous_mean_engine_torque = (max_continous_power) * ( (1e3) / (2 * pi * prop_rotational_speed_maxcontinous_sec) );
 Aircraft.Engine.Max_Continous.Mean_torque.value = Max_continous_mean_engine_torque;
 Aircraft.Engine.Max_Continous.Mean_torque.Attributes.unit = "N * m";
 
@@ -199,4 +211,35 @@ Aircraft.Engine.Total_side_load.value = total_side_load;
 Aircraft.Engine.Total_side_load.Attributes.unit = "daN";
 
 % INERTIA LOAD ON ENGINE MOUNT 
-% The inertia load is equal t
+% The inertia load is equal to the max limit load factor times the engine
+% group weight (in this case point A1 of the diagram)
+inertia_load_on_engine_mount = Gust_limit_load * total_side_load; 
+Aircraft.Engine.Inertia_load_on_engine_mount.value = inertia_load_on_engine_mount;
+Aircraft.Engine.Inertia_load_on_engine_mount.Attributes.unit = "daN";
+
+%% GYROSCOPIC LOADS  (SEE AMC 23.371)
+
+% PROPELLER'S NUMBER OF BLADES 
+number_of_blades = Aircraft.Engine.Propeller_blade_number.value;
+
+% A WAY TO DECIDE HOW TO EVALUATE GYROSCOPIC LOADS 
+if number_of_blades == 2
+    Gyro_loads = @(I_p, omega_1, omega_2) 2 * I_p * omega_1 * omega_2; 
+elseif number_of_blades >= 3 
+    Gyro_loads = @(I_p, omega_1, omega_2) I_p * omega_1 * omega_2; 
+end
+
+Applicable_inertia_load = normal_load_factor * Engine_block_weight;
+
+% YAW CASE 
+yaw_rate = Aircraft.Engine.Yaw_speed.value;
+yaw_case_gyro_loads = Gyro_loads(prop_polar_mom, prop_rotational_speed_maxcontinous_sec, yaw_rate);
+Aircraft.Engine.Gyroscopic_loads.value = yaw_case_gyro_loads; 
+Aircraft.Engine.Gyroscopic_loads.Attributes.unit = "daN * m"; 
+
+% PITCH CASE 
+pitch_rate = Aircraft.Engine.Pitch_speed.value;
+pitch_case_gyro_loads = Gyro_loads(prop_polar_mom, prop_rotational_speed_maxcontinous_sec, pitch_rate);
+Aircraft.Engine.Gyroscopic_loads.value = yaw_case_gyro_loads; 
+Aircraft.Engine.Gyroscopic_loads.Attributes.unit = "daN * m"; 
+

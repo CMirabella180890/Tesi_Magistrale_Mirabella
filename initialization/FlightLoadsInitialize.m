@@ -442,6 +442,17 @@ Aircraft.Engine.Engine_accessories_mass.value = NaN;
 Aircraft.Engine.Engine_accessories_mass.Attributes.unit = "kg"; 
 Aircraft.Engine.Propeller_spinner_mass.value = NaN;
 Aircraft.Engine.Propeller_spinner_mass.Attributes.unit = "kg"; 
+Aircraft.Engine.Propeller_polar_moment.value = NaN; 
+Aircraft.Engine.Propeller_polar_moment.Attributes.unit = "kg*m^2";
+Aircraft.Engine.Pitch_speed.value = NaN;
+Aircraft.Engine.Pitch_speed.Attributes.unit = "rad/sec"; 
+Aircraft.Engine.Yaw_speed.value = NaN;
+Aircraft.Engine.Yaw_speed.Attributes.unit = "rad/sec"; 
+Aircraft.Engine.Propeller_blade_number.value = NaN;
+Aircraft.Engine.Propeller_blade_number.Attributes.unit = "Pure number";
+Aircraft.Engine.Engine_normal_load_factor.value = NaN;
+Aircraft.Engine.Engine_normal_load_factor.Attributes.unit = "Non dimensional"; 
+
 % ENGINE FLAGS 
 % FLAG 1 
 % 1st value: FOUR STROKE

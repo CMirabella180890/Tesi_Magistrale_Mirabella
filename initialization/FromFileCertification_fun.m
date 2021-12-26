@@ -133,7 +133,12 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'Engine.Limit_side_load', ...
          'Engine_mount_mass', ... 
          'Engine_accessories', ...
-         'Propeller_spinner'};
+         'Propeller_spinner', ...
+         'Propeller_polarmoment', ...
+         'Engine_pitch_speed', ...
+         'Engine_yaw_speed', ...
+         'Propeller_blade_number', ...
+         'Engine_normal_load_factor'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -412,6 +417,20 @@ if LengthIndex==length(VarText)
     p = strcmp('Propeller_spinner', label);
     Aircraft.Engine.Propeller_spinner_mass.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Engine.Propeller_spinner_mass.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Propeller_polarmoment', label);
+    Aircraft.Engine.Propeller_polar_moment.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Engine.Propeller_polar_moment.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Engine_pitch_speed', label);
+    Aircraft.Engine.Pitch_speed.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Pitch_speed.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('Engine_yaw_speed', label);
+    Aircraft.Engine.Yaw_speed.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Yaw_speed.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('Propeller_blade_number', label);
+    Aircraft.Engine.Propeller_blade_number.value = str2double(table2array(value(p==1, 1)));
+    p = strcmp('Engine_normal_load_factor', label);
+    Aircraft.Engine.Engine_normal_load_factor.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Engine_normal_load_factor.Attributes.unit = char(table2array(unit(p==1,1))); 
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;
