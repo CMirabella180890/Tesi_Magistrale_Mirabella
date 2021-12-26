@@ -131,14 +131,14 @@ switch (Aircraft.Certification.Regulation.value)
                 % -----------------------------------------------------------------
         end
         % =================================================================
-        % CALCULATE HORIZONTAL TAIL LOADS 
-        CalcHorizTailLoads
-        % CALCULATE VERTICAL TAIL LOADS
-        CalcVertTailLoads
-        % CALCULATE SUPPLEMENTARY CONDITIONS 
-        CalcSuppLoads
-        % FLIGHT ENVELOPE WITH FLAPS DEPLOYED
-        CalcFlapsEnvelope
+%         % CALCULATE HORIZONTAL TAIL LOADS 
+%         CalcHorizTailLoads
+%         % CALCULATE VERTICAL TAIL LOADS
+%         CalcVertTailLoads
+%         % CALCULATE SUPPLEMENTARY CONDITIONS 
+%         CalcSuppLoads
+%         % FLIGHT ENVELOPE WITH FLAPS DEPLOYED
+%         CalcFlapsEnvelope
     case 'CS23'
     case 'CS22'
 end
