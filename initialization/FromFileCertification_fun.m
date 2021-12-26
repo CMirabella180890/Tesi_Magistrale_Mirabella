@@ -122,7 +122,18 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'Aircraft.Certification.ISA_Condition.Sea_level', ...
          'Operative_ceiling', ...
          'Theoretical_ceiling', ... 
-         'Airloads_flag'};
+         'Airloads_flag', ...
+         'Takeoff_power', ...
+         'Takeoff_rpm', ...
+         'Max_Continous_power', ...
+         'Max_Continous_rpm', ...
+         'Correction_factor_flag1', ...
+         'Correction_factor_flag2', ...
+         'Reduction_ratio', ...
+         'Engine.Limit_side_load', ...
+         'Engine_mount_mass', ... 
+         'Engine_accessories', ...
+         'Propeller_spinner'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -370,6 +381,37 @@ if LengthIndex==length(VarText)
     Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('Airloads_flag', label);
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attributes.case = char(table2array(value(p==1,1)));
+    p = strcmp('Takeoff_power', label); 
+    Aircraft.Engine.Takeoff.Power.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Takeoff.Power.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Takeoff_rpm', label);
+    Aircraft.Engine.Takeoff.RPM.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Takeoff.RPM.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Max_Continous_power', label); 
+    Aircraft.Engine.Max_Continous.Power.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Max_Continous.Power.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Max_Continous_rpm', label); 
+    Aircraft.Engine.Max_Continous.RPM.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Max_Continous.RPM.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Correction_factor_flag1', label);
+    Aircraft.Engine.Correction_factor.Attributes.flag1 = char(table2array(value(p==1, 1)));
+    p = strcmp('Correction_factor_flag2', label);
+    Aircraft.Engine.Correction_factor.Attributes.flag2 = str2double(table2array(value(p==1, 1)));
+    p = strcmp('Reduction_ratio', label);
+    Aircraft.Engine.Reduction_ratio.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Reduction_ratio.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Engine.Limit_side_load', label);
+    Aircraft.Engine.Limit_side_load.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Limit_side_load.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Engine_mount_mass', label);
+    Aircraft.Engine.Engine_mount_mass.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Engine_mount_mass.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Engine_accessories', label);
+    Aircraft.Engine.Engine_accessories_mass.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Engine_accessories_mass.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Propeller_spinner', label);
+    Aircraft.Engine.Propeller_spinner_mass.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Engine.Propeller_spinner_mass.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

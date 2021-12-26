@@ -423,5 +423,36 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolat
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";
 
+%% ENGINE 
+Aircraft.Engine.Takeoff.Power.value = NaN; 
+Aircraft.Engine.Takeoff.Power.Attributes.unit = "kW"; 
+Aircraft.Engine.Takeoff.RPM.value = NaN; 
+Aircraft.Engine.Takeoff.RPM.Attributes.unit = "RPM"; 
+Aircraft.Engine.Max_Continous.Power.value = NaN; 
+Aircraft.Engine.Max_Continous.Power.Attributes.unit = "kW"; 
+Aircraft.Engine.Max_Continous.RPM.value = NaN; 
+Aircraft.Engine.Max_Continous.RPM.Attributes.unit = "RPM"; 
+Aircraft.Engine.Correction_factor.value = NaN; 
+Aircraft.Engine.Correction_factor.Attributes.unit = "Non dimensional";
+Aircraft.Engine.Limit_side_load.value = NaN;
+Aircraft.Engine.Limit_side_load.Attributes.unit = "Non dimensional";
+Aircraft.Engine.Engine_mount_mass.value = NaN;
+Aircraft.Engine.Engine_mount_mass.Attributes.unit = "kg"; 
+Aircraft.Engine.Engine_accessories_mass.value = NaN;
+Aircraft.Engine.Engine_accessories_mass.Attributes.unit = "kg"; 
+Aircraft.Engine.Propeller_spinner_mass.value = NaN;
+Aircraft.Engine.Propeller_spinner_mass.Attributes.unit = "kg"; 
+% ENGINE FLAGS 
+% FLAG 1 
+% 1st value: FOUR STROKE
+% 2nd value: TWO STROKE
+Aircraft.Engine.Correction_factor.Attributes.flag1 = NaN;
+% FLAG 2: NUMBER OF CYLINDERS 
+Aircraft.Engine.Correction_factor.Attributes.flag2 = NaN;
+% REDUCTION RATIO: It's the ratio between the engine rpm and the propeller
+%                  rpm
+Aircraft.Engine.Reduction_ratio.value = NaN;
+Aircraft.Engine.Reduction_ratio.Attributes.unit = "Non dimensional";
+
 end
 

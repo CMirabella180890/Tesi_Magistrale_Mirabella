@@ -40,7 +40,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.Att
 % 1. OPEN VSP: The code will run open vsp if available 
 % 2. SCHRENK: The code will perform airloads calculation with the Schrenk's
 %             method, but pitching moment will not be available and a model
-%             for the drag coefficiente must be developed (probably a para
+%             for the drag coefficiente must be developed (probably a
+%             parabolic approximation will be the choice). 
 % ---------------------------------------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attributes.case = NaN;
 % ---------------------------------------------------------------------------------------------------------
@@ -421,6 +422,14 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolat
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.Attributes.unit = 'Non dimensional';
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";
+
+%% ENGINE 
+Aircraft.Engine.Takeoff.Power.value = NaN; 
+Aircraft.Engine.Takeoff.Power.Attributes.unit = "kW"; 
+Aircraft.Engine.Takeoff.RPM.value = NaN; 
+Aircraft.Engine.Takeoff.RPM.Attributes.unit = "RPM"; 
+Aircraft.Engine.Max_Continous.Power.value = NaN; 
+Aircraft.E
 
 end
 
