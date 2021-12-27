@@ -138,7 +138,9 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'Engine_pitch_speed', ...
          'Engine_yaw_speed', ...
          'Propeller_blade_number', ...
-         'Engine_normal_load_factor'};
+         'Engine_normal_load_factor', ...
+         'C_h_delta', ...
+         'C_h_alfa'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -430,7 +432,13 @@ if LengthIndex==length(VarText)
     Aircraft.Engine.Propeller_blade_number.value = str2double(table2array(value(p==1, 1)));
     p = strcmp('Engine_normal_load_factor', label);
     Aircraft.Engine.Engine_normal_load_factor.value = str2double(table2array(value(p==1, 1)));
-    Aircraft.Engine.Engine_normal_load_factor.Attributes.unit = char(table2array(unit(p==1,1))); 
+    Aircraft.Engine.Engine_normal_load_factor.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('C_h_delta', label);
+    Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('C_h_alfa', label);
+    Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

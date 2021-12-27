@@ -364,6 +364,15 @@ Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 = "Wheel";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Aircraft.Geometry.Aileron.Max_deflection.value = 15.0; 
 Aircraft.Geometry.Aileron.Max_deflection.Attributes.unit = "degrees";
+% ----------------------------------------------------------------------------------
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.value = NaN; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.Attributes.unit = "1/rad";
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.value = NaN; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.Attributes.unit = "1/rad";
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_deg.value = NaN; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_deg.Attributes.unit = "1/deg";
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.value = NaN; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.Attributes.unit = "1/deg";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Aircraft.Geometry.Vertical.MAC.value = 0.2335363;
 Aircraft.Geometry.Vertical.MAC.Attributes.unit = "m";
