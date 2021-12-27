@@ -139,8 +139,11 @@ switch (Aircraft.Certification.Regulation.value)
         CalcSuppLoads
         % FLIGHT ENVELOPE WITH FLAPS DEPLOYED
         CalcFlapsEnvelope
-          % ENGINE TORQUE LOAD 
-          CalcEngineTorque
+        % ENGINE TORQUE LOAD 
+        CalcEngineTorque
+        % AILERON LOAD 
+        CalcHingeAileronLoads
+        
     case 'CS23'
     case 'CS22'
 end

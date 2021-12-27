@@ -472,3 +472,19 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving flaps_final_envelopediagram.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+% AILERON CHORD 
+ca = Aircraft.Geometry.Aileron.ca.value;
+cb = Aircraft.Geometry.Aileron.cb.value;
+cf = ca - cb; 
+Aircraft.Geometry.Aileron.cf.value = cf; 
+Aircraft.Geometry.Aileron.cf.Attributes.unit = "m";
+
+% MOMENT ARM CALCULATION 
+c_ratio    = cb / cf;
+moment_arm = ca * (0.25 - c_ratio); 
+moment_arm
+
+moment_arm =
+
+    0.0168
+

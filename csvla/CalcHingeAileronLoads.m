@@ -80,4 +80,91 @@
 %  (d) SECONDARY CONTROLS AND SYSTEMS. Secondary controls and systems must
 %      meet the requirements of CS - VLA 405.
 %
-%% 
+%% INITIALIZATION OF THE CALCULATION 
+
+% AILERON SURFACE 
+efficiency_factor = 0.88;
+S_aileron         = Aircraft.Geometry.Aileron.S.value * efficiency_factor;
+
+% AILERON CHORD 
+ca = Aircraft.Geometry.Aileron.ca.value;
+cb = Aircraft.Geometry.Aileron.cb.value;
+cf = ca - cb; 
+Aircraft.Geometry.Aileron.cf.value = cf; 
+Aircraft.Geometry.Aileron.cf.Attributes.unit = "m";
+
+% MOMENT ARM CALCULATION 
+c_ratio    = cb / cf;
+moment_arm = ca * (0.25 - c_ratio); 
+
+% HINGE MOMENT COEFFICIENTS IN 1/RAD
+C_h_delta_rad = Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.value; 
+C_h_alfa_rad  = Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.value; 
+
+% CONVERSION FACTOR
+conversion_factor = 180.0 / pi;
+
+% HINGE MOMENT COEFFICIENT IN 1/DEG
+C_h_delta_deg = C_h_delta_rad / conversion_factor;
+C_h_alfa_deg  = C_h_alfa_rad / conversion_factor;
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_deg.value = C_h_delta_deg; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_deg.Attributes.unit = "1/deg";
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.value = C_h_alfa_deg; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.Attributes.unit = "1/deg";
+
+% MAXIMUM DEFLECTION OF THE AILERON (TIMES TWO FOR DIFF. DEFLECTION)
+delta_max_deg = 2 * Aircraft.Geometry.Aileron.Max_deflection.value;
+
+% MANOUEVRE SPEED 
+VA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
+
+% ANGLE OF ATTACK AT MANOEUVRE SPEED 
+alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value);
+
+% TOTAL HINGE MOMENT COEFFICIENT CH = CH_DELTA * DELTA + CH_ALFA * ALFA
+C_h_total_deg = C_h_delta_deg * delta_max_deg + C_h_alfa_deg * alfa_A_deg; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_deg.value = C_h_total_deg; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_deg.Attributes.unit = "1/deg";
+C_h_total_rad = C_h_total_deg * conversion_factor;
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_rad.value = C_h_total_deg; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_rad.Attributes.unit = "1/deg";
+
+% DYNAMIC PRESSURE AT VA
+qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
+
+% HINGE MOMENT 
+HA = C_h_total_deg * qA * S_aileron * cf;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA.value = HA; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA.Attributes.unit = "N * m";
+
+% GRAVITY ACCELERATION
+g = Aircraft.Constants.g.value; 
+
+% CONVERSION OF HINGE MOMENT IN KG * M
+HA_converted = HA / g;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_converted.value = HA_converted;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_converted.Attributes.unit = "kg * m";
+
+% 125 % FACTOR TO MAGNIFY THE CALCULATED HINGE MOMENTS
+HA_125           = HA * 1.25; 
+HA_converted_125 = HA_converted * 1.25;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_125.value = HA_125;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_125.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_converted_125.value = HA_converted_125;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_converted_125.Attributes.unit = "kg * m";
+
+% HA_125 TIMES TWO TO HAVE THE FULL AILERON LOAD 
+HA_total_SI        = HA_125 * 2; 
+HA_total_converted = HA_converted_125 * 2;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_total.value = HA_total_SI;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_total.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_total_converted.value = HA_total_converted;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_total_converted.Attributes.unit = "kg * m";
+
+% AILERON LOAD 
+aileron_load_SI        = HA_total_SI / moment_arm;
+aileron_load_converted = HA_total_converted / moment_arm;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.value = aileron_load_SI;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.value = aileron_load_converted;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.Attributes.unit = "kg * m";
