@@ -20,7 +20,7 @@ function alpha_interp = alpha_fullmodel(CL)
 %         alfa_i      = - 4.0; 
 %         alfa_f      = 13.0; 
 %         alfa_interp = linspace(alfa_i, alfa_f, numb)';
-        CL_max      = 1.58
+        CL_max      = 1.58;
         CL_star     = 1.47;
         alfa_star   = alpha_plus(CL_star, a, b, c);
 
@@ -34,7 +34,12 @@ function alpha_interp = alpha_fullmodel(CL)
             if CL < CL_star - 0.03
                 alpha_interp(i) = polyval(p1, CL);
             elseif CL > CL_star - 0.03
-                alpha_interp(i) = alpha_plus(CL, a, b, c);
+                if CL > CL_max + 0.03
+                    CL = CL_max + 0.03;
+                    alpha_interp(i) = alpha_plus(CL, a, b, c);
+                elseif CL < CL_max + 0.03
+                    alpha_interp(i) = alpha_plus(CL, a, b, c);
+                end
             end
         end
 
