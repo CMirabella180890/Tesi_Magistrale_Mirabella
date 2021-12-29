@@ -34,10 +34,10 @@ function alpha_interp = alpha_fullmodel(CL)
             if CL < CL_star - 0.03
                 alpha_interp(i) = polyval(p1, CL);
             elseif CL > CL_star - 0.03
-                if CL > CL_max + 0.03
-                    CL = CL_max + 0.03;
+                if CL > CL_max + 0.033735
+                    CL = CL_max + 0.033735;
                     alpha_interp(i) = alpha_plus(CL, a, b, c);
-                elseif CL < CL_max + 0.03
+                elseif CL < CL_max + 0.033735
                     alpha_interp(i) = alpha_plus(CL, a, b, c);
                 end
             end
