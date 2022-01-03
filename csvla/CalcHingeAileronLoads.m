@@ -114,12 +114,28 @@ Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.Attributes.unit = "1/d
 
 % MAXIMUM DEFLECTION OF THE AILERON (TIMES TWO FOR DIFF. DEFLECTION)
 delta_max_deg = 2 * Aircraft.Geometry.Aileron.Max_deflection.value;
-
-% MANOUEVRE SPEED 
+ 
+% MANOUEVRE SPEED
 VA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
 
 % ANGLE OF ATTACK AT MANOEUVRE SPEED 
 alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value);
+
+% switch (Straight_flight_Case)
+%     % CASE 1: VA greater than the intercept
+%     case 'Case 1'
+%         % MANOUEVRE SPEED
+%         VA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
+%         
+%         % ANGLE OF ATTACK AT MANOEUVRE SPEED 
+%         alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value);
+%     case 'Case 2'
+%         % MANOUEVRE SPEED
+%         VA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
+%         
+%         % ANGLE OF ATTACK AT MANOEUVRE SPEED 
+%         alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value);
+% end
 
 % TOTAL HINGE MOMENT COEFFICIENT CH = CH_DELTA * DELTA + CH_ALFA * ALFA
 C_h_total_deg = C_h_delta_deg * delta_max_deg + C_h_alfa_deg * alfa_A_deg; 
