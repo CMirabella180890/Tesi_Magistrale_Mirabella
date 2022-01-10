@@ -44,58 +44,106 @@ switch (Aircraft.Certification.Regulation.value)
         fprintf('### Balancing loads - per CS - VLA ###');
         fprintf('\n');
         CalcBalancLoads
-%         % CHANGE DIRECTORY TO CALCULATES C_l = C_l(y)
-%         cd .. 
-%         cd utilities\OpenVSP
-%         % cd utilities\v2
-%         % The 'dir' variable contains working directory path saved as a
-%         % char value
-%         dir = pwd;
-%         % Store working directory inside the log file
-%         fprintf('-----------------');
-%         fprintf('\n');
-%         fprintf('### Current directory ###');
-%         fprintf('\n');
-%         fprintf('%s\n', dir);
-%         
-%         %% STARTING OPEN VSP CALCULATION
-%         % Main_UAS
-%         % +++ ISTRUZIONE IMPORTANTE +++
-%         disp(" ++++ STARTING OPEN VSP CALCULATIONS ++++ ");
-%         diary off
-%         Main_PROSIB_WT 
-%         % +++ ISTRUZIONE IMPORTANTE +++
-%         % LOADING DATA INSIDE VARIABLE STRUCT
-%         % CHANGE DIRECTORY AND LOAD AERODATA
-%         FromTableToStructAircraft
-%         % CHANGE DIRECTORY TO CALCULATES SHEAR AND BENDING MOMENT
-%         cd .. 
-%         cd ..
-%         cd ..
-%         diary CMFlightLoads.txt
-%         disp(" ++++ FIGURE 9 - OPEN VSP RESULTS ++++ ");
-%         cd csvla
-%         % The 'dir' variable contains working directory path saved as a
-%         % char value
-%         dir = pwd;
-%         % Store working directory inside the log file
-%         fprintf('-----------------');
-%         fprintf('\n');
-%         fprintf('### Current directory ###');
-%         fprintf('\n');
-%         fprintf('%s\n', dir);
-%         % CALCULATE SHEAR, BENDING, AND TORSION MOMENT
-%         CalcShearBendTorsMom
-%         % CALCULATE UNSYMMETRICAL LOADS
-%         CalcUnsymmLoads
-%         % CALCULATE HORIZONTAL TAIL LOADS 
-%         CalcHorizTailLoads
-%         % CALCULATE VERTICAL TAIL LOADS
-%         CalcVertTailLoads
-%         % CALCULATE SUPPLEMENTARY CONDITIONS 
-%         CalcSuppLoads
-%         % FLIGHT ENVELOPE WITH FLAPS DEPLOYED
-%         CalcFlapsEnvelope
+        % =================================================================
+        switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attributes.case)
+            case 'OPEN VSP'
+                % -----------------------------------------------------------------
+                % CHANGE DIRECTORY TO CALCULATES C_l = C_l(y)
+                cd .. 
+                cd utilities\OpenVSP
+                % cd utilities\v2
+                % The 'dir' variable contains working directory path saved as a
+                % char value
+                dir = pwd;
+                % Store working directory inside the log file
+                fprintf('-----------------');
+                fprintf('\n');
+                fprintf('### Current directory ###');
+                fprintf('\n');
+                fprintf('%s\n', dir);
+
+                % STARTING OPEN VSP CALCULATION
+                % Main_UAS
+                % +++ ISTRUZIONE IMPORTANTE +++
+                disp(" ++++ STARTING OPEN VSP CALCULATIONS ++++ ");
+                diary off
+                Main_PROSIB_WT 
+                % +++ ISTRUZIONE IMPORTANTE +++
+                % LOADING DATA INSIDE VARIABLE STRUCT
+                % CHANGE DIRECTORY AND LOAD AERODATA
+                FromTableToStructAircraft
+                % CHANGE DIRECTORY TO CALCULATES SHEAR AND BENDING MOMENT
+                cd .. 
+                cd ..
+                cd ..
+                diary CMFlightLoads.txt
+                disp(" ++++ FIGURE 9 - OPEN VSP RESULTS ++++ ");
+                cd csvla
+                % The 'dir' variable contains working directory path saved as a
+                % char value
+                dir = pwd;
+                % Store working directory inside the log file
+                fprintf('-----------------');
+                fprintf('\n');
+                fprintf('### Current directory ###');
+                fprintf('\n');
+                fprintf('%s\n', dir);
+                % CALCULATE SHEAR, BENDING, AND TORSION MOMENT
+                CalcShearBendTorsMom
+                % CALCULATE UNSYMMETRICAL LOADS
+                CalcUnsymmLoads
+                % -----------------------------------------------------------------
+            case 'SCHRENK'
+                % -----------------------------------------------------------------
+                % CHANGE DIRECTORY TO CALCULATES C_l = C_l(y)
+                cd .. 
+                cd schrenk
+                % cd utilities\v2
+                % The 'dir' variable contains working directory path saved as a
+                % char value
+                dir = pwd;
+                % Store working directory inside the log file
+                fprintf('-----------------');
+                fprintf('\n');
+                fprintf('### Current directory ###');
+                fprintf('\n');
+                fprintf('%s\n', dir);
+                
+                % STARTING SCHRENK'S METHOD CALCULATION
+                CalcSchrenk
+                
+                % INTERNAL FORCES 
+                CalcInternForces_Schrenk
+                
+                % -----------------------------------------------------------------
+                % CHANGE DIRECTORY TO APPLY AIRWORTHINESS RULES
+                cd .. 
+                cd csvla
+                % The 'dir' variable contains working directory path saved as a
+                % char value
+                dir = pwd;
+                % Store working directory inside the log file
+                fprintf('-----------------');
+                fprintf('\n');
+                fprintf('### Current directory ###');
+                fprintf('\n');
+                fprintf('%s\n', dir);
+                % -----------------------------------------------------------------
+        end
+        % =================================================================
+        % CALCULATE HORIZONTAL TAIL LOADS 
+        CalcHorizTailLoads
+        % CALCULATE VERTICAL TAIL LOADS
+        CalcVertTailLoads
+        % CALCULATE SUPPLEMENTARY CONDITIONS 
+        CalcSuppLoads
+        % FLIGHT ENVELOPE WITH FLAPS DEPLOYED
+        CalcFlapsEnvelope
+        % ENGINE TORQUE LOAD 
+        CalcEngineTorque
+        % AILERON LOAD 
+        CalcHingeAileronLoads
+        
     case 'CS23'
     case 'CS22'
 end

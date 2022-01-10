@@ -12,13 +12,13 @@ function out1 = Schrenk_load_distr(b, S, c_root, c_tip, n)
    % Ellipse 
    eta = y/(b/2);
    % Chord distr. for tapered wing 
-   taper_ratio  = c_tip/c_root;
-   c_y          = ((2*S)/((1 + taper_ratio)*b))*(1 - (1 - taper_ratio)*abs(eta));
-   ell_height   = ((4*S)/(pi*b));
-   x              = sqrt(1 - (eta.^2));
+   taper_ratio = c_tip/c_root;
+   c_y         = ((2*S)/((1 + taper_ratio)*b))*(1 - (1 - taper_ratio)*abs(eta));
+   ell_height  = ((4*S)/(pi*b));
+   x           = sqrt(1 - (eta.^2));
    Ellipse     = ell_height*x;
    Schrenk_cCl = (c_y + Ellipse)*0.5;
-   Unit_Cl    = (Schrenk_cCl)./(c_y);
+   Unit_Cl     = (Schrenk_cCl)./(c_y);
    disp(" ++++ CHECK ++++ ")
    disp(" Cl = Cl(y) ")
    fprintf(" %f", trapz(flip(eta), Unit_Cl))

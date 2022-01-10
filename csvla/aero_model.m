@@ -197,7 +197,7 @@ classdef aero_model
                 if CL(i) < CL_star
                     x = (CL(i) - CL0)/(CLalpha);
                     alphacalc(i) = x;
-                elseif CL(i) >= CL_star
+                elseif CL(i) >= CL_star - 0.03
                     % p = polyfit(CL_supp, alpha_supp, 2);
                     x = polyval(p, CL(i));
                     % x = interp1(CL_supp, alpha_supp, CL(i), 'linear', 'extrap');

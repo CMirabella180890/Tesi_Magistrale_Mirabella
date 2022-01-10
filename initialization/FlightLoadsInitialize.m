@@ -33,6 +33,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.val
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.Attributes.unit = "Positive g";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.Attributes.unit = "Negative g";
+% ---------------------------------------------------------------------------------------------------------
+% FLAG FOR SPANWISE AIRLOADS CALCULATIONS
+% OPTIONS: 
+% -------- 
+% 1. OPEN VSP: The code will run open vsp if available 
+% 2. SCHRENK: The code will perform airloads calculation with the Schrenk's
+%             method, but pitching moment will not be available and a model
+%             for the drag coefficiente must be developed (probably a
+%             parabolic approximation will be the choice). 
+% ---------------------------------------------------------------------------------------------------------
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attributes.case = NaN;
+% ---------------------------------------------------------------------------------------------------------
 % -------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_VS.Attributes.unit = "m/s";                                                                              
@@ -328,7 +340,7 @@ Aircraft.Geometry.Elevator.max_deflection.value = 25.0;
 Aircraft.Geometry.Elevator.max_deflection.Attributes.unit = "degrees";
 Aircraft.Geometry.Elevator.total_deflection_time.value = NaN;
 Aircraft.Geometry.Elevator.total_deflection_time.Attributes.unit = "seconds";
-Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 = "Commuter";
+Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 = "Normal";
 Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 = "Wheel";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Aircraft.Geometry.Movable.Horizontal.eta_inner.value = NaN;
@@ -345,6 +357,22 @@ Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 = "Wheel";
 % Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.unit = "seconds";
 % Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.flag1 = "Commuter";
 % Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.flag2 = "Wheel";
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% AILERON
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% MAX AILERON FLAP DEFLECTION
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Aircraft.Geometry.Aileron.Max_deflection.value = 15.0; 
+Aircraft.Geometry.Aileron.Max_deflection.Attributes.unit = "degrees";
+% ----------------------------------------------------------------------------------
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.value = NaN; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.Attributes.unit = "1/rad";
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.value = NaN; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.Attributes.unit = "1/rad";
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_deg.value = NaN; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_deg.Attributes.unit = "1/deg";
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.value = NaN; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.Attributes.unit = "1/deg";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Aircraft.Geometry.Vertical.MAC.value = 0.2335363;
 Aircraft.Geometry.Vertical.MAC.Attributes.unit = "m";
@@ -396,5 +424,55 @@ Aircraft.Constants.g.Attributes.unit = 'm/s^2';
 % -------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value = 2.0;
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.Attributes.unit = "g's";
+%% INTERPOLATION 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value = NaN; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.Attributes.unit = 'Non dimensional';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value = NaN;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.Attributes.unit = 'Non dimensional';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value = NaN;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";
+
+%% ENGINE 
+Aircraft.Engine.Takeoff.Power.value = NaN; 
+Aircraft.Engine.Takeoff.Power.Attributes.unit = "kW"; 
+Aircraft.Engine.Takeoff.RPM.value = NaN; 
+Aircraft.Engine.Takeoff.RPM.Attributes.unit = "RPM"; 
+Aircraft.Engine.Max_Continous.Power.value = NaN; 
+Aircraft.Engine.Max_Continous.Power.Attributes.unit = "kW"; 
+Aircraft.Engine.Max_Continous.RPM.value = NaN; 
+Aircraft.Engine.Max_Continous.RPM.Attributes.unit = "RPM"; 
+Aircraft.Engine.Correction_factor.value = NaN; 
+Aircraft.Engine.Correction_factor.Attributes.unit = "Non dimensional";
+Aircraft.Engine.Limit_side_load.value = NaN;
+Aircraft.Engine.Limit_side_load.Attributes.unit = "Non dimensional";
+Aircraft.Engine.Engine_mount_mass.value = NaN;
+Aircraft.Engine.Engine_mount_mass.Attributes.unit = "kg"; 
+Aircraft.Engine.Engine_accessories_mass.value = NaN;
+Aircraft.Engine.Engine_accessories_mass.Attributes.unit = "kg"; 
+Aircraft.Engine.Propeller_spinner_mass.value = NaN;
+Aircraft.Engine.Propeller_spinner_mass.Attributes.unit = "kg"; 
+Aircraft.Engine.Propeller_polar_moment.value = NaN; 
+Aircraft.Engine.Propeller_polar_moment.Attributes.unit = "kg*m^2";
+Aircraft.Engine.Pitch_speed.value = NaN;
+Aircraft.Engine.Pitch_speed.Attributes.unit = "rad/sec"; 
+Aircraft.Engine.Yaw_speed.value = NaN;
+Aircraft.Engine.Yaw_speed.Attributes.unit = "rad/sec"; 
+Aircraft.Engine.Propeller_blade_number.value = NaN;
+Aircraft.Engine.Propeller_blade_number.Attributes.unit = "Pure number";
+Aircraft.Engine.Engine_normal_load_factor.value = NaN;
+Aircraft.Engine.Engine_normal_load_factor.Attributes.unit = "Non dimensional"; 
+
+% ENGINE FLAGS 
+% FLAG 1 
+% 1st value: FOUR STROKE
+% 2nd value: TWO STROKE
+Aircraft.Engine.Correction_factor.Attributes.flag1 = NaN;
+% FLAG 2: NUMBER OF CYLINDERS 
+Aircraft.Engine.Correction_factor.Attributes.flag2 = NaN;
+% REDUCTION RATIO: It's the ratio between the engine rpm and the propeller
+%                  rpm
+Aircraft.Engine.Reduction_ratio.value = NaN;
+Aircraft.Engine.Reduction_ratio.Attributes.unit = "Non dimensional";
+
 end
 
