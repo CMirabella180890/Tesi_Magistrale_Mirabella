@@ -141,7 +141,8 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'Engine_normal_load_factor', ...
          'C_h_delta', ...
          'C_h_alfa', ...
-         'CL_MAX_FLAPS'};
+         'CL_MAX_TAKEOFF', ...
+         'CL_MAX_LANDING'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -440,9 +441,12 @@ if LengthIndex==length(VarText)
     p = strcmp('C_h_alfa', label);
     Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.Attributes.unit = char(table2array(unit(p==1,1)));
-    p = strcmp('CL_MAX_FLAPS', label);
-    Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.value = str2double(table2array(value(p==1, 1)));
-    Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('CL_MAX_TAKEOFF', label);
+    Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('CL_MAX_LANDING', label);
+    Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

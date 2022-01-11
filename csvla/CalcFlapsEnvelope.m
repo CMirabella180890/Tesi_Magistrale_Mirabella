@@ -64,6 +64,12 @@ Vstall = @(WS, rho, CLmax, n) sqrt(WS * (2/rho) * (1/CLmax).*n);
 %      design weight. For the investigation of slipstream effects, the load
 %      factor may be assumed to be 1.0.
 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% #########################################################################
+% TAKEOFF
+% #########################################################################
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 % IMPLEMENTATION 
 numb = 1e3;
 nmax = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
@@ -84,15 +90,15 @@ CLmax_clean = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value
 VS          = calcvs(obj, rho0, WS, CLmax_clean, n1);
 
 % CALCULATION OF VS1 - FLAPS DEPLOYED STALL SPEED
-CLmax_flap = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.value;
-VS1        = calcvs(obj, rho0, WS, CLmax_flap, n1);
+CLmax_takeoff = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.value;
+VS1        = calcvs(obj, rho0, WS, CLmax_takeoff, n1);
 
 % EVALUATION OF VF - FLAPS DEPLOYED AIRSPEED 
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.value = calcnVF(obj, VS, VS1);
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.Attributes.unit = "m/s";
 
 % STALLING SPEED VECTOR
-Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_flap, n_flaps_vector);
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_takeoff, n_flaps_vector);
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.Attributes.unit = "m/s";
 
 % EVALUATION OF STALL AND FLAP MANOEUVRING POINT 
@@ -103,7 +109,7 @@ Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value = 1.0;
 nS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value;
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.Attributes.unit = "g's"; 
 % POINT A
-Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho0, CLmax_flap, nmax);
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho0, CLmax_takeoff, nmax);
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.Attributes.unit = "m/s"; 
 VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value;
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.nA.value = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
@@ -128,7 +134,7 @@ n_from0toS     = linspace(0.0, nS, numb)';
 V_from0toS     = VS*ones(numb, 1);
 
 n_fromStoA     = linspace(nS, nA, numb)';
-V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
 
 n_fromAtoF     = nmax*ones(numb, 1);
 V_fromAtoF     = linspace(VA, VF, numb)';
@@ -159,18 +165,18 @@ title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regu
 % text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
 text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
 text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)
-exportgraphics(flaps_envelope,'flapsenvelopediagram.pdf','ContentType','vector')
-exportgraphics(flaps_envelope,'flapsenvelopediagram.png','ContentType','vector')
+exportgraphics(flaps_envelope,'flapsenvelopediagramtakeoff.pdf','ContentType','vector')
+exportgraphics(flaps_envelope,'flapsenvelopediagramtakeoff.png','ContentType','vector')
 
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Flaps_envelope.value = flaps_envelope;
 
 % Saving figures inside correct folder
-fprintf('Saving flapsenvelopediagram.pdf in: ');
+fprintf('Saving flapsenvelopediagramtakeoff.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
-movefile flapsenvelopediagram.pdf Output
-movefile flapsenvelopediagram.png Output
+movefile flapsenvelopediagramtakeoff.pdf Output
+movefile flapsenvelopediagramtakeoff.png Output
 % -----------------------------------------------------------------
 
 % FLAPS DEPLOYED GUST ENVELOPE 
@@ -240,17 +246,17 @@ title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regu
 text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
 text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
 text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)
-exportgraphics(flapsgust_envelope,'flaps_gust_envelopediagram.pdf','ContentType','vector')
-exportgraphics(flapsgust_envelope,'flaps_gust_envelopediagram.png','ContentType','vector')
+exportgraphics(flapsgust_envelope,'flaps_gust_envelopediagramtakeoff.pdf','ContentType','vector')
+exportgraphics(flapsgust_envelope,'flaps_gust_envelopediagramtakeoff.png','ContentType','vector')
 
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.diagram = flapsgust_envelope;
 % Saving figures inside correct folder
-fprintf('Saving flapsenvelopediagram.pdf in: ');
+fprintf('Saving flapsenvelopediagramtakeoff.pdf in: ');
 fprintf('\n'); 
 fprintf('%s\n', SaveFolder);
 % Moving file inside correct folder
-movefile flaps_gust_envelopediagram.pdf Output
-movefile flaps_gust_envelopediagram.png Output        
+movefile flaps_gust_envelopediagramtakeoff.pdf Output
+movefile flaps_gust_envelopediagramtakeoff.png Output        
 
 % FINAL ENVELOPE WITH FLAPS DEPLOYED 
 nmax           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
@@ -268,7 +274,7 @@ Reg            = Aircraft.Certification.Regulation.value;
 Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
 
 syms a b c V 
-a        = (rho0 * CLmax_flap) / (2 * WS);
+a        = (rho0 * CLmax_takeoff) / (2 * WS);
 b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
 c        = 1;
 eqn      = a*V^2 - b*V - c;
@@ -290,7 +296,7 @@ for i = 1:length(Solution)
             VS             = V_from0toS(end);
 
             n_fromStoA     = linspace(nS, nA, numb)';
-            V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+            V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
             nA             = n_fromStoA(end);
             VA             = V_fromStoA(end);
 
@@ -302,6 +308,23 @@ for i = 1:length(Solution)
             n_fromFto0     = linspace(nF, 0.0, numb)';
             V_fromFto0     = VF * ones(numb, 1);        
 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_from0toS.value           = n_from0toS;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_from0toS.Attributes.unit = "g's"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_from0toS.value           = V_from0toS;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_from0toS.Attributes.unit = "m/s"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromStoA.value           = n_fromStoA;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromStoA.Attributes.unit = "g's"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromStoA.value           = V_fromStoA;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromStoA.Attributes.unit = "m/s"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromAtoF.value           = n_fromAtoF;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromAtoF.Attributes.unit = "g's"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromAtoF.value           = V_fromAtoF;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromAtoF.Attributes.unit = "m/s";
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromFto0.value           = n_fromFto0;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromFto0.Attributes.unit = "g's"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromFto0.value           = V_fromFto0;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromFto0.Attributes.unit = "m/s"; 
+            
             final_envelope = figure;
             hold on
             grid on 
@@ -326,18 +349,18 @@ for i = 1:length(Solution)
             text(VA, nA,   '\fontname{Courier} A', 'FontSize', 6)
             text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)   
 
-            exportgraphics(final_envelope,'flaps_final_envelopediagram.pdf','ContentType','vector')
-            exportgraphics(final_envelope,'flaps_final_envelopediagram.png','ContentType','vector')
+            exportgraphics(final_envelope,'flaps_final_envelopediagramtakeoff.pdf','ContentType','vector')
+            exportgraphics(final_envelope,'flaps_final_envelopediagramtakeoff.png','ContentType','vector')
 
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.diagram = final_envelope;
 
             % Saving figures inside correct folder
-            fprintf('Saving flaps_final_envelopediagram.pdf in: ');
+            fprintf('Saving flaps_final_envelopediagramtakeoff.pdf in: ');
             fprintf('\n'); 
             fprintf('%s\n', SaveFolder);
             % Moving file inside correct folder
-            movefile flaps_final_envelopediagram.pdf Output
-            movefile flaps_final_envelopediagram.png Output     
+            movefile flaps_final_envelopediagramtakeoff.pdf Output
+            movefile flaps_final_envelopediagramtakeoff.png Output     
         end
 
 
@@ -357,7 +380,7 @@ for i = 1:length(Solution)
                 VS             = V_from0toS(end);
 
                 n_fromStoA     = linspace(nS, nA, numb)';
-                V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+                V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
                 nA             = n_fromStoA(end);
                 VA             = V_fromStoA(end);
 
@@ -380,6 +403,27 @@ for i = 1:length(Solution)
                 V_fromFto0  = VF * ones(numb, 1);
                 n_fromFto0  = linspace(nF, 0.0, numb)';
 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_from0toS.value            = n_from0toS;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_from0toS.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_from0toS.value            = V_from0toS;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_from0toS.Attributes.unit  = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromStoA.value            = n_fromStoA;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromStoA.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromStoA.value            = V_fromStoA;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromStoA.Attributes.unit  = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromAtoF1.value           = n_fromAtoF1;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromAtoF1.Attributes.unit = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromAtoF1.value           = V_fromAtoF1;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromAtoF1.Attributes.unit = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromF1toF.value           = n_fromF1toF;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromF1toF.Attributes.unit = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromF1toF.value           = V_fromF1toF;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromF1toF.Attributes.unit = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromFto0.value            = n_fromFto0;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromFto0.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromFto0.value            = V_fromFto0;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromFto0.Attributes.unit  = "m/s"; 
+                
                 final_envelope = figure;
                 hold on
                 grid on 
@@ -405,8 +449,8 @@ for i = 1:length(Solution)
                 text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
                 text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)   
 
-                exportgraphics(final_envelope,'flaps_final_envelopediagram.pdf','ContentType','vector')
-                exportgraphics(final_envelope,'flaps_final_envelopediagram.png','ContentType','vector')
+                exportgraphics(final_envelope,'flaps_final_envelopediagramtakeoff.pdf','ContentType','vector')
+                exportgraphics(final_envelope,'flaps_final_envelopediagramtakeoff.png','ContentType','vector')
 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.diagram = final_envelope;
 
@@ -415,8 +459,8 @@ for i = 1:length(Solution)
                 fprintf('\n'); 
                 fprintf('%s\n', SaveFolder);
                 % Moving file inside correct folder
-                movefile flaps_final_envelopediagram.pdf Output
-                movefile flaps_final_envelopediagram.png Output               
+                movefile flaps_final_envelopediagramtakeoff.pdf Output
+                movefile flaps_final_envelopediagramtakeoff.png Output               
 
             elseif abs(n_g_plus) < nmax
 
@@ -426,7 +470,7 @@ for i = 1:length(Solution)
                 VS             = V_from0toS(end);
 
                 n_fromStoA     = linspace(nS, nA, numb)';
-                V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+                V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
                 nA             = n_fromStoA(end);
                 VA             = V_fromStoA(end);
 
@@ -435,6 +479,23 @@ for i = 1:length(Solution)
 
                 V_fromFto0  = VF * ones(numb, 1);
                 n_fromFto0  = linspace(nF, 0.0, numb)';
+                
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_from0toS.value            = n_from0toS;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_from0toS.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_from0toS.value            = V_from0toS;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_from0toS.Attributes.unit  = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromStoA.value            = n_fromStoA;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromStoA.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromStoA.value            = V_fromStoA;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromStoA.Attributes.unit  = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromAtoF.value            = n_fromAtoF;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromAtoF.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromAtoF.value            = V_fromAtoF;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromAtoF.Attributes.unit  = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromFto0.value            = n_fromFto0;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromFto0.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromFto0.value            = V_fromFto0;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromFto0.Attributes.unit  = "m/s"; 
 
                 final_envelope = figure;
                 hold on
@@ -459,25 +520,748 @@ for i = 1:length(Solution)
                 text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
                 text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)   
 
-                exportgraphics(final_envelope,'flaps_final_envelopediagram.pdf','ContentType','vector')
-                exportgraphics(final_envelope,'flaps_final_envelopediagram.png','ContentType','vector')
+                exportgraphics(final_envelope,'flaps_final_envelopediagramtakeoff.pdf','ContentType','vector')
+                exportgraphics(final_envelope,'flaps_final_envelopediagramtakeoff.png','ContentType','vector')
 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.diagram = final_envelope;
 
                 % Saving figures inside correct folder
-                fprintf('Saving flaps_final_envelopediagram.pdf in: ');
+                fprintf('Saving flaps_final_envelopediagramtakeoff.pdf in: ');
                 fprintf('\n'); 
                 fprintf('%s\n', SaveFolder);
                 % Moving file inside correct folder
-                movefile flaps_final_envelopediagram.pdf Output
-                movefile flaps_final_envelopediagram.png Output               
+                movefile flaps_final_envelopediagramtakeoff.pdf Output
+                movefile flaps_final_envelopediagramtakeoff.png Output               
 
             end
         end
     end
 end
+
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% #########################################################################
+% #########################################################################
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         
- 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% #########################################################################
+% LANDING 
+% #########################################################################
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% IMPLEMENTATION 
+numb = 1e3;
+nmax = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
+
+% CALCULATION OF THE LOAD FACTORS VECTOR 
+n_flaps_vector = calcnflap(obj, nmax);
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.value = n_flaps_vector;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.Attributes.unit = "g's";
+
+% CALCULATION OF VS - CLEAN STALL SPEED
+n1          = 1.0; 
+rho0        = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
+Mass  
+g           = Aircraft.Constants.g.value;
+S           = Aircraft.Geometry.Wing.S.value;
+WS          = ( Mass * g ) / S;
+CLmax_clean = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
+VS          = calcvs(obj, rho0, WS, CLmax_clean, n1);
+
+% CALCULATION OF VS1 - FLAPS DEPLOYED STALL SPEED
+CLmax_landing = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.value;
+VS1        = calcvs(obj, rho0, WS, CLmax_landing, n1);
+
+% EVALUATION OF VF - FLAPS DEPLOYED AIRSPEED 
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.value = calcnVF(obj, VS, VS1);
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.Attributes.unit = "m/s";
+
+% STALLING SPEED VECTOR
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_landing, n_flaps_vector);
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.Attributes.unit = "m/s";
+
+% EVALUATION OF STALL AND FLAP MANOEUVRING POINT 
+% POINT S 
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value = VS1;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.Attributes.unit = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value = 1.0;
+nS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.Attributes.unit = "g's"; 
+% POINT A
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho0, CLmax_landing, nmax);
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.Attributes.unit = "m/s"; 
+VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.nA.value = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
+nA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.nA.value;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.nA.Attributes.unit = "g's"; 
+% POINT F
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.value;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.Attributes.unit = "m/s"; 
+VF = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.nF.value = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
+nF = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.nF.value;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.nF.Attributes.unit = "g's"; 
+
+% VECTOR OF STALL AIRSPEED TO PLOT THE ENVELOPE 
+Reg            = Aircraft.Certification.Regulation.value;
+Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
+VS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value;
+VSpos          = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value;
+npos           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.value;
+
+n_from0toS     = linspace(0.0, nS, numb)';
+V_from0toS     = VS*ones(numb, 1);
+
+n_fromStoA     = linspace(nS, nA, numb)';
+V_fromStoA     = Vstall(WS, rho0, CLmax_landing, n_fromStoA);
+
+n_fromAtoF     = nmax*ones(numb, 1);
+V_fromAtoF     = linspace(VA, VF, numb)';
+
+n_fromFto0     = linspace(nF, 0.0, numb)';
+V_fromFto0     = VF*ones(numb, 1);
+
+flaps_envelope = figure;
+hold on
+grid on 
+grid minor
+ylim([-0.5 nmax+0.5])
+xlim([0 VF+10])
+
+plot(VSpos,      npos,       ':r', 'LineWidth', 0.2)
+plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth',   1)
+plot(V_fromAtoF, n_fromAtoF, '-r', 'LineWidth',   1)
+plot(V_fromFto0, n_fromFto0, '-r', 'LineWidth',   1)
+plot(V_from0toS, n_from0toS, '-r', 'LineWidth',   1)
+
+plot(V_fromStoA(1), n_fromStoA(1), 'k.', 'MarkerSize', 10)
+plot(V_fromAtoF(1), n_fromAtoF(1), 'k.', 'MarkerSize', 10)
+plot(V_fromFto0(1), n_fromFto0(1), 'k.', 'MarkerSize', 10)
+
+xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+% text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
+text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
+text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)
+exportgraphics(flaps_envelope,'flapsenvelopediagramlanding.pdf','ContentType','vector')
+exportgraphics(flaps_envelope,'flapsenvelopediagramlanding.png','ContentType','vector')
+
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Flaps_envelope.value = flaps_envelope;
+
+% Saving figures inside correct folder
+fprintf('Saving flapsenvelopediagramlanding.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile flapsenvelopediagramlanding.pdf Output
+movefile flapsenvelopediagramlanding.png Output
+% -----------------------------------------------------------------
+
+% FLAPS DEPLOYED GUST ENVELOPE 
+VF            = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+rho_operative = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
+MAC           = Aircraft.Geometry.Wing.mac.value; 
+CLalfa_rad    = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
+g             = Aircraft.Constants.g.value;
+Ude           = 7.62; % Gust magnitude
+
+% CALCULATION OF THE MASS FACTOR
+mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho0, g); 
+
+% GUST ALLEVIATION FACTOR 
+Kg   = calckg(obj, mu_g);
+
+% CALCULATION OF THE GUST LOAD FACTOR AT V = VF 
+nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+
+V_gust      = linspace(0.0, VF, numb)'; 
+
+n_gust_plus  = nGUST_plus(V_gust);
+n_gust_minus = nGUST_minus(V_gust);
+
+% STORE VALUES 
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.mu_g.value                  = mu_g;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.mu_g.Attributes.unit        = "Non dimensional";
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.Kg.value                    = Kg;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.Kg.Attributes.unit          = "Non dimensional";
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.Vgust.value                 = V_gust;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.ngust_plus.value            = n_gust_plus;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.ngust_plus.Attributes.unit  = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.ngust_minus.value           = n_gust_plus;
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.ngust_minus.Attributes.unit = "g's";
+
+% GUST ENVELOPE AND FLIGHT ENVELOPE SUPERPOSITION 
+Reg            = Aircraft.Certification.Regulation.value;
+Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
+VS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value;
+VF             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+VSpos          = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value;
+npos           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.value;
+
+flapsgust_envelope = figure;
+hold on
+grid on 
+grid minor
+ylim([-0.5 nmax+0.5])
+xlim([0 VF+10])
+
+plot(V_gust,     n_gust_plus,  ':k', 'LineWidth', 0.2)
+plot(V_gust,     n_gust_minus, ':k', 'LineWidth', 0.2)
+plot(VSpos,      npos,         ':r', 'LineWidth', 0.2)
+plot(V_fromStoA, n_fromStoA,   '-r', 'LineWidth',   1)
+plot(V_fromAtoF, n_fromAtoF,   '-b', 'LineWidth',   1)
+plot(V_fromFto0, n_fromFto0,   '-b', 'LineWidth',   1)
+plot(V_from0toS, n_from0toS,   '-b', 'LineWidth',   1)
+
+plot(V_fromStoA(1), n_fromStoA(1), 'k.', 'MarkerSize', 10)
+plot(V_fromAtoF(1), n_fromAtoF(1), 'k.', 'MarkerSize', 10)
+plot(V_fromFto0(1), n_fromFto0(1), 'k.', 'MarkerSize', 10)
+
+xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
+text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
+text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)
+exportgraphics(flapsgust_envelope,'flaps_gust_envelopediagramlanding.pdf','ContentType','vector')
+exportgraphics(flapsgust_envelope,'flaps_gust_envelopediagramlanding.png','ContentType','vector')
+
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.Gust_envelope.diagram = flapsgust_envelope;
+% Saving figures inside correct folder
+fprintf('Saving flapsenvelopediagramlanding.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile flaps_gust_envelopediagramlanding.pdf Output
+movefile flaps_gust_envelopediagramlanding.png Output        
+
+% FINAL ENVELOPE WITH FLAPS DEPLOYED 
+nmax           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
+CLalfa_rad     = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
+npos           = Aircraft.Certification.Regulation.SubpartC.Flapsloads.n_flaps_vector.value;
+VSpos          = Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value;
+VS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.VS.value;
+V_gust         = linspace(VA, VF, 1e3*numb)'; 
+n_g_plus       = nGUST_plus(V_gust);
+n_g_minus      = nGUST_minus(V_gust);
+nS             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value;
+VF             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.VF.value;
+nF             = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointF.nF.value;
+Reg            = Aircraft.Certification.Regulation.value;
+Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
+
+syms a b c V 
+a        = (rho0 * CLmax_landing) / (2 * WS);
+b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
+c        = 1;
+eqn      = a*V^2 - b*V - c;
+Solution = vpasolve(eqn, V);
+
+for i = 1:length(Solution)
+    if Solution(i) > 0
+        new_VA = cast(Solution(i), 'double');
+        if abs(new_VA) > VA
+            VA = abs(new_VA);
+            nA = nGUST_plus(VA);
+
+            % CASE STUDY FOR FLAPS FINAL ENVELOPE
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.case.value = 'Case 1';
+
+            n_from0toS     = linspace(0.0, nS, numb)';
+            V_from0toS     = VS * ones(numb, 1);
+            nS             = n_from0toS(end);
+            VS             = V_from0toS(end);
+
+            n_fromStoA     = linspace(nS, nA, numb)';
+            V_fromStoA     = Vstall(WS, rho0, CLmax_landing, n_fromStoA);
+            nA             = n_fromStoA(end);
+            VA             = V_fromStoA(end);
+
+            V_fromAtoF     = linspace(VA, VF, numb)';
+            n_fromAtoF     = linspace(nA, nmax, numb)';  
+            nF             = n_fromAtoF(end);
+            VF             = V_fromAtoF(end);      
+
+            n_fromFto0     = linspace(nF, 0.0, numb)';
+            V_fromFto0     = VF * ones(numb, 1);        
+
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_from0toS.value           = n_from0toS;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_from0toS.Attributes.unit = "g's"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_from0toS.value           = V_from0toS;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_from0toS.Attributes.unit = "m/s"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromStoA.value           = n_fromStoA;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromStoA.Attributes.unit = "g's"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromStoA.value           = V_fromStoA;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromStoA.Attributes.unit = "m/s"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromAtoF.value           = n_fromAtoF;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromAtoF.Attributes.unit = "g's"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromAtoF.value           = V_fromAtoF;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromAtoF.Attributes.unit = "m/s";
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromFto0.value           = n_fromFto0;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromFto0.Attributes.unit = "g's"; 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromFto0.value           = V_fromFto0;
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromFto0.Attributes.unit = "m/s"; 
+            
+            final_envelope = figure;
+            hold on
+            grid on 
+            grid minor
+            ylim([-0.5 nmax+0.5])
+            xlim([0 VF+10])
+
+            plot(V_from0toS,  n_from0toS,   '-r', 'LineWidth',   1)
+            plot(V_fromStoA,  n_fromStoA,   '-r', 'LineWidth',   1)
+            plot(V_fromAtoF,  n_fromAtoF,   '-b', 'LineWidth',   1)
+            plot(V_fromFto0,  n_fromFto0,   '-b', 'LineWidth',   1)
+
+            plot(V_fromStoA(1),  n_fromStoA(1),  'k.', 'MarkerSize', 10)
+            plot(V_fromAtoF(1),  n_fromAtoF(1),  'k.', 'MarkerSize', 10)
+            plot(V_fromFto0(1),  n_fromFto0(1),  'k.', 'MarkerSize', 10)
+
+            xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+            ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+            title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+            text(15, 1.8, Aircraft_name)                                % Aircraft name inside the plot
+            text(VS, nS,   '\fontname{Courier} S', 'FontSize', 6)
+            text(VA, nA,   '\fontname{Courier} A', 'FontSize', 6)
+            text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)   
+
+            exportgraphics(final_envelope,'flaps_final_envelopediagramlanding.pdf','ContentType','vector')
+            exportgraphics(final_envelope,'flaps_final_envelopediagramlanding.png','ContentType','vector')
+
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.diagram = final_envelope;
+
+            % Saving figures inside correct folder
+            fprintf('Saving flaps_final_envelopediagramlanding.pdf in: ');
+            fprintf('\n'); 
+            fprintf('%s\n', SaveFolder);
+            % Moving file inside correct folder
+            movefile flaps_final_envelopediagramlanding.pdf Output
+            movefile flaps_final_envelopediagramlanding.png Output     
+        end
+
+
+        if abs(new_VA) < VA
+
+            % CASE STUDY FOR FLAPS FINAL ENVELOPE
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.case.value = 'Case 2';
+
+            VA = VA; 
+            nA = nA;
+
+            if abs(n_g_plus) > nmax 
+
+                n_from0toS     = linspace(0.0, nS, numb)';
+                V_from0toS     = VS * ones(numb, 1);
+                nS             = n_from0toS(end);
+                VS             = V_from0toS(end);
+
+                n_fromStoA     = linspace(nS, nA, numb)';
+                V_fromStoA     = Vstall(WS, rho0, CLmax_landing, n_fromStoA);
+                nA             = n_fromStoA(end);
+                VA             = V_fromStoA(end);
+
+                tol          = 1e-3;
+                for i = 1:length(V_gust)
+                    x = n_g_plus(i);
+                    y = x - nmax;
+                    if abs(y) < tol
+                        row = i; 
+                        VF1 = V_gust(row);
+                    end
+                end
+                V_fromAtoF1 = linspace(VA, VF1, numb)';
+                n_fromAtoF1 = nGUST_plus(V_fromAtoF1);
+                nF1         = nGUST_plus(VF1); 
+
+                V_fromF1toF = linspace(VF1, VF, numb)';
+                n_fromF1toF = linspace(nF1, nF, numb)';
+
+                V_fromFto0  = VF * ones(numb, 1);
+                n_fromFto0  = linspace(nF, 0.0, numb)';
+
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_from0toS.value            = n_from0toS;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_from0toS.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_from0toS.value            = V_from0toS;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_from0toS.Attributes.unit  = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromStoA.value            = n_fromStoA;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromStoA.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromStoA.value            = V_fromStoA;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromStoA.Attributes.unit  = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromAtoF1.value           = n_fromAtoF1;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromAtoF1.Attributes.unit = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromAtoF1.value           = V_fromAtoF1;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromAtoF1.Attributes.unit = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromF1toF.value           = n_fromF1toF;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromF1toF.Attributes.unit = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromF1toF.value           = V_fromF1toF;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromF1toF.Attributes.unit = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromFto0.value            = n_fromFto0;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromFto0.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromFto0.value            = V_fromFto0;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromFto0.Attributes.unit  = "m/s"; 
+                
+                final_envelope = figure;
+                hold on
+                grid on 
+                grid minor
+                ylim([-0.5 nmax+0.5])
+                xlim([0 VF+10])
+
+                plot(V_from0toS,  n_from0toS,   '-r', 'LineWidth',   1)
+                plot(V_fromStoA,  n_fromStoA,   '-r', 'LineWidth',   1)
+                plot(V_fromAtoF1, n_fromAtoF1,  '-b', 'LineWidth',   1)
+                plot(V_fromF1toF, n_fromF1toF,  '-b', 'LineWidth',   1)
+                plot(V_fromFto0,  n_fromFto0,   '-b', 'LineWidth',   1)
+
+                plot(V_fromStoA(1),  n_fromStoA(1),  'k.', 'MarkerSize', 10)
+                plot(V_fromAtoF1(1), n_fromAtoF1(1), 'k.', 'MarkerSize', 10)
+                plot(V_fromF1toF(1), n_fromF1toF(1), 'k.', 'MarkerSize', 10)
+                plot(V_fromFto0(1),  n_fromFto0(1),  'k.', 'MarkerSize', 10)
+
+                xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+                ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+                title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+                text(15, 1.8, Aircraft_name)                                      % Aircraft name inside the plot
+                text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
+                text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)   
+
+                exportgraphics(final_envelope,'flaps_final_envelopediagramlanding.pdf','ContentType','vector')
+                exportgraphics(final_envelope,'flaps_final_envelopediagramlanding.png','ContentType','vector')
+
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.diagram = final_envelope;
+
+                % Saving figures inside correct folder
+                fprintf('Saving flaps_final_envelopediagramlanding.pdf in: ');
+                fprintf('\n'); 
+                fprintf('%s\n', SaveFolder);
+                % Moving file inside correct folder
+                movefile flaps_final_envelopediagramlanding.pdf Output
+                movefile flaps_final_envelopediagramlanding.png Output               
+
+            elseif abs(n_g_plus) < nmax
+
+                n_from0toS     = linspace(0.0, nS, numb)';
+                V_from0toS     = VS * ones(numb, 1);
+                nS             = n_from0toS(end);
+                VS             = V_from0toS(end);
+
+                n_fromStoA     = linspace(nS, nA, numb)';
+                V_fromStoA     = Vstall(WS, rho0, CLmax_landing, n_fromStoA);
+                nA             = n_fromStoA(end);
+                VA             = V_fromStoA(end);
+
+                V_fromAtoF = linspace(VA, VF, numb)';
+                n_fromAtoF = nmax * ones(numb, 1);
+
+                V_fromFto0  = VF * ones(numb, 1);
+                n_fromFto0  = linspace(nF, 0.0, numb)';
+
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_from0toS.value            = n_from0toS;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_from0toS.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_from0toS.value            = V_from0toS;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_from0toS.Attributes.unit  = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromStoA.value            = n_fromStoA;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromStoA.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromStoA.value            = V_fromStoA;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromStoA.Attributes.unit  = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromAtoF.value            = n_fromAtoF;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromAtoF.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromAtoF.value            = V_fromAtoF;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromAtoF.Attributes.unit  = "m/s"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromFto0.value            = n_fromFto0;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromFto0.Attributes.unit  = "g's"; 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromFto0.value            = V_fromFto0;
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromFto0.Attributes.unit  = "m/s"; 
+                
+                final_envelope = figure;
+                hold on
+                grid on 
+                grid minor
+                ylim([-0.5 nmax+0.5])
+                xlim([0 VF+10])
+
+                plot(V_from0toS,  n_from0toS,   '-r', 'LineWidth',   1)
+                plot(V_fromStoA,  n_fromStoA,   '-r', 'LineWidth',   1)
+                plot(V_fromAtoF,  n_fromAtoF,   '-b', 'LineWidth',   1)
+                plot(V_fromFto0,  n_fromFto0,   '-b', 'LineWidth',   1)
+
+                plot(V_fromStoA(1),  n_fromStoA(1),  'k.', 'MarkerSize', 10)
+                plot(V_fromAtoF(1),  n_fromAtoF(1), 'k.', 'MarkerSize', 10)
+                plot(V_fromFto0(1),  n_fromFto0(1),  'k.', 'MarkerSize', 10)
+
+                xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+                ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+                title("Flaps envelope diagram per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
+                text(15, 1.8, Aircraft_name)                                      % Aircraft name inside the plot
+                text(VS, nS, '\fontname{Courier} S', 'FontSize', 6)
+                text(VF, nmax, '\fontname{Courier} F', 'FontSize', 6)   
+
+                exportgraphics(final_envelope,'flaps_final_envelopediagramlanding.pdf','ContentType','vector')
+                exportgraphics(final_envelope,'flaps_final_envelopediagramlanding.png','ContentType','vector')
+
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.diagram = final_envelope;
+
+                % Saving figures inside correct folder
+                fprintf('Saving flaps_final_envelopediagramlanding.pdf in: ');
+                fprintf('\n'); 
+                fprintf('%s\n', SaveFolder);
+                % Moving file inside correct folder
+                movefile flaps_final_envelopediagramlanding.pdf Output
+                movefile flaps_final_envelopediagramlanding.png Output               
+
+            end
+        end
+    end
+end
+
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% #########################################################################
+% #########################################################################
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% #########################################################################
+% SUPERPOSITION
+% #########################################################################
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+% FLAPS - TAKEOFF
+switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.case.value)
+    case 'Case 1'
+        
+        V_flap_takeoff_from0toS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_from0toS.value;
+        n_flap_takeoff_from0toS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_from0toS.value;
+        V_flap_takeoff_fromStoA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromStoA.value;
+        n_flap_takeoff_fromStoA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromStoA.value;
+        V_flap_takeoff_fromAtoF = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromAtoF.value;
+        n_flap_takeoff_fromAtoF = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromAtoF.value;
+        V_flap_takeoff_fromFto0 = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromFto0.value;
+        n_flap_takeoff_fromFto0 = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromFto0.value;
+
+        figure(46); 
+        hold on
+        grid on 
+        grid minor
+        
+        plot(V_flap_takeoff_from0toS, n_flap_takeoff_from0toS);
+        plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA);
+        plot(V_flap_takeoff_fromAtoF, n_flap_takeoff_fromAtoF);
+        plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0);
+        
+    case 'Case 2'
+        if abs(n_g_plus) > nmax
+            
+            V_flap_takeoff_from0toS  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_from0toS.value;
+            n_flap_takeoff_from0toS  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_from0toS.value;
+            V_flap_takeoff_fromStoA  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromStoA.value;
+            n_flap_takeoff_fromStoA  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromStoA.value;
+            V_flap_takeoff_fromAtoF1 = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromAtoF1.value;
+            n_flap_takeoff_fromAtoF1 = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromAtoF1.value;
+            V_flap_takeoff_fromF1toF = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromF1toF.value;
+            n_flap_takeoff_fromF1toF = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromF1toF.value;
+            V_flap_takeoff_fromFto0  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromFto0.value;
+            n_flap_takeoff_fromFto0  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromFto0.value;
+            
+            figure(46);  
+            hold on
+            grid on 
+            grid minor
+
+            plot(V_flap_takeoff_from0toS, n_flap_takeoff_from0toS);
+            plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA);
+            plot(V_flap_takeoff_fromAtoF1, n_flap_takeoff_fromAtoF1);
+            plot(V_flap_takeoff_fromF1toF, n_flap_takeoff_fromF1toF);
+            plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0);
+        
+        elseif abs(n_g_plus) < nmax     
+            
+            V_flap_takeoff_from0toS  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_from0toS.value;
+            n_flap_takeoff_from0toS  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_from0toS.value;
+            V_flap_takeoff_fromStoA  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromStoA.value;
+            n_flap_takeoff_fromStoA  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromStoA.value;
+            V_flap_takeoff_fromAtoF  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromAtoF.value;
+            n_flap_takeoff_fromAtoF  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromAtoF.value;
+            V_flap_takeoff_fromFto0  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromFto0.value;
+            n_flap_takeoff_fromFto0  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromFto0.value;
+            
+            figure(46);  
+            hold on
+            grid on 
+            grid minor
+
+            plot(V_flap_takeoff_from0toS, n_flap_takeoff_from0toS);
+            plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA);
+            plot(V_flap_takeoff_fromAtoF, n_flap_takeoff_fromAtoF);
+            plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0);
+            
+        end
+end
+
+% FLAPS - LANDING
+switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.case.value)
+    case 'Case 1'
+        
+        V_flap_landing_from0toS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_from0toS.value;
+        n_flap_landing_from0toS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_from0toS.value;
+        V_flap_landing_fromStoA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromStoA.value;
+        n_flap_landing_fromStoA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromStoA.value;
+        V_flap_landing_fromAtoF = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromAtoF.value;
+        n_flap_landing_fromAtoF = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromAtoF.value;
+        V_flap_landing_fromFto0 = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromFto0.value;
+        n_flap_landing_fromFto0 = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromFto0.value;
+        
+        figure(46);  
+        hold on
+        grid on 
+        grid minor
+        
+        plot(V_flap_landing_from0toS, n_flap_landing_from0toS);
+        plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA);
+        plot(V_flap_landing_fromAtoF, n_flap_landing_fromAtoF);
+        plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0);
+        
+    case 'Case 2'
+        if abs(n_g_plus) > nmax
+            
+            V_flap_landing_from0toS  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_from0toS.value;
+            n_flap_landing_from0toS  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_from0toS.value;
+            V_flap_landing_fromStoA  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromStoA.value;
+            n_flap_landing_fromStoA  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromStoA.value;
+            V_flap_landing_fromAtoF1 = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromAtoF1.value;
+            n_flap_landing_fromAtoF1 = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromAtoF1.value;
+            V_flap_landing_fromF1toF = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromF1toF.value;
+            n_flap_landing_fromF1toF = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromF1toF.value;
+            V_flap_landing_fromFto0  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromFto0.value;
+            n_flap_landing_fromFto0  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromFto0.value;
+            
+            figure(46);  
+            hold on
+            grid on 
+            grid minor
+
+            plot(V_flap_landing_from0toS, n_flap_landing_from0toS);
+            plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA);
+            plot(V_flap_landing_fromAtoF1, n_flap_landing_fromAtoF1);
+            plot(V_flap_landing_fromF1toF, n_flap_landing_fromF1toF);
+            plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0);
+            
+        elseif abs(n_g_plus) < nmax     
+            
+            V_flap_landing_from0toS  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_from0toS.value;
+            n_flap_landing_from0toS  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_from0toS.value;
+            V_flap_landing_fromStoA  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromStoA.value;
+            n_flap_landing_fromStoA  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromStoA.value;
+            V_flap_landing_fromAtoF  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromAtoF.value;
+            n_flap_landing_fromAtoF  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromAtoF.value;
+            V_flap_landing_fromFto0  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.V_fromFto0.value;
+            n_flap_landing_fromFto0  = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.landing.n_fromFto0.value;
+            
+            figure(46);  
+            hold on
+            grid on 
+            grid minor
+
+            plot(V_flap_landing_from0toS, n_flap_landing_from0toS);
+            plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA);
+            plot(V_flap_landing_fromAtoF, n_flap_landing_fromAtoF);
+            plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0);
+            
+        end
+end
+
+% CLEAN
+switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Straight_flight.value)
+    case 'Case 1'
+        
+        if max(n_gust_cruise_plus) > nmax
+            
+            V_flap_clean_from0toS                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_from0toS.value;
+            n_flap_clean_from0toS                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_from0toS.value;
+            V_flap_clean_Positive_stall_speed       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value;
+            n_flap_clean_Positive_stall_load_factor = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value;
+            V_flap_clean_fromA1toC1                 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromA1toC1.value;
+            n_flap_clean_fromA1toC1                 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromA1toC1.value;
+            V_flap_clean_fromC1toC                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromC1toC.value;
+            n_flap_clean_fromC1toC                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromC1toC.value;
+            V_flap_clean_fromCtoC2                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromCtoC2.value;
+            n_flap_clean_fromCtoC2                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromCtoC2.value;
+            V_flap_clean_fromC2toD                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromC2toD.value;
+            n_flap_clean_fromC2toD                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromC2toD.value;
+            V_flap_clean_fromDto0                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromDto0.value;
+            n_flap_clean_fromDto0                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromDto0.value;
+            
+            figure(46);  
+            hold on
+            grid on 
+            grid minor
+
+            plot(V_flap_clean_from0toS, n_flap_clean_from0toS);
+            plot(V_flap_clean_Positive_stall_speed, n_flap_clean_Positive_stall_load_factor);
+            plot(V_flap_clean_fromA1toC1, n_flap_clean_fromA1toC1);
+            plot(V_flap_clean_fromC1toC, n_flap_clean_fromC1toC);
+            plot(V_flap_clean_fromCtoC2, n_flap_clean_fromCtoC2); 
+            plot(V_flap_clean_fromC2toD, n_flap_clean_fromC2toD);   
+            plot(V_flap_clean_fromDto0, n_flap_clean_fromDto0);      
+            
+        elseif max(n_gust_cruise_plus) < nmax
+            
+            V_flap_clean_from0toS                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_from0toS.value;
+            n_flap_clean_from0toS                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_from0toS.value;
+            V_flap_clean_Positive_stall_speed       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value;
+            n_flap_clean_Positive_stall_load_factor = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value;
+            V_flap_clean_fromA1toC                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromA1toC.value;
+            n_flap_clean_fromA1toC                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromA1toC.value;
+            V_flap_clean_fromCtoD                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromCtoD.value;
+            n_flap_clean_fromCtoD                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromCtoD.value;
+            V_flap_clean_fromDto0                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromDto0.value;
+            n_flap_clean_fromDto0                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromDto0.value;
+            
+            figure(46);  
+            hold on
+            grid on 
+            grid minor
+
+            plot(V_flap_clean_from0toS, n_flap_clean_from0toS);
+            plot(V_flap_clean_Positive_stall_speed, n_flap_clean_Positive_stall_load_factor);
+            plot(V_flap_clean_fromA1toC, n_flap_clean_fromA1toC);
+            plot(V_flap_clean_fromCtoD, n_flap_clean_fromCtoD);   
+            plot(V_flap_clean_fromDto0, n_flap_clean_fromDto0);   
+            
+        end
+        
+    case 'Case 2'
+        
+        V_flap_clean_from0toS                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_from0toS.value;
+        n_flap_clean_from0toS                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_from0toS.value;
+        V_flap_clean_Positive_stall_speed       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_speed.value;
+        n_flap_clean_Positive_stall_load_factor = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Positive_stall_load_factor.value;
+        V_flap_clean_fromCtoA2                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromCtoA2.value;
+        n_flap_clean_fromCtoA2                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromCtoA2.value;
+        V_flap_clean_fromA2toD                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromA2toD.value;
+        n_flap_clean_fromA2toD                  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromA2toD.value;
+        V_flap_clean_fromDto0                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.V_fromDto0.value;
+        n_flap_clean_fromDto0                   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.n_fromDto0.value;
+        
+        figure(46);  
+        hold on
+        grid on 
+        grid minor
+
+        plot(V_flap_clean_from0toS, n_flap_clean_from0toS);
+        plot(V_flap_clean_Positive_stall_speed, n_flap_clean_Positive_stall_load_factor);
+        plot(V_flap_clean_fromCtoA2, n_flap_clean_fromCtoA2);
+        plot(V_flap_clean_fromA2toD, n_flap_clean_fromA2toD);   
+        plot(V_flap_clean_fromDto0, n_flap_clean_fromDto0);   
+         
+end
+
+
+
+% CLEAN
+
 % switch (Straight_flight_Case)
 %     % CASE 1: VA greater than the intercept
 %     case 'Case 1'
@@ -502,7 +1286,7 @@ end
 % 
 %                 % FROM S TO A 
 %                 n_fromStoA     = linspace(nS, nA, numb)';
-%                 V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+%                 V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
 % 
 %                 % FROM A TO F1 
 %                 tol          = 1e-3;
@@ -580,7 +1364,7 @@ end
 %             
 %             % FROM S TO A 
 %             n_fromStoA     = linspace(nS, nA, numb)';
-%             V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+%             V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
 %             
 %             % FROM A TO F
 %             V_fromAtoF = linspace(VA, VF, numb)'; 
@@ -636,7 +1420,7 @@ end
 %     % CASE 1: VA lower than the intercept    
 %     case 'Case 2'
 %         syms a b c V 
-%         a        = (rho0 * CLmax_flap) / (2 * WS);
+%         a        = (rho0 * CLmax_takeoff) / (2 * WS);
 %         b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
 %         c        = 1;
 %         eqn      = a*V^2 - b*V - c;
@@ -654,7 +1438,7 @@ end
 %         end
 % 
 %         % POINT A
-%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value           = Vstall(WS, rho0, CLmax_flap, nA);
+%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value           = Vstall(WS, rho0, CLmax_takeoff, nA);
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.Attributes.unit = "m/s"; 
 %         VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value;
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.nA.value           = nA;
@@ -665,7 +1449,7 @@ end
 %         V_from0toS     = VS*ones(numb, 1);
 % 
 %         n_fromStoA     = linspace(nS, nA, numb);
-%         V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+%         V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
 % 
 %         n_fromAtoF     = [nA nF];
 %         V_fromAtoF     = [VA VF];
@@ -734,15 +1518,15 @@ end
 %         VS    = calcvs(obj, rho0, WS, CLmax, n1);
 % 
 %         % CALCULATION OF VS1 - FLAPS DEPLOYED STALL SPEED
-%         CLmax_flap = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.value;
-%         VS1        = calcvs(obj, rho0, WS, CLmax_flap, n1);
+%         CLmax_takeoff = Aircraft.Certification.Aerodynamic_data.Flaps.CLmax_takeoffs.value;
+%         VS1        = calcvs(obj, rho0, WS, CLmax_takeoff, n1);
 % 
 %         % EVALUATION OF VF - FLAPS DEPLOYED AIRSPEED 
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.value = calcnVF(obj, VS, VS1);
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.Attributes.unit = "m/s";
 % 
 %         % STALLING SPEED VECTOR
-%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_flap, n_flaps_vector);
+%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_takeoff, n_flaps_vector);
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.Attributes.unit = "m/s";
 % 
 %         % EVALUATION OF STALL AND FLAP MANOEUVRING POINT 
@@ -753,7 +1537,7 @@ end
 %         nS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value;
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.Attributes.unit = "g's"; 
 %         % POINT A
-%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho0, CLmax_flap, nmax);
+%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho0, CLmax_takeoff, nmax);
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.Attributes.unit = "m/s"; 
 %         VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value;
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.nA.value = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
@@ -779,7 +1563,7 @@ end
 %         V_from0toS     = VS*ones(numb, 1);
 % 
 %         n_fromStoA     = linspace(nS, nA, numb);
-%         V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+%         V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
 % 
 %         n_fromAtoF     = nmax*ones(numb, 1);
 %         V_fromAtoF     = linspace(VA, VF, numb);
@@ -898,7 +1682,7 @@ end
 %         Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
 % 
 %         syms a b c V 
-%         a        = (rho0 * CLmax_flap) / (2 * WS);
+%         a        = (rho0 * CLmax_takeoff) / (2 * WS);
 %         b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
 %         c        = 1;
 %         eqn      = a*V^2 - b*V - c;
@@ -918,7 +1702,7 @@ end
 %             if (max(n_gust) > nA) & (VA < VA1)
 % 
 %             % POINT A
-%             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA1.VA1.value           = Vstall(WS, rho0, CLmax_flap, nA1);
+%             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA1.VA1.value           = Vstall(WS, rho0, CLmax_takeoff, nA1);
 %             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA1.VA1.Attributes.unit = "m/s"; 
 %             VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA1.VA1.value;
 %             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA1.nA1.value           = nA1;
@@ -929,7 +1713,7 @@ end
 %             V_from0toS     = VS*ones(numb, 1);
 % 
 %             n_fromStoA     = linspace(nS, nA, numb);
-%             V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+%             V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
 %             
 %             n_fromAtoA1    = nmax * ones(length(numb), 1); 
 %             V_fromAtoA1    = linspace(VA, VA1, numb)'; 
@@ -975,7 +1759,7 @@ end
 %         elseif max(n_gust) < nA
 %             
 %             syms a b c V 
-%             a        = (rho0 * CLmax_flap) / (2 * WS);
+%             a        = (rho0 * CLmax_takeoff) / (2 * WS);
 %             b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
 %             c        = 1;
 %             eqn      = a*V^2 - b*V - c;
@@ -993,7 +1777,7 @@ end
 %             end
 % 
 %             % POINT A
-%             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value           = Vstall(WS, rho0, CLmax_flap, nA);
+%             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value           = Vstall(WS, rho0, CLmax_takeoff, nA);
 %             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.Attributes.unit = "m/s"; 
 %             VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value;
 %             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.nA.value           = nA;
@@ -1004,7 +1788,7 @@ end
 %             V_from0toS     = VS*ones(numb, 1);
 % 
 %             n_fromStoA     = linspace(nS, nA, numb);
-%             V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+%             V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
 % 
 %             n_fromAtoF     = [nA nF];
 %             V_fromAtoF     = [VA VF];
@@ -1067,15 +1851,15 @@ end
 %         VS          = calcvs(obj, rho0, WS, CLmax_clean, n1);
 % 
 %         % CALCULATION OF VS1 - FLAPS DEPLOYED STALL SPEED
-%         CLmax_flap = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.value;
-%         VS1        = calcvs(obj, rho0, WS, CLmax_flap, n1);
+%         CLmax_takeoff = Aircraft.Certification.Aerodynamic_data.Flaps.CLmax_takeoffs.value;
+%         VS1        = calcvs(obj, rho0, WS, CLmax_takeoff, n1);
 % 
 %         % EVALUATION OF VF - FLAPS DEPLOYED AIRSPEED 
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.value = calcnVF(obj, VS, VS1);
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VF.Attributes.unit = "m/s";
 % 
 %         % STALLING SPEED VECTOR
-%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_flap, n_flaps_vector);
+%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_takeoff, n_flaps_vector);
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.VSpos_vec.Attributes.unit = "m/s";
 % 
 %         % EVALUATION OF STALL AND FLAP MANOEUVRING POINT 
@@ -1086,7 +1870,7 @@ end
 %         nS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.value;
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointS.nS.Attributes.unit = "g's"; 
 %         % POINT A
-%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho0, CLmax_flap, nmax);
+%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value = Vstall(WS, rho0, CLmax_takeoff, nmax);
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.Attributes.unit = "m/s"; 
 %         VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.VA.value;
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.PointA.nA.value = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
@@ -1112,7 +1896,7 @@ end
 %         V_from0toS     = VS*ones(numb, 1);
 % 
 %         n_fromStoA     = linspace(nS, nA, numb);
-%         V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+%         V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
 % 
 %         n_fromAtoF     = nmax*ones(numb, 1);
 %         V_fromAtoF     = linspace(VA, VF, numb);
@@ -1232,7 +2016,7 @@ end
 %         Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
 % 
 %         syms a b c V 
-%         a        = (rho0 * CLmax_flap) / (2 * WS);
+%         a        = (rho0 * CLmax_takeoff) / (2 * WS);
 %         b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
 %         c        = 1;
 %         eqn      = a*V^2 - b*V - c;
@@ -1250,7 +2034,7 @@ end
 %         end
 % 
 %         % POINT A
-%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value           = Vstall(WS, rho0, CLmax_flap, nA);
+%         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value           = Vstall(WS, rho0, CLmax_takeoff, nA);
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.Attributes.unit = "m/s"; 
 %         VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.VA.value;
 %         Aircraft.Certification.Regulation.SubpartC.Flapsloads.Final_envelope.PointA.nA.value           = nA;
@@ -1261,7 +2045,7 @@ end
 %         V_from0toS     = VS*ones(numb, 1);
 % 
 %         n_fromStoA     = linspace(nS, nA, numb);
-%         V_fromStoA     = Vstall(WS, rho0, CLmax_flap, n_fromStoA);
+%         V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
 % 
 %         n_fromAtoF     = [nA nF];
 %         V_fromAtoF     = [VA VF];
