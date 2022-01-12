@@ -80,6 +80,10 @@
 %  (d) SECONDARY CONTROLS AND SYSTEMS. Secondary controls and systems must
 %      meet the requirements of CS - VLA 405.
 %
+%% CALCULATION METHODS APPLICABLE TO HINGE STRENGTH CALCULATION 
+%  1. Roskam;
+%  2. NACA / McCormick
+
 %% INITIALIZATION OF THE CALCULATION 
 
 % AILERON SURFACE 
@@ -142,7 +146,7 @@ C_h_total_deg = C_h_delta_deg * delta_max_deg + C_h_alfa_deg * alfa_A_deg;
 Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_deg.value = C_h_total_deg; 
 Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_deg.Attributes.unit = "1/deg";
 C_h_total_rad = C_h_total_deg * conversion_factor;
-Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_rad.value = C_h_total_deg; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_rad.value = C_h_total_rad; 
 Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_rad.Attributes.unit = "1/deg";
 
 % DYNAMIC PRESSURE AT VA

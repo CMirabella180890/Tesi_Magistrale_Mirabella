@@ -143,6 +143,8 @@ switch (Aircraft.Certification.Regulation.value)
         CalcEngineTorque
         % AILERON LOAD 
         CalcHingeAileronLoads
+        % ELEVATOR LOAD
+        CalcHingeElevatorLoads
         
     case 'CS23'
     case 'CS22'

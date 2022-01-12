@@ -1041,15 +1041,18 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.case.value)
         V_flap_takeoff_fromFto0 = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.V_fromFto0.value;
         n_flap_takeoff_fromFto0 = Aircraft.Certification.Regulation.SubpartC.Flapsloads.final_envelope.takeoff.n_fromFto0.value;
 
-        figure(46); 
+        superposition = figure(46); 
         hold on
         grid on 
         grid minor
         
-        plot(V_flap_takeoff_from0toS, n_flap_takeoff_from0toS);
-        plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA);
-        plot(V_flap_takeoff_fromAtoF, n_flap_takeoff_fromAtoF);
-        plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0);
+        plot(V_flap_takeoff_from0toS, n_flap_takeoff_from0toS, '-r', 'LineWidth', 1);
+        plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA, '-r', 'LineWidth', 1);
+        plot(V_flap_takeoff_fromAtoF, n_flap_takeoff_fromAtoF, '-r', 'LineWidth', 1);
+        plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0, '-r', 'LineWidth', 1);
+        xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
+        ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
+        title("V~-~n diagram per ", Reg, "Interpreter", "latex")
         
     case 'Case 2'
         if abs(n_g_plus) > nmax
@@ -1070,11 +1073,11 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.case.value)
             grid on 
             grid minor
 
-            plot(V_flap_takeoff_from0toS, n_flap_takeoff_from0toS);
-            plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA);
-            plot(V_flap_takeoff_fromAtoF1, n_flap_takeoff_fromAtoF1);
-            plot(V_flap_takeoff_fromF1toF, n_flap_takeoff_fromF1toF);
-            plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0);
+            plot(V_flap_takeoff_from0toS, n_flap_takeoff_from0toS, '-r', 'LineWidth', 1);
+            plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA, '-r', 'LineWidth', 1);
+            plot(V_flap_takeoff_fromAtoF1, n_flap_takeoff_fromAtoF1, '-r', 'LineWidth', 1);
+            plot(V_flap_takeoff_fromF1toF, n_flap_takeoff_fromF1toF, '-r', 'LineWidth', 1);
+            plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0, '-r', 'LineWidth', 1);
         
         elseif abs(n_g_plus) < nmax     
             
@@ -1092,10 +1095,10 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.case.value)
             grid on 
             grid minor
 
-            plot(V_flap_takeoff_from0toS, n_flap_takeoff_from0toS);
-            plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA);
-            plot(V_flap_takeoff_fromAtoF, n_flap_takeoff_fromAtoF);
-            plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0);
+            plot(V_flap_takeoff_from0toS, n_flap_takeoff_from0toS, '-r', 'LineWidth', 1);
+            plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA, '-r', 'LineWidth', 1);
+            plot(V_flap_takeoff_fromAtoF, n_flap_takeoff_fromAtoF, '-r', 'LineWidth', 1);
+            plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0, '-r', 'LineWidth', 1);
             
         end
 end
@@ -1118,10 +1121,10 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.case.value)
         grid on 
         grid minor
         
-        plot(V_flap_landing_from0toS, n_flap_landing_from0toS);
-        plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA);
-        plot(V_flap_landing_fromAtoF, n_flap_landing_fromAtoF);
-        plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0);
+        plot(V_flap_landing_from0toS, n_flap_landing_from0toS, '-b', 'LineWidth', 1);
+        plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA, '-b', 'LineWidth', 1);
+        plot(V_flap_landing_fromAtoF, n_flap_landing_fromAtoF, '-b', 'LineWidth', 1);
+        plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0, '-b', 'LineWidth', 1);
         
     case 'Case 2'
         if abs(n_g_plus) > nmax
@@ -1142,11 +1145,11 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.case.value)
             grid on 
             grid minor
 
-            plot(V_flap_landing_from0toS, n_flap_landing_from0toS);
-            plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA);
-            plot(V_flap_landing_fromAtoF1, n_flap_landing_fromAtoF1);
-            plot(V_flap_landing_fromF1toF, n_flap_landing_fromF1toF);
-            plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0);
+            plot(V_flap_landing_from0toS, n_flap_landing_from0toS, '-b', 'LineWidth', 1);
+            plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA, '-b', 'LineWidth', 1);
+            plot(V_flap_landing_fromAtoF1, n_flap_landing_fromAtoF1, '-b', 'LineWidth', 1);
+            plot(V_flap_landing_fromF1toF, n_flap_landing_fromF1toF, '-b', 'LineWidth', 1);
+            plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0, '-b', 'LineWidth', 1);
             
         elseif abs(n_g_plus) < nmax     
             
@@ -1164,10 +1167,10 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.case.value)
             grid on 
             grid minor
 
-            plot(V_flap_landing_from0toS, n_flap_landing_from0toS);
-            plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA);
-            plot(V_flap_landing_fromAtoF, n_flap_landing_fromAtoF);
-            plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0);
+            plot(V_flap_landing_from0toS, n_flap_landing_from0toS, '-b', 'LineWidth', 1);
+            plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA, '-b', 'LineWidth', 1);
+            plot(V_flap_landing_fromAtoF, n_flap_landing_fromAtoF, '-b', 'LineWidth', 1);
+            plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0, '-b', 'LineWidth', 1);
             
         end
 end
@@ -1198,13 +1201,13 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             grid on 
             grid minor
 
-            plot(V_flap_clean_from0toS, n_flap_clean_from0toS);
-            plot(V_flap_clean_Positive_stall_speed, n_flap_clean_Positive_stall_load_factor);
-            plot(V_flap_clean_fromA1toC1, n_flap_clean_fromA1toC1);
-            plot(V_flap_clean_fromC1toC, n_flap_clean_fromC1toC);
-            plot(V_flap_clean_fromCtoC2, n_flap_clean_fromCtoC2); 
-            plot(V_flap_clean_fromC2toD, n_flap_clean_fromC2toD);   
-            plot(V_flap_clean_fromDto0, n_flap_clean_fromDto0);      
+            plot(V_flap_clean_from0toS, n_flap_clean_from0toS, '-k', 'LineWidth', 1);
+            plot(V_flap_clean_Positive_stall_speed, n_flap_clean_Positive_stall_load_factor, '-k', 'LineWidth', 1);
+            plot(V_flap_clean_fromA1toC1, n_flap_clean_fromA1toC1, '-k', 'LineWidth', 1);
+            plot(V_flap_clean_fromC1toC, n_flap_clean_fromC1toC, '-k', 'LineWidth', 1);
+            plot(V_flap_clean_fromCtoC2, n_flap_clean_fromCtoC2, '-k', 'LineWidth', 1); 
+            plot(V_flap_clean_fromC2toD, n_flap_clean_fromC2toD, '-k', 'LineWidth', 1);   
+            plot(V_flap_clean_fromDto0, n_flap_clean_fromDto0, '-k', 'LineWidth', 1);      
             
         elseif max(n_gust_cruise_plus) < nmax
             
@@ -1224,11 +1227,11 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             grid on 
             grid minor
 
-            plot(V_flap_clean_from0toS, n_flap_clean_from0toS);
-            plot(V_flap_clean_Positive_stall_speed, n_flap_clean_Positive_stall_load_factor);
-            plot(V_flap_clean_fromA1toC, n_flap_clean_fromA1toC);
-            plot(V_flap_clean_fromCtoD, n_flap_clean_fromCtoD);   
-            plot(V_flap_clean_fromDto0, n_flap_clean_fromDto0);   
+            plot(V_flap_clean_from0toS, n_flap_clean_from0toS, '-k', 'LineWidth', 1);
+            plot(V_flap_clean_Positive_stall_speed, n_flap_clean_Positive_stall_load_factor, '-k', 'LineWidth', 1);
+            plot(V_flap_clean_fromA1toC, n_flap_clean_fromA1toC, '-k', 'LineWidth', 1);
+            plot(V_flap_clean_fromCtoD, n_flap_clean_fromCtoD, '-k', 'LineWidth', 1);   
+            plot(V_flap_clean_fromDto0, n_flap_clean_fromDto0, '-k', 'LineWidth', 1);   
             
         end
         
@@ -1250,14 +1253,26 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         grid on 
         grid minor
 
-        plot(V_flap_clean_from0toS, n_flap_clean_from0toS);
-        plot(V_flap_clean_Positive_stall_speed, n_flap_clean_Positive_stall_load_factor);
-        plot(V_flap_clean_fromCtoA2, n_flap_clean_fromCtoA2);
-        plot(V_flap_clean_fromA2toD, n_flap_clean_fromA2toD);   
-        plot(V_flap_clean_fromDto0, n_flap_clean_fromDto0);   
+        plot(V_flap_clean_from0toS, n_flap_clean_from0toS, '-k', 'LineWidth', 1);
+        plot(V_flap_clean_Positive_stall_speed, n_flap_clean_Positive_stall_load_factor, '-k', 'LineWidth', 1);
+        plot(V_flap_clean_fromCtoA2, n_flap_clean_fromCtoA2, '-k', 'LineWidth', 1);
+        plot(V_flap_clean_fromA2toD, n_flap_clean_fromA2toD, '-k', 'LineWidth', 1);   
+        plot(V_flap_clean_fromDto0, n_flap_clean_fromDto0, '-k', 'LineWidth', 1);   
          
 end
 
+% EXPORT FIGURE
+exportgraphics(superposition, 'Superposition.pdf', 'ContentType', 'vector')
+exportgraphics(superposition, 'Superposition.png', 'ContentType', 'vector')
+
+% Saving figures inside correct folder
+fprintf('Saving Superposition.pdf in: ');
+fprintf('\n'); 
+fprintf('%s\n', SaveFolder);
+% Moving file inside correct folder
+movefile Superposition.pdf Output
+movefile Superposition.png Output 
+% -----------------------------------------------------------------
 
 
 % CLEAN

@@ -183,6 +183,25 @@ Aircraft.Geometry.Aileron.eta_iniziale.Attributes.unit = "Non dimensional";
 Aircraft.Geometry.Aileron.eta_finale.value = NaN; 
 Aircraft.Geometry.Aileron.eta_finale.Attributes.unit = "Non dimensional";
 % -------------------------------------------------------------------------
+% Elevator
+% -------------------------------------------------------------------------
+Aircraft.Geometry.Elevator.S.value = NaN; 
+Aircraft.Geometry.Elevator.S.Attributes.unit = "m^2";
+Aircraft.Geometry.Elevator.chord.value = NaN; 
+Aircraft.Geometry.Elevator.chord.Attributes.unit = "m^2";
+Aircraft.Geometry.Elevator.chord_ratio_ce_c.value = NaN;
+Aircraft.Geometry.Elevator.chord_ratio_ce_c.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Elevator.overhang.value = NaN;
+Aircraft.Geometry.Elevator.overhang.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Elevator.span_ratio.value = NaN;
+Aircraft.Geometry.Elevator.span_ratio.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Elevator.S_hinge.value = NaN;
+Aircraft.Geometry.Elevator.S_hinge.Attributes.unit = "m^2";
+Aircraft.Geometry.Elevator.C_h_delta_rad.value = NaN;
+Aircraft.Geometry.Elevator.C_h_delta_rad.Attributes.unit = "1/rad";
+Aircraft.Geometry.Elevator.C_h_alfa_rad.value = NaN;
+Aircraft.Geometry.Elevator.C_h_alfa_rad.Attributes.unit = "1/rad";
+% -------------------------------------------------------------------------
 % Wing
 % -------------------------------------------------------------------------
 Aircraft.Geometry.Wing.b.value = NaN;       % Wing span m
