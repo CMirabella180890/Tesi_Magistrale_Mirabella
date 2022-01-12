@@ -178,6 +178,7 @@ Saving ShearBendingTorsionDiagramPointD.pdf in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
  ++++ FIGURE 17 - POINT S_inv SHEAR, BENDING, TORSION ++++ 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointS_inv.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -237,6 +238,7 @@ Saving CmComparisonPointC.pdf in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 31 - POINT C PARTIAL LOAD - UNSYMM. TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 32 - POINT C FULL LOAD - UNSYMM. TORSION ++++ 
@@ -445,19 +447,3 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Superposition.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-CalcHingeElevatorLoads
-{Unrecognized field name "Hinge_coefficients".
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcHingeElevatorLoads', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcHingeElevatorLoads.m', 111)" style="font-weight:bold">CalcHingeElevatorLoads</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcHingeElevatorLoads.m',111,0)">line 111</a>)
-C_h_delta_rad = Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_delta_rad.value;
-} 
-opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcHingeElevatorLoads.m',111,0)
-CalcHingeElevatorLoads
-{Unrecognized field name "Max_deflection".
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcHingeElevatorLoads', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcHingeElevatorLoads.m', 126)" style="font-weight:bold">CalcHingeElevatorLoads</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcHingeElevatorLoads.m',126,0)">line 126</a>)
-delta_max_deg = Aircraft.Geometry.Elevator.Max_deflection.value;
-} 
-close all 
-opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcHingeElevatorLoads.m',126,0)
-CalcHingeElevatorLoads

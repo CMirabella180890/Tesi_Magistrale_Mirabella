@@ -150,7 +150,17 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'span_ratio_elevator', ...
          'S_hinge_elevator', ...
          'Chdeltaelevator', ...
-         'Chalfaelevator'};
+         'Chalfaelevator', ...
+         'S_vertical', ...
+         'chord_vertical', ...
+         'S_rudder', ...
+         'chord_rudder', ...
+         'chord_ratio_rudder_cf_c', ...
+         'overhang_rudder', ...
+         'span_ratio_rudder', ...
+         'max_deflection_rudder', ...
+         'Chdeltarudder', ...
+         'Chalfarudder'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -479,7 +489,37 @@ if LengthIndex==length(VarText)
     p = strcmp('Chalfaelevator', label);
     Aircraft.Geometry.Elevator.C_h_alfa_rad.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Geometry.Elevator.C_h_alfa_rad.Attributes.unit = char(table2array(unit(p==1,1)));
-    
+    p = strcmp('S_vertical', label);
+    Aircraft.Geometry.Vertical.S.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.S.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('chord_vertical', label);
+    Aircraft.Geometry.Vertical.chord.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.chord.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('S_rudder', label);
+    Aircraft.Geometry.Rudder.S.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.S.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('chord_rudder', label);
+    Aircraft.Geometry.Rudder.chord.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.chord.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('chord_ratio_rudder_cf_c', label);
+    Aircraft.Geometry.Rudder.chord_ratio_cf_c.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.chord_ratio_cf_c.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('overhang_rudder', label);
+    Aircraft.Geometry.Rudder.overhang.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.overhang.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('span_ratio_rudder', label);
+    Aircraft.Geometry.Rudder.span_ratio.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.span_ratio.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('max_deflection_rudder', label);
+    Aircraft.Geometry.Rudder.max_deflection.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.max_deflection.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Chdeltarudder', label);
+    Aircraft.Geometry.Rudder.C_h_delta_rad.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Rudder.C_h_delta_rad.Attributes.unit = char(table2array(unit(p==1,1)));  
+    p = strcmp('Chalfarudder', label);
+    Aircraft.Geometry.Rudder.C_h_alfa_rad.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Rudder.C_h_alfa_rad.Attributes.unit = char(table2array(unit(p==1,1)));     
+       
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

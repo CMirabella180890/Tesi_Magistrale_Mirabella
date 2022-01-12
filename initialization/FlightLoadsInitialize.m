@@ -261,7 +261,30 @@ Aircraft.Geometry.Vertical.b.value = 0.437502; %m
 Aircraft.Geometry.Vertical.b.Attributes.unit = "m";
 Aircraft.Geometry.Vertical.zpos.value = 1.0; % % of df
 Aircraft.Geometry.Vertical.zpos.Attributes.unit = "% of df";
+Aircraft.Geometry.Vertical.S.value = NaN; 
+Aircraft.Geometry.Vertical.S.Attributes.unit = "m^2";
+Aircraft.Geometry.Vertical.chord.value = NaN; 
+Aircraft.Geometry.Vertical.chord.Attributes.unit = "m";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Rudder
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Aircraft.Geometry.Rudder.S.value = NaN;
+Aircraft.Geometry.Rudder.S.Attributes.unit = "m^2";
+Aircraft.Geometry.Rudder.chord.value = NaN;
+Aircraft.Geometry.Rudder.chord.Attributes.unit = "m";
+Aircraft.Geometry.Rudder.chord_ratio_cf_c.value = NaN;
+Aircraft.Geometry.Rudder.chord_ratio_cf_c.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Rudder.overhang.value = NaN;
+Aircraft.Geometry.Rudder.overhang.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Rudder.span_ratio.value = NaN;
+Aircraft.Geometry.Rudder.span_ratio.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Rudder.max_deflection.value = NaN;
+Aircraft.Geometry.Rudder.max_deflection.Attributes.unit = "degrees";
+Aircraft.Geometry.Rudder.C_h_delta_rad.value = NaN; 
+Aircraft.Geometry.Rudder.C_h_delta_rad.Attributes.unit = "1/rad"; 
+Aircraft.Geometry.Rudder.C_h_alfa_rad.value = NaN; 
+Aircraft.Geometry.Rudder.C_h_alfa_rad.Attributes.unit = "1/rad"; 
+
 % -------------------------------------------------------------------------
 % Fuselage
 % -------------------------------------------------------------------------

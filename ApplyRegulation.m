@@ -145,6 +145,8 @@ switch (Aircraft.Certification.Regulation.value)
         CalcHingeAileronLoads
         % ELEVATOR LOAD
         CalcHingeElevatorLoads
+        % RUDDER LOAD 
+        CalcHingeRudderLoads
         
     case 'CS23'
     case 'CS22'

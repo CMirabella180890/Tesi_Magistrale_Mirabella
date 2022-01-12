@@ -181,13 +181,13 @@ Aircraft.Engine.Max_Continous.Propeller_rotational_speed_sec.Attributes.unit = "
 % MEAN ENGINE TORQUE AT MAX TAKEOFF POWER. REMEMBER: COMBINE THIS LOAD WITH
 % 0.75 THE LOAD ASSOCIATED WITH POINT A FLIGHT CONDITION
 Takeoff_mean_engine_torque = (takeoff_power) * ( (1e3) / (2 * pi * prop_rotational_speed_takeoff_sec) );
-Aircraft.Engine.Takeoff.Mean_torque.value = Takeoff_mean_engine_torque;
-Aircraft.Engine.Takeoff.Mean_torque.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Mean_torque.value = Takeoff_mean_engine_torque;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Mean_torque.Attributes.unit = "N * m";
 
 % LIMIT TORQUE AT TAKEOFF POWER
 Takeoff_limit_engine_torque = correction_factor * Takeoff_mean_engine_torque;
-Aircraft.Engine.Takeoff.Limit_torque.value = Takeoff_limit_engine_torque;
-Aircraft.Engine.Takeoff.Limit_torque.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Limit_torque.value = Takeoff_limit_engine_torque;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Limit_torque.Attributes.unit = "N * m";
 % -------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
@@ -196,26 +196,26 @@ Aircraft.Engine.Takeoff.Limit_torque.Attributes.unit = "N * m";
 % MEAN ENGINE TORQUE AT MAX CONTINOUS POWER. REMEMBER: COMBINE THIS LOAD WITH
 % 1.00 THE LOAD ASSOCIATED WITH POINT A FLIGHT CONDITION
 Max_continous_mean_engine_torque = (max_continous_power) * ( (1e3) / (2 * pi * prop_rotational_speed_maxcontinous_sec) );
-Aircraft.Engine.Max_Continous.Mean_torque.value = Max_continous_mean_engine_torque;
-Aircraft.Engine.Max_Continous.Mean_torque.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Max_Continous.Mean_torque.value = Max_continous_mean_engine_torque;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Max_Continous.Mean_torque.Attributes.unit = "N * m";
 
 % LIMIT TORQUE AT MAX CONTINOUS POWER
 Max_continous_limit_engine_torque = correction_factor * Max_continous_mean_engine_torque;
-Aircraft.Engine.Max_Continous.Limit_torque.value = Max_continous_limit_engine_torque;
-Aircraft.Engine.Max_Continous.Limit_torque.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Max_Continous.Limit_torque.value = Max_continous_limit_engine_torque;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Max_Continous.Limit_torque.Attributes.unit = "N * m";
 % -------------------------------------------------------------------------
 
 % TOTAL SIDE LOAD 
 total_side_load = Engine_block_weight * Limit_side_load;
-Aircraft.Engine.Total_side_load.value = total_side_load;
-Aircraft.Engine.Total_side_load.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Side_loads.Total_side_load.value = total_side_load;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Side_loads.Total_side_load.Attributes.unit = "daN";
 
 % INERTIA LOAD ON ENGINE MOUNT 
 % The inertia load is equal to the max limit load factor times the engine
 % group weight (in this case point A1 of the diagram)
 inertia_load_on_engine_mount = Gust_limit_load * total_side_load; 
-Aircraft.Engine.Inertia_load_on_engine_mount.value = inertia_load_on_engine_mount;
-Aircraft.Engine.Inertia_load_on_engine_mount.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Inertia_load_on_engine_mount.value = inertia_load_on_engine_mount;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Inertia_load_on_engine_mount.Attributes.unit = "daN";
 
 %% GYROSCOPIC LOADS  (SEE AMC 23.371)
 
@@ -234,12 +234,12 @@ Applicable_inertia_load = normal_load_factor * Engine_block_weight;
 % YAW CASE 
 yaw_rate = Aircraft.Engine.Yaw_speed.value;
 yaw_case_gyro_loads = Gyro_loads(prop_polar_mom, prop_rotational_speed_maxcontinous_sec, yaw_rate);
-Aircraft.Engine.Gyroscopic_loads.yaw_case.value = yaw_case_gyro_loads; 
-Aircraft.Engine.Gyroscopic_loads.yaw_case.Attributes.unit = "daN * m"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Gyroscopic_loads.yaw_case.value = yaw_case_gyro_loads; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Gyroscopic_loads.yaw_case.Attributes.unit = "daN * m"; 
 
 % PITCH CASE 
 pitch_rate = Aircraft.Engine.Pitch_speed.value;
 pitch_case_gyro_loads = Gyro_loads(prop_polar_mom, prop_rotational_speed_maxcontinous_sec, pitch_rate);
-Aircraft.Engine.Gyroscopic_loads.pitch_case.value = pitch_case_gyro_loads; 
-Aircraft.Engine.Gyroscopic_loads.pitch_case.Attributes.unit = "daN * m"; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Gyroscopic_loads.pitch_case.value = pitch_case_gyro_loads; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Gyroscopic_loads.pitch_case.Attributes.unit = "daN * m"; 
 
