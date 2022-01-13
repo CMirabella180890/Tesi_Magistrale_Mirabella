@@ -23,17 +23,21 @@ yi_cl  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Bal
 [XI_cl,YI_cl] = meshgrid(xi_cl, yi_cl);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value = interp2(XX_cl, YY_cl, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value, ...
                                                                         XI_cl, YI_cl, 'spline');
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.Attributes.unit = "Non dimensional";
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % FIGURE 8 - INTERPOLATION OF SPANWISE LIFT DISTRIBUCTION
 disp(" ")
 disp(" ++++ FIGURE 8 - 3D INTERPOLATION OF SPANWISE LIFT DISTR. ++++ ");
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph = cl_interpolation_graph(x_cl, y_cl, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.Attributes.graph = cl_interpolation_graph(x_cl, y_cl, ...
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cl.value, ... 
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value, XI_cl, YI_cl); 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.pdf', 'ContentType', 'vector')
-exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.png', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.Attributes.graph, 'ClInterpolation3dplot.pdf', 'ContentType', 'vector')
+exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.Attributes.graph, 'ClInterpolation3dplot.png', 'ContentType', 'vector')
+
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.pdf', 'ContentType', 'vector')
+% exportgraphics(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.graph, 'ClInterpolation3dplot.png', 'ContentType', 'vector')
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Saving figures inside correct folder
 fprintf('Saving ClInterpolation3dplot.pdf in: ');
@@ -2866,6 +2870,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_S_inv = calc_tors_mom(obj2, half_span, m_distr_S_inv)*(1e-1);
+            Tors_mom_distr_S_inv = abs( Tors_mom_distr_S_inv );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Tors_mom_distr.value = Tors_mom_distr_S_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -3011,6 +3016,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_G = calc_tors_mom(obj2, half_span, m_distr_G)*(1e-1);
+            Tors_mom_distr_G = abs( Tors_mom_distr_G );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.value = Tors_mom_distr_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -3156,6 +3162,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_G1 = calc_tors_mom(obj2, half_span, m_distr_G1)*(1e-1);
+            Tors_mom_distr_G1 = abs( Tors_mom_distr_G1 );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Tors_mom_distr.value = Tors_mom_distr_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -3301,6 +3308,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_F = calc_tors_mom(obj2, half_span, m_distr_F)*(1e-1);
+            Tors_mom_distr_G1 = abs( Tors_mom_distr_G1 );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.value = Tors_mom_distr_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.Attributes.unit = "daN*m";   
 
