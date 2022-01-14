@@ -20,7 +20,7 @@ sec.Title = 'Gust envelope';
 str = ['Gust load factors need to be considered because they can exceed'...
     'the prescribed maximum load factors at different weights and altitudes. '...
     'Since gust loads depend on air density and aircraft mass they will be '...
-    'calculated for all twelve cases (sea level and 10000ft=FL100, maximum, '...
+    'calculated for all XXXX cases (sea level and XXXXft=FLXXX, maximum, '...
     'minimum flying weight and minimum flying weight with full wing fuel tanks) '...
     'according to requirement 5.2.3.3 [1] with flaps retracted (requirement 5.2.6.1 [1])'...
     'and fully extended (requirement 5.2.6.2 [1]) at V_F.'];
@@ -57,16 +57,20 @@ cd ..
 
  cd (RepDir);
  
- fig = FormalImage([results_path,'Gustenvelope.png']);
- fig.Caption = 'Maneuver and Gust load factors and diagram';
+ fig = FormalImage([results_path,'Vndiagram.png']);
+ fig.Caption = 'V-n diagram';
  fig.Height = '5in';
- fig.LinkTarget='maneuver_ref';
+ fig.LinkTarget='V-n diagram';
  add(sec,fig);
  
+ fig = FormalImage([results_path,'Gustenvelope.png']);
+ fig.Caption = 'Gust diagram';
+ fig.Height = '5in';
+ fig.LinkTarget='Gust diagram';
+ add(sec,fig);
  
+  
  add(ch,sec);
-
-%add(ch7,sec1);
 
 
 

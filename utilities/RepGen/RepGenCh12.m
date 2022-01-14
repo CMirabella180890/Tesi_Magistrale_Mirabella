@@ -55,9 +55,26 @@ subsec.Title = 'Gust loads';
 
 add(sec,subsec);
 
+add(ch,sec);
+
+%sec
+sec = Section();
+sec.Title = 'Vertical tail loads summary';
+str = ['ADD HERE details '];
+para = Paragraph(str);
+add(ch,para);
 
 add(ch,sec);
 
+%sec
+sec = Section();
+sec.Title = 'Combined loads';
+str = ['ADD HERE details on h-v combined loads'];
+para = Paragraph(str);
+add(ch,para);
+
+
+add(ch,sec);
 
 
 %moving to another path for figure

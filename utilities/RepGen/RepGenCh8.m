@@ -19,12 +19,17 @@ cd ..
 
  cd (RepDir);
 
-fig = FormalImage([results_path,'Finalenvelope.png']);
-         fig.Caption = 'Maneuver and Gust load factors and diagram';
-         fig.Height = '5in';
-         fig.LinkTarget='maneuver_ref';
-         add(ch,fig);
+ fig = FormalImage([results_path,'Finalenvelope.png']);
+ fig.Caption = 'Maneuver and Gust load factors and diagram';
+ fig.Height = '5in';
+ fig.LinkTarget='maneuver_ref';
+ add(ch,fig);
 
+ fig = FormalImage([results_path,'Finalenvelope.png']);
+ fig.Caption = 'Maneuver and Gust load factors and diagram';
+ fig.Height = '5in';
+ fig.LinkTarget='maneuver_ref';
+ add(ch,fig);
 
 add(ch,para)
 %% END chapter

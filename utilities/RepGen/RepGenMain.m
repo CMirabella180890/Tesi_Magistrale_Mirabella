@@ -81,12 +81,12 @@ import mlreportgen.utils.*
 
 %% Report set-up
 % Flight loads user's settings
-Aircraft.Report.author = 'Pierluigi Della Vecchia';
-str = strcat("The author is " , " ", Aircraft.Report.author);
+Aircraft.Report.author = 'Pierluigi Della Vecchia and Claudio Mirabella';
+str = strcat("The authors are " , " ", Aircraft.Report.author);
 disp(str)
 disp(' ')
 Aircraft.Report.society = 'Design of Aircraft and Flight Technologies, DAF';
-str = strcat("The author affiliation is " , " ", Aircraft.Report.society);
+str = strcat("The authors' affiliation is " , " ", Aircraft.Report.society);
 disp(str)
 %Template available
 % 'DAF_template'

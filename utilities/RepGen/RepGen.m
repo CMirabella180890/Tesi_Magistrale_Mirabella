@@ -66,8 +66,8 @@ import mlreportgen.utils.*
 
 %% Report set-up
 % Flight loads user's settings
-Aircraft.Report.author = 'Pierluigi Della Vecchia';
-str = strcat("The author is " , " ", Aircraft.Report.author);
+Aircraft.Report.author = 'Pierluigi Della Vecchia and Claudio Mirabella';
+str = strcat("The authors are " , " ", Aircraft.Report.author);
 disp(str)
 disp(' ')
 Aircraft.Report.society = 'Design of Aircraft and Flight Technologies, DAF';
@@ -80,7 +80,7 @@ disp(str)
 Aircraft.Report.template = 'No Template';
 %Mytemplate.template = 'DAF_template'; % Other availabe
 str = strcat("The report template is " , " ",Aircraft.Report.template);
-Aircraft.Report.Type = 'pdf';
+Aircraft.Report.Type = 'docx';
 %pdf
 %docx
 %html
