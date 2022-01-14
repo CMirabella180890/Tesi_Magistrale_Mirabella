@@ -625,8 +625,8 @@ ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
 title("V~-~n diagram per ", Reg, "Interpreter", "latex")
 
 % EXPORT FIGURE
-exportgraphics(flight_envelope, 'Gustenvelope.pdf', 'ContentType', 'vector')
-exportgraphics(flight_envelope, 'Gustenvelope.png', 'ContentType', 'vector')
+exportgraphics(gust_envelope, 'Gustenvelope.pdf', 'ContentType', 'vector')
+exportgraphics(gust_envelope, 'Gustenvelope.png', 'ContentType', 'vector')
 
 % Saving figures inside correct folder
 fprintf('Saving Gustenvelope.pdf in: ');

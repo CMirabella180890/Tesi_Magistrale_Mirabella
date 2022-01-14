@@ -340,17 +340,17 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.dvVA.Att
 % Acrobatic, ...). Pleas, take care of the definition of the time interval.
 if (Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 == "Aerobatic") && (Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 == "Stick")
     Aircraft.Geometry.Elevator.total_deflection_time.value = 0.1;
-    Aircraft.Geometry.Elevator.total_deflection_time.Attributes = "seconds";
+    Aircraft.Geometry.Elevator.total_deflection_time.Attributes.unit = "seconds";
 elseif (Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 == "Aerobatic") && (Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 == "Wheel")
     Aircraft.Geometry.Elevator.total_deflection_time.value = 0.2;
-    Aircraft.Geometry.Elevator.total_deflection_time.Attributes = "seconds";
+    Aircraft.Geometry.Elevator.total_deflection_time.Attributes.unit = "seconds";
 elseif (Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 == "Normal") | (Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 == "Utility") | (Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 == "Normal")
     if Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 == "Stick"
         Aircraft.Geometry.Elevator.total_deflection_time.value = 0.2;
-        Aircraft.Geometry.Elevator.total_deflection_time.Attributes = "seconds";
+        Aircraft.Geometry.Elevator.total_deflection_time.Attributes.unit = "seconds";
     elseif Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 == "Wheel"
         Aircraft.Geometry.Elevator.total_deflection_time.value = 0.3;
-        Aircraft.Geometry.Elevator.total_deflection_time.Attributes = "seconds";
+        Aircraft.Geometry.Elevator.total_deflection_time.Attributes.unit = "seconds";
     end
 elseif Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 == "Normal"
     prmpt = "Enter total defl. time interval --> t_total_defl_time: ";
@@ -1003,7 +1003,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.Total_cr
 % SOME CONSTANTS INVOLVED IN THE FOLLOWING CALCULATIONS
 Mass            = Aircraft.Weight.I_Level.W_maxTakeOff.value;
 g               = Aircraft.Constants.g.value;
-Xcg             = Aircraft.Weight.I_Level.X_cg.value;
+Xcg             = Aircraft.Geometry.General.X_cg.value;
 DepsilonDalfa   = Aircraft.Certification.Aerodynamic_data.Horizontal.DepsilonDalpha.value;
 Downwash_factor = 1.0 - DepsilonDalfa;
 S_ratio         = S_ht / S;
@@ -1057,7 +1057,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_
 % SOME CONSTANTS INVOLVED IN THE FOLLOWING CALCULATIONS
 Mass            = Aircraft.Weight.I_Level.W_maxTakeOff.value;
 g               = Aircraft.Constants.g.value;
-Xcg             = Aircraft.Weight.I_Level.X_cg.value;
+Xcg             = Aircraft.Geometry.General.X_cg.value;
 DepsilonDalfa   = Aircraft.Certification.Aerodynamic_data.Horizontal.DepsilonDalpha.value;
 Downwash_factor = 1.0 - DepsilonDalfa;
 S_ratio         = S_ht / S;
@@ -1111,7 +1111,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_
 % SOME CONSTANTS INVOLVED IN THE FOLLOWING CALCULATIONS
 Mass            = Aircraft.Weight.I_Level.W_maxTakeOff.value;
 g               = Aircraft.Constants.g.value;
-Xcg             = Aircraft.Weight.I_Level.X_cg.value;
+Xcg             = Aircraft.Geometry.General.X_cg.value;
 DepsilonDalfa   = Aircraft.Certification.Aerodynamic_data.Horizontal.DepsilonDalpha.value;
 Downwash_factor = 1.0 - DepsilonDalfa;
 S_ratio         = S_ht / S;
@@ -1165,7 +1165,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_
 % SOME CONSTANTS INVOLVED IN THE FOLLOWING CALCULATIONS
 Mass            = Aircraft.Weight.I_Level.W_maxTakeOff.value;
 g               = Aircraft.Constants.g.value;
-Xcg             = Aircraft.Weight.I_Level.X_cg.value;
+Xcg             = Aircraft.Geometry.General.X_cg.value;
 DepsilonDalfa   = Aircraft.Certification.Aerodynamic_data.Horizontal.DepsilonDalpha.value;
 Downwash_factor = 1.0 - DepsilonDalfa;
 S_ratio         = S_ht / S;
@@ -1221,7 +1221,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.va.case_
 % SOME CONSTANTS INVOLVED IN THE FOLLOWING CALCULATIONS
 Mass            = Aircraft.Weight.I_Level.W_maxTakeOff.value;
 g               = Aircraft.Constants.g.value;
-Xcg             = Aircraft.Weight.I_Level.X_cg.value;
+Xcg             = Aircraft.Geometry.General.X_cg.value;
 DepsilonDalfa   = Aircraft.Certification.Aerodynamic_data.Horizontal.DepsilonDalpha.value;
 Downwash_factor = 1.0 - DepsilonDalfa;
 S_ratio         = S_ht / S;
@@ -1275,7 +1275,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.vd.case_
 % SOME CONSTANTS INVOLVED IN THE FOLLOWING CALCULATIONS
 Mass            = Aircraft.Weight.I_Level.W_maxTakeOff.value;
 g               = Aircraft.Constants.g.value;
-Xcg             = Aircraft.Weight.I_Level.X_cg.value;
+Xcg             = Aircraft.Geometry.General.X_cg.value;
 DepsilonDalfa   = Aircraft.Certification.Aerodynamic_data.Horizontal.DepsilonDalpha.value;
 Downwash_factor = 1.0 - DepsilonDalfa;
 S_ratio         = S_ht / S;
@@ -1329,7 +1329,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.vd.case_
 % SOME CONSTANTS INVOLVED IN THE FOLLOWING CALCULATIONS
 Mass            = Aircraft.Weight.I_Level.W_maxTakeOff.value;
 g               = Aircraft.Constants.g.value;
-Xcg             = Aircraft.Weight.I_Level.X_cg.value;
+Xcg             = Aircraft.Geometry.General.X_cg.value;
 DepsilonDalfa   = Aircraft.Certification.Aerodynamic_data.Horizontal.DepsilonDalpha.value;
 Downwash_factor = 1.0 - DepsilonDalfa;
 S_ratio         = S_ht / S;
@@ -1384,7 +1384,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_d.vd.case_
 % SOME CONSTANTS INVOLVED IN THE FOLLOWING CALCULATIONS
 Mass            = Aircraft.Weight.I_Level.W_maxTakeOff.value;
 g               = Aircraft.Constants.g.value;
-Xcg             = Aircraft.Weight.I_Level.X_cg.value;
+Xcg             = Aircraft.Geometry.General.X_cg.value;
 DepsilonDalfa   = Aircraft.Certification.Aerodynamic_data.Horizontal.DepsilonDalpha.value;
 Downwash_factor = 1.0 - DepsilonDalfa;
 S_ratio         = S_ht / S;

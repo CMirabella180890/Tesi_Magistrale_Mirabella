@@ -57,8 +57,8 @@
 % =========================================================================
 % MAXIMUM AILERON DEFLECTION;
 delta_max  = Aircraft.Geometry.Aileron.Max_deflection.value;
-y_iniziale = Aircraft.Geometry.Aileron.y_iniziale.value;
-y_finale   = Aircraft.Geometry.Aileron.y_finale.value;
+y_iniziale = Aircraft.Geometry.Aileron.y_inner.value;
+y_finale   = Aircraft.Geometry.Aileron.y_outer.value;
 
 %% STRAIGHT FLIGHT
 switch (Straight_flight_Case)
@@ -497,7 +497,7 @@ switch (Straight_flight_Case)
 
             cm_A1      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value;
             delta_A1   = delta_max;
-            y_iniziale = Aircraft.Geometry.Aileron.y_iniziale.value;
+            y_iniziale = Aircraft.Geometry.Aileron.y_inner.value;
             % Aileron deflection at Point A1
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A1.value = delta_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A1.Attributes.unit = "degree";
@@ -925,7 +925,7 @@ switch (Straight_flight_Case)
         
         cm_A      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value;
         delta_A   = delta_max;
-        y_iniziale = Aircraft.Geometry.Aileron.y_iniziale.value;
+        y_iniziale = Aircraft.Geometry.Aileron.y_inner.value;
         % Aileron deflection at Point A
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A.value = delta_A;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A.Attributes.unit = "degree";
@@ -1347,20 +1347,6 @@ switch (Straight_flight_Case)
         
 end
 
-% %% INVERTED FLIGHT
-% switch (Inverted_flight_Case)
-%     % CASE 1: VA greater than the intercept
-%     case 'Case 1'
-%         % =================================================================
-%         if abs(min(n_gust_cruise_neg)) > abs(nmin)
-%         % =================================================================
-% 
-%         
-%         % =================================================================    
-%         elseif abs(min(n_gust_cruise_neg)) < abs(nmin)
-%         % =================================================================
-%             
-%         end
-%     % CASE 2: VA lower than the intercept
-%     case 'Case 2'
-% end
+%% REMOVE FIELDS INSIDE THE AIRCRAFT STRUCT VARIABLE 
+
+% remove1 = rmfield(Aircraft, Geometry.Aileron.y_span);

@@ -95,8 +95,8 @@ max_deflection_rudder = Aircraft.Geometry.Rudder.max_deflection.value;
 g = Aircraft.Constants.g.value;
 
 % HINGE MOMENT COEFFICIENTS DERIVATIS IN 1 / RAD 
-C_h_delta_rad = Aircraft.Geometry.Rudder.C_h_delta_rad.value;
-C_h_alfa_rad  = Aircraft.Geometry.Rudder.C_h_alfa_rad.value;  
+C_h_delta_rad = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_rad.value;
+C_h_alfa_rad  = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_rad.value;  
 
 % CONVERSION FACTOR
 conversion_factor = 180.0 / pi;
@@ -104,21 +104,21 @@ conversion_factor = 180.0 / pi;
 % HINGE MOMENT COEFFICIENT IN 1/DEG - RUDDER
 C_h_delta_deg = C_h_delta_rad / conversion_factor;
 C_h_alfa_deg  = C_h_alfa_rad / conversion_factor;
-Aircraft.Geometry.Rudder.C_h_delta_deg.value = C_h_delta_deg; 
-Aircraft.Geometry.Rudder.C_h_delta_deg.Attributes.unit = "1/deg";
-Aircraft.Geometry.Rudder.C_h_alfa_deg.value = C_h_alfa_deg; 
-Aircraft.Geometry.Rudder.C_h_alfa_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_deg.value = C_h_delta_deg; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_deg.value = C_h_alfa_deg; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_deg.Attributes.unit = "1/deg";
 
 % RUDDER GLOBAL ANGLE OF ATTACK
 beta_deg = 0;
 
 % TOTAL HINGE MOMENT COEFFICIENT - RUDDER
 C_h_total_deg = C_h_delta_deg * max_deflection_rudder + C_h_alfa_deg * beta_deg;
-Aircraft.Geometry.Rudder.C_h_total_deg.value = C_h_total_deg; 
-Aircraft.Geometry.Rudder.C_h_total_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_deg.value = C_h_total_deg; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_deg.Attributes.unit = "1/deg";
 C_h_total_rad = C_h_total_deg * conversion_factor;
-Aircraft.Geometry.Rudder.C_h_total_rad.value = C_h_total_rad; 
-Aircraft.Geometry.Rudder.C_h_total_rad.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_rad.value = C_h_total_rad; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_rad.Attributes.unit = "1/deg";
 
 % DYNAMIC PRESSURE AT VA
 qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;

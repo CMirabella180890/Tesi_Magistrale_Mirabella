@@ -66,6 +66,7 @@ Density [kg/m^3]: 0.8632
  nmax                nmin                 VD                VE
  3.800000          -1.500000          58.386920          58.386920
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 --------------------------------------
 ### Saving outpus inside correct Folder ###
@@ -153,7 +154,6 @@ Saving LiftComparisonWithPoints.pdf in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
  ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ 
-[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointS.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output

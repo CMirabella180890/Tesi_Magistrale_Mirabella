@@ -113,8 +113,8 @@ C_h_delta_deg = C_h_delta_rad / conversion_factor;
 C_h_alfa_deg  = C_h_alfa_rad / conversion_factor;
 Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_deg.value = C_h_delta_deg; 
 Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_deg.Attributes.unit = "1/deg";
-Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_deg.value = C_h_alfa_deg; 
-Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_deg.Attributes.unit = "1/deg";
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.value = C_h_alfa_deg; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.Attributes.unit = "1/deg";
 
 % MAXIMUM DEFLECTION OF THE AILERON (TIMES TWO FOR DIFF. DEFLECTION)
 delta_max_deg = 2 * Aircraft.Geometry.Aileron.Max_deflection.value;
@@ -143,11 +143,11 @@ alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_e
 
 % TOTAL HINGE MOMENT COEFFICIENT CH = CH_DELTA * DELTA + CH_ALFA * ALFA
 C_h_total_deg = C_h_delta_deg * delta_max_deg + C_h_alfa_deg * alfa_A_deg; 
-Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_deg.value = C_h_total_deg; 
-Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_deg.Attributes.unit = "1/deg";
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_deg.value = C_h_total_deg; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_deg.Attributes.unit = "1/deg";
 C_h_total_rad = C_h_total_deg * conversion_factor;
-Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_rad.value = C_h_total_rad; 
-Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_rad.Attributes.unit = "1/deg";
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_rad.value = C_h_total_rad; 
+Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_total_rad.Attributes.unit = "1/deg";
 
 % DYNAMIC PRESSURE AT VA
 qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;

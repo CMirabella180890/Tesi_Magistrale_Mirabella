@@ -178,9 +178,9 @@ movefile FullLiftModelInterpolation.pdf Output
 movefile FullLiftModelInterpolation.png Output
 
 % INSTANTIATION OF SOME CONSTANTS IMPORTANT TO MOMENT CONTRIB. CALCULATIONS
-XAC         = Aircraft.Certification.Aerodynamic_data.XAC_nondim.value;
-XCG         = Aircraft.Certification.Aerodynamic_data.XCG_nondim.value;
-bCG         = Aircraft.Certification.Aerodynamic_data.bcg.value;
+XAC         = Aircraft.Geometry.General.XAC_nondim.value;
+XCG         = Aircraft.Geometry.General.XAC_nondim.value;
+bCG         = Aircraft.Geometry.General.bcg.value;
 MAC         = Aircraft.Geometry.Wing.mac.value;
 Thrust_axes = Aircraft.Geometry.Engine.Primary.Thrust_axes.value;
 l_ht        = Aircraft.Geometry.Horizontal.l.value;
@@ -1086,7 +1086,7 @@ switch (Straight_flight_Case)
             % text(40.75, -18, 'n = 1')
             % ---------------------------------------------------------------------
             xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
-            ylabel("Full body lift - $L_{ht}$ (daN)", "Interpreter", "latex")
+            ylabel("Full body lift - $L_{w}$ (daN)", "Interpreter", "latex")
             title("Full body airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct 
             
             % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
@@ -1689,8 +1689,8 @@ switch (Straight_flight_Case)
             % text(40.75, -18, 'n = 1')
             % ---------------------------------------------------------------------
             xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
-            ylabel("Full body lift - $L_{ht}$ (daN)", "Interpreter", "latex")
-            title("Full body airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct  
+            ylabel("Wing lift - $L_{w}$ (daN)", "Interpreter", "latex")
+            title("Wing lift per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct  
             
             % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
 

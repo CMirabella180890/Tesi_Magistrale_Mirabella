@@ -159,27 +159,80 @@ Aircraft.Certification.Aerodynamic_data.Horizontal.eta_horizontal.value = 1.0;
 Aircraft.Certification.Aerodynamic_data.Horizontal.eta_horizontal.Attributes.unit = "Non dimensional";
 Aircraft.Certification.Aerodynamic_data.Vertical.a_vt.value = 3.6528578;
 Aircraft.Certification.Aerodynamic_data.Vertical.a_vt.Attributes.unit = "1/rad";
-Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.value = 1.9; 
-Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_flaps.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.value = NaN; % 1.9
+Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.Attributes.unit = "Non dimensional";
+Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.value = NaN; % 2.1
+Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.Attributes.unit = "Non dimensional";
+% -------------------------------------------------------------------------
+% AERODYNAMIC HINGE MOMENTS
+% -------------------------------------------------------------------------
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% ELEVATOR
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_rad.value = NaN;
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_rad.Attributes.unit = "1/rad";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_rad.value = NaN;
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_rad.Attributes.unit = "1/rad";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_deg.value = NaN;
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_deg.value = NaN;
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_deg.Attributes.unit = "1/deg";
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% RUDDER
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_rad.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_rad.Attributes.unit = "1/rad"; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_rad.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_rad.Attributes.unit = "1/rad";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_deg.value = NaN;
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_deg.value = NaN;
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_deg.Attributes.unit = "1/deg";
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% AILERON
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_rad.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_rad.Attributes.unit = "1/rad"; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_rad.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_rad.Attributes.unit = "1/rad";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_deg.value = NaN;
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_deg.value = NaN;
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_deg.Attributes.unit = "1/deg";
 % -------------------------------------------------------------------------
 % Aileron
 % -------------------------------------------------------------------------
 Aircraft.Geometry.Aileron.S.value = NaN; 
-Aircraft.Geometry.Aileron.S.Attributes.unit = "m";
+Aircraft.Geometry.Aileron.S.Attributes.unit = "meters";
 Aircraft.Geometry.Aileron.b.value = NaN; 
-Aircraft.Geometry.Aileron.b.Attributes.unit = "m";
+Aircraft.Geometry.Aileron.b.Attributes.unit = "meters";
 Aircraft.Geometry.Aileron.ca.value = NaN;
-Aircraft.Geometry.Aileron.ca.Attributes.unit = "m";
+Aircraft.Geometry.Aileron.ca.Attributes.unit = "meters";
 Aircraft.Geometry.Aileron.cb.value = NaN;
-Aircraft.Geometry.Aileron.cb.Attributes.unit = "m";
+Aircraft.Geometry.Aileron.cb.Attributes.unit = "meters";
 Aircraft.Geometry.Aileron.y_iniziale.value = NaN;
-Aircraft.Geometry.Aileron.y_iniziale.Attributes.unit = "m";
+Aircraft.Geometry.Aileron.y_iniziale.Attributes.unit = "meters";
 Aircraft.Geometry.Aileron.y_finale.value = NaN;
-Aircraft.Geometry.Aileron.y_finale.Attributes.unit = "m";
+Aircraft.Geometry.Aileron.y_finale.Attributes.unit = "meters";
 Aircraft.Geometry.Aileron.eta_iniziale.value = NaN;
 Aircraft.Geometry.Aileron.eta_iniziale.Attributes.unit = "Non dimensional";
 Aircraft.Geometry.Aileron.eta_finale.value = NaN; 
 Aircraft.Geometry.Aileron.eta_finale.Attributes.unit = "Non dimensional";
+% -------------------------------------------------------------------------
+% Elevator
+% -------------------------------------------------------------------------
+Aircraft.Geometry.Elevator.S.value = NaN; 
+Aircraft.Geometry.Elevator.S.Attributes.unit = "squared meters";
+Aircraft.Geometry.Elevator.chord.value = NaN; 
+Aircraft.Geometry.Elevator.chord.Attributes.unit = "squared meters";
+Aircraft.Geometry.Elevator.chord_ratio_ce_c.value = NaN;
+Aircraft.Geometry.Elevator.chord_ratio_ce_c.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Elevator.overhang.value = NaN;
+Aircraft.Geometry.Elevator.overhang.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Elevator.span_ratio.value = NaN;
+Aircraft.Geometry.Elevator.span_ratio.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Elevator.S_hinge.value = NaN;
+Aircraft.Geometry.Elevator.S_hinge.Attributes.unit = "squared meters";
 % -------------------------------------------------------------------------
 % Wing
 % -------------------------------------------------------------------------
@@ -230,17 +283,36 @@ Aircraft.Geometry.Wing.thickchord.Attributes.unit = "percentage";
 Aircraft.Geometry.Vertical.xle.value = 0.95; %of fuselage lenght
 Aircraft.Geometry.Vertical.xle.Attributes.unit = "% of fuselage length"; 
 Aircraft.Geometry.Vertical.croot.value = 0.3136; %m
-Aircraft.Geometry.Vertical.croot.Attributes.unit = "m";
+Aircraft.Geometry.Vertical.croot.Attributes.unit = "meters";
 Aircraft.Geometry.Vertical.ctip.value = 0.1534725; %m
-Aircraft.Geometry.Vertical.ctip.Attributes.unit = "m";
+Aircraft.Geometry.Vertical.ctip.Attributes.unit = "meters";
 Aircraft.Geometry.Vertical.xtip_le.value = 1.0; %of fuselage lenght
 Aircraft.Geometry.Vertical.xtip_le.Attributes.unit = "% of fuselage length"; 
 xtip_le_v = Aircraft.Geometry.Vertical.xtip_le.value;
 Aircraft.Geometry.Vertical.b.value = 0.437502; %m
-Aircraft.Geometry.Vertical.b.Attributes.unit = "m";
+Aircraft.Geometry.Vertical.b.Attributes.unit = "meters";
 Aircraft.Geometry.Vertical.zpos.value = 1.0; % % of df
 Aircraft.Geometry.Vertical.zpos.Attributes.unit = "% of df";
+Aircraft.Geometry.Vertical.S.value = NaN; 
+Aircraft.Geometry.Vertical.S.Attributes.unit = "squared meters";
+Aircraft.Geometry.Vertical.chord.value = NaN; 
+Aircraft.Geometry.Vertical.chord.Attributes.unit = "meters";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Rudder
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Aircraft.Geometry.Rudder.S.value = NaN;
+Aircraft.Geometry.Rudder.S.Attributes.unit = "squared meters";
+Aircraft.Geometry.Rudder.chord.value = NaN;
+Aircraft.Geometry.Rudder.chord.Attributes.unit = "meters";
+Aircraft.Geometry.Rudder.chord_ratio_cf_c.value = NaN;
+Aircraft.Geometry.Rudder.chord_ratio_cf_c.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Rudder.overhang.value = NaN;
+Aircraft.Geometry.Rudder.overhang.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Rudder.span_ratio.value = NaN;
+Aircraft.Geometry.Rudder.span_ratio.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Rudder.max_deflection.value = NaN;
+Aircraft.Geometry.Rudder.max_deflection.Attributes.unit = "degrees";
+
 % -------------------------------------------------------------------------
 % Fuselage
 % -------------------------------------------------------------------------
@@ -364,6 +436,15 @@ Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 = "Wheel";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Aircraft.Geometry.Aileron.Max_deflection.value = 15.0; 
 Aircraft.Geometry.Aileron.Max_deflection.Attributes.unit = "degrees";
+% ----------------------------------------------------------------------------------
+% Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.value = NaN; 
+% Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.Attributes.unit = "1/rad";
+% Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.value = NaN; 
+% Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.Attributes.unit = "1/rad";
+% Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_deg.value = NaN; 
+% Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_deg.Attributes.unit = "1/deg";
+% Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.value = NaN; 
+% Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_deg.Attributes.unit = "1/deg";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Aircraft.Geometry.Vertical.MAC.value = 0.2335363;
 Aircraft.Geometry.Vertical.MAC.Attributes.unit = "m";
@@ -446,6 +527,12 @@ Aircraft.Engine.Propeller_polar_moment.value = NaN;
 Aircraft.Engine.Propeller_polar_moment.Attributes.unit = "kg*m^2";
 Aircraft.Engine.Pitch_speed.value = NaN;
 Aircraft.Engine.Pitch_speed.Attributes.unit = "rad/sec"; 
+Aircraft.Engine.Yaw_speed.value = NaN;
+Aircraft.Engine.Yaw_speed.Attributes.unit = "rad/sec"; 
+Aircraft.Engine.Propeller_blade_number.value = NaN;
+Aircraft.Engine.Propeller_blade_number.Attributes.unit = "Pure number";
+Aircraft.Engine.Engine_normal_load_factor.value = NaN;
+Aircraft.Engine.Engine_normal_load_factor.Attributes.unit = "Non dimensional"; 
 
 % ENGINE FLAGS 
 % FLAG 1 

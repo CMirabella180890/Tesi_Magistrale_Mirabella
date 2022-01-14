@@ -108,8 +108,8 @@ alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_e
 depsilon_dalfa = 0.3;
 
 % HINGE MOMENT COEFFICIENTS IN 1/RAD
-C_h_delta_rad = Aircraft.Geometry.Elevator.C_h_delta_rad.value; 
-C_h_alfa_rad  = Aircraft.Geometry.Elevator.C_h_alfa_rad.value; 
+C_h_delta_rad = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_rad.value; 
+C_h_alfa_rad  = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_rad.value; 
 
 % CONVERSION FACTOR
 conversion_factor = 180.0 / pi;
@@ -117,21 +117,21 @@ conversion_factor = 180.0 / pi;
 % HINGE MOMENT COEFFICIENT IN 1/DEG
 C_h_delta_deg = C_h_delta_rad / conversion_factor;
 C_h_alfa_deg  = C_h_alfa_rad / conversion_factor;
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_delta_deg.value = C_h_delta_deg; 
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_delta_deg.Attributes.unit = "1/deg";
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_alfa_deg.value = C_h_alfa_deg; 
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_alfa_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_deg.value = C_h_delta_deg; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_deg.value = C_h_alfa_deg; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_deg.Attributes.unit = "1/deg";
 
 % MAXIMUM DEFLECTION OF THE ELEVATOR (TIMES TWO FOR DIFF. DEFLECTION)
 delta_max_deg = Aircraft.Geometry.Elevator.max_deflection.value;
 
 % TOTAL HINGE MOMENT COEFFICIENT CH = CH_DELTA * DELTA + CH_ALFA * ALFA * ( 1 - d EPSILON / d ALFA )
 C_h_total_deg = C_h_delta_deg * delta_max_deg + C_h_alfa_deg * alfa_A_deg * (1 - depsilon_dalfa); 
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_total_deg.value = C_h_total_deg; 
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_total_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_total_deg.value = C_h_total_deg; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_total_deg.Attributes.unit = "1/deg";
 C_h_total_rad = C_h_total_deg * conversion_factor;
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_total_rad.value = C_h_total_rad; 
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_total_rad.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_total_rad.value = C_h_total_rad; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_total_rad.Attributes.unit = "1/deg";
 
 % DYNAMIC PRESSURE AT VA
 qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
