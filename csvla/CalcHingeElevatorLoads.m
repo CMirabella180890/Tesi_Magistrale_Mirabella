@@ -93,7 +93,7 @@ cf_elevator          = chord_elevator - chord_elevator * overhang;
 
 % STORING THE DATA
 Aircraft.Geometry.Elevator.cf.value           = cf_elevator; 
-Aircraft.Geometry.Elevator.cf.Attributes.unit = "m";
+Aircraft.Geometry.Elevator.cf.Attributes.unit = "meters";
 
 % ELEVATOR MAX DEFLECTION
 elevator_max_deflection = Aircraft.Geometry.Elevator.max_deflection.value;
@@ -156,7 +156,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_
 % HINGE MOMENT ARM 
 elevator_moment_arm = chord_elevator * (0.25 - overhang);
 Aircraft.Geometry.Elevator.moment_arm.value = elevator_moment_arm; 
-Aircraft.Geometry.Elevator.moment_arm.Attributes.unit = "m";
+Aircraft.Geometry.Elevator.moment_arm.Attributes.unit = "meters";
 
 % TOTAL HINGE MOMENT 
 Total_elevator_loads_elevator_kg = (HA_125/g) / (elevator_moment_arm);

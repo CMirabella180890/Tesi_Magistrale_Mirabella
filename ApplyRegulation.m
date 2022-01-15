@@ -147,7 +147,8 @@ switch (Aircraft.Certification.Regulation.value)
         CalcHingeElevatorLoads
         % RUDDER LOAD 
         CalcHingeRudderLoads
-        
+        % RUN THIS AT THE END OF THE EXECUTION
+        RemoveFromStruct
     case 'CS23'
     case 'CS22'
 end

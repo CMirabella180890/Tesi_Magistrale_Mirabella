@@ -87,7 +87,7 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Manoeuvring_Wing_Lo
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Manoeuvring_Wing_Loading.Attributes.unit = "Pa"; 
 % AREA OF THE VERTICAL TAIL 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value = 0.10220;
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.Attributes.unit = "m^2";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.Attributes.unit = "squared meters";
 % VERTICAL TAIL SURFACE RATIO: S_vt / S_wing
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value/Aircraft.Geometry.Wing.S.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.Attributes.unit = " Non dimensional";
@@ -98,16 +98,16 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Reference_mass.valu
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Reference_mass.Attributes.unit = "kg";
 % VERTICAL TAIL SPAN b_vt
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.b_vt.value = 0.4375;
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.b_vt.Attributes.unit = "m";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.b_vt.Attributes.unit = "meters";
 % CALCULATING THE RATIO OF WING LOADING IN KILOGRAMS PER UNIT SPAN 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Spanwise_Load_ratio.value = (1/(Aircraft.Constants.g.value))*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Manoeuvring_Wing_Loading.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.b_vt.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Spanwise_Load_ratio.Attributes.unit = "kg/m";
 % VERTICAL TAIL ROOT CHORD 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.c_root_vt.value = 0.3136;
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.c_root_vt.Attributes.unit = "m";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.c_root_vt.Attributes.unit = "meters";
 % QUARTER CHORD DISTANCE: C_ROOT_VT / 4
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.c_quarter.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.c_root_vt.value/4;
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.c_quarter.Attributes.unit = "m";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.c_quarter.Attributes.unit = "meters";
 % CHORDWISE KILOGRAMS OF LOAD DISTRIBUTION 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Chordwise_Load_ratio.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Reference_mass.value/Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.c_root_vt.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Chordwise_Load_ratio.Attributes.unit = "kg/m";
@@ -417,11 +417,11 @@ end
 
 % GUST LOAD AT VC
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.U_atVC.value = 15.24;
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.U_atVC.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.U_atVC.Attributes.unit = "meters per seconds";
 
 % GUST LOAD AT VD
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.U_atVD.value = 7.62;
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.U_atVD.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.U_atVD.Attributes.unit = "meters per seconds";
 
 % VERTICAL TAIL LIFT SLOPE COEFFICIENT
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.a_vt.value = Aircraft.Certification.Aerodynamic_data.Vertical.a_vt.value;
@@ -429,7 +429,7 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.a_vt.Attr
 
 % VERTICAL TAIL SURFACES
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value;
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.Attributes.unit = "m^2";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.Attributes.unit = "squared meters";
 
 % ATMOSPHERE PROPERTIES LOCALLY INSTANTIATED 
 h = 3000; % [m]
@@ -440,16 +440,16 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.rho.Attri
 
 % RADIUS OF GYRATION 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.value = 0.3; 
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.Attributes.unit = "m"; 
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.Attributes.unit = "meters"; 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.Attributes.quantity = "Radius of gyration";
 
 % AIRSPEED - LOAD AT VC
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VC.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VC.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VC.Attributes.unit = "meters per seconds";
 
 % AIRSPEED - LOAD AT VD
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VD.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value;
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VD.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VD.Attributes.unit = "meters per seconds";
 
 % ++++++++++++++++
 % GUST LOADS AT VC 
@@ -476,7 +476,7 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_l
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VC.value, ...
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.a_vt.value, ...
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.value);
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.Attributes.unit = "m/s";                                                                                                       
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.Attributes.unit = "meters per seconds";                                                                                                       
 
 % ++++++++++++++++
 % GUST LOADS AT VD 
@@ -500,7 +500,7 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_l
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VD.value, ...
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.a_vt.value, ...
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.value);
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.Attributes.unit = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.Attributes.unit = "meters per seconds"; 
 
 % DISPLAYING RESULTS 
 disp( " ")

@@ -332,7 +332,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.damping_
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.IY.value = IY;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.IY.Attributes.unit = "kg * m^2"; 
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.dvVA.value = dvVA; 
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.dvVA.Attributes.unit = "degree";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.dvVA.Attributes.unit = "degrees";
 
 % AMC 23.423 ADVISED TOTAL DEFLECTION TIME INTERVAL 
 % BE CAREFUL: AMC 23.423 Suggest the use of various total deflection time
@@ -408,16 +408,16 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_do
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.dthetadt.value = dthetadt;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.dthetadt.Attributes.unit = "rad/sec"; 
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_new_horiz.value = alpha_new_horiz_rad;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_new_horiz.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_new_horiz.Attributes.unit = "radians"; 
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.delta_theta.value = delta_theta_rad;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.delta_theta.Attributes.unit = "rad"; 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.delta_theta.Attributes.unit = "radians"; 
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.delta_v.value = delta_v;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.delta_v.Attributes.unit = "m/s";  
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.delta_v.Attributes.unit = "meters per seconds";  
  
 % ALPHA NEW 
 alpha_new_horiz_deg = rad2deg(alpha_new_horiz_rad);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_new_horiz_grad.value = alpha_new_horiz_deg;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_new_horiz_grad.Attributes.unit = "deg";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_new_horiz_grad.Attributes.unit = "degrees";
 
 % LIMIT HORIZONTAL TAIL LOAD 
 DeltaLimitLTail_pitch_down = alpha_new_horiz_deg(end) * CLalfa_ht_deg * S_ht * qA *(1e-1);
@@ -471,12 +471,12 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.delta_theta.value = delta_theta_rad;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.delta_theta.Attributes.unit = "rad"; 
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.delta_v.value = delta_v;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.delta_v.Attributes.unit = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.delta_v.Attributes.unit = "meters per seconds"; 
 
 % ALPHA NEW DEG
 alpha_new_horiz_deg = rad2deg(alpha_new_horiz_rad);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.alpha_new_horiz_grad.value = alpha_new_horiz_deg;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.alpha_new_horiz_grad.Attributes.unit = "deg";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.alpha_new_horiz_grad.Attributes.unit = "degrees";
 
 % LIMIT HORIZONTAL TAIL LOAD 
 DeltaLimitLTail_pitch_up = alpha_new_horiz_deg(end) * CLalfa_ht_deg * S_ht * qA * (1e-1);
@@ -523,13 +523,13 @@ disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
 % V UNIT LOAD FACTOR
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value = V_unit_load_factor;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.Attributes.unit = "meters per seconds";
 
 % FULL LOAD FACTOR VECTOR 
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up.full_load_factor_vector.value = full_load_factor_vector;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up.full_load_factor_vector.Attributes.unit = "g's";
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up.full_airspeed_vector.value = full_airspeed_vector;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up.full_airspeed_vector.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_up.full_airspeed_vector.Attributes.unit = "meters per seconds";
 
 % ANGULAR ACCELERATION CALCULATIONS 
 angular_acceleration_pitch_up = zeros(length(full_load_factor_vector), 1);
@@ -761,7 +761,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.va.upwar
 % CONVERSIONE TO DEGRESS 
 alpha_new_horiz_deg = rad2deg(alpha_new_horiz_rad);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.va.upward_defl.alpha_new_deg.value = alpha_new_horiz_deg;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.va.upward_defl.alpha_new_deg.Attributes.unit = "deg";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.va.upward_defl.alpha_new_deg.Attributes.unit = "degrees";
 
 % CALCULATION OF THE CRITICAL HORIZONTAL TAIL AIRLOADS AS 
 % L_BALANC AT VA + CRITICAL TAIL AIRLOADS DUE TO MANOEUVRE AT VA 
@@ -816,7 +816,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.va.downw
 % CONVERSIONE TO DEGRESS 
 alpha_new_horiz_deg = rad2deg(alpha_new_horiz_rad);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.va.downward_defl.alpha_new_deg.value = alpha_new_horiz_deg;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.va.downward_defl.alpha_new_deg.Attributes.unit = "deg";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.va.downward_defl.alpha_new_deg.Attributes.unit = "degrees";
 
 % CALCULATION OF THE CRITICAL HORIZONTAL TAIL AIRLOADS AS 
 % L_BALANC AT VA + CRITICAL TAIL AIRLOADS DUE TO MANOEUVRE AT VA 
@@ -883,7 +883,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.upwar
 % CONVERSIONE TO DEGRESS
 alpha_new_horiz_deg = rad2deg(alpha_new_horiz_rad);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.upward_defl.alpha_new_deg.value = alpha_new_horiz_deg;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.upward_defl.alpha_new_deg.Attributes.unit = "deg";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.upward_defl.alpha_new_deg.Attributes.unit = "degrees";
 
 % CALCULATION OF THE CRITICAL HORIZONTAL TAIL AIRLOADS AS 
 % L_BALANC AT VA + CRITICAL TAIL AIRLOADS DUE TO MANOEUVRE AT VA 
@@ -937,7 +937,7 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.downw
 % CONVERSIONE TO DEGRESS 
 alpha_new_horiz_deg = rad2deg(alpha_new_horiz_rad);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.downward_defl.alpha_new_deg.value = alpha_new_horiz_deg;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.downward_defl.alpha_new_deg.Attributes.unit = "deg";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_c.vd.downward_defl.alpha_new_deg.Attributes.unit = "degrees";
 
 % CALCULATION OF THE CRITICAL HORIZONTAL TAIL AIRLOADS AS 
 % L_BALANC AT VA + CRITICAL TAIL AIRLOADS DUE TO MANOEUVRE AT VA 
@@ -1662,10 +1662,10 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VF
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VF.Attributes.unit = "daN";
 VF = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VF.value = VF;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VF.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VF.Attributes.unit = "meters per seconds";
 Ude_F = 7.62;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Ude_F.value = Ude_F;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Ude_F.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Ude_F.Attributes.unit = "meters per seconds";
 
 % POINT C
 L_ht_VC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTC.value;
@@ -1673,10 +1673,10 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VC
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VC.Attributes.unit = "daN";
 VC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VC.value = VC;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VC.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VC.Attributes.unit = "meters per seconds";
 Ude_C = 15.20;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Ude_C.value = Ude_C;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Ude_C.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Ude_C.Attributes.unit = "meters per seconds";
 
 % POINT D
 L_ht_VD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTD.value;
@@ -1684,10 +1684,10 @@ Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VD
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.L_ht_VD.Attributes.unit = "daN";
 VD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VD.value = VD;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VD.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.VD.Attributes.unit = "meters per seconds";
 Ude_D = 7.62;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Ude_D.value = Ude_D;
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Ude_D.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Ude_D.Attributes.unit = "meters per seconds";
 
 % FUNCTION TO EVALUEATE DELTA L_ht
 DeltaL_ht = @(V, U_de) ( 1 / 16.3 ) * V * U_de *( K_g * CLalfa_ht_rad * S_ht )* Downwash_factor;

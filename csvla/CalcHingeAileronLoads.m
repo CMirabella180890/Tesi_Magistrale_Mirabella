@@ -95,7 +95,7 @@ ca = Aircraft.Geometry.Aileron.ca.value;
 cb = Aircraft.Geometry.Aileron.cb.value;
 cf = ca - cb; 
 Aircraft.Geometry.Aileron.cf.value = cf; 
-Aircraft.Geometry.Aileron.cf.Attributes.unit = "m";
+Aircraft.Geometry.Aileron.cf.Attributes.unit = "meters";
 
 % MOMENT ARM CALCULATION 
 c_ratio    = cb / cf;

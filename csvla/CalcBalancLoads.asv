@@ -131,7 +131,7 @@ Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value = alpha_calc_lin(o
                                                                                0.0, ...
                                                                                Aircraft.Certification.Aerodynamic_data.CL0.value, ...
                                                                                Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value);
-Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.Attributes.unit = "degree";
+Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.Attributes.unit = "degrees";
 
 alpha_zerol = Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value;
 alpha_star  = alpha_plus(Aircraft.Certification.Aerodynamic_data.CL_star.value);
@@ -139,9 +139,9 @@ alpha_max   = alpha_meno(Aircraft.Certification.Aerodynamic_data.Max_Lift_Coeffi
 
 % STORE INSIDE STRUCT VARIABLE
 Aircraft.Certification.Aerodynamic_data.alpha_star.value            = alpha_star;
-Aircraft.Certification.Aerodynamic_data.alpha_star.Attributes.unit  = "degree";
+Aircraft.Certification.Aerodynamic_data.alpha_star.Attributes.unit  = "degrees";
 Aircraft.Certification.Aerodynamic_data.alpha_max.value             = alpha_max;
-Aircraft.Certification.Aerodynamic_data.alpha_max.Attributes.unit   = "degree";
+Aircraft.Certification.Aerodynamic_data.alpha_max.Attributes.unit   = "degrees";
 
 alpha_i = - 4.0;
 alpha_f = 13.0;
@@ -178,9 +178,9 @@ movefile FullLiftModelInterpolation.pdf Output
 movefile FullLiftModelInterpolation.png Output
 
 % INSTANTIATION OF SOME CONSTANTS IMPORTANT TO MOMENT CONTRIB. CALCULATIONS
-XAC         = Aircraft.Certification.Aerodynamic_data.XAC_nondim.value;
-XCG         = Aircraft.Certification.Aerodynamic_data.XCG_nondim.value;
-bCG         = Aircraft.Certification.Aerodynamic_data.bcg.value;
+XAC         = Aircraft.Geometry.General.XAC_nondim.value;
+XCG         = Aircraft.Geometry.General.XAC_nondim.value;
+bCG         = Aircraft.Geometry.General.bcg.value;
 MAC         = Aircraft.Geometry.Wing.mac.value;
 Thrust_axes = Aircraft.Geometry.Engine.Primary.Thrust_axes.value;
 l_ht        = Aircraft.Geometry.Horizontal.l.value;
@@ -305,7 +305,7 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS.value = alfa_from0toS;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS.Attributes.unit = "degrees";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS_rad.value = deg2rad(alfa_from0toS);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS_rad.Attributes.unit = "rad";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alfa_from0toS_rad.Attributes.unit = "radians";        
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_from0toS.value = CD_from0toS;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_from0toS.Attributes.unit = "Non dimensional"; 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.q_from0toS.value = q_from0toS;
@@ -1086,7 +1086,7 @@ switch (Straight_flight_Case)
             % text(40.75, -18, 'n = 1')
             % ---------------------------------------------------------------------
             xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
-            ylabel("Full body lift - $L_{ht}$ (daN)", "Interpreter", "latex")
+            ylabel("Full body lift - $L_{w}$ (daN)", "Interpreter", "latex")
             title("Full body airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct 
             
             % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
@@ -1451,12 +1451,12 @@ switch (Straight_flight_Case)
                 end
                 CL_fromDto0(i)   = CL_new_fromDto0; 
                 CLHT_fromDto0(i) = CL_tail;
-                alfa_fromCtoD(i) = alfa_new_fromCtoD;
-                WBL_fromCtoD(i)  = q_fromCtoD(i) * S * CL_fromCtoD(i) * 1e-1;
-                LHT_fromCtoD(i)  = (0.5)*(V_fromCtoD(i)^2)*(S)*(rho0)*(CLHT_fromCtoD(i))*(1e-1);
-                CMCL_fromCtoD(i) = CMCL_new;
-                CMCD_fromCtoD(i) = CMCD_new;
-                CMCG_fromCtoD(i) = CMCG_new;
+                alfa_fromDto0(i) = alfa_new_fromDto0;
+                WBL_fromDto0(i)  = q_fromDto0(i) * S * CL_fromDto0(i) * 1e-1;
+                LHT_fromDto0(i)  = (0.5)*(V_fromDto0(i)^2)*(S)*(rho0)*(CLHT_fromDto0(i))*(1e-1);
+                CMCL_fromDto0(i) = CMCL_new;
+                CMCD_fromDto0(i) = CMCD_new;
+                CMCG_fromDto0(i) = CMCG_new;
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromDto0.value = CL_fromDto0;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_fromDto0.Attributes.unit = "Non dimensional"; 
@@ -1689,8 +1689,8 @@ switch (Straight_flight_Case)
             % text(40.75, -18, 'n = 1')
             % ---------------------------------------------------------------------
             xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
-            ylabel("Full body lift - $L_{ht}$ (daN)", "Interpreter", "latex")
-            title("Full body airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct  
+            ylabel("Wing lift - $L_{w}$ (daN)", "Interpreter", "latex")
+            title("Wing lift per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct  
             
             % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
 

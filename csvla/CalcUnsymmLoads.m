@@ -74,13 +74,13 @@ switch (Straight_flight_Case)
 
             % Aileron deflection at Point A1
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.delta_A1.value = delta_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.delta_A1.Attributes.unit = "degree";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.delta_A1.Attributes.unit = "degrees";
 
             % Dynamic pressure times delta_A1
             qA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.qA1.value;
             F_aileron_A1 = qA1 * delta_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.value = F_aileron_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.Attributes.unit = "N/m^2";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.Attributes.unit = "Newton per squared meters";
 
             % Initialization of the Unsymmetrical_load field - Point A
             % half_span = flip(half_span);
@@ -99,7 +99,7 @@ switch (Straight_flight_Case)
             end
             for z = j:k 
                 Aircraft.Geometry.Aileron.y_span.value(z) = half_span(z);
-                Aircraft.Geometry.Aileron.y_span.Attributes.unit = "m";
+                Aircraft.Geometry.Aileron.y_span.Attributes.unit = "meters";
                 cm_A1_unsymm(z) = cm_A1(z) - 0.01*delta_A1;
             end  
 
@@ -192,13 +192,13 @@ switch (Straight_flight_Case)
             v_ratio = VA / VC;
             delta_C = delta_max * v_ratio;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.delta_C.value = delta_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.delta_C.Attributes.unit = "degree";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.delta_C.Attributes.unit = "degrees";
 
             % Dynamic pressure times delta_C
             qC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value;
             F_Aileron_C = qC * delta_C;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_Aileron_C.value = F_Aileron_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_Aileron_C.Attributes.unit = "N/m^2";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_Aileron_C.Attributes.unit = "Newton per squared meters";
 
             % Initialization of the Unsymmetrical_load field - Point C
             cm_C_unsymm = zeros(length(half_span), 1);
@@ -308,13 +308,13 @@ switch (Straight_flight_Case)
             v_ratio = (VA) / (3 * VD);
             delta_D = delta_max * v_ratio;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.delta_D.value = delta_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.delta_D.Attributes.unit = "degree";       
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.delta_D.Attributes.unit = "degrees";       
 
             % Dynamic pressure times delta_D
             qD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value;
             F_Aileron_D = qD * delta_D;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_Aileron_D.value = F_Aileron_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_Aileron_D.Attributes.unit = "N/m^2";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_Aileron_D.Attributes.unit = "Newton per squared meters";
 
             % Initialization of the Unsymmetrical_load field - Point D
             cm_D_unsymm = zeros(length(half_span), 1);
@@ -500,13 +500,13 @@ switch (Straight_flight_Case)
             y_iniziale = Aircraft.Geometry.Aileron.y_inner.value;
             % Aileron deflection at Point A1
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A1.value = delta_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A1.Attributes.unit = "degree";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A1.Attributes.unit = "degrees";
 
             % Dynamic pressure times delta_A1
             qA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.qA1.value;
             F_Aileron_A1 = qA1 * delta_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.value = F_Aileron_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.Attributes.unit = "N/m^2";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.Attributes.unit = "Newton per squared meters";
 
             % Initialization of the Unsymmetrical_load field - Point A1
             % half_span = flip(half_span);
@@ -525,7 +525,7 @@ switch (Straight_flight_Case)
             end
             for z = j:k 
                 Aircraft.Geometry.Aileron.y_span.value(z) = half_span(z);
-                Aircraft.Geometry.Aileron.y_span.Attributes.unit = "m";
+                Aircraft.Geometry.Aileron.y_span.Attributes.unit = "meters";
                 cm_A1_unsymm(z) = cm_A1(z) - 0.01 * delta_A1;
             end  
 
@@ -618,13 +618,13 @@ switch (Straight_flight_Case)
             v_ratio = VA / VC;
             delta_C = delta_max * v_ratio;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.delta_C.value = delta_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.delta_C.Attributes.unit = "degree";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.delta_C.Attributes.unit = "degrees";
 
             % Dynamic pressure times delta_C
             qC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value;
             F_Aileron_C = qC * delta_C;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_Aileron_C.value = F_Aileron_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_Aileron_C.Attributes.unit = "N/m^2";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_Aileron_C.Attributes.unit = "Newton per squared meters";
 
             % Initialization of the Unsymmetrical_load field - Point C
             cm_C_unsymm = zeros(length(half_span), 1);
@@ -734,13 +734,13 @@ switch (Straight_flight_Case)
             v_ratio = (VA) / (3 * VD);
             delta_D = delta_max * v_ratio;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.delta_D.value = delta_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.delta_D.Attributes.unit = "degree";       
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.delta_D.Attributes.unit = "degrees";       
 
             % Dynamic pressure times delta_D
             qD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value;
             F_Aileron_D = qD * delta_D;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_Aileron_D.value = F_Aileron_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_Aileron_D.Attributes.unit = "N/m^2";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_Aileron_D.Attributes.unit = "Newton per squared meters";
 
             % Initialization of the Unsymmetrical_load field - Point D
             cm_D_unsymm = zeros(length(half_span), 1);
@@ -928,13 +928,13 @@ switch (Straight_flight_Case)
         y_iniziale = Aircraft.Geometry.Aileron.y_inner.value;
         % Aileron deflection at Point A
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A.value = delta_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A.Attributes.unit = "degree";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.delta_A.Attributes.unit = "degrees";
         
         % Dynamic pressure times delta_A
         qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
         F_aileron_A = qA * delta_A;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.F_Aileron_A.value = F_aileron_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.F_Aileron_A.Attributes.unit = "N/m^2";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.F_Aileron_A.Attributes.unit = "Newton per squared meters";
         
         % Initialization of the Unsymmetrical_load field - Point A
         % half_span = flip(half_span);
@@ -953,7 +953,7 @@ switch (Straight_flight_Case)
         end
         for z = j:k 
             Aircraft.Geometry.Aileron.y_span.value(z) = half_span(z);
-            Aircraft.Geometry.Aileron.y_span.Attributes.unit = "m";
+            Aircraft.Geometry.Aileron.y_span.Attributes.unit = "meters";
             cm_A_unsymm(z) = cm_A(z) - 0.01*delta_A;
         end  
         
@@ -1046,13 +1046,13 @@ switch (Straight_flight_Case)
         v_ratio = VA / VC;
         delta_C = delta_max * v_ratio;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.delta_C.value = delta_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.delta_C.Attributes.unit = "degree";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.delta_C.Attributes.unit = "degrees";
         
         % Dynamic pressure times delta_C
         qC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value;
         F_Aileron_C = qC * delta_C;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_Aileron_C.value = F_Aileron_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_Aileron_C.Attributes.unit = "N/m^2";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.F_Aileron_C.Attributes.unit = "Newton per squared meters";
         
         % Initialization of the Unsymmetrical_load field - Point C
         cm_C_unsymm = zeros(length(half_span), 1);
@@ -1162,13 +1162,13 @@ switch (Straight_flight_Case)
         v_ratio = (VA) / (3 * VD);
         delta_D = delta_max * v_ratio;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.delta_D.value = delta_D;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.delta_D.Attributes.unit = "degree";       
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.delta_D.Attributes.unit = "degrees";       
         
         % Dynamic pressure times delta_D
         qD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value;
         F_Aileron_D = qD * delta_D;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_Aileron_D.value = F_Aileron_D;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_Aileron_D.Attributes.unit = "N/m^2";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.F_Aileron_D.Attributes.unit = "Newton per squared meters";
         
         % Initialization of the Unsymmetrical_load field - Point D
         cm_D_unsymm = zeros(length(half_span), 1);
@@ -1347,6 +1347,3 @@ switch (Straight_flight_Case)
         
 end
 
-%% REMOVE FIELDS INSIDE THE AIRCRAFT STRUCT VARIABLE 
-
-% remove1 = rmfield(Aircraft, Geometry.Aileron.y_span);
