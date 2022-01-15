@@ -126,22 +126,22 @@ switch (Straight_flight_Case)
             % STORE USEFUL VALUES INSIDE THE AIRCRAFT STRUCT VARIABLE 
             % Point S
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.yS.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.yS.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.yS.Attributes.unit = "meters";
             % Point A1
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.Attributes.unit = "m";  
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.Attributes.unit = "meters";  
             % Point C1
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.yC1.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.yC1.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.yC1.Attributes.unit = "meters";
             % Point C
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.yC.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.yC.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.yC.Attributes.unit = "meters";
             % Point C2
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.yC2.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.yC2.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.yC2.Attributes.unit = "meters";
             % Point D
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.yD.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.yD.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.yD.Attributes.unit = "meters";
 
             % LIFT CURVE AND LIFT COEFFICIENT EVALUATED AT THE FINAL ENVELOPE POINTS
             alpha_dot = Aircraft.Certification.Aerodynamic_data.alpha.value;
@@ -224,7 +224,7 @@ switch (Straight_flight_Case)
             chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
             % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "meters";  
 
             %% POINT S CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point S
@@ -248,20 +248,20 @@ switch (Straight_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_S = times(chord_distr, cl_S);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.value = cCl_distr_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.Attributes.unit = "meters";
             cCd_distr_S = times(chord_distr, cd_S);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.value = cCd_distr_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_S     = alfaS + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.value = AoA_Tot_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.value = deg2rad(AoA_Tot_S);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -270,7 +270,7 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_S = calc_normal_force(obj2, AoA_Tot_S, cCl_distr_S, cCd_distr_S);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.value = cCz_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -279,20 +279,20 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_S = calc_axial_force(obj2, AoA_Tot_S, cCl_distr_S, cCd_distr_S);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.value = cCa_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qS             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.value;
             Normal_force_S = cCz_S * qS;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.value = Normal_force_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_S = cCa_S * qS;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.value = Axial_force_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -375,19 +375,19 @@ switch (Straight_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_A1 = times(chord_distr, cl_A1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.value = cCl_distr_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.Attributes.unit = "meters";
             cCd_distr_A1 = times(chord_distr, cd_A1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.value = cCd_distr_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_A1     = alfaA1 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.value = AoA_Tot_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.value = deg2rad(AoA_Tot_A1);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -396,7 +396,7 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_A1 = calc_normal_force(obj2, AoA_Tot_A1, cCl_distr_A1, cCd_distr_A1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.value = cCz_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -405,20 +405,20 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_A1 = calc_axial_force(obj2, AoA_Tot_A1, cCl_distr_A1, cCd_distr_A1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.value = cCa_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qA1             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.qA1.value;
             Normal_force_A1 = cCz_A1 * qA1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.value = Normal_force_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_A1 = cCa_A1 * qA1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.value = Axial_force_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -500,19 +500,19 @@ switch (Straight_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_C1 = times(chord_distr, cl_C1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCl_distr.value = cCl_distr_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCl_distr.Attributes.unit = "meters";
             cCd_distr_C1 = times(chord_distr, cd_C1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCd_distr.value = cCd_distr_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_C1     = alfaC1 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_deg.value = AoA_Tot_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_rad.value = deg2rad(AoA_Tot_C1);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -521,7 +521,7 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_C1 = calc_normal_force(obj2, AoA_Tot_C1, cCl_distr_C1, cCd_distr_C1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCz.value = cCz_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -530,20 +530,20 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_C1 = calc_axial_force(obj2, AoA_Tot_C1, cCl_distr_C1, cCd_distr_C1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCa.value = cCa_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qC1             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.qC1.value;
             Normal_force_C1 = cCz_C1 * qC1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Normal_force.value = Normal_force_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_C1 = cCa_C1 * qC1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Axial_force.value = Axial_force_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -625,19 +625,19 @@ switch (Straight_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_C = times(chord_distr, cl_C);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.value = cCl_distr_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.Attributes.unit = "meters";
             cCd_distr_C = times(chord_distr, cd_C);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.value = cCd_distr_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_C     = alfaC + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.value = AoA_Tot_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.value = deg2rad(AoA_Tot_C);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -646,7 +646,7 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_C = calc_normal_force(obj2, AoA_Tot_C, cCl_distr_C, cCd_distr_C);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.value = cCz_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -655,20 +655,20 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_C = calc_axial_force(obj2, AoA_Tot_C, cCl_distr_C, cCd_distr_C);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.value = cCa_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qC             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value;
             Normal_force_C = cCz_C * qC;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.value = Normal_force_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_C = cCa_C * qC;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.value = Axial_force_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -750,19 +750,19 @@ switch (Straight_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_C2 = times(chord_distr, cl_C2);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCl_distr.value = cCl_distr_C2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCl_distr.Attributes.unit = "meters";
             cCd_distr_C2 = times(chord_distr, cd_C2);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCd_distr.value = cCd_distr_C2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_C2     = alfaC2 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_deg.value = AoA_Tot_C2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_rad.value = deg2rad(AoA_Tot_C2);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -771,7 +771,7 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_C2 = calc_normal_force(obj2, AoA_Tot_C2, cCl_distr_C2, cCd_distr_C2);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCz.value = cCz_C2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -780,20 +780,20 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_C2 = calc_axial_force(obj2, AoA_Tot_C2, cCl_distr_C2, cCd_distr_C2);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCa.value = cCa_C2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qC2             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.qC2.value;
             Normal_force_C2 = cCz_C2 * qC2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Normal_force.value = Normal_force_C2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_C2 = cCa_C2 * qC2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Axial_force.value = Axial_force_C2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -875,19 +875,19 @@ switch (Straight_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_D = times(chord_distr, cl_D);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.value = cCl_distr_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.Attributes.unit = "meters";
             cCd_distr_D = times(chord_distr, cd_D);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.value = cCd_distr_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_D     = alfaD + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.value = AoA_Tot_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.value = deg2rad(AoA_Tot_D);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -896,7 +896,7 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_D = calc_normal_force(obj2, AoA_Tot_D, cCl_distr_D, cCd_distr_D);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.value = cCz_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -905,20 +905,20 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_D = calc_axial_force(obj2, AoA_Tot_D, cCl_distr_D, cCd_distr_D);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.value = cCa_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qD             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value;
             Normal_force_D = cCz_D * qD;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.value = Normal_force_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_D = cCa_D * qD;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.value = Axial_force_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -1087,16 +1087,16 @@ switch (Straight_flight_Case)
             % STORE USEFUL VALUES INSIDE THE AIRCRAFT STRUCT VARIABLE 
             % Point S
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.yS.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.yS.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.yS.Attributes.unit = "meters";
             % Point A1
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.Attributes.unit = "meters";
             % Point C
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.yC.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.yC.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.yC.Attributes.unit = "meters";
             % Point D
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.yD.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.yD.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.yD.Attributes.unit = "meters";
 
             % LIFT CURVE AND LIFT COEFFICIENT EVALUATED AT THE FINAL ENVELOPE POINTS
             alpha_dot = Aircraft.Certification.Aerodynamic_data.alpha.value;
@@ -1173,7 +1173,7 @@ switch (Straight_flight_Case)
             chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
             % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "meters";
         
             % =================================================================
             %% POINT S CALCULATIONS                 
@@ -1198,20 +1198,20 @@ switch (Straight_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_S = times(chord_distr, cl_S);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.value = cCl_distr_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.Attributes.unit = "meters";
             cCd_distr_S = times(chord_distr, cd_S);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.value = cCd_distr_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_S     = alfaS + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.value = AoA_Tot_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.value = deg2rad(AoA_Tot_S);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1220,7 +1220,7 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_S = calc_normal_force(obj2, AoA_Tot_S, cCl_distr_S, cCd_distr_S);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.value = cCz_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1229,20 +1229,20 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_S = calc_axial_force(obj2, AoA_Tot_S, cCl_distr_S, cCd_distr_S);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.value = cCa_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qS             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.value;
             Normal_force_S = cCz_S * qS;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.value = Normal_force_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_S = cCa_S * qS;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.value = Axial_force_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -1324,19 +1324,19 @@ switch (Straight_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_A1 = times(chord_distr, cl_A1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.value = cCl_distr_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.Attributes.unit = "meters";
             cCd_distr_A1 = times(chord_distr, cd_A1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.value = cCd_distr_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_A1     = alfaA1 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.value = AoA_Tot_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.value = deg2rad(AoA_Tot_A1);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1345,7 +1345,7 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_A1 = calc_normal_force(obj2, AoA_Tot_A1, cCl_distr_A1, cCd_distr_A1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.value = cCz_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1354,20 +1354,20 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_A1 = calc_axial_force(obj2, AoA_Tot_A1, cCl_distr_A1, cCd_distr_A1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.value = cCa_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qA1             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.qA1.value;
             Normal_force_A1 = cCz_A1 * qA1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.value = Normal_force_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_A1 = cCa_A1 * qA1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.value = Axial_force_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -1449,19 +1449,19 @@ switch (Straight_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_C = times(chord_distr, cl_C);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.value = cCl_distr_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.Attributes.unit = "meters";
             cCd_distr_C = times(chord_distr, cd_C);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.value = cCd_distr_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_C     = alfaC + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.value = AoA_Tot_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.value = deg2rad(AoA_Tot_C);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1470,7 +1470,7 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_C = calc_normal_force(obj2, AoA_Tot_C, cCl_distr_C, cCd_distr_C);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.value = cCz_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1479,20 +1479,20 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_C = calc_axial_force(obj2, AoA_Tot_C, cCl_distr_C, cCd_distr_C);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.value = cCa_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qC             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value;
             Normal_force_C = cCz_C * qC;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.value = Normal_force_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_C = cCa_C * qC;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.value = Axial_force_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -1574,19 +1574,19 @@ switch (Straight_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_D = times(chord_distr, cl_D);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.value = cCl_distr_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.Attributes.unit = "meters";
             cCd_distr_D = times(chord_distr, cd_D);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.value = cCd_distr_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_D     = alfaD + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.value = AoA_Tot_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.value = deg2rad(AoA_Tot_D);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1595,7 +1595,7 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_D = calc_normal_force(obj2, AoA_Tot_D, cCl_distr_D, cCd_distr_D);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.value = cCz_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1604,20 +1604,20 @@ switch (Straight_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_D = calc_axial_force(obj2, AoA_Tot_D, cCl_distr_D, cCd_distr_D);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.value = cCa_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qD             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value;
             Normal_force_D = cCz_D * qD;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.value = Normal_force_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_D = cCa_D * qD;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.value = Axial_force_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -1774,22 +1774,22 @@ switch (Straight_flight_Case)
         % STORE USEFUL VALUES INSIDE THE AIRCRAFT STRUCT VARIABLE 
         % Point S
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.yS.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.yS.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.yS.Attributes.unit = "meters";
         % Point A
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.Attributes.unit = "meters";
         % Point A1
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.Attributes.unit = "meters";
         % Point C
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.yC.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.yC.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.yC.Attributes.unit = "meters";
         % Point A2
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.yA2.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.yA2.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA2.yA2.Attributes.unit = "meters";
         % Point D
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.yD.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.yD.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.yD.Attributes.unit = "meters";
         
         % LIFT CURVE AND LIFT COEFFICIENT EVALUATED AT THE FINAL ENVELOPE POINTS
         alpha_dot = Aircraft.Certification.Aerodynamic_data.alpha.value;
@@ -1868,7 +1868,7 @@ switch (Straight_flight_Case)
         chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span)';
         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "meters";        
         % =================================================================
         %% POINT S CALCULATIONS                 
         % Lift coefficient distribution along the span at the Point S
@@ -1892,20 +1892,20 @@ switch (Straight_flight_Case)
         % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
         cCl_distr_S = times(chord_distr, cl_S);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.value = cCl_distr_S;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCl_distr.Attributes.unit = "meters";
         cCd_distr_S = times(chord_distr, cd_S);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.value = cCd_distr_S;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCd_distr.Attributes.unit = "meters";
                 
         % AoA_Tot = AoA + Twist_angle of the main wing
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_S     = alfaS + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.value = AoA_Tot_S;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "degrees"; 
         
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.value = deg2rad(AoA_Tot_S);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "radians";   
         
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1914,7 +1914,7 @@ switch (Straight_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCz_S = calc_normal_force(obj2, AoA_Tot_S, cCl_distr_S, cCd_distr_S);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.value = cCz_S;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCz.Attributes.unit = "meters"; 
         
         % Calculation of the axial force coefficient 
         % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1923,20 +1923,20 @@ switch (Straight_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCa_S = calc_axial_force(obj2, AoA_Tot_S, cCl_distr_S, cCd_distr_S);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.value = cCa_S;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cCa.Attributes.unit = "meters"; 
         
         % Normal force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         qS             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qS.value;
         Normal_force_S = cCz_S * qS;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.value = Normal_force_S;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.Attributes.unit = "N/m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Normal_force.Attributes.unit = "Newton per meters";
         
         % Axial force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         Axial_force_S = cCa_S * qS;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.value = Axial_force_S;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.Attributes.unit = "N/m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Axial_force.Attributes.unit = "Newton per meters";        
         
         % SHEAR FORCE CALCULATION 
         % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -2018,19 +2018,19 @@ switch (Straight_flight_Case)
         % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
         cCl_distr_A = times(chord_distr, cl_A);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCl_distr.value = cCl_distr_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCl_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCl_distr.Attributes.unit = "meters";
         cCd_distr_A = times(chord_distr, cd_A);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCd_distr.value = cCd_distr_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCd_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCd_distr.Attributes.unit = "meters";
                 
         % AoA_Tot = AoA + Twist_angle of the main wing
         AoA_Tot_A     = alfaA + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_deg.value = AoA_Tot_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_deg.Attributes.unit = "degrees"; 
         
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_rad.value = deg2rad(AoA_Tot_A);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_rad.Attributes.unit = "radians";   
         
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2039,7 +2039,7 @@ switch (Straight_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCz_A = calc_normal_force(obj2, AoA_Tot_A, cCl_distr_A, cCd_distr_A);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCz.value = cCz_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCz.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCz.Attributes.unit = "meters"; 
         
         % Calculation of the axial force coefficient 
         % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2048,20 +2048,20 @@ switch (Straight_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCa_A = calc_axial_force(obj2, AoA_Tot_A, cCl_distr_A, cCd_distr_A);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCa.value = cCa_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCa.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cCa.Attributes.unit = "meters"; 
         
         % Normal force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         qA             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
         Normal_force_A = cCz_A * qA;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Normal_force.value = Normal_force_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Normal_force.Attributes.unit = "N/m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Normal_force.Attributes.unit = "Newton per meters";
         
         % Axial force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         Axial_force_A = cCa_A * qA;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Axial_force.value = Axial_force_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Axial_force.Attributes.unit = "N/m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Axial_force.Attributes.unit = "Newton per meters";        
         
         % SHEAR FORCE CALCULATION 
         % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -2143,19 +2143,19 @@ switch (Straight_flight_Case)
         % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
         cCl_distr_A1 = times(chord_distr, cl_A1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.value = cCl_distr_A1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCl_distr.Attributes.unit = "meters";
         cCd_distr_A1 = times(chord_distr, cd_A1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.value = cCd_distr_A1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCd_distr.Attributes.unit = "meters";
                 
         % AoA_Tot = AoA + Twist_angle of the main wing
         AoA_Tot_A1     = alfaA1 + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.value = AoA_Tot_A1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "degrees"; 
         
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.value = deg2rad(AoA_Tot_A1);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "radians";   
         
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2164,7 +2164,7 @@ switch (Straight_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCz_A1 = calc_normal_force(obj2, AoA_Tot_A1, cCl_distr_A1, cCd_distr_A1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.value = cCz_A1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCz.Attributes.unit = "meters"; 
         
         % Calculation of the axial force coefficient 
         % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2173,20 +2173,20 @@ switch (Straight_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCa_A1 = calc_axial_force(obj2, AoA_Tot_A1, cCl_distr_A1, cCd_distr_A1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.value = cCa_A1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cCa.Attributes.unit = "meters"; 
         
         % Normal force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         qA1             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.qA1.value;
         Normal_force_A1 = cCz_A1 * qA1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.value = Normal_force_A1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.Attributes.unit = "N/m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Normal_force.Attributes.unit = "Newton per meters";
         
         % Axial force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         Axial_force_A1 = cCa_A1 * qA1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.value = Axial_force_A1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.Attributes.unit = "N/m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Axial_force.Attributes.unit = "Newton per meters";        
         
         % SHEAR FORCE CALCULATION 
         % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -2268,19 +2268,19 @@ switch (Straight_flight_Case)
         % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
         cCl_distr_C = times(chord_distr, cl_C);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.value = cCl_distr_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCl_distr.Attributes.unit = "meters";
         cCd_distr_C = times(chord_distr, cd_C);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.value = cCd_distr_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCd_distr.Attributes.unit = "meters";
                 
         % AoA_Tot = AoA + Twist_angle of the main wing
         AoA_Tot_C     = alfaC + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.value = AoA_Tot_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "degrees"; 
         
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.value = deg2rad(AoA_Tot_C);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "radians";   
         
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2289,7 +2289,7 @@ switch (Straight_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCz_C = calc_normal_force(obj2, AoA_Tot_C, cCl_distr_C, cCd_distr_C);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.value = cCz_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCz.Attributes.unit = "meters"; 
         
         % Calculation of the axial force coefficient 
         % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2298,20 +2298,20 @@ switch (Straight_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCa_C = calc_axial_force(obj2, AoA_Tot_C, cCl_distr_C, cCd_distr_C);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.value = cCa_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cCa.Attributes.unit = "meters"; 
         
         % Normal force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         qC             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value;
         Normal_force_C = cCz_C * qC;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.value = Normal_force_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.Attributes.unit = "N/m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Normal_force.Attributes.unit = "Newton per meters";
         
         % Axial force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         Axial_force_C = cCa_C * qC;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.value = Axial_force_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.Attributes.unit = "N/m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Axial_force.Attributes.unit = "Newton per meters";        
         
         % SHEAR FORCE CALCULATION 
         % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -2393,19 +2393,19 @@ switch (Straight_flight_Case)
         % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
         cCl_distr_D = times(chord_distr, cl_D);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.value = cCl_distr_D;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCl_distr.Attributes.unit = "meters";
         cCd_distr_D = times(chord_distr, cd_D);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.value = cCd_distr_D;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCd_distr.Attributes.unit = "meters";
                 
         % AoA_Tot = AoA + Twist_angle of the main wing
         AoA_Tot_D     = alfaD + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.value = AoA_Tot_D;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "degrees"; 
         
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.value = deg2rad(AoA_Tot_D);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "radians";   
         
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2414,7 +2414,7 @@ switch (Straight_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCz_D = calc_normal_force(obj2, AoA_Tot_D, cCl_distr_D, cCd_distr_D);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.value = cCz_D;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCz.Attributes.unit = "meters"; 
         
         % Calculation of the axial force coefficient 
         % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2423,20 +2423,20 @@ switch (Straight_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCa_D = calc_axial_force(obj2, AoA_Tot_D, cCl_distr_D, cCd_distr_D);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.value = cCa_D;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cCa.Attributes.unit = "meters"; 
         
         % Normal force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         qD             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.qD.value;
         Normal_force_D = cCz_D * qD;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.value = Normal_force_D;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.Attributes.unit = "N/m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Normal_force.Attributes.unit = "Newton per meters";
         
         % Axial force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         Axial_force_D = cCa_D * qD;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.value = Axial_force_D;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.Attributes.unit = "N/m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Axial_force.Attributes.unit = "Newton per meters";        
         
         % SHEAR FORCE CALCULATION 
         % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -2547,11 +2547,11 @@ switch (Straight_flight_Case)
         cl_Comparison = figure(25);
         hold on; grid on; grid minor;
 
-        plot(half_span, cl_S, 'LineWidth', 1.5)
-        plot(half_span, cl_A, 'LineWidth', 1.5)
-        plot(half_span, cl_A1, 'LineWidth', 1.5)
-        plot(half_span, cl_C, 'LineWidth', 1.5)
-        plot(half_span, cl_D, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_S, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_A, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_C, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_D, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -2562,11 +2562,11 @@ switch (Straight_flight_Case)
         cd_Comparison = figure(26);
         hold on; grid on; grid minor;
 
-        plot(half_span, cd_S,  'LineWidth', 1.5)
-        plot(half_span, cd_A,  'LineWidth', 1.5)
-        plot(half_span, cd_A1, 'LineWidth', 1.5)
-        plot(half_span, cd_C,  'LineWidth', 1.5)
-        plot(half_span, cd_D,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_S,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_A,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_C,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_D,  'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -2577,11 +2577,11 @@ switch (Straight_flight_Case)
         cm_Comparison = figure(27);
         hold on; grid on; grid minor;
 
-        plot(half_span, cm_S, 'LineWidth', 1.5)
-        plot(half_span, cm_A, 'LineWidth', 1.5)
-        plot(half_span, cm_A1, 'LineWidth', 1.5)
-        plot(half_span, cm_C, 'LineWidth', 1.5)
-        plot(half_span, cm_D, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_S, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_A, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_C, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_D, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
@@ -2600,22 +2600,22 @@ switch (Inverted_flight_Case)
             % STORE USEFUL VALUES INSIDE THE AIRCRAFT STRUCT VARIABLE 
             % Point S_inv
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.Attributes.unit = "meters";
             % Point G
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.Attributes.unit = "meters";
             % Point G1
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.Attributes.unit = "meters";
             % Point F
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.Attributes.unit = "meters";
             % Point G2
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.yG2.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.yG2.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.yG2.Attributes.unit = "meters";
             % Point E
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.Attributes.unit = "m";      
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.Attributes.unit = "meters";      
             
             % ---------------------------------------------------------------------------------------------
             CL_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv.value;
@@ -2682,7 +2682,7 @@ switch (Inverted_flight_Case)
             chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span)';
             % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "meters";  
             
             %% POINT S_inv CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point S_inv
@@ -2706,20 +2706,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_S_inv = times(chord_distr, cl_S_inv);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCl_distr.value = cCl_distr_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCl_distr.Attributes.unit = "meters";
             cCd_distr_S_inv = times(chord_distr, cd_S_inv);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCd_distr.value = cCd_distr_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_S_inv     = alfaS_inv + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.value = AoA_Tot_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.value = deg2rad(AoA_Tot_S_inv);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2728,7 +2728,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_S_inv = calc_normal_force(obj2, AoA_Tot_S_inv, cCl_distr_S_inv, cCd_distr_S_inv);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCz.value = cCz_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2737,20 +2737,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_S_inv = calc_axial_force(obj2, AoA_Tot_S_inv, cCl_distr_S_inv, cCd_distr_S_inv);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCa.value = cCa_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qS_inv             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.qS_inv.value;
             Normal_force_S_inv = cCz_S_inv * qS_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Normal_force.value = Normal_force_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_S_inv = cCa_S_inv * qS_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Axial_force.value = Axial_force_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -2833,20 +2833,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_G = times(chord_distr, cl_G);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCl_distr.value = cCl_distr_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCl_distr.Attributes.unit = "meters";
             cCd_distr_G = times(chord_distr, cd_G);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCd_distr.value = cCd_distr_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_G     = alfaG + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.value = AoA_Tot_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.value = deg2rad(AoA_Tot_G);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2855,7 +2855,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_G = calc_normal_force(obj2, AoA_Tot_G, cCl_distr_G, cCd_distr_G);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCz.value = cCz_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2864,20 +2864,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_G = calc_axial_force(obj2, AoA_Tot_G, cCl_distr_G, cCd_distr_G);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCa.value = cCa_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qG             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.value;
             Normal_force_G = cCz_G * qG;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Normal_force.value = Normal_force_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_G = cCa_G * qG;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Axial_force.value = Axial_force_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -2961,20 +2961,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_G1 = times(chord_distr, cl_G1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCl_distr.value = cCl_distr_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCl_distr.Attributes.unit = "meters";
             cCd_distr_G1 = times(chord_distr, cd_G1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCd_distr.value = cCd_distr_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_G1     = alfaG1 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.value = AoA_Tot_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.value = deg2rad(AoA_Tot_G1);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2983,7 +2983,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_G1 = calc_normal_force(obj2, AoA_Tot_G1, cCl_distr_G1, cCd_distr_G1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCz.value = cCz_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2992,20 +2992,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_G1 = calc_axial_force(obj2, AoA_Tot_G1, cCl_distr_G1, cCd_distr_G1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCa.value = cCa_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qG1             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.qG1.value;
             Normal_force_G1 = cCz_G1 * qG1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Normal_force.value = Normal_force_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_G1 = cCa_G1 * qG1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Axial_force.value = Axial_force_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -3089,20 +3089,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_F = times(chord_distr, cl_F);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCl_distr.value = cCl_distr_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCl_distr.Attributes.unit = "meters";
             cCd_distr_F = times(chord_distr, cd_F);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCd_distr.value = cCd_distr_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_F     = alfaF + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.value = AoA_Tot_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.value = deg2rad(AoA_Tot_F);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3111,7 +3111,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_F = calc_normal_force(obj2, AoA_Tot_F, cCl_distr_F, cCd_distr_F);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCz.value = cCz_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3120,20 +3120,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_F = calc_axial_force(obj2, AoA_Tot_F, cCl_distr_F, cCd_distr_F);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCa.value = cCa_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qF             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.qF.value;
             Normal_force_F = cCz_F * qF;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Normal_force.value = Normal_force_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_F = cCa_F * qF;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Axial_force.value = Axial_force_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -3217,20 +3217,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_G2 = times(chord_distr, cl_G2);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCl_distr.value = cCl_distr_G2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCl_distr.Attributes.unit = "meters";
             cCd_distr_G2 = times(chord_distr, cd_G2);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCd_distr.value = cCd_distr_G2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_G2     = alfaG2 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_deg.value = AoA_Tot_G2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_rad.value = deg2rad(AoA_Tot_G2);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3239,7 +3239,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_G2 = calc_normal_force(obj2, AoA_Tot_G2, cCl_distr_G2, cCd_distr_G2);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCz.value = cCz_G2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3248,20 +3248,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_G2 = calc_axial_force(obj2, AoA_Tot_G2, cCl_distr_G2, cCd_distr_G2);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCa.value = cCa_G2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qG2             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.qG2.value;
             Normal_force_G2 = cCz_G2 * qG2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Normal_force.value = Normal_force_G2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_G2 = cCa_G2 * qG2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Axial_force.value = Axial_force_G2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -3345,20 +3345,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_E = times(chord_distr, cl_E);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCl_distr.value = cCl_distr_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCl_distr.Attributes.unit = "meters";
             cCd_distr_E = times(chord_distr, cd_E);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCd_distr.value = cCd_distr_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_E     = alfaE + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.value = AoA_Tot_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.value = deg2rad(AoA_Tot_E);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3367,7 +3367,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_E = calc_normal_force(obj2, AoA_Tot_E, cCl_distr_E, cCd_distr_E);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCz.value = cCz_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3376,20 +3376,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_E = calc_axial_force(obj2, AoA_Tot_E, cCl_distr_E, cCd_distr_E);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCa.value = cCa_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qE             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.qE.value;
             Normal_force_E = cCz_E * qE;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Normal_force.value = Normal_force_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_E = cCa_E * qE;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Axial_force.value = Axial_force_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -3638,19 +3638,19 @@ switch (Inverted_flight_Case)
             % STORE USEFUL VALUES INSIDE THE AIRCRAFT STRUCT VARIABLE 
             % Point S_inv
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.Attributes.unit = "meters";
             % Point G
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.Attributes.unit = "meters";
             % Point G1
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.Attributes.unit = "meters";
             % Point F
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.Attributes.unit = "meters";
             % Point E
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.value = half_span;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.Attributes.unit = "m";    
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.Attributes.unit = "meters";    
             
             % ---------------------------------------------------------------------------------------------
             CL_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv.value;
@@ -3712,7 +3712,7 @@ switch (Inverted_flight_Case)
             chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span)';
             % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "meters"; 
             
             %% POINT S_inv CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point S_inv
@@ -3737,20 +3737,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_S_inv = times(chord_distr, cl_S_inv);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCl_distr.value = cCl_distr_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCl_distr.Attributes.unit = "meters";
             cCd_distr_S_inv = times(chord_distr, cd_S_inv);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCd_distr.value = cCd_distr_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_S_inv     = alfaS_inv + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.value = AoA_Tot_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.value = deg2rad(AoA_Tot_S_inv);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3759,7 +3759,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_S_inv = calc_normal_force(obj2, AoA_Tot_S_inv, cCl_distr_S_inv, cCd_distr_S_inv);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCz.value = cCz_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3768,20 +3768,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_S_inv = calc_axial_force(obj2, AoA_Tot_S_inv, cCl_distr_S_inv, cCd_distr_S_inv);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCa.value = cCa_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qS_inv             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.qS_inv.value;
             Normal_force_S_inv = cCz_S_inv * qS_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Normal_force.value = Normal_force_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_S_inv = cCa_S_inv * qS_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Axial_force.value = Axial_force_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -3865,20 +3865,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_G = times(chord_distr, cl_G);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCl_distr.value = cCl_distr_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCl_distr.Attributes.unit = "meters";
             cCd_distr_G = times(chord_distr, cd_G);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCd_distr.value = cCd_distr_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_G     = alfaG + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.value = AoA_Tot_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.value = deg2rad(AoA_Tot_G);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3887,7 +3887,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_G = calc_normal_force(obj2, AoA_Tot_G, cCl_distr_G, cCd_distr_G);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCz.value = cCz_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3896,20 +3896,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_G = calc_axial_force(obj2, AoA_Tot_G, cCl_distr_G, cCd_distr_G);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCa.value = cCa_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qG             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.value;
             Normal_force_G = cCz_G * qG;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Normal_force.value = Normal_force_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_G = cCa_G * qG;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Axial_force.value = Axial_force_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -3993,20 +3993,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_G1 = times(chord_distr, cl_G1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCl_distr.value = cCl_distr_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCl_distr.Attributes.unit = "meters";
             cCd_distr_G1 = times(chord_distr, cd_G1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCd_distr.value = cCd_distr_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_G1     = alfaG1 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.value = AoA_Tot_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.value = deg2rad(AoA_Tot_G1);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4015,7 +4015,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_G1 = calc_normal_force(obj2, AoA_Tot_G1, cCl_distr_G1, cCd_distr_G1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCz.value = cCz_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4024,20 +4024,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_G1 = calc_axial_force(obj2, AoA_Tot_G1, cCl_distr_G1, cCd_distr_G1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCa.value = cCa_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qG1             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.qG1.value;
             Normal_force_G1 = cCz_G1 * qG1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Normal_force.value = Normal_force_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_G1 = cCa_G1 * qG1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Axial_force.value = Axial_force_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -4121,20 +4121,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_F = times(chord_distr, cl_F);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCl_distr.value = cCl_distr_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCl_distr.Attributes.unit = "meters";
             cCd_distr_F = times(chord_distr, cd_F);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCd_distr.value = cCd_distr_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_F     = alfaF + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.value = AoA_Tot_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.value = deg2rad(AoA_Tot_F);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4143,7 +4143,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_F = calc_normal_force(obj2, AoA_Tot_F, cCl_distr_F, cCd_distr_F);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCz.value = cCz_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4152,20 +4152,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_F = calc_axial_force(obj2, AoA_Tot_F, cCl_distr_F, cCd_distr_F);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCa.value = cCa_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qF             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.qF.value;
             Normal_force_F = cCz_F * qF;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Normal_force.value = Normal_force_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_F = cCa_F * qF;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Axial_force.value = Axial_force_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -4249,20 +4249,20 @@ switch (Inverted_flight_Case)
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
             cCl_distr_E = times(chord_distr, cl_E);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCl_distr.value = cCl_distr_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCl_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCl_distr.Attributes.unit = "meters";
             cCd_distr_E = times(chord_distr, cd_E);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCd_distr.value = cCd_distr_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCd_distr.Attributes.unit = "m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCd_distr.Attributes.unit = "meters";
 
             % AoA_Tot = AoA + Twist_angle of the main wing
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_E     = alfaE + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.value = AoA_Tot_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.value = deg2rad(AoA_Tot_E);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "radians";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4271,7 +4271,7 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCz_E = calc_normal_force(obj2, AoA_Tot_E, cCl_distr_E, cCd_distr_E);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCz.value = cCz_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCz.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCz.Attributes.unit = "meters"; 
 
             % Calculation of the axial force coefficient 
             % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4280,20 +4280,20 @@ switch (Inverted_flight_Case)
             % documentation inside the class file ShearBendingTorsion.m 
             cCa_E = calc_axial_force(obj2, AoA_Tot_E, cCl_distr_E, cCd_distr_E);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCa.value = cCa_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCa.Attributes.unit = "m"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCa.Attributes.unit = "meters"; 
 
             % Normal force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             qE             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.qE.value;
             Normal_force_E = cCz_E * qE;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Normal_force.value = Normal_force_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Normal_force.Attributes.unit = "N/m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Normal_force.Attributes.unit = "Newton per meters";
 
             % Axial force 
             % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
             Axial_force_E = cCa_E * qE;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Axial_force.value = Axial_force_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Axial_force.Attributes.unit = "N/m";        
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Axial_force.Attributes.unit = "Newton per meters";        
 
             % SHEAR FORCE CALCULATION 
             % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -4529,19 +4529,19 @@ switch (Inverted_flight_Case)
         % STORE USEFUL VALUES INSIDE THE AIRCRAFT STRUCT VARIABLE 
         % Point S_inv
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.yS_inv.Attributes.unit = "meters";
         % Point G
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.yG.Attributes.unit = "meters";
         % Point G1
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.yG1.Attributes.unit = "meters";
         % Point F
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.yF.Attributes.unit = "meters";
         % Point E
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.value = half_span;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.yE.Attributes.unit = "meters";
         
         % ---------------------------------------------------------------------------------------------
         CL_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv.value;
@@ -4603,7 +4603,7 @@ switch (Inverted_flight_Case)
         chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span)';
         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "meters";        
         
         %% POINT S_inv CALCULATIONS                 
         % Lift coefficient distribution along the span at the Point S_inv
@@ -4628,20 +4628,20 @@ switch (Inverted_flight_Case)
         % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
         cCl_distr_S_inv = times(chord_distr, cl_S_inv);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCl_distr.value = cCl_distr_S_inv;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCl_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCl_distr.Attributes.unit = "meters";
         cCd_distr_S_inv = times(chord_distr, cd_S_inv);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCd_distr.value = cCd_distr_S_inv;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCd_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCd_distr.Attributes.unit = "meters";
 
         % AoA_Tot = AoA + Twist_angle of the main wing
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_S_inv     = alfaS_inv + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.value = AoA_Tot_S_inv;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.value = deg2rad(AoA_Tot_S_inv);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "radians";   
 
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4650,7 +4650,7 @@ switch (Inverted_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCz_S_inv = calc_normal_force(obj2, AoA_Tot_S_inv, cCl_distr_S_inv, cCd_distr_S_inv);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCz.value = cCz_S_inv;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCz.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCz.Attributes.unit = "meters"; 
 
         % Calculation of the axial force coefficient 
         % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4659,20 +4659,20 @@ switch (Inverted_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCa_S_inv = calc_axial_force(obj2, AoA_Tot_S_inv, cCl_distr_S_inv, cCd_distr_S_inv);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCa.value = cCa_S_inv;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCa.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cCa.Attributes.unit = "meters"; 
 
         % Normal force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         qS_inv             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.qS_inv.value;
         Normal_force_S_inv = cCz_S_inv * qS_inv;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Normal_force.value = Normal_force_S_inv;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Normal_force.Attributes.unit = "N/m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Normal_force.Attributes.unit = "Newton per meters";
 
         % Axial force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         Axial_force_S_inv = cCa_S_inv * qS_inv;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Axial_force.value = Axial_force_S_inv;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Axial_force.Attributes.unit = "N/m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Axial_force.Attributes.unit = "Newton per meters";        
 
         % SHEAR FORCE CALCULATION 
         % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -4756,20 +4756,20 @@ switch (Inverted_flight_Case)
         % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
         cCl_distr_G = times(chord_distr, cl_G);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCl_distr.value = cCl_distr_G;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCl_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCl_distr.Attributes.unit = "meters";
         cCd_distr_G = times(chord_distr, cd_G);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCd_distr.value = cCd_distr_G;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCd_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCd_distr.Attributes.unit = "meters";
 
         % AoA_Tot = AoA + Twist_angle of the main wing
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_G     = alfaG + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.value = AoA_Tot_G;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.value = deg2rad(AoA_Tot_G);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "radians";   
 
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4778,7 +4778,7 @@ switch (Inverted_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCz_G = calc_normal_force(obj2, AoA_Tot_G, cCl_distr_G, cCd_distr_G);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCz.value = cCz_G;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCz.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCz.Attributes.unit = "meters"; 
 
         % Calculation of the axial force coefficient 
         % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4787,20 +4787,20 @@ switch (Inverted_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCa_G = calc_axial_force(obj2, AoA_Tot_G, cCl_distr_G, cCd_distr_G);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCa.value = cCa_G;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCa.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cCa.Attributes.unit = "meters"; 
 
         % Normal force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         qG             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.qG.value;
         Normal_force_G = cCz_G * qG;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Normal_force.value = Normal_force_G;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Normal_force.Attributes.unit = "N/m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Normal_force.Attributes.unit = "Newton per meters";
 
         % Axial force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         Axial_force_G = cCa_G * qG;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Axial_force.value = Axial_force_G;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Axial_force.Attributes.unit = "N/m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Axial_force.Attributes.unit = "Newton per meters";        
 
         % SHEAR FORCE CALCULATION 
         % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -4884,20 +4884,20 @@ switch (Inverted_flight_Case)
         % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
         cCl_distr_G1 = times(chord_distr, cl_G1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCl_distr.value = cCl_distr_G1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCl_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCl_distr.Attributes.unit = "meters";
         cCd_distr_G1 = times(chord_distr, cd_G1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCd_distr.value = cCd_distr_G1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCd_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCd_distr.Attributes.unit = "meters";
 
         % AoA_Tot = AoA + Twist_angle of the main wing
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_G1     = alfaG1 + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.value = AoA_Tot_G1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.value = deg2rad(AoA_Tot_G1);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "radians";   
 
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4906,7 +4906,7 @@ switch (Inverted_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCz_G1 = calc_normal_force(obj2, AoA_Tot_G1, cCl_distr_G1, cCd_distr_G1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCz.value = cCz_G1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCz.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCz.Attributes.unit = "meters"; 
 
         % Calculation of the axial force coefficient 
         % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4915,20 +4915,20 @@ switch (Inverted_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCa_G1 = calc_axial_force(obj2, AoA_Tot_G1, cCl_distr_G1, cCd_distr_G1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCa.value = cCa_G1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCa.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cCa.Attributes.unit = "meters"; 
 
         % Normal force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         qG1             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.qG1.value;
         Normal_force_G1 = cCz_G1 * qG1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Normal_force.value = Normal_force_G1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Normal_force.Attributes.unit = "N/m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Normal_force.Attributes.unit = "Newton per meters";
 
         % Axial force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         Axial_force_G1 = cCa_G1 * qG1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Axial_force.value = Axial_force_G1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Axial_force.Attributes.unit = "N/m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Axial_force.Attributes.unit = "Newton per meters";        
 
         % SHEAR FORCE CALCULATION 
         % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -5012,20 +5012,20 @@ switch (Inverted_flight_Case)
         % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
         cCl_distr_F = times(chord_distr, cl_F);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCl_distr.value = cCl_distr_F;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCl_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCl_distr.Attributes.unit = "meters";
         cCd_distr_F = times(chord_distr, cd_F);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCd_distr.value = cCd_distr_F;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCd_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCd_distr.Attributes.unit = "meters";
 
         % AoA_Tot = AoA + Twist_angle of the main wing
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_F     = alfaF + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.value = AoA_Tot_F;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.value = deg2rad(AoA_Tot_F);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "radians";   
 
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -5034,7 +5034,7 @@ switch (Inverted_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCz_F = calc_normal_force(obj2, AoA_Tot_F, cCl_distr_F, cCd_distr_F);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCz.value = cCz_F;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCz.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCz.Attributes.unit = "meters"; 
 
         % Calculation of the axial force coefficient 
         % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -5043,20 +5043,20 @@ switch (Inverted_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCa_F = calc_axial_force(obj2, AoA_Tot_F, cCl_distr_F, cCd_distr_F);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCa.value = cCa_F;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCa.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cCa.Attributes.unit = "meters"; 
 
         % Normal force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         qF             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.qF.value;
         Normal_force_F = cCz_F * qF;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Normal_force.value = Normal_force_F;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Normal_force.Attributes.unit = "N/m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Normal_force.Attributes.unit = "Newton per meters";
 
         % Axial force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         Axial_force_F = cCa_F * qF;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Axial_force.value = Axial_force_F;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Axial_force.Attributes.unit = "N/m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Axial_force.Attributes.unit = "Newton per meters";        
 
         % SHEAR FORCE CALCULATION 
         % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -5139,20 +5139,20 @@ switch (Inverted_flight_Case)
         % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
         cCl_distr_E = times(chord_distr, cl_E);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCl_distr.value = cCl_distr_E;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCl_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCl_distr.Attributes.unit = "meters";
         cCd_distr_E = times(chord_distr, cd_E);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCd_distr.value = cCd_distr_E;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCd_distr.Attributes.unit = "m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCd_distr.Attributes.unit = "meters";
 
         % AoA_Tot = AoA + Twist_angle of the main wing
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_E     = alfaE + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.value = AoA_Tot_E;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "degrees"; 
 
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.value = deg2rad(AoA_Tot_E);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "radians";   
 
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -5161,7 +5161,7 @@ switch (Inverted_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCz_E = calc_normal_force(obj2, AoA_Tot_E, cCl_distr_E, cCd_distr_E);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCz.value = cCz_E;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCz.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCz.Attributes.unit = "meters"; 
 
         % Calculation of the axial force coefficient 
         % A = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -5170,20 +5170,20 @@ switch (Inverted_flight_Case)
         % documentation inside the class file ShearBendingTorsion.m 
         cCa_E = calc_axial_force(obj2, AoA_Tot_E, cCl_distr_E, cCd_distr_E);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCa.value = cCa_E;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCa.Attributes.unit = "m"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cCa.Attributes.unit = "meters"; 
 
         % Normal force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Normal_force.value = N_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCz.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         qE             = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.qE.value;
         Normal_force_E = cCz_E * qE;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Normal_force.value = Normal_force_E;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Normal_force.Attributes.unit = "N/m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Normal_force.Attributes.unit = "Newton per meters";
 
         % Axial force 
         % Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Axial_force.value = A_distr_along_wing(obj2, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cCa.value, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.qA.value);
         Axial_force_E = cCa_E * qE;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Axial_force.value = Axial_force_E;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Axial_force.Attributes.unit = "N/m";        
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Axial_force.Attributes.unit = "Newton per meters";        
 
         % SHEAR FORCE CALCULATION 
         % A = calc_shear_force(AoA_Tot, y, cCZ)
@@ -5339,11 +5339,11 @@ switch (Inverted_flight_Case)
         %% CL ALONG THE SPAN COMPARISON
         figure(25);
 
-        plot(half_span, -cl_S_inv, 'LineWidth', 1.5)
-        plot(half_span, -cl_G, 'LineWidth', 1.5)
-        plot(half_span, -cl_G1, 'LineWidth', 1.5)
-        plot(half_span, -cl_F, 'LineWidth', 1.5)
-        plot(half_span, -cl_E, 'LineWidth', 1.5)
+        plot(flip(half_span), -cl_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), -cl_G, 'LineWidth', 1.5)
+        plot(flip(half_span), -cl_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), -cl_F, 'LineWidth', 1.5)
+        plot(flip(half_span), -cl_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_l = c_l(y)$", "Interpreter", "latex")
@@ -5367,11 +5367,11 @@ switch (Inverted_flight_Case)
         %% CM ALONG THE SPAN COMPARISON
         figure(26);
 
-        plot(half_span, cd_S_inv, 'LineWidth', 1.5)
-        plot(half_span, cd_G, 'LineWidth', 1.5)
-        plot(half_span, cd_G1, 'LineWidth', 1.5)
-        plot(half_span, cd_F, 'LineWidth', 1.5)
-        plot(half_span, cd_E, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_G, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_F, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_d = c_d(y)$", "Interpreter", "latex")
@@ -5395,11 +5395,11 @@ switch (Inverted_flight_Case)
         %% CD ALONG THE SPAN COMPARISON
         figure(27);
 
-        plot(half_span, cm_S_inv, 'LineWidth', 1.5)
-        plot(half_span, cm_G, 'LineWidth', 1.5)
-        plot(half_span, cm_G1, 'LineWidth', 1.5)
-        plot(half_span, cm_F, 'LineWidth', 1.5)
-        plot(half_span, cm_E, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_G, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_F, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_m = c_m(y)$", "Interpreter", "latex")

@@ -62,19 +62,19 @@ movefile SchrenkLoads.png Output
 % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
 % A vector of spanwise stations
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.y.value = y; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.y.Attributes.unit = "m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.y.Attributes.unit = "meters";
 % Non dimensional spanwise stations
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.eta.value = eta; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.eta.Attributes.unit = "Non dimensional";
 % Chord value at each spanwise station
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord.value = chord; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord.Attributes.unit = "m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord.Attributes.unit = "meters";
 % Elliptical load
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.elliptical_load.value = elliptical_load; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.elliptical_load.Attributes.unit = "m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.elliptical_load.Attributes.unit = "meters";
 % Schrenk's load distribution
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Schrenk_cCl.value = Schrenk_cCl; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Schrenk_cCl.Attributes.unit = "m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Schrenk_cCl.Attributes.unit = "meters";
 % Unit Cl 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Unit_Cl.value = Unit_Cl; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Unit_Cl.Attributes.unit = "m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Unit_Cl.Attributes.unit = "meters";
