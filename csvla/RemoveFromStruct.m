@@ -35,8 +35,12 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         Aircraft.Geometry.General.ycg_divided_by_mac.Attributes.unit = "% MAC"; % Measured from the aircraft nose
         Aircraft.Geometry.General.zcg_divided_by_mac.value = 0.0;
         Aircraft.Geometry.General.zcg_divided_by_mac.Attributes.unit = "% MAC"; % Measured from the aircraft nose
+        Aircraft.Geometry.General.xac_nondim.value = Aircraft.Geometry.General.XAC_nondim.value;
+        Aircraft.Geometry.General.xac_nondim.Attributes.unit = "Non dimensional";
+        Aircraft.Geometry.General.xcg_nondim.value = Aircraft.Geometry.General.XCG_nondim.value;
+        Aircraft.Geometry.General.xcg_nondim.Attributes.unit = "Non dimensional";
         % -----------------------------------------------------------------
-        fields = {'xac', 'yac', 'zac'};
+        fields = {'xac', 'yac', 'zac', 'X_cg', 'XAC_nondim', 'XCG_nondim'};
         Aircraft.Geometry.General = rmfield(Aircraft.Geometry.General, fields);
         % -----------------------------------------------------------------
     case 'SCHRENK'
@@ -47,8 +51,12 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         Aircraft.Geometry.General.ycg_divided_by_mac.Attributes.unit = "% MAC"; % Measured from the aircraft nose
         Aircraft.Geometry.General.zcg_divided_by_mac.value = 0.0;
         Aircraft.Geometry.General.zcg_divided_by_mac.Attributes.unit = "% MAC"; % Measured from the aircraft nose
+        Aircraft.Geometry.General.xac_nondim.value = Aircraft.Geometry.General.XAC_nondim.value;
+        Aircraft.Geometry.General.xac_nondim.Attributes.unit = "Non dimensional";
+        Aircraft.Geometry.General.xcg_nondim.value = Aircraft.Geometry.General.XCG_nondim.value;
+        Aircraft.Geometry.General.xcg_nondim.Attributes.unit = "Non dimensional";
         % -----------------------------------------------------------------
-        fields = {'xac', 'yac', 'zac'};
+        fields = {'xac', 'yac', 'zac', 'X_cg', 'XAC_nondim', 'XCG_nondim'};
         Aircraft.Geometry.General = rmfield(Aircraft.Geometry.General, fields);
         % -----------------------------------------------------------------
 end
