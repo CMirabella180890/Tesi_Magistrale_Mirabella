@@ -43,6 +43,16 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         fields = {'xac', 'yac', 'zac', 'X_cg', 'XAC_nondim', 'XCG_nondim'};
         Aircraft.Geometry.General = rmfield(Aircraft.Geometry.General, fields);
         % -----------------------------------------------------------------
+        Aircraft.Propeller.Propeller_spinner_mass.value = Aircraft.Engine.Propeller_spinner_mass.value;  
+        Aircraft.Propeller.Propeller_spinner_mass.Attributes.unit = "kg";
+        Aircraft.Propeller.Propeller_polar_moment.value = Aircraft.Engine.Propeller_polar_moment.value;  
+        Aircraft.Propeller.Propeller_polar_moment.Attributes.unit = "kg*m^2";
+        Aircraft.Propeller.Propeller_blade_number.value = Aircraft.Engine.Propeller_blade_number.value;  
+        Aircraft.Propeller.Propeller_blade_number.Attributes.unit = "Pure number";
+        % -----------------------------------------------------------------
+        fields = {'Propeller_spinner_mass', 'Propeller_polar_moment', 'Propeller_blade_number'};
+        Aircraft.Engine = rmfield(Aircraft.Engine, fields);
+        % -----------------------------------------------------------------
     case 'SCHRENK'
         % -----------------------------------------------------------------
         Aircraft.Geometry.General.xcg_divided_by_mac.value = 0.25;
@@ -58,5 +68,15 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         % -----------------------------------------------------------------
         fields = {'xac', 'yac', 'zac', 'X_cg', 'XAC_nondim', 'XCG_nondim'};
         Aircraft.Geometry.General = rmfield(Aircraft.Geometry.General, fields);
+        % -----------------------------------------------------------------
+        Aircraft.Propeller.Propeller_spinner_mass.value = Aircraft.Engine.Propeller_spinner_mass.value;  
+        Aircraft.Propeller.Propeller_spinner_mass.Attributes.unit = "kg";
+        Aircraft.Propeller.Propeller_polar_moment.value = Aircraft.Engine.Propeller_polar_moment.value;  
+        Aircraft.Propeller.Propeller_polar_moment.Attributes.unit = "kg*m^2";
+        Aircraft.Propeller.Propeller_blade_number.value = Aircraft.Engine.Propeller_blade_number.value;  
+        Aircraft.Propeller.Propeller_blade_number.Attributes.unit = "Pure number";
+        % -----------------------------------------------------------------
+        fields = {'Propeller_spinner_mass', 'Propeller_polar_moment', 'Propeller_blade_number'};
+        Aircraft.Engine = rmfield(Aircraft.Engine, fields);
         % -----------------------------------------------------------------
 end
