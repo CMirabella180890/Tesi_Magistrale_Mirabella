@@ -1086,8 +1086,8 @@ switch (Straight_flight_Case)
             % text(40.75, -18, 'n = 1')
             % ---------------------------------------------------------------------
             xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
-            ylabel("Full body lift - $L_{w}$ (daN)", "Interpreter", "latex")
-            title("Full body airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct 
+            ylabel("Wing lift - $L_{w}$ (daN)", "Interpreter", "latex")
+            title("Wing airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct 
             
             % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
 
@@ -2611,8 +2611,8 @@ switch (Straight_flight_Case)
         % text(40.75, -18, 'n = 1')
         % ---------------------------------------------------------------------
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
-        ylabel("Full body lift - $L_{ht}$ (daN)", "Interpreter", "latex")
-        title("Full body airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct  
+        ylabel("Wing lift - $L_{w}$ (daN)", "Interpreter", "latex")
+        title("Wing airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct  
         
         % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
 

@@ -612,6 +612,10 @@ plot(V_gust_cruise, n_gust_cruise_plus, '--k', 'LineWidth', 0.25)
 plot(V_gust_cruise, n_gust_cruise_neg, '--k', 'LineWidth', 0.25)
 plot(V_gust_dive, n_gust_dive_plus, '--k', 'LineWidth', 0.25)
 plot(V_gust_dive, n_gust_dive_neg, '--k', 'LineWidth', 0.25)
+plot( [V_gust_cruise(end) V_gust_dive(end)], ...
+      [n_gust_cruise_plus(end) n_gust_dive_plus(end)], '-.k', 'LineWidth', 0.2)
+plot( [V_gust_cruise(end) V_gust_dive(end)], ...
+      [n_gust_cruise_neg(end) n_gust_dive_neg(end)], '-.k', 'LineWidth', 0.2)
 text(VA, nA, 'Point A', 'FontSize', 6)
 text(VC, nC, 'Point C', 'FontSize', 6)
 text(VD, nD, 'Point D', 'FontSize', 6)

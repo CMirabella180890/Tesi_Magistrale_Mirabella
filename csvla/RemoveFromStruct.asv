@@ -29,26 +29,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         field = 'max_deflection';
         Aircraft.Geometry.Rudder = rmfield(Aircraft.Geometry.Rudder, field);
         % -----------------------------------------------------------------
-        Aircraft.Geometry.General.xcg_divided_by_mac.value = 0.25;
-        Aircraft.Geometry.General.xcg_divided_by_mac.Attributes.unit = "% MAC"; % Measured from the aircraft nose
-        Aircraft.Geometry.General.ycg_divided_by_mac.value = 0.0;
-        Aircraft.Geometry.General.ycg_divided_by_mac.Attributes.unit = "% MAC"; % Measured from the aircraft nose
-        Aircraft.Geometry.General.zcg_divided_by_mac.value = 0.0;
-        Aircraft.Geometry.General.zcg_divided_by_mac.Attributes.unit = "% MAC"; % Measured from the aircraft nose
-        % -----------------------------------------------------------------
-        fields = {'xac', 'yac', 'zac'};
-        Aircraft.Geometry.General = rmfield(Aircraft.Geometry.General, fields);
-        % -----------------------------------------------------------------
+        Aircraft.Geometry.General.xac.value = NaN;
+        Aircraft.Geometry.General.xac.Attributes.unit = "meters"; % Measured from the aircraft nose
     case 'SCHRENK'
-        % -----------------------------------------------------------------
-        Aircraft.Geometry.General.xcg_divided_by_mac.value = 0.25;
-        Aircraft.Geometry.General.xcg_divided_by_mac.Attributes.unit = "% MAC"; % Measured from the aircraft nose
-        Aircraft.Geometry.General.ycg_divided_by_mac.value = 0.0;
-        Aircraft.Geometry.General.ycg_divided_by_mac.Attributes.unit = "% MAC"; % Measured from the aircraft nose
-        Aircraft.Geometry.General.zcg_divided_by_mac.value = 0.0;
-        Aircraft.Geometry.General.zcg_divided_by_mac.Attributes.unit = "% MAC"; % Measured from the aircraft nose
-        % -----------------------------------------------------------------
-        fields = {'xac', 'yac', 'zac'};
-        Aircraft.Geometry.General = rmfield(Aircraft.Geometry.General, fields);
         % -----------------------------------------------------------------
 end
