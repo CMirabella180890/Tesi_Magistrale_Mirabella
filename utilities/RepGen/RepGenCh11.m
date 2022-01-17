@@ -26,6 +26,13 @@ sec.Title = 'Balancing loads';
 str = ['ADD HERE details '];
 para = Paragraph(str);
 add(ch,para);
+
+fig = FormalImage([results_path,'Balancingloads.png']);
+fig.Caption = 'Balancing loads';
+fig.Height = '5in';
+fig.LinkTarget='bala_loads';
+add(sec,fig);
+
 add(ch,sec);
 
 %sec

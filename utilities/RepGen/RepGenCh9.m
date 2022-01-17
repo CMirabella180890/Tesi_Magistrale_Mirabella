@@ -56,6 +56,28 @@ add(ch,para);
 add(ch,sec);
 
 
+%moving to another path for figure
+cd ..
+cd ..
+ regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\' regulation '\Output\'];
+
+ cd (RepDir);
+ 
+ fig = FormalImage([results_path,'Wingairloads.png']);
+ fig.Caption = 'Wing airloads';
+ fig.Height = '5in';
+ fig.LinkTarget='wing_loads';
+ add(sec,fig);
+
+  fig = FormalImage([results_path,'Balancingloads.png']);
+ fig.Caption = 'Balancing loads';
+ fig.Height = '5in';
+ fig.LinkTarget='bala_loads';
+ add(sec,fig);
+
+
+
 
 
 %% END chapter
