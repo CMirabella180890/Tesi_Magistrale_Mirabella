@@ -11,21 +11,21 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         Aircraft.Geometry.Aileron = rmfield(Aircraft.Geometry.Aileron, field);
         % -----------------------------------------------------------------
         Aircraft.Certification.Aerodynamic_data.Aileron.Max_deflection.value = Aircraft.Geometry.Aileron.Max_deflection.value;
-        Aircraft.Certification.Aerodynamic_data.Aileron.Max_deflection.Attributes.unit = "degrees";
+        Aircraft.Certification.Aerodynamic_data.Aileron.Max_deflection.Attributes.unit = "deg";
         field = 'Max_deflection';
         Aircraft.Geometry.Aileron = rmfield(Aircraft.Geometry.Aileron, field);
         % -----------------------------------------------------------------
         Aircraft.Certification.Aerodynamic_data.Elevator.Max_deflection.value = Aircraft.Geometry.Elevator.max_deflection.value;
-        Aircraft.Certification.Aerodynamic_data.Elevator.Max_deflection.Attributes.unit = "degrees";
+        Aircraft.Certification.Aerodynamic_data.Elevator.Max_deflection.Attributes.unit = "deg";
         Aircraft.Certification.Aerodynamic_data.Elevator.total_deflection_time.value = Aircraft.Geometry.Elevator.total_deflection_time.value;
-        Aircraft.Certification.Aerodynamic_data.Elevator.total_deflection_time.Attributes.unit = "seconds";
+        Aircraft.Certification.Aerodynamic_data.Elevator.total_deflection_time.Attributes.unit = "s";
         field = 'max_deflection';
         Aircraft.Geometry.Elevator = rmfield(Aircraft.Geometry.Elevator, field);
         field = 'total_deflection_time';
         Aircraft.Geometry.Elevator = rmfield(Aircraft.Geometry.Elevator, field);
         % -----------------------------------------------------------------
         Aircraft.Certification.Aerodynamic_data.Rudder.Max_deflection.value = Aircraft.Geometry.Rudder.max_deflection.value;
-        Aircraft.Certification.Aerodynamic_data.Rudder.Max_deflection.Attributes.unit = "degrees";
+        Aircraft.Certification.Aerodynamic_data.Rudder.Max_deflection.Attributes.unit = "deg";
         field = 'max_deflection';
         Aircraft.Geometry.Rudder = rmfield(Aircraft.Geometry.Rudder, field);
         % -----------------------------------------------------------------

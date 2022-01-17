@@ -168,12 +168,12 @@ Aircraft.Engine.Max_Continous.Propeller_rotational_speed.Attributes.unit = "RPM"
 % CONVERTS TO ROTATION PER SECONDS - TAKEOFF
 prop_rotational_speed_takeoff_sec = prop_rotational_speed_takeoff * ( 1/60);
 Aircraft.Engine.Takeoff.Propeller_rotational_speed_sec.value = prop_rotational_speed_takeoff_sec; 
-Aircraft.Engine.Takeoff.Propeller_rotational_speed_sec.Attributes.unit = "rad/sec";
+Aircraft.Engine.Takeoff.Propeller_rotational_speed_sec.Attributes.unit = "rad/s";
 
 % CONVERTS TO ROTATION PER SECONDS - MAX CONTINOUS
 prop_rotational_speed_maxcontinous_sec = prop_rotational_speed_maxcontinous * ( 1/60);
 Aircraft.Engine.Max_Continous.Propeller_rotational_speed_sec.value = prop_rotational_speed_maxcontinous_sec; 
-Aircraft.Engine.Max_Continous.Propeller_rotational_speed_sec.Attributes.unit = "rad/sec";
+Aircraft.Engine.Max_Continous.Propeller_rotational_speed_sec.Attributes.unit = "rad/s";
 
 % -------------------------------------------------------------------------
 % ++++++++++++++++++++++++++++++++ TAKEOFF ++++++++++++++++++++++++++++++++
