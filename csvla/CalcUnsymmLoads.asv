@@ -150,10 +150,12 @@ switch (Straight_flight_Case)
             Global_torsion_full_load = trapz(half_span, TA1_full_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value = Global_torsion_full_load;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.Attributes.cs = " 349 ";
             Global_torsion_seventypercent_load = trapz(half_span, TA1_70_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = Global_torsion_seventypercent_load;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
-
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.cs = " 349 ";
+            
             % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point A1 
             disp(" ++++ FIGURE 28 - POINT A1 PARTIAL LOAD - UNSYMM. TORSION ++++ ");
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TA1_70_airloads), flip(Tors_mom_distr_A1), PointA1);
@@ -266,9 +268,11 @@ switch (Straight_flight_Case)
             Global_torsion_full_load = trapz(half_span, TC_full_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value = Global_torsion_full_load;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.Attributes.cs = " 349 ";
             Global_torsion_seventypercent_load = trapz(half_span, TC_70_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = Global_torsion_seventypercent_load;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.cs = " 349 ";
 
             % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point C 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TC_70_airloads), flip(Tors_mom_distr_C), PointC);
@@ -383,8 +387,10 @@ switch (Straight_flight_Case)
             % Global torsion on the wing                                                                                                                                      
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value = trapz(half_span, TD_full_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.Attributes.cs = " 349 "; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = trapz(half_span, TD_70_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.cs = " 349 ";
 
             % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point D 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TD_70_airloads), flip(Tors_mom_distr_D), PointD);
@@ -576,10 +582,12 @@ switch (Straight_flight_Case)
             Global_torsion_full_load = trapz(half_span, TA1_full_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.value = Global_torsion_full_load;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.Attributes.cs = " 349 ";
             Global_torsion_seventypercent_load = trapz(half_span, TA1_70_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = Global_torsion_seventypercent_load;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
-
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Global_torsion_full_load.Attributes.cs = " 349 ";
+            
             % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point A1 
             disp(" ++++ FIGURE 28 - POINT A1 PARTIAL LOAD - UNSYMM. TORSION ++++ ");
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TA1_70_airloads), flip(Tors_mom_distr_A1), PointA1);
@@ -692,9 +700,11 @@ switch (Straight_flight_Case)
             Global_torsion_full_load = trapz(half_span, TC_full_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value = Global_torsion_full_load;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.Attributes.cs = " 349 ";
             Global_torsion_seventypercent_load = trapz(half_span, TC_70_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = Global_torsion_seventypercent_load;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.cs = " 349 ";
 
             % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point C 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TC_70_airloads), flip(Tors_mom_distr_C), PointC);
@@ -809,8 +819,10 @@ switch (Straight_flight_Case)
             % Global torsion on the wing                                                                                                                                      
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.value = trapz(half_span, TD_full_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_full_load.Attributes.cs = " 349 ";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = trapz(half_span, TD_70_airloads);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.cs = " 349 ";
 
             % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point D 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TD_70_airloads), flip(Tors_mom_distr_D), PointD);
@@ -1004,9 +1016,11 @@ switch (Straight_flight_Case)
         Global_torsion_full_load = trapz(half_span, TA_full_airloads);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.value = Global_torsion_full_load;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_full_load.Attributes.cs = " 349 ";
         Global_torsion_seventypercent_load = trapz(half_span, TA_70_airloads);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = Global_torsion_seventypercent_load;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.cs = " 349 ";
                 
         % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point A 
         disp(" ++++ FIGURE 28 - POINT A PARTIAL LOAD - UNSYMM. TORSION ++++ ");
@@ -1120,9 +1134,11 @@ switch (Straight_flight_Case)
         Global_torsion_full_load = trapz(half_span, TC_full_airloads);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.value = Global_torsion_full_load;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.Attributes.unit = "daN*m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_full_load.Attributes.cs = " 349 ";
         Global_torsion_seventypercent_load = trapz(half_span, TC_70_airloads);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.value = Global_torsion_seventypercent_load;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.unit = "daN*m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.cs = " 349 ";
           
         % Unsymmetrical torsion load due to aileron deflection diagram - 70% AIRLOADS - Point C 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Unsymmetrical_loads.Torsion_due_to_aileron.Seventy_percent_load = Unsymm_load_diagram(half_span, flip(TC_70_airloads), flip(Tors_mom_distr_C), PointC);

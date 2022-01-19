@@ -183,11 +183,13 @@ Aircraft.Engine.Max_Continous.Propeller_rotational_speed_sec.Attributes.unit = "
 Takeoff_mean_engine_torque = (takeoff_power) * ( (1e3) / (2 * pi * prop_rotational_speed_takeoff_sec) );
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Mean_torque.value = Takeoff_mean_engine_torque;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Mean_torque.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Mean_torque.Attributes.cs = " 361(a)(1) ";
 
 % LIMIT TORQUE AT TAKEOFF POWER
 Takeoff_limit_engine_torque = correction_factor * Takeoff_mean_engine_torque;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Limit_torque.value = Takeoff_limit_engine_torque;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Limit_torque.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Limit_torque.Attributes.cs = " 361(b) ";
 % -------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
@@ -198,17 +200,20 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Takeoff.Limi
 Max_continous_mean_engine_torque = (max_continous_power) * ( (1e3) / (2 * pi * prop_rotational_speed_maxcontinous_sec) );
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Max_Continous.Mean_torque.value = Max_continous_mean_engine_torque;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Max_Continous.Mean_torque.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Max_Continous.Mean_torque.Attributes.cs = " 361(a)(2) ";
 
 % LIMIT TORQUE AT MAX CONTINOUS POWER
 Max_continous_limit_engine_torque = correction_factor * Max_continous_mean_engine_torque;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Max_Continous.Limit_torque.value = Max_continous_limit_engine_torque;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Max_Continous.Limit_torque.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Max_Continous.Limit_torque.Attributes.cs = " 361(b) ";
 % -------------------------------------------------------------------------
 
 % TOTAL SIDE LOAD 
 total_side_load = Engine_block_weight * Limit_side_load;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Side_loads.Total_side_load.value = total_side_load;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Side_loads.Total_side_load.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Side_loads.Total_side_load.Attributes.cs = " 363 ";
 
 % INERTIA LOAD ON ENGINE MOUNT 
 % The inertia load is equal to the max limit load factor times the engine
