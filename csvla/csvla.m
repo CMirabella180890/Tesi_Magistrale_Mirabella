@@ -149,6 +149,7 @@ classdef csvla
             %   Vh  = Max continous power max horizontal 
             %         speed in [m/s]
             %   
+            disp(" WARNING: VH not available! ")
             obj = (2.4)*sqrt(WS);
             % x   = (0.9)*VH;
             % if obj > x

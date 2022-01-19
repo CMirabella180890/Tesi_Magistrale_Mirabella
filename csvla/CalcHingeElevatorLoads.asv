@@ -95,12 +95,6 @@ y_outer_elevator     = eta_outer_elevator * ( b_horizontal / 2 );
 c_root_elevator      = ce_c_root_horizontal * c_root_horizontal;
 c_tip_elevator       = ce_c_tip_horizontal * c_tip_horizontal;
 
-% STORE INSIDE THE STRUCT
-Aircraft.Geometry.Elevator.y_inner.value = y_inner_elevator;
-Aircraft.Geometry.Elevator.y_inner.Attributes.unit = "m";
-Aircraft.Geometry.Elevator.y_outer.value = y_outer_elevator;
-Aircraft.Geometry.Elevator.y_outer.Attributes.unit = "m";
-
 % CHORD 
 if c_root_elevator == c_tip_elevator
     ce = c_root_elevator;
@@ -122,7 +116,7 @@ Aircraft.Geometry.Elevator.chord_ratio_ce_c.value = ce_c_elevator;
 Aircraft.Geometry.Elevator.chord_ratio_ce_c.Attributes.unit = "Non dimensional";
 
 % ELEVATOR S_elevator
-S_elevator = ( (c_root_elevator + c_tip_elevator) * (y_outer_elevator - y_inner_elevator) / 2) * 2;
+S_elevator = ( (c_root_elevator + c_tip_elevator) * (y_outer_elevator - y_inner_elevator) / 2) * 0.5;
 Aircraft.Geometry.Elevator.S.value = S_elevator;
 Aircraft.Geometry.Elevator.S.Attributes.unit = "m^2";
 
@@ -225,9 +219,9 @@ Total = [ HA, ...
          HA_125_converted, ...
          HA_Total, ...
          HA_Total_converted ];
-disp(" +++++++++++++++++ Hinge Moments - ELEVATOR +++++++++++++++++ ")
+disp(" +++++++++++++++++ Hinge Moments +++++++++++++++++ ")
 format = ' %6.6f       %6.6f                  %6.6f           %6.6f           %6.6f           %6.6f\n';
-label  = ' HE [N * m]  HE_converted [kg * m]       HE_125 [N * m]   HE_125_convert [kg * m]  HE_Total [N * m]    HE_Total_convert [kg * m]\n';
+label  = ' HE [N * m]  HE_converted [kg * m]       HE_125 [N * m]      HE_125_converted [kg * m]      HE_125_converted [kg * m]      HE_125_converted [kg * m]\n';
 fprintf(label);
 fprintf(format, Total.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")

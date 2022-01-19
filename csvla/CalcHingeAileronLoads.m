@@ -86,20 +86,54 @@
 
 %% INITIALIZATION OF THE CALCULATION 
 
-% AILERON SURFACE 
-efficiency_factor = 0.88;
-S_aileron         = Aircraft.Geometry.Aileron.S.value * efficiency_factor;
+% WING TIP AND ROOT CHORD 
+c_root = Aircraft.Geometry.Wing.croot.value;
+c_tip  = Aircraft.Geometry.Wing.ctip.value;
+
+% AILERON'S LIMIT 
+y_inner = Aircraft.Geometry.Aileron.y_inner.value;
+y_outer = Aircraft.Geometry.Aileron.y_outer.value; 
+
+% CHORD RATIOS, INNER AND OUTER
+ca_c_inner = Aircraft.Geometry.Aileron.ca_c_inner.value; 
+ca_c_outer  = Aircraft.Geometry.Aileron.ca_c_outer.value;
+
+% ROOT CHORD AILERON
+c_aileron_root = c_root * ca_c_inner;
+c_aileron_tip  = c_tip * ca_c_outer;
+
+% AILERON SURFACE
+S_aileron = c_aileron_root * ( y_outer - y_inner );
+
+% STORE VALUES INSIDE THE STRUCT VARIABLE
+Aircraft.Geometry.Aileron.croot.value = c_aileron_root;
+Aircraft.Geometry.Aileron.croot.Attributes.unit = "m"; 
+Aircraft.Geometry.Aileron.ctip.value = c_aileron_tip;
+Aircraft.Geometry.Aileron.ctip.Attributes.unit = "m";
+Aircraft.Geometry.Aileron.S.value = S_aileron;
+Aircraft.Geometry.Aileron.S.Attributes.unit = "m^2";
+
+if c_aileron_root == c_aileron_tip
+    ca = c_aileron_root;
+elseif c_aileron_root ~= c_aileron_tip
+    ca = 0.5 * ( c_aileron_root + c_aileron_tip );
+end
 
 % AILERON CHORD 
-ca = Aircraft.Geometry.Aileron.ca.value;
-cb = Aircraft.Geometry.Aileron.cb.value;
+Aircraft.Geometry.Aileron.ca.value = ca;
+Aircraft.Geometry.Aileron.ca.Attributes.unit = "m";
+
+% CALCULATIONS OF THE MOMENT ARM
+cb = Aircraft.Geometry.Aileron.cb.value; % OVERHANG
 cf = ca - cb; 
 Aircraft.Geometry.Aileron.cf.value = cf; 
-Aircraft.Geometry.Aileron.cf.Attributes.unit = "meters";
+Aircraft.Geometry.Aileron.cf.Attributes.unit = "m";
 
 % MOMENT ARM CALCULATION 
 c_ratio    = cb / cf;
 moment_arm = ca * (0.25 - c_ratio); 
+Aircraft.Geometry.Aileron.moment_arm.value = moment_arm;
+Aircraft.Geometry.Aileron.moment_arm.Attributes.unit = "m";
 
 % HINGE MOMENT COEFFICIENTS IN 1/RAD
 C_h_delta_rad = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_rad.value; 
@@ -188,3 +222,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Ail
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.Attributes.unit = "N * m";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.value = aileron_load_converted;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.Attributes.unit = "kg * m";
+
+% Total horizontal tail increment
+disp(" ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ ")
+disp(" ------------------------------------------------------ ")
+Total = [ HA, ...
+         HA_converted, ...
+         HA_125, ...
+         HA_total_SI, ...
+         HA_total_converted];
+disp(" +++++++++++++++++ Hinge Moments - AILERON +++++++++++++++++ ")
+format = ' %6.6f       %6.6f                  %6.6f           %6.6f                %6.6f\n';
+label  = ' HA [N * m]  HA_converted [kg * m]       HA_125 [N * m]      HA_total_SI [N * m]      HA_total_converted [kg * m]\n';
+fprintf(label);
+fprintf(format, Total.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")

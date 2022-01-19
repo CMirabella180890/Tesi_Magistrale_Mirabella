@@ -82,9 +82,55 @@
 %
 %% INITIALIZATION OF THE CALCULATION 
 
+% VERTICAL - CHORDS
+croot_vertical = Aircraft.Geometry.Vertical.croot.value;
+ctip_vertical  = Aircraft.Geometry.Vertical.ctip.value;
+cr_c_root      = Aircraft.Geometry.Rudder.cr_c_root.value;
+cr_c_tip       = Aircraft.Geometry.Rudder.cr_c_tip.value;
+croot_rudder   = cr_c_root * croot_vertical; 
+ctip_rudder    = cr_c_tip * ctip_vertical; 
+
+% STORE INSIDE STRUCT VARIABLE
+Aircraft.Geometry.Rudder.croot.value = croot_rudder; 
+Aircraft.Geometry.Rudder.croot.Attributes.unit = "m"; 
+Aircraft.Geometry.Rudder.ctip.value = ctip_rudder;
+Aircraft.Geometry.Rudder.ctip.Attributes.unit = "m";
+
+% VERTICAL - SPAN 
+eta_inner_rudder = Aircraft.Geometry.Rudder.eta_inner.value;
+eta_outer_rudder = Aircraft.Geometry.Rudder.eta_outer.value;
+b_vertical       = Aircraft.Geometry.Vertical.b.value;
+b_half           = b_vertical / 2;
+y_inner_rudder   = b_half * eta_inner_rudder;
+y_inner_outer   = b_half * eta_outer_rudder;
+Aircraft.Geometry.Rudder.y_inner.value = y_inner_rudder; 
+Aircraft.Geometry.Rudder.y_inner.Attributes.unit = "m";
+Aircraft.Geometry.Rudder.y_outer.value = y_outer_rudder;
+Aircraft.Geometry.Rudder.y_outer.Attributes.unit = "m"; 
+
+% S_RUDDER CALCULATIONS 
+S_rudder = ( ((croot_rudder + ctip_rudder) * (y_inner_outer - y_inner_inner)) / 2 ) * 0.5;
+Aircraft.Geometry.Rudder.S.value = S_rudder;
+Aircraft.Geometry.Rudder.S.Attributes.unit = "m^2";
+
+% CHORD 
+if croot_rudder == ctip_rudder
+    cr = croot_rudder;
+elseif croot_rudder ~= ctip_rudder
+    cr = 0.5 * ( croot_rudder + ctip_rudder );
+end
+Aircraft.Geometry.Rudder.chord.value = cr;
+Aircraft.Geometry.Rudder.chord.Attributes.unit = "m";
+
+% CHORD RATIO
+if cr_c_root == cr_c_tip
+    cr_c_rudder = cr_c_root;
+elseif cr_c_root ~= cr_c_tip
+    cr_c_rudder = 0.5 * ( cr_c_root + cr_c_tip );
+end
+
 % STORING INSIDE LOCAL VARIABLES
 S_vertical            = Aircraft.Geometry.Vertical.S.value;
-S_rudder              = Aircraft.Geometry.Rudder.S.value;
 chord_rudder          = Aircraft.Geometry.Rudder.chord.value;
 chord_ratio_cf_c      = Aircraft.Geometry.Rudder.chord_ratio_cf_c.value;
 overhang_rudder       = Aircraft.Geometry.Rudder.overhang.value;
@@ -95,8 +141,8 @@ max_deflection_rudder = Aircraft.Geometry.Rudder.max_deflection.value;
 g = Aircraft.Constants.g.value;
 
 % HINGE MOMENT COEFFICIENTS DERIVATIS IN 1 / RAD 
-C_h_delta_rad = Aircraft.Geometry.Rudder.C_h_delta_rad.value;
-C_h_alfa_rad  = Aircraft.Geometry.Rudder.C_h_alfa_rad.value;  
+C_h_delta_rad = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_rad.value;
+C_h_alfa_rad  = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_rad.value;  
 
 % CONVERSION FACTOR
 conversion_factor = 180.0 / pi;
@@ -104,118 +150,52 @@ conversion_factor = 180.0 / pi;
 % HINGE MOMENT COEFFICIENT IN 1/DEG - RUDDER
 C_h_delta_deg = C_h_delta_rad / conversion_factor;
 C_h_alfa_deg  = C_h_alfa_rad / conversion_factor;
-Aircraft.Geometry.Rudder.C_h_delta_deg.value = C_h_delta_deg; 
-Aircraft.Geometry.Rudder.C_h_delta_deg.Attributes.unit = "1/deg";
-Aircraft.Geometry.Rudder.C_h_alfa_deg.value = C_h_alfa_deg; 
-Aircraft.Geometry.Rudder.C_h_alfa_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_deg.value = C_h_delta_deg; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_deg.value = C_h_alfa_deg; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_deg.Attributes.unit = "1/deg";
 
 % RUDDER GLOBAL ANGLE OF ATTACK
 beta_deg = 0;
 
 % TOTAL HINGE MOMENT COEFFICIENT - RUDDER
 C_h_total_deg = C_h_delta_deg * max_deflection_rudder + C_h_alfa_deg * beta_deg;
-Aircraft.Geometry.Rudder.C_h_total_deg.value = C_h_total_deg; 
-Aircraft.Geometry.Rudder.C_h_total_deg.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_deg.value = C_h_total_deg; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_deg.Attributes.unit = "1/deg";
 C_h_total_rad = C_h_total_deg * conversion_factor;
-Aircraft.Geometry.Rudder.C_h_total_rad.value = C_h_total_rad; 
-Aircraft.Geometry.Rudder.C_h_total_rad.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_rad.value = C_h_total_rad; 
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_rad.Attributes.unit = "1/deg";
 
 % DYNAMIC PRESSURE AT VA
 qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
 
 % HINGE MOMENT IN NEWTON 
 HA_newton = qA * C_h_total_deg * (2 * S_rudder) * chord_rudder;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.value = HA; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.value = HA_newton; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.Attributes.unit = "N * m";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.value = HA/g; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.value = HA_newton/g; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.Attributes.unit = "kg * m";
 
 % 1.25 * HINGE MOMENT 
-HA_newton_
+HA_newton_125 = HA_newton * 1.25; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_125.value = HA_newton_125; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_125.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg_125.value = (HA_newton_125)/(g); 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg_125.Attributes.unit = "kg * m";
 
+% TAKING INTO ACCOUNT THE TWO FINS
+% Total_hinge_moment_125_newton = 2 * HA_newton_125;
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_hinge_moment_125_newton.value = Total_hinge_moment_125_newton; 
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_hinge_moment_125_newton.Attributes.unit = "N * m";
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_hinge_moment_125_kg.value = (Total_hinge_moment_125_newton) / g; 
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_hinge_moment_125_kg.Attributes.unit = "kg * m";
 
-% -------------------------------------------------------------------------
-% -------------------------------------------------------------------------
-% ELEVATOR S_elevator
-S_elevator = Aircraft.Geometry.Elevator.S.value;
+% MOMENT ARM 
+moment_arm_rudder = chord_rudder * (0.25 - overhang_rudder);
 
-% ELEVATOR C_f 
-chord_elevator       = Aircraft.Geometry.Elevator.chord.value;
-chord_ratio_elevator = Aircraft.Geometry.Elevator.chord_ratio_ce_c.value; 
-overhang             = Aircraft.Geometry.Elevator.overhang.value;
-cf_elevator          = chord_elevator - chord_elevator * overhang;
-
-% STORING THE DATA
-Aircraft.Geometry.Elevator.cf.value           = cf_elevator; 
-Aircraft.Geometry.Elevator.cf.Attributes.unit = "m";
-
-% ELEVATOR MAX DEFLECTION
-elevator_max_deflection = Aircraft.Geometry.Elevator.max_deflection.value;
-
-% MANOUEVRE SPEED
-VA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
-
-% ANGLE OF ATTACK AT MANOEUVRE SPEED 
-alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value);
-
-% D EPSILON / D ALFA 
-depsilon_dalfa = 0.3;
-
-% HINGE MOMENT COEFFICIENTS IN 1/RAD
-C_h_delta_rad = Aircraft.Geometry.Elevator.C_h_delta_rad.value; 
-C_h_alfa_rad  = Aircraft.Geometry.Elevator.C_h_alfa_rad.value; 
-
-% CONVERSION FACTOR
-conversion_factor = 180.0 / pi;
-
-% HINGE MOMENT COEFFICIENT IN 1/DEG
-C_h_delta_deg = C_h_delta_rad / conversion_factor;
-C_h_alfa_deg  = C_h_alfa_rad / conversion_factor;
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_delta_deg.value = C_h_delta_deg; 
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_delta_deg.Attributes.unit = "1/deg";
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_alfa_deg.value = C_h_alfa_deg; 
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_alfa_deg.Attributes.unit = "1/deg";
-
-% MAXIMUM DEFLECTION OF THE ELEVATOR (TIMES TWO FOR DIFF. DEFLECTION)
-delta_max_deg = Aircraft.Geometry.Elevator.max_deflection.value;
-
-% TOTAL HINGE MOMENT COEFFICIENT CH = CH_DELTA * DELTA + CH_ALFA * ALFA * ( 1 - d EPSILON / d ALFA )
-C_h_total_deg = C_h_delta_deg * delta_max_deg + C_h_alfa_deg * alfa_A_deg * (1 - depsilon_dalfa); 
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_total_deg.value = C_h_total_deg; 
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_total_deg.Attributes.unit = "1/deg";
-C_h_total_rad = C_h_total_deg * conversion_factor;
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_total_rad.value = C_h_total_rad; 
-Aircraft.Geometry.Elevator.Hinge_coefficients.C_h_total_rad.Attributes.unit = "1/deg";
-
-% DYNAMIC PRESSURE AT VA
-qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
-
-% GRAVITY ACCELERATION
-g = Aircraft.Constants.g.value; 
-
-% HINGE MOMENT 
-HA = C_h_total_deg * qA * S_elevator * cf_elevator;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_elevator.value = HA; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_elevator.Attributes.unit = "N * m";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_elevator_kg.value = HA/g; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_elevator_kg.Attributes.unit = "kg ";
-
-% HA_125 TIMES TWO TO HAVE THE FULL ELEVATOR LOAD 
-HA_125 = HA * 1.25;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_elevator_125.value = HA_125; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_elevator_125.Attributes.unit = "N * m";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_elevator_125_kg.value = HA_125/g; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_elevator_125_kg.Attributes.unit = "kg";
-
-% HINGE MOMENT ARM 
-elevator_moment_arm = chord_elevator * (0.25 - overhang);
-Aircraft.Geometry.Elevator.moment_arm.value = elevator_moment_arm; 
-Aircraft.Geometry.Elevator.moment_arm.Attributes.unit = "m";
-
-% TOTAL HINGE MOMENT 
-Total_elevator_loads_elevator_kg = (HA_125/g) / (elevator_moment_arm);
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_elevator_loads_kg.value = Total_elevator_loads_elevator_kg; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_elevator_loads_kg.Attributes.unit = "kg";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_elevator_loads_kg.value = Total_elevator_loads_elevator_kg * g; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_elevator_loads_kg.Attributes.unit = "N";
-
+% TOTAL LOADS ON THE RUDDER 
+total_rudder_loads =  HA_newton_125 / moment_arm_rudder; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.total_rudder_loads.value = total_rudder_loads; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.total_rudder_loads.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.total_rudder_loads_kg.value = total_rudder_loads / g; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.total_rudder_loads_kg.Attributes.unit = "N * m";

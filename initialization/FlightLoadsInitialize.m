@@ -23,8 +23,10 @@ Aircraft.Certification.Regulation.Attributes.Date = NaN;                        
 Aircraft.Certification.Regulation.Attributes.Amendment = NaN;                       % -- 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value = NaN;            % FIRST OUTPUT FROM REGULATION: Maximum load factor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.Attributes.unit = "g's";  % Load factor are non dimensional number: L = n*W;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.Attributes.cs = " 337(a) ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.value = NaN;            % FIRST OUTPUT FROM REGULATION: Minimum load factor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.Attributes.unit = "g's";  % Load factor are non dimensional number: L = n*W;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.Attributes.cs = " 337(b) ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Max_Continuous_Power_Speed_VH.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Max_Continuous_Power_Speed_VH.Attributes.unit = "m/s";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Min_Design_Cruise_Speed.value = NaN;

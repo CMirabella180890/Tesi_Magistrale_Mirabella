@@ -202,6 +202,7 @@ VSneg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_VS.value
 % but must be known. From CS - VLA Airworthiness rules
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value = calcvc(obj, WS); 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.Attributes.cs   = " 335(a)(1) ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nC.value = nmax; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nC.Attributes.unit = "g's";
 VC = Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.value;
@@ -216,6 +217,7 @@ nC = nmax;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value = calcvd(obj, Aircraft.Certification.Regulation.SubpartC.Flightloads.Min_Design_Cruise_Speed.value, ... % Min design cruise speed 
                                                                                          VC);                                                                                      % Cruise speed from previous calculations
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.Attributes.cs   = " 335(b)(1)/335(b)(2) ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nD.value = nmax; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nD.Attributes.unit = "g's";
 VD = Aircraft.Certification.Regulation.SubpartC.Flightloads.Dive_Speed_VD.value;
@@ -257,6 +259,7 @@ V_from1toS_inv = VS_inv*ones(numb, 1);
 VA = Vstall(WS, rho0, CLMAX_clean, nmax);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.value = VA;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.Attributes.unit = "m/s";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_Design_manoeuvring_speed_VA.Attributes.cs = " 335(c)(1)/335(c)(2) "; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nA.value = nmax; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nA.Attributes.unit = "g's";
 nA = nmax;
@@ -520,6 +523,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.valu
                                                                                 rho_operative, ...     % Air density
                                                                                 g);          % Gravity acceleration g
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.Attributes.unit = 'Non dimensional';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.Attributes.cs = " 341 ";
 mu_g = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.value;
 
 %% x = calckg(obj, MassRatio)
@@ -529,6 +533,7 @@ mu_g = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_rat
 % check the class fil csvla.m
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor.value = calckg(obj, mu_g);  
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor.Attributes.unit = 'Non dimensional'; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor.Attributes.cs = " 341 ";
 KG = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor.value;
 % -------------------------------------------------------------------------
 
@@ -547,6 +552,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_c
                                                                                             VD, ...                   % Dive speed from the V - n diagram
                                                                                             char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_cruise.Attributes.case(1))); % A conveniently defined case switch
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.Attributes.unit = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.Attributes.cs = " 341 ";
 n_gust_cruise_plus = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value;
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value = calcngust(obj, rho_operative, ... % Standard atmosphere density
@@ -558,6 +564,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_c
                                                                                             VD, ...                   % Dive speed from the V - n diagram 
                                                                                             char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_cruise.Attributes.case(2)));  % A conveniently defined case switch
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.Attributes.unit = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.Attributes.cs = " 341 "; 
 n_gust_cruise_neg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value;
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value = calcngust(obj, rho_operative, ...
@@ -569,6 +576,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_d
                                                                                             VD, ...
                                                                                             char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_dive.Attributes.case(1)));
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.Attributes.unit = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.Attributes.cs = " 341 "; 
 n_gust_dive_plus = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value;
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value = calcngust(obj, rho_operative, ...
@@ -580,6 +588,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_d
                                                                                             VD, ...
                                                                                             char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_dive.Attributes.case(2)));
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.Attributes.unit = "g's";  
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.Attributes.cs = " 341 "; 
 n_gust_dive_neg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value;
 % -------------------------------------------------------------------------
 

@@ -38,7 +38,7 @@ InputSource = "From File";
 % "From File"
 % "Custom"
 %do not edit
-filename = 'Aircraft'; %do not edit
+filename = 'Aircraft_test'; %do not edit
 %% INIZIALIZATION OF AircraftSTRUCT VARIABLE (Just the minimal values)
 cd initialization 
 % The 'dir' variable contains working directory path saved as a
