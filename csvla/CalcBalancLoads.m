@@ -214,6 +214,16 @@ CM_slope        = Aircraft.Certification.Aerodynamic_data.CMCL.value;
 % the lift curve of the aircrat. The previously defined CLMAX is a little
 % bit greater than the one obtained from V - n diagram flight condition to
 % take into account the extra lift produced by the horizontal empennage.
+% 
+% ++ AIRWORTHINESS RULES ++
+%% CS - VLA 421 Balancing loads 
+%  (a) A horizontal tail balancing load is a load necessary to maintain
+%      equilibrium in any specified flight condition with no pitching
+%      acceleration.
+%  (b) Horizontal tail surfaces must be designed for the balancing loads
+%      occurring at any point on the limit manoeuvring envelope and in the
+%      flap conditions specified in CS - VLA 345. The distribution in
+%      figure B6 of Appendix B may be used.
 
 Straight_flight_Case = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Straight_flight.value;
 

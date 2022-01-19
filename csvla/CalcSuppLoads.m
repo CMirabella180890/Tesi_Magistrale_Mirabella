@@ -167,6 +167,7 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
         end
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.cs = " 447 ";
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "deg";
 
