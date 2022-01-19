@@ -290,13 +290,19 @@ nC         = nmax;
 V_fromCtoD = linspace(VC, VD, numb)';
 n_fromCtoD = nmax*ones(numb, 1); 
 
+%% Point F definition 
+VF = VC;
+VE = VD;
+V_fromGtoF = linspace(VG, VF, numb)';
+n_fromGtoF = nmin*ones(numb, 1);
+
 %% Point E definition 
-V_fromGtoE = linspace(VG, VE, numb)';
-n_fromGtoE = nmin*ones(numb, 1);
+V_fromFto0 = linspace(VF, VE, numb)';
+n_fromFto0 = linspace(nmin, 0.0, numb)';
 
 %% Flight envelope limit 
-V_fromDtoE = VD*ones(numb, 1);
-n_fromDtoE = linspace(nD, nE, numb)';
+V_fromDto0 = VD*ones(numb, 1);
+n_fromDto0 = linspace(nD, 0.0, numb)';
 
 %% FLIGHT ENVELOPE
 
@@ -452,9 +458,11 @@ plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth', 1)
 plot(V_fromAtoC, n_fromAtoC, '-r', 'LineWidth', 1)
 plot(V_fromCtoD, n_fromCtoD, '-r', 'LineWidth', 1)
 plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth', 1)
-plot(V_fromDtoE, n_fromDtoE, '-r', 'LineWidth', 1)
-plot(V_fromGtoE, n_fromGtoE, '-r', 'LineWidth', 1)
+plot(V_fromDto0, n_fromDto0, '-r', 'LineWidth', 1)
+plot(V_fromGtoF, n_fromGtoF, '-r', 'LineWidth', 1)
+plot(V_fromFto0, n_fromFto0, '-r', 'LineWidth', 1)
 plot(V_fromStoG, n_fromStoG, '-r', 'LineWidth', 1)
+
 plot(VA, nA, 'k.', 'MarkerSize', 12)
 plot(VC, nC, 'k.', 'MarkerSize', 12)
 plot(VD, nD, 'k.', 'MarkerSize', 12)
@@ -605,8 +613,9 @@ plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth', 1)
 plot(V_fromAtoC, n_fromAtoC, '-r', 'LineWidth', 1)
 plot(V_fromCtoD, n_fromCtoD, '-r', 'LineWidth', 1)
 plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth', 1)
-plot(V_fromDtoE, n_fromDtoE, '-r', 'LineWidth', 1)
-plot(V_fromGtoE, n_fromGtoE, '-r', 'LineWidth', 1)
+plot(V_fromDto0, n_fromDto0, '-r', 'LineWidth', 1)
+plot(V_fromGtoF, n_fromGtoF, '-r', 'LineWidth', 1)
+plot(V_fromFto0, n_fromFto0, '-r', 'LineWidth', 1)
 plot(V_fromStoG, n_fromStoG, '-r', 'LineWidth', 1)
 plot(VA, nA, 'k.', 'MarkerSize', 12)
 plot(VC, nC, 'k.', 'MarkerSize', 12)
