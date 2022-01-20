@@ -458,7 +458,7 @@ plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth', 1)
 plot(V_fromAtoC, n_fromAtoC, '-r', 'LineWidth', 1)
 plot(V_fromCtoD, n_fromCtoD, '-r', 'LineWidth', 1)
 plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth', 1)
-plot(V_fromDtoE, n_fromDtoE, '-r', 'LineWidth', 1)
+plot(V_fromDto0, n_fromDto0, '-r', 'LineWidth', 1)
 plot(V_fromGtoF, n_fromGtoF, '-r', 'LineWidth', 1)
 plot(V_fromFto0, n_fromFto0, '-r', 'LineWidth', 1)
 plot(V_fromStoG, n_fromStoG, '-r', 'LineWidth', 1)
@@ -519,7 +519,11 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.v
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.Attributes.unit = "m/s";
 V_gust_dive = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value;
 % -------------------------------------------------------------------------
-
+%% MEAN AERODYNAMIC CHORD 
+c_root      = Aircraft.Geometry.Wing.croot.value;
+c_tip       = Aircraft.Geometry.Wing.ctip.value;
+taper_ratio = c_tip / c_root;
+MAC         =
 %% x = calcmug(obj, Wingloading, MAC, NormalForceCurveSlope, g)
 % This function calculates the MASS RATIO for the selected airplane
 % following the CS-VLA airworthiness prescriptions. To have a
@@ -613,12 +617,10 @@ plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth', 1)
 plot(V_fromAtoC, n_fromAtoC, '-r', 'LineWidth', 1)
 plot(V_fromCtoD, n_fromCtoD, '-r', 'LineWidth', 1)
 plot(V_fromStoA, n_fromStoA, '-r', 'LineWidth', 1)
-plot(V_fromDtoE, n_fromDtoE, '-r', 'LineWidth', 1)
+plot(V_fromDto0, n_fromDto0, '-r', 'LineWidth', 1)
 plot(V_fromGtoF, n_fromGtoF, '-r', 'LineWidth', 1)
 plot(V_fromFto0, n_fromFto0, '-r', 'LineWidth', 1)
 plot(V_fromStoG, n_fromStoG, '-r', 'LineWidth', 1)
-% plot(V_fromGtoE, n_fromGtoE, '-r', 'LineWidth', 1)
-% plot(V_fromStoG, n_fromStoG, '-r', 'LineWidth', 1)
 plot(VA, nA, 'k.', 'MarkerSize', 12)
 plot(VC, nC, 'k.', 'MarkerSize', 12)
 plot(VD, nD, 'k.', 'MarkerSize', 12)

@@ -1,0 +1,11 @@
+function MAC = mean_aerodynamic_chord(c_root, taper_ratio)
+% MAC = mean_aerodynamic_chord(c_root, taper_ratio)
+%   A mean aerodynamic chord calculator.
+%   INPUT 
+%   c_root 
+x   = (2 / 3) * c_root;
+y   = 1 + taper_ratio + taper_ratio^2;
+z   = 1 + taper_ratio;
+MAC = x * (y / z);
+end
+
