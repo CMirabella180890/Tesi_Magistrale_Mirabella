@@ -83,16 +83,19 @@ Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.n_flaps_vector.Att
 % CALCULATION OF VS - CLEAN STALL SPEED
 n1          = 1.0; 
 rho0        = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
+rho         = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
 Mass  
 g           = Aircraft.Constants.g.value;
 S           = Aircraft.Geometry.Wing.S.value;
 WS          = ( Mass * g ) / S;
 CLmax_clean = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
 VS          = calcvs(obj, rho0, WS, CLmax_clean, n1);
+% VS          = calcvs(obj, rho, WS, CLmax_clean, n1);
 
 % CALCULATION OF VS1 - FLAPS DEPLOYED STALL SPEED
 CLmax_takeoff = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.value;
 VS1        = calcvs(obj, rho0, WS, CLmax_takeoff, n1);
+VS1        = calcvs(obj, rho, WS, CLmax_takeoff, n1);
 
 % EVALUATION OF VF - FLAPS DEPLOYED AIRSPEED 
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.VF.value = calcnVF(obj, VS, VS1);
@@ -101,6 +104,7 @@ Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.VF.Attributes.cs =
 
 % STALLING SPEED VECTOR
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_takeoff, n_flaps_vector);
+% Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.VSpos_vec.value = calcvs(obj, rho, WS, CLmax_takeoff, n_flaps_vector);
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.VSpos_vec.Attributes.unit = "m/s";
 
 % EVALUATION OF STALL AND FLAP MANOEUVRING POINT 
@@ -112,6 +116,7 @@ nS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointS.nS.val
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointS.nS.Attributes.unit = "g's"; 
 % POINT A
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointA.VA.value = Vstall(WS, rho0, CLmax_takeoff, nmax);
+% Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointA.VA.value = Vstall(WS, rho, CLmax_takeoff, nmax);
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointA.VA.Attributes.unit = "m/s"; 
 VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointA.VA.value;
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointA.nA.value = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
@@ -137,6 +142,10 @@ V_from0toS     = VS*ones(numb, 1);
 
 n_fromStoA     = linspace(nS, nA, numb)';
 V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
+% V_fromStoA     = Vstall(WS, rho, CLmax_takeoff, n_fromStoA);
+
+VS             = V_fromStoA(1);
+V_from0toS     = VS*ones(numb, 1);
 
 n_fromAtoF     = nmax*ones(numb, 1);
 V_fromAtoF     = linspace(VA, VF, numb)';
@@ -190,14 +199,17 @@ g             = Aircraft.Constants.g.value;
 Ude           = 7.62; % Gust magnitude
 
 % CALCULATION OF THE MASS FACTOR
-mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho0, g); 
+% mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho0, g);
+mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho, g); 
 
 % GUST ALLEVIATION FACTOR 
 Kg   = calckg(obj, mu_g);
 
 % CALCULATION OF THE GUST LOAD FACTOR AT V = VF 
-nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
-nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+% nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+% nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho * CLalfa_rad * Kg * Ude) / ( WS ));
+nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho * CLalfa_rad * Kg * Ude) / ( WS ));
 
 V_gust      = linspace(0.0, VF, numb)'; 
 
@@ -279,6 +291,8 @@ Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
 syms a b c V 
 a        = (rho0 * CLmax_takeoff) / (2 * WS);
 b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
+% a        = (rho * CLmax_takeoff) / (2 * WS);
+% b        = (Kg * Ude * CLalfa_rad * rho)/(2 * WS);
 c        = 1;
 eqn      = a*V^2 - b*V - c;
 Solution = vpasolve(eqn, V);
@@ -300,8 +314,13 @@ for i = 1:length(Solution)
 
             n_fromStoA     = linspace(nS, nA, numb)';
             V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
+%             V_fromStoA     = Vstall(WS, rho, CLmax_takeoff, n_fromStoA);
             nA             = n_fromStoA(end);
             VA             = V_fromStoA(end);
+            
+            % DEFINITION OF NEW V FROM 0 TO S
+            VS         = V_fromStoA(1);
+            V_from0toS = VS * ones(numb, 1);
 
             V_fromAtoF     = linspace(VA, VF, numb)';
             n_fromAtoF     = linspace(nA, nmax, numb)';  
@@ -385,6 +404,7 @@ for i = 1:length(Solution)
 
                 n_fromStoA     = linspace(nS, nA, numb)';
                 V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
+%                 V_fromStoA     = Vstall(WS, rho, CLmax_takeoff, n_fromStoA);
                 nA             = n_fromStoA(end);
                 VA             = V_fromStoA(end);
 
@@ -475,6 +495,7 @@ for i = 1:length(Solution)
 
                 n_fromStoA     = linspace(nS, nA, numb)';
                 V_fromStoA     = Vstall(WS, rho0, CLmax_takeoff, n_fromStoA);
+%                 V_fromStoA     = Vstall(WS, rho, CLmax_takeoff, n_fromStoA);
                 nA             = n_fromStoA(end);
                 VA             = V_fromStoA(end);
 
@@ -565,16 +586,19 @@ Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.n_flaps_vector.Att
 % CALCULATION OF VS - CLEAN STALL SPEED
 n1          = 1.0; 
 rho0        = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
+rho         = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
 Mass  
 g           = Aircraft.Constants.g.value;
 S           = Aircraft.Geometry.Wing.S.value;
 WS          = ( Mass * g ) / S;
 CLmax_clean = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
 VS          = calcvs(obj, rho0, WS, CLmax_clean, n1);
+% VS          = calcvs(obj, rho, WS, CLmax_clean, n1);
 
 % CALCULATION OF VS1 - FLAPS DEPLOYED STALL SPEED
 CLmax_landing = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.value;
 VS1        = calcvs(obj, rho0, WS, CLmax_landing, n1);
+% VS1        = calcvs(obj, rho, WS, CLmax_landing, n1);
 
 % EVALUATION OF VF - FLAPS DEPLOYED AIRSPEED 
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.VF.value = calcnVF(obj, VS, VS1);
@@ -582,6 +606,7 @@ Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.VF.Attributes.unit
 
 % STALLING SPEED VECTOR
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.VSpos_vec.value = calcvs(obj, rho0, WS, CLmax_landing, n_flaps_vector);
+% Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.VSpos_vec.value = calcvs(obj, rho, WS, CLmax_landing, n_flaps_vector);
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.VSpos_vec.Attributes.unit = "m/s";
 
 % EVALUATION OF STALL AND FLAP MANOEUVRING POINT 
@@ -593,6 +618,7 @@ nS = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointS.nS.val
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointS.nS.Attributes.unit = "g's"; 
 % POINT A
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointA.VA.value = Vstall(WS, rho0, CLmax_landing, nmax);
+% Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointA.VA.value = Vstall(WS, rho, CLmax_landing, nmax);
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointA.VA.Attributes.unit = "m/s"; 
 VA = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointA.VA.value;
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointA.nA.value = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
@@ -618,6 +644,7 @@ V_from0toS     = VS*ones(numb, 1);
 
 n_fromStoA     = linspace(nS, nA, numb)';
 V_fromStoA     = Vstall(WS, rho0, CLmax_landing, n_fromStoA);
+% V_fromStoA     = Vstall(WS, rho, CLmax_landing, n_fromStoA);
 
 n_fromAtoF     = nmax*ones(numb, 1);
 V_fromAtoF     = linspace(VA, VF, numb)';
@@ -664,6 +691,7 @@ movefile flapsenvelopediagramlanding.png Output
 
 % FLAPS DEPLOYED GUST ENVELOPE 
 VF            = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointF.VF.value;
+rho0          = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
 rho_operative = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
 MAC           = Aircraft.Geometry.Wing.mac.value; 
 CLalfa_rad    = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
@@ -671,14 +699,17 @@ g             = Aircraft.Constants.g.value;
 Ude           = 7.62; % Gust magnitude
 
 % CALCULATION OF THE MASS FACTOR
-mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho0, g); 
+% mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho0, g); 
+mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho_operative, g); 
 
 % GUST ALLEVIATION FACTOR 
 Kg   = calckg(obj, mu_g);
 
 % CALCULATION OF THE GUST LOAD FACTOR AT V = VF 
-nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
-nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+% nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+% nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho_operative * CLalfa_rad * Kg * Ude) / ( WS ));
+nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho_operative * CLalfa_rad * Kg * Ude) / ( WS ));
 
 V_gust      = linspace(0.0, VF, numb)'; 
 
@@ -760,6 +791,8 @@ Aircraft_name  = Aircraft.Certification.Aircraft_Name.value;
 syms a b c V 
 a        = (rho0 * CLmax_landing) / (2 * WS);
 b        = (Kg * Ude * CLalfa_rad * rho0)/(2 * WS);
+% a        = (rho_operative * CLmax_landing) / (2 * WS);
+% b        = (Kg * Ude * CLalfa_rad * rho_operative)/(2 * WS);
 c        = 1;
 eqn      = a*V^2 - b*V - c;
 Solution = vpasolve(eqn, V);
@@ -781,6 +814,7 @@ for i = 1:length(Solution)
 
             n_fromStoA     = linspace(nS, nA, numb)';
             V_fromStoA     = Vstall(WS, rho0, CLmax_landing, n_fromStoA);
+%             V_fromStoA     = Vstall(WS, rho_operative, CLmax_landing, n_fromStoA);
             nA             = n_fromStoA(end);
             VA             = V_fromStoA(end);
 
@@ -865,6 +899,7 @@ for i = 1:length(Solution)
 
                 n_fromStoA     = linspace(nS, nA, numb)';
                 V_fromStoA     = Vstall(WS, rho0, CLmax_landing, n_fromStoA);
+%                 V_fromStoA     = Vstall(WS, rho_operative, CLmax_landing, n_fromStoA);
                 nA             = n_fromStoA(end);
                 VA             = V_fromStoA(end);
 
@@ -955,6 +990,7 @@ for i = 1:length(Solution)
 
                 n_fromStoA     = linspace(nS, nA, numb)';
                 V_fromStoA     = Vstall(WS, rho0, CLmax_landing, n_fromStoA);
+%                 V_fromStoA     = Vstall(WS, rho_operative, CLmax_landing, n_fromStoA);
                 nA             = n_fromStoA(end);
                 VA             = V_fromStoA(end);
 
