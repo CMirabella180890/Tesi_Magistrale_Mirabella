@@ -481,13 +481,13 @@ Aircraft.Weight.I_Level.IY.value = 100.0;
 Aircraft.Weight.I_Level.IY.Attributes.unit = "kg * m^2";
 % -------------------------------------------------------------------------
 Aircraft.Certification.ISA_Condition.Sea_level.Altitude.value = NaN;
-Aircraft.Certification.ISA_Condition.Sea_level.Altitude.Attribute.unit = "m";
+Aircraft.Certification.ISA_Condition.Sea_level.Altitude.Attributes.unit = "m";
 % -------------------------------------------------------------------------
 Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.value = NaN;
-Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attribute.unit = "m";
+Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit = "m";
 % -------------------------------------------------------------------------
 Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.value = NaN;
-Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.Attribute.unit = "m";
+Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.Attributes.unit = "m";
 % -------------------------------------------------------------------------
 Aircraft.Certification.Performance.I_Level.Wing_loading_Eng.value = NaN;
 Aircraft.Certification.Performance.I_Level.Wing_loading_Eng.Attributes.unit = "psf";

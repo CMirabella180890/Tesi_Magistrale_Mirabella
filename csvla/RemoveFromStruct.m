@@ -53,6 +53,11 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         fields = {'Propeller_spinner_mass', 'Propeller_polar_moment', 'Propeller_blade_number'};
         Aircraft.Engine = rmfield(Aircraft.Engine, fields);
         % -----------------------------------------------------------------
+%         Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit = "m";
+%         field = 'Attribute';
+%         Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude = rmfield(Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude, field);
+        field = 'Sea_level';
+        Aircraft.Certification.ISA_Condition = rmfield(Aircraft.Certification.ISA_Condition, field);
     case 'SCHRENK'
         % -----------------------------------------------------------------
         Aircraft.Geometry.General.xcg_divided_by_mac.value = 0.25;
@@ -79,4 +84,9 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         fields = {'Propeller_spinner_mass', 'Propeller_polar_moment', 'Propeller_blade_number'};
         Aircraft.Engine = rmfield(Aircraft.Engine, fields);
         % -----------------------------------------------------------------
+%         Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit = "m";
+%         field = 'Attribute';
+%         Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude = rmfield(Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude, field);
+        field = 'Sea_level';
+        Aircraft.Certification.ISA_Condition = rmfield(Aircraft.Certification.ISA_Condition, field);
 end
