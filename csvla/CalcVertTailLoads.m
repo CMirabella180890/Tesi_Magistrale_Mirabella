@@ -153,23 +153,29 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.qA.Attribu
 % LATERAL FORCE 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force.value = 2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force.Attributes.unit = "N";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force.Attributes.cs = " 441(a)(1) ";
 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force_decanewton.value = (1e-1)*2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force_decanewton.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force_decanewton.Attributes.cs = " 441(a)(1) ";
 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force_kilograms.value = (1/(Aircraft.Constants.g.value))*2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force_kilograms.Attributes.unit = "kg";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force_kilograms.Attributes.cs = " 441(a)(1) ";
 
 % THE TOTAL LATERAL FORCE MUST BE DIVIDED BY TWO, TO HAVE THE AIRLOADS
 % ACTING ON A SINGLE VERTICAL FIN
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force.value*0.5;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin.Attributes.unit = "N"; 
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin.Attributes.cs = " 441(a)(1) ";
 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_decanewton.value = (1e-1)*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force.value*0.5;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_decanewton.Attributes.unit = "daN"; 
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_decanewton.Attributes.cs = " 441(a)(1) ";
 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_kilograms.value = (1/(Aircraft.Constants.g.value))*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force.value*0.5;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_kilograms.Attributes.unit = "kg"; 
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Y_on_single_fin_kilograms.Attributes.cs = " 441(a)(1) ";
 
 % DISPLAYING RESULTS 
 disp( " ")
@@ -219,14 +225,17 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_fo
 % LATERAL FORCE ON A SINGLE FIN - NEWTON
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force.value = (0.5)*2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force.Attributes.unit = "N";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force.Attributes.cs = " 441(a)(2) ";
 
 % LATERAL FORCE ON A SINGLE FIN - DECANEWTON
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_decanewton.value = (0.5)*(1e-1)*2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_decanewton.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_decanewton.Attributes.cs = " 441(a)(2) ";
 
 % LATERAL FORCE ON A SINGLE FIN - KILOGRAMS
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_kilograms.value = (0.5)*(1/(Aircraft.Constants.g.value))*2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_kilograms.Attributes.unit = "N";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_kilograms.Attributes.cs = " 441(a)(2) ";
 
 % DISPLAYING RESULTS 
 disp( " ")
@@ -276,14 +285,17 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_fo
 % LATERAL FORCE ON A SINGLE FIN - NEWTON
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force.value = (0.5)*2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force.Attributes.unit = "N";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force.Attributes.cs = " 441(a)(3) ";
 
 % LATERAL FORCE ON A SINGLE FIN - DECANEWTON
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.value = (0.5)*(1e-1)*2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.Attributes.unit = "daN";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.Attributes.cs = " 441(a)(3) ";
 
 % LATERAL FORCE ON A SINGLE FIN - KILOGRAMS
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_kilograms.value = (0.5)*(1/(Aircraft.Constants.g.value))*2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.qA.value*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_dividedby_Sratio.value;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_kilograms.Attributes.unit = "N";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_kilograms.Attributes.cs = " 441(a)(3) ";
 
 % DISPLAYING RESULTS 
 disp( " ")
@@ -476,7 +488,8 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_l
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VC.value, ...
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.a_vt.value, ...
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.value);
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.Attributes.unit = "m/s";                                                                                                       
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.Attributes.unit = "daN";    
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.Attributes.cs = " 445 ";
 
 % ++++++++++++++++
 % GUST LOADS AT VD 
@@ -500,7 +513,8 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_l
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.VD.value, ...
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.a_vt.value, ...
                                                                                                            Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.value);
-Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.Attributes.unit = "m/s"; 
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.Attributes.unit = "daN"; 
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.Attributes.cs = " 445 ";
 
 % DISPLAYING RESULTS 
 disp( " ")
