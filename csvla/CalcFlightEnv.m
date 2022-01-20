@@ -16,6 +16,25 @@ nGust_inverted  = @(rho, V, a, kG, Ude, WS) 1 - (0.5 * rho * V * a * kG * Ude)/(
 Vstall = @(WS, rho, CLmax, n) sqrt(WS * (2/rho) * (1/CLmax).*n); 
 % -------------------------------------------------------------------------
 
+%% MEAN GEOMETRIC CHORD
+b   = Aircraft.Geometry.Wing.b.value; 
+S   = Aircraft.Geometry.Wing.S.value; 
+MGC = S / b;
+
+% STORE INSIDE THE STRUCT VARIABLE
+Aircraft.Geometry.Wing.mgc.value           = MGC;
+Aircraft.Geometry.Wing.mgc.Attributes.unit = "m";
+
+%% MEAN AERODYNAMIC CHORD 
+c_root      = Aircraft.Geometry.Wing.croot.value;
+c_tip       = Aircraft.Geometry.Wing.ctip.value;
+taper_ratio = c_tip / c_root;
+MAC         = mean_aerodynamic_chord(c_root, taper_ratio);
+
+% STORE INSIDE THE STRUCT VARIABLE
+Aircraft.Geometry.Wing.mac.value           = MAC;
+Aircraft.Geometry.Wing.mac.Attributes.unit = "m";
+
 %% STANDARD ATMOSPHERE
 
 h0 = Aircraft.Certification.ISA_Condition.Sea_level.Altitude.value;
@@ -519,24 +538,6 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.v
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.Attributes.unit = "m/s";
 V_gust_dive = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Airspeed_dive.value;
 % -------------------------------------------------------------------------
-%% MEAN GEOMETRIC CHORD
-b   = Aircraft.Geometry.Wing.b.value; 
-S   = Aircraft.Geometry.Wing.S.value; 
-MGC = S / b;
-
-% STORE INSIDE THE STRUCT VARIABLE
-Aircraft.Geometry.Wing.mgc.value           = MGC;
-Aircraft.Geometry.Wing.mgc.Attributes.unit = "m";
-
-%% MEAN AERODYNAMIC CHORD 
-c_root      = Aircraft.Geometry.Wing.croot.value;
-c_tip       = Aircraft.Geometry.Wing.ctip.value;
-taper_ratio = c_tip / c_root;
-MAC         = mean_aerodynamic_chord(c_root, taper_ratio);
-
-% STORE INSIDE THE STRUCT VARIABLE
-Aircraft.Geometry.Wing.mac.value           = MAC;
-Aircraft.Geometry.Wing.mac.Attributes.unit = "m";
 
 %% x = calcmug(obj, Wingloading, MAC, NormalForceCurveSlope, g)
 % This function calculates the MASS RATIO for the selected airplane
