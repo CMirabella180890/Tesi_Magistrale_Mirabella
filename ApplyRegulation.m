@@ -143,7 +143,12 @@ switch (Aircraft.Certification.Regulation.value)
         CalcEngineTorque
         % AILERON LOAD 
         CalcHingeAileronLoads
-        
+        % ELEVATOR LOAD
+        CalcHingeElevatorLoads
+        % RUDDER LOAD 
+        CalcHingeRudderLoads
+        % RUN THIS AT THE END OF THE EXECUTION
+        RemoveFromStruct
     case 'CS23'
     case 'CS22'
 end

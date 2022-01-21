@@ -20,7 +20,7 @@ plotcambsurf = true;
 
 ngeom = length(degenGeom);
 
-figure(1)
+figure(1000)
 clf
 hold on
 

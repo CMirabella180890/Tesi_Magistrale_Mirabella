@@ -44,7 +44,6 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'Aircraft.Certification.Aerodynamic_data.Min_Lift_Coefficient', ...
          'Aircraft.Certification.Regulation.SubpartC.Flightloads.Max_Continous_Power_Speed_VH', ...
          'Aircraft.Certification.Regulation.SubpartC.Flightloads.Min_Design_Cruise_Speed', ...
-         'Aircraft.Geometry.Wing.mac', ...
          'Aircraft.Certification.Regulation.SubpartC.Gustloads.Gust_speed_cruise', ...
          'Aircraft.Certification.Regulation.SubpartC.Gustloads.Gust_speed_dive', ...
          'Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope', ...
@@ -56,9 +55,6 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'Aircraft.Geometry.Wing.b.value', ...
          'Aircraft.Geometry.Wing.AR.value', ...
          'Aircraft.Weight.I_Level.W_maxTakeOff.value', ...
-         'Aircraft.Certification.Aerodynamic_data.xac.value', ...
-         'Aircraft.Certification.Aerodynamic_data.yac.value', ...
-         'Aircraft.Certification.Aerodynamic_data.zac.value', ...
          'Aircraft.Certification.Aerodynamic_data.XAC_nondim', ...
          'Aircraft.Certification.Aerodynamic_data.XCG_nondim', ...
          'Aircraft.Geometry.Horizontal.S.value', ...
@@ -140,7 +136,39 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'Propeller_blade_number', ...
          'Engine_normal_load_factor', ...
          'C_h_delta', ...
-         'C_h_alfa'};
+         'C_h_alfa', ...
+         'CL_MAX_TAKEOFF', ...
+         'CL_MAX_LANDING', ...
+         'S_elevator', ...
+         'c_elevator', ...
+         'chord_ratio_elevator', ...
+         'elevator_overhang', ...
+         'span_ratio_elevator', ...
+         'S_hinge_elevator', ...
+         'Chdeltaelevator', ...
+         'Chalfaelevator', ...
+         'S_vertical', ...
+         'chord_vertical', ...
+         'S_rudder', ...
+         'chord_rudder', ...
+         'chord_ratio_rudder_cf_c', ...
+         'overhang_rudder', ...
+         'span_ratio_rudder', ...
+         'max_deflection_rudder', ...
+         'Chdeltarudder', ...
+         'Chalfarudder', ...
+         'ca_c_inner', ...
+         'ca_c_outer'...
+         'c_root_horizontal', ...
+         'c_tip_horizontal', ...
+         'ce_c_horizontal_root', ...
+         'ce_c_horizontal_tip', ...
+         'c_root_vertical', ...
+         'c_tip_vertical', ...
+         'cr_c_root', ...
+         'cr_c_tip', ...
+         'eta_inner_rudder', ...
+         'eta_outer_rudder'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -178,9 +206,9 @@ if LengthIndex==length(VarText)
     p = strcmp('Aircraft.Certification.Regulation.SubpartC.Flightloads.Min_Design_Cruise_Speed',label);
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Min_Design_Cruise_Speed.value = str2double(table2array(value(p==1,1))); 
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Min_Design_Cruise_Speed.Attributes.unit = char(table2array(unit(p==1,1)));
-    p = strcmp('Aircraft.Geometry.Wing.mac',label);
-    Aircraft.Geometry.Wing.mac.value = str2double(table2array(value(p==1,1)));
-    Aircraft.Geometry.Wing.mac.Attributes.unit = char(table2array(unit(p==1,1))); 
+%     p = strcmp('Aircraft.Geometry.Wing.mac',label);
+%     Aircraft.Geometry.Wing.mac.value = str2double(table2array(value(p==1,1)));
+%     Aircraft.Geometry.Wing.mac.Attributes.unit = char(table2array(unit(p==1,1))); 
     p = strcmp('Aircraft.Certification.Regulation.SubpartC.Gustloads.Gust_speed_cruise',label);
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_cruise.value = str2double(table2array(value(p==1,1)));
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_cruise.Attributes.unit = char(table2array(unit(p==1,1)));
@@ -206,16 +234,16 @@ if LengthIndex==length(VarText)
     Aircraft.Geometry.Wing.AR.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Weight.I_Level.W_maxTakeOff.value', label);
     Aircraft.Weight.I_Level.W_maxTakeOff.value = str2double(table2array(value(p==1,1)));
-    p = strcmp('Aircraft.Certification.Aerodynamic_data.xac.value', label);
-    Aircraft.Certification.Aerodynamic_data.xac.value = str2double(table2array(value(p==1,1)));
-    p = strcmp('Aircraft.Certification.Aerodynamic_data.yac.value', label);
-    Aircraft.Certification.Aerodynamic_data.yac.value = str2double(table2array(value(p==1,1)));
-    p = strcmp('Aircraft.Certification.Aerodynamic_data.zac.value', label);
-    Aircraft.Certification.Aerodynamic_data.zac.value = str2double(table2array(value(p==1,1)));
+%     p = strcmp('Aircraft.Certification.Aerodynamic_data.xac.value', label);
+%     Aircraft.Geometry.General.xac.value = str2double(table2array(value(p==1,1)));
+%     p = strcmp('Aircraft.Certification.Aerodynamic_data.yac.value', label);
+%     Aircraft.Geometry.General.yac.value = str2double(table2array(value(p==1,1)));
+%     p = strcmp('Aircraft.Certification.Aerodynamic_data.zac.value', label);
+%     Aircraft.Geometry.General.zac.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Certification.Aerodynamic_data.XAC_nondim', label);
-    Aircraft.Certification.Aerodynamic_data.XAC_nondim.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.General.XAC_nondim.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Certification.Aerodynamic_data.XCG_nondim', label);
-    Aircraft.Certification.Aerodynamic_data.XCG_nondim.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.General.XCG_nondim.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Geometry.Horizontal.S.value', label);
     Aircraft.Geometry.Horizontal.S.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Geometry.Horizontal.l.value', label);
@@ -225,11 +253,11 @@ if LengthIndex==length(VarText)
     p = strcmp('Aircraft.Certification.Aerodynamic_data.CD_landing_gear.value', label);
     Aircraft.Certification.Aerodynamic_data.CD_landing_gear.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Certification.Aerodynamic_data.xcg.value', label);
-    Aircraft.Certification.Aerodynamic_data.xcg.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.General.xcg.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Certification.Aerodynamic_data.ycg.value', label);
-    Aircraft.Certification.Aerodynamic_data.ycg.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.General.ycg.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Certification.Aerodynamic_data.zcg.value', label);
-    Aircraft.Certification.Aerodynamic_data.zcg.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.General.zcg.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Certification.Aerodynamic_data.CD0.value', label);
     Aircraft.Certification.Aerodynamic_data.CD0.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Certification.Aerodynamic_data.e.value', label);
@@ -243,8 +271,8 @@ if LengthIndex==length(VarText)
     p = strcmp('Aircraft.Certification.Aerodynamic_data.CMCL.value', label);
     Aircraft.Certification.Aerodynamic_data.CMCL.value = str2double(table2array(value(p==1,1)));
     p = strcmp('Aircraft.Certification.Aerodynamic_data.bcg.value', label);
-    Aircraft.Certification.Aerodynamic_data.bcg.value = str2double(table2array(value(p==1,1)));
-    Aircraft.Certification.Aerodynamic_data.bcg.Attributes.unit = char(table2array(unit(p==1,1))); 
+    Aircraft.Geometry.General.bcg.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.General.bcg.Attributes.unit = char(table2array(unit(p==1,1))); 
     p = strcmp('Aircraft.Certification.Aerodynamic_data.CM_landing_gear', label);
     Aircraft.Certification.Aerodynamic_data.CM_landing_gear.value = str2double(table2array(value(p==1,1)));
     Aircraft.Certification.Aerodynamic_data.CM_landing_gear.Attributes.unit = char(table2array(unit(p==1,1))); 
@@ -270,17 +298,17 @@ if LengthIndex==length(VarText)
     Aircraft.Geometry.Aileron.cb.value = str2double(table2array(value(p==1,1)));
     Aircraft.Geometry.Aileron.ca.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('Aircraft.Geometry.Aileron.y_iniziale', label);
-    Aircraft.Geometry.Aileron.y_iniziale.value = str2double(table2array(value(p==1,1)));
-    Aircraft.Geometry.Aileron.y_iniziale.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Geometry.Aileron.y_inner.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.Aileron.y_inner.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('Aircraft.Geometry.Aileron.y_finale', label);
-    Aircraft.Geometry.Aileron.y_finale.value = str2double(table2array(value(p==1,1)));
-    Aircraft.Geometry.Aileron.y_finale.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Geometry.Aileron.y_outer.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.Aileron.y_outer.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('Aircraft.Geometry.Aileron.eta_iniziale', label); 
-    Aircraft.Geometry.Aileron.eta_iniziale.value = str2double(table2array(value(p==1,1)));
-    Aircraft.Geometry.Aileron.eta_iniziale.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Geometry.Aileron.eta_inner.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.Aileron.eta_inner.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('Aircraft.Geometry.Aileron.eta_finale', label);
-    Aircraft.Geometry.Aileron.eta_finale.value = str2double(table2array(value(p==1,1)));
-    Aircraft.Geometry.Aileron.eta_finale.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Geometry.Aileron.eta_outer.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.Aileron.eta_outer.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('Normal_Force_Curve_Slope_deg', label);
     Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value = str2double(table2array(value(p==1,1)));
     Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.Attributes.unit = char(table2array(unit(p==1,1)));
@@ -434,17 +462,119 @@ if LengthIndex==length(VarText)
     Aircraft.Engine.Engine_normal_load_factor.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Engine.Engine_normal_load_factor.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('C_h_delta', label);
-    Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.value = str2double(table2array(value(p==1, 1)));
-    Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_rad.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_rad.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('C_h_alfa', label);
-    Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.value = str2double(table2array(value(p==1, 1)));
-    Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_alfa_rad.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_rad.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_rad.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('CL_MAX_TAKEOFF', label);
+    Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('CL_MAX_LANDING', label);
+    Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('S_elevator', label);
+    Aircraft.Geometry.Elevator.S.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Elevator.S.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('c_elevator', label);
+    Aircraft.Geometry.Elevator.chord.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Elevator.chord.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('chord_ratio_elevator', label);
+    Aircraft.Geometry.Elevator.chord_ratio_ce_c.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Elevator.chord_ratio_ce_c.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('elevator_overhang', label);
+    Aircraft.Geometry.Elevator.overhang.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Elevator.overhang.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('span_ratio_elevator', label);
+    Aircraft.Geometry.Elevator.span_ratio.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Elevator.span_ratio.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('S_hinge_elevator', label);
+    Aircraft.Geometry.Elevator.S_hinge.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Elevator.S_hinge.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Chdeltaelevator', label);
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_rad.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_rad.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Chalfaelevator', label);
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_rad.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_rad.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('S_vertical', label);
+    Aircraft.Geometry.Vertical.S.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.S.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('chord_vertical', label);
+    Aircraft.Geometry.Vertical.chord.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.chord.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('S_rudder', label);
+    Aircraft.Geometry.Rudder.S.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.S.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('chord_rudder', label);
+    Aircraft.Geometry.Rudder.chord.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.chord.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('chord_ratio_rudder_cf_c', label);
+    Aircraft.Geometry.Rudder.chord_ratio_cf_c.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.chord_ratio_cf_c.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('overhang_rudder', label);
+    Aircraft.Geometry.Rudder.overhang.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.overhang.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('span_ratio_rudder', label);
+    Aircraft.Geometry.Rudder.span_ratio.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.span_ratio.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('max_deflection_rudder', label);
+    Aircraft.Geometry.Rudder.max_deflection.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Rudder.max_deflection.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Chdeltarudder', label);
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_rad.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_rad.Attributes.unit = char(table2array(unit(p==1,1)));  
+    p = strcmp('Chalfarudder', label);
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_rad.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_rad.Attributes.unit = char(table2array(unit(p==1,1)));    
+    p = strcmp('ca_c_inner', label);
+    Aircraft.Geometry.Aileron.ca_c_inner.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Aileron.ca_c_inner.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('ca_c_outer', label);
+    Aircraft.Geometry.Aileron.ca_c_outer.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Aileron.ca_c_outer.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('c_root_horizontal', label);
+    Aircraft.Geometry.Horizontal.croot.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Horizontal.croot.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('c_tip_horizontal', label);
+    Aircraft.Geometry.Horizontal.ctip.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Horizontal.ctip.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('ce_c_horizontal_root', label);
+    Aircraft.Geometry.Horizontal.ce_c_root.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Horizontal.ce_c_root.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('ce_c_horizontal_tip', label);
+    Aircraft.Geometry.Horizontal.ce_c_tip.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Horizontal.ce_c_tip.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('c_root_vertical', label);
+    Aircraft.Geometry.Vertical.croot.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Vertical.croot.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('c_tip_vertical', label);
+    Aircraft.Geometry.Vertical.ctip.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Vertical.ctip.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('cr_c_root', label);
+    Aircraft.Geometry.Rudder.cr_c_root.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Rudder.cr_c_root.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('cr_c_tip', label);
+    Aircraft.Geometry.Rudder.cr_c_tip.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Rudder.cr_c_tip.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('eta_inner_rudder', label);
+    Aircraft.Geometry.Rudder.eta_inner.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Rudder.eta_inner.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('eta_outer_rudder', label);
+    Aircraft.Geometry.Rudder.eta_outer.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Rudder.eta_outer.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.Attributes.unit = "Positive g";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.Attributes.unit = "Negative g";
+
+% 
+%          'Aircraft.Geometry.Wing.mac', ...
+%          'Aircraft.Certification.Aerodynamic_data.xac.value', ...
+%          'Aircraft.Certification.Aerodynamic_data.yac.value', ...
+%          'Aircraft.Certification.Aerodynamic_data.zac.value', ...
 %% Derived values (also inputs)
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = calcn(Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value);
 % Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.Attributes.unit = "Positive g";

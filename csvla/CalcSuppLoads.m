@@ -51,11 +51,12 @@ switch (Straight_flight_Case)
         % Total loads acting on the tail 
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value^2);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.cs = " 447(a) ";
         x = abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value)/abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value = 2*pi - atan(x);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.Attributes.unit = "rad"; 
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value);
-        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "deg"; 
 
         % SUBPARAGRAPH (b)
         % Horizontal tail loads 
@@ -69,11 +70,12 @@ switch (Straight_flight_Case)
         % Total loads acting on the tail 
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value^2);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.cs = " 447(b) ";
         x = abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value)/abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value = 2*pi - atan(x);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.Attributes.unit = "rad"; 
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value);
-        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "deg"; 
 
         %% CRITICAL COMBINED LOADS 
         Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
@@ -89,8 +91,9 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
         end
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.cs = " 447 ";
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
-        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "deg";
 
         disp(" ")
         % Horizontal tail loads increments
@@ -129,11 +132,12 @@ switch (Straight_flight_Case)
         % Total loads acting on the tail 
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value^2);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.Attributes.cs = " 447(a) ";
         x = abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LHTail.value)/abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LVTail.value);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value = 2*pi - atan(x);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.Attributes.unit = "rad"; 
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value);
-        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.Attributes.unit = "deg"; 
 
         % SUBPARAGRAPH (b)
         % Horizontal tail loads 
@@ -147,11 +151,12 @@ switch (Straight_flight_Case)
         % Total loads acting on the tail 
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.value = sqrt( Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value^2 + Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value^2);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LTail.Attributes.cs = " 447(b) ";
         x = abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LHTail.value)/abs(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.LVTail.value);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value = 2*pi - atan(x);
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.Attributes.unit = "rad"; 
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value = rad2deg(Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value);
-        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.Attributes.unit = "deg"; 
 
         %% CRITICAL COMBINED LOADS 
         Tailloads_subpar_a = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.LTail.value;
@@ -167,8 +172,9 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
         end
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.cs = " 447 ";
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
-        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "degrees";
+        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "deg";
 
         disp(" ")
         % Horizontal tail loads increments

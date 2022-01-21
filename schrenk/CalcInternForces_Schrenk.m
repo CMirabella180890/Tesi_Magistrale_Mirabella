@@ -257,11 +257,11 @@ switch (Straight_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_S     = alfaS + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.value = AoA_Tot_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.value = deg2rad(AoA_Tot_S);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -383,11 +383,11 @@ switch (Straight_flight_Case)
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_A1     = alfaA1 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.value = AoA_Tot_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.value = deg2rad(AoA_Tot_A1);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -508,11 +508,11 @@ switch (Straight_flight_Case)
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_C1     = alfaC1 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_deg.value = AoA_Tot_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_rad.value = deg2rad(AoA_Tot_C1);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -633,11 +633,11 @@ switch (Straight_flight_Case)
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_C     = alfaC + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.value = AoA_Tot_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.value = deg2rad(AoA_Tot_C);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -758,11 +758,11 @@ switch (Straight_flight_Case)
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_C2     = alfaC2 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_deg.value = AoA_Tot_C2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_rad.value = deg2rad(AoA_Tot_C2);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -883,11 +883,11 @@ switch (Straight_flight_Case)
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_D     = alfaD + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.value = AoA_Tot_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.value = deg2rad(AoA_Tot_D);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1207,11 +1207,11 @@ switch (Straight_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_S     = alfaS + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.value = AoA_Tot_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.value = deg2rad(AoA_Tot_S);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1332,11 +1332,11 @@ switch (Straight_flight_Case)
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_A1     = alfaA1 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.value = AoA_Tot_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.value = deg2rad(AoA_Tot_A1);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1457,11 +1457,11 @@ switch (Straight_flight_Case)
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_C     = alfaC + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.value = AoA_Tot_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.value = deg2rad(AoA_Tot_C);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1582,11 +1582,11 @@ switch (Straight_flight_Case)
             % AoA_Tot = AoA + Twist_angle of the main wing
             AoA_Tot_D     = alfaD + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.value = AoA_Tot_D;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.value = deg2rad(AoA_Tot_D);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -1901,11 +1901,11 @@ switch (Straight_flight_Case)
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_S     = alfaS + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.value = AoA_Tot_S;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_deg.Attributes.unit = "deg"; 
         
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.value = deg2rad(AoA_Tot_S);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.AoA_Tot_rad.Attributes.unit = "rad";   
         
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2026,11 +2026,11 @@ switch (Straight_flight_Case)
         % AoA_Tot = AoA + Twist_angle of the main wing
         AoA_Tot_A     = alfaA + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_deg.value = AoA_Tot_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_deg.Attributes.unit = "deg"; 
         
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_rad.value = deg2rad(AoA_Tot_A);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.AoA_Tot_rad.Attributes.unit = "rad";   
         
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2151,11 +2151,11 @@ switch (Straight_flight_Case)
         % AoA_Tot = AoA + Twist_angle of the main wing
         AoA_Tot_A1     = alfaA1 + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.value = AoA_Tot_A1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_deg.Attributes.unit = "deg"; 
         
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.value = deg2rad(AoA_Tot_A1);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.AoA_Tot_rad.Attributes.unit = "rad";   
         
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2276,11 +2276,11 @@ switch (Straight_flight_Case)
         % AoA_Tot = AoA + Twist_angle of the main wing
         AoA_Tot_C     = alfaC + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.value = AoA_Tot_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_deg.Attributes.unit = "deg"; 
         
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.value = deg2rad(AoA_Tot_C);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.AoA_Tot_rad.Attributes.unit = "rad";   
         
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2401,11 +2401,11 @@ switch (Straight_flight_Case)
         % AoA_Tot = AoA + Twist_angle of the main wing
         AoA_Tot_D     = alfaD + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.value = AoA_Tot_D;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_deg.Attributes.unit = "deg"; 
         
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.value = deg2rad(AoA_Tot_D);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.AoA_Tot_rad.Attributes.unit = "rad";   
         
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2547,11 +2547,11 @@ switch (Straight_flight_Case)
         cl_Comparison = figure(25);
         hold on; grid on; grid minor;
 
-        plot(half_span, cl_S, 'LineWidth', 1.5)
-        plot(half_span, cl_A, 'LineWidth', 1.5)
-        plot(half_span, cl_A1, 'LineWidth', 1.5)
-        plot(half_span, cl_C, 'LineWidth', 1.5)
-        plot(half_span, cl_D, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_S, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_A, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_C, 'LineWidth', 1.5)
+        plot(flip(half_span), cl_D, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -2562,11 +2562,11 @@ switch (Straight_flight_Case)
         cd_Comparison = figure(26);
         hold on; grid on; grid minor;
 
-        plot(half_span, cd_S,  'LineWidth', 1.5)
-        plot(half_span, cd_A,  'LineWidth', 1.5)
-        plot(half_span, cd_A1, 'LineWidth', 1.5)
-        plot(half_span, cd_C,  'LineWidth', 1.5)
-        plot(half_span, cd_D,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_S,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_A,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_C,  'LineWidth', 1.5)
+        plot(flip(half_span), cd_D,  'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -2577,11 +2577,11 @@ switch (Straight_flight_Case)
         cm_Comparison = figure(27);
         hold on; grid on; grid minor;
 
-        plot(half_span, cm_S, 'LineWidth', 1.5)
-        plot(half_span, cm_A, 'LineWidth', 1.5)
-        plot(half_span, cm_A1, 'LineWidth', 1.5)
-        plot(half_span, cm_C, 'LineWidth', 1.5)
-        plot(half_span, cm_D, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_S, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_A, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_A1, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_C, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_D, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
@@ -2715,11 +2715,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_S_inv     = alfaS_inv + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.value = AoA_Tot_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.value = deg2rad(AoA_Tot_S_inv);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2842,11 +2842,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_G     = alfaG + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.value = AoA_Tot_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.value = deg2rad(AoA_Tot_G);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -2970,11 +2970,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_G1     = alfaG1 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.value = AoA_Tot_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.value = deg2rad(AoA_Tot_G1);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3098,11 +3098,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_F     = alfaF + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.value = AoA_Tot_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.value = deg2rad(AoA_Tot_F);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3226,11 +3226,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_G2     = alfaG2 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_deg.value = AoA_Tot_G2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_rad.value = deg2rad(AoA_Tot_G2);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3354,11 +3354,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_E     = alfaE + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.value = AoA_Tot_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.value = deg2rad(AoA_Tot_E);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3746,11 +3746,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_S_inv     = alfaS_inv + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.value = AoA_Tot_S_inv;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.value = deg2rad(AoA_Tot_S_inv);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -3874,11 +3874,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_G     = alfaG + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.value = AoA_Tot_G;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.value = deg2rad(AoA_Tot_G);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4002,11 +4002,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_G1     = alfaG1 + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.value = AoA_Tot_G1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.value = deg2rad(AoA_Tot_G1);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4130,11 +4130,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_F     = alfaF + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.value = AoA_Tot_F;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.value = deg2rad(AoA_Tot_F);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4258,11 +4258,11 @@ switch (Inverted_flight_Case)
             twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
             AoA_Tot_E     = alfaE + twist_angle;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.value = AoA_Tot_E;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "deg"; 
 
             % Convert in radians 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.value = deg2rad(AoA_Tot_E);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "Radians";   
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "rad";   
 
             % Calculation of the normal force coefficient
             % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4637,11 +4637,11 @@ switch (Inverted_flight_Case)
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_S_inv     = alfaS_inv + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.value = AoA_Tot_S_inv;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_deg.Attributes.unit = "deg"; 
 
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.value = deg2rad(AoA_Tot_S_inv);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.AoA_Tot_rad.Attributes.unit = "rad";   
 
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4765,11 +4765,11 @@ switch (Inverted_flight_Case)
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_G     = alfaG + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.value = AoA_Tot_G;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_deg.Attributes.unit = "deg"; 
 
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.value = deg2rad(AoA_Tot_G);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.AoA_Tot_rad.Attributes.unit = "rad";   
 
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -4893,11 +4893,11 @@ switch (Inverted_flight_Case)
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_G1     = alfaG1 + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.value = AoA_Tot_G1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_deg.Attributes.unit = "deg"; 
 
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.value = deg2rad(AoA_Tot_G1);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.AoA_Tot_rad.Attributes.unit = "rad";   
 
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -5021,11 +5021,11 @@ switch (Inverted_flight_Case)
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_F     = alfaF + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.value = AoA_Tot_F;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_deg.Attributes.unit = "deg"; 
 
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.value = deg2rad(AoA_Tot_F);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.AoA_Tot_rad.Attributes.unit = "rad";   
 
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -5148,11 +5148,11 @@ switch (Inverted_flight_Case)
         twist_angle = Aircraft.Geometry.Wing.twist_angle.value;
         AoA_Tot_E     = alfaE + twist_angle;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.value = AoA_Tot_E;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "Degrees"; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_deg.Attributes.unit = "deg"; 
 
         % Convert in radians 
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.value = deg2rad(AoA_Tot_E);
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "Radians";   
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.AoA_Tot_rad.Attributes.unit = "rad";   
 
         % Calculation of the normal force coefficient
         % N = calc_normal_force(AoA_Tot, cCl, cCd)
@@ -5339,11 +5339,11 @@ switch (Inverted_flight_Case)
         %% CL ALONG THE SPAN COMPARISON
         figure(25);
 
-        plot(half_span, -cl_S_inv, 'LineWidth', 1.5)
-        plot(half_span, -cl_G, 'LineWidth', 1.5)
-        plot(half_span, -cl_G1, 'LineWidth', 1.5)
-        plot(half_span, -cl_F, 'LineWidth', 1.5)
-        plot(half_span, -cl_E, 'LineWidth', 1.5)
+        plot(flip(half_span), -cl_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), -cl_G, 'LineWidth', 1.5)
+        plot(flip(half_span), -cl_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), -cl_F, 'LineWidth', 1.5)
+        plot(flip(half_span), -cl_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_l = c_l(y)$", "Interpreter", "latex")
@@ -5367,11 +5367,11 @@ switch (Inverted_flight_Case)
         %% CM ALONG THE SPAN COMPARISON
         figure(26);
 
-        plot(half_span, cd_S_inv, 'LineWidth', 1.5)
-        plot(half_span, cd_G, 'LineWidth', 1.5)
-        plot(half_span, cd_G1, 'LineWidth', 1.5)
-        plot(half_span, cd_F, 'LineWidth', 1.5)
-        plot(half_span, cd_E, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_G, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_F, 'LineWidth', 1.5)
+        plot(flip(half_span), cd_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_d = c_d(y)$", "Interpreter", "latex")
@@ -5395,11 +5395,11 @@ switch (Inverted_flight_Case)
         %% CD ALONG THE SPAN COMPARISON
         figure(27);
 
-        plot(half_span, cm_S_inv, 'LineWidth', 1.5)
-        plot(half_span, cm_G, 'LineWidth', 1.5)
-        plot(half_span, cm_G1, 'LineWidth', 1.5)
-        plot(half_span, cm_F, 'LineWidth', 1.5)
-        plot(half_span, cm_E, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_S_inv, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_G, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_G1, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_F, 'LineWidth', 1.5)
+        plot(flip(half_span), cm_E, 'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
