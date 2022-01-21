@@ -552,7 +552,7 @@ V_gust_dive = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.A
 % -----------------------------------------------------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio_sea_level.value = calcmug(obj, ...
                                                                                 WS, ...      % Wing loading in SI units
-                                                                                MAC, ...     % Mean Aerodynamic Chord in meters
+                                                                                MGC, ...     % Mean Geometric Chord in meters
                                                                                 CLalfa, ...  % Normal force curve slope (practically equal to lift curve slope)
                                                                                 rho0, ...     % Air density
                                                                                 g);          % Gravity acceleration g
@@ -560,9 +560,11 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio_sea_
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio_sea_level.Attributes.cs = " 341 ";
 mu_g_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio_sea_level.value;
 % -----------------------------------------------------------------------------------------------------------------------
+% OPERATIVE ALTITUDE
+% -----------------------------------------------------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.value = calcmug(obj, ...
                                                                                 WS, ...      % Wing loading in SI units
-                                                                                MAC, ...     % Mean Aerodynamic Chord in meters
+                                                                                MGC, ...     % Mean Geometric Chord in meters
                                                                                 CLalfa, ...  % Normal force curve slope (practically equal to lift curve slope)
                                                                                 rho_operative, ...     % Air density
                                                                                 g);          % Gravity acceleration g
@@ -637,7 +639,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_d
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive_sea_level.Attributes.cs = " 341 "; 
 n_gust_dive_plus_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive_sea_level.value;
 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value = calcngust(obj, rho0, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive_sea_level.value = calcngust(obj, rho0, ...
                                                                                             CLalfa, ...
                                                                                             KG_sea_level, ...
                                                                                             Ude_dive, ...
@@ -645,9 +647,9 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_d
                                                                                             VC, ...
                                                                                             VD, ...
                                                                                             char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_dive.Attributes.case(2)));
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.Attributes.unit = "g's";  
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.Attributes.cs = " 341 "; 
-n_gust_dive_neg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive_sea_level.Attributes.unit = "g's";  
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive_sea_level.Attributes.cs = " 341 "; 
+n_gust_dive_neg_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive_sea_level.value;
 % -------------------------------------------------------------------------
 % ---------------------------------------------------------------------------------------------------------------------------------------
 

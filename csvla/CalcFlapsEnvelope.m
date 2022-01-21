@@ -87,6 +87,8 @@ rho         = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
 Mass  
 g           = Aircraft.Constants.g.value;
 S           = Aircraft.Geometry.Wing.S.value;
+b           = Aircraft.Geometry.Wing.b.value;
+MGC         = S / b;
 WS          = ( Mass * g ) / S;
 CLmax_clean = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
 VS          = calcvs(obj, rho0, WS, CLmax_clean, n1);
@@ -199,8 +201,8 @@ g             = Aircraft.Constants.g.value;
 Ude           = 7.62; % Gust magnitude
 
 % CALCULATION OF THE MASS FACTOR
-% mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho0, g);
-mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho, g); 
+% mu_g = calcmug(obj, WS, MGC, CLalfa_rad, rho0, g);
+mu_g = calcmug(obj, WS, MGC, CLalfa_rad, rho, g); 
 
 % GUST ALLEVIATION FACTOR 
 Kg   = calckg(obj, mu_g);
@@ -590,6 +592,8 @@ rho         = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
 Mass  
 g           = Aircraft.Constants.g.value;
 S           = Aircraft.Geometry.Wing.S.value;
+b           = Aircraft.Geometry.Wing.b.value;
+MGC         = S / b;
 WS          = ( Mass * g ) / S;
 CLmax_clean = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
 VS          = calcvs(obj, rho0, WS, CLmax_clean, n1);
@@ -699,8 +703,8 @@ g             = Aircraft.Constants.g.value;
 Ude           = 7.62; % Gust magnitude
 
 % CALCULATION OF THE MASS FACTOR
-% mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho0, g); 
-mu_g = calcmug(obj, WS, MAC, CLalfa_rad, rho_operative, g); 
+% mu_g = calcmug(obj, WS, MGC, CLalfa_rad, rho0, g); 
+mu_g = calcmug(obj, WS, MGC, CLalfa_rad, rho_operative, g); 
 
 % GUST ALLEVIATION FACTOR 
 Kg   = calckg(obj, mu_g);

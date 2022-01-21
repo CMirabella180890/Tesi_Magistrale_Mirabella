@@ -552,7 +552,7 @@ V_gust_dive = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.A
 % -----------------------------------------------------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio_sea_level.value = calcmug(obj, ...
                                                                                 WS, ...      % Wing loading in SI units
-                                                                                MAC, ...     % Mean Aerodynamic Chord in meters
+                                                                                MGC, ...     % Mean Geometric Chord in meters
                                                                                 CLalfa, ...  % Normal force curve slope (practically equal to lift curve slope)
                                                                                 rho0, ...     % Air density
                                                                                 g);          % Gravity acceleration g
@@ -564,7 +564,7 @@ mu_g_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustload
 % -----------------------------------------------------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.value = calcmug(obj, ...
                                                                                 WS, ...      % Wing loading in SI units
-                                                                                MAC, ...     % Mean Aerodynamic Chord in meters
+                                                                                MGC, ...     % Mean Geometric Chord in meters
                                                                                 CLalfa, ...  % Normal force curve slope (practically equal to lift curve slope)
                                                                                 rho_operative, ...     % Air density
                                                                                 g);          % Gravity acceleration g
