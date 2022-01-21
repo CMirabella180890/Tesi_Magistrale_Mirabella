@@ -5,69 +5,10 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-
-%%EXAMPLES (figure, table, equation)
-% figure
-% cross reference in para
-% append(para,InternalLink('wingTableRef','Ref:wing'));
-% add(sec,para)
-% fig = FormalImage([PATH,'Polars.pdf']);
-%          fig.Caption = 'Wing-Body reference Aerodynamics';
-%          fig.Height = '5in';
-%          fig.LinkTarget='polars_wb';
-% % ADD TO SECTION
-%          add(sec,fig);
-% %ADD TO CHAPTER
-%          add(ch,sec);
-% 
-
-% % table
-% 3 COULUMNS TABLE OF WING PARAMETERS
-%         wing = [wing, fieldValue, fieldUnit];
-%         header = {'Wing parameters', 'Value', 'Measure unit'};
-%
-%          tbl = FormalTable(header,wing);
-%         tbl.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','1px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.Header.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','2px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.TableEntriesStyle = {HAlign('left')};
-%         % In order to put a table with a caption, the API Report denomination should
-%         % be used, the other options are from API DOM. In order to solve the problem,
-%         % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).      
-%         tbl = BaseTable(tbl);
-%         tbl.Title = 'Wing Geometrical Parameters';
-%         tbl.LinkTarget = 'wingTableRef';
-%ADD TO SECTION         
-%         add(sec,tbl);
-% ADD TO CHAPTER
-% add(ch,sec);
-
-% equation
-% latex interprete with $ simbol
-% eq = Equation("$ V_{S} = \sqrt{\frac{2 W_{MTOM}}{\rho_{0}C_{L_{MAX_{Clean}}}S}}");
-% eq.DisplayInline = true;
-% eq.FontSize = 12;
-% eqImg = getImpl(eq,rpt);
-% if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
-%     eqImg.Style = {VerticalAlign("-30%")};
-% elseif(rpt.Type == "docx") 
-%     eqImg.Style = {VerticalAlign("-5pt")};
-% end
-% append(sec,eqImg);
-
-
-
-%% Report set-up
-% Flight loads user's settings
-Aircraft.Report.author = 'Pierluigi Della Vecchia and Claudio Mirabella';
-str = strcat("The authors are " , " ", Aircraft.Report.author);
+%% Report details
+% Propeller Tool user's settings (to be moved)
+Aircraft.Report.author = 'Pierluigi Della Vecchia';
+str = strcat("The author is " , " ", Aircraft.Report.author);
 disp(str)
 disp(' ')
 Aircraft.Report.society = 'Design of Aircraft and Flight Technologies, DAF';
@@ -77,31 +18,27 @@ disp(str)
 % 'DAF_template'
 % 'DAF_SMUP_template'
 % 'SMUP_template'
-Aircraft.Report.template = 'No Template';
+Aircraft.Report.template = 'DAF_template';
 %Mytemplate.template = 'DAF_template'; % Other availabe
 str = strcat("The report template is " , " ",Aircraft.Report.template);
-Aircraft.Report.Type = 'docx';
-%pdf
-%docx
-%html
 disp(str)
 
 %%%
 
-rpt = Report('Flight Loads',Aircraft.Report.Type);
-
+rpt = Report('Flight Loads','pdf',Aircraft.Report.template);
+%pdf --> MYTEMPLATE.pdftx
 disp('Writing report...')
 rpt.Locale = 'en';
 
-%% Flight Loads Report Generator
+%% Propeller Report Generator
 % INPUT:  Aircraft data structure
-% OUTPUT: FLIGHT LOADS.xxx report
+% OUTPUT: FLIGHT LOADS .pdf report
 
 RepDir = pwd;
 
 %% TITLE PAGE
 %Title
-tp = TitlePage();
+tp = TitlePage('TemplateSrc',Aircraft.Report.template,'TemplateName','TitlePage');
 % if any(Phi)
 %     tp.Title = 'Conceptual Design of Hybrid Electric Aircraft';
 % elseif any(phi)
@@ -110,11 +47,10 @@ tp = TitlePage();
 Title = ['Flight Loads: ', ' ',Aircraft.Certification.Aircraft_Name.value,' aircraft'];
 tp.Title = Title;
 %end
-%% Cover image
 %tp.Image = '_figures/cover.jpg';
 cd ..
-geometry_path = [pwd '/Geometry/'];
-tp.Image = [geometry_path 'Aircraft3D.png'];
+results_path = [pwd '/Geometry/'];
+tp.Image = [results_path 'Aircraft3D.png'];
 tp.Publisher = Aircraft.Report.society;
 tp.Author = Aircraft.Report.author;
 tp.PubDate = date();
@@ -124,13 +60,13 @@ add(rpt,tp);
 
 
 %% TABLE OF CONTENT
-toc = TableOfContents();
+toc = TableOfContents('TemplateSrc',Aircraft.Report.template,'TemplateName','TableOfContents');
 add(rpt,toc);
-% List of figures
+
 lof = ListOfFigures();
 lof.Title = "List of Figures";
 append(rpt,lof);
-% List of tables
+
 lot = ListOfTables();
 lot.Title = "List of Tables";
 append(rpt,lot);
@@ -138,28 +74,25 @@ append(rpt,lot);
 % switch prop.case_to_do
 %     case {1,4}
 %% CHAPTER 1 - INTRODUCTION
-ch1 = Chapter();
+ch1 = Chapter('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 ch1.Title = 'Introduction';
 
-para = Paragraph();
-
-append(para, Text(strcat('This document defines the SUBPART C - Structure - Flight Loads of the:',' ', char(Aircraft.Certification.Aircraft_Name.value),'.',...
+para = Paragraph(strcat('This document defines the SUBPART C - Structure - Flight Loads of the:',' ', char(Aircraft.Certification.Aircraft_Name.value),...
     'The boundaries of the flight envelope will be defined within this document. All speeds are calibrated airspeeds (CAS) (requirement 4.4 [1])',...
     'and given in knots if not stated otherwise.',...
     'All other units used are metric (SI units).',...
     'The weights are given in mass units (kg) but the formulas require force units as input,',...
     'therefore these are calculated in place wherever they are used.', ...
     'Note: The speeds defined within this document should be used for the placards,',...
-    'speed markings, aeroplane flight manual (limitations), load calculations and need to be verified by flight test.')));
-para.WhiteSpace = 'preserve';
-para.Style = {HAlign('justify')};
+    'speed markings, aeroplane flight manual (limitations), load calculations and need to be verified by flight test.'));
+% append(para,InternalLink('tlarTableRef','refTabella'));
 add(ch1,para)
 %% END chapter
 %Adding chapters
 add(rpt,ch1);
 
 %% CHAPTER 2 - References
-ch2 = Chapter();
+ch2 = Chapter('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 ch2.Title = 'References';
 
 str = ['HERE BELOW AN EXAMPLE OF REFERENCES TO BE EDITED'];
@@ -177,6 +110,7 @@ ref7 = 'ABCD-WB-08-00 Weight and Balance Report, EASA.';
 ol = OrderedList({ref1, ref2, ref3,...
     ref4, ref5,ref6,ref7});
 
+
 append(ch2,ol);
 
 % append(para,InternalLink('tlarTableRef','refTabella'));
@@ -187,7 +121,7 @@ add(rpt,ch2);
 
 
 %% CHAPTER 3 - List of Abbreviations
-ch3 = Chapter();
+ch3 = Chapter('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 ch3.Title = 'List of Abbreviations';
 
 str = ['ADD HERE list of abbreviations as a formatted table....to be created'];
@@ -200,25 +134,21 @@ add(rpt,ch3);
 
 
 %% CHAPTER 4 - Aircraft data
-ch4 = Chapter();
+ch4 = Chapter('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 ch4.Title = 'Aircraft data';
 
 str = ['Add here all the aircraft geometrical, aero and inertial and masses data useful for following paragraph'];
 para = Paragraph(str);
-para.Style = {HAlign('justify')};
 % append(para,InternalLink('tlarTableRef','refTabella'));
 add(ch4,para)
 
 %         %% CHAPTER 4 - SECTION 1
-%         % geometry
-sec1 = Section();
+%         % geo
+sec1 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec1.Title = 'Geometry';
 
 para = Paragraph('The aircraft reference geometry is summarized in table:');
-
-% wing
-if isfield(Aircraft.Geometry, 'Wing')==1
-append(para,InternalLink('wingTableRef','Ref:wing'));
+ append(para,InternalLink('wingTableRef','refTabella'));
 add(sec1,para)
          wing = fieldnames(Aircraft.Geometry.Wing);
          fieldValue = cell(length(wing),1);
@@ -239,226 +169,43 @@ add(sec1,para)
          wing = [wing, fieldValue, fieldUnit];
          header = {'Wing parameters', 'Value', 'Measure unit'};
          tbl = FormalTable(header,wing);
-%         tbl.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','1px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.Header.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','2px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.TableEntriesStyle = {HAlign('left')};
+        tbl.Style = {...
+            RowSep('solid','black','2px'),...
+            ColSep('solid','black','1px'),...
+            Border('ridge','black','5px')...
+            };
+        tbl.Header.Style = {...
+            RowSep('solid','black','2px'),...
+            ColSep('solid','black','2px'),...
+            Border('ridge','black','5px')...
+            };
+        tbl.TableEntriesStyle = {HAlign('left')};
         % In order to put a table with a caption, the API Report denomination should
         % be used, the other options are from API DOM. In order to solve the problem,
-        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).      
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
         tbl = BaseTable(tbl);
         tbl.Title = 'Wing Geometrical Parameters';
-        tbl.LinkTarget = 'wingTableRef';     
+        tbl.LinkTarget = 'wingTableRef';
+
         add(sec1,tbl);
-end
 %
-%horizontal
-if isfield(Aircraft.Geometry, 'Horizontal')==1
-append(para,InternalLink('horiTableRef','Ref:hori'));
-add(sec1,para)
-         horizontal = fieldnames(Aircraft.Geometry.Horizontal);
-         fieldValue = cell(length(horizontal),1);
-         fieldUnit = cell(length(horizontal),1);
-         for i = 1:length(horizontal)
-             fieldValue{i} = Aircraft.Geometry.Horizontal.(horizontal{i}).value;
-             % significant digits
-             if isnumeric(fieldValue{i})
-                 fieldValue{i} = num2str(fieldValue{i},5);
-             end
-             % Not every field has Attributes. If not, they have only one field
-             if length(fieldnames(Aircraft.Geometry.Horizontal.(horizontal{i}))) > 1
-                 fieldUnit{i} = Aircraft.Geometry.Horizontal.(horizontal{i}).Attributes.unit;
-             else % Void cells cannot be converted in strings
-                 fieldUnit{i} = '-';
-             end
-         end
-         horizontal = [horizontal, fieldValue, fieldUnit];
-         header = {'horizontal parameters', 'Value', 'Measure unit'};
-         tbl = FormalTable(header,horizontal);
-%         tbl.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','1px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.Header.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','2px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.TableEntriesStyle = {HAlign('left')};
-        % In order to put a table with a caption, the API Report denomination should
-        % be used, the other options are from API DOM. In order to solve the problem,
-        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).      
-        tbl = BaseTable(tbl);
-        tbl.Title = 'horizontal Geometrical Parameters';
-        tbl.LinkTarget = 'horizontalTableRef';     
-        add(sec1,tbl);
-end
-
-%vertical
-if isfield(Aircraft.Geometry, 'Vertical')==1
-append(para,InternalLink('verTableRef','Ref:vert'));
-add(sec1,para)
-         vertical = fieldnames(Aircraft.Geometry.Vertical);
-         fieldValue = cell(length(vertical),1);
-         fieldUnit = cell(length(vertical),1);
-         for i = 1:length(vertical)
-             fieldValue{i} = Aircraft.Geometry.Vertical.(vertical{i}).value;
-             % significant digits
-             if isnumeric(fieldValue{i})
-                 fieldValue{i} = num2str(fieldValue{i},5);
-             end
-             % Not every field has Attributes. If not, they have only one field
-             if length(fieldnames(Aircraft.Geometry.Vertical.(vertical{i}))) > 1
-                 fieldUnit{i} = Aircraft.Geometry.Vertical.(vertical{i}).Attributes.unit;
-             else % Void cells cannot be converted in strings
-                 fieldUnit{i} = '-';
-             end
-         end
-         vertical = [vertical, fieldValue, fieldUnit];
-         header = {'vertical parameters', 'Value', 'Measure unit'};
-         tbl = FormalTable(header,vertical);
-%         tbl.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','1px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.Header.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','2px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.TableEntriesStyle = {HAlign('left')};
-        % In order to put a table with a caption, the API Report denomination should
-        % be used, the other options are from API DOM. In order to solve the problem,
-        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).      
-        tbl = BaseTable(tbl);
-        tbl.Title = 'Vertical Geometrical Parameters';
-        tbl.LinkTarget = 'verticalTableRef';     
-        add(sec1,tbl);
-end
-
-%fuselage
-if isfield(Aircraft.Geometry, 'Fuselage')==1
-append(para,InternalLink('verTableRef','Ref:fus'));
-add(sec1,para)
-         fuselage = fieldnames(Aircraft.Geometry.Fuselage);
-         fieldValue = cell(length(fuselage),1);
-         fieldUnit = cell(length(fuselage),1);
-         for i = 1:length(fuselage)
-             fieldValue{i} = Aircraft.Geometry.Fuselage.(fuselage{i}).value;
-             % significant digits
-             if isnumeric(fieldValue{i})
-                 fieldValue{i} = num2str(fieldValue{i},5);
-             end
-             % Not every field has Attributes. If not, they have only one field
-             if length(fieldnames(Aircraft.Geometry.Fuselage.(fuselage{i}))) > 1
-                 fieldUnit{i} = Aircraft.Geometry.Fuselage.(fuselage{i}).Attributes.unit;
-             else % Void cells cannot be converted in strings
-                 fieldUnit{i} = '-';
-             end
-         end
-         fuselage = [fuselage, fieldValue, fieldUnit];
-         header = {'Fuselage parameters', 'Value', 'Measure unit'};
-         tbl = FormalTable(header,fuselage);
-%         tbl.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','1px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.Header.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','2px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.TableEntriesStyle = {HAlign('left')};
-        % In order to put a table with a caption, the API Report denomination should
-        % be used, the other options are from API DOM. In order to solve the problem,
-        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).      
-        tbl = BaseTable(tbl);
-        tbl.Title = 'Fuselage Geometrical Parameters';
-        tbl.LinkTarget = 'fuselageTableRef';     
-        add(sec1,tbl);
-end
-
-%landing gear
-if isfield(Aircraft.Geometry, 'LandGear')==1
-append(para,InternalLink('lgTableRef','Ref:lg'));
-add(sec1,para)
-        landGear = fieldnames(Aircraft.Geometry.LandGear);
-         fieldValue = cell(length(landGear),1);
-         fieldUnit = cell(length(fuselage),1);
-         for i = 1:length(landGear)
-             fieldValue{i} = Aircraft.Geometry.LandGear.(landGear{i}).value;
-             % significant digits
-             if isnumeric(fieldValue{i})
-                 fieldValue{i} = num2str(fieldValue{i},5);
-             end
-             % Not every field has Attributes. If not, they have only one field
-             if length(fieldnames(Aircraft.Geometry.LandGear.(landGear{i}))) > 1
-                 fieldUnit{i} = Aircraft.Geometry.landGear.(landGear{i}).Attributes.unit;
-             else % Void cells cannot be converted in strings
-                 fieldUnit{i} = '-';
-             end
-         end
-         header = {'Fuselage parameters', 'Value', 'Measure unit'};
-         tbl = FormalTable(header,landGear);
-%         tbl.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','1px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.Header.Style = {...
-%             RowSep('solid','black','2px'),...
-%             ColSep('solid','black','2px'),...
-%             Border('ridge','black','5px')...
-%             };
-%         tbl.TableEntriesStyle = {HAlign('left')};
-        % In order to put a table with a caption, the API Report denomination should
-        % be used, the other options are from API DOM. In order to solve the problem,
-        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).      
-        tbl = BaseTable(tbl);
-        tbl.Title = 'Landing Gear Geometrical Parameters';
-        tbl.LinkTarget = 'landGearTableRef';     
-        add(sec1,tbl);
-end
 
 
 add(ch4,sec1);
 
 %         %% CHAPTER 4 - SECTION 2
 %         % aero
-sec2 = Section();
+sec2 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec2.Title = 'Aerodynamic';
 
-para = Paragraph('The aircraft reference aerodynamic is in figure:');
+para = Paragraph('The aircraft reference aerodynamic is in table:');
 % append(para,InternalLink('tlarTableRef','refTabella'));
 add(sec2,para)
 
-append(para,InternalLink('lgTableRef','polars_wb'));
 
-%moving to another path for figure
-cd ..
-cd ..
- regulation = Aircraft.Certification.Regulation.value;
- results_path = [pwd '\' regulation '\Output\'];
-
- cd (RepDir);
-
-fig = FormalImage([results_path,'Polars.pdf']);
-         fig.Caption = 'Wing-Body reference Aerodynamics';
-         fig.Height = '5in';
-         fig.LinkTarget='polars_wb';
-         add(sec2,fig);
 
 add(ch4,sec2);
+
 
 
 %% END chapter
@@ -466,7 +213,7 @@ add(ch4,sec2);
 add(rpt,ch4);
 
 %% CHAPTER 5 - Design Airspeeds
-ch5 = Chapter();
+ch5 = Chapter('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 ch5.Title = 'Design Airspeeds';
 
 str = ['This chapter defines the operating and design airspeeds as required for certification REFFFF'];
@@ -476,60 +223,30 @@ add(ch5,para)
 
 %         %% CHAPTER 5 - SECTION 1
 %         % VH
-sec1 = Section();
+sec1 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec1.Title = 'Maximum speed in level flight VH';
 
-para = Paragraph(strcat('According to flight tests [5] at maximum weight and maximum continuous ',...
+para = Paragraph(strcat('According to flight tests [5] at maximum weight and maximum continuous',...
     'power at sea level conditions, the maximum speed in level flight has been determined:',...
     'V_H=130\ kts'));
 % append(para,InternalLink('tlarTableRef','refTabella'));
-para.Style = {HAlign('justify')};
 add(sec1,para)
 
 add(ch5,sec1);
 
 %         %% CHAPTER 5 - SECTION 2
 %         % VS, VS0, VS1
-sec2 = Section();
+sec2 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec2.Title = 'Stall speeds VS, VS0, VS1';
-para = Paragraph(strcat('These speeds will be verified by flight test according to requirement 4.4.1 [1]',... 
-'In order to calculate the stall speed, the maximum lift coefficient of the aeroplane as a whole is determined first.',...
-'The maximum lift coefficient of the aeroplane has been calculated starting from the polar curve of the wing profile',...
-'taken form ref. [6] (p. 236, Re=2.9E6 flaps retracted c_(L⁡_profile_max)=1.35 and p.237, δ_f=40 deg for the flaps',...
-'in landing configurationc_(L⁡_profile_flapped_max)=2.15, and δ_f=10 deg in take-off configurationc_(L⁡_profile_flapped_to)=1.70).',...
-'Considering the horizontal tail balancing force and the lower total wing lift due to wing lift distribution,',...
-'the total aeroplane lift coefficient has been lowered by 15% with respect to the one of the profile.'));
+
+para = Paragraph('ADD TEXTS:');
 % append(para,InternalLink('tlarTableRef','refTabella'));
-para.Style = {HAlign('justify')};
 add(sec2,para)
 
-%VS
-WMTOM   = 9.81*Aircraft.Weight.I_Level.W_maxTakeOff.value;
-rho     = 1.225;
-CLMAX   = max(Aircraft.Certification.Aerodynamic_data.CLMAX.value);
-S       = Aircraft.Geometry.Wing.S.value; 
-vs      = Aircraft.Certification.Regulation.SubpartC.Flightloads.print_positive_vs.value;
-vs_un      = Aircraft.Certification.Regulation.SubpartC.Flightloads.print_positive_vs.Attributes.unit;
-
-myNumEq = strcat (' = \sqrt{\frac{2*',...
-                    num2str(WMTOM),...
-                    '}{',...
-                    num2str(rho),...
-                    '*',...
-                    num2str(CLMAX),...
-                    '*',...
-                    num2str(S),...
-                    '}} =',...
-                    num2str(vs),...
-                    num2str(vs_un));
-% latex interprete with $ simbol
-para = Paragraph('Flaps retracted(cleam configuration):');
-para.Style = {HAlign('left')};
-add(sec2,para)
-myEq = "$ V_{S} = \sqrt{\frac{2 W_{MTOM}}{\rho_{0}C_{L_{MAX_{Clean}}}S}}";
-eq = Equation(strcat(myEq, myNumEq));
+%Equation Example
+eq = Equation("\int_{0}^{2} x^2\sin(x) dx");
 eq.DisplayInline = true;
-eq.FontSize = 12;
+eq.FontSize = 14;
 eqImg = getImpl(eq,rpt);
 if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
     eqImg.Style = {VerticalAlign("-30%")};
@@ -537,75 +254,12 @@ elseif(rpt.Type == "docx")
     eqImg.Style = {VerticalAlign("-5pt")};
 end
 append(sec2,eqImg);
-
-%VS0
-% latex interprete with $ simbol
-para = Paragraph('Flaps extended(Landing configuration):');
-% append(para,InternalLink('tlarTableRef','refTabella'));
-para.Style = {HAlign('left')};
-add(sec2,para)
-myEq = "$ V_{S_0} = \sqrt{\frac{2 W_{MTOM}}{\rho_{0}C_{L_{MAX_{Landing}}}S}}";
-eq = Equation(myEq);
-eq.DisplayInline = true;
-eq.FontSize = 12;
-eqImg = getImpl(eq,rpt);
-if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
-    eqImg.Style = {VerticalAlign("-30%")};
-elseif(rpt.Type == "docx") 
-    eqImg.Style = {VerticalAlign("-5pt")};
-end
-append(sec2,eqImg);
-
-%VS1
-% latex interprete with $ simbol
-para = Paragraph('Flaps extended(Take-off configuration):');
-% append(para,InternalLink('tlarTableRef','refTabella'));
-para.Style = {HAlign('left')};
-add(sec2,para)
-myEq = "$ V_{S_1} = \sqrt{\frac{2 W_{MTOM}}{\rho_{0}C_{L_{MAX_{Takeoff}}}S}}";
-eq = Equation(myEq);
-eq.DisplayInline = true;
-eq.FontSize = 12;
-eqImg = getImpl(eq,rpt);
-if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
-    eqImg.Style = {VerticalAlign("-30%")};
-elseif(rpt.Type == "docx") 
-    eqImg.Style = {VerticalAlign("-5pt")};
-end
-append(sec2,eqImg);
-
-para = Paragraph(strcat('Therefore aeroplane lift coefficient is estimated to',...
-        'c_(L_clean⁡_max)=0.85*1.35=1.15',...
-        'and for the landing configuration (since the span extension of the flaps is half of the span of the wing):',...
-        'c_(L_flaps_max)=(c_(L⁡_profile_flapped_max)+ c_(L_profile_max))/2*0.85=(2.15+1.35)/2*0.85=1.49'));
-% append(para,InternalLink('tlarTableRef','refTabella'));
-add(sec2,para)
-
-%
-para = Paragraph(strcat('The stall speed in landing configuration (flaps fully extended to ', 'xxx degrees', ' degrees)',...
-            'is', 'XXX kts. ', 'Therefore it is In accordance with CS-LSA.5 [4]. ',...
-            'In Take-Off configuration (flaps extended to , ', 'xxx degrees', 'degrees) the stall speed is , ', 'xxx', 'kts.'));
-% append(para,InternalLink('tlarTableRef','refTabella'));
-para.Style = {HAlign('left')};
-add(sec2,para)
-
-%
-para = Paragraph(strcat('(Note: These speeds are estimates. The methods for the estimation can be various.',...
-    'It is important that these estimations are as precise as possible. Flight tests will be used to validate ',...
-    'the stall speeds. In case the flight tests show different values, this might have an impact on the speeds ',...
-    'used for design and ultimately might impair the compliance to the CS-LSA.5.)'));
-% append(para,InternalLink('tlarTableRef','refTabella'));
-para.Style = {HAlign('left')};
-para.BackgroundColor = "green";% = {Underline('yellow')};
-add(sec2,para)
-
-
 
 add(ch5,sec2);
 
 %         %% CHAPTER 5 - SECTION 3
 %         % VA
-sec3 = Section();
+sec3 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec3.Title = 'Design manoeuvring speed VA         ';
 
 para = Paragraph('ADD TEXTS:');
@@ -619,7 +273,7 @@ add(ch5,sec3);
 
 %         %% CHAPTER 5 - SECTION 4
 %         %
-sec4 = Section();
+sec4 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec4.Title = 'Flaps maximum operating speed VF';
 
 para = Paragraph('ADD TEXTS:');
@@ -631,7 +285,7 @@ add(ch5,sec4);
 
 %         %% CHAPTER 5 - SECTION 5
 %         %
-sec5 = Section();
+sec5 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec5.Title = 'Flaps maximum operating speed VFE';
 
 para = Paragraph('ADD TEXTS:');
@@ -644,7 +298,7 @@ add(ch5,sec5);
 
 %         %% CHAPTER 5 - SECTION 6
 %         %
-sec6 = Section();
+sec6 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec6.Title = 'Design cruising speed VC';
 
 para = Paragraph('ADD TEXTS:');
@@ -657,7 +311,7 @@ add(ch5,sec6);
 
 %         %% CHAPTER 5 - SECTION 7
 %         %
-sec7 = Section();
+sec7 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec7.Title = 'Design dive speed VD';
 
 para = Paragraph('ADD TEXTS:');
@@ -670,7 +324,7 @@ add(ch5,sec7);
 
 %         %% CHAPTER 5 - SECTION 8
 %         %
-sec8 = Section();
+sec8 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec8.Title = 'Demonstrated dive speed VDF';
 
 para = Paragraph('ADD TEXTS:');
@@ -682,7 +336,7 @@ add(ch5,sec8);
 
 %         %% CHAPTER 5 - SECTION 9
 %         %
-sec9 = Section();
+sec9 = Section('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 sec9.Title = 'Never exceed speed VNE';
 
 para = Paragraph('ADD TEXTS:');
@@ -699,7 +353,7 @@ add(ch5,sec9);
 add(rpt,ch5);
 
 %% CHAPTER 6 - Altitude
-ch6 = Chapter();
+ch6 = Chapter('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 ch6.Title = 'Altitude';
 
 str = ['ADD HERE ALTITUDE DETAILS'];
@@ -712,30 +366,12 @@ add(rpt,ch6);
 
 
 %% CHAPTER 7 - Manoeuvring and Gust load factors n
-ch7 = Chapter();
+ch7 = Chapter('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 ch7.Title = 'Manoeuvring and Gust load factors n';
 
 str = ['ADD HERE Manoeuvring and Gust load factors n, figures, tables....ecc. ecc. '];
 para = Paragraph(str);
-
-%moving to another path for figure
-cd ..
-cd ..
- regulation = Aircraft.Certification.Regulation.value;
- results_path = [pwd '\' regulation '\Output\'];
-
- cd (RepDir);
-
-fig = FormalImage([results_path,'Gustenvelope.pdf']);
-         fig.Caption = 'Maneuver and Gust load factors and diagram';
-         fig.Height = '5in';
-         fig.LinkTarget='maneuver_ref';
-         add(ch7,fig);
-
-%add(ch7,sec1);
-
-
-
+% append(para,InternalLink('tlarTableRef','refTabella'));
 add(ch7,para)
 %% END chapter
 %Adding chapters
@@ -743,36 +379,19 @@ add(rpt,ch7);
 
 
 %% CHAPTER 8 - Manoeuvring and Gust load factors n
-ch8 = Chapter();
+ch8 = Chapter('TemplateSrc',Aircraft.Report.template,'TemplateName','Section');
 ch8.Title = 'V-n Envelope';
 
 str = ['ADD HERE V-n Envelope'];
 para = Paragraph(str);
-
-%moving to another path for figure
-cd ..
-cd ..
- regulation = Aircraft.Certification.Regulation.value;
- results_path = [pwd '\' regulation '\Output\'];
-
- cd (RepDir);
-
-fig = FormalImage([results_path,'Finalenvelope.pdf']);
-         fig.Caption = 'Maneuver and Gust load factors and diagram';
-         fig.Height = '5in';
-         fig.LinkTarget='maneuver_ref';
-         add(ch8,fig);
-
-%add(ch7,sec1);
-
-
+% append(para,InternalLink('tlarTableRef','refTabella'));
 add(ch8,para)
 %% END chapter
 %Adding chapters
 add(rpt,ch8);
 
 
-%% table
+%
 %         tlpr = fieldnames(prop.TLPR);
 %         fieldValue = cell(length(tlpr),1);
 %         fieldUnit = cell(length(tlpr),1);
@@ -870,8 +489,6 @@ add(rpt,ch8);
 %             'The geometry of the propeller is defined according to mininum induced load method. ']);
 %         add(sec2,para)
 %
-
-%% FIGURES
 %         % Propeller geometrical characteristics c/R and pitch angle
 %         fig = FormalImage([results_path,'PropChords.png']);
 %         fig.Caption = 'Propeller chords law';
