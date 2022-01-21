@@ -526,6 +526,10 @@ movefile Vndiagram.png Output
 % -------------------------------------------------------------------------
 
 %% GUST ENVELOPE 
+% NOTE: It's important to remember that in this version of the code the air
+%       density for all the wind gust calculations are referred to the
+%       operational altitude of the selected aircraft, whilst the flight
+%       envelope is referred to Sea Level, Standard Atmosphere air density.
 % Vectors with airspeed values
 % Two vectors with airspeed values within following ranges:
 % 1st ---> [0, VC] where VC = MaxCruiseSpeed
