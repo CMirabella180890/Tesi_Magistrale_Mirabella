@@ -7,6 +7,8 @@ import mlreportgen.utils.*
 
 ch = Chapter();
 ch.Title = 'V-n Envelope';
+disp(['Chapter 8', (' "'), ch.Title,('" ') ,'writing...' ])
+
 
 str = ['ADD HERE V-n Envelope'];
 para = Paragraph(str);

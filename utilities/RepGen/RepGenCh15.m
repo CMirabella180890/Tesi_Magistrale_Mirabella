@@ -11,6 +11,7 @@ import mlreportgen.utils.*
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
 ch.Title = 'Power plant';
+disp(['Chapter 15', (' "'), ch.Title,('" ') ,'writing...' ])
 
 str = ['ADD HERE details '];
 para = Paragraph(str);

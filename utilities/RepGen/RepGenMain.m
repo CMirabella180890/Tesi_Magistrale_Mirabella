@@ -78,7 +78,6 @@ import mlreportgen.utils.*
 % append(ch,ol);
 
 
-
 %% Report set-up
 % Flight loads user's settings
 Aircraft.Report.author = 'Pierluigi Della Vecchia and Claudio Mirabella';
@@ -156,21 +155,35 @@ append(rpt,lot);
 
 %% CHAPTERS
 RepGenCh1       %Introduction
+disp('Chapter 1 written')
 RepGenCh2       %References
+disp('Chapter 2 written')
 RepGenCh3       %List of Abbreviations
+disp('Chapter 3 written')
 RepGenCh4       %Aircraft data
+disp('Chapter 4 written')
 RepGenCh5       %Design Airspeeds
+disp('Chapter 5 written')
 RepGenCh6       %Altitude
+disp('Chapter 6 written')
 RepGenCh7       %Manoeuvring and Gust load factors n
+disp('Chapter 7 written')
 RepGenCh8       %V-n Envelope
+disp('Chapter 8 written')
 RepGenCh9       %Loads on the aeroplane
+disp('Chapter 9 written')
 RepGenCh10      %Loads on the wing
+disp('Chapter 10 written')
 RepGenCh11      %Loads on the horizontal tail
+disp('Chapter 11 written')
 RepGenCh12      %Loads on the vertical tail
+disp('Chapter 12 written')
 RepGenCh13      %Loads on the wing flaps
+disp('Chapter 13 written')
 RepGenCh14      %Loads on the control surfaces
+disp('Chapter 14 written')
 RepGenCh15      %Power plant
-
+disp('Chapter 15 written')
 
 
 %% END OF REPORT

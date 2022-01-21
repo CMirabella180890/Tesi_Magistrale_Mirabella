@@ -1,4 +1,4 @@
-%% CHAPTER 9 - Loads on the aeroplane
+%% CHAPTER 9 - Loads on the wing
 %Ref EASA: WING LOAD CALCULATION
 %(Example document for LSA applicants – v1 of 08.03.16)
 %Date of issue: DD/MM/YYYY
@@ -10,10 +10,10 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-% chapter_number = 9;
-% ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
 ch.Title = 'Loads on the wing';
+disp(['Chapter 10', (' "'), ch.Title,('" ') ,'writing...' ])
+
 
 str = ['ADD HERE details for balancing Equation'];
 para = Paragraph(str);

@@ -18,6 +18,7 @@ add(ch,para)
 %         % geometry
 sec = Section();
 sec.Title = 'Geometry';
+disp(['Chapter 4', (' "'), ch.Title,('" ') ,'writing...' ])
 
 para = Paragraph('The aircraft reference geometrical characteristics are summarized in the following tables.');
 

@@ -7,6 +7,8 @@ import mlreportgen.utils.*
 
 ch = Chapter();
 ch.Title = 'List of Abbreviations';
+disp(['Chapter 3', (' "'), ch.Title,('" ') ,'writing...' ])
+
 str = ['ADD HERE list of abbreviations as a formatted table....to be created'];
 
 % %List un-ordered

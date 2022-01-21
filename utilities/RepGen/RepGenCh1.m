@@ -7,7 +7,7 @@ import mlreportgen.utils.*
 
 ch = Chapter();
 ch.Title = 'Introduction';
-
+disp(['Chapter 1', (' "'), ch.Title,('" ') ,'writing...' ])
 para = Paragraph();
 
 append(para, Text(strcat('This document defines the SUBPART C - Structure - Flight Loads of the:',' ', char(Aircraft.Certification.Aircraft_Name.value),'.',...

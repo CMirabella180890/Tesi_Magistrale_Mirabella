@@ -14,6 +14,7 @@ import mlreportgen.utils.*
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
 ch.Title = 'Loads on the aeroplane';
+disp(['Chapter 9', (' "'), ch.Title,('" ') ,'writing...' ])
 
 str = ['ADD HERE details for balancing Equation'];
 para = Paragraph(str);

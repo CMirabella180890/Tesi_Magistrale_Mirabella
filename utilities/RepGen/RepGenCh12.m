@@ -1,4 +1,4 @@
-%% CHAPTER 9 - Loads on the vertical tail
+%% CHAPTER 12 - Loads on the vertical tail
 %Ref EASA/Tecnam p2006 report
 
 import mlreportgen.report.*  % import report API(report related methods
@@ -11,6 +11,8 @@ import mlreportgen.utils.*
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
 ch.Title = 'Loads on the vertical tail';
+disp(['Chapter 12', (' "'), ch.Title,('" ') ,'writing...' ])
+
 
 str = ['ADD HERE details '];
 para = Paragraph(str);

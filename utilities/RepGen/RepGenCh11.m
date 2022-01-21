@@ -1,4 +1,4 @@
-%% CHAPTER 9 - Loads on the aeroplane
+%% CHAPTER 11 - Loads on the htail
 %Ref EASA: WING LOAD CALCULATION
 %(Example document for LSA applicants – v1 of 08.03.16)
 %Date of issue: DD/MM/YYYY
@@ -14,6 +14,7 @@ import mlreportgen.utils.*
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
 ch.Title = 'Loads on the horizontal tail';
+disp(['Chapter 11', (' "'), ch.Title,('" ') ,'writing...' ])
 
 str = ['ADD HERE details '];
 para = Paragraph(str);

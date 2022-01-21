@@ -7,6 +7,7 @@ import mlreportgen.utils.*
 
 ch = Chapter();
 ch.Title = 'References';
+disp(['Chapter 2', (' "'), ch.Title,('" ') ,'writing...' ])
 
 str = ['HERE BELOW AN EXAMPLE OF REFERENCES TO BE EDITED'];
 para = Paragraph(str);
