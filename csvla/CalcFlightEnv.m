@@ -547,6 +547,21 @@ V_gust_dive = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.A
 % This function calculates the MASS RATIO for the selected airplane
 % following the CS-VLA airworthiness prescriptions. To have a
 % complete documentation check the class file csvla.m
+% -----------------------------------------------------------------------------------------------------------------------
+% SEA LEVEL
+% -----------------------------------------------------------------------------------------------------------------------
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio_sea_level.value = calcmug(obj, ...
+                                                                                WS, ...      % Wing loading in SI units
+                                                                                MAC, ...     % Mean Aerodynamic Chord in meters
+                                                                                CLalfa, ...  % Normal force curve slope (practically equal to lift curve slope)
+                                                                                rho0, ...     % Air density
+                                                                                g);          % Gravity acceleration g
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio_sea_level.Attributes.unit = 'Non dimensional';
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio_sea_level.Attributes.cs = " 341 ";
+mu_g_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio_sea_level.value;
+% -----------------------------------------------------------------------------------------------------------------------
+% OPERATIVE ALTITUDE
+% -----------------------------------------------------------------------------------------------------------------------
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.value = calcmug(obj, ...
                                                                                 WS, ...      % Wing loading in SI units
                                                                                 MAC, ...     % Mean Aerodynamic Chord in meters
@@ -557,7 +572,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.Attr
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.Attributes.cs = " 341 ";
 mu_g = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.value;
 
-%% x = calckg(obj, MassRatio)
+%% DENSITY: Sea Level - x = calckg(obj, MassRatio)
+% This function calculates the GUST ALLEVIATION FACTOR for the
+% selected airplane and flight conditions following the CS-VLA
+% airworthiness prescriprions. To have a complete documentation
+% check the class fil csvla.m
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor_sea_level.value = calckg(obj, mu_g_sea_level);  
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor_sea_level.Attributes.unit = 'Non dimensional'; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor_sea_level.Attributes.cs = " 341 ";
+KG_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor_sea_level.value;
+% -------------------------------------------------------------------------
+
+%% DENSITY: Operative altitude - x = calckg(obj, MassRatio)
 % This function calculates the GUST ALLEVIATION FACTOR for the
 % selected airplane and flight conditions following the CS-VLA
 % airworthiness prescriprions. To have a complete documentation
@@ -568,6 +594,68 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviatio
 KG = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor.value;
 % -------------------------------------------------------------------------
 
+% ---------------------------------------------------------------------------------------------------------------------------------------
+% DENSITY: SEA LEVEL
+% ---------------------------------------------------------------------------------------------------------------------------------------
+%% x = calcngust(rho0, NormalForceCurveSlope, GustAlleviationFact, GustSpeedCruiseVect, WingLoading, CruiseSpeed, DiveSpeed, FlagToCalc)
+% This function is able to calculates in any possible case a vector
+% which contains gust load factors value, following CS-VLA
+% airworthiness prescription. To have a complete documentation
+% check the class file csvla.m
+
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise_sea_level.value = calcngust(obj, rho0, ... % Standard atmosphere density
+                                                                                            CLalfa, ...               % Normal force curve slope [1/rad]
+                                                                                            KG_sea_level, ...         % Gust alleviation factor KG
+                                                                                            Ude_cruise, ...           % Gust speed at cruise VC
+                                                                                            WS, ...                   % Wing loading in SI units
+                                                                                            VC, ...                   % Cruise speed from the V - n diagram 
+                                                                                            VD, ...                   % Dive speed from the V - n diagram
+                                                                                            char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_cruise.Attributes.case(1))); % A conveniently defined case switch
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise_sea_level.Attributes.unit = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise_sea_level.Attributes.cs = " 341 ";
+n_gust_cruise_plus_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise_sea_level.value;
+
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise_sea_level.value = calcngust(obj, rho0, ... % Standard atmosphere density
+                                                                                            CLalfa, ...               % Normal force curve slope [1/rad]
+                                                                                            KG_sea_level, ...         % Gust alleviation factor KG
+                                                                                            Ude_cruise, ...           % Gust speed at cruise V = VC
+                                                                                            WS, ...                   % Wing loading in SI units
+                                                                                            VC, ...                   % Cruise speed from the V - n diagram
+                                                                                            VD, ...                   % Dive speed from the V - n diagram 
+                                                                                            char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_cruise.Attributes.case(2)));  % A conveniently defined case switch
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise_sea_level.Attributes.unit = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise_sea_level.Attributes.cs = " 341 "; 
+n_gust_cruise_neg_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise_sea_level.value;
+
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive_sea_level.value = calcngust(obj, rho0, ...
+                                                                                            CLalfa, ...
+                                                                                            KG_sea_level, ...
+                                                                                            Ude_dive, ...
+                                                                                            WS, ...
+                                                                                            VC, ...
+                                                                                            VD, ...
+                                                                                            char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_dive.Attributes.case(1)));
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive_sea_level.Attributes.unit = "g's";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive_sea_level.Attributes.cs = " 341 "; 
+n_gust_dive_plus_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive_sea_level.value;
+
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive_sea_level.value = calcngust(obj, rho0, ...
+                                                                                            CLalfa, ...
+                                                                                            KG_sea_level, ...
+                                                                                            Ude_dive, ...
+                                                                                            WS, ...
+                                                                                            VC, ...
+                                                                                            VD, ...
+                                                                                            char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_dive.Attributes.case(2)));
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive_sea_level.Attributes.unit = "g's";  
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive_sea_level.Attributes.cs = " 341 "; 
+n_gust_dive_neg_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive_sea_level.value;
+% -------------------------------------------------------------------------
+% ---------------------------------------------------------------------------------------------------------------------------------------
+
+% ---------------------------------------------------------------------------------------------------------------------------------------
+% DENSITY: OPERATIVE ALTITUDE
+% ---------------------------------------------------------------------------------------------------------------------------------------
 %% x = calcngust(rho0, NormalForceCurveSlope, GustAlleviationFact, GustSpeedCruiseVect, WingLoading, CruiseSpeed, DiveSpeed, FlagToCalc)
 % This function is able to calculates in any possible case a vector
 % which contains gust load factors value, following CS-VLA
