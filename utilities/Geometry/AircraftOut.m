@@ -24,9 +24,9 @@ hzpos = 0.0;   %horizontal root chord zeta position
 % df = Aircraft.Geometry.Fuselage.df.value;           % fuselage diameter (m)
 % dbase = Aircraft.Geometry.Fuselage.dbase.value;     %fuselage base diameter
 % lf = Aircraft.Geometry.Fuselage.lf.value;           % fuselage lenght (m)
-df = 0.35;           % fuselage diameter (m)
-dbase = 0.03;     %fuselage base diameter
-lf = 5.0;           % fuselage lenght (m)
+df = Aircraft.Geometry.Fuselage.diameter.value;           % fuselage diameter (m)
+dbase = 0.1*df;     %fuselage base diameter
+lf = Aircraft.Geometry.Fuselage.length.value;           % fuselage lenght (m)
 Aircraft.Geometry.Fuselage.kcockpit.value = 1.0;
 Aircraft.Geometry.Fuselage.ktail.value = 1.5;
 
@@ -34,34 +34,34 @@ Aircraft.Geometry.Fuselage.ktail.value = 1.5;
 Aircraft.Geometry.Wing.xtip_le.value =0.5;     % wing tip leading edge %of fuselage lenght
 xtip_le = Aircraft.Geometry.Wing.xtip_le.value;     % wing tip leading edge %of fuselage lenght
 Aircraft.Geometry.Wing.xle.value = 0.5;         % wing root leading edge %of fuselage lenght
-Aircraft.Geometry.Wing.croot.value = 0.5;       %meter
+%Aircraft.Geometry.Wing.croot.value = 0.5;       %meter
 Aircraft.Geometry.Wing.ypos.value = 0.0; % % of wing semispan
 
 %horizontal
 %xtip_le = Aircraft.Geometry.Horizontal.xtip_le.value; % horizontal tip leading edge %of fuselage lenght
-xtip_le_h = 0.95;
-Aircraft.Geometry.Horizontal.xle.value = 0.92;
-Aircraft.Geometry.Horizontal.xtip_le.value = xtip_le_h;
-Aircraft.Geometry.Horizontal.b.value=1.496; 
+xtip_le_h = 0.95;                                   % % of lf
+Aircraft.Geometry.Horizontal.xle.value = 0.92;      % % of lf
+Aircraft.Geometry.Horizontal.xtip_le.value = xtip_le_h; % % of lf
+%Aircraft.Geometry.Horizontal.b.value=1.496; 
 Aircraft.Geometry.Horizontal.ypos.value = 0.0; % % of wing span
 
 %vertical
-Aircraft.Geometry.Vertical.xle.value = 0.95; %of fuselage lenght
-Aircraft.Geometry.Vertical.croot.value = 0.3136; %m
-Aircraft.Geometry.Vertical.ctip.value = 0.1534725; %m
-Aircraft.Geometry.Vertical.xtip_le.value = 1.0; %of fuselage lenght
+%Aircraft.Geometry.Vertical.xle.value = 0.95; %of fuselage lenght
+%Aircraft.Geometry.Vertical.croot.value = 0.3136; %m
+%Aircraft.Geometry.Vertical.ctip.value = 0.1534725; %m
+%Aircraft.Geometry.Vertical.xtip_le.value = 1.0; %of fuselage lenght
 xtip_le_v = Aircraft.Geometry.Vertical.xtip_le.value;
-Aircraft.Geometry.Vertical.b.value = 0.437502; %m
-Aircraft.Geometry.Vertical.zpos.value = 1.0; % % of df
+%Aircraft.Geometry.Vertical.b.value = 0.437502; %m
+%Aircraft.Geometry.Vertical.zpos.value = 1.0; % % of df
 
 %engine 
 ezpos = 1.0;       % % df engine zeta position
-Aircraft.Geometry.Engine.Primary.xpos.value = 0.90;
-Aircraft.Geometry.Engine.Primary.lf.value = 0.5; %m
-Aircraft.Geometry.Engine.Primary.ypos.value = 0.0; % %of wing semispan
-Aircraft.Geometry.Engine.Primary.df.value = 0.1; %m
-Aircraft.Geometry.Engine.Primary.propdiam.value = 0.4;    %prop diameter in meters
-Aircraft.Geometry.Engine.Primary.zpos.value = 1.0;  %of fus df
+Aircraft.Geometry.Engine.Primary.xpos.value = 0.90;             % % lf
+Aircraft.Geometry.Engine.Primary.lf.value = 0.5;                % engine lenght m
+Aircraft.Geometry.Engine.Primary.ypos.value = 0.0;              % %of wing semispan
+Aircraft.Geometry.Engine.Primary.df.value = 0.1;                % m
+Aircraft.Geometry.Engine.Primary.propdiam.value = 0.4;          %prop diameter in meters
+Aircraft.Geometry.Engine.Primary.zpos.value = 1.0;              %of fus df
 %landing gear
 % x_main_lg = Aircraft.Geometry.Undercarriage.Main.xpos.value*lf;
 % x_nose_lg = Aircraft.Geometry.Undercarriage.Nose.xpos.value*lf;
@@ -81,12 +81,11 @@ d_wheel_main = 0.1;
 d_wheel_nose = 0.1;
 Aircraft.Geometry.Undercarriage.Main.diameter.value = 0.1; %m
 Aircraft.Geometry.Undercarriage.Nose.diameter.value = 0.1; %m
-
 wheel_width = 0.1*df; % main gear wheel width (m)
 
 % Importing airfoils sections for wing, horizontal, vertical...
 root_coord_w = importdata('_Airfoil\IRON_Root.txt'); % Root Airfoil coordiante read from file (x/c & z/c)
-tip_coord_w = importdata('_Airfoil\IRON_Tip.txt'); % Root Airfoil coordiante read from file (x/c & z/c)
+tip_coord_w = importdata('_Airfoil\IRON_Root.txt'); % Root Airfoil coordiante read from file (x/c & z/c)
 
 root_coord_h = importdata('_Airfoil\Simmetric_Root.txt'); % Root Airfoil coordiante read from file (x/c & z/c)
 tip_coord_h = importdata('_Airfoil\Simmetric_Tip.txt'); % Root Airfoil coordiante read from file (x/c & z/c)
