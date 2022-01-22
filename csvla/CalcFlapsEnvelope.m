@@ -97,7 +97,7 @@ VS          = calcvs(obj, rho0, WS, CLmax_clean, n1);
 % CALCULATION OF VS1 - FLAPS DEPLOYED STALL SPEED
 CLmax_takeoff = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.value;
 VS1        = calcvs(obj, rho0, WS, CLmax_takeoff, n1);
-VS1        = calcvs(obj, rho, WS, CLmax_takeoff, n1);
+% VS1        = calcvs(obj, rho, WS, CLmax_takeoff, n1);
 
 % EVALUATION OF VF - FLAPS DEPLOYED AIRSPEED 
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.VF.value = calcnVF(obj, VS, VS1);
@@ -208,10 +208,10 @@ mu_g = calcmug(obj, WS, MGC, CLalfa_rad, rho, g);
 Kg   = calckg(obj, mu_g);
 
 % CALCULATION OF THE GUST LOAD FACTOR AT V = VF 
-% nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
-% nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
-nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho * CLalfa_rad * Kg * Ude) / ( WS ));
-nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho * CLalfa_rad * Kg * Ude) / ( WS ));
+nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+% nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho * CLalfa_rad * Kg * Ude) / ( WS ));
+% nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho * CLalfa_rad * Kg * Ude) / ( WS ));
 
 V_gust      = linspace(0.0, VF, numb)'; 
 
@@ -710,10 +710,10 @@ mu_g = calcmug(obj, WS, MGC, CLalfa_rad, rho_operative, g);
 Kg   = calckg(obj, mu_g);
 
 % CALCULATION OF THE GUST LOAD FACTOR AT V = VF 
-% nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
-% nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
-nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho_operative * CLalfa_rad * Kg * Ude) / ( WS ));
-nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho_operative * CLalfa_rad * Kg * Ude) / ( WS ));
+nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho0 * CLalfa_rad * Kg * Ude) / ( WS ));
+% nGUST_plus  = @(V) 1.0 + V .* ((0.5 * rho_operative * CLalfa_rad * Kg * Ude) / ( WS ));
+% nGUST_minus = @(V) 1.0 - V .* ((0.5 * rho_operative * CLalfa_rad * Kg * Ude) / ( WS ));
 
 V_gust      = linspace(0.0, VF, numb)'; 
 

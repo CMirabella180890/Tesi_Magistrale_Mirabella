@@ -662,7 +662,7 @@ n_gust_dive_neg_sea_level = Aircraft.Certification.Regulation.SubpartC.Flightloa
 % airworthiness prescription. To have a complete documentation
 % check the class file csvla.m
 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value = calcngust(obj, rho_operative, ... % Standard atmosphere density
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value = calcngust(obj, rho0, ... % Standard atmosphere density
                                                                                             CLalfa, ...               % Normal force curve slope [1/rad]
                                                                                             KG, ...                   % Gust alleviation factor KG
                                                                                             Ude_cruise, ...           % Gust speed at cruise VC
@@ -674,7 +674,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_c
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.Attributes.cs = " 341 ";
 n_gust_cruise_plus = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value;
 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value = calcngust(obj, rho_operative, ... % Standard atmosphere density
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value = calcngust(obj, rho0, ... % Standard atmosphere density
                                                                                             CLalfa, ...               % Normal force curve slope [1/rad]
                                                                                             KG, ...                   % Gust alleviation factor KG
                                                                                             Ude_cruise, ...           % Gust speed at cruise V = VC
@@ -686,7 +686,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_c
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.Attributes.cs = " 341 "; 
 n_gust_cruise_neg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value;
 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value = calcngust(obj, rho_operative, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value = calcngust(obj, rho0, ...
                                                                                             CLalfa, ...
                                                                                             KG, ...
                                                                                             Ude_dive, ...
@@ -698,7 +698,7 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_d
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.Attributes.cs = " 341 "; 
 n_gust_dive_plus = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value;
 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value = calcngust(obj, rho_operative, ...
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value = calcngust(obj, rho0, ...
                                                                                             CLalfa, ...
                                                                                             KG, ...
                                                                                             Ude_dive, ...
@@ -781,7 +781,7 @@ hold on; grid on; grid minor;
 % POSITIVE SIDE OF THE FINAL ENVELOPE
 syms a b c V
 a        = rho0 * CLMAX_clean;
-b        = rho_operative * CLalfa * KG * Ude_cruise;
+b        = rho0 * CLalfa * KG * Ude_cruise;
 c        = 2 * WS; 
 eqn      = a * V^2 - b * V - c ;
 Solution = vpasolve(eqn, V);
@@ -800,7 +800,7 @@ for i = 1:length(Solution)
             nA1 = nmax; 
             % Cruise speed
             VC  = VC;
-            nC  = nGust(rho_operative, VC, CLalfa, KG, Ude_cruise, WS);
+            nC  = nGust(rho0, VC, CLalfa, KG, Ude_cruise, WS);
             
             % FROM 0 TO S
             n_from0toS = linspace(0.0, nS, numb)';
@@ -858,7 +858,7 @@ for i = 1:length(Solution)
             if max(n_gust_cruise_plus) > nmax
                 % FROM A1 TO C1 
                 V_test       = linspace(VA1, VC, numb)';
-                n_test       = nGust(rho_operative, V_test, CLalfa, KG, Ude_cruise, WS);
+                n_test       = nGust(rho0, V_test, CLalfa, KG, Ude_cruise, WS);
                 tol          = 1e-3;
                 for i = 1:length(V_test)
                     x = n_test(i);
@@ -874,7 +874,7 @@ for i = 1:length(Solution)
             
                 % FROM C1 TO C 
                 V_fromC1toC = linspace(VC1, VC, numb)';
-                n_fromC1toC = nGust(rho_operative, V_fromC1toC, CLalfa, KG, Ude_cruise, WS);
+                n_fromC1toC = nGust(rho0, V_fromC1toC, CLalfa, KG, Ude_cruise, WS);
                 VC          = V_fromC1toC(end);
                 nC          = n_fromC1toC(end);
 
@@ -1171,7 +1171,7 @@ for i = 1:length(Solution)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Straight_flight.value = 'Case 2';
             
             VA1 = new_VA;
-            nA1 = nGust(rho_operative, VA1, CLalfa, KG, Ude_cruise, WS);
+            nA1 = nGust(rho0, VA1, CLalfa, KG, Ude_cruise, WS);
             disp(" ")
             % Input to the flight envelope
             Data1 = [  VA1, ...            % Resulting Design Manoeuvring airspeed VA
@@ -1193,8 +1193,8 @@ for i = 1:length(Solution)
 
             % FROM A1 TO C
             V_fromA1toC = linspace(VA1, VC, numb)';
-            n_fromA1toC = nGust(rho_operative, V_fromA1toC, CLalfa, KG, Ude_cruise, WS);
-            nC         = n_fromA1toC(end);
+            n_fromA1toC = nGust(rho0, V_fromA1toC, CLalfa, KG, Ude_cruise, WS);
+            nC          = n_fromA1toC(end);
 
             % FROM C TO A2 
             p = polyfit([n_gust_cruise_plus(end) n_gust_dive_plus(end)], [V_gust_cruise(end) V_gust_dive(end)], 1);
@@ -1371,7 +1371,7 @@ end
 % NEGATIVE SIDE OF THE FINAL ENVELOPE
 syms a b c V
 a        = rho0 * CLMAX_clean_inverted;
-b        = rho_operative * CLalfa * KG * Ude_cruise;
+b        = rho0 * CLalfa * KG * Ude_cruise;
 c        = 2 * WS; 
 eqn      = a * V^2 + b * V - c;  
 Solution = vpasolve(eqn, V);
@@ -1390,7 +1390,7 @@ if check_s == 0
         nG = nmin; 
         % Cruise airspeed
         VF  = VF; 
-        nF  = nGust_inverted(rho_operative, VF, CLalfa, KG, Ude_cruise, WS);
+        nF  = nGust_inverted(rho0, VF, CLalfa, KG, Ude_cruise, WS);
 
         % FROM 0 TO S_INVERTED 
         nS_inv        = -1.0;
@@ -1404,7 +1404,7 @@ if check_s == 0
 
         % FROM G TO G1 
         V_test = linspace(VG, VF, numb)';
-        n_test = nGust_inverted(rho_operative, V_test, CLalfa, KG, Ude_cruise, WS);
+        n_test = nGust_inverted(rho0, V_test, CLalfa, KG, Ude_cruise, WS);
         tol    = 1e-3;
         for i = 1:length(V_test) 
             if abs(abs(n_test(i)) - abs(nmin)) < tol
@@ -1417,7 +1417,7 @@ if check_s == 0
 
         % FROM G1 TO F 
         V_fromG1toF = linspace(VG1, VF, numb)';
-        n_fromG1toF = nGust_inverted(rho_operative, V_fromG1toF, CLalfa, KG, Ude_cruise, WS);
+        n_fromG1toF = nGust_inverted(rho0, V_fromG1toF, CLalfa, KG, Ude_cruise, WS);
         nG1         = n_fromG1toF(1);
 
         % FROM F TO G2
@@ -1767,10 +1767,10 @@ elseif check_s == 1
         if (Solution(i) > 0) && (Solution(i) > VG)
             new_VG = cast(abs(Solution(i)), 'double');
             VG1    = new_VG;
-            nG1    = nGust_inverted(rho_operative, VG1, CLalfa, KG, Ude_cruise, WS);
+            nG1    = nGust_inverted(rho0, VG1, CLalfa, KG, Ude_cruise, WS);
             % Cruise airspeed
             VF  = VF; 
-            nF  = nGust_inverted(rho_operative, VF, CLalfa, KG, Ude_cruise, WS);
+            nF  = nGust_inverted(rho0, VF, CLalfa, KG, Ude_cruise, WS);
 
             % FROM 0 TO S_INVERTED 
             nS_inv        = -1.0;
@@ -1784,7 +1784,7 @@ elseif check_s == 1
 
             % FROM G1 TO F 
             V_fromG1toF = linspace(VG1, VF, numb)';
-            n_fromG1toF = nGust_inverted(rho_operative, V_fromG1toF, CLalfa, KG, Ude_cruise, WS);
+            n_fromG1toF = nGust_inverted(rho0, V_fromG1toF, CLalfa, KG, Ude_cruise, WS);
 
             % FROM F TO E
             n_fromFtoE = linspace(n_fromG1toF(end), n_gust_dive_neg(end), numb)';
