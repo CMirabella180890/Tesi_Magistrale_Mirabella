@@ -168,7 +168,9 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'cr_c_root', ...
          'cr_c_tip', ...
          'eta_inner_rudder', ...
-         'eta_outer_rudder'};
+         'eta_outer_rudder', ...
+         'c_kink_one', ...
+         'c_kink_two'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -563,6 +565,12 @@ if LengthIndex==length(VarText)
     p = strcmp('eta_outer_rudder', label);
     Aircraft.Geometry.Rudder.eta_outer.value = str2double(table2array(value(p==1, 1))); 
     Aircraft.Geometry.Rudder.eta_outer.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('c_kink_one', label);
+    Aircraft.Geometry.Wing.kinks.chord_kink_one.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Wing.kinks.chord_kink_one.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('c_kink_two', label);
+    Aircraft.Geometry.Wing.kinks.chord_kink_two.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Wing.kinks.chord_kink_two.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;
