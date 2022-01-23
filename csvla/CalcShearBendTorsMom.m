@@ -248,13 +248,21 @@ switch (Straight_flight_Case)
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
                 
             elseif (kink1 == kink2)
-                % Main wing taper ratio
-                ctip        = Aircraft.Geometry.Wing.ctip.value;
-                croot       = Aircraft.Geometry.Wing.croot.value;
-                taper_ratio = ctip/croot;
-                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Geometry.Wing.taper.value = taper_ratio;
-                Aircraft.Geometry.Wing.taper.Attributes.unit = "Non dimensional";
+                % FROM ROOT TO KIN
+                ctip_section1        = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                croot_section1       = Aircraft.Geometry.Wing.croot.value;
+                taper_ratio_section1 = ctip_section1 / croot_section1;
+                % FROM KINK TO TIP
+                ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+                croot_section2       = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                taper_ratio_section2 = ctip_section2 / croot_section2;
+                
+                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+                Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+                Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+                Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+                Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+                
                 % Calculation of a chord distribution with a convenient, simple function.
                 % 
                 % c(y) = calc_chord(Swing, taper_ratio, span, y)
@@ -262,9 +270,10 @@ switch (Straight_flight_Case)
                 % ShearBendingTorsion.m
                 S           = Aircraft.Geometry.Wing.S.value;
                 b           = Aircraft.Geometry.Wing.b.value;
-                chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+                chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+                chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                 % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
             end
 
@@ -1253,13 +1262,21 @@ switch (Straight_flight_Case)
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
                 
             elseif (kink1 == kink2)
-                % Main wing taper ratio
-                ctip        = Aircraft.Geometry.Wing.ctip.value;
-                croot       = Aircraft.Geometry.Wing.croot.value;
-                taper_ratio = ctip/croot;
-                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Geometry.Wing.taper.value = taper_ratio;
-                Aircraft.Geometry.Wing.taper.Attributes.unit = "Non dimensional";
+                % FROM ROOT TO KIN
+                ctip_section1        = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                croot_section1       = Aircraft.Geometry.Wing.croot.value;
+                taper_ratio_section1 = ctip_section1 / croot_section1;
+                % FROM KINK TO TIP
+                ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+                croot_section2       = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                taper_ratio_section2 = ctip_section2 / croot_section2;
+                
+                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+                Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+                Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+                Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+                Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+                
                 % Calculation of a chord distribution with a convenient, simple function.
                 % 
                 % c(y) = calc_chord(Swing, taper_ratio, span, y)
@@ -1267,9 +1284,10 @@ switch (Straight_flight_Case)
                 % ShearBendingTorsion.m
                 S           = Aircraft.Geometry.Wing.S.value;
                 b           = Aircraft.Geometry.Wing.b.value;
-                chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+                chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+                chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                 % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
             end
         
@@ -2002,15 +2020,23 @@ switch (Straight_flight_Case)
                 % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
-                
+                chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
             elseif (kink1 == kink2)
-                % Main wing taper ratio
-                ctip        = Aircraft.Geometry.Wing.ctip.value;
-                croot       = Aircraft.Geometry.Wing.croot.value;
-                taper_ratio = ctip/croot;
-                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Geometry.Wing.taper.value = taper_ratio;
-                Aircraft.Geometry.Wing.taper.Attributes.unit = "Non dimensional";
+                % FROM ROOT TO KIN
+                ctip_section1        = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                croot_section1       = Aircraft.Geometry.Wing.croot.value;
+                taper_ratio_section1 = ctip_section1 / croot_section1;
+                % FROM KINK TO TIP
+                ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+                croot_section2       = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                taper_ratio_section2 = ctip_section2 / croot_section2;
+                
+                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+                Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+                Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+                Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+                Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+                
                 % Calculation of a chord distribution with a convenient, simple function.
                 % 
                 % c(y) = calc_chord(Swing, taper_ratio, span, y)
@@ -2018,11 +2044,13 @@ switch (Straight_flight_Case)
                 % ShearBendingTorsion.m
                 S           = Aircraft.Geometry.Wing.S.value;
                 b           = Aircraft.Geometry.Wing.b.value;
-                chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+                chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+                chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                 % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
-            end    
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
+                chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+            end
             % =================================================================
             
         %% POINT S CALCULATIONS                 
@@ -2875,13 +2903,21 @@ switch (Inverted_flight_Case)
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
                 
             elseif (kink1 == kink2)
-                % Main wing taper ratio
-                ctip        = Aircraft.Geometry.Wing.ctip.value;
-                croot       = Aircraft.Geometry.Wing.croot.value;
-                taper_ratio = ctip/croot;
-                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Geometry.Wing.taper.value = taper_ratio;
-                Aircraft.Geometry.Wing.taper.Attributes.unit = "Non dimensional";
+                % FROM ROOT TO KIN
+                ctip_section1        = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                croot_section1       = Aircraft.Geometry.Wing.croot.value;
+                taper_ratio_section1 = ctip_section1 / croot_section1;
+                % FROM KINK TO TIP
+                ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+                croot_section2       = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                taper_ratio_section2 = ctip_section2 / croot_section2;
+                
+                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+                Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+                Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+                Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+                Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+                
                 % Calculation of a chord distribution with a convenient, simple function.
                 % 
                 % c(y) = calc_chord(Swing, taper_ratio, span, y)
@@ -2889,9 +2925,10 @@ switch (Inverted_flight_Case)
                 % ShearBendingTorsion.m
                 S           = Aircraft.Geometry.Wing.S.value;
                 b           = Aircraft.Geometry.Wing.b.value;
-                chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+                chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+                chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                 % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
             end
             
@@ -4059,13 +4096,21 @@ switch (Inverted_flight_Case)
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
                 
             elseif (kink1 == kink2)
-                % Main wing taper ratio
-                ctip        = Aircraft.Geometry.Wing.ctip.value;
-                croot       = Aircraft.Geometry.Wing.croot.value;
-                taper_ratio = ctip/croot;
-                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Geometry.Wing.taper.value = taper_ratio;
-                Aircraft.Geometry.Wing.taper.Attributes.unit = "Non dimensional";
+                % FROM ROOT TO KIN
+                ctip_section1        = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                croot_section1       = Aircraft.Geometry.Wing.croot.value;
+                taper_ratio_section1 = ctip_section1 / croot_section1;
+                % FROM KINK TO TIP
+                ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+                croot_section2       = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                taper_ratio_section2 = ctip_section2 / croot_section2;
+                
+                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+                Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+                Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+                Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+                Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+                
                 % Calculation of a chord distribution with a convenient, simple function.
                 % 
                 % c(y) = calc_chord(Swing, taper_ratio, span, y)
@@ -4073,9 +4118,10 @@ switch (Inverted_flight_Case)
                 % ShearBendingTorsion.m
                 S           = Aircraft.Geometry.Wing.S.value;
                 b           = Aircraft.Geometry.Wing.b.value;
-                chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+                chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+                chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                 % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
             end
             
@@ -5084,13 +5130,21 @@ switch (Inverted_flight_Case)
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
                 
             elseif (kink1 == kink2)
-                % Main wing taper ratio
-                ctip        = Aircraft.Geometry.Wing.ctip.value;
-                croot       = Aircraft.Geometry.Wing.croot.value;
-                taper_ratio = ctip/croot;
-                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Geometry.Wing.taper.value = taper_ratio;
-                Aircraft.Geometry.Wing.taper.Attributes.unit = "Non dimensional";
+                % FROM ROOT TO KIN
+                ctip_section1        = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                croot_section1       = Aircraft.Geometry.Wing.croot.value;
+                taper_ratio_section1 = ctip_section1 / croot_section1;
+                % FROM KINK TO TIP
+                ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+                croot_section2       = Aircraft.Geometry.Wing.kinks.chord_kink_one.value;
+                taper_ratio_section2 = ctip_section2 / croot_section2;
+                
+                % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+                Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+                Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+                Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+                Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+                
                 % Calculation of a chord distribution with a convenient, simple function.
                 % 
                 % c(y) = calc_chord(Swing, taper_ratio, span, y)
@@ -5098,11 +5152,12 @@ switch (Inverted_flight_Case)
                 % ShearBendingTorsion.m
                 S           = Aircraft.Geometry.Wing.S.value;
                 b           = Aircraft.Geometry.Wing.b.value;
-                chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+                chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+                chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                 % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
-            end   
+            end
         
         %% POINT S_inv CALCULATIONS                 
         % Lift coefficient distribution along the span at the Point S_inv
