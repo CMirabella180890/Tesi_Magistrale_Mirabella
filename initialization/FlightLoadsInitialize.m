@@ -285,6 +285,8 @@ Aircraft.Geometry.Wing.camberloc.value = NaN;
 Aircraft.Geometry.Wing.camberloc.Attributes.unit = "percentage";
 Aircraft.Geometry.Wing.thickchord.value = NaN; 
 Aircraft.Geometry.Wing.thickchord.Attributes.unit = "percentage";
+Aircraft.Geometry.Wing.type.value = NaN; % <--- Flag could be: Rectangular, With_kinks
+Aircraft.Geometry.Wing.type.Attributes.unit = "flag"; 
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Vertical

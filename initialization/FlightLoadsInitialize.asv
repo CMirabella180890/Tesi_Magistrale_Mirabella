@@ -23,8 +23,10 @@ Aircraft.Certification.Regulation.Attributes.Date = NaN;                        
 Aircraft.Certification.Regulation.Attributes.Amendment = NaN;                       % -- 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value = NaN;            % FIRST OUTPUT FROM REGULATION: Maximum load factor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.Attributes.unit = "g's";  % Load factor are non dimensional number: L = n*W;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.Attributes.cs = " 337(a) ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.value = NaN;            % FIRST OUTPUT FROM REGULATION: Minimum load factor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.Attributes.unit = "g's";  % Load factor are non dimensional number: L = n*W;
+Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.Attributes.cs = " 337(b) ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Max_Continuous_Power_Speed_VH.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Max_Continuous_Power_Speed_VH.Attributes.unit = "m/s";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Min_Design_Cruise_Speed.value = NaN;
@@ -258,7 +260,7 @@ Aircraft.Geometry.Wing.secondary_sweep_location.Attributes.unit = 'percentage';
 Aircraft.Geometry.Wing.croot.value = NaN;     % root chord m
 Aircraft.Geometry.Wing.croot.Attributes.unit = 'm';
 Aircraft.Geometry.Wing.ctip.value = NaN;% tip chord m
-Aircraft.Geometry.Wing.ctip.Attributes.unit = 'meters';
+Aircraft.Geometry.Wing.ctip.Attributes.unit = 'm';
 Aircraft.Geometry.Wing.xle.value = NaN;      % wing leading edge as fraction of fuselage lenght in the simmetry plane
 Aircraft.Geometry.Wing.xle.Attributes.unit = '% fuselage length';
 Aircraft.Geometry.Wing.yle.value = NaN;      % wing leading edge as fraction of fuselage lenght in the simmetry plane
@@ -268,9 +270,9 @@ Aircraft.Geometry.Wing.zle.Attributes.unit = '% fuselage length';
 Aircraft.Geometry.Wing.xtip_le.value = NaN; % leading edge of tip chord in % of fuselage lenght
 Aircraft.Geometry.Wing.xtip_le.Attributes.unit = '% fuselage length';
 Aircraft.Geometry.Wing.dihedral.value = NaN; % geometric dihedral angle at c/4 in deg.
-Aircraft.Geometry.Wing.dihedral.Attributes.unit = 'degrees';
+Aircraft.Geometry.Wing.dihedral.Attributes.unit = 'deg';
 Aircraft.Geometry.Wing.mac.value = NaN;            % mean aerodynamic chord in meters
-Aircraft.Geometry.Wing.mac.Attributes.unit = 'meters';
+Aircraft.Geometry.Wing.mac.Attributes.unit = 'm';
 Aircraft.Geometry.Wing.xmac.value = NaN;           % x mac coordinate as function of fuselage length
 Aircraft.Geometry.Wing.xmac.Attributes.unit = '% fuselage length';
 Aircraft.Geometry.Wing.ymac.value = NaN;           % y mac coordinate as function of semispan
@@ -283,6 +285,8 @@ Aircraft.Geometry.Wing.camberloc.value = NaN;
 Aircraft.Geometry.Wing.camberloc.Attributes.unit = "percentage";
 Aircraft.Geometry.Wing.thickchord.value = NaN; 
 Aircraft.Geometry.Wing.thickchord.Attributes.unit = "percentage";
+Aircraft.Geometry.Wing.type.value = NaN; % <--- Flag could be: Rectangular, One kink
+Aircraft.Geometry.Wing.type.Attributes.unit = "flag"; 
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Vertical
@@ -345,7 +349,7 @@ Aircraft.Geometry.Fuselage.Radius_of_gyration.Attributes.unit = "m";
 Aircraft.Geometry.Horizontal.S.value = NaN;     % Horizontal span m2
 Aircraft.Geometry.Horizontal.S.Attributes.unit = "m^2";
 Aircraft.Geometry.Horizontal.l.value = NaN;     % tail arm in meters
-Aircraft.Geometry.Horizontal.l.Attributes.unit = 'meters';
+Aircraft.Geometry.Horizontal.l.Attributes.unit = 'm';
 Aircraft.Geometry.Horizontal.camber.value      = NaN; % [0 0];
 Aircraft.Geometry.Horizontal.camber.Attributes.unit = "percentage";
 Aircraft.Geometry.Horizontal.camberloc.value  = NaN; % [0.2 0.2];
@@ -353,7 +357,7 @@ Aircraft.Geometry.Horizontal.camberloc.Attributes.unit = "percentage";
 Aircraft.Geometry.Horizontal.thickchord.value = NaN; % [0.12 0.12];
 Aircraft.Geometry.Horizontal.thickchord.Attributes.unit = "percentage";
 Aircraft.Geometry.Horizontal.twist.value       = NaN; % [0 0];
-Aircraft.Geometry.Horizontal.twist.Attributes.unit = "degrees";
+Aircraft.Geometry.Horizontal.twist.Attributes.unit = "deg";
 Aircraft.Geometry.Horizontal.twistloc.value    = NaN; % [0.25 0.25];
 Aircraft.Geometry.Horizontal.twistloc.Attributes.unit = "percentage";
 Aircraft.Geometry.Horizontal.xloc0.value       = NaN; % 1.49;
@@ -376,13 +380,13 @@ Aircraft.Geometry.Horizontal.ctip.value        = NaN; % 0.3136;
 Aircraft.Geometry.Horizontal.ctip.Attributes.unit = "m";
 Aircraft.Geometry.Horizontal.croot.value       = NaN; % 0.3929;
 Aircraft.Geometry.Horizontal.sweep.value       = NaN; % 15;
-Aircraft.Geometry.Horizontal.sweep.Attributes.unit = "degrees";
+Aircraft.Geometry.Horizontal.sweep.Attributes.unit = "deg";
 Aircraft.Geometry.Horizontal.sweeploc.value    = NaN; % 0;
 Aircraft.Geometry.Horizontal.sweeploc.Attributes.unit = "percentage";
 Aircraft.Geometry.Horizontal.secsweeploc.value = 1.0;
 Aircraft.Geometry.Horizontal.secsweeploc.Attributes.unit = "percentage";
 Aircraft.Geometry.Horizontal.dihedral.value    = NaN; % 0;
-Aircraft.Geometry.Horizontal.dihedral.Attributes.unit = "degrees";
+Aircraft.Geometry.Horizontal.dihedral.Attributes.unit = "deg";
 % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Aircraft.Geometry.Horizontal.Movable.eta_inner.value = NaN;
 % Aircraft.Geometry.Horizontal.Movable.eta_inner.Attributes.unit = "percentage";
@@ -393,7 +397,7 @@ Aircraft.Geometry.Horizontal.dihedral.Attributes.unit = "degrees";
 % Aircraft.Geometry.Horizontal.Movable.cf_c_outer.value = NaN;
 % Aircraft.Geometry.Horizontal.Movable.cf_c_outer.Attributes.unit = "percentage";
 % Aircraft.Geometry.Horizontal.Movable.max_deflection.value = 25.0;
-% Aircraft.Geometry.Horizontal.Movable.max_deflection.Attributes.unit = "degrees";
+% Aircraft.Geometry.Horizontal.Movable.max_deflection.Attributes.unit = "deg";
 % Aircraft.Geometry.Horizontal.Movable.total_deflection_time.value = NaN;
 % Aircraft.Geometry.Horizontal.Movable.total_deflection_time.Attributes.unit = "seconds";
 % Aircraft.Geometry.Horizontal.Movable.total_deflection_time.Attributes.flag1 = "Commuter";
@@ -416,7 +420,7 @@ Aircraft.Geometry.Elevator.cf_c_inner.Attributes.unit = "percentage";
 Aircraft.Geometry.Elevator.cf_c_outer.value = NaN;
 Aircraft.Geometry.Elevator.cf_c_outer.Attributes.unit = "percentage";
 Aircraft.Geometry.Elevator.max_deflection.value = 25.0;
-Aircraft.Geometry.Elevator.max_deflection.Attributes.unit = "degrees";
+Aircraft.Geometry.Elevator.max_deflection.Attributes.unit = "deg";
 Aircraft.Geometry.Elevator.total_deflection_time.value = NaN;
 Aircraft.Geometry.Elevator.total_deflection_time.Attributes.unit = "seconds";
 Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag1 = "Normal";
@@ -431,7 +435,7 @@ Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 = "Wheel";
 % Aircraft.Geometry.Movable.Horizontal.cf_c_outer.value = NaN;
 % Aircraft.Geometry.Movable.Horizontal.cf_c_outer.Attributes.unit = "percentage";
 % Aircraft.Geometry.Movable.Horizontal.max_deflection.value = 25.0;
-% Aircraft.Geometry.Movable.Horizontal.max_deflection.Attributes.unit = "degrees";
+% Aircraft.Geometry.Movable.Horizontal.max_deflection.Attributes.unit = "deg";
 % Aircraft.Geometry.Movable.Horizontal.total_deflection_time.value = NaN;
 % Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.unit = "seconds";
 % Aircraft.Geometry.Movable.Horizontal.total_deflection_time.Attributes.flag1 = "Commuter";
@@ -442,7 +446,7 @@ Aircraft.Geometry.Elevator.total_deflection_time.Attributes.flag2 = "Wheel";
 % MAX AILERON FLAP DEFLECTION
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Aircraft.Geometry.Aileron.Max_deflection.value = 15.0; 
-Aircraft.Geometry.Aileron.Max_deflection.Attributes.unit = "degrees";
+Aircraft.Geometry.Aileron.Max_deflection.Attributes.unit = "deg";
 % ----------------------------------------------------------------------------------
 % Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.value = NaN; 
 % Aircraft.Geometry.Aileron.Hinge_coefficients.C_h_delta_rad.Attributes.unit = "1/rad";
@@ -461,7 +465,7 @@ Aircraft.Geometry.Vertical.l_vt.Attributes.unit = "m";
 % Engine
 % -------------------------------------------------------------------------
 Aircraft.Geometry.Engine.Primary.Thrust_axes.value = NaN; % Engine Thrust line of action
-Aircraft.Geometry.Engine.Primary.Thrust_axes.Attributes.unit = 'meters';
+Aircraft.Geometry.Engine.Primary.Thrust_axes.Attributes.unit = 'm';
 % -------------------------------------------------------------------------
 % Weight
 % -------------------------------------------------------------------------
@@ -476,16 +480,16 @@ Aircraft.Weight.I_Level.W_Fuel.Attributes.unit = 'kg';
 Aircraft.Weight.I_Level.W_Crew.value = NaN;
 Aircraft.Weight.I_Level.W_Crew.Attributes.unit = 'kg';
 Aircraft.Weight.I_Level.IY.value = 100.0;
-Aircraft.Weight.I_Level.IY.Attributes.unit = "kg * squared meters";
+Aircraft.Weight.I_Level.IY.Attributes.unit = "kg * m^2";
 % -------------------------------------------------------------------------
 Aircraft.Certification.ISA_Condition.Sea_level.Altitude.value = NaN;
-Aircraft.Certification.ISA_Condition.Sea_level.Altitude.Attribute.unit = "m";
+Aircraft.Certification.ISA_Condition.Sea_level.Altitude.Attributes.unit = "m";
 % -------------------------------------------------------------------------
 Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.value = NaN;
-Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attribute.unit = "m";
+Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit = "m";
 % -------------------------------------------------------------------------
 Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.value = NaN;
-Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.Attribute.unit = "m";
+Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.Attributes.unit = "m";
 % -------------------------------------------------------------------------
 Aircraft.Certification.Performance.I_Level.Wing_loading_Eng.value = NaN;
 Aircraft.Certification.Performance.I_Level.Wing_loading_Eng.Attributes.unit = "psf";
