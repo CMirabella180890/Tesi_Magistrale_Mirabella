@@ -11,7 +11,7 @@ import mlreportgen.utils.*
 requirement = strcat('-',Aircraft.Certification.Regulation.value);
 
 op_altitude = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.value;
-op_altitude_un = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attribute.unit;
+op_altitude_un = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit;
 
 %% END DECLARATION
 

@@ -125,7 +125,7 @@ tp = TitlePage();
 % elseif any(phi)
 %     tp.Title = 'Conceptual Design of Turbo-Electric Aircraft';
 % else
-Title = ['Flight Loads: ', ' ',Aircraft.Certification.Aircraft_Name.value,' aircraft'];
+Title = ['Flight Loads: ', ' ', Aircraft.Certification.Aircraft_Name.value,' aircraft'];
 tp.Title = Title;
 %end
 %% Cover image

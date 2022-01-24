@@ -567,11 +567,11 @@ if LengthIndex==length(VarText)
     Aircraft.Geometry.Rudder.eta_outer.value = str2double(table2array(value(p==1, 1))); 
     Aircraft.Geometry.Rudder.eta_outer.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('c_kink_one', label);
-    Aircraft.Geometry.Wing.kinks.chord_kink_one.value = str2double(table2array(value(p==1, 1))); 
-    Aircraft.Geometry.Wing.kinks.chord_kink_one.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Geometry.Kinks.chord_kink_one.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Kinks.chord_kink_one.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('c_kink_two', label);
-    Aircraft.Geometry.Wing.kinks.chord_kink_two.value = str2double(table2array(value(p==1, 1))); 
-    Aircraft.Geometry.Wing.kinks.chord_kink_two.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Geometry.Kinks.chord_kink_two.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Kinks.chord_kink_two.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('wing_type', label);
     Aircraft.Geometry.Wing.type.value = char(table2array(value(p==1,1)));
 end

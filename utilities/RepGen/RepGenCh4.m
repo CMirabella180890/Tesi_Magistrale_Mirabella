@@ -352,11 +352,11 @@ cd ..
 
 cd (RepDir);
 
-fig = FormalImage([results_path,'Polars.png']);
-         fig.Caption = 'Wing-Body reference Aerodynamics';
-         fig.Height = '5in';
-         fig.LinkTarget='polars_wb';
-         add(sec,fig);
+% fig = FormalImage([results_path,'Polars.png']);
+%          fig.Caption = 'Wing-Body reference Aerodynamics';
+%          fig.Height = '5in';
+%          fig.LinkTarget='polars_wb';
+%          add(sec,fig);
 
 add(ch,sec);
 

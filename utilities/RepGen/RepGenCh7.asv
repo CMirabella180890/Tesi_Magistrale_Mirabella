@@ -8,7 +8,7 @@ import mlreportgen.utils.*
 %% DECLARATION, DATA AND ASSUMPTIONTS CH5:
 
 %reference AMC
-requirement = strcat(' ', Aircraft.Certification.Regulation.value);
+requirement = strcat('-',Aircraft.Certification.Regulation.value);
 
 nmax = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value;
 nmin = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.value;
@@ -51,14 +51,13 @@ disp(['Chapter 7', (' "'), ch.Title,('" ') ,'writing...' ])
 
 switch requirement
     % CASE 1: Very Light Aircraft
-    case 'CSVLA'
+    case '-CSVLA'
         %1
-        str = strcat('According to ',...
+        str = strcat('According to',...
             requirement,...
-            ' -', Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.Attributes.cs, ...
+            '-', Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.Attributes.cs, ...
             ', the positive limit manoeuvring load factor n may not be less than 3·8', ...
-            ', while, according to ', requirement, ' -', Aircraft.Certification.Regulation.SubpartC.Flightloads.nmin.Attributes.cs, ... 
-            ' the negative limit manoeuvring load factor may not be less than -1·5.');
+            ', while, The negative limit manoeuvring load factor may not be less than -1·5.)');
         %2
         str2 = strcat('The following value will be considered: ');
         %ordered list
@@ -361,7 +360,7 @@ switch requirement
         
         add(ch,sec);
         % CASE 2: CS23
-    case 'CS23'
+    case '-CS23'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
@@ -374,7 +373,7 @@ switch requirement
         add(ch,para2)
         
         % CASE 3: CS25
-    case 'CS25'
+    case '-CS25'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
@@ -387,7 +386,7 @@ switch requirement
         add(ch,para2)
         
         % CASE CS22
-    case 'CS22'
+    case '-CS22'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
@@ -400,7 +399,7 @@ switch requirement
         add(ch,para2)
         
         % CASE CSLSA
-    case 'CSLSA'
+    case '-CSLSA'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
