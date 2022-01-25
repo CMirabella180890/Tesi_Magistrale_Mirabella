@@ -21,6 +21,7 @@ Aircraft.Certification.Aircraft_Name.Attributes.designer = NaN;
 Aircraft.Certification.Regulation.value = NaN;                                      % Selected regulation
 Aircraft.Certification.Regulation.Attributes.Date = NaN;                            % Optional field, to keep note of the actual regulation implemented
 Aircraft.Certification.Regulation.Attributes.Amendment = NaN;                       % -- 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Attributes.cs = " 321 ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value = NaN;            % FIRST OUTPUT FROM REGULATION: Maximum load factor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.Attributes.unit = "g's";  % Load factor are non dimensional number: L = n*W;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.Attributes.cs = " 337(a) ";

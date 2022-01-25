@@ -211,8 +211,8 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
       
-            kink1     = Aircraft.Geometry.Kinks.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Kinks.chord_kink_two.value;
+            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
             wing_type = Aircraft.Geometry.Wing.type.value;
             switch (wing_type)
                 case 'Rectangular'
@@ -242,16 +242,16 @@ switch (Straight_flight_Case)
                 case 'With_kinks'
                     if (kink1 ~= kink2)
                         % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Kinks.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
                         % WING THIRD SECTION - CHORDS
                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Kinks.chord_kink_two.value;
+                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
                         taper_ratio_section3 = ctip_section3 / croot_section3;
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
@@ -276,12 +276,12 @@ switch (Straight_flight_Case)
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % FROM KINK TO TIP
                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
 
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
@@ -1253,8 +1253,8 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
 
-            kink1     = Aircraft.Geometry.Kinks.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Kinks.chord_kink_two.value;
+            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
             wing_type = Aircraft.Geometry.Wing.type.value;
             switch (wing_type)
                 case 'Rectangular'
@@ -1284,16 +1284,16 @@ switch (Straight_flight_Case)
                 case 'With_kinks'
                     if (kink1 ~= kink2)
                         % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Kinks.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
                         % WING THIRD SECTION - CHORDS
                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Kinks.chord_kink_two.value;
+                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
                         taper_ratio_section3 = ctip_section3 / croot_section3;
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
@@ -1318,12 +1318,12 @@ switch (Straight_flight_Case)
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % FROM KINK TO TIP
                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
 
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
@@ -2041,8 +2041,8 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
         
-            kink1     = Aircraft.Geometry.Kinks.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Kinks.chord_kink_two.value;
+            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
             wing_type = Aircraft.Geometry.Wing.type.value;
             switch (wing_type)
                 case 'Rectangular'
@@ -2072,16 +2072,16 @@ switch (Straight_flight_Case)
                 case 'With_kinks'
                     if (kink1 ~= kink2)
                         % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Kinks.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
                         % WING THIRD SECTION - CHORDS
                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Kinks.chord_kink_two.value;
+                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
                         taper_ratio_section3 = ctip_section3 / croot_section3;
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
@@ -2106,12 +2106,12 @@ switch (Straight_flight_Case)
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % FROM KINK TO TIP
                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
 
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
@@ -2949,8 +2949,8 @@ switch (Inverted_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
 
-            kink1     = Aircraft.Geometry.Kinks.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Kinks.chord_kink_two.value;
+            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
             wing_type = Aircraft.Geometry.Wing.type.value;
             switch (wing_type)
                 case 'Rectangular'
@@ -2980,16 +2980,16 @@ switch (Inverted_flight_Case)
                 case 'With_kinks'
                     if (kink1 ~= kink2)
                         % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Kinks.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
                         % WING THIRD SECTION - CHORDS
                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Kinks.chord_kink_two.value;
+                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
                         taper_ratio_section3 = ctip_section3 / croot_section3;
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
@@ -3014,12 +3014,12 @@ switch (Inverted_flight_Case)
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % FROM KINK TO TIP
                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
 
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
@@ -4170,8 +4170,8 @@ switch (Inverted_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
 
-            kink1     = Aircraft.Geometry.Kinks.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Kinks.chord_kink_two.value;
+            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
             wing_type = Aircraft.Geometry.Wing.type.value;
             switch (wing_type)
                 case 'Rectangular'
@@ -4201,16 +4201,16 @@ switch (Inverted_flight_Case)
                 case 'With_kinks'
                     if (kink1 ~= kink2)
                         % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Kinks.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
                         % WING THIRD SECTION - CHORDS
                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Kinks.chord_kink_two.value;
+                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
                         taper_ratio_section3 = ctip_section3 / croot_section3;
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
@@ -4235,12 +4235,12 @@ switch (Inverted_flight_Case)
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % FROM KINK TO TIP
                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
 
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
@@ -5232,8 +5232,8 @@ switch (Inverted_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
         
-            kink1     = Aircraft.Geometry.Kinks.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Kinks.chord_kink_two.value;
+            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
             wing_type = Aircraft.Geometry.Wing.type.value;
             switch (wing_type)
                 case 'Rectangular'
@@ -5263,16 +5263,16 @@ switch (Inverted_flight_Case)
                 case 'With_kinks'
                     if (kink1 ~= kink2)
                         % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Kinks.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
                         % WING THIRD SECTION - CHORDS
                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Kinks.chord_kink_two.value;
+                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
                         taper_ratio_section3 = ctip_section3 / croot_section3;
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
@@ -5297,12 +5297,12 @@ switch (Inverted_flight_Case)
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
                         taper_ratio_section1 = ctip_section1 / croot_section1;
                         % FROM KINK TO TIP
                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Kinks.chord_kink_one.value;
+                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
                         taper_ratio_section2 = ctip_section2 / croot_section2;
 
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                

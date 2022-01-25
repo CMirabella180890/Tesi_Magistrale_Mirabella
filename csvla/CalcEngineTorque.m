@@ -248,3 +248,5 @@ pitch_case_gyro_loads = Gyro_loads(prop_polar_mom, prop_rotational_speed_maxcont
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Gyroscopic_loads.pitch_case.value = pitch_case_gyro_loads; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Gyroscopic_loads.pitch_case.Attributes.unit = "daN * m"; 
 
+% REGULATION
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Gyroscopic_loads.Attributes.cs = " AMC 23.371(a) "; 
