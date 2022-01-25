@@ -136,22 +136,46 @@ para = Paragraph(str);
 add(sec,para);
 add(ch,sec);
 
+Engine_mount_mass       = Aircraft.Engine.Engine_mount_mass.value;
+Engine_accessories_mass = Aircraft.Engine.Engine_accessories_mass.value;
+Propeller_spinner_mass  = Aircraft.Propeller.Propeller_spinner_mass.value;
+Engine_block_mass       = Engine_mount_mass + Engine_accessories_mass + Propeller_spinner_mass;
+g                       = Aircraft.Constants.g.value;
+Total_side_load         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Side_loads.Total_side_load.value;
+
 %sec
 sec = Section();
 sec.Title = 'Side load on engine mount';
-str = ['ADD HERE details '];
+str = strcat(' The limit load factor in a lateral direction is 1.33. The mass ', ...
+       ' of the engine group is ', num2str(Engine_block_mass,4), ...
+       Aircraft.Engine.Engine_block_mass.Attributes.unit, '.', ...
+       ' The side load results is 1.33 * ', num2str(Engine_block_mass,4), ...
+       ' * ', num2str(g,4), ' * (1/10) = ', num2str(Total_side_load,4), ...
+       Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Side_loads.Total_side_load.Attributes.unit);
 para = Paragraph(str);
-add(ch,para);
+para.Style = {HAlign('justify')};
+add(sec,para);
+%add(ch,para);
 
 add(ch,sec);
 
 
+Gust_limit_load              = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.nA1.value;
+Inertia_load_on_engine_mount = Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Inertia_load_on_engine_mount.value;
+
 %sec
 sec = Section();
 sec.Title = 'Intertia load on engine mount';
-str = ['ADD HERE details '];
+
+str = strcat('The inertia load is equal to the maximum limit load factor ', ...
+    'times the engine group weight: ', num2str(Gust_limit_load,4), ...
+    '*', num2str(Engine_block_mass,4), '*', num2str(g,4), '*(1/10) = ', ...
+    num2str(Inertia_load_on_engine_mount,4), ...
+    Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_loads.Inertia_load_on_engine_mount.Attributes.unit);
+
 para = Paragraph(str);
-add(ch,para);
+para.Style = {HAlign('justify')};
+add(sec,para);
 
 add(ch,sec);
 
