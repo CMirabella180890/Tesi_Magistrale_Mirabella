@@ -36,6 +36,8 @@ Overswing_sideslip_angle = Aircraft.Certification.Regulation.SubpartC.VerticalTa
 CY_VTP_case_a2 = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_VTP.value;
 % LATERAL FORCE CASE (a)(2) 
 Y_case_a2 = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.Lateral_force_decanewton.value;
+% GUST AIRWORTHINESS REQUIREMENT
+gust_requirement = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.mu_g.Attributes.cs;
 
 
 % chapter_number = 12;
@@ -196,7 +198,7 @@ add(subsec,para);
         myNumEq = strcat( ' = (1/10)*', num2str(qA,4), '*', ...
                           num2str(S_vertical_total,4), '*', ...
                           num2str(CY_max_case_a1,4), '/', ...
-                          num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.value), ' = ', ...
+                          num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.value,4), ' = ', ...
                           num2str(Y_max,4), '\,\,', ...
                           Y_max_unit);
         % latex interprete with $ simbol
@@ -257,7 +259,7 @@ str = ['With the rudder deflected as specified in sub-paragraph '...
     (' ') ...
     strcat(num2str(Overswing_sideslip_angle)) ...
     (' ') ...
-    
+    char(rudder_control_stops_unit) ...
     '. The total lateral force acting on the vertical tail in this case is: ' ];
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
@@ -267,7 +269,7 @@ add(subsec,para);
         myNumEq = strcat( ' = (1/10)*', num2str(qA,4), '*', ...
                           num2str(S_vertical_total,4), '*', ...
                           num2str(CY_VTP_case_a2,4), '/', ...
-                          num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.value), ' = ', ...
+                          num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.value,4), ' = ', ...
                           num2str(Y_case_a2,4), '\,\,', ...
                           Y_max_unit);
         % latex interprete with $ simbol
@@ -315,7 +317,7 @@ add(subsec,para);
         myNumEq = strcat( ' = (1/10)*', num2str(qA,4), '*', ...
                           num2str(S_vertical_total,4), '*', ...
                           num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_VTP.value,4), '/', ...
-                          num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.value), ' = ', ...
+                          num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.value,4), ' = ', ...
                           num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.value,4), '\,\,', ...
                           Y_max_unit);
         % latex interprete with $ simbol
@@ -361,11 +363,269 @@ add(ch,sec);
 %sec
 sec = Section();
 sec.Title = 'Manouevring and gust envelope';
-str = ['ADD HERE details '];
+str = ['According to ' ...
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    char(gust_requirement) ...
+    ' in the abscence of a more rational analysis, the gust load must be ' ...
+    ' computed as follows:  '
+    ];
 para = Paragraph(str);
 add(sec,para);
 
+% -------------------------------------------------------------------------
+        % LATERAL FORCE COEFFICIENT ON THE RUDDER AT MAX DEFLECTION
+        % latex interprete with $ simbol
+        %
+        %             K_gt * U_de * V * a_vt * S_vt
+        %      L_vt = -----------------------------
+        %                          16.3
+        %
+        myEq = "$ L_{vt} = \frac{K_{gt} * U_{de} * V * a_{vt} * S_{vt}}{16.3} ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(sec,eqImg);
+% -------------------------------------------------------------------------    
+%sec
+str = ['where: '];
+para = Paragraph(str);
+add(sec,para);
+% -------------------------------------------------------------------------
 
+        % Ude
+        myEq = "$ U_{de} = \mathrm{derived gust velocity (m/s);}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg1 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref1 = eqImg1;         
+
+        % Lvt
+        myEq = "$ L_{vt} = \mathrm{vertical tail load (daN)}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg2 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref2 = eqImg2; 
+        
+        % Kgt
+        myEq = "$ K_{gt} = \frac{0.88 * \mu_{gt}}{5.3 + \mu_{gt}} = \mathrm{gust alleviation factor;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg3 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref3 = eqImg3;         
+        
+%                          2 * M                   K^2
+%      mu_gt = ------------------------------- * ------- = lat. mass ratio;
+%              rho * c_bar_t * g * a_vt * S_vt   (l_t^2)
+%              
+        % mu_gt
+        myEq = "$ \mu_{gt} = \frac{2 * M}{\rho * \overline{c}_{t} * g * a_{vt} * S_{vt}} * \frac{K^2}{l_{t}^{2}} = \mathrm{lateral mass ratio}; ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg4 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref4 = eqImg4;      
+%              M    = aeroplane mass (kg); 
+%              rho  = air density (kg/m^3); 
+%              S_vt = area of vertical tail (m^2);
+%              l_t  = distance from aeroplane c.g. to lift centre of
+%                     vertical surface (m); 
+%              a_vt = lift curve slope of vertical tail (1/rad); 
+%              V    = aeroplane equivalent speed (m/s); 
+%              K    = radius of gyration in yaw (m);
+%              g    = acceleration due to gravity (m/s^2).
+        % M
+        myEq = "$ M = \mathrm{aeroplane mass (kg)}; ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg5 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref5 = eqImg5; 
+        
+        % rho
+        myEq = "$ rho = \mathrm{air density} (kg/m^3); ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg6 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref6 = eqImg6; 
+        
+        % lt
+        myEq = "$ l_{t} = \mathrm{aeroplane c.g.-to-lift-centre of vertical surface distance} (m); ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg7 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref7 = eqImg7; 
+        
+        % Svt
+        myEq = "$ S_{vt} = \mathrm{area of vertical tail} (m^2); ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg8 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref8 = eqImg8; 
+        
+        % avt
+        myEq = "$ a_{vt} = \mathrm{lift curve slope of vertical tail} (1/rad); ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg9 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref9 = eqImg9; 
+        
+        % V
+        myEq = "$ V = \mathrm{aeroplane equivalent speed} (m/s); ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg10 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref10 = eqImg10; 
+        
+        % K
+        myEq = "$ K = \mathrm{radius of gyration in yaw} (m); ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg11 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref11 = eqImg11; 
+        
+        % g
+        myEq = "$ g = \mathrm{acceleration due to gravity} (m/s^2); ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg12 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref12 = eqImg12; 
+        
+        ol = UnorderedList({ref1, ref2, ref3, ref4, ...
+            ref5, ref6, ref7, ref8, ref9, ref10, ref11, ...
+            ref12});
+%         ol = UnorderedList({ref1,ref2,ref3,...
+%             ref4,ref5,ref6, ref7,ref8});
+%         ol = UnorderedList({ref1, ref2, ref3,...
+%             ref4,ref5,ref6, ref7, ref8, ref9});
+        append(sec,ol);
+% -------------------------------------------------------------------------   
+% CRITICAL GUST LOADS 
+gl_0    = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.Gust_loads_VC.value;
+gl_1    = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.value;
+gl_crit = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.value;
+gl_unit = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd.Gust_loads_VD.Attributes.unit;
+% -------------------------------------------------------------------------   
+%sec
+str = ['These calculations must be performed at VC and VD; the results are the following: '];
+para = Paragraph(str);
+add(sec,para);
+% -------------------------------------------------------------------------
+
+        %ordered list
+        ref1 = [' Gust load at VC: ' ...
+            (' ') ...
+            strcat(num2str(gl_0)) ...
+            (' ') ...
+            char(gl_unit)];
+        ref1 = [' Gust load at VD: ' ...
+            (' ') ...
+            strcat(num2str(gl_1)) ...
+            (' ') ...
+            char(gl_unit)];
+        ol = OrderedList({ref1, ref2});
+        
+%         %1
+%         para = Paragraph(str);
+%         para.Style = {HAlign('justify')};
+%         add(sec,para)
+%         %2
+%         para2 = Paragraph(str2);
+%         para2.Style = {HAlign('justify')};
+%         add(sec,para2)
+        %list
+        append(sec,ol);
+% -------------------------------------------------------------------------   
+%sec
+gl_flag = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.Attributes.flag;
+str = ['The critical gust load is ' ...
+    (' ') ...
+    strcat(num2str(gl_crit)) ...
+    (' ') ...
+    char(gl_unit) ...
+    ' at an airspeed equal to ' ...
+    (' ') ...
+    char(gl_flag];
+para = Paragraph(str);
+add(sec,para);
+% -------------------------------------------------------------------------
 add(ch,sec);
 
 

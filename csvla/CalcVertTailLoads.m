@@ -477,6 +477,7 @@ Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.mu_g.v
                                                                                         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.value, ...
                                                                                         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.value, ...
                                                                                         Aircraft.Geometry.Vertical.l_vt.value);
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.mu_g.Attributes.cs = " 443 ";
 % GUST ALLEVIATION FACTOR - VC
 k_g = @(mu_g) ((0.88)*mu_g)/(5.3 + mu_g);
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.K_g.value = k_g(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.mu_g.value);
@@ -538,11 +539,11 @@ gl_1 = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vd
 if (abs(gl_0)>abs(gl_1))
     Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.value = gl_0;
     Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.Attributes.unit = "daN";
-    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.Attributes.flag = "MAX GUST LOADS: AT VC";
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.Attributes.flag = " at VC";
 elseif (abs(gl_1)>abs(gl_0))
     Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.value = gl_1;
     Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.Attributes.unit = "daN";
-    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.Attributes.flag = "MAX GUST LOADS: AT VD";
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.Attributes.flag = " at VD";
 end
 
 % Horizontal tail loads increments
