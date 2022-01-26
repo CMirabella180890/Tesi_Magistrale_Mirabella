@@ -21,6 +21,15 @@ rudder_control_stops_unit = Aircraft.Certification.Regulation.SubpartC.VerticalT
 dCYddeltar_per_degree = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CYdr.value;
 % MAXIMU CY
 CY_max_case_a1 = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY.value;
+% DYNAMIC PRESSURE AT VA
+qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
+% VERTICAL TAIL WING SURFACE
+S_vertical_total = 2*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_vertical_tail.value;
+% VERTICAL TAIL WING SPAN 
+b_vertical = Aircraft.Geometry.Vertical.b.value;
+% MAX LATERAL FORCE
+Y_max      = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force_decanewton.value;
+Y_max_unit = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Lateral_force_decanewton.Attributes.unit;
 
 
 % chapter_number = 12;
@@ -160,6 +169,31 @@ add(subsec,para);
                           ' = ', num2str(CY_max_case_a1));
         % latex interprete with $ simbol
         myEq = "$ (C_Y)_{\delta_{r} = 30} ";
+        eq = Equation(strcat(myEq, myNumEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(subsec,eqImg);
+        % -----------------------------------------------------------------
+% -------------------------------------------------------------------------
+str = ['The lateral force is calculated as follow: '];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+        % -----------------------------------------------------------------
+        myNumEq = strcat( ' = (1/10) * ', num2str(qA,4), ' * ', ...
+                          num2str(S_vertical_total,4), ' * ', ...
+                          num2str(CY_max_case_a1,4), ' = ', ...
+                          num2str(Y_max,4), '\,\,', ...
+                          Y_max_unit);
+        % latex interprete with $ simbol
+        myEq = "$ Y = \frac{1}{10} * q_A * S_{vertical} * (C_Y)_{\delta_{r} = 30} ";
         eq = Equation(strcat(myEq, myNumEq));
         eq.DisplayInline = true;
         eq.FontSize = 12;
