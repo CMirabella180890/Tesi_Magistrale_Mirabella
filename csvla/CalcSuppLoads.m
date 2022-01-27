@@ -5,7 +5,7 @@
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 %  CS - VLA 447 COMBINED LOADS ON TAIL SURFACES 
 %  
-%  (a) With the aeroplane in a loading condition correspondint to point A
+%  (a) With the aeroplane in a loading condition corresponding to point A
 %      or point D in the V - n diagram (whichever condition leads to the
 %      higher balance load) the loads on the horizontal tail must be
 %      combined with those on the vertical tail as specified in CS - VLA
@@ -83,15 +83,16 @@ switch (Straight_flight_Case)
 
         if abs(Tailloads_subpar_a) > abs(Tailloads_subpar_b) 
             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_a;
+            Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.cs = " 447(a) ";
             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_rad.value;
             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_a.theta_deg.value;
         elseif abs(Tailloads_subpar_b) > abs(Tailloads_subpar_a) 
             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value = Tailloads_subpar_b;
+            Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.cs = " 447(b) ";
             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_rad.value;
             Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.value = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.subparagraph_b.theta_deg.value;
         end
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.unit = "daN";
-        Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.Attributes.cs = " 447 ";
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_rad.Attributes.unit = "rad";
         Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.theta_deg.Attributes.unit = "deg";
 

@@ -48,7 +48,7 @@
 %      system must be designed as follows:
 %
 %      (1) The flight control system and its supporting structure must be
-%          designed for loads corresponding to 125 % of the computed hing
+%          designed for loads corresponding to 125 % of the computed hinge
 %          moments of the movable control surface in the conditions
 %          prescribed in paragraph A11 of this Appendix. In addition, 
 %      
@@ -220,8 +220,10 @@ aileron_load_SI        = HA_total_SI / moment_arm;
 aileron_load_converted = HA_total_converted / moment_arm;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.value = aileron_load_SI;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.Attributes.cs = " A 13 ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.value = aileron_load_converted;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.Attributes.unit = "kg * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.Attributes.cs = " A 13 ";
 
 % Total horizontal tail increment
 disp(" ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ ")

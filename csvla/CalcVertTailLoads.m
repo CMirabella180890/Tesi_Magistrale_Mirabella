@@ -75,6 +75,9 @@ disp(" ---------------------------------------------------------------- ");
 %             f_n     = effectivity factor in accordance with angle of
 %                       rudder deflection
 
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.global_requirement.Attributes.cs  = " 441 ";
+Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.global_requirement.Attributes.amc = " AMC 441 "; 
+
 % APPLICABLE YAW ANGLE 
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.yaw_angle.value = 15.0;
 Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.yaw_angle.Attributes.unit = "deg";

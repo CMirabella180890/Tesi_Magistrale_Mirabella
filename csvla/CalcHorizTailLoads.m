@@ -1583,7 +1583,7 @@ label  = 'Critical conditions\n';
 fprintf(label);
 fprintf(format, Increment.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
-
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.general_rules.cs = " 423 "; 
 % COMMENTO IMPORTANTE PER LE PROSSIME SESSIONI: 
 % In questo momento, per come sono stati definiti i fattori di carico, non
 % vi sono differenze tra il caso V = VA ed il caso V = VD; questo può
