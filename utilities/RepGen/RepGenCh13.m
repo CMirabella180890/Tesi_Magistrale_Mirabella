@@ -40,7 +40,7 @@ Y_case_a2 = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_
 gust_requirement = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.vc.mu_g.Attributes.cs;
 
 
-% chapter_number = 12;
+% chapter_number = 13;
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
 ch.Title = 'Loads on the wing flaps';

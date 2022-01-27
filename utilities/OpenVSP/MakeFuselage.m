@@ -9,6 +9,8 @@ fprintf(fileid,'// fuselage \r\n\r\n');     % commenting
 
 % creating the fuselage
 fprintf(fileid,'%s\r\n\r\n',['string ' fuselage.id ' = AddGeom("' fuselage.type '");']);
+%shade
+fprintf(fileid,'%s\r\n\r\n',['SetGeomDrawType(' fuselage.id ', GEOM_DRAW_SHADE );']);                                                                       % Make component appear as shaded
 
 % setting length and diameter
 fprintf(fileid,'%s\r\n',['SetParmVal(' fuselage.id ',"Length","Design",' ...

@@ -1,0 +1,120 @@
+void main()
+
+{
+
+
+ //====  4 view png Screenshoot ====//
+   
+	SetViewAxis( false );                                           // Turn off axis marker in corner of viewscreen
+    SetBackground( 1.0, 1.0, 1.0 );                                 // Set background to bright white
+    SetShowBorders( false );                                        // Turn off red/black border on active window
+
+    int screenw = 2000;                                             // Set screenshot width and height
+    int screenh = 2000;
+
+    string veh = FindContainer( "Vehicle", 0 );                     // Find Vehicle container
+//	Print(veh);
+
+    string panx = FindParm( veh, "PanX", "AdjustView" );            // Find view Parms in Vehicle
+    string pany = FindParm( veh, "PanY", "AdjustView" );
+    string zoom = FindParm( veh, "Zoom", "AdjustView" );
+    string rotx = FindParm( veh, "RotationX", "AdjustView" );
+    string roty = FindParm( veh, "RotationY", "AdjustView" );
+    string rotz = FindParm( veh, "RotationZ", "AdjustView" );
+
+
+//==== Making all geometry Shaded ====// DO NOT PROPERLY WORK 
+//1 - Find and return all Geom IDs in the model
+// array< string > @geom_ids = FindGeoms();
+// string name_str = "Geom ID: " + geom_ids[0];
+// Print(name_str);
+// 2 - Find comp name
+// string name_str1 = "Geom Name: " + GetGeomName( geom_ids[0] );
+// Print(name_str1);
+
+// string wing = GetGeomName( geom_ids[0] );
+// Print(wing);
+// SetGeomDrawType( wing, GEOM_DRAW_SHADE );                       // Make pod appear as shaded
+// Update();
+
+//
+
+
+// DO NOT PROPERLY WORK 
+
+//==== Side view screen shoot Geometry ====//
+
+	SetParmVal( rotx, 90);
+	SetParmVal( roty, 0);
+	SetParmVal( rotz, 0);
+	SetParmVal( zoom, 0.01);
+	
+    Update();                                                   // Update model
+    
+	string fname2 = "side_view.png";
+ 	ScreenGrab( fname2, screenw, screenh, true );                // Take PNG screenshot
+
+//==== Top view screen shoot Geometry ====//
+	SetParmVal( rotx, 0);
+	SetParmVal( roty, 0);
+	SetParmVal( rotz, 0);
+	SetParmVal( zoom, 0.01);
+	string fname = "top_view.png";
+    Update();                                                   // Update model
+ 
+	ScreenGrab( fname, screenw, screenh, true );                // Take PNG screenshot
+
+
+//==== Side front screen shoot Geometry ====//
+	SetParmVal( rotx, 0);
+	SetParmVal( roty, -90);
+	SetParmVal( rotz, -90);
+	SetParmVal( zoom, 0.01);	
+    
+	Update();                                                   // Update model
+	Update();                                                   // Update model
+	string fname3 = "front_view.png";
+ 	ScreenGrab( fname3, screenw, screenh, true );                // Take PNG screenshot
+
+
+
+ //==== Default 4 View SVG Export ====//
+
+    string geom_id = FindContainer( "Vehicle", 0 );
+
+
+    Print( string( "---> Test Write 4 View" ) );
+    ExportFile( "SVG_4View.svg", SET_ALL, EXPORT_SVG );
+    Print( string( "---> Default 4 View Export Success: Saved as SVG_4View.svg" ) );
+    Print( string( "" ) );
+
+
+   //==== 1 View SVG Export ====//
+    SetParmVal( FindParm( geom_id, "ViewType", "SVGSettings" ), VIEW_1 );
+    SetParmVal( FindParm( geom_id, "TopLeftView", "SVGSettings" ), VIEW_TOP );
+    SetParmVal( FindParm( geom_id, "TopLeftRotation", "SVGSettings" ), ROT_90 );
+    Update();
+
+    Print( string( "---> Test Write 1 View" ) );
+    Print( string( "     Top view rotated 90 deg" ) );
+    ExportFile( "SVG_1View.svg", SET_ALL, EXPORT_SVG );
+    Print( string( "---> 2D 1 View Export Success: Saved as SVG_1View.svg" ) );
+    Print( string( "" ) );
+
+   //==== 2 Vertical View SVG Export ====//
+    SetParmVal( FindParm( geom_id, "ViewType", "SVGSettings" ), VIEW_2VER );
+    SetParmVal( FindParm( geom_id, "BottomLeftView", "SVGSettings" ), VIEW_REAR );
+    SetParmVal( FindParm( geom_id, "BottomLeftRotation", "SVGSettings" ), ROT_0 );
+    Update();
+
+    Print( string( "---> Test Write 2D 2 Vertical View" ) );
+    Print( string( "     Top: Top view rotated 90 deg, Bottom: Rear view rotated 0 deg" ) );
+    ExportFile( "SVG_2VView.svg", SET_ALL, EXPORT_SVG );
+    Print( string( "---> 2 Vertical View Export Success: Saved as SVG_2VView.svg" ) );
+    Print( string( "" ) );
+
+    //==== Open Each SVG File In A Viewer To Verify ====//
+    Print( string( "-> Open Each SVG File In A SVG Viewer To Verify" ) );
+    Print( string( "" ) );
+
+}

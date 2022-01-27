@@ -13,6 +13,10 @@ fprintf(fileid,['// ' pod.id ' ' num2str(i) '\r\n\r\n']);    % commenting
 fprintf(fileid,'%s\r\n\r\n',['string ' pod.id '_' num2str(i)...
     ' = AddGeom("' pod.type '");']);
 
+%shade
+fprintf(fileid,'%s\r\n\r\n',['SetGeomDrawType(' wing.id ', GEOM_DRAW_SHADE );']);
+                                                                           % Make component appear as shaded
+
 % setting width, height, length and thikness/chord
 fprintf(fileid,'%s\r\n',['SetParmVal(' pod.id '_' num2str(i)...
     ',"Length","Design",' num2str(pod.length(round(i/2))) ');']);

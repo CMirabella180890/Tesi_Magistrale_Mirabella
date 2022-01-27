@@ -6,7 +6,7 @@ function MoveResults(name,directory)
 
 fclose('all');
 movefile([name '.vspscript'],directory);
-movefile([name '_MassProps.txt'],directory);
+% movefile([name '_MassProps.txt'],directory);
 movefile([name '_DegenGeom.*'],directory);
 movefile([name '.vsp3'],directory);
 

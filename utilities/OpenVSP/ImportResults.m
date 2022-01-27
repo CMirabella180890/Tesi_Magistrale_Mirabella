@@ -29,12 +29,123 @@ res.CMn   = polar.data(:,20);
 % extract wing only aerodynamic loads for each angle of attack
 
 % number of rows to read for each angle of attack
-if isfield(ac,'hor') % if horizontal tail exist
-    nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
-        sum(ac.hor.utess)-length(ac.hor.utess);
-else % otherwise consider only wing
-    nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+% Same switch case of MakeVspscript
+switch ac.config                                   % writing vspecript file
+    case 'W'                                    % depending on configuration
+        nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+        
+    case 'WP'                                    % depending on configuration
+        nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+        
+    case 'WB'
+        nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+        
+    case 'WH'
+        nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+            sum(ac.hor.utess)-length(ac.hor.utess);
+    case 'WV'
+        % VSPAERO fails VTAIL loads when Vtail is in plane of simmetry
+        if ac.ver.yloc > 0.0
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.ver.utess)-length(ac.ver.utess);
+        else
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+        end
+    case 'WHP'
+        nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+            sum(ac.hor.utess)-length(ac.hor.utess);
+    case 'WHF'
+        nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+            sum(ac.hor.utess)-length(ac.hor.utess);
+    case 'WVP'
+        % VSPAERO fails VTAIL loads when Vtail is in plane of simmetry
+        if ac.ver.yloc > 0.0
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.ver.utess)-length(ac.ver.utess);
+        else
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+        end
+    case 'WVF'
+        % VSPAERO fails VTAIL loads when Vtail is in plane of simmetry
+        if ac.ver.yloc > 0.0
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.ver.utess)-length(ac.ver.utess);
+        else
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+        end
+    case 'WBH'
+        nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+            sum(ac.hor.utess)-length(ac.hor.utess);
+    case 'WBV'
+        % VSPAERO fails VTAIL loads when Vtail is in plane of simmetry
+        if ac.ver.yloc > 0.0
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.ver.utess)-length(ac.ver.utess);
+        else
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+        end 
+            case 'WBHP'
+                nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                    sum(ac.hor.utess)-length(ac.hor.utess);
+    case 'WBHF'
+        nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+            sum(ac.hor.utess)-length(ac.hor.utess);
+    case 'WBVP'
+        % VSPAERO fails VTAIL loads when Vtail is in plane of simmetry
+        if ac.ver.yloc > 0.0
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.ver.utess)-length(ac.ver.utess);
+        else
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+        end
+    case 'WBVF'
+        % VSPAERO fails VTAIL loads when Vtail is in plane of simmetry
+        if ac.ver.yloc > 0.0
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.ver.utess)-length(ac.ver.utess);
+        else
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+        end
+    case 'WBHV'
+        % VSPAERO fails VTAIL loads when Vtail is in plane of simmetry
+        if ac.ver.yloc > 0.0
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.hor.utess)-length(ac.hor.utess)+...
+                sum(ac.ver.utess)-length(ac.ver.utess);
+        else
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.hor.utess)-length(ac.hor.utess);
+        end
+    case 'WBHVP'
+        % VSPAERO fails VTAIL loads when Vtail is in plane of simmetry
+        if ac.ver.yloc > 0.0
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.hor.utess)-length(ac.hor.utess)+...
+                sum(ac.ver.utess)-length(ac.ver.utess);
+        else
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.hor.utess)-length(ac.hor.utess);
+        end
+    case 'WBHVF'
+        % VSPAERO fails VTAIL loads when Vtail is in plane of simmetry
+        if ac.ver.yloc > 0.0
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.hor.utess)-length(ac.hor.utess)+...
+                sum(ac.ver.utess)-length(ac.ver.utess);
+        else
+            nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+                sum(ac.hor.utess)-length(ac.hor.utess);
+        end
 end
+
+% if isfield(ac,'hor') % if horizontal tail exist
+%     nRows = sum(ac.wing.utess)-length(ac.wing.utess) + ...
+%         sum(ac.hor.utess)-length(ac.hor.utess);
+% else % otherwise consider only wing
+%     nRows = sum(ac.wing.utess)-length(ac.wing.utess);
+% end
+
+%nRows
 
 % number of lines to skip depending on the number of components
 % (for some reason PodGeom are duplicates in addition to symmetry - at least in v3.19)
@@ -46,7 +157,9 @@ for ii = 1:length(nomi)
     if isstruct(ac.(nomi{ii}))
         vspID = ac.(nomi{ii}).id;
         if (~isempty(strfind(ac.config,'W')) && strcmp(vspID,'wing')) || ...
-                (~isempty(strfind(ac.config,'H')) && strcmp(vspID,'horizontal'))
+                (~isempty(strfind(ac.config,'H')) && strcmp(vspID,'horizontal')) || ...
+                (~isempty(strfind(ac.config,'V')) && strcmp(vspID,'vertical'))&& ac.ver.yloc > 0.0
+            
             nWing = nWing + 1;
         end
         if ~isempty(strfind(ac.config,'B')) && strcmp(vspID,'fuselage')
@@ -58,7 +171,12 @@ for ii = 1:length(nomi)
     end
 end
 
-nLines = 18 +  + nRows+ nWing + nFuse + nPod;
+% nRows
+% nWing
+% nFuse
+% nPod
+
+nLines = 18  + nRows+ nWing + nFuse + nPod;
 
 if length(res.CL) > 1
     startRow = [18, 18+(1:(length(res.CL)-1))*nLines];
@@ -75,8 +193,8 @@ for ii = 1:length(res.CL)
     for jj = 1:sum(ac.wing.utess)-length(ac.wing.utess) % only wing 1
         res.Yavg(ii,jj) = loads(jj,3);
         res.Cl(ii,jj)   = loads(jj,6);
-        res.Cd(ii,jj)   = loads(jj,7);
-        res.Cmy(ii,jj)   = loads(jj,13);
+        res.Cd(ii,jj)   = loads(jj,7); %
+        res.Cmy(ii,jj)   = loads(jj,13); %
     end
 end
 

@@ -11,6 +11,10 @@ fprintf(fileid,['// ' wing.id '\r\n\r\n']);    % commenting
 
 % creating one-panel wing
 fprintf(fileid,'%s\r\n\r\n',['string ' wing.id ' = AddGeom("' wing.type '");']);
+%shade
+fprintf(fileid,'%s\r\n\r\n',['SetGeomDrawType(' wing.id ', GEOM_DRAW_SHADE );']);
+                                                                           % Make component appear as shaded
+
 
 fprintf(fileid,'%s\r\n\r\n',['SetGeomName(' wing.id ',"' wing.id '");']);
 
@@ -24,6 +28,8 @@ fprintf(fileid,'Update(); \r\n\r\n');               % updating after geometry ch
 % setting location and orientation
 fprintf(fileid,'%s\r\n',['SetParmVal(' wing.id ',"X_Rel_Location","XForm",' ...
     num2str(wing.xloc) ');']);
+fprintf(fileid,'%s\r\n',['SetParmVal(' wing.id ',"Y_Rel_Location","XForm",' ...
+    num2str(wing.yloc) ');']);
 fprintf(fileid,'%s\r\n',['SetParmVal(' wing.id ',"Z_Rel_Location","XForm",' ...
     num2str(wing.zloc) ');']);
 

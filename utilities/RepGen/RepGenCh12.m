@@ -45,9 +45,10 @@ gust_requirement = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.
 % chapter_number = 12;
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
-ch.Title = 'Loads on the wing flaps';
-disp(['Chapter 13', (' "'), ch.Title,('" ') ,'writing...' ])
+ch.Title = 'Loads on the vertical tail';
+disp(['Chapter 12', (' "'), ch.Title,('" ') ,'writing...' ])
 
+% firt paragraph - optional
 str = ['According to ' ...
     (' ') ...
     char(requirement) ...

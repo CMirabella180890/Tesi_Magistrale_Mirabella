@@ -13,11 +13,12 @@ ch = Chapter();
 ch.Title = 'Power plant';
 disp(['Chapter 15', (' "'), ch.Title,('" ') ,'writing...' ])
 
-str = ['ADD HERE details '];
-para = Paragraph(str);
-para.Style = {HAlign('justify')};
-
-add(ch,para);
+% optional paragraph
+% str = ['ADD HERE details '];
+% para = Paragraph(str);
+% para.Style = {HAlign('justify')};
+% 
+% add(ch,para);
 
 %sec
 sec = Section();
@@ -114,6 +115,7 @@ str = ['The engine takeoff power is ' ...
     (' ') ...
     ' which acts simultaneously with the 100 % of the inertia limit load.' ];
           para = Paragraph(str);
+          para.Style = {HAlign('justify')};
           add(sec,para);
           add(ch,sec);
           
@@ -335,6 +337,7 @@ str = ['According to ' ...
     gyro_airworth_reg ...
     ', for a two blade propeller, the maximum gyroscopic couple is given by: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 
         % GYSCOPIC COUPLE EQUATION AMC 23.371(a)
@@ -353,6 +356,7 @@ add(sec,para);
         
 str = ['Where: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 
         % MEAN TORQUE - MAX POWER
@@ -438,6 +442,7 @@ str = ['The asymmetric flow through the propeller disc is discounted ' ...
     strcat(num2str(Aircraft.Engine.Max_Continous.Propeller_rotational_speed.value)) ...
     '. The gyroscopic couple is: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);    
 
         %ordered list

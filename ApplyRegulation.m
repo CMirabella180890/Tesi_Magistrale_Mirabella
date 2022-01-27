@@ -63,11 +63,11 @@ switch (Aircraft.Certification.Regulation.value)
                 fprintf('%s\n', dir);
 
                 % STARTING OPEN VSP CALCULATION
-                % Main_UAS
+                %Main_UAS
                 % +++ ISTRUZIONE IMPORTANTE +++
                 disp(" ++++ STARTING OPEN VSP CALCULATIONS ++++ ");
                 diary off
-                Main_PROSIB_WT 
+                Main_OPENVsp
                 % +++ ISTRUZIONE IMPORTANTE +++
                 % LOADING DATA INSIDE VARIABLE STRUCT
                 % CHANGE DIRECTORY AND LOAD AERODATA
@@ -75,7 +75,7 @@ switch (Aircraft.Certification.Regulation.value)
                 % CHANGE DIRECTORY TO CALCULATES SHEAR AND BENDING MOMENT
                 cd .. 
                 cd ..
-                cd ..
+                %cd ..
                 diary CMFlightLoads.txt
                 disp(" ++++ FIGURE 9 - OPEN VSP RESULTS ++++ ");
                 cd csvla

@@ -13,7 +13,7 @@ plotarea = true;
 
 ngeom = length(degenGeom);
 
-figure(1000)
+figure(1)
 clf
 hold on
 

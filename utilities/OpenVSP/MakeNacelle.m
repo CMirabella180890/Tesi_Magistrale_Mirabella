@@ -13,6 +13,10 @@ fprintf(fileid,['// ' nacelle.id ' ' num2str(i) '\r\n\r\n']);    % commenting
 fprintf(fileid,'%s\r\n\r\n',['string ' nacelle.id '_' num2str(i)...
     ' = AddGeom("' nacelle.type '");']);
 
+%shade
+fprintf(fileid,'%s\r\n\r\n',['SetGeomDrawType(' nacelle.id ', GEOM_DRAW_SHADE );']);
+                                                                           % Make component appear as shaded
+
 % setting width, height, length and thikness/chord
 fprintf(fileid,'%s\r\n',['SetParmVal(' nacelle.id '_' num2str(i)...
     ',"Width","Design",' num2str(nacelle.width) ');']);

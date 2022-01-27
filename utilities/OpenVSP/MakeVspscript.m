@@ -168,8 +168,10 @@ switch ac.movables
         MakeMovables(fileid,ac.wing)
         
     case 'fa'                           %flap and aileron on wing
+%         for i=1:ac.wing.mov.number
+%         MakeMovables(fileid,ac.wing)
+%         end
         MakeMovables(fileid,ac.wing)
-        %MakeMovables(fileid,ac.wing)
         
     case 'fe'                          %flap on wing, elevator
         MakeMovables(fileid,ac.wing)
@@ -216,8 +218,9 @@ MakeDegenGeom(fileid,ac.name);
 % Saving .vsp3 model
 MakeVSP3(fileid,ac.name);
 
-accuracy = 50;
-ComputeMassProps(fileid,ac.name,accuracy);
+% mass properties
+% accuracy = 50;
+% ComputeMassProps(fileid,ac.name,accuracy);
 
 fprintf(fileid,'}');                                 % ends vspscript file
 fclose(fileid);                                      % closes vspscript file
