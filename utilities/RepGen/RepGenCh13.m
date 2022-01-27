@@ -372,6 +372,7 @@ str = ['According to ' ...
     ' computed as follows:  '
     ];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 
 % -------------------------------------------------------------------------
@@ -397,6 +398,7 @@ add(sec,para);
 %sec
 str = ['where: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 
@@ -586,6 +588,7 @@ gl_unit = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads
 %sec
 str = ['These calculations must be performed at VC and VD; the results are the following: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 
@@ -624,6 +627,7 @@ str = ['The critical gust load is ' ...
     char(gl_flag) ...
     '.'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 add(ch,sec);

@@ -213,8 +213,8 @@ Aircraft.Geometry.Elevator.moment_arm.Attributes.unit = "m";
 Total_elevator_loads_elevator_kg = (( HA_125 * 2 )/g) / (elevator_moment_arm);
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_elevator_loads_kg.value = Total_elevator_loads_elevator_kg; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_elevator_loads_kg.Attributes.unit = "kg";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_elevator_loads_kg.value = Total_elevator_loads_elevator_kg * g; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_elevator_loads_kg.Attributes.unit = "N";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_elevator_SI.value = Total_elevator_loads_elevator_kg * g; 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Total_elevator_SI.Attributes.unit = "N";
 
 % Total horizontal tail increment
 disp(" ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ ")

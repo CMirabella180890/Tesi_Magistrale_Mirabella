@@ -219,10 +219,10 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_
 aileron_load_SI        = HA_total_SI / moment_arm;
 aileron_load_converted = HA_total_converted / moment_arm;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.value = aileron_load_SI;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.Attributes.unit = " N ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.Attributes.cs = " A 13 ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.value = aileron_load_converted;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.Attributes.unit = "kg * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.Attributes.unit = " kg ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_converted.Attributes.cs = " A 13 ";
 
 % Total horizontal tail increment

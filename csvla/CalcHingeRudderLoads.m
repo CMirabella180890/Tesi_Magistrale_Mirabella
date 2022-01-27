@@ -184,9 +184,9 @@ Aircraft.Geometry.Rudder.moment_arm.Attributes.unit = "m";
 % TOTAL LOADS ON THE RUDDER 
 total_rudder_loads =  HA_newton_125 / moment_arm_rudder; 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.total_rudder_loads.value = total_rudder_loads; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.total_rudder_loads.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.total_rudder_loads.Attributes.unit = "N";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.total_rudder_loads_kg.value = total_rudder_loads / g; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.total_rudder_loads_kg.Attributes.unit = "N * m";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.total_rudder_loads_kg.Attributes.unit = "kg";
 
 % Total horizontal tail increment
 disp(" ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ ")
