@@ -74,6 +74,7 @@ Vstall = @(WS, rho, CLmax, n) sqrt(WS * (2/rho) * (1/CLmax).*n);
 numb = 1e3;
 nmax = Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.value;
 Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.Attributes.cs = " 345(a) ";
+Aircraft.Certification.Regulation.SubpartC.Flapsloads.wing_flaps_reg.Attributes.cs = " 347 ";
 
 % CALCULATION OF THE LOAD FACTORS VECTOR 
 n_flaps_vector = calcnflap(obj, nmax);
