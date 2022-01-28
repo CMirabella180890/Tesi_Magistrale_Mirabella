@@ -387,6 +387,7 @@ str = ['According to ' ...
     ' computed as follows:  '
     ];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 
 % -------------------------------------------------------------------------
@@ -412,6 +413,7 @@ add(sec,para);
 %sec
 str = ['where: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 
@@ -601,6 +603,7 @@ gl_unit = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads
 %sec
 str = ['These calculations must be performed at VC and VD; the results are the following: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 
@@ -639,6 +642,7 @@ str = ['The critical gust load is ' ...
     char(gl_flag) ...
     '.'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 add(ch,sec);
@@ -674,6 +678,7 @@ str = ['According to ' ...
     char(supp_load_req) ...
     ' the following two additional condition must be verified: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 % COMBINED LOADS RULES
@@ -729,6 +734,7 @@ str = ['The critical combined load is ' ...
     char(Comb_tailloads_unit) ...
     '.'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------        
 %         %1

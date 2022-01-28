@@ -86,8 +86,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flapsenvelopediagramtakeoff.png']);
         fig.Caption = 'Flaps V-n diagram. Takeoff.';
-        fig.Height = '5in';
-        fig.Width = '5in';
+        fig.Height = '4in';
+        fig.Width = '4in';
         fig.LinkTarget='Flaps V-n diagram takeoff';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -102,8 +102,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flaps_gust_envelopediagramtakeoff.png']);
         fig.Caption = 'Flaps gust envelope diagram. Takeoff.';
-        fig.Height = '5in';
-        fig.Width = '5in';
+        fig.Height = '4in';
+        fig.Width = '4in';
         fig.LinkTarget='Flaps gust envelope diagram takeoff';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -118,8 +118,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flaps_final_envelopediagramtakeoff.png']);
         fig.Caption = 'Flaps final envelope diagram. Takeoff.';
-        fig.Height = '5in';
-        fig.Width = '5in';
+        fig.Height = '4in';
+        fig.Width = '4in';
         fig.LinkTarget='Flaps final envelope diagram takeoff';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -163,8 +163,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flapsenvelopediagramlanding.png']);
         fig.Caption = 'Flaps V-n diagram. Landing.';
-        fig.Height = '5in';
-        fig.Width = '5in';
+        fig.Height = '4in';
+        fig.Width = '4in';
         fig.LinkTarget='Flaps V-n diagram landing';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -179,8 +179,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flaps_gust_envelopediagramlanding.png']);
         fig.Caption = 'Flaps gust envelope diagram. Landing.';
-        fig.Height = '5in';
-        fig.Width = '5in';
+        fig.Height = '4in';
+        fig.Width = '4in';
         fig.LinkTarget='Flaps gust envelope diagram landing';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -195,13 +195,39 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flaps_final_envelopediagramlanding.png']);
         fig.Caption = 'Flaps final envelope diagram. Landing.';
-        fig.Height = '5in';
-        fig.Width = '5in';
+        fig.Height = '4in';
+        fig.Width = '4in';
         fig.LinkTarget='Flaps final envelope diagram landing';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-% -------------------------------------------------------------------------
     % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    add(sec,subsec);
+    % ---------------------------------------------------------------------
+    subsec = Section();
+    subsec.Title = 'Summary of flaps load';
+    str = ['A diagram of the flaps load calculations is shown. The clean' ...
+        ' positive attitude flight envelope of the aircraft is also represented' ...
+        ' for reference.'];
+    para = Paragraph(str);
+    para.Style = {HAlign('justify')};
+    add(subsec,para);
+        % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        %moving to another path for figure
+        cd ..
+        cd ..
+        regulation = Aircraft.Certification.Regulation.value;
+        results_path = [pwd '\' regulation '\Output\'];
+        
+        cd (RepDir);
+        
+        fig = FormalImage([results_path,'Superposition.png']);
+        fig.Caption = 'Summary of flaps flight load.';
+        fig.Height = '4in';
+        fig.Width = '4in';
+        fig.LinkTarget='Summary of flaps flight load';
+        add(subsec,fig);
+        % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    % ---------------------------------------------------------------------
     add(sec,subsec);
 % -------------------------------------------------------------------------    
 add(ch,sec);

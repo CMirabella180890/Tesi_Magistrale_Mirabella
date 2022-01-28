@@ -86,8 +86,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flapsenvelopediagramtakeoff.png']);
         fig.Caption = 'Flaps V-n diagram. Takeoff.';
-        fig.Height = '4in';
-        fig.Width = '4in';
+        fig.Height = '5in';
+        fig.Width = '5in';
         fig.LinkTarget='Flaps V-n diagram takeoff';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -102,8 +102,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flaps_gust_envelopediagramtakeoff.png']);
         fig.Caption = 'Flaps gust envelope diagram. Takeoff.';
-        fig.Height = '4in';
-        fig.Width = '4in';
+        fig.Height = '5in';
+        fig.Width = '5in';
         fig.LinkTarget='Flaps gust envelope diagram takeoff';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -118,8 +118,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flaps_final_envelopediagramtakeoff.png']);
         fig.Caption = 'Flaps final envelope diagram. Takeoff.';
-        fig.Height = '4in';
-        fig.Width = '4in';
+        fig.Height = '5in';
+        fig.Width = '5in';
         fig.LinkTarget='Flaps final envelope diagram takeoff';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -127,8 +127,93 @@ add(subsec,para);
     % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     add(sec,subsec);
 % -------------------------------------------------------------------------    
-add(ch,sec);
+% add(ch,sec);
+% -------------------------------------------------------------------------
 
+% LANDING
+max_lift_coefficient_landing = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.value;
+min_stallspeed_landing       = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointS.VS.value;
+% -------------------------------------------------------------------------
+subsec = Section();
+subsec.Title = 'Landing';
+str = ['The flaps V-n diagram relative to the landing configuration' ...
+    ' is shown in this subsection; the estimated maximum lift coefficient' ...
+    ' in this configuration is' ...
+    (' ') ...
+    strcat(num2str(max_lift_coefficient_takeoff,4)) ...
+    (' ') ...
+    ' corresponding to a stall speed equal to' ...
+    (' ') ...
+    strcat(num2str(min_stallspeed_takeoff,4)) ...
+    (' ') ...
+    char(stallspeed_unit_takeoff) ...
+    '.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+        % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        %moving to another path for figure
+        cd ..
+        cd ..
+        regulation = Aircraft.Certification.Regulation.value;
+        results_path = [pwd '\' regulation '\Output\'];
+        
+        cd (RepDir);
+        
+        fig = FormalImage([results_path,'flapsenvelopediagramlanding.png']);
+        fig.Caption = 'Flaps V-n diagram. Landing.';
+        fig.Height = '5in';
+        fig.Width = '5in';
+        fig.LinkTarget='Flaps V-n diagram landing';
+        add(subsec,fig);
+        % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+        % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        %moving to another path for figure
+        cd ..
+        cd ..
+        regulation = Aircraft.Certification.Regulation.value;
+        results_path = [pwd '\' regulation '\Output\'];
+        
+        cd (RepDir);
+        
+        fig = FormalImage([results_path,'flaps_gust_envelopediagramlanding.png']);
+        fig.Caption = 'Flaps gust envelope diagram. Landing.';
+        fig.Height = '5in';
+        fig.Width = '5in';
+        fig.LinkTarget='Flaps gust envelope diagram landing';
+        add(subsec,fig);
+        % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        %moving to another path for figure
+        cd ..
+        cd ..
+        regulation = Aircraft.Certification.Regulation.value;
+        results_path = [pwd '\' regulation '\Output\'];
+        
+        cd (RepDir);
+        
+        fig = FormalImage([results_path,'flaps_final_envelopediagramlanding.png']);
+        fig.Caption = 'Flaps final envelope diagram. Landing.';
+        fig.Height = '5in';
+        fig.Width = '5in';
+        fig.LinkTarget='Flaps final envelope diagram landing';
+        add(subsec,fig);
+        % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    add(sec,subsec);
+    % ---------------------------------------------------------------------
+    subsec = Section();
+    subsec.Title = 'Summary of flaps load';
+    str = ['A diagram of the flaps load calculati'];
+    para = Paragraph(str);
+    para.Style = {HAlign('justify')};
+    add(subsec,para);
+    % ---------------------------------------------------------------------
+    add(sec,subsec);
+% -------------------------------------------------------------------------    
+add(ch,sec);
+% -------------------------------------------------------------------------
 %         % LATERAL FORCE COEFFICIENT ON THE RUDDER AT MAX DEFLECTION
 %         % latex interprete with $ simbol
 %         myEq = "$ C_Y = C_{Y,0} + \frac{d C_Y}{d \delta_r} * \delta_{r,max} ";

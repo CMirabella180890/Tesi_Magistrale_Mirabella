@@ -159,13 +159,13 @@ add(subsec,para)
         elseif(rpt.Type == "docx")
             eqImg.Style = {VerticalAlign("-5pt")};
         end
-        append(subsec,eqImg);
+        append(sec,eqImg);
 % -------------------------------------------------------------------------    
 %sec
 str = ['where: '];
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
-add(subsec,para);
+add(sec,para);
 % -------------------------------------------------------------------------
 
         % Ude
@@ -272,7 +272,7 @@ add(subsec,para);
         ref7 = eqImg7; 
         
         % Svt
-        myEq = "$ \frac{\Delta v}{V_A} = \mathrm{damping angle} ";
+        myEq = "$ \frac{\Delta v}{V_A} = \mathrm{area of vertical tail} (m^2); ";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;
@@ -285,7 +285,7 @@ add(subsec,para);
         ref8 = eqImg8; 
         
         % avt
-        myEq = "$ DF = \mathrm{damping effect reduction factor} = 0.3 ";
+        myEq = "$ a_{vt} = \mathrm{lift curve slope of vertical tail} (1/rad); ";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;
@@ -295,15 +295,55 @@ add(subsec,para);
         elseif(rpt.Type == "docx")
             eqImg.Style = {VerticalAlign("-5pt")};
         end
-        ref9 = eqImg9;  
+        ref9 = eqImg9; 
+        
+        % V
+        myEq = "$ V = \mathrm{aeroplane equivalent speed} (m/s); ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg10 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref10 = eqImg10; 
+        
+        % K
+        myEq = "$ K = \mathrm{radius of gyration in yaw} (m); ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg11 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref11 = eqImg11; 
+        
+        % g
+        myEq = "$ g = \mathrm{acceleration due to gravity} (m/s^2); ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg12 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref12 = eqImg12; 
         
         ol = UnorderedList({ref1, ref2, ref3, ref4, ...
-            ref5, ref6, ref7, ref8, ref9});
+            ref5, ref6, ref7, ref8, ref9, ref10, ref11, ...
+            ref12});
 %         ol = UnorderedList({ref1,ref2,ref3,...
 %             ref4,ref5,ref6, ref7,ref8});
 %         ol = UnorderedList({ref1, ref2, ref3,...
 %             ref4,ref5,ref6, ref7, ref8, ref9});
-        append(subsec,ol);
+        append(sec,ol);
 % -------------------------------------------------------------------------  
 add(sec,subsec);
 % -------------------------------------------------------------------------  
