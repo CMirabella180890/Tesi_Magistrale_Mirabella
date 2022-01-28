@@ -335,7 +335,6 @@ Aircraft.Geometry.Fuselage.type = 'TransportFuse';     % OpenVSP component type
 % - Conventional
 % - T tail 
 % - Others
-Aircraft.Geometry.Fuselage.empennage = "Double fin"; 
 Aircraft.Geometry.Fuselage.length.value = NaN;
 Aircraft.Geometry.Fuselage.length.Attributes.unit = "m"; % length
 Aircraft.Geometry.Fuselage.diameter.value = NaN;              % diameter
@@ -462,6 +461,9 @@ Aircraft.Geometry.Vertical.MAC.value = 0.2335363;
 Aircraft.Geometry.Vertical.MAC.Attributes.unit = "m";
 Aircraft.Geometry.Vertical.l_vt.value = 1.650;
 Aircraft.Geometry.Vertical.l_vt.Attributes.unit = "m";
+Aircraft.Geometry.Vertical.empennage_flag.value = "Double fin"; 
+Aircraft.Geometry.Vertical.empennage_flag.Attributes.unit = NaN;
+Aircraft.Geometry.Vertical.empennage_flag.Attributes.number_of_fin = 2;
 % -------------------------------------------------------------------------
 % Engine
 % -------------------------------------------------------------------------

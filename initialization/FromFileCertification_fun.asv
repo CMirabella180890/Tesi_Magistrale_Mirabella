@@ -170,7 +170,9 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'eta_inner_rudder', ...
          'eta_outer_rudder', ...
          'c_kink_one', ...
-         'c_kink_two'};
+         'c_kink_two', ...
+         'wing_type', ...
+         'vertical_flag'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -565,9 +567,19 @@ if LengthIndex==length(VarText)
     p = strcmp('eta_outer_rudder', label);
     Aircraft.Geometry.Rudder.eta_outer.value = str2double(table2array(value(p==1, 1))); 
     Aircraft.Geometry.Rudder.eta_outer.Attributes.unit = char(table2array(unit(p==1,1)));
-    p = strcmp('eta_outer_rudder', label);
-    Aircraft.Geometry.Rudder.eta_outer.value = str2double(table2array(value(p==1, 1))); 
-    Aircraft.Geometry.Rudder.eta_outer.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('c_kink_one', label);
+    Aircraft.Geometry.Wing.chord_kink_one.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Wing.chord_kink_one.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('c_kink_two', label);
+    Aircraft.Geometry.Wing.chord_kink_two.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Wing.chord_kink_two.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('wing_type', label);
+    Aircraft.Geometry.Wing.type.value = char(table2array(value(p==1,1)));
+    p = strcmp('vertical_flag', label);
+    Aircraft.Geometry.Vertical.empennage_flag.value = char(table2array(value(p==1,1)));
+    p = strcmp('panel_span1', label);
+    Aircraft.Geometry.Wing.panel_span1.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Wing.chord_kink_two.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

@@ -123,7 +123,7 @@ if isfield(Aircraft.Geometry, 'Fuselage')==1
     %remove fields
      Aircraft.Geometry.Fuselage = rmfield (Aircraft.Geometry.Fuselage, 'id');
      Aircraft.Geometry.Fuselage = rmfield (Aircraft.Geometry.Fuselage, 'type');
-     Aircraft.Geometry.Fuselage = rmfield (Aircraft.Geometry.Fuselage, 'empennage');
+%      Aircraft.Geometry.Fuselage = rmfield (Aircraft.Geometry.Fuselage, 'empennage');
      
 % append(para,InternalLink('verTableRef','Fuselage parameters'));
 % add(sec,para)

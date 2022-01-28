@@ -171,7 +171,11 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'eta_outer_rudder', ...
          'c_kink_one', ...
          'c_kink_two', ...
-         'wing_type'};
+         'wing_type', ...
+         'vertical_flag', ...
+         'panel_span1', ...
+         'panel_span2', ...
+         'panel_span3'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -574,6 +578,17 @@ if LengthIndex==length(VarText)
     Aircraft.Geometry.Wing.chord_kink_two.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('wing_type', label);
     Aircraft.Geometry.Wing.type.value = char(table2array(value(p==1,1)));
+    p = strcmp('vertical_flag', label);
+    Aircraft.Geometry.Vertical.empennage_flag.value = char(table2array(value(p==1,1)));
+    p = strcmp('panel_span1', label);
+    Aircraft.Geometry.Wing.panel_span1.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Wing.panel_span1.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('panel_span2', label);
+    Aircraft.Geometry.Wing.panel_span2.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Wing.panel_span2.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('panel_span3', label);
+    Aircraft.Geometry.Wing.panel_span3.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Wing.panel_span3.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

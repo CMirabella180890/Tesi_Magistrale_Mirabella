@@ -87,12 +87,12 @@ ac.wing.zrot        = 0;                         % Z global rotation
 ac.wing.sym         = 2;                       % wing planar symmetry
 % 0: none; 1: XY; 2: XZ; 3: YZ
 % to be MODIFIED!!!
-semispan    = Aircraft.Geometry.Wing.b.value/2;
-panel_span1 = semispan * (Aircraft.Geometry.Wing.panel_span1.value);
-panel_span2 = semispan * (Aircraft.Geometry.Wing.panel_span2.value);
-panel_span3 = semispan * (Aircraft.Geometry.Wing.panel_span3.value);
+semispan    = 
+panel_span1 = Aircraft.Geometry.Wing.b.value/6;
+panel_span2 = 
+panel_span3 = 
 %
-ac.wing.span        = [panel_span1 panel_span2 panel_span3];     % span(s)
+ac.wing.span        = [panel_span panel_span panel_span];     % span(s)
 ac.wing.ctip        = [Aircraft.Geometry.Wing.chord_kink_one.value Aircraft.Geometry.Wing.chord_kink_two.value Aircraft.Geometry.Wing.ctip.value];  % tip chord(s)[k1,k2,tip]
 ac.wing.croot       = [Aircraft.Geometry.Wing.croot.value Aircraft.Geometry.Wing.chord_kink_one.value Aircraft.Geometry.Wing.chord_kink_two.value];  % root chord(s)[root,k1,k2]
 % ac.wing.croot       = [ac.wing.ctip(1)];  % root chord(s)

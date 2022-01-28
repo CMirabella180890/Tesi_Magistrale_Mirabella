@@ -21,6 +21,7 @@ Aircraft.Certification.Aircraft_Name.Attributes.designer = NaN;
 Aircraft.Certification.Regulation.value = NaN;                                      % Selected regulation
 Aircraft.Certification.Regulation.Attributes.Date = NaN;                            % Optional field, to keep note of the actual regulation implemented
 Aircraft.Certification.Regulation.Attributes.Amendment = NaN;                       % -- 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Attributes.cs = " 321 ";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value = NaN;            % FIRST OUTPUT FROM REGULATION: Maximum load factor
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.Attributes.unit = "g's";  % Load factor are non dimensional number: L = n*W;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.Attributes.cs = " 337(a) ";
@@ -285,7 +286,7 @@ Aircraft.Geometry.Wing.camberloc.value = NaN;
 Aircraft.Geometry.Wing.camberloc.Attributes.unit = "percentage";
 Aircraft.Geometry.Wing.thickchord.value = NaN; 
 Aircraft.Geometry.Wing.thickchord.Attributes.unit = "percentage";
-Aircraft.Geometry.Wing.type.value = NaN; % <--- Flag could be: Rectangular, One kink
+Aircraft.Geometry.Wing.type.value = NaN; % <--- Flag could be: Rectangular, With_kinks
 Aircraft.Geometry.Wing.type.Attributes.unit = "flag"; 
 
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -461,6 +462,7 @@ Aircraft.Geometry.Vertical.MAC.value = 0.2335363;
 Aircraft.Geometry.Vertical.MAC.Attributes.unit = "m";
 Aircraft.Geometry.Vertical.l_vt.value = 1.650;
 Aircraft.Geometry.Vertical.l_vt.Attributes.unit = "m";
+Aircraft.Geometry.Vertical.empennage_flag = "Double fin"; 
 % -------------------------------------------------------------------------
 % Engine
 % -------------------------------------------------------------------------

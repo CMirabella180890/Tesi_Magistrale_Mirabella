@@ -163,11 +163,29 @@ Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_rad.Attri
 qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
 
 % HINGE MOMENT IN NEWTON 
-HA_newton = qA * C_h_total_deg * (2 * S_rudder) * chord_rudder;
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.value = HA_newton; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.Attributes.unit = "N * m";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.value = HA_newton/g; 
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.Attributes.unit = "kg * m";
+switch (Aircraft.Geometry.Vertical.empennage_flag.value)
+    case 'Multiple fin'
+        if Aircraft.Geometry.Vertical.empennage_flag.Attributes.number_of_fin ~ NaN 
+            n = Aircraft.Geometry.Vertical.empennage_flag.Attributes.number_of_fin;
+        end
+        HA_newton = qA * C_h_total_deg * (n * S_rudder) * chord_rudder;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.value = HA_newton; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.Attributes.unit = "N * m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.value = HA_newton/g; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.Attributes.unit = "kg * m";
+    case 'Double fin'
+        HA_newton = qA * C_h_total_deg * (2 * S_rudder) * chord_rudder;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.value = HA_newton; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.Attributes.unit = "N * m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.value = HA_newton/g; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.Attributes.unit = "kg * m";
+    case 'Single fin' 
+        HA_newton = qA * C_h_total_deg * S_rudder * chord_rudder;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.value = HA_newton; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder.Attributes.unit = "N * m";
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.value = HA_newton/g; 
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.HA_rudder_kg.Attributes.unit = "kg * m";
+end
 
 % 1.25 * HINGE MOMENT 
 HA_newton_125 = HA_newton * 1.25; 

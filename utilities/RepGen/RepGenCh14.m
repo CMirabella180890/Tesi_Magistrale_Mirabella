@@ -298,11 +298,49 @@ C_h_total_deg_rudder = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rud
 S_rudder             = Aircraft.Geometry.Rudder.S.value;
 cf_rudder            = Aircraft.Geometry.Rudder.chord.value;
 % -------------------------------------------------------------------------
-% HA = C_h_total_deg * qA * S_aileron * cf;
+% SWITCH CASE TO TAKE INTO ACCOUNT THE TYPE OF RUDDER USED
+% -------------------------------------------------------------------------
+switch (Aircraft.Geometry.Vertical.empennage_flag.value)
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    case 'Multiple fin'
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    case 'Double fin'
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        % HA = C_h_total_deg * qA * S_aileron * cf;
         myNumEq = strcat( ' = ', ...
                                 num2str(C_h_total_deg_rudder,4), '*', ...
                                 num2str(qA,4), '*', ...
                                 '(2*', num2str(S_rudder,4), ')', '*', ...
+                                num2str(cf_elevator,4), ' = ', ...
+                                num2str(HA_rudder,4) , '\,\,', ...
+                                HA_unit);
+        myEq = "$ H_{rudder} = q*(2*S_{rudder})*c_f*C_{h_{total}} ";
+        eq = Equation(strcat(myEq, myNumEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(sec,eqImg);
+        % -----------------------------------------------------------------
+        str = ['where the surface is related to the double fin geometrical' ...
+               ' arrangement. The total hinge moment that must be considered in' ...
+               ' structural calculations is the following: '];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        add(sec,para);
+        % -----------------------------------------------------------------
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    case 'Single fin'
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        % HA = C_h_total_deg * qA * S_aileron * cf;
+        myNumEq = strcat( ' = ', ...
+                                num2str(C_h_total_deg_rudder,4), '*', ...
+                                num2str(qA,4), '*', ...
+                                num2str(S_rudder,4), '*', ...
                                 num2str(cf_elevator,4), ' = ', ...
                                 num2str(HA_rudder,4) , '\,\,', ...
                                 HA_unit);
@@ -317,15 +355,17 @@ cf_rudder            = Aircraft.Geometry.Rudder.chord.value;
             eqImg.Style = {VerticalAlign("-5pt")};
         end
         append(sec,eqImg);
-% ------------------------------------------------------------------------- 
-str = ['where the surface is related to the double fin geometrical' ...
-       ' arrangement. The total hinge moment that must be considered in' ...
-       ' structural calculations is the following: '];
-para = Paragraph(str);
-para.Style = {HAlign('justify')};
-add(sec,para);
+        % -----------------------------------------------------------------
+        str = ['where the surface is related to the double fin geometrical' ...
+               ' arrangement. The total hinge moment that must be considered in' ...
+               ' structural calculations is the following: '];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        add(sec,para);
+        % -----------------------------------------------------------------
+end
 % -------------------------------------------------------------------------
-% HA_total = 2 * 1.25 * HA
+        % HA_total = 2 * 1.25 * HA
         myNumEq = strcat(' = ', ...
                                 num2str(1.25,4), '*', ...
                                 '(', num2str(HA_rudder,4), ')', ...

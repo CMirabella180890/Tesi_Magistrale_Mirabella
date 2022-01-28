@@ -197,7 +197,7 @@ Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Grap
 hold on; grid on; grid minor; 
 
 % SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
-switch(Aircraft.Geometry.Fuselage.empennage)
+switch(Aircraft.Geometry.Vertical.empennage_flag.value)
     case 'Double fin'
         plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], '-k.', 'LineWidth', 2.5, 'DisplayName', 'Horiz. tail');
         plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], '-k.', 'LineWidth', 2.5, 'DisplayName', 'Vert. tail');
@@ -228,7 +228,7 @@ switch(Aircraft.Geometry.Fuselage.empennage)
         
         xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
         ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
-    case 'Conventional'
+    case 'Single fin'
         
     case 'T tail'
         
