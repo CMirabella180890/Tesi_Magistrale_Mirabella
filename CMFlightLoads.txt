@@ -72,6 +72,7 @@ Density [kg/m^3]: 0.8632
 ### Saving outpus inside correct Folder ###
 Saving Vndiagram.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Gustenvelope.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -184,6 +185,7 @@ Saving ShearBendingTorsionDiagramPointS_inv.pdf in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
  ++++ FIGURE 18 - POINT G SHEAR, BENDING, TORSION ++++ 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointG.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -499,6 +501,19 @@ Chapter 9 written
 Chapter 10 "Loads on the wing" writing...
 Chapter 10 written
 Chapter 11 "Loads on the horizontal tail" writing...
+[Warning: Error updating Text.
+
+ String scalar or character vector must have valid interpreter syntax:
+$$\;S_{tail}\;=\;\frac{horizontal\;tail\;area\;(m^2)}$
+] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('defaulterrorcallback', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\graphics\objectsystem\defaulterrorcallback.m', 12)" style="font-weight:bold">defaulterrorcallback</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\graphics\objectsystem\defaulterrorcallback.m',12,0)">line 12</a>)
+In mlreportgen.utils.internal.createEquationImage
+In mlreportgen.utils.internal.createEquationImage
+In mlreportgen.report/Equation/getSnapshotImage
+In mlreportgen.report/Equation/getImpl
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh11', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m', 202)" style="font-weight:bold">RepGenCh11</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m',202,0)">line 202</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 177)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',177,0)">line 177</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 134)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',134,0)">line 134</a>)] 
 Chapter 11 written
 Chapter 12 "Loads on the vertical tail" writing...
 Chapter 12 written
@@ -510,7 +525,7 @@ Chapter 15 "Power plant" writing...
 Chapter 15 written
 Report successfully written. Execution terminated.
 close all 
-RepGenMain(Aircraft)
+RepGenMain(Aircraft) 
 The authors are  Pierluigi Della Vecchia and Claudio Mirabella
  
 The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
@@ -543,380 +558,18 @@ Chapter 9 written
 Chapter 10 "Loads on the wing" writing...
 Chapter 10 written
 Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Attributes.cs = " 421 ";
-" 345(a) " 
+[Warning: Error updating Text.
 
-ans = 
-
-    " 345(a) "
-
-char(ans) 
-
-ans =
-
-    ' 345(a) '
-
-ans(1:3)
-
-ans =
-
-    ' 34'
-
-ans(1:4)
-{Index exceeds the number of array elements (3).
-
-'ans' appears to be both a function and a variable. If this is unintentional, use 'clear ans' to remove the
-variable 'ans' from the workspace.
-} 
-x = " 345 "
-
-x = 
-
-    " 345 "
-
-char(x) 
-
-ans =
-
-    ' 345 '
-
-y = char(x) 
-
-y =
-
-    ' 345 '
-
-y(1:3) 
-
-ans =
-
-    ' 34'
-
-y(1:4)
-
-ans =
-
-    ' 345'
-
-x = " 345(a) " 
-
-x = 
-
-    " 345(a) "
-
-y = char(x) 
-
-y =
-
-    ' 345(a) '
-
-y(1:4) 
-
-ans =
-
-    ' 345'
-
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('vertcat')" style="font-weight:bold">vertcat</a>
-Dimensions of arrays being concatenated are not consistent.
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh11', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m', 63)" style="font-weight:bold">RepGenCh11</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m',63,0)">line 63</a>)
-str = ['According to ' ...
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 177)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',177,0)">line 177</a>)
-RepGenCh11      %Loads on the horizontal tail
-} 
-opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m',63,0)
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('vertcat')" style="font-weight:bold">vertcat</a>
-Dimensions of arrays being concatenated are not consistent.
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh11', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m', 115)" style="font-weight:bold">RepGenCh11</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m',115,0)">line 115</a>)
-str = ['At speed VA the pitching control is suddenly displaced to the' ...
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 177)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',177,0)">line 177</a>)
-RepGenCh11      %Loads on the horizontal tail
-} 
-opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m',115,0)
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
+ String scalar or character vector must have valid interpreter syntax:
+$$\;S_{tail}\;=\;\frac{horizontal\;tail\;area\;(m^2)}$
+] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('defaulterrorcallback', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\graphics\objectsystem\defaulterrorcallback.m', 12)" style="font-weight:bold">defaulterrorcallback</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\graphics\objectsystem\defaulterrorcallback.m',12,0)">line 12</a>)
+In mlreportgen.utils.internal.createEquationImage
+In mlreportgen.utils.internal.createEquationImage
+In mlreportgen.report/Equation/getSnapshotImage
+In mlreportgen.report/Equation/getImpl
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh11', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m', 202)" style="font-weight:bold">RepGenCh11</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m',202,0)">line 202</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 177)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',177,0)">line 177</a>)] 
 Chapter 11 written
 Chapter 12 "Loads on the vertical tail" writing...
 Chapter 12 written
@@ -972,16 +625,16 @@ In mlreportgen.report/Equation/getSnapshotImage
 In mlreportgen.report/Equation/getImpl
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh11', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m', 202)" style="font-weight:bold">RepGenCh11</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m',202,0)">line 202</a>)
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 177)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',177,0)">line 177</a>)] 
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('vertcat')" style="font-weight:bold">vertcat</a>
+Dimensions of arrays being concatenated are not consistent.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh11', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m', 378)" style="font-weight:bold">RepGenCh11</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m',378,0)">line 378</a>)
+str = ['According to ' ...
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 177)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',177,0)">line 177</a>)
+RepGenCh11      %Loads on the horizontal tail
+} 
+opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh11.m',378,0)
 RepGenMain(Aircraft)
 The authors are  Pierluigi Della Vecchia and Claudio Mirabella
  

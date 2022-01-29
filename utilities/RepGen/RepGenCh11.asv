@@ -149,7 +149,7 @@ add(subsec,para)
 % -------------------------------------------------------------------------
         % PITCHING ANGLE DIFFERENTIAL EQUATION 
         %
-        myEq = "$ \frac{d^{2} \theta}{dt} = \frac{q*S_{tail}*a_{tail}*d}{I_{y}}*\Biggl(\omega*dt - \frac{\Delta v}{V_A}*DF\Biggr) ";
+        myEq = "$ \frac{d^{2}\theta}{dt} = \frac{q*S_{tail}*a_{tail}*d}{I_{y}}*\Biggl(\omega*dt - \frac{\Delta v}{V_A}*DF\Biggr) ";
         eq = Equation(strcat(myEq));
         eq.DisplayInline = true;
         eq.FontSize = 12;
@@ -159,13 +159,13 @@ add(subsec,para)
         elseif(rpt.Type == "docx")
             eqImg.Style = {VerticalAlign("-5pt")};
         end
-        append(sec,eqImg);
+        append(subsec,eqImg);
 % -------------------------------------------------------------------------    
 %sec
 str = ['where: '];
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
-add(sec,para);
+add(subsec,para);
 % -------------------------------------------------------------------------
 
         % Ude
@@ -272,7 +272,7 @@ add(sec,para);
         ref7 = eqImg7; 
         
         % Svt
-        myEq = "$ \frac{\Delta v}{V_A} = \mathrm{area of vertical tail} (m^2); ";
+        myEq = "$ \frac{\Delta v}{V_A} = \mathrm{damping angle} ";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;
@@ -285,7 +285,7 @@ add(sec,para);
         ref8 = eqImg8; 
         
         % avt
-        myEq = "$ a_{vt} = \mathrm{lift curve slope of vertical tail} (1/rad); ";
+        myEq = "$ DF = \mathrm{damping effect reduction factor} = 0.3 ";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;
@@ -295,63 +295,106 @@ add(sec,para);
         elseif(rpt.Type == "docx")
             eqImg.Style = {VerticalAlign("-5pt")};
         end
-        ref9 = eqImg9; 
-        
-        % V
-        myEq = "$ V = \mathrm{aeroplane equivalent speed} (m/s); ";
-        eq = Equation(myEq);
-        eq.DisplayInline = true;
-        eq.FontSize = 12;
-        eqImg10 = getImpl(eq,rpt);
-        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
-            eqImg.Style = {VerticalAlign("-30%")};
-        elseif(rpt.Type == "docx")
-            eqImg.Style = {VerticalAlign("-5pt")};
-        end
-        ref10 = eqImg10; 
-        
-        % K
-        myEq = "$ K = \mathrm{radius of gyration in yaw} (m); ";
-        eq = Equation(myEq);
-        eq.DisplayInline = true;
-        eq.FontSize = 12;
-        eqImg11 = getImpl(eq,rpt);
-        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
-            eqImg.Style = {VerticalAlign("-30%")};
-        elseif(rpt.Type == "docx")
-            eqImg.Style = {VerticalAlign("-5pt")};
-        end
-        ref11 = eqImg11; 
-        
-        % g
-        myEq = "$ g = \mathrm{acceleration due to gravity} (m/s^2); ";
-        eq = Equation(myEq);
-        eq.DisplayInline = true;
-        eq.FontSize = 12;
-        eqImg12 = getImpl(eq,rpt);
-        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
-            eqImg.Style = {VerticalAlign("-30%")};
-        elseif(rpt.Type == "docx")
-            eqImg.Style = {VerticalAlign("-5pt")};
-        end
-        ref12 = eqImg12; 
+        ref9 = eqImg9;  
         
         ol = UnorderedList({ref1, ref2, ref3, ref4, ...
-            ref5, ref6, ref7, ref8, ref9, ref10, ref11, ...
-            ref12});
+            ref5, ref6, ref7, ref8, ref9});
 %         ol = UnorderedList({ref1,ref2,ref3,...
 %             ref4,ref5,ref6, ref7,ref8});
 %         ol = UnorderedList({ref1, ref2, ref3,...
 %             ref4,ref5,ref6, ref7, ref8, ref9});
-        append(sec,ol);
+        append(subsec,ol);
 % -------------------------------------------------------------------------  
+% -------------------------------------------------------------------------    
+%sec
+% PITCH UP CASE 423(a) 
+DeltaLimitLTail_cs_airworth        = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.DeltaLimitLTail.Attributes.cs;
+DeltaLimitLTail_pitch_up           = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.DeltaLimitLTail.value;
+DeltaLimitLTail_pitch_up_unit      = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.DeltaLimitLTail.Attributes.unit;
+alpha_new_horiz_grad_pitch_up      = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.alpha_new_horiz_grad.value(end);
+alpha_new_horiz_grad_pitch_up_unit = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.alpha_new_horiz_grad.Attributes.unit;
+% PITCH DOWN CASE 423(a) 
+DeltaLimitLTail_pitch_down      = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.DeltaLimitLTail.value;
+alpha_new_horiz_grad_pitch_down = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_new_horiz_grad.value(end);
+str = ['It is possible to solve this equation using simple and reliable' ...
+    ' numerical methods. According to ' ...
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    char(DeltaLimitLTail_cs_airworth) ...
+    (' ') ...
+    ', the following results are presented: '];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+        %ordered list
+        ref1 = ['a pitch up case where the resultant tailplane angle of' ...
+            ' attack is ' ...
+            (' ') ...
+            strcat(num2str(alpha_new_horiz_grad_pitch_up,4)) ...
+            (' ') ...
+            char(alpha_new_horiz_grad_pitch_up_unit) ...
+            (' ') ...
+            ' and a corresponding limit tail load of ' ...
+            (' ') ...
+            strcat(num2str(DeltaLimitLTail_pitch_up,4)) ...
+            (' ') ...
+            char(DeltaLimitLTail_pitch_up_unit) ...
+            ';'];
+        ref2 = ['a pitch down case where the resultant tailplane angle of' ...
+            ' attack is ' ...
+            (' ') ...
+            strcat(num2str(alpha_new_horiz_grad_pitch_down,4)) ...
+            (' ') ...
+            char(alpha_new_horiz_grad_pitch_up_unit) ...
+            (' ') ...
+            ' and a corresponding limit tail load of ' ...
+            (' ') ...
+            strcat(num2str(DeltaLimitLTail_pitch_down,4)) ...
+            (' ') ...
+            char(DeltaLimitLTail_pitch_up_unit) ...
+            '.'];
+        ol = OrderedList({ref1, ref2});
+        append(subsec,ol);
+        % -----------------------------------------------------------------
 add(sec,subsec);
 % -------------------------------------------------------------------------  
 
 %sub
+
+% CS - VLA 423 (b)
+Airworth_csvla_methodb = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.pitch_down.critical_tail_airloads.Attributes.cs;
+% PITCHING INERTIA MOMENT 
+pitching_inertia_moment      = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.IY.value; 
+pitching_inertia_moment_unit = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.IY.Attributes.unit;
+% METHOD B RESULTS 
+Total_critical_loads_methodb      = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.Total_critical_loads.value;
+Total_critical_loads_methodb_unit = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_b.Total_critical_loads.Attributes.unit;
+
 subsec = Section();
 subsec.Title = 'Checked manoeuvre';
-
+% -------------------------------------------------------------------------
+str = ['According to ' ...
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    char(Airworth_csvla_methodb) ...
+    (' ') ...
+    ' a sudden upward deflection of the elevator must be studied,' ...
+    ' at speeds abobe VA, followed by a downward deflection of the' ...
+    ' elevator, resulting in specified combinations of normal and angular acceleration.' ...
+    ' The airplane pitching inertia moment is estimated equal to' ...
+    (' ') ...
+    strcat(num2str(pitching_inertia_moment,4)) ...
+    (' ' ) ...
+    char(pitching_inertia_moment_unit) ...
+    ' at maximum takeoff weight and center of gravity at 25% of' ...
+    ' the mean aerodynamic chord.' ];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
 add(sec,subsec);
 
 %sub
