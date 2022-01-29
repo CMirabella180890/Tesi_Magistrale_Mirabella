@@ -1725,17 +1725,17 @@ DeltaL_ht = @(V, U_de) ( 1 / 16.3 ) * V * U_de *( K_g * CLalfa_ht_rad * S_ht )* 
 DeltaL_ht_VF = DeltaL_ht( VF, Ude_F );
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VF.value = DeltaL_ht_VF;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VF.Attributes.unit = "daN";
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VF.Attributes.cs = " 425 ";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VF.Attributes.cs = " 425(d) ";
 % DELTA L_HT AT VC
 DeltaL_ht_VC = DeltaL_ht( VC, Ude_C);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VC.value = DeltaL_ht_VC;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VC.Attributes.unit = "daN";
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VC.Attributes.cs = " 425 ";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VC.Attributes.cs = " 425(d) ";
 % DELTA L_HT AT VD
 DeltaL_ht_VD = DeltaL_ht( VD, Ude_D);
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VD.value = DeltaL_ht_VD;
 Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VD.Attributes.unit = "daN";
-Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VD.Attributes.cs = " 425 ";
+Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VD.Attributes.cs = " 425(d) ";
 
 % PRINT PARTIAL RESULTS
 disp(" ")

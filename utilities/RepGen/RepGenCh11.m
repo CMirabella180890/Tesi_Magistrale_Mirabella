@@ -195,7 +195,7 @@ add(subsec,para);
         ref2 = eqImg2; 
         
         % Kgt
-        myEq = "$ S_{tail} = \frac{horizontal tail area (m^2)}";
+        myEq = "$ S_{tail} = \mathrm{horizontal tail area (m^2)}";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;
@@ -406,10 +406,258 @@ add(sec,subsec);
 %sub
 subsec = Section();
 subsec.Title = 'Gust loads';
+% -------------------------------------------------------------------------
+%   (d) In the absence of a more rational analysis, the incremental tail
+%       load due to the gust, must be computed as follows:
+%       
+%                     Kg * U_de * V * a_ht * S_ht          d epsilon
+%       Delta L_ht = ----------------------------- * [1 - -----------]
+%                              (16) * (3)                   d alpha
+%
+%       where 
+%       Delta L_ht      = incremental horizontal tail load (daN);
+%       Kg              = gust alleviation factor defined in CS - VLA 341;
+%       U_de            = derived gust velocity (m/s);
+%       V               = aeroplane equivalent speed (m/s);
+%       a_ht            = slope of horizontal tail lift curve per radian; 
+%       S_ht            = area of horizontal tail (m^2); 
+%       
+%            d epsilon 
+%       1 - ----------- = downwash factor.
+%             d alpha
+% -------------------------------------------------------------------------
 
+% CS - VLA 425 
+Total_gust_at_VF_plus_cs_airworth = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VF_plus.Attributes.cs;
+% CS - VLA 425(d) 
+deltatail_airworth_cs_airworth    = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VD.Attributes.cs;
+
+str = ['According to ' ...
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    char(Total_gust_at_VF_plus_cs_airworth) ...
+    (' ') ...
+    ' , each horizontal tail surface must be designed for loads resulting' ...
+    ' during steady, unaccelereted flight at different speeds (VF, VC, VD).' ...
+    ' The incremental tail load resulting from the gusts must be added to' ...
+    ' the initial balancing tailload to obtain the total tail load.' ...
+    ' According to ' ...
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    char(deltatail_airworth_cs_airworth) ...
+    ', in the abscence of a more rational analysis, the incremental tail' ...
+    ' load due to the gust, must be computed as follows: '];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+% GUST LOAD EQUATION 
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+        % PITCHING ANGLE DIFFERENTIAL EQUATION 
+        %
+        myEq = "$ \Delta L_{ht} = \frac{1}{2}*\Biggl[ K_{g}*\rho_{0}*U_{de}*V*a_{ht}*S_{ht} \biggl(1 - \frac{d \epsilon}{d \alpha} \biggr) \Biggr] ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(subsec,eqImg);
+% -------------------------------------------------------------------------    
+%sec
+str = ['where: '];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+        % Ude
+        myEq = "$ \rho_{0} = \mathrm{density of air at sea level (kg/m^3;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg1 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref1 = eqImg1;         
+
+        % Lvt
+        myEq = "$ K_{g} = \mathrm{gust alleviation factor at MTOW;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg2 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref2 = eqImg2; 
+        
+        % Kgt
+        myEq = "$ U_{de} = \mathrm{derived gust speed (m/s);}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg3 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref3 = eqImg3;         
+        
+%                          2 * M                   K^2
+%      mu_gt = ------------------------------- * ------- = lat. mass ratio;
+%              rho * c_bar_t * g * a_vt * S_vt   (l_t^2)
+%              
+        % mu_gt
+        myEq = "$ V = \mathrm{aircraft equivalent speed (m/s);} ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg4 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref4 = eqImg4;      
+%              M    = aeroplane mass (kg); 
+%              rho  = air density (kg/m^3); 
+%              S_vt = area of vertical tail (m^2);
+%              l_t  = distance from aeroplane c.g. to lift centre of
+%                     vertical surface (m); 
+%              a_vt = lift curve slope of vertical tail (1/rad); 
+%              V    = aeroplane equivalent speed (m/s); 
+%              K    = radius of gyration in yaw (m);
+%              g    = acceleration due to gravity (m/s^2).
+
+        % M
+        myEq = "$ a_{ht} = \mathrm{tail lift curve slope (1/rad);}; ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg5 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref5 = eqImg5; 
+        
+        % rho
+        myEq = "$ S_{ht} = \mathrm{horizontal tail area (m^2);} ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg6 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref6 = eqImg6; 
+        
+        % lt
+        myEq = "$ \biggl(1 - \frac{d \epsilon}{ d \alpha} \biggr) = \mathrm{downwash factor.}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg7 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref7 = eqImg7; 
+        
+        ol = UnorderedList({ref1, ref2, ref3, ref4, ...
+            ref5, ref6, ref7});
+%         ol = UnorderedList({ref1,ref2,ref3,...
+%             ref4,ref5,ref6, ref7,ref8});
+%         ol = UnorderedList({ref1, ref2, ref3,...
+%             ref4,ref5,ref6, ref7, ref8, ref9});
+        append(subsec,ol);
+% ------------------------------------------------------------------------- 
+str = ['Results can be summarized as follow:'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para); 
+% -------------------------------------------------------------------------
+        %ordered list
+        DeltaL_ht_VF           = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VF.value;
+        DeltaL_ht_VF_unit      = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VF.Attributes.unit;
+        Total_gust_at_VF_plus  = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VF_plus.value;
+        Total_gust_at_VF_minus = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VF_minus.value;
+        ref1 = ['at VF, the incremental tail load is' ...
+            (' ') ...
+            strcat(num2str(DeltaL_ht_VF,4)) ...
+            (' ') ...
+            char(DeltaL_ht_VF_unit) ...
+            ' and the resulting total load is' ...
+            (' ') ...
+            strcat(num2str(Total_gust_at_VF_plus,4)) ...
+            (' ') ...
+            char(DeltaL_ht_VF_unit) ...
+            ' when the incremental tail load is summed and' ...
+            (' ') ...
+            strcat(num2str(Total_gust_at_VF_minus,4)) ...
+            (' ') ...
+            char(DeltaL_ht_VF_unit) ...
+            ' when the incremental tail load is subtracted;'];
+        DeltaL_ht_VC           = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VC.value;
+        Total_gust_at_VC_plus  = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VC_plus.value;
+        Total_gust_at_VC_minus = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VC_minus.value;
+        ref2 = ['at VC, the incremental tail load is' ...
+            (' ') ...
+            strcat(num2str(DeltaL_ht_VC,4)) ...
+            (' ') ...
+            char(DeltaL_ht_VF_unit) ...
+            ' and the resulting total load is' ...
+            (' ') ...
+            strcat(num2str(Total_gust_at_VC_plus,4)) ...
+            (' ') ...
+            char(DeltaL_ht_VF_unit) ...
+            ' when the incremental tail load is summed and' ...
+            (' ') ...
+            strcat(num2str(Total_gust_at_VC_minus,4)) ...
+            (' ') ...
+            char(DeltaL_ht_VF_unit) ...
+            ' when the incremental tail load is subtracted;'];
+        DeltaL_ht_VD           = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.DeltaL_ht_VD.value;
+        Total_gust_at_VD_plus  = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VD_plus.value;
+        Total_gust_at_VD_minus = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Gustloads.Total_gust_at_VD_minus.value;
+        ref3 = ['at VF, the incremental tail load is' ...
+            (' ') ...
+            strcat(num2str(DeltaL_ht_VD,4)) ...
+            (' ') ...
+            char(DeltaL_ht_VF_unit) ...
+            ' and the resulting total load is' ...
+            (' ') ...
+            strcat(num2str(Total_gust_at_VD_plus,4)) ...
+            (' ') ...
+            char(DeltaL_ht_VF_unit) ...
+            ' when the incremental tail load is summed and' ...
+            (' ') ...
+            strcat(num2str(Total_gust_at_VD_minus,4)) ...
+            (' ') ...
+            char(DeltaL_ht_VF_unit) ...
+            ' when the incremental tail load is subtracted.'];
+        ol = OrderedList({ref1, ref2, ref3});
+        append(subsec,ol);
+        % -----------------------------------------------------------------
+% -------------------------------------------------------------------------
 add(sec,subsec);
-
-
+% -------------------------------------------------------------------------
 add(ch,sec);
 
 %sec
@@ -418,17 +666,52 @@ sec.Title = 'Horizontal tail loads summary';
 str = ['ADD HERE details '];
 para = Paragraph(str);
 add(ch,para);
-
 add(ch,sec);
 
-
+% -------------------------------------------------------------------------
 %sec
+% REQUIREMENT
+Full_load_side_cs = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.UnsymmetricalLoads.Full_load_side.Attributes.cs;
 sec = Section();
 sec.Title = 'Unsysmmetrical loads';
-str = ['ADD HERE details '];
+str = ['According to' ...
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    char(Full_load_side_cs) ...
+    ', in the abscence of more rational data for conventional aircraft' ...
+    ' must be applied (1) 100% of the maximum loading from the symmetrical' ...
+    ' flight conditions on the surface on one side of the plane of symmetry' ...
+    ' and (2) the following percentage of that loading to the opposite side:'];
 para = Paragraph(str);
-add(ch,para);
-
+add(sec,para);
+% -------------------------------------------------------------------------
+        % = 100 -10 * (n - 1)
+        nmax            = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value;
+        Percentage_load = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.UnsymmetricalLoads.Percentage_load.value;
+        % -----------------------------------------------------------------
+        myNumEq = strcat( ' = (\frac{1}{100})*[100 - 10*(', num2str(nmax,4), ...
+                          ' - 1)] = ', ...
+                          num2str(Percentage_load,4));
+        % latex interprete with $ simbol
+        myEq = "$ \% = 100 - 10*(n-1) ";
+        eq = Equation(strcat(myEq, myNumEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(sec,eqImg);
+        % -----------------------------------------------------------------
+% -------------------------------------------------------------------------
+        str = ['Add loads.'];
+para = Paragraph(str);
+add(sec,para);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 add(ch,sec);
 
 
