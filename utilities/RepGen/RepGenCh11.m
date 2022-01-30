@@ -10,24 +10,19 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
+% ------------------------------------------------------------------------------------------------------------
+requirement            = Aircraft.Certification.Regulation.value;
+% CS-VLA 421 Balancing loads
+balancing_airworth_req = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Attributes.cs;
+flaps_load_req         = char(Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.Attributes.cs);
+% ------------------------------------------------------------------------------------------------------------
+
 % chapter_number = 11;
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
 ch.Title = 'Loads on the horizontal tail';
 disp(['Chapter 11', (' "'), ch.Title,('" ') ,'writing...' ])
 
-str = ['ADD HERE details '];
-para = Paragraph(str);
-add(ch,para);
-
-% BALANCING LOADS
-requirement            = Aircraft.Certification.Regulation.value;
-% CS-VLA 421 Balancing loads
-balancing_airworth_req = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Attributes.cs;
-flaps_load_req         = char(Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.Attributes.cs);
-%sec
-sec = Section();
-sec.Title = 'Balancing loads';
 str = ['According to ' ...
       (' ') ...
       char(requirement) ...
@@ -45,8 +40,61 @@ str = ['According to ' ...
       flaps_load_req(1:4) ...
       '. The distribution in figure B6 of Appendix B may be used. '];
 para = Paragraph(str);
+add(ch,para);
+
+% BALANCING LOADS
+% The following forces are considered and placed in equilibrium: 
+% Lift on the wing;
+% Horizontal tail balancing load according to requirement 5.2.2.1 [3];
+% Weight of the aeroplane;
+% For the calculation of the equilibrium, the z-axis of the aeroplane is assumed aligned with the direction of the gravity.
+% In a second stage (section 6.4), once the forces are calculated, the corresponding angle of attack will be considered for
+% the calculation of the correct direction of the forces on the wing; 
+% Influence of thrust and drag (of the total airplane) are considered negligible at this stage of calculation of the vertical forces.
+% The effect of the drag will be considered in a second stage on the wing only;
+% The wing lift is assumed to act on the aerodynamic centre of the wing as a starting point. The contribution of the fuselage
+% is accounted for as a shift of the point of aerodynamic centre. This is better explained in section 6.1.5.
+% The HT lift is applied at 25% of the chord;
+% Effects of structural flexure are considered negligible;
+% Angular accelerations are disregarded until the aeroplane has attained the prescribed load factor (according to requirement 5.2.2.3 [3]);
+
+%sec
+sec = Section();
+sec.Title = 'Balancing loads';
+str = ['The following forces are considered and placed in equilibrium:'];
+para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(sec,para);
+% -------------------------------------------------------------------------
+        % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        %ordered list
+        ref1 = ['lift on the wing;'];
+        ref2 = ['horizontal tail balancing load;'];
+        ref3 = ['weight of the aircraft;'];
+        ref4 = ['for the calculation of the equilibrium, the z axis of' ...
+            ' aircraft is assumed aligned with the direction of the' ...
+            ' gravity. In a second stage, once the forces are calculated,' ...
+            ' the corresponding angle of attack will be considered for' ...
+            ' the calculation of the correct direction of the forces on' ...
+            ' the wing;'];
+        ref5 = ['influence of thrust and drag (of the total airplane)' ...
+            ' are considered negligible at this stage of calculation of' ...
+            ' the vertical forces. The effect of the drag will be' ...
+            ' considered in a second stage on the wing only;'];
+        ref6 = ['the wing lift is assumed to act on the aerodynamic' ...
+            ' centre of the wing as a starting point. The contribution' ...
+            ' of the fuselage is accounted for as a shift of the point' ...
+            ' of aerodynamic centre;'];
+        ref7 = ['the horizontal tail lift is applied at 25% of' ...
+            'the chord;'];
+        ref8 = ['no aeroelastic deformation will be considered;'];
+        ref9 = ['angular accelerations are disregarded until the' ...
+            ' aeroplane has attained the prescribed load factor.'];
+        ol = UnorderedList({ref1, ref2, ref3, ref4, ref5, ref6, ref7, ...
+            ref8});
+        append(sec,ol);
+        % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+% ------------------------------------------------------------------------- 
 
 fig = FormalImage([results_path,'Balancingloads.png']);
 fig.Caption = 'Balancing loads';
@@ -55,6 +103,7 @@ fig.LinkTarget='bala_loads';
 add(sec,fig);
 
 add(ch,sec);
+% ------------------------------------------------------------------------- 
 
 % CS-VLA 423 Manouevring loads
 manouevring_load_req = char(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.DeltaLimitLTail.Attributes.cs);

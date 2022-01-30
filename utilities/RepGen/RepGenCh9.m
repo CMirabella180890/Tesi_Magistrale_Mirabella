@@ -10,13 +10,35 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
+% (a) Strength requirements are specified in terms of limit loads (the maximum loads to be expected
+% in service) and ultimate loads (limit loads multiplied by prescribed factors of safety). Unless
+% otherwise provided, prescribed loads are limit loads.
+
+% (b) Unless otherwise provided, the air, ground, and water loads must be placed in equilibrium with
+% inertia forces, considering each item of mass in the aeroplane. These loads must be distributed
+% to conservatively approximate or closely represent actual conditions.
+
+% (c) If deflections under load would significantly change the distribution ofexternal or internal loads,
+% this redistribution must be taken into account.
+
+% (d) Simplified structural design criteria given in this Subpart C and its appendices may be used only
+% for aeroplanes with conventional configurations. IfAppendixA is used, the entire appendix must
+% be substituted for the corresponding paragraphs of this subpart, i.e. CS-VLA 321 to 459
+
 % chapter_number = 9;
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
 ch.Title = 'Loads on the aeroplane';
 disp(['Chapter 9', (' "'), ch.Title,('" ') ,'writing...' ])
 
-str = ['ADD HERE details for balancing Equation'];
+str = ['Strength requirements are specified in terms of limit loads' ...
+    ' (the maximum loads to be expected in service) and ultimate loads' ...
+    ' (limit loads multiplied by prescribed factors of safety). Unless' ...
+    ' otherwise provided, prescribed loads are limit loads.' ...
+    ' Unless otherwise provided, the air, ground, and water loads' ...
+    ' must be placed in equilibrium with inertia forces, considering' ...
+    ' each item of mass in the aeroplane. These loads must be' ...
+    ' distributed to conservatively approximate or closely represent actual conditions.'];
 para = Paragraph(str);
 add(ch,para);
 
