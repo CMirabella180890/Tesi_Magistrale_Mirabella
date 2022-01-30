@@ -86,8 +86,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flapsenvelopediagramtakeoff.png']);
         fig.Caption = 'Flaps V-n diagram. Takeoff.';
-        fig.Height = '4in';
-        fig.Width = '4in';
+        fig.Height = '5in';
+        %fig.Width = '4in';
         fig.LinkTarget='Flaps V-n diagram takeoff';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -102,8 +102,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flaps_gust_envelopediagramtakeoff.png']);
         fig.Caption = 'Flaps gust envelope diagram. Takeoff.';
-        fig.Height = '4in';
-        fig.Width = '4in';
+        fig.Height = '5in';
+        %fig.Width = '4in';
         fig.LinkTarget='Flaps gust envelope diagram takeoff';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -118,8 +118,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flaps_final_envelopediagramtakeoff.png']);
         fig.Caption = 'Flaps final envelope diagram. Takeoff.';
-        fig.Height = '4in';
-        fig.Width = '4in';
+        fig.Height = '5in';
+        %fig.Width = '4in';
         fig.LinkTarget='Flaps final envelope diagram takeoff';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -163,8 +163,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flapsenvelopediagramlanding.png']);
         fig.Caption = 'Flaps V-n diagram. Landing.';
-        fig.Height = '4in';
-        fig.Width = '4in';
+        fig.Height = '5in';
+        %fig.Width = '4in';
         fig.LinkTarget='Flaps V-n diagram landing';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
@@ -179,8 +179,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flaps_gust_envelopediagramlanding.png']);
         fig.Caption = 'Flaps gust envelope diagram. Landing.';
-        fig.Height = '4in';
-        fig.Width = '4in';
+        fig.Height = '5in';
+        %fig.Width = '4in';
         fig.LinkTarget='Flaps gust envelope diagram landing';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -195,8 +195,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'flaps_final_envelopediagramlanding.png']);
         fig.Caption = 'Flaps final envelope diagram. Landing.';
-        fig.Height = '4in';
-        fig.Width = '4in';
+        fig.Height = '5in';
+        %fig.Width = '4in';
         fig.LinkTarget='Flaps final envelope diagram landing';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -222,8 +222,8 @@ add(subsec,para);
         
         fig = FormalImage([results_path,'Superposition.png']);
         fig.Caption = 'Summary of flaps flight load.';
-        fig.Height = '4in';
-        fig.Width = '4in';
+        fig.Height = '5in';
+        %fig.Width = '4in';
         fig.LinkTarget='Summary of flaps flight load';
         add(subsec,fig);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
