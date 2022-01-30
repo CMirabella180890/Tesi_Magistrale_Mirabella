@@ -193,8 +193,7 @@ Reg = Aircraft.Certification.Regulation.value;
 %      requirements. NOTE: point G need not be investigated when the
 %      supplementary condition specified in CS-VLA 369 is investigated.
 
-% Aircraft.Certification.Regulation.SubpartC.Flightloads.Attributes.cs = " 333 ";
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.Attributes.cs = " 333(d) ";
+
 % -------------------------------------------------------------------------
 %% WING LOADING DEFINITION
 % x = calcn(obj, nmax) - from csvla.m
