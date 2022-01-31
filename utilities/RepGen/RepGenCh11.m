@@ -95,7 +95,13 @@ add(sec,para);
         append(sec,ol);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 % ------------------------------------------------------------------------- 
-
+str = ['These approximation are by no means mandatory and can be' ...
+    ' discounted if more reliable data about the aircraft aerodynamics' ...
+    ' or more accurate calculations are necessary.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(sec,para);
+% -------------------------------------------------------------------------
 fig = FormalImage([results_path,'Balancingloads.png']);
 fig.Caption = 'Balancing loads';
 fig.Height = '5in';
@@ -526,7 +532,7 @@ para.Style = {HAlign('justify')};
 add(subsec,para);
 % -------------------------------------------------------------------------
         % Ude
-        myEq = "$ \rho_{0} = \mathrm{density of air at sea level (kg/m^3;}";
+        myEq = "$ \rho_{0} = \mathrm{density of air at sea level (kg/m^3);}";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;

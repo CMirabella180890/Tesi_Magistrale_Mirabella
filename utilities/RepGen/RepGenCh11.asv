@@ -10,6 +10,13 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
+% ------------------------------------------------------------------------------------------------------------
+requirement            = Aircraft.Certification.Regulation.value;
+% CS-VLA 421 Balancing loads
+balancing_airworth_req = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Attributes.cs;
+flaps_load_req         = char(Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.Attributes.cs);
+% ------------------------------------------------------------------------------------------------------------
+
 % chapter_number = 11;
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
@@ -50,10 +57,7 @@ add(ch,para);
 % The HT lift is applied at 25% of the chord;
 % Effects of structural flexure are considered negligible;
 % Angular accelerations are disregarded until the aeroplane has attained the prescribed load factor (according to requirement 5.2.2.3 [3]);
-requirement            = Aircraft.Certification.Regulation.value;
-% CS-VLA 421 Balancing loads
-balancing_airworth_req = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Attributes.cs;
-flaps_load_req         = char(Aircraft.Certification.Regulation.SubpartC.Flapsloads.nmax.Attributes.cs);
+
 %sec
 sec = Section();
 sec.Title = 'Balancing loads';
@@ -83,12 +87,20 @@ add(sec,para);
             ' of aerodynamic centre;'];
         ref7 = ['the horizontal tail lift is applied at 25% of' ...
             'the chord;'];
-        ref8 = ['aeroelastic deformation will be completely disco];
-        ol = UnorderedList({ref1, ref2, ref3, ref4, ref5, ref6, ref7});
+        ref8 = ['no aeroelastic deformation will be considered;'];
+        ref9 = ['angular accelerations are disregarded until the' ...
+            ' aeroplane has attained the prescribed load factor.'];
+        ol = UnorderedList({ref1, ref2, ref3, ref4, ref5, ref6, ref7, ...
+            ref8});
         append(sec,ol);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 % ------------------------------------------------------------------------- 
-
+str = ['These approximation are by no means mandatory and can be' ...
+    ' discounted if more reliable data about the aircraft aero];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(sec,para);
+% -------------------------------------------------------------------------
 fig = FormalImage([results_path,'Balancingloads.png']);
 fig.Caption = 'Balancing loads';
 fig.Height = '5in';
@@ -96,6 +108,7 @@ fig.LinkTarget='bala_loads';
 add(sec,fig);
 
 add(ch,sec);
+% ------------------------------------------------------------------------- 
 
 % CS-VLA 423 Manouevring loads
 manouevring_load_req = char(Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.DeltaLimitLTail.Attributes.cs);

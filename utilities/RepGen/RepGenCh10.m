@@ -216,11 +216,105 @@ aileron_req_airworth = Aircraft.Certification.Regulation.SubpartC.Flightloads.Fi
         ol = OrderedList({ref1, ref2});
         append(sec,ol);
         % -----------------------------------------------------------------
-
+% -------------------------------------------------------------------------
+Global_torsion_full_load_airwort_reg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Unsymmetrical_loads.Global_torsion_seventypercent_load.Attributes.cs;
+Flight_envelope_reg_airworth         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.Attributes.cs;
 %sub
 subsec = Section();
 subsec.Title = 'Rolling condition';
+str = ['According to' ...
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    char(Global_torsion_full_load_airwort_reg) ...
+    ', the aileron displacement cause a significant change of' ...
+    ' pitching moment distribution along the wing span; these changes are' ...
+    ' shown in the following diagrams for different fligh condition' ...
+    ' in red. Unless the following values result in unrealistic loads,' ...
+    ' the effect of aileron displacement on wing torsion may be' ...
+    ' accounted for by adding the following increment to  the basic' ...
+    ' aerofoil moment coefficient over the aileron portion of  the' ...
+    ' span in  the critical condition determined in' ...
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    char(Flight_envelope_reg_airworth) ...
+    ':'];
+para = Paragraph(str);
+add(subsec,para);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+        % PITCHING ANGLE DIFFERENTIAL EQUATION   
+%       
+%                      DELTA_CM = (-0.01)*DELTA_AILERON
+        %
+        myEq = "$ \Delta C_{m} = (-0.01)*\delta_{aileron} ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(subsec,eqImg);
+% -------------------------------------------------------------------------    
+%sec
+str = ['where: '];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+%       with 
+%      
+%       DELTA_CM      --> Moment coefficient increment
+%       DELTA_AILERON --> Down aileron deflection in degrees in the 
+%                         critical condition
+%       
+%       NOTE: The angle at critical condition DELTA_AILERON must be given
+%             in degrees. 
+        % Ude
+        myEq = "$ \Delta C_{m} = \mathrm{pitching moment coefficient increment;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg1 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref1 = eqImg1;         
 
+        % Lvt
+        myEq = "$ \delta_{aileron} = \mathrm{down aileron deflection in degrees at critical condition.}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg2 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref2 = eqImg2;  
+        
+        ol = UnorderedList({ref1, ref2});
+%         ol = UnorderedList({ref1,ref2,ref3,...
+%             ref4,ref5,ref6, ref7,ref8});
+%         ol = UnorderedList({ref1, ref2, ref3,...
+%             ref4,ref5,ref6, ref7, ref8, ref9});
+        append(subsec,ol);
+% ------------------------------------------------------------------------- 
+%sec
+str = ['The aileron deflection at critical condition must be given' ...
+       ' in degrees.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 %cm_A
 fig = FormalImage([results_path,'CmComparisonPointA.png']);
 fig.Caption = 'Pithcing moment coefficient - POINT A';
@@ -246,6 +340,16 @@ add(sec,subsec);
 %sub
 subsec = Section();
 subsec.Title = 'Effect of aileron displacement on the wing torsion';
+str = ['According to' ...
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    char(Global_torsion_full_load_airwort_reg) ...
+    ', the aileron displacement cause a significant change of' ...
+    ' applied wing torsion. The following diagram show this increment' ...
+    ' in red.'];
+para = Paragraph(str);
+add(subsec,para);
 
 %cm_A
 fig = FormalImage([results_path,'UnsymmetricalTorsionFullPointA.png']);
