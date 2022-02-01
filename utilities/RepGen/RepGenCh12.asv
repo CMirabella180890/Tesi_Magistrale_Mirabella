@@ -1,6 +1,6 @@
 % --------------------------------------------------------------------------
 % ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- %% CHAPTER 13 - Loads on the wing flaps
+ %% CHAPTER 12 - Loads on the vertical tail
 %Ref EASA/Tecnam p2006 report
 
 import mlreportgen.report.*  % import report API(report related methods
@@ -45,9 +45,10 @@ gust_requirement = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.
 % chapter_number = 12;
 % ch = strcat('ch' , num2str(chapter_number)); 
 ch = Chapter();
-ch.Title = 'Loads on the wing flaps';
-disp(['Chapter 13', (' "'), ch.Title,('" ') ,'writing...' ])
+ch.Title = 'Loads on the vertical tail';
+disp(['Chapter 12', (' "'), ch.Title,('" ') ,'writing...' ])
 
+% firt paragraph - optional
 str = ['According to ' ...
     (' ') ...
     char(requirement) ...
@@ -336,18 +337,30 @@ add(subsec,para);
         append(subsec,eqImg);
         % -----------------------------------------------------------------
 % -------------------------------------------------------------------------
-str = ['The lateral force acting on a single fin of the vertical tail plain is '...
-    (' ') ...
-    strcat(num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.value,4)) ...
-    '/2 = ' ...
-    (' ') ...
-    strcat(num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.value*0.5,4)) ...
-    (' ') ...
-    char(Y_max_unit) ...
-    '.'];
-para = Paragraph(str);
-para.Style = {HAlign('justify')};
-add(subsec,para);
+% -------------------------------------------------------------------------
+switch (Aircraft.Geometry.Vertical.empennage_flag.value)
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    case 'Single fin'
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    case 'Multiple fin'
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    case 'Double fin'
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        % -----------------------------------------------------------------
+        str = ['The lateral force acting on a single fin of the vertical tail plain is '...
+            (' ') ...
+            strcat(num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.value,4)) ...
+            '/2 = ' ...
+            (' ') ...
+            strcat(num2str(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.Lateral_force_decanewton.value*0.5,4)) ...
+            (' ') ...
+            char(Y_max_unit) ...
+            '.'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        add(subsec,para);
+        % -----------------------------------------------------------------
+end
 % -------------------------------------------------------------------------    
 % SUB-SECTION CASE (a)(3)
 add(sec,subsec);
@@ -374,6 +387,7 @@ str = ['According to ' ...
     ' computed as follows:  '
     ];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 
 % -------------------------------------------------------------------------
@@ -399,6 +413,7 @@ add(sec,para);
 %sec
 str = ['where: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 
@@ -588,9 +603,10 @@ gl_unit = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads
 %sec
 str = ['These calculations must be performed at VC and VD; the results are the following: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
-
+        % -----------------------------------------------------------------
         %ordered list
         ref1 = [' Gust load at VC: ' ...
             (' ') ...
@@ -614,6 +630,7 @@ add(sec,para);
 %         add(sec,para2)
         %list
         append(sec,ol);
+        % -----------------------------------------------------------------
 % -------------------------------------------------------------------------   
 %sec
 gl_flag = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.Critical_gustloads.Attributes.flag;
@@ -626,6 +643,7 @@ str = ['The critical gust load is ' ...
     char(gl_flag) ...
     '.'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 add(ch,sec);
@@ -633,9 +651,43 @@ add(ch,sec);
 %sec
 sec = Section();
 sec.Title = 'Vertical tail loads summary';
-str = ['ADD HERE details '];
+% -------------------------------------------------------------------------
+%sub
+subsec = Section();
+subsec.Title = ['Critical manouevring loads'];
+str = ['In summary, the critical manouevring loads are: '];
 para = Paragraph(str);
-add(ch,para);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+add(sec,subsec);  
+% -------------------------------------------------------------------------
+        % -----------------------------------------------------------------
+        %ordered list
+        ref1 = ['' ...
+           (' ') ...
+           strcat(num2str(Y_max*0.5,4)) ...
+           (' ') ...
+           char(Y_max_unit) ...
+           '.'];
+        ref2 = [' Gust load at VD: ' ...
+            (' ') ...
+            strcat(num2str(gl_1)) ...
+            (' ') ...
+            char(gl_unit)];
+        ol = OrderedList({ref1, ref2});
+        
+%         %1
+%         para = Paragraph(str);
+%         para.Style = {HAlign('justify')};
+%         add(sec,para)
+%         %2
+%         para2 = Paragraph(str2);
+%         para2.Style = {HAlign('justify')};
+%         add(sec,para2)
+        %list
+        append(sec,ol);
+        % -----------------------------------------------------------------
+% -------------------------------------------------------------------------
 
 add(ch,sec);
 %  
@@ -661,6 +713,7 @@ str = ['According to ' ...
     char(supp_load_req) ...
     ' the following two additional condition must be verified: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 % COMBINED LOADS RULES
@@ -699,13 +752,26 @@ Comb_tailloads_unit = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.C
             (' ') ...
             'for the vertical tail must be assumed acting simultaneously;' ...
             ' this prescription results in a combined load equal to' ...
-                (' ') ...
-                strcat(num2str(Tailloads_subpar_a,4)) ...
-                (' ') ...
-                char(Comb_tailloads_unit) ...
-                '.'];
+            (' ') ...
+            strcat(num2str(Tailloads_subpar_b,4)) ...
+            (' ') ...
+            char(Comb_tailloads_unit) ...
+            '.'];
         ol = OrderedList({ref1, ref2});
-        
+        append(sec,ol);
+        % -----------------------------------------------------------------
+% -------------------------------------------------------------------------
+total_combined_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
+str = ['The critical combined load is ' ...
+    (' ') ...
+    strcat(num2str(total_combined_load)) ...
+    (' ') ...
+    char(Comb_tailloads_unit) ...
+    '.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(sec,para);
+% -------------------------------------------------------------------------        
 %         %1
 %         para = Paragraph(str);
 %         para.Style = {HAlign('justify')};
@@ -714,8 +780,8 @@ Comb_tailloads_unit = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.C
 %         para2 = Paragraph(str2);
 %         para2.Style = {HAlign('justify')};
 %         add(sec,para2)
-        %list
-        append(sec,ol);
+%         %list
+%         append(sec,ol);
 % -------------------------------------------------------------------------   
 
 add(ch,sec);
