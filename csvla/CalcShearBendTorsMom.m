@@ -2654,7 +2654,7 @@ switch (Straight_flight_Case)
         Interpolated_Global_CD_D = zeros(length(yi), 1);
         for i = 1:length(yi)
             Interpolated_Global_CD_D(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-            if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-2
+            if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-1
                cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
             end
@@ -5345,7 +5345,7 @@ switch (Inverted_flight_Case)
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
                 Interpolated_Global_CD_S_inv(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-2
+                if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-1
                    cd_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                 end
@@ -5491,7 +5491,7 @@ switch (Inverted_flight_Case)
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
                 Interpolated_Global_CD_G(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-2
+                if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-1
                    cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                 end
@@ -5637,7 +5637,7 @@ switch (Inverted_flight_Case)
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
                 Interpolated_Global_CD_G1(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-2
+                if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-1
                    cd_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                 end
@@ -5783,7 +5783,7 @@ switch (Inverted_flight_Case)
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
                 Interpolated_Global_CD_F(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-2
+                if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-1
                    cd_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                 end
@@ -5928,7 +5928,7 @@ switch (Inverted_flight_Case)
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
                 Interpolated_Global_CD_E(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                if abs(Interpolated_Global_CD_E(i) - CD_E) < 1e-2
+                if abs(Interpolated_Global_CD_E(i) - CD_E) < 1e-1
                    cd_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                 end
