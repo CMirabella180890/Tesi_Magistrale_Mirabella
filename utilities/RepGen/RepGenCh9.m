@@ -72,12 +72,11 @@ add(ch,sec);
 
 %sec
 sec = Section();
-sec.Title = 'Pitching moment of the wing';
+sec.Title = 'Pitching moment of the wing-body';
 str = ['ADD HERE details for balancing Equation'];
 para = Paragraph(str);
 add(ch,para);
 add(ch,sec);
-
 
 %moving to another path for figure
 cd ..
@@ -99,9 +98,13 @@ cd ..
  fig.LinkTarget='bala_loads';
  add(sec,fig);
 
-
-
-
+%sec
+sec = Section();
+sec.Title = 'Complete aircraft balancing loads';
+str = ['ADD HERE table of results - LWB and LTAIL'];
+para = Paragraph(str);
+add(ch,para);
+add(ch,sec);
 
 %% END chapter
 %Adding chapters

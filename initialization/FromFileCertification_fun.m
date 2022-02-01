@@ -175,7 +175,9 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'vertical_flag', ...
          'panel_span1', ...
          'panel_span2', ...
-         'panel_span3'};
+         'panel_span3', ...
+         'horizontal_tail_damping_factor', ...
+         'airfoil_name'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -589,6 +591,12 @@ if LengthIndex==length(VarText)
     p = strcmp('panel_span3', label);
     Aircraft.Geometry.Wing.panel_span3.value = str2double(table2array(value(p==1, 1))); 
     Aircraft.Geometry.Wing.panel_span3.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('horizontal_tail_damping_factor', label);
+    Aircraft.Certification.Aerodynamic_data.Horizontal.damping_factor.value = str2double(table2array(value(p==1, 1)));  
+    Aircraft.Certification.Aerodynamic_data.Horizontal.damping_factor.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('airfoil_name', label);
+    Aircraft.Certification.Aerodynamic_data.airfoil_name.value = char(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.airfoil_name.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

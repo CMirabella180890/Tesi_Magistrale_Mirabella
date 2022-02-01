@@ -96,8 +96,10 @@ add(sec,para);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 % ------------------------------------------------------------------------- 
 str = ['These approximation are by no means mandatory and can be' ...
-    ' discounted if more reliable data about the aircraft aero];
+    ' discounted if more reliable data about the aircraft aerodynamics' ...
+    ' or more accurate calculations are necessary.'];
 para = Paragraph(str);
+para.BackgroundColor = "green";
 para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
@@ -531,7 +533,7 @@ para.Style = {HAlign('justify')};
 add(subsec,para);
 % -------------------------------------------------------------------------
         % Ude
-        myEq = "$ \rho_{0} = \mathrm{density of air at sea level (kg/m^3;}";
+        myEq = "$ \rho_{0} = \mathrm{density of air at sea level (kg/m^3);}";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;
@@ -717,11 +719,18 @@ add(ch,sec);
 %sec
 sec = Section();
 sec.Title = 'Horizontal tail loads summary';
-str = ['ADD HERE details '];
+str = ['In this section all the maximum limit load are summarized'];
 para = Paragraph(str);
-add(ch,para);
+add(sec,para);
 add(ch,sec);
-
+% -------------------------------------------------------------------------
+%sub
+subsec = Section();
+subsec.Title = 'Nose-up pitching (down load)';
+% -------------------------------------------------------------------------
+%sub
+subsec = Section();
+subsec.Title = 'Nose-down pitching (up load)';
 % -------------------------------------------------------------------------
 %sec
 % REQUIREMENT
@@ -744,7 +753,7 @@ add(sec,para);
         nmax            = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value;
         Percentage_load = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.UnsymmetricalLoads.Percentage_load.value;
         % -----------------------------------------------------------------
-        myNumEq = strcat( ' = (\frac{1}{100})*[100 - 10*(', num2str(nmax,4), ...
+        myNumEq = strcat( ' = \frac{1}{100}*[100 - 10*(', num2str(nmax,4), ...
                           ' - 1)] = ', ...
                           num2str(Percentage_load,4));
         % latex interprete with $ simbol
@@ -791,6 +800,8 @@ add(sec,para);
             (' ') ...
             ' = ' ...
             strcat(num2str(Percentage_load*Max_horiz_tail_load,4)) ...
+            (' ') ...
+            char(DeltaL_ht_VF_unit) ...
             '.'];
         ol = UnorderedList({ref1, ref2});
         append(sec,ol);

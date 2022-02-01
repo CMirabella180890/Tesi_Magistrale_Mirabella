@@ -82,6 +82,8 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_d
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.Attributes.unit = 'g';
 % -------------------------------------------------------------------------
+Aircraft.Certification.Aerodynamic_data.airfoil_name.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.airfoil_name.Attributes.unit = NaN;
 Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value = NaN; 
 Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.Attributes.unit = "Non dimensional"; 
 Aircraft.Certification.Aerodynamic_data.Min_Lift_Coefficient.value = NaN; 
@@ -132,7 +134,8 @@ Aircraft.Certification.Aerodynamic_data.Horizontal.Horizontal_Tail_Normal_Force_
 Aircraft.Certification.Aerodynamic_data.Horizontal.Horizontal_Tail_Normal_Force_Curve_Slope.Attributes.unit = "1/rad";
 Aircraft.Certification.Aerodynamic_data.Horizontal.DepsilonDalpha.value = 0.3;
 Aircraft.Certification.Aerodynamic_data.Horizontal.DepsilonDalpha.Attributes.unit = "Non dimensional";
-% Aircraft.Certification.Aerodynamic_data.Horizontal.tau.value = 0.50; 
+Aircraft.Certification.Aerodynamic_data.Horizontal.damping_factor.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.Horizontal.damping_factor.Attributes.unit = "Non dimensional";
 Aircraft.Certification.Aerodynamic_data.Horizontal.tau.value = NaN;
 Aircraft.Certification.Aerodynamic_data.Horizontal.tau.Attributes.unit = "Non dimensional";
 Aircraft.Certification.Aerodynamic_data.Horizontal.tau.Attributes.flag = "Conventional";
