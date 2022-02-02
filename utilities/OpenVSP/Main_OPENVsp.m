@@ -336,7 +336,7 @@ set.X_cg                    = ac.wing.macxloc+...     % aircraft center of gravi
     0.25*ac.wing.mac;                                 % global coordinates
 set.Y_cg                    = 0;
 set.Z_cg                    = 0;
-set.AoA                    = 0:2:12;                 % attack angle(s)
+set.AoA                    = -4:2:8;                 % attack angle(s)
 % +++++++++++++++++++++++++++++++++++
 % ANGLE OF ATTACK CORRESPONDING TO CL = 1
 % set.AoA                     = 3.1862;
