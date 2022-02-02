@@ -40,6 +40,7 @@ str = ['According to ' ...
       flaps_load_req(1:4) ...
       '. The distribution in figure B6 of Appendix B may be used. '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(ch,para);
 
 % BALANCING LOADS

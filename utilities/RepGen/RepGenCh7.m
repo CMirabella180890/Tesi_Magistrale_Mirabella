@@ -29,18 +29,18 @@ gustd = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_sp
 gustd_un = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_dive.Attributes.unit;
 
 %gust calculation table
-vc = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
-vc_un = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.Attributes.unit;
-mtow = Aircraft.Weight.I_Level.W_maxTakeOff.value;
-mtow_un = Aircraft.Weight.I_Level.W_maxTakeOff.Attributes.unit;
-s = Aircraft.Geometry.Wing.S.value;
-s_un = Aircraft.Geometry.Wing.S.Attributes.unit;
+vc       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
+vc_un    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.Attributes.unit;
+mtow     = Aircraft.Weight.I_Level.W_maxTakeOff.value;
+mtow_un  = Aircraft.Weight.I_Level.W_maxTakeOff.Attributes.unit;
+s        = Aircraft.Geometry.Wing.S.value;
+s_un     = Aircraft.Geometry.Wing.S.Attributes.unit;
 m_over_s = mtow/s;
-rho =  Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
-rho_un = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.Attributes.unit;
-mg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.value;
-kg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor.value;
-n = max (Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value);
+rho      =  Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
+rho_un   = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.Attributes.unit;
+mg       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.value;
+kg       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor.value;
+n        = max (Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value);
 
 
 %% END DECLARATION

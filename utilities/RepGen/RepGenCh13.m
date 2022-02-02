@@ -232,6 +232,98 @@ add(subsec,para);
 % -------------------------------------------------------------------------    
 add(ch,sec);
 % -------------------------------------------------------------------------
+% TAKEOFF
+% -------------------------------------------------------------------------
+point_S = "Point S";
+vs      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointS.VS.value;
+vs_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointS.VS.Attributes.unit;
+ns      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointS.nS.value;
+ns_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointS.nS.Attributes.unit;
+point_A = "Point A";
+va      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointA.VA.value;
+va_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointA.VA.Attributes.unit;
+na      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointA.nA.value;
+na_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointA.nA.Attributes.unit;
+point_F = "Point F";
+vf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointF.VF.value;
+vf_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointF.VF.Attributes.unit;
+nf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointF.nF.value;
+nf_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.PointF.nF.Attributes.unit;
+% ------------------------------------------------------------------------- 
+        % -----------------------------------------------------------------
+        %table gust calculation        
+        str = ['TABLE TO BE CHECKED!!!'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        para.BackgroundColor = "red";
+        add(sec,para);  
+        % -----------------------------------------------------------------
+        header = {'Point', strcat('V(',vs_unit,')'), strcat('n(',ns_unit,')')};
+        %each table row needs of a fieldValue
+        %1
+        name       = {char(point_S); char(point_A); char(point_F)};
+        speeds     = {num2str(vs,4); num2str(va,4); num2str(vf,4)};
+        load_fact  = {num2str(ns,4); num2str(na,4); num2str(nf,4)};
+        fieldValue = [name, speeds, load_fact];
+    
+          
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Flaps envelope points summary at takeoff.');
+        tbl.LinkTarget = 'flapenvpointstakeoff';
+        add(sec,tbl);
+        % -----------------------------------------------------------------
+% -------------------------------------------------------------------------    
+
+% -------------------------------------------------------------------------
+% LANDING
+% -------------------------------------------------------------------------
+point_S = "Point S";
+vs      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointS.VS.value;
+vs_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointS.VS.Attributes.unit;
+ns      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointS.nS.value;
+ns_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointS.nS.Attributes.unit;
+point_A = "Point A";
+va      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointA.VA.value;
+va_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointA.VA.Attributes.unit;
+na      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointA.nA.value;
+na_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointA.nA.Attributes.unit;
+point_F = "Point F";
+vf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointF.VF.value;
+vf_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointF.VF.Attributes.unit;
+nf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointF.nF.value;
+nf_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.PointF.nF.Attributes.unit;
+% ------------------------------------------------------------------------- 
+        % -----------------------------------------------------------------
+        %table gust calculation        
+        str = ['TABLE TO BE CHECKED!!!'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        para.BackgroundColor = "red";
+        add(sec,para);  
+        % -----------------------------------------------------------------
+        header = {'Point', strcat('V(',vs_unit,')'), strcat('n(',ns_unit,')')};
+        %each table row needs of a fieldValue
+        %1
+        name       = {char(point_S); char(point_A); char(point_F)};
+        speeds     = {num2str(vs,4); num2str(va,4); num2str(vf,4)};
+        load_fact  = {num2str(ns,4); num2str(na,4); num2str(nf,4)};
+        fieldValue = [name, speeds, load_fact];
+    
+          
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Flaps envelope points summary at landing.');
+        tbl.LinkTarget = 'flapenvpointslanding';
+        add(sec,tbl);
+        % -----------------------------------------------------------------
+
 %         % LATERAL FORCE COEFFICIENT ON THE RUDDER AT MAX DEFLECTION
 %         % latex interprete with $ simbol
 %         myEq = "$ C_Y = C_{Y,0} + \frac{d C_Y}{d \delta_r} * \delta_{r,max} ";

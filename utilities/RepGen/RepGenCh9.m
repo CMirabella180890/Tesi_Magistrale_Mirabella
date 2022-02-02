@@ -40,26 +40,273 @@ str = ['Strength requirements are specified in terms of limit loads' ...
     ' each item of mass in the aeroplane. These loads must be' ...
     ' distributed to conservatively approximate or closely represent actual conditions.'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(ch,para);
 
 %sec
 sec = Section();
 sec.Title = 'Reference axes and sign convention';
-str = ['ADD HERE details for balancing Equation'];
+str = ['In the figure is represented the reference frame used' ...
+    ' to project forces and moment acting on the aircraft structures.' ...
+    ' The origin is located at the airplane axis of symmetry' ...
+    ' (x axis) with the y axis passing through the leading edge' ...
+    ' of the mean aerodynamic chord section of the wing.'];
 para = Paragraph(str);
-add(ch,para);
-subsec = Section();
-subsec.Title = 'aaaaa';
+para.Style = {HAlign('justify')};
+add(sec,para);
+% -------------------------------------------------------------------------
+%moving to another path for figure
+cd ..
+cd ..
+ regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\' regulation '\Output\'];
 
+ cd (RepDir);
+ 
+ fig = FormalImage([results_path,'reference_axis.png']);
+ fig.Caption = 'Reference axis';
+ fig.Height = '5in';
+ fig.LinkTarget='reference_axis';
+ add(sec,fig);
+% reference_axis
+% -------------------------------------------------------------------------
+% subsec
+subsec = Section();
+subsec.Title = 'Sign conventions and symbols';
+str = ['Sign conventions and symbols used are summarized as follows:'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+        % x
+        myEq = "$ x = \mathrm{longitudinal axis of the aircraft;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg1 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref1 = eqImg1;         
+
+        % y
+        myEq = "$ y = \mathrm{lateral axis of the aircraft;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg2 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref2 = eqImg2;  
+        
+        % z
+        myEq = "$ z = \mathrm{vertical axis of the aircraft;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg3 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref3 = eqImg3; 
+        
+        % Mx
+        myEq = "$ M_x = \mathrm{total rolling moment;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg4 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref4 = eqImg4; 
+        
+        % My
+        myEq = "$ M_y = \mathrm{total pitching moment;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg5 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref5 = eqImg5; 
+        
+        % Mz
+        myEq = "$ M_z = \mathrm{total yawing moment;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg6 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref6 = eqImg6;
+        
+        % Fx
+        myEq = "$ F_x = \mathrm{toal axial force;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg7 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref7 = eqImg7; 
+        
+        % Fy
+        myEq = "$ F_y = \mathrm{total lateral force;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg8 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref8 = eqImg8; 
+        
+        % Fz
+        myEq = "$ F_z = \mathrm{total normal force;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg9 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref9 = eqImg9;
+        
+        ol = UnorderedList({ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9});
+%         ol = UnorderedList({ref1,ref2,ref3,...
+%             ref4,ref5,ref6, ref7,ref8});
+%         ol = UnorderedList({ref1, ref2, ref3,...
+%             ref4,ref5,ref6, ref7, ref8, ref9});
+        append(subsec,ol);
+% ------------------------------------------------------------------------- 
 add(sec,subsec);
+% -------------------------------------------------------------------------
 add(ch,sec);
 
 %sec
 sec = Section();
 sec.Title = 'Symmetrical flight conditions';
-str = ['ADD HERE details for balancing Equation'];
+str = ['The external forces and moments acting on the aeroplane in' ...
+    ' a balanced flight condition have been determined. The' ...
+    ' simplified scheme in figure is considered. The aeroplane' ...
+    ' is reduced to the wing and the horizontal tail. The symbols' ...
+    ' used are:'];
 para = Paragraph(str);
-add(ch,para);
+para.Style = {HAlign('justify')};
+add(sec,para);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+%moving to another path for figure
+cd ..
+cd ..
+ regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\' regulation '\Output\'];
+
+ cd (RepDir);
+ 
+ fig = FormalImage([results_path,'balance_reference.png']);
+ fig.Caption = 'Simplified equilibrium of the aircraft';
+ fig.Height = '3in';
+ fig.LinkTarget='balance_reference';
+ add(sec,fig);
+% balance_reference
+% -------------------------------------------------------------------------
+        % xcg
+        myEq = "$ x_{CG} = \mathrm{distance to aircraft centre of gravity;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg1 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref1 = eqImg1;         
+
+        % xacwingfuselage
+        myEq = "$ x_{AC_{f+w}} = \mathrm{distance to wing fuselage combination aerodynamic centre;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg2 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref2 = eqImg2;  
+        
+        % xPf+w
+        myEq = "$ x_{P_{f+w}} = \mathrm{distance to wing fuselage combination centre of pressure;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg3 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref3 = eqImg3; 
+        
+        % nW
+        myEq = "$ nW = \mathrm{aircraft total weight force;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg4 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref4 = eqImg4; 
+        
+        % xHT
+        myEq = "$ x_{HT} = \mathrm{distance to HT quarter chord line;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg5 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref5 = eqImg5; 
+        
+        ol = UnorderedList({ref1, ref2, ref3, ref4, ref5});
+%         ol = UnorderedList({ref1,ref2,ref3,...
+%             ref4,ref5,ref6, ref7,ref8});
+%         ol = UnorderedList({ref1, ref2, ref3,...
+%             ref4,ref5,ref6, ref7, ref8, ref9});
+        append(sec,ol);
+% ------------------------------------------------------------------------- 
+% -------------------------------------------------------------------------
 add(ch,sec);
 
 %sec
