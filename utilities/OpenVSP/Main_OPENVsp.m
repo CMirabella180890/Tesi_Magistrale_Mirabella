@@ -79,7 +79,13 @@ ac.wing.affile = strcat('airfoil/',ac.wing.affile);
 ac.wing.idealcl     = [0.6 0.6 0.6 0.6];           % camber of each airfoil             [0.6 0.6 0.6 0.6]
 ac.wing.camberloc   = [0.15 0.15 0.15 0.15];        % camber location of each airfoil     [0.15 0.15 0.15 0.15]
 ac.wing.thickchord  = [0.18 0.18 0.18 0.18];        % thickness of each airfoil           [0.18 0.18 0.18 0.18]
-ac.wing.twist       = [3.0 3.0 3.0 3.0];               % twist angles                   [3.0 3.0 3.0 3.0]
+% -------------------------------------------------------------------------
+twist_angle_first  = Aircraft.Geometry.Wing.twist_angle_first.value;
+twist_angle_second = Aircraft.Geometry.Wing.twist_angle_second.value;
+twist_angle_third  = Aircraft.Geometry.Wing.twist_angle_third.value;
+twist_angle_fourth = Aircraft.Geometry.Wing.twist_angle_fourth.value;
+% -------------------------------------------------------------------------
+ac.wing.twist       = [twist_angle_first twist_angle_second twist_angle_third twist_angle_fourth];               % twist angles                   [3.0 3.0 3.0 3.0]
 ac.wing.twistloc    = [0 0 0 0];                 % twist locations along the chord  [0 0 0 0]
 ac.wing.xloc        = Aircraft.Geometry.Wing.xle.value;                    % X global coordinate     
 ac.wing.yloc        = 0.0;
@@ -95,16 +101,34 @@ semispan    = Aircraft.Geometry.Wing.b.value/2;
 panel_span1 = semispan * (Aircraft.Geometry.Wing.panel_span1.value);
 panel_span2 = semispan * (Aircraft.Geometry.Wing.panel_span2.value);
 panel_span3 = semispan * (Aircraft.Geometry.Wing.panel_span3.value);
-%
+% -------------------------------------------------------------------------
+chord_kink_one = Aircraft.Geometry.Wing.chord_kink_one.value;
+chord_kink_two = Aircraft.Geometry.Wing.chord_kink_two.value;
+ctip           = Aircraft.Geometry.Wing.ctip.value;
+croot          = Aircraft.Geometry.Wing.croot.value;
 ac.wing.span        = [panel_span1 panel_span2 panel_span3];     % span(s)
-ac.wing.ctip        = [Aircraft.Geometry.Wing.chord_kink_one.value Aircraft.Geometry.Wing.chord_kink_two.value Aircraft.Geometry.Wing.ctip.value];  % tip chord(s)[k1,k2,tip]
-ac.wing.croot       = [Aircraft.Geometry.Wing.croot.value Aircraft.Geometry.Wing.chord_kink_one.value Aircraft.Geometry.Wing.chord_kink_two.value];  % root chord(s)[root,k1,k2]
+ac.wing.ctip        = [chord_kink_one chord_kink_two ctip];  % tip chord(s)[k1,k2,tip]
+ac.wing.croot       = [croot chord_kink_one chord_kink_two];  % root chord(s)[root,k1,k2]
 % ac.wing.croot       = [ac.wing.ctip(1)];  % root chord(s)
-ac.wing.sweep       = [0 0 0];                % sweep angle(s) [25 25 25]
+% -------------------------------------------------------------------------
+% FRECCIA DELL'ALA 
+% -------------------------------------------------------------------------
+sweep_first  = Aircraft.Geometry.Wing.sweep_first.value;
+sweep_second = Aircraft.Geometry.Wing.sweep_second.value;
+sweep_third  = Aircraft.Geometry.Wing.sweep_third.value;    
+% -------------------------------------------------------------------------
+ac.wing.sweep       = [sweep_first sweep_second sweep_third];                % sweep angle(s) [25 25 25]
 ac.wing.sweeploc    = [0 0 0];                   % sweep location(s) along the chord
 ac.wing.secsweeploc = [1 1 1];                   % secondary sweep location(s) along the chord
-ac.wing.dihedral    = [0 0 0];                 % dihedral angle(s) [2 2 2]
-ac.wing.utess       = [15 15 12];                 % tessellation [15 15 12]
+% -------------------------------------------------------------------------
+% ANGOLO DIEDRO DELL'ALA
+% -------------------------------------------------------------------------
+dihedral_first  = Aircraft.Geometry.Wing.dihedral_first.value;
+dihedral_second = Aircraft.Geometry.Wing.dihedral_second.value;
+dihedral_third  = Aircraft.Geometry.Wing.dihedral_third.value;
+% -------------------------------------------------------------------------
+ac.wing.dihedral    = [dihedral_first dihedral_second dihedral_third];                   % dihedral angle(s) [2 2 2]
+ac.wing.utess       = [15 15 12];                % tessellation [15 15 12]
 ac.wing.wtess       = 40;
 ac.wing.captess     = 9;    % Number of tessellated curves on Wing Root and Tip
 ac.wing.tecluster   = 0.15;               %TE Tess Cluster Control

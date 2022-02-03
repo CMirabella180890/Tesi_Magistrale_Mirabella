@@ -159,6 +159,7 @@ Saving ShearBendingTorsionDiagramPointS.pdf in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
  ++++ FIGURE 13 - POINT A SHEAR, BENDING, TORSION ++++ 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointA.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -174,6 +175,7 @@ Saving ShearBendingTorsionDiagramPointC.pdf in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
  ++++ FIGURE 15 - POINT D SHEAR, BENDING, TORSION ++++ 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointD.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -194,6 +196,7 @@ Saving ShearBendingTorsionDiagramPointG1.pdf in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
  ++++ FIGURE 20 - POINT F SHEAR, BENDING, TORSION ++++ 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointF.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -233,7 +236,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 30 -POINT C SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
-[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving CmComparisonPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -250,7 +252,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving CmComparisonPointD.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 34 - POINT D PARTIAL LOAD - UNSYMM. TORSION ++++ 
-[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalTorsionSeventyPerCentPointD.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -469,222 +470,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 -----------------
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
-close all 
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('horzcat')" style="font-weight:bold">horzcat</a>
-Dimensions of arrays being concatenated are not consistent.
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh10', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m', 182)" style="font-weight:bold">RepGenCh10</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m',182,0)">line 182</a>)
-        fieldValue = [name, speeds, load_fact, alfa, shear, bending, torsion];
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 175)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',175,0)">line 175</a>)
-RepGenCh10      %Loads on the wing
-} 
-opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m',182,0)
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.value(1:3:end)
-
-ans =
-
-         0
-   11.6058
-   26.0912
-   41.6127
-   57.6875
-   74.0602
-   90.6303
-  107.3062
-  124.1022
-  140.9846
-  157.9156
-  174.9305
-  192.3180
-
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value(1:4:end)
-
-ans =
-
-         0
-   22.2103
-   49.2441
-   77.8237
-  107.0440
-  136.5840
-  166.3743
-  196.3526
-  226.4421
-  257.1157
-
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value(end)
-
-ans =
-
-  273.1770
-
-Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value(1)
-
-ans =
-
-     0
-
-RepGenMain(Aircraft)
 The authors are  Pierluigi Della Vecchia and Claudio Mirabella
  
 The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF

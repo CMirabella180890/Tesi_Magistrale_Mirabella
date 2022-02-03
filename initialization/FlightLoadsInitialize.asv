@@ -83,9 +83,16 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_d
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.Attributes.unit = 'g';
 % -------------------------------------------------------------------------
 % AIRFOIL NAME
-% ---------------------------------------
-Aircraft.Certification.Aerodynamic_data.airfoil_name.value = NaN; 
-Aircraft.Certification.Aerodynamic_data.airfoil_name.Attributes.unit = NaN;
+% -------------------------------------------------------------------------
+Aircraft.Certification.Aerodynamic_data.airfoil_first_panel.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.airfoil_first_panel.Attributes.unit = NaN;
+Aircraft.Certification.Aerodynamic_data.airfoil_second_panel.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.airfoil_second_panel.Attributes.unit = NaN;
+Aircraft.Certification.Aerodynamic_data.airfoil_third_panel.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.airfoil_third_panel.Attributes.unit = NaN;
+Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.Attributes.unit = NaN;
+% -------------------------------------------------------------------------
 % -------------------------------------------------------------------------
 Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value = NaN; 
 Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.Attributes.unit = "Non dimensional"; 
@@ -258,8 +265,12 @@ Aircraft.Geometry.Wing.S.value = NaN;        % Wing span m2
 Aircraft.Geometry.Wing.S.Attributes.unit = "m^2";
 Aircraft.Geometry.Wing.AR.value = NaN;
 Aircraft.Geometry.Wing.taper.value = NaN;    % taper ratio
-Aircraft.Geometry.Wing.sweep.value = NaN;     % sweep angle 1/4 c deg.
-Aircraft.Geometry.Wing.sweep.Attributes.unit = 'deg';
+% -------------------------------------------------------------------------
+Aircraft.Geometry.Wing.sweep_first.value = NaN;     % sweep angle 1/4 c deg.
+Aircraft.Geometry.Wing.sweep_first.Attributes.unit = 'deg';
+Aircraft.Geometry.Wing.sweep_first.value = NaN;     % sweep angle 1/4 c deg.
+Aircraft.Geometry.Wing.sweep_first.Attributes.unit = 'deg';
+% -------------------------------------------------------------------------
 Aircraft.Geometry.Wing.sweep_location.value = NaN;     
 Aircraft.Geometry.Wing.sweep_location.Attributes.unit = 'percentage';
 Aircraft.Geometry.Wing.secondary_sweep_location.value = NaN;     

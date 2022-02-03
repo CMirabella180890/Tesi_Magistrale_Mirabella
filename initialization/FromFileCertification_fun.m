@@ -180,7 +180,16 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'airfoil_first_panel', ...
          'airfoil_sec_panel', ...
          'airfoil_third_panel', ...
-         'airfoil_fourth_panel'};
+         'airfoil_fourth_panel', ...
+         'sweep_first', ...
+         'sweep_second', ...
+         'sweep_third', ...
+         'dihedral_first', ...
+         'dihedral_second', ...
+         'dihedral_third', ...
+         'twist_angle_second', ...
+         'twist_angle_third', ...
+         'twist_angle_fourth'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -295,8 +304,8 @@ if LengthIndex==length(VarText)
     Aircraft.Geometry.Wing.ctip.value = str2double(table2array(value(p==1,1)));
     Aircraft.Geometry.Wing.ctip.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('Aircraft.Geometry.Wing.twist_angle', label);
-    Aircraft.Geometry.Wing.twist_angle.value = str2double(table2array(value(p==1,1)));
-    Aircraft.Geometry.Wing.twist_angle.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Geometry.Wing.twist_angle_first.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.Wing.twist_angle_first.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('Aircraft.Geometry.Aileron.S', label); 
     Aircraft.Geometry.Aileron.S.value = str2double(table2array(value(p==1,1)));
     Aircraft.Geometry.Aileron.S.Attributes.unit = char(table2array(unit(p==1,1)));
@@ -609,12 +618,41 @@ if LengthIndex==length(VarText)
     p = strcmp('airfoil_fourth_panel', label);
     Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.value = char(table2array(value(p==1, 1)));
     Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('sweep_first', label);
+    Aircraft.Geometry.Wing.sweep_first.value = str2double(table2array(value(p==1, 1)));  
+    Aircraft.Geometry.Wing.sweep_first.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('sweep_second', label);
+    Aircraft.Geometry.Wing.sweep_second.value = str2double(table2array(value(p==1, 1)));  
+    Aircraft.Geometry.Wing.sweep_second.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('sweep_third', label);
+    Aircraft.Geometry.Wing.sweep_third.value = str2double(table2array(value(p==1, 1)));  
+    Aircraft.Geometry.Wing.sweep_third.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('dihedral_first', label);
+    Aircraft.Geometry.Wing.dihedral_first.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Wing.dihedral_first.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('dihedral_second', label);
+    Aircraft.Geometry.Wing.dihedral_second.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Wing.dihedral_second.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('dihedral_third', label);
+    Aircraft.Geometry.Wing.dihedral_third.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Wing.dihedral_third.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('twist_angle_second', label);
+    Aircraft.Geometry.Wing.twist_angle_second.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Wing.twist_angle_second.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('twist_angle_third', label);
+    Aircraft.Geometry.Wing.twist_angle_third.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Wing.twist_angle_third.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('twist_angle_fourth', label);
+    Aircraft.Geometry.Wing.twist_angle_fourth.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Wing.twist_angle_fourth.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.Attributes.unit = "Positive g";
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Negative_load_factors.Attributes.unit = "Negative g";
+Aircraft.Geometry.Wing.twist_angle.value = Aircraft.Geometry.Wing.twist_angle_first.value;
+Aircraft.Geometry.Wing.twist_angle.Attributes.unit = "deg";
 
 % 
 %          'Aircraft.Geometry.Wing.mac', ...

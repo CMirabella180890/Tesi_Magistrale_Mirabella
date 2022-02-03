@@ -265,8 +265,14 @@ Aircraft.Geometry.Wing.S.value = NaN;        % Wing span m2
 Aircraft.Geometry.Wing.S.Attributes.unit = "m^2";
 Aircraft.Geometry.Wing.AR.value = NaN;
 Aircraft.Geometry.Wing.taper.value = NaN;    % taper ratio
-Aircraft.Geometry.Wing.sweep.value = NaN;     % sweep angle 1/4 c deg.
-Aircraft.Geometry.Wing.sweep.Attributes.unit = 'deg';
+% -------------------------------------------------------------------------
+Aircraft.Geometry.Wing.sweep_first.value = NaN;     % sweep angle 1/4 c deg.
+Aircraft.Geometry.Wing.sweep_first.Attributes.unit = 'deg';
+Aircraft.Geometry.Wing.sweep_second.value = NaN;     % sweep angle 1/4 c deg.
+Aircraft.Geometry.Wing.sweep_second.Attributes.unit = 'deg';
+Aircraft.Geometry.Wing.sweep_third.value = NaN;     % sweep angle 1/4 c deg.
+Aircraft.Geometry.Wing.sweep_third.Attributes.unit = 'deg';
+% -------------------------------------------------------------------------
 Aircraft.Geometry.Wing.sweep_location.value = NaN;     
 Aircraft.Geometry.Wing.sweep_location.Attributes.unit = 'percentage';
 Aircraft.Geometry.Wing.secondary_sweep_location.value = NaN;     
@@ -283,8 +289,14 @@ Aircraft.Geometry.Wing.zle.value = NaN;      % wing leading edge as fraction of 
 Aircraft.Geometry.Wing.zle.Attributes.unit = '% fuselage length';
 Aircraft.Geometry.Wing.xtip_le.value = NaN; % leading edge of tip chord in % of fuselage lenght
 Aircraft.Geometry.Wing.xtip_le.Attributes.unit = '% fuselage length';
-Aircraft.Geometry.Wing.dihedral.value = NaN; % geometric dihedral angle at c/4 in deg.
-Aircraft.Geometry.Wing.dihedral.Attributes.unit = 'deg';
+% -------------------------------------------------------------------------
+Aircraft.Geometry.Wing.dihedral_first.value = NaN; % geometric dihedral angle at c/4 in deg.
+Aircraft.Geometry.Wing.dihedral_first.Attributes.unit = 'deg';
+Aircraft.Geometry.Wing.dihedral_second.value = NaN; % geometric dihedral angle at c/4 in deg.
+Aircraft.Geometry.Wing.dihedral_second.Attributes.unit = 'deg';
+Aircraft.Geometry.Wing.dihedral_third.value = NaN; % geometric dihedral angle at c/4 in deg.
+Aircraft.Geometry.Wing.dihedral_third.Attributes.unit = 'deg';
+% -------------------------------------------------------------------------
 Aircraft.Geometry.Wing.mac.value = NaN;            % mean aerodynamic chord in meters
 Aircraft.Geometry.Wing.mac.Attributes.unit = 'm';
 Aircraft.Geometry.Wing.xmac.value = NaN;           % x mac coordinate as function of fuselage length
@@ -301,7 +313,16 @@ Aircraft.Geometry.Wing.thickchord.value = NaN;
 Aircraft.Geometry.Wing.thickchord.Attributes.unit = "percentage";
 Aircraft.Geometry.Wing.type.value = NaN; % <--- Flag could be: Rectangular, With_kinks
 Aircraft.Geometry.Wing.type.Attributes.unit = "flag"; 
-
+% -------------------------------------------------------------------------
+Aircraft.Geometry.Wing.twist_angle_first.value = NaN;
+Aircraft.Geometry.Wing.twist_angle_first.Attributes.unit = 'deg';
+Aircraft.Geometry.Wing.twist_angle_second.value = NaN;
+Aircraft.Geometry.Wing.twist_angle_second.Attributes.unit = 'deg';
+Aircraft.Geometry.Wing.twist_angle_third.value = NaN;
+Aircraft.Geometry.Wing.twist_angle_third.Attributes.unit = 'deg';
+Aircraft.Geometry.Wing.twist_angle_fourth.value = NaN;
+Aircraft.Geometry.Wing.twist_angle_fourth.Attributes.unit = 'deg';
+% -------------------------------------------------------------------------
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Vertical
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
