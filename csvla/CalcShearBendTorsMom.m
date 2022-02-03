@@ -273,7 +273,8 @@ switch (Straight_flight_Case)
                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -302,7 +303,8 @@ switch (Straight_flight_Case)
                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
 
@@ -1316,6 +1318,7 @@ switch (Straight_flight_Case)
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -1345,6 +1348,7 @@ switch (Straight_flight_Case)
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
         
@@ -2103,7 +2107,8 @@ switch (Straight_flight_Case)
                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -2132,7 +2137,8 @@ switch (Straight_flight_Case)
                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
             % =================================================================
@@ -3012,6 +3018,7 @@ switch (Inverted_flight_Case)
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -3040,7 +3047,8 @@ switch (Inverted_flight_Case)
                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
             
@@ -4233,6 +4241,7 @@ switch (Inverted_flight_Case)
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -4261,7 +4270,8 @@ switch (Inverted_flight_Case)
                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
             
@@ -5294,7 +5304,8 @@ switch (Inverted_flight_Case)
                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -5323,7 +5334,8 @@ switch (Inverted_flight_Case)
                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
         

@@ -93,7 +93,7 @@ Update();
 ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),0),"airfoil/E216_104.dat");
 SetParmVal(wing,"ThickChord","XSecCurve_0",0.18);
 
-SetParmVal(wing,"Twist","XSec_0",3);
+SetParmVal(wing,"Twist","XSec_0",0);
 SetParmVal(wing,"Twist_Location","XSec_0",0);
 
 Update(); 
@@ -102,7 +102,7 @@ Update();
 ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),1),"airfoil/E216_104.dat");
 SetParmVal(wing,"ThickChord","XSecCurve_1",0.18);
 
-SetParmVal(wing,"Twist","XSec_1",3);
+SetParmVal(wing,"Twist","XSec_1",0);
 SetParmVal(wing,"Twist_Location","XSec_1",0);
 
 Update(); 
@@ -111,7 +111,7 @@ Update();
 ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),2),"airfoil/E216_104.dat");
 SetParmVal(wing,"ThickChord","XSecCurve_2",0.18);
 
-SetParmVal(wing,"Twist","XSec_2",3);
+SetParmVal(wing,"Twist","XSec_2",0);
 SetParmVal(wing,"Twist_Location","XSec_2",0);
 
 Update(); 
@@ -120,7 +120,7 @@ Update();
 ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),3),"airfoil/E216_104.dat");
 SetParmVal(wing,"ThickChord","XSecCurve_3",0.18);
 
-SetParmVal(wing,"Twist","XSec_3",3);
+SetParmVal(wing,"Twist","XSec_3",0);
 SetParmVal(wing,"Twist_Location","XSec_3",0);
 
 Update(); 

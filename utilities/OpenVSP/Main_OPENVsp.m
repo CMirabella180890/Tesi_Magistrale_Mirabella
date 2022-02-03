@@ -64,10 +64,12 @@ ac.wing.type        = 'WING';                  % OpenVSP component type
 % imported.
 
 ac.wing.airfoil     = 'XS_FILE_AIRFOIL';         % OpenVSP airfoil standard type
+% -------------------------------------------------------------------------
 airfoil_first_panel  = Aircraft.Certification.Aerodynamic_data.airfoil_first_panel.value;
 airfoil_second_panel = Aircraft.Certification.Aerodynamic_data.airfoil_second_panel.value;
 airfoil_third_panel  = Aircraft.Certification.Aerodynamic_data.airfoil_third_panel.value;
 airfoil_fourth_panel = Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.value;
+% -------------------------------------------------------------------------
 % Define the airfoil for each section in a cell array and point to the airfoil folder
 ac.wing.affile = {airfoil_first_panel, airfoil_second_panel, airfoil_third_panel, airfoil_fourth_panel};
 % ac.wing.affile = {'Nasa_Langley_GAW1_0417.dat', 'Nasa_Langley_GAW1_0417.dat'};
@@ -97,6 +99,7 @@ ac.wing.zrot        = 0;                         % Z global rotation
 ac.wing.sym         = 2;                       % wing planar symmetry
 % 0: none; 1: XY; 2: XZ; 3: YZ
 % to be MODIFIED!!!
+% -------------------------------------------------------------------------
 semispan    = Aircraft.Geometry.Wing.b.value/2;
 panel_span1 = semispan * (Aircraft.Geometry.Wing.panel_span1.value);
 panel_span2 = semispan * (Aircraft.Geometry.Wing.panel_span2.value);
@@ -106,6 +109,7 @@ chord_kink_one = Aircraft.Geometry.Wing.chord_kink_one.value;
 chord_kink_two = Aircraft.Geometry.Wing.chord_kink_two.value;
 ctip           = Aircraft.Geometry.Wing.ctip.value;
 croot          = Aircraft.Geometry.Wing.croot.value;
+% -------------------------------------------------------------------------
 ac.wing.span        = [panel_span1 panel_span2 panel_span3];     % span(s)
 ac.wing.ctip        = [chord_kink_one chord_kink_two ctip];  % tip chord(s)[k1,k2,tip]
 ac.wing.croot       = [croot chord_kink_one chord_kink_two];  % root chord(s)[root,k1,k2]
