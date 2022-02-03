@@ -64,9 +64,12 @@ ac.wing.type        = 'WING';                  % OpenVSP component type
 % imported.
 
 ac.wing.airfoil     = 'XS_FILE_AIRFOIL';         % OpenVSP airfoil standard type
-airfoil_name        = Aircraft.Certification.Aerodynamic_data.airfoil_name.value;
+airfoil_first_panel  = Aircraft.Certification.Aerodynamic_data.airfoil_first_panel.value;
+airfoil_second_panel = Aircraft.Certification.Aerodynamic_data.airfoil_second_panel.value;
+airfoil_third_panel  = Aircraft.Certification.Aerodynamic_data.airfoil_third_panel.value;
+airfoil_fourth_panel = Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.value;
 % Define the airfoil for each section in a cell array and point to the airfoil folder
-ac.wing.affile = {airfoil_name, airfoil_name, airfoil_name, airfoil_name};
+ac.wing.affile = {airfoil_first_panel, airfoil_second_panel, airfoil_third_panel, airfoil_fourth_panel};
 % ac.wing.affile = {'Nasa_Langley_GAW1_0417.dat', 'Nasa_Langley_GAW1_0417.dat'};
 % ac.wing.affile = {'e205_Selig.dat', 'e205_Selig.dat', 'e205_Selig.dat', 'e205_Selig.dat'};
 % ac.wing.affile = {'E216_104.dat', 'E216_104.dat', 'E216_104.dat', 'E216_104.dat'};

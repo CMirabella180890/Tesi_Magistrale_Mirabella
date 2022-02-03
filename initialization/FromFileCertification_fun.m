@@ -177,7 +177,10 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'panel_span2', ...
          'panel_span3', ...
          'horizontal_tail_damping_factor', ...
-         'airfoil_name'};
+         'airfoil_first_panel', ...
+         'airfoil_sec_panel', ...
+         'airfoil_third_panel', ...
+         'airfoil_fourth_panel'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -594,9 +597,18 @@ if LengthIndex==length(VarText)
     p = strcmp('horizontal_tail_damping_factor', label);
     Aircraft.Certification.Aerodynamic_data.Horizontal.damping_factor.value = str2double(table2array(value(p==1, 1)));  
     Aircraft.Certification.Aerodynamic_data.Horizontal.damping_factor.Attributes.unit = char(table2array(unit(p==1,1)));
-    p = strcmp('airfoil_name', label);
-    Aircraft.Certification.Aerodynamic_data.airfoil_name.value = char(table2array(value(p==1, 1)));
-    Aircraft.Certification.Aerodynamic_data.airfoil_name.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('airfoil_first_panel', label);
+    Aircraft.Certification.Aerodynamic_data.airfoil_first_panel.value = char(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.airfoil_first_panel.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('airfoil_sec_panel', label);
+    Aircraft.Certification.Aerodynamic_data.airfoil_second_panel.value = char(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.airfoil_second_panel.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('airfoil_third_panel', label);
+    Aircraft.Certification.Aerodynamic_data.airfoil_third_panel.value = char(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.airfoil_third_panel.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('airfoil_fourth_panel', label);
+    Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.value = char(table2array(value(p==1, 1)));
+    Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

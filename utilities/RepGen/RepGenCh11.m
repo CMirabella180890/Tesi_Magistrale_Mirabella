@@ -722,6 +722,7 @@ sec = Section();
 sec.Title = 'Horizontal tail loads summary';
 str = ['In this section all the maximum limit load are summarized'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
         % -----------------------------------------------------------------
         %ordered list
@@ -786,6 +787,7 @@ str = ['According to' ...
     ' flight conditions on the surface on one side of the plane of symmetry' ...
     ' and (2) the following percentage of that loading to the opposite side:'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
         % = 100 -10 * (n - 1)
@@ -818,6 +820,7 @@ Max_horiz_tail_load = Aircraft.Certification.Regulation.SubpartC.HorizontalTailL
             char(DeltaL_ht_VF_unit) ...
             '; the unsymmetrical loads will be: '];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 % -------------------------------------------------------------------------

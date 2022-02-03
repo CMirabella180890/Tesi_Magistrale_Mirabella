@@ -82,8 +82,18 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_d
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.value = NaN;
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_dive.Attributes.unit = 'g';
 % -------------------------------------------------------------------------
-Aircraft.Certification.Aerodynamic_data.airfoil_name.value = NaN; 
-Aircraft.Certification.Aerodynamic_data.airfoil_name.Attributes.unit = NaN;
+% AIRFOIL NAME
+% -------------------------------------------------------------------------
+Aircraft.Certification.Aerodynamic_data.airfoil_first_panel.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.airfoil_first_panel.Attributes.unit = NaN;
+Aircraft.Certification.Aerodynamic_data.airfoil_second_panel.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.airfoil_second_panel.Attributes.unit = NaN;
+Aircraft.Certification.Aerodynamic_data.airfoil_third_panel.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.airfoil_third_panel.Attributes.unit = NaN;
+Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.value = NaN; 
+Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.Attributes.unit = NaN;
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value = NaN; 
 Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.Attributes.unit = "Non dimensional"; 
 Aircraft.Certification.Aerodynamic_data.Min_Lift_Coefficient.value = NaN; 

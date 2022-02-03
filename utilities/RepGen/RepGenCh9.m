@@ -306,23 +306,112 @@ cd ..
 %             ref4,ref5,ref6, ref7, ref8, ref9});
         append(sec,ol);
 % ------------------------------------------------------------------------- 
+str = ['Assuming positive forces and moment as depicted in the figures' ...
+    ' it is possible to write the following equilibrium equations:'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(sec,para);
+% -------------------------------------------------------------------------
+        % PITCHING ANGLE DIFFERENTIAL EQUATION 
+        %
+        myEq = "$ \mathrm{Z equilibrium: } \quad L_{wb}\cdot\cos{\alpha} + D_{wb}\cdot\sin{\alpha} + \frac{L_{t}}{\cos{\alpha}} - nW\cdot\cos{\alpha} = 0 ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 10;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(sec,eqImg); 
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+        % -----------------------------------------------------------------
+        % PITCHING ANGLE DIFFERENTIAL EQUATION 
+        %
+        myEq = "$ \mathrm{Rotation about } Y\mathrm{ : } ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 10;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(sec,eqImg); 
+        % -----------------------------------------------------------------
+        % -----------------------------------------------------------------
+        % PITCHING ANGLE DIFFERENTIAL EQUATION 
+        %
+        myEq = "$ [-L_{wb}\cdot\cos{\alpha}\cdot(x_{AC} - x_{CG}) - L_{wb}\cdot\sin{\alpha}\cdot b_{CG}] + [D_{wb}\cdot\cos{\alpha}\cdot b_{CG} - D_{wb}\cdot\sin{\alpha}\cdot c\cdot(x_{AC} - x_{CG})] ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 10;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(sec,eqImg); 
+        % -----------------------------------------------------------------
+        % -----------------------------------------------------------------
+        % PITCHING ANGLE DIFFERENTIAL EQUATION 
+        %
+        myEq = "$ + \biggl[-\frac{L_{t}}{\cos{\alpha}}\cdot(l_{t} + c\cdot(x_{AC} - x_{CG})) \biggr] - \\ T\cdot h + M_{wb} = 0 ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 10;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(sec,eqImg); 
+        % -----------------------------------------------------------------
 % -------------------------------------------------------------------------
 add(ch,sec);
-
+% -------------------------------------------------------------------------   
 %sec
 sec = Section();
 sec.Title = 'Aerodynamic centre';
-str = ['ADD HERE details for balancing Equation'];
+str = ['The aerodynamic centre of the wing-body aircraft was fixed at 25%' ...
+    ' of the mean aerodynamic chord. This assumptions is use in all' ...
+    ' calculations relative to forces and moments. Also, the maximum' ...
+    ' takeoff weight of the aircraft has been assumed.'];
 para = Paragraph(str);
-add(ch,para);
+para.Style = {HAlign('justify')};
+add(sec,para);
 add(ch,sec);
 
 %sec
 sec = Section();
 sec.Title = 'Pitching moment of the wing-body';
-str = ['ADD HERE details for balancing Equation'];
+str = ['The pitching moment coefficient of the wing-body aircraft' ...
+    ' was determined by high fidelity computational fluidynamics.' ...
+    ' The results are depicted in the following figure.'];
 para = Paragraph(str);
-add(ch,para);
+para.Style = {HAlign('justify')};
+add(sec,para);
+% -------------------------------------------------------------------------
+%moving to another path for figure
+cd ..
+cd ..
+ regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\' regulation '\Output\'];
+
+ cd (RepDir);
+ 
+ fig = FormalImage([results_path,'cfd_cm_results.png']);
+ fig.Caption = 'Pitching moment coefficient from CFD calculations.';
+ fig.Height = '3in';
+ fig.LinkTarget='cfd_cm_results';
+ add(sec,fig);
+% reference_axis
+% -------------------------------------------------------------------------
 add(ch,sec);
 
 %moving to another path for figure
@@ -348,9 +437,97 @@ cd ..
 %sec
 sec = Section();
 sec.Title = 'Complete aircraft balancing loads';
-str = ['ADD HERE table of results - LWB and LTAIL'];
+str = ['Here, the aircraft balancing loads are collected inside' ...
+    ' table.'];
 para = Paragraph(str);
-add(ch,para);
+add(sec,para);
+% -------------------------------------------------------------------------
+        % -----------------------------------------------------------------
+        n1         = 1.0; 
+        point_A    = "Point A";
+        va         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
+        va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
+        na         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
+        na_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit;
+        alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
+        alpha_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.Attributes.unit;
+        CLA        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value;
+        LA         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA_new.value;
+        L_unit     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA_new.Attributes.unit;
+        LtailA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTA.value;
+
+        point_C    = "Point C";
+        vc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
+        nc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value;
+        alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+        CLC        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
+        LC         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC_new.value;
+        LtailC     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTC.value;
+        
+        point_D    = "Point D";
+        vd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value;
+        nd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value;
+        alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+        CLD        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
+        LD         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LD_new.value;
+        LtailD     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTD.value;
+        
+        point_G    = "Point G";
+        vg         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value;
+        ng         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value;
+        alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
+        CLG        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
+        LG         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG_new.value;
+        LtailG     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHTG.value;
+        
+        point_F    = "Point F";
+        vf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value;
+        nf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value;
+        alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
+        CLF        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
+        LF         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF_new.value;
+        LtailF     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHTF.value;
+        
+        point_E    = "Point E";
+        ve         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value;
+        ne         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value;
+        alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
+        CLE        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
+        LE         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE_new.value;
+        LtailE     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LHTE.value;
+        
+        % -----------------------------------------------------------------
+        header = {'Point', strcat('V(',va_unit,')'), strcat('n(',na_unit,')'), ...
+            strcat('alpha(',alpha_unit,')'), strcat('CL'), strcat('L(',L_unit,')'), strcat('L tail(',L_unit,')')};
+        %each table row needs of a fieldValue
+        %1
+        name       = {char(point_A); char(point_C); char(point_D); ...
+                      char(point_G); char(point_F); char(point_E)};
+        speeds     = {num2str(va,4); num2str(vc,4); num2str(vd,4); ...
+                      num2str(vg,4); num2str(vf,4); num2str(ve,4)};
+        load_fact  = {num2str(na,4); num2str(nc,4); num2str(nd,4); ...
+                      num2str(ng,4); num2str(nf,4); num2str(ne,4)};
+        alfa       = {num2str(alfaA, 4); num2str(alfaC, 4); num2str(alfaD, 4); ...
+                      num2str(alfaG, 4); num2str(alfaF, 4); num2str(alfaE, 4)};
+        lift_coeff = {num2str(CLA, 4); num2str(CLC, 4); num2str(CLD, 4); ...
+                      num2str(CLG, 4); num2str(CLF, 4); num2str(CLE, 4)};
+        wing_lift  = {num2str(LA, 4); num2str(LC, 4); num2str(LD, 4); ...
+                      num2str(LG, 4); num2str(LF, 4); num2str(LE, 4)};
+        tail_lift  = {num2str(LtailA, 4); num2str(LtailC, 4); num2str(LtailD, 4); ...
+                      num2str(LtailG, 4); num2str(LtailF, 4); num2str(LtailE, 4)};
+        fieldValue = [name, speeds, load_fact, alfa, lift_coeff, wing_lift, tail_lift];
+    
+          
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Flaps envelope points summary at landing.');
+        tbl.LinkTarget = 'flapenvpointslanding';
+        add(sec,tbl);
+        % -----------------------------------------------------------------
+% -------------------------------------------------------------------------
 add(ch,sec);
 
 %% END chapter

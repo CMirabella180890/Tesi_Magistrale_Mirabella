@@ -9,7 +9,7 @@ import mlreportgen.report.*  % import report API(report related methods
 import mlreportgen.dom.*     % import document object model DOM API (DOM related method
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
-
+% -------------------------------------------------------------------------
 ch = Chapter();
 ch.Title = 'Loads on the wing';
 disp(['Chapter 10', (' "'), ch.Title,('" ') ,'writing...' ])
@@ -20,9 +20,10 @@ str = ['In this section will be shown all the resulting internal' ...
     ' possible to evaluate normal and shear forces and pitching moment' ...
     ' distributions along the wing span.'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(ch,para);
 
-
+% -------------------------------------------------------------------------
 %sec
 sec = Section();
 sec.Title = 'Influence of the fuselage';
@@ -32,27 +33,34 @@ str = ['The effects of the fuselage on the wing span lift distribution' ...
     ' a more conservative design loads. On the other hand, its influence on' ...
     ' the aeroplane equilibrium is accounted for, in particular on the' ...
     ' pitching moment distribution.'];
-% On the other hand, its influence on the aeroplane equilibrium is accounted for 
-% as a contribution to the pitching moment. In particular the following formula
-% (taken from ref [9]) provides the shift of the aerodynamic centre of the wing
-% due to fuselage pitching moment.
-
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 
 add(ch,sec);
+% -------------------------------------------------------------------------
 
-
+% -------------------------------------------------------------------------
 %sec
 sec = Section();
 sec.Title = 'Forces and moments acting on the wings';
 str = ['Numerical and graphical results from internal forces' ...
     ' and moments calculations will be shown in this section.'];
 para = Paragraph(str);
-add(ch,para);
+para.Style = {HAlign('justify')};
+add(sec,para);
+% -------------------------------------------------------------------------
+
+% -------------------------------------------------------------------------
 %sub
 subsec = Section();
 subsec.Title = 'SpanWise Airloads Distribution';
+str = ['Spanwise airloads distributions along the wing semi-span' ...
+    ' are obtained from a panel method; then, an interpolation through' ...
+    ' all the values of the angle of attack.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
 
 %to be checked
 fig = FormalImage([results_path,'ClInterpolation3dplot.png']);
@@ -75,6 +83,7 @@ fig = FormalImage([results_path,'ClInterpolation3dplot.png']);
  
 add(sec,subsec);
 
+% -------------------------------------------------------------------------
 %sub
 subsec = Section();
 subsec.Title = 'Normal and parallel component';
@@ -88,26 +97,112 @@ subsec.Title = 'Shear, Bending and Torsion';
 %A
 fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointA.png']);
  fig.Caption = 'Shear, Bending and Torsion due to airloads - POINT A';
- fig.Height = '5in';
+ fig.Height = '4in';
  fig.LinkTarget='A_distribution';
  add(subsec,fig);
 
  %C
 fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointC.png']);
  fig.Caption = 'Shear, Bending and Torsion due to airloads - POINT C';
- fig.Height = '5in';
+ fig.Height = '4in';
  fig.LinkTarget='C_distribution';
  add(subsec,fig);
 
   %D
 fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointD.png']);
  fig.Caption = 'Shear, Bending and Torsion due to airloads - POINT D';
- fig.Height = '5in';
+ fig.Height = '4in';
  fig.LinkTarget='D_distribution';
  add(subsec,fig);
+ % ------------------------------------------------------------------------
  
+        % -----------------------------------------------------------------
+        n1           = 1.0; 
+        point_A      = "Point A";
+        va           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
+        va_unit      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
+        na           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
+        na_unit      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit;
+        shearA       = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value(1:4:end); ...
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value(end)];
+        shear_unit   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.Attributes.unit;
+        bendingA     = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value(1:4:end); ...
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value(end)];
+        bending_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.Attributes.unit;
+        torsionA     = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value(1:4:end); ...
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value(end)];
+        torsion_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.Attributes.unit;
+
+        point_C    = "Point C";
+        vc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
+        nc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value;
+        shearC     = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value(1:4:end); ...
+                      Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Shear_distr.value(end)];
+        bendingC   = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Bend_mom_distr.value(1:4:end); ...
+                      Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Bend_mom_distr.value(end)];
+        torsionC   = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value(1:4:end); ...
+                      Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Tors_mom_distr.value(end)];
+        
+        point_D    = "Point D";
+        vd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value;
+        nd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value;
+        shearD     = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.value(1:4:end); ...
+                      Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.value(end)];
+        bendingD   = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.value(1:4:end); ...
+                      Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.value(end)];
+        torsionD   = [Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value(1:4:end); ...
+                      Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value(end)];
+        
+%         point_G    = "Point G";
+%         vg         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value;
+%         ng         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value;
+%         alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
+%         CLG        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
+%         LG         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG_new.value;
+%         LtailG     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHTG.value;
+%         
+%         point_F    = "Point F";
+%         vf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value;
+%         nf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value;
+%         alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
+%         CLF        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
+%         LF         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF_new.value;
+%         LtailF     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHTF.value;
+%         
+%         point_E    = "Point E";
+%         ve         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value;
+%         ne         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value;
+%         alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
+%         CLE        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
+%         LE         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE_new.value;
+%         LtailE     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LHTE.value;
+        
+        % -----------------------------------------------------------------
+        header = {'Point', strcat('V (',va_unit,')'), strcat('n (',na_unit,')'), ...
+            strcat('S (',shear_unit,')'), strcat('M (',bending_unit,')'), strcat('T (',torsion_unit,')')};
+        %each table row needs of a fieldValue
+        %1
+        name       = {char(point_A); char(point_C); char(point_D)};
+        speeds     = {num2str(va,4); num2str(vc,4); num2str(vd,4)};
+        load_fact  = {num2str(na,4); num2str(nc,4); num2str(nd,4);};
+        shear      = {num2str(shearA, 4); num2str(shearC, 4); num2str(shearD, 4)};
+        bending    = {num2str(bendingA, 4); num2str(bendingC, 4); num2str(bendingD, 4)};
+        torsion    = {num2str(torsionA, 4); num2str(torsionC, 4); num2str(torsionD, 4)};
+        fieldValue = [name, speeds, load_fact, shear, bending, torsion];
+          
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Shear, bending and torsion distribution along the semi-span.');
+        tbl.LinkTarget = 'shearbendingtors_distr';
+        add(subsec,tbl);
+        % -----------------------------------------------------------------
+ % ------------------------------------------------------------------------
 add(sec,subsec);
 
+% -------------------------------------------------------------------------
 %sub
 subsec = Section();
 subsec.Title = 'Critical load condition';
@@ -133,8 +228,10 @@ fig.Height = '5in';
 fig.LinkTarget='Torsion';
 add(subsec,fig);
 add(sec,subsec);
+% -------------------------------------------------------------------------
 add(ch,sec);
 
+% -------------------------------------------------------------------------
 %sec
 requirement         = Aircraft.Certification.Regulation.value;
 Unsymm_req_airworth = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.cs;
@@ -179,6 +276,7 @@ str = ['According to' ...
     ', the wing and wing bracing must be designed for the following' ...
     ' loading conditions:'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 flight_envelope_cs   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.Attributes.cs;
@@ -241,6 +339,7 @@ str = ['According to' ...
     char(Flight_envelope_reg_airworth) ...
     ':'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(subsec,para);
 % -------------------------------------------------------------------------
 % -------------------------------------------------------------------------
@@ -349,6 +448,7 @@ str = ['According to' ...
     ' applied wing torsion. The following diagram show this increment' ...
     ' in red.'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
 add(subsec,para);
 
 %cm_A
@@ -372,7 +472,6 @@ fig.Height = '5in';
 fig.LinkTarget='torsion_unsimm_D';
 add(subsec,fig);
 add(sec,subsec);
-
 
 add(ch,sec);
 
