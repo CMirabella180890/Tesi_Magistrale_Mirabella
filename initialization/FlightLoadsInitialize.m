@@ -373,32 +373,59 @@ Aircraft.Geometry.Rudder.max_deflection.Attributes.unit = "deg";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % FLAPS
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Aircraft.Geometry.Flaps.croot.value = NaN; %m
-Aircraft.Geometry.Flaps.croot.Attributes.unit = "m";
-Aircraft.Geometry.Flaps.ctip.value = NaN; %m
-Aircraft.Geometry.Flaps.ctip.Attributes.unit = "m";
-Aircraft.Geometry.Flaps.xtip_le.value = NaN; %of fuselage lenght
-Aircraft.Geometry.Flaps.xtip_le.Attributes.unit = "% of fuselage length"; 
-Aircraft.Geometry.Flaps.b.value = NaN; %m
-Aircraft.Geometry.Flaps.b.Attributes.unit = "m";
-Aircraft.Geometry.Flaps.zpos.value = NaN; % % of df
-Aircraft.Geometry.Flaps.zpos.Attributes.unit = "% of fuselage diameter";
 Aircraft.Geometry.Flaps.S.value = NaN; 
-Aircraft.Geometry.Flaps.S.Attributes.unit = "m^2";
-Aircraft.Geometry.Flaps.chord.value = NaN; 
-Aircraft.Geometry.Flaps.chord.Attributes.unit = "m";
-Aircraft.Geometry.Flaps.sweep.value       = NaN; % 20;
-Aircraft.Geometry.Flaps.sweep.Attributes.unit = "deg";
-Aircraft.Geometry.Flaps.sweeploc.value    = NaN; % 0;
-Aircraft.Geometry.Flaps.sweeploc.Attributes.unit = "percentage";
-Aircraft.Geometry.Flaps.secsweeploc.value = NaN;
-Aircraft.Geometry.Flaps.secsweeploc.Attributes.unit = "percentage";
-Aircraft.Geometry.Flaps.dihedral.value       = NaN; % 0;
-Aircraft.Geometry.Flaps.dihedral.Attributes.unit = "deg";
-Aircraft.Geometry.Flaps.twist.value       = NaN; % 0;
-Aircraft.Geometry.Flaps.twist.Attributes.unit = "deg";
-Aircraft.Geometry.Flaps.twistloc.value       = NaN; % 0;
-Aircraft.Geometry.Flaps.twistloc.Attributes.unit = "deg";
+Aircraft.Geometry.Flaps.S.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.b.value = NaN; 
+Aircraft.Geometry.Flaps.b.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.ca.value = NaN;
+Aircraft.Geometry.Flaps.ca.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.cb.value = NaN;
+Aircraft.Geometry.Flaps.cb.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.y_inner.value = NaN;
+Aircraft.Geometry.Flaps.y_inner.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.y_outer.value = NaN;
+Aircraft.Geometry.Flaps.y_outer.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.eta_inner.value = NaN; % 0.0 percentage
+Aircraft.Geometry.Flaps.eta_inner.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Flaps.eta_outer.value = NaN; % 0.6269 percentage
+Aircraft.Geometry.Flaps.eta_outer.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Flaps.cf_c_root.value = NaN;
+Aircraft.Geometry.Flaps.cf_c_root.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Flaps.cf_c_inner.value = NaN;
+Aircraft.Geometry.Flaps.cf_c_inner.Attributes.unit = "Non dimensional";
+Aircraft.Geometry.Flaps.croot.value = NaN;
+Aircraft.Geometry.Flaps.croot.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.ctip.value = NaN;
+Aircraft.Geometry.Flaps.ctip.Attributes.unit = "m"; 
+Aircraft.Geometry.Flaps.cf.value = NaN;
+Aircraft.Geometry.Flaps.cf.Attributes.unit = "m";
+
+% Aircraft.Geometry.Flaps.croot.value = NaN; %m
+% Aircraft.Geometry.Flaps.croot.Attributes.unit = "m";
+% Aircraft.Geometry.Flaps.ctip.value = NaN; %m
+% Aircraft.Geometry.Flaps.ctip.Attributes.unit = "m";
+% Aircraft.Geometry.Flaps.xtip_le.value = NaN; %of fuselage lenght
+% Aircraft.Geometry.Flaps.xtip_le.Attributes.unit = "% of fuselage length"; 
+% Aircraft.Geometry.Flaps.b.value = NaN; %m
+% Aircraft.Geometry.Flaps.b.Attributes.unit = "m";
+% Aircraft.Geometry.Flaps.zpos.value = NaN; % % of df
+% Aircraft.Geometry.Flaps.zpos.Attributes.unit = "% of fuselage diameter";
+% Aircraft.Geometry.Flaps.S.value = NaN; 
+% Aircraft.Geometry.Flaps.S.Attributes.unit = "m^2";
+% Aircraft.Geometry.Flaps.chord.value = NaN; 
+% Aircraft.Geometry.Flaps.chord.Attributes.unit = "m";
+% Aircraft.Geometry.Flaps.sweep.value       = NaN; % 20;
+% Aircraft.Geometry.Flaps.sweep.Attributes.unit = "deg";
+% Aircraft.Geometry.Flaps.sweeploc.value    = NaN; % 0;
+% Aircraft.Geometry.Flaps.sweeploc.Attributes.unit = "percentage";
+% Aircraft.Geometry.Flaps.secsweeploc.value = NaN;
+% Aircraft.Geometry.Flaps.secsweeploc.Attributes.unit = "percentage";
+% Aircraft.Geometry.Flaps.dihedral.value       = NaN; % 0;
+% Aircraft.Geometry.Flaps.dihedral.Attributes.unit = "deg";
+% Aircraft.Geometry.Flaps.twist.value       = NaN; % 0;
+% Aircraft.Geometry.Flaps.twist.Attributes.unit = "deg";
+% Aircraft.Geometry.Flaps.twistloc.value       = NaN; % 0;
+% Aircraft.Geometry.Flaps.twistloc.Attributes.unit = "deg";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % -------------------------------------------------------------------------
 % Fuselage
@@ -407,7 +434,7 @@ Aircraft.Geometry.Fuselage.id   = "Fuselage";
 Aircraft.Geometry.Fuselage.type = 'TransportFuse';     % OpenVSP component type
 % Here we can select a flag to properly model the tail empennage: 
 % - Double fin 
-% - Conventional
+% - Single fin
 % - T tail 
 % - Others
 Aircraft.Geometry.Fuselage.length.value = NaN;

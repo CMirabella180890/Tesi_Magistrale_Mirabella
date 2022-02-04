@@ -331,20 +331,35 @@ for i = 1:length(Solution)
             VF             = V_fromAtoF(end);      
 
             n_fromFto0     = linspace(nF, 0.0, numb)';
-            V_fromFto0     = VF * ones(numb, 1);        
-
+            V_fromFto0     = VF * ones(numb, 1);   
+            % --------------------------------------------------------------------------------------------------------------------    
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.nS.value            = n_from0toS(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.nS.Attributes.unit  = "g's";
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.VS.value            = V_from0toS(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.VS.Attributes.unit  = "m/s";
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_from0toS.value           = n_from0toS;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_from0toS.Attributes.unit = "g's"; 
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_from0toS.value           = V_from0toS;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_from0toS.Attributes.unit = "m/s"; 
+            % --------------------------------------------------------------------------------------------------------------------    
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.nA.value            = n_fromStoA(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.nA.Attributes.unit  = "g's";
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.VA.value            = V_fromStoA(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.VA.Attributes.unit  = "m/s";
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromStoA.value           = n_fromStoA;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromStoA.Attributes.unit = "g's"; 
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromStoA.value           = V_fromStoA;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromStoA.Attributes.unit = "m/s"; 
+            % --------------------------------------------------------------------------------------------------------------------
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.nF.value            = n_fromAtoF(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.nF.Attributes.unit  = "g's";
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.VF.value            = V_fromAtoF(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.VF.Attributes.unit  = "m/s";
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromAtoF.value           = n_fromAtoF;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromAtoF.Attributes.unit = "g's"; 
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromAtoF.value           = V_fromAtoF;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromAtoF.Attributes.unit = "m/s";
+            % --------------------------------------------------------------------------------------------------------------------
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromFto0.value           = n_fromFto0;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromFto0.Attributes.unit = "g's"; 
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromFto0.value           = V_fromFto0;
@@ -429,23 +444,43 @@ for i = 1:length(Solution)
 
                 V_fromFto0  = VF * ones(numb, 1);
                 n_fromFto0  = linspace(nF, 0.0, numb)';
-
+                % --------------------------------------------------------------------------------------------------------------------    
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.nS.value             = n_from0toS(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.nS.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.VS.value             = V_from0toS(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.VS.Attributes.unit   = "m/s";
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_from0toS.value            = n_from0toS;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_from0toS.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_from0toS.value            = V_from0toS;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_from0toS.Attributes.unit  = "m/s"; 
+                % -------------------------------------------------------------------------------------------------------------------- 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.nA.value             = n_fromStoA(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.nA.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.VA.value             = V_fromStoA(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.VA.Attributes.unit   = "m/s"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromStoA.value            = n_fromStoA;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromStoA.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromStoA.value            = V_fromStoA;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromStoA.Attributes.unit  = "m/s"; 
+                % --------------------------------------------------------------------------------------------------------------------
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF1.nF1.value           = n_fromAtoF1(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF1.nF1.Attributes.unit = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF1.VF1.value           = V_fromAtoF1(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF1.VF1.Attributes.unit = "m/s";  
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromAtoF1.value           = n_fromAtoF1;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromAtoF1.Attributes.unit = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromAtoF1.value           = V_fromAtoF1;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromAtoF1.Attributes.unit = "m/s"; 
+                % -------------------------------------------------------------------------------------------------------------------- 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.nF.value             = n_fromF1toF(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.nF.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.VF.value             = V_fromF1toF(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.VF.Attributes.unit   = "m/s";
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromF1toF.value           = n_fromF1toF;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromF1toF.Attributes.unit = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromF1toF.value           = V_fromF1toF;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromF1toF.Attributes.unit = "m/s"; 
+                % -------------------------------------------------------------------------------------------------------------------- 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromFto0.value            = n_fromFto0;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromFto0.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromFto0.value            = V_fromFto0;
@@ -508,18 +543,34 @@ for i = 1:length(Solution)
                 V_fromFto0  = VF * ones(numb, 1);
                 n_fromFto0  = linspace(nF, 0.0, numb)';
                 
+                % --------------------------------------------------------------------------------------------------------------------    
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.nS.value             = n_from0toS(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.nS.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.VS.value             = V_from0toS(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointS.VS.Attributes.unit   = "m/s";
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_from0toS.value            = n_from0toS;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_from0toS.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_from0toS.value            = V_from0toS;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_from0toS.Attributes.unit  = "m/s"; 
+                % -------------------------------------------------------------------------------------------------------------------- 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.nA.value             = n_fromStoA(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.nA.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.VA.value             = V_fromStoA(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointA.VA.Attributes.unit   = "m/s";    
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromStoA.value            = n_fromStoA;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromStoA.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromStoA.value            = V_fromStoA;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromStoA.Attributes.unit  = "m/s"; 
+                % -------------------------------------------------------------------------------------------------------------------- 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.nF.value             = n_fromAtoF(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.nF.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.VF.value             = V_fromAtoF(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.VF.Attributes.unit   = "m/s"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromAtoF.value            = n_fromAtoF;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromAtoF.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromAtoF.value            = V_fromAtoF;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromAtoF.Attributes.unit  = "m/s"; 
+                % -------------------------------------------------------------------------------------------------------------------- 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromFto0.value            = n_fromFto0;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromFto0.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromFto0.value            = V_fromFto0;
@@ -831,18 +882,34 @@ for i = 1:length(Solution)
             n_fromFto0     = linspace(nF, 0.0, numb)';
             V_fromFto0     = VF * ones(numb, 1);        
 
+            % --------------------------------------------------------------------------------------------------------------------    
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.nS.value             = n_from0toS(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.nS.Attributes.unit   = "g's";
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.VS.value             = V_from0toS(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.VS.Attributes.unit   = "m/s";
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_from0toS.value           = n_from0toS;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_from0toS.Attributes.unit = "g's"; 
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_from0toS.value           = V_from0toS;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_from0toS.Attributes.unit = "m/s"; 
+            % -------------------------------------------------------------------------------------------------------------------- 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.nA.value             = n_fromStoA(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.nA.Attributes.unit   = "g's";
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.VA.value             = V_fromStoA(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.VA.Attributes.unit   = "m/s";  
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromStoA.value           = n_fromStoA;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromStoA.Attributes.unit = "g's"; 
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromStoA.value           = V_fromStoA;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromStoA.Attributes.unit = "m/s"; 
+            % -------------------------------------------------------------------------------------------------------------------- 
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.nF.value             = n_fromAtoF(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.nF.Attributes.unit   = "g's";
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.VF.value             = V_fromAtoF(end);
+            Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.VF.Attributes.unit   = "m/s";    
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromAtoF.value           = n_fromAtoF;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromAtoF.Attributes.unit = "g's"; 
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromAtoF.value           = V_fromAtoF;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromAtoF.Attributes.unit = "m/s";
+            % --------------------------------------------------------------------------------------------------------------------   
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromFto0.value           = n_fromFto0;
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromFto0.Attributes.unit = "g's"; 
             Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromFto0.value           = V_fromFto0;
@@ -927,22 +994,43 @@ for i = 1:length(Solution)
                 V_fromFto0  = VF * ones(numb, 1);
                 n_fromFto0  = linspace(nF, 0.0, numb)';
 
+                % --------------------------------------------------------------------------------------------------------------------    
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.nS.value             = n_from0toS(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.nS.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.VS.value             = V_from0toS(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.VS.Attributes.unit   = "m/s";
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_from0toS.value            = n_from0toS;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_from0toS.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_from0toS.value            = V_from0toS;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_from0toS.Attributes.unit  = "m/s"; 
+                % -------------------------------------------------------------------------------------------------------------------- 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.nA.value             = n_fromStoA(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.nA.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.VA.value             = V_fromStoA(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.VA.Attributes.unit   = "m/s";
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromStoA.value            = n_fromStoA;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromStoA.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromStoA.value            = V_fromStoA;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromStoA.Attributes.unit  = "m/s"; 
+                % -------------------------------------------------------------------------------------------------------------------- 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF1.nF1.value             = n_fromAtoF1(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF1.nF1.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF1.VF1.value             = V_fromAtoF1(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF1.VF1.Attributes.unit   = "m/s";
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromAtoF1.value           = n_fromAtoF1;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromAtoF1.Attributes.unit = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromAtoF1.value           = V_fromAtoF1;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromAtoF1.Attributes.unit = "m/s"; 
+                % -------------------------------------------------------------------------------------------------------------------- 
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.nF.value             = n_fromF1toF(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.nF.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.VF.value             = V_fromF1toF(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.VF.Attributes.unit   = "m/s";   
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromF1toF.value           = n_fromF1toF;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromF1toF.Attributes.unit = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromF1toF.value           = V_fromF1toF;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromF1toF.Attributes.unit = "m/s"; 
+                % -------------------------------------------------------------------------------------------------------------------- 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromFto0.value            = n_fromFto0;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromFto0.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromFto0.value            = V_fromFto0;
@@ -1005,18 +1093,34 @@ for i = 1:length(Solution)
                 V_fromFto0  = VF * ones(numb, 1);
                 n_fromFto0  = linspace(nF, 0.0, numb)';
 
+                % --------------------------------------------------------------------------------------------------------------------    
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.nS.value             = n_from0toS(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.nS.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.VS.value             = V_from0toS(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointS.VS.Attributes.unit   = "m/s";
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_from0toS.value            = n_from0toS;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_from0toS.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_from0toS.value            = V_from0toS;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_from0toS.Attributes.unit  = "m/s"; 
+                % --------------------------------------------------------------------------------------------------------------------  
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.nA.value             = n_fromStoA(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.nA.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.VA.value             = V_fromStoA(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointA.VA.Attributes.unit   = "m/s"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromStoA.value            = n_fromStoA;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromStoA.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromStoA.value            = V_fromStoA;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromStoA.Attributes.unit  = "m/s"; 
+                % --------------------------------------------------------------------------------------------------------------------   
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.nF.value             = n_fromF1toF(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.nF.Attributes.unit   = "g's";
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.VF.value             = V_fromF1toF(end);
+                Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.VF.Attributes.unit   = "m/s";   
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromAtoF.value            = n_fromAtoF;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromAtoF.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromAtoF.value            = V_fromAtoF;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromAtoF.Attributes.unit  = "m/s"; 
+                % --------------------------------------------------------------------------------------------------------------------   
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromFto0.value            = n_fromFto0;
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromFto0.Attributes.unit  = "g's"; 
                 Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromFto0.value            = V_fromFto0;

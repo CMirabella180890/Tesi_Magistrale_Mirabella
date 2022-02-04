@@ -47,6 +47,14 @@ vd       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope
 vd_un    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.Attributes.unit;
 nd       = max(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_dive.value);
 
+%gust calculation table - manouevre
+if isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope, 'PointA1') == 1
+    va       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.VA1.value;
+    na       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.nA1.value;
+else
+    va       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
+    na       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
+end
 
 %% END DECLARATION
 
@@ -350,29 +358,22 @@ switch requirement
                 strcat('rho(',rho_un,')'),'mug', 'Kg', strcat('Ude(',gustc_un,')') , 'n'};
         %each table row needs of a fieldValue
         %gust calculation table
-%         vc       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
-%         vc_un    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.Attributes.unit;
-%         mtow     = Aircraft.Weight.I_Level.W_maxTakeOff.value;
-%         mtow_un  = Aircraft.Weight.I_Level.W_maxTakeOff.Attributes.unit;
-%         s        = Aircraft.Geometry.Wing.S.value;
-%         s_un     = Aircraft.Geometry.Wing.S.Attributes.unit;
-%         m_over_s = mtow/s;
-%         rho      =  Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
-%         rho_un   = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.Attributes.unit;
-%         mg       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Mass_ratio.value;
-%         kg       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_alleviation_factor.value;
-%         n        = max (Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value);
         %1 
+        PointA1    = {'A1', num2str(va,4), num2str(mtow,4), ...
+                    num2str(m_over_s,4), num2str(altitude,4),...
+                    num2str(rho,4), num2str(mg,4), num2str(kg,4), ...
+                    num2str(gustc,4), num2str(na,4)};     
+        %2 
         PointC     = {'C', num2str(vc,4), num2str(mtow,4), ...
                     num2str(m_over_s,4), num2str(altitude,4),...
                     num2str(rho,4), num2str(mg,4), num2str(kg,4), ...
                     num2str(gustc,4), num2str(nc,4)};        
-        %2 
+        %3 
         PointD     = {'D', num2str(vd,4), num2str(mtow,4), ...
                     num2str(m_over_s,4), num2str(altitude,4), ...
                     num2str(rho,4), num2str(mg,4), num2str(kg,4), ...
                     num2str(gustd,4), num2str(nd,4)};
-        fieldValue = [PointC; PointD];
+        fieldValue = [PointA1; PointC; PointD];
     
           
         tbl = FormalTable(header,fieldValue);
