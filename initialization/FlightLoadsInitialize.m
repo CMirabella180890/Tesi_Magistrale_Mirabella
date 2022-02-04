@@ -326,19 +326,19 @@ Aircraft.Geometry.Wing.twist_angle_fourth.Attributes.unit = 'deg';
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Vertical
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Aircraft.Geometry.Vertical.xle.value = 0.95; %of fuselage lenght
+Aircraft.Geometry.Vertical.xle.value = NaN; %of fuselage lenght
 Aircraft.Geometry.Vertical.xle.Attributes.unit = "% of fuselage length"; 
-Aircraft.Geometry.Vertical.croot.value = 0.3136; %m
+Aircraft.Geometry.Vertical.croot.value = NaN; %m
 Aircraft.Geometry.Vertical.croot.Attributes.unit = "m";
-Aircraft.Geometry.Vertical.ctip.value = 0.1534725; %m
+Aircraft.Geometry.Vertical.ctip.value = NaN; %m
 Aircraft.Geometry.Vertical.ctip.Attributes.unit = "m";
-Aircraft.Geometry.Vertical.xtip_le.value = 1.0; %of fuselage lenght
+Aircraft.Geometry.Vertical.xtip_le.value = NaN; %of fuselage lenght
 Aircraft.Geometry.Vertical.xtip_le.Attributes.unit = "% of fuselage length"; 
 xtip_le_v = Aircraft.Geometry.Vertical.xtip_le.value;
-Aircraft.Geometry.Vertical.b.value = 0.437502; %m
+Aircraft.Geometry.Vertical.b.value = NaN; %m
 Aircraft.Geometry.Vertical.b.Attributes.unit = "m";
-Aircraft.Geometry.Vertical.zpos.value = 1.0; % % of df
-Aircraft.Geometry.Vertical.zpos.Attributes.unit = "% of df";
+Aircraft.Geometry.Vertical.zpos.value = NaN;
+Aircraft.Geometry.Vertical.zpos.Attributes.unit = "% of fuselage diameter";
 Aircraft.Geometry.Vertical.S.value = NaN; 
 Aircraft.Geometry.Vertical.S.Attributes.unit = "m^2";
 Aircraft.Geometry.Vertical.chord.value = NaN; 
@@ -347,7 +347,7 @@ Aircraft.Geometry.Vertical.sweep.value       = NaN; % 20;
 Aircraft.Geometry.Vertical.sweep.Attributes.unit = "deg";
 Aircraft.Geometry.Vertical.sweeploc.value    = NaN; % 0;
 Aircraft.Geometry.Vertical.sweeploc.Attributes.unit = "percentage";
-Aircraft.Geometry.Vertical.secsweeploc.value = 1.0;
+Aircraft.Geometry.Vertical.secsweeploc.value = NaN;
 Aircraft.Geometry.Vertical.secsweeploc.Attributes.unit = "percentage";
 Aircraft.Geometry.Vertical.dihedral.value       = NaN; % 0;
 Aircraft.Geometry.Vertical.dihedral.Attributes.unit = "deg";
@@ -370,7 +370,36 @@ Aircraft.Geometry.Rudder.span_ratio.value = NaN;
 Aircraft.Geometry.Rudder.span_ratio.Attributes.unit = "Non dimensional";
 Aircraft.Geometry.Rudder.max_deflection.value = NaN;
 Aircraft.Geometry.Rudder.max_deflection.Attributes.unit = "deg";
-
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% FLAPS
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Aircraft.Geometry.Flaps.croot.value = NaN; %m
+Aircraft.Geometry.Flaps.croot.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.ctip.value = NaN; %m
+Aircraft.Geometry.Flaps.ctip.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.xtip_le.value = NaN; %of fuselage lenght
+Aircraft.Geometry.Flaps.xtip_le.Attributes.unit = "% of fuselage length"; 
+Aircraft.Geometry.Flaps.b.value = NaN; %m
+Aircraft.Geometry.Flaps.b.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.zpos.value = NaN; % % of df
+Aircraft.Geometry.Flaps.zpos.Attributes.unit = "% of fuselage diameter";
+Aircraft.Geometry.Flaps.S.value = NaN; 
+Aircraft.Geometry.Flaps.S.Attributes.unit = "m^2";
+Aircraft.Geometry.Flaps.chord.value = NaN; 
+Aircraft.Geometry.Flaps.chord.Attributes.unit = "m";
+Aircraft.Geometry.Flaps.sweep.value       = NaN; % 20;
+Aircraft.Geometry.Flaps.sweep.Attributes.unit = "deg";
+Aircraft.Geometry.Flaps.sweeploc.value    = NaN; % 0;
+Aircraft.Geometry.Flaps.sweeploc.Attributes.unit = "percentage";
+Aircraft.Geometry.Flaps.secsweeploc.value = NaN;
+Aircraft.Geometry.Flaps.secsweeploc.Attributes.unit = "percentage";
+Aircraft.Geometry.Flaps.dihedral.value       = NaN; % 0;
+Aircraft.Geometry.Flaps.dihedral.Attributes.unit = "deg";
+Aircraft.Geometry.Flaps.twist.value       = NaN; % 0;
+Aircraft.Geometry.Flaps.twist.Attributes.unit = "deg";
+Aircraft.Geometry.Flaps.twistloc.value       = NaN; % 0;
+Aircraft.Geometry.Flaps.twistloc.Attributes.unit = "deg";
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % -------------------------------------------------------------------------
 % Fuselage
 % -------------------------------------------------------------------------

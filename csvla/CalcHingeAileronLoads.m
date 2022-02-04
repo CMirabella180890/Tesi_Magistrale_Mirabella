@@ -95,8 +95,8 @@ y_inner = Aircraft.Geometry.Aileron.y_inner.value;
 y_outer = Aircraft.Geometry.Aileron.y_outer.value; 
 
 % CHORD RATIOS, INNER AND OUTER
-ca_c_inner = Aircraft.Geometry.Aileron.ca_c_inner.value; 
-ca_c_outer  = Aircraft.Geometry.Aileron.ca_c_outer.value;
+ca_c_inner  = Aircraft.Geometry.Aileron.ca_c_root.value; 
+ca_c_outer  = Aircraft.Geometry.Aileron.ca_c_tip.value;
 
 % ROOT CHORD AILERON
 c_aileron_root = c_root * ca_c_inner;

@@ -195,7 +195,12 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'sec_sweeploc_vert', ...
          'vertical_dihedral', ...
          'vertical_twist', ...
-         'ver_twist_loc'};
+         'ver_twist_loc', ...
+         'vertical_x_leadingedge', ...
+         'vertical_croot', ...
+         'vertical_ctip', ...
+         'vertical_span', ...
+         'vertical_z_position'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -555,11 +560,11 @@ if LengthIndex==length(VarText)
     Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_rad.value = str2double(table2array(value(p==1, 1))); 
     Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_rad.Attributes.unit = char(table2array(unit(p==1,1)));    
     p = strcmp('ca_c_inner', label);
-    Aircraft.Geometry.Aileron.ca_c_inner.value = str2double(table2array(value(p==1, 1))); 
-    Aircraft.Geometry.Aileron.ca_c_inner.Attributes.unit = char(table2array(unit(p==1,1))); 
+    Aircraft.Geometry.Aileron.ca_c_root.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Aileron.ca_c_root.Attributes.unit = char(table2array(unit(p==1,1))); 
     p = strcmp('ca_c_outer', label);
-    Aircraft.Geometry.Aileron.ca_c_outer.value = str2double(table2array(value(p==1, 1))); 
-    Aircraft.Geometry.Aileron.ca_c_outer.Attributes.unit = char(table2array(unit(p==1,1))); 
+    Aircraft.Geometry.Aileron.ca_c_tip.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Aileron.ca_c_tip.Attributes.unit = char(table2array(unit(p==1,1))); 
     p = strcmp('c_root_horizontal', label);
     Aircraft.Geometry.Horizontal.croot.value = str2double(table2array(value(p==1, 1))); 
     Aircraft.Geometry.Horizontal.croot.Attributes.unit = char(table2array(unit(p==1,1))); 
@@ -669,6 +674,25 @@ if LengthIndex==length(VarText)
     p = strcmp('ver_twist_loc', label);
     Aircraft.Geometry.Vertical.twistloc.value       = str2double(table2array(value(p==1, 1)));
     Aircraft.Geometry.Vertical.twistloc.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('vertical_x_leadingedge', label);
+    Aircraft.Geometry.Vertical.xle.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.xle.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('vertical_croot', label);
+    Aircraft.Geometry.Vertical.croot.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.croot.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('vertical_ctip', label);
+    Aircraft.Geometry.Vertical.ctip.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.ctip.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('vertical_xtip_leadingedge', label);   
+    Aircraft.Geometry.Vertical.xtip_le.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.xtip_le.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('vertical_span', label);  
+    Aircraft.Geometry.Vertical.b.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.b.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('vertical_z_position', label);
+    Aircraft.Geometry.Vertical.zpos.value = str2double(table2array(value(p==1, 1)));   %1.0; 
+    Aircraft.Geometry.Vertical.zpos.Attributes.unit = char(table2array(unit(p==1,1))); % "% of fuselage diameter";
+    
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;
