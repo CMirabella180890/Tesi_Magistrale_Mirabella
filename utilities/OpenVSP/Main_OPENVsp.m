@@ -184,8 +184,12 @@ ac.hor.airfoil     = 'XS_FOUR_SERIES';
 ac.hor.camber      = [0 0];
 ac.hor.camberloc   = [0.2 0.2];
 ac.hor.thickchord  = [0.12 0.12];
-ac.hor.twist       = [0 0];
-ac.hor.twistloc    = [0.25 0.25];
+% -------------------------------------------------------------------------
+horizontal_twist          = Aircraft.Geometry.Horizontal.twist.value;
+horizontal_twist_location = Aircraft.Geometry.Horizontal.twistloc.value;
+ac.hor.twist       = [horizontal_twist horizontal_twist];
+ac.hor.twistloc    = [horizontal_twist_location horizontal_twist_location];
+% -------------------------------------------------------------------------
 ac.hor.xloc        = 1.49+1.638;
 ac.hor.yloc        = 0.0;
 ac.hor.zloc        = 0.15;
@@ -193,61 +197,224 @@ ac.hor.xrot        = 0;
 ac.hor.yrot        = 0;
 ac.hor.zrot        = 0;
 ac.hor.sym         = 2;
-ac.hor.span        = 0.748;
-ac.hor.ctip        = 0.3136;
-ac.hor.croot       = 0.3929;
-ac.hor.sweep       = 15;
-ac.hor.sweeploc    = 0;
-ac.hor.secsweeploc = 1;
-ac.hor.dihedral    = 0;
+% -------------------------------------------------------------------------
+% HORIZONTAL SPAN 
+% -------------------------------------------------------------------------
+b_horizontal  = Aircraft.Geometry.Horizontal.b.value;
+ac.hor.span        = 0.5*b_horizontal;
+% -------------------------------------------------------------------------
+% HORIZONTAL TIP AND ROOT CHORD 
+% -------------------------------------------------------------------------
+horizontal_ctip    = Aircraft.Geometry.Horizontal.ctip.value;
+horizontal_croot   = Aircraft.Geometry.Horizontal.croot.value;
+ac.hor.ctip        = horizontal_ctip;
+ac.hor.croot       = horizontal_croot;
+% -------------------------------------------------------------------------
+% HORIZONTAL SWEEP
+% -------------------------------------------------------------------------
+horizontal_sweep   = Aircraft.Geometry.Horizontal.sweep.value;
+ac.hor.sweep       = horizontal_sweep;
+% -------------------------------------------------------------------------
+% HORIZONTAL SWEEPLOC
+% -------------------------------------------------------------------------
+horizontal_sweeploc = Aircraft.Geometry.Horizontal.sweeploc.value;
+ac.hor.sweeploc    = horizontal_sweeploc;
+% -------------------------------------------------------------------------
+% HORIZONTAL SWEEP SEC LOC
+% -------------------------------------------------------------------------
+horizontal_secondary_sweeploc = Aircraft.Geometry.Horizontal.secsweeploc.value;
+ac.hor.secsweeploc = horizontal_secondary_sweeploc;
+% -------------------------------------------------------------------------
+% HORIZONTAL DIHEDRAL
+% -------------------------------------------------------------------------
+horizontal_dihedral = Aircraft.Geometry.Horizontal.dihedral.value;
+ac.hor.dihedral    = horizontal_dihedral;
+% -------------------------------------------------------------------------
 ac.hor.utess       = [15];
 ac.hor.wtess       = 25;
 %movables
 %elevator
 ac.hor.mov.type = 'e';          %elevator type
-ac.hor.mov.eta_inner = 0.0;
-ac.hor.mov.eta_outer = 1.0;
+% -------------------------------------------------------------------------
+% ELEVATOR ETA INNER AND OUTER
+% -------------------------------------------------------------------------
+elev_eta_inner = Aircraft.Geometry.Elevator.eta_inner.value;
+elev_eta_outer = Aircraft.Geometry.Elevator.eta_outer.value;
+ac.hor.mov.eta_inner = elev_eta_inner;
+ac.hor.mov.eta_outer = elev_eta_outer;
+% -------------------------------------------------------------------------
 ac.hor.mov.cf_c_inner = 0.3;
 ac.hor.mov.cf_c_outer = 0.3;
 ac.hor.mov.tessellation = 10;
 
 %% vertical tail
 
-% The same as wing section.
-% Vertical tail is obtained as a 90° rotated right wing.
-
-ac.ver.id          = 'vertical';
-ac.ver.type        = 'WING';
-ac.ver.airfoil     = 'XS_FOUR_SERIES';
-ac.ver.camber      = [0 0 0 0];
-ac.ver.camberloc   = [0.2 0.2 ];
-ac.ver.thickchord  = [0.1 0.1 ];
-ac.ver.twist       = [0 0 ];
-ac.ver.twistloc    = [0 0 ];
-ac.ver.xloc        = ac.hor.xloc+ac.hor.span*tan(ac.hor.sweep/57.3);  %Vtail at the Htail tip
-ac.ver.yloc        = ac.hor.span;                     % Y global coordinate
-ac.ver.zloc        = 0.15;
-ac.ver.xrot        = 90;
-ac.ver.yrot        = 0;
-ac.ver.zrot        = 0;
-ac.ver.sym         = 2;
-ac.ver.span        = 0.438;
-ac.ver.ctip        = 0.1534725;
-ac.ver.croot       = 0.3136;
-ac.ver.sweep       = 20;
-ac.ver.sweeploc    = 0;
-ac.ver.secsweeploc = 1;
-ac.ver.dihedral    = 0;
-ac.ver.utess       = [15];
-ac.ver.wtess       = 25;%movables
-%rudder
-ac.ver.mov.type = 'r';          %elevator type
-ac.ver.mov.eta_inner = 0.0;
-ac.ver.mov.eta_outer = 1.0;
-ac.ver.mov.cf_c_inner = 0.25;
-ac.ver.mov.cf_c_outer = 0.3;
-ac.ver.mov.tessellation = 10;
-
+switch (Aircraft.Geometry.Vertical.empennage_flag.value)
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    % SINGLE FIN
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    case 'Single fin'
+        % The same as wing section.
+        % Vertical tail is obtained as a 90° rotated right wing.
+        % -------------------------------------------------------------------------
+        vertical_empennage_flag = Aircraft.Geometry.Vertical.empennage_flag.value;
+        % -------------------------------------------------------------------------
+        ac.ver.id          = 'vertical';
+        ac.ver.type        = 'WING';
+        ac.ver.airfoil     = 'XS_FOUR_SERIES';
+        ac.ver.camber      = [0 0 0 0];
+        ac.ver.camberloc   = [0.2 0.2 ];
+        ac.ver.thickchord  = [0.1 0.1 ];
+        % -------------------------------------------------------------------------
+        vertical_twist          = Aircraft.Geometry.Vertical.twist.value;
+        vertical_twist_location = Aircraft.Geometry.Vertical.twistloc.value;
+        ac.ver.twist       = [vertical_twist vertical_twist];
+        ac.ver.twistloc    = [vertical_twist_location vertical_twist_location];
+        % -------------------------------------------------------------------------
+        ac.ver.xloc        = ac.hor.xloc+ac.hor.span*tan(ac.hor.sweep/57.3);  %Vtail at the Htail tip
+        ac.ver.yloc        = ac.hor.span;                     % Y global coordinate
+        ac.ver.zloc        = 0.15;
+        ac.ver.xrot        = 90;
+        ac.ver.yrot        = 0;
+        ac.ver.zrot        = 0;
+        ac.ver.sym         = 2;
+        % -------------------------------------------------------------------------
+        % VERTICAL SPAN 
+        % -------------------------------------------------------------------------
+        b_vertical  = Aircraft.Geometry.Vertical.b.value;
+        ac.ver.span = b_vertical;
+        % -------------------------------------------------------------------------
+        % VERTICAL TIP CHORD
+        % -------------------------------------------------------------------------
+        ctip_vertical = Aircraft.Geometry.Vertical.ctip.value;
+        ac.ver.ctip   = ctip_vertical;
+        % -------------------------------------------------------------------------
+        % VERTICAL ROOT CHORD
+        % -------------------------------------------------------------------------
+        croot_vertical = Aircraft.Geometry.Vertical.croot.value;
+        ac.ver.croot   = croot_vertical;
+        % -------------------------------------------------------------------------
+        % VERTICAL SWEEP
+        % -------------------------------------------------------------------------
+        vertical_empennage_sweep = Aircraft.Geometry.Vertical.sweep.value;
+        ac.ver.sweep             = vertical_empennage_sweep;
+        % -------------------------------------------------------------------------
+        % VERTICAL SWEEP LOCATION
+        % -------------------------------------------------------------------------
+        vertical_empennage_sweep_location = Aircraft.Geometry.Vertical.sweeploc.value;
+        ac.ver.sweeploc                   = vertical_empennage_sweep_location;
+        % -------------------------------------------------------------------------
+        % VERTICAL SWEEP SECONDARY LOCATION
+        % -------------------------------------------------------------------------
+        vertical_empennage_sweep_seclocation = Aircraft.Geometry.Vertical.secsweeploc.value;
+        ac.ver.secsweeploc                   = vertical_empennage_sweep_seclocation;
+        % -------------------------------------------------------------------------
+        % VERTICAL DIHEDRAL
+        % -------------------------------------------------------------------------
+        vertical_dihedral = Aircraft.Geometry.Vertical.dihedral.value;
+        ac.ver.dihedral    = vertical_dihedral;
+        % -------------------------------------------------------------------------
+        ac.ver.utess       = [15];
+        ac.ver.wtess       = 25;%movables
+        %rudder
+        ac.ver.mov.type = 'r';          %elevator type
+        % -------------------------------------------------------------------------
+        % RUDDER ETA INNER
+        % -------------------------------------------------------------------------
+        rudder_eta_inner = Aircraft.Geometry.Rudder.eta_inner.value;
+        ac.ver.mov.eta_inner = rudder_eta_inner;
+        % -------------------------------------------------------------------------
+        % RUDDER ETA INNER
+        % -------------------------------------------------------------------------
+        rudder_eta_outer = Aircraft.Geometry.Rudder.eta_outer.value;
+        ac.ver.mov.eta_outer = 1.0;
+        % -------------------------------------------------------------------------
+        ac.ver.mov.cf_c_inner = 0.25;
+        ac.ver.mov.cf_c_outer = 0.3;
+        ac.ver.mov.tessellation = 10;
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+    % DOUBLE FIN
+    % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    case 'Double fin'
+        % The same as wing section.
+        % Vertical tail is obtained as a 90° rotated right wing.
+        % -------------------------------------------------------------------------
+        vertical_empennage_flag = Aircraft.Geometry.Vertical.empennage_flag.value;
+        % -------------------------------------------------------------------------
+        ac.ver.id          = 'vertical';
+        ac.ver.type        = 'WING';
+        ac.ver.airfoil     = 'XS_FOUR_SERIES';
+        ac.ver.camber      = [0 0 0 0];
+        ac.ver.camberloc   = [0.2 0.2 ];
+        ac.ver.thickchord  = [0.1 0.1 ];
+        % -------------------------------------------------------------------------
+        vertical_twist          = Aircraft.Geometry.Vertical.twist.value;
+        vertical_twist_location = Aircraft.Geometry.Vertical.twistloc.value;
+        ac.ver.twist       = [vertical_twist vertical_twist];
+        ac.ver.twistloc    = [vertical_twist_location vertical_twist_location];
+        % -------------------------------------------------------------------------
+        ac.ver.xloc        = ac.hor.xloc+ac.hor.span*tan(ac.hor.sweep/57.3);  %Vtail at the Htail tip
+        ac.ver.yloc        = ac.hor.span;                     % Y global coordinate
+        ac.ver.zloc        = 0.15;
+        ac.ver.xrot        = 90;
+        ac.ver.yrot        = 0;
+        ac.ver.zrot        = 0;
+        ac.ver.sym         = 2;
+        % -------------------------------------------------------------------------
+        % VERTICAL SPAN 
+        % -------------------------------------------------------------------------
+        b_vertical  = Aircraft.Geometry.Vertical.b.value;
+        ac.ver.span = b_vertical;
+        % -------------------------------------------------------------------------
+        % VERTICAL TIP CHORD
+        % -------------------------------------------------------------------------
+        ctip_vertical = Aircraft.Geometry.Vertical.ctip.value;
+        ac.ver.ctip   = ctip_vertical;
+        % -------------------------------------------------------------------------
+        % VERTICAL ROOT CHORD
+        % -------------------------------------------------------------------------
+        croot_vertical = Aircraft.Geometry.Vertical.croot.value;
+        ac.ver.croot   = croot_vertical;
+        % -------------------------------------------------------------------------
+        % VERTICAL SWEEP
+        % -------------------------------------------------------------------------
+        vertical_empennage_sweep = Aircraft.Geometry.Vertical.sweep.value;
+        ac.ver.sweep             = vertical_empennage_sweep;
+        % -------------------------------------------------------------------------
+        % VERTICAL SWEEP LOCATION
+        % -------------------------------------------------------------------------
+        vertical_empennage_sweep_location = Aircraft.Geometry.Vertical.sweeploc.value;
+        ac.ver.sweeploc                   = vertical_empennage_sweep_location;
+        % -------------------------------------------------------------------------
+        % VERTICAL SWEEP SECONDARY LOCATION
+        % -------------------------------------------------------------------------
+        vertical_empennage_sweep_seclocation = Aircraft.Geometry.Vertical.secsweeploc.value;
+        ac.ver.secsweeploc                   = vertical_empennage_sweep_seclocation;
+        % -------------------------------------------------------------------------
+        % VERTICAL DIHEDRAL
+        % -------------------------------------------------------------------------
+        vertical_dihedral = Aircraft.Geometry.Vertical.dihedral.value;
+        ac.ver.dihedral    = vertical_dihedral;
+        % -------------------------------------------------------------------------
+        ac.ver.utess       = [15];
+        ac.ver.wtess       = 25;%movables
+        %rudder
+        ac.ver.mov.type = 'r';          %elevator type
+        % -------------------------------------------------------------------------
+        % RUDDER ETA INNER
+        % -------------------------------------------------------------------------
+        rudder_eta_inner = Aircraft.Geometry.Rudder.eta_inner.value;
+        ac.ver.mov.eta_inner = rudder_eta_inner;
+        % -------------------------------------------------------------------------
+        % RUDDER ETA INNER
+        % -------------------------------------------------------------------------
+        rudder_eta_outer = Aircraft.Geometry.Rudder.eta_outer.value;
+        ac.ver.mov.eta_outer = 1.0;
+        % -------------------------------------------------------------------------
+        ac.ver.mov.cf_c_inner = 0.25;
+        ac.ver.mov.cf_c_outer = 0.3;
+        ac.ver.mov.tessellation = 10;
+end
 %% pods
 
 % Here is actually only given Y location of the pod on the - from a rear

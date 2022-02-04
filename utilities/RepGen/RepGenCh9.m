@@ -407,7 +407,7 @@ cd ..
  
  fig = FormalImage([results_path,'cfd_cm_results.png']);
  fig.Caption = 'Pitching moment coefficient from CFD calculations.';
- fig.Height = '3in';
+ fig.Height = '4in';
  fig.LinkTarget='cfd_cm_results';
  add(sec,fig);
 % reference_axis
@@ -442,6 +442,191 @@ str = ['Here, the aircraft balancing loads are collected inside' ...
 para = Paragraph(str);
 add(sec,para);
 % -------------------------------------------------------------------------
+% SWITCH CASE
+% -------------------------------------------------------------------------
+switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Straight_flight.value)
+    % ---------------------------------------------------------------------
+    % CASE 1
+    % ---------------------------------------------------------------------
+    case 'Case 1'
+        n_gust_cruise_plus = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value;
+        nmax               = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value;
+        % -----------------------------------------------------------------
+        if max(n_gust_cruise_plus) > nmax
+            % -----------------------------------------------------------------
+            n1         = 1.0; 
+            point_A    = "Point A";
+            va         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
+            va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
+            na         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
+            na_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit;
+            alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
+            alpha_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.Attributes.unit;
+            CLA        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value;
+            LA         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA_new.value;
+            L_unit     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA_new.Attributes.unit;
+            LtailA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTA.value;
+
+            point_C    = "Point C";
+            vc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
+            nc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value;
+            alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+            CLC        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
+            LC         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC_new.value;
+            LtailC     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTC.value;
+
+            point_D    = "Point D";
+            vd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value;
+            nd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value;
+            alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+            CLD        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
+            LD         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LD_new.value;
+            LtailD     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTD.value;
+
+            point_G    = "Point G";
+            vg         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value;
+            ng         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value;
+            alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
+            CLG        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
+            LG         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG_new.value;
+            LtailG     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHTG.value;
+
+            point_F    = "Point F";
+            vf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value;
+            nf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value;
+            alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
+            CLF        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
+            LF         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF_new.value;
+            LtailF     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHTF.value;
+
+            point_E    = "Point E";
+            ve         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value;
+            ne         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value;
+            alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
+            CLE        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
+            LE         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE_new.value;
+            LtailE     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LHTE.value;
+            % -----------------------------------------------------------------
+            header = {'Point', strcat('V(',va_unit,')'), strcat('n(',na_unit,')'), ...
+                strcat('alpha(',alpha_unit,')'), strcat('CL'), strcat('L(',L_unit,')'), strcat('L tail(',L_unit,')')};
+            %each table row needs of a fieldValue
+            %1
+            name       = {char(point_A); char(point_C); char(point_D); ...
+                          char(point_G); char(point_F); char(point_E)};
+            speeds     = {num2str(va,4); num2str(vc,4); num2str(vd,4); ...
+                          num2str(vg,4); num2str(vf,4); num2str(ve,4)};
+            load_fact  = {num2str(na,4); num2str(nc,4); num2str(nd,4); ...
+                          num2str(ng,4); num2str(nf,4); num2str(ne,4)};
+            alfa       = {num2str(alfaA, 4); num2str(alfaC, 4); num2str(alfaD, 4); ...
+                          num2str(alfaG, 4); num2str(alfaF, 4); num2str(alfaE, 4)};
+            lift_coeff = {num2str(CLA, 4); num2str(CLC, 4); num2str(CLD, 4); ...
+                          num2str(CLG, 4); num2str(CLF, 4); num2str(CLE, 4)};
+            wing_lift  = {num2str(LA, 4); num2str(LC, 4); num2str(LD, 4); ...
+                          num2str(LG, 4); num2str(LF, 4); num2str(LE, 4)};
+            tail_lift  = {num2str(LtailA, 4); num2str(LtailC, 4); num2str(LtailD, 4); ...
+                          num2str(LtailG, 4); num2str(LtailF, 4); num2str(LtailE, 4)};
+            fieldValue = [name, speeds, load_fact, alfa, lift_coeff, wing_lift, tail_lift];
+
+
+            tbl = FormalTable(header,fieldValue);
+            % In order to put a table with a caption, the API Report denomination should
+            % be used, the other options are from API DOM. In order to solve the problem,
+            % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+            tbl = BaseTable(tbl);
+            tbl.Title = strcat('Flight envelope points.');
+            tbl.LinkTarget = 'flightenvelopepoints';
+            add(sec,tbl);
+            % -----------------------------------------------------------------            
+        elseif max(n_gust_cruise_plus) < nmax 
+             % -----------------------------------------------------------------
+            n1         = 1.0; 
+            point_A    = "Point A";
+            va         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
+            va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
+            na         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
+            na_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit;
+            alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
+            alpha_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.Attributes.unit;
+            CLA        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value;
+            LA         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA_new.value;
+            L_unit     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA_new.Attributes.unit;
+            LtailA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTA.value;
+
+            point_C    = "Point C";
+            vc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
+            nc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value;
+            alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+            CLC        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
+            LC         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC_new.value;
+            LtailC     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTC.value;
+
+            point_D    = "Point D";
+            vd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value;
+            nd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value;
+            alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+            CLD        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
+            LD         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LD_new.value;
+            LtailD     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTD.value;
+
+            point_G    = "Point G";
+            vg         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value;
+            ng         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value;
+            alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
+            CLG        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
+            LG         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG_new.value;
+            LtailG     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHTG.value;
+
+            point_F    = "Point F";
+            vf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value;
+            nf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value;
+            alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
+            CLF        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
+            LF         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF_new.value;
+            LtailF     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHTF.value;
+
+            point_E    = "Point E";
+            ve         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value;
+            ne         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value;
+            alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
+            CLE        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
+            LE         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE_new.value;
+            LtailE     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LHTE.value;
+            % -----------------------------------------------------------------
+            header = {'Point', strcat('V(',va_unit,')'), strcat('n(',na_unit,')'), ...
+                strcat('alpha(',alpha_unit,')'), strcat('CL'), strcat('L(',L_unit,')'), strcat('L tail(',L_unit,')')};
+            %each table row needs of a fieldValue
+            %1
+            name       = {char(point_A); char(point_C); char(point_D); ...
+                          char(point_G); char(point_F); char(point_E)};
+            speeds     = {num2str(va,4); num2str(vc,4); num2str(vd,4); ...
+                          num2str(vg,4); num2str(vf,4); num2str(ve,4)};
+            load_fact  = {num2str(na,4); num2str(nc,4); num2str(nd,4); ...
+                          num2str(ng,4); num2str(nf,4); num2str(ne,4)};
+            alfa       = {num2str(alfaA, 4); num2str(alfaC, 4); num2str(alfaD, 4); ...
+                          num2str(alfaG, 4); num2str(alfaF, 4); num2str(alfaE, 4)};
+            lift_coeff = {num2str(CLA, 4); num2str(CLC, 4); num2str(CLD, 4); ...
+                          num2str(CLG, 4); num2str(CLF, 4); num2str(CLE, 4)};
+            wing_lift  = {num2str(LA, 4); num2str(LC, 4); num2str(LD, 4); ...
+                          num2str(LG, 4); num2str(LF, 4); num2str(LE, 4)};
+            tail_lift  = {num2str(LtailA, 4); num2str(LtailC, 4); num2str(LtailD, 4); ...
+                          num2str(LtailG, 4); num2str(LtailF, 4); num2str(LtailE, 4)};
+            fieldValue = [name, speeds, load_fact, alfa, lift_coeff, wing_lift, tail_lift];
+
+
+            tbl = FormalTable(header,fieldValue);
+            % In order to put a table with a caption, the API Report denomination should
+            % be used, the other options are from API DOM. In order to solve the problem,
+            % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+            tbl = BaseTable(tbl);
+            tbl.Title = strcat('Flight envelope points.');
+            tbl.LinkTarget = 'flightenvelopepoints';
+            add(sec,tbl);
+            % -----------------------------------------------------------------    
+        end
+    % ---------------------------------------------------------------------
+    % CASE 2
+    % ---------------------------------------------------------------------
+    case 'Case 2'
         % -----------------------------------------------------------------
         n1         = 1.0; 
         point_A    = "Point A";
@@ -523,10 +708,14 @@ add(sec,para);
         % be used, the other options are from API DOM. In order to solve the problem,
         % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
         tbl = BaseTable(tbl);
-        tbl.Title = strcat('Flaps envelope points summary at landing.');
-        tbl.LinkTarget = 'flapenvpointslanding';
+        tbl.Title = strcat('Flight envelope points.');
+        tbl.LinkTarget = 'flightenvelopepoints';
         add(sec,tbl);
         % -----------------------------------------------------------------
+% -------------------------------------------------------------------------
+end
+% -------------------------------------------------------------------------
+% END SWITCH CASE
 % -------------------------------------------------------------------------
 add(ch,sec);
 

@@ -189,7 +189,13 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'dihedral_third', ...
          'twist_angle_second', ...
          'twist_angle_third', ...
-         'twist_angle_fourth'};
+         'twist_angle_fourth', ...
+         'vertical_sweep', ...
+         'sweep_loc_vert', ...
+         'sec_sweeploc_vert', ...
+         'vertical_dihedral', ...
+         'vertical_twist', ...
+         'ver_twist_loc'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -645,6 +651,24 @@ if LengthIndex==length(VarText)
     p = strcmp('twist_angle_fourth', label);
     Aircraft.Geometry.Wing.twist_angle_fourth.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Geometry.Wing.twist_angle_fourth.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('vertical_sweep', label);
+    Aircraft.Geometry.Vertical.sweep.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.sweep.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('sweep_loc_vert', label);
+    Aircraft.Geometry.Vertical.sweeploc.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.sweeploc.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('sec_sweeploc_vert', label);
+    Aircraft.Geometry.Vertical.secsweeploc.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.secsweeploc.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('vertical_dihedral', label);
+    Aircraft.Geometry.Vertical.dihedral.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.dihedral.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('vertical_twist', label);
+    Aircraft.Geometry.Vertical.twist.value       = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.twist.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('ver_twist_loc', label);
+    Aircraft.Geometry.Vertical.twistloc.value       = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Vertical.twistloc.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

@@ -19,6 +19,13 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         Aircraft.Certification.Aerodynamic_data.Elevator.Max_deflection.Attributes.unit = "deg";
         Aircraft.Certification.Aerodynamic_data.Elevator.total_deflection_time.value = Aircraft.Geometry.Elevator.total_deflection_time.value;
         Aircraft.Certification.Aerodynamic_data.Elevator.total_deflection_time.Attributes.unit = "s";
+        % -----------------------------------------------------------------
+        Aircraft.Geometry.Elevator.ce_c_root.value           = Aircraft.Geometry.Horizontal.ce_c_root.value;
+        Aircraft.Geometry.Elevator.ce_c_root.Attributes.unit = Aircraft.Geometry.Horizontal.ce_c_root.Attributes.unit;
+        Aircraft.Geometry.Elevator.ce_c_tip.value            = Aircraft.Geometry.Horizontal.ce_c_tip.value;
+        Aircraft.Geometry.Elevator.ce_c_tip.Attributes.unit  = Aircraft.Geometry.Horizontal.ce_c_tip.Attributes.unit;
+        fields = {'ce_c_root', 'ce_c_tip'};
+        Aircraft.Geometry.Horizontal = rmfield(Aircraft.Geometry.Horizontal, fields);
         field = 'max_deflection';
         Aircraft.Geometry.Elevator = rmfield(Aircraft.Geometry.Elevator, field);
         field = 'total_deflection_time';
@@ -93,4 +100,12 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         Aircraft.Certification.ISA_Condition = rmfield(Aircraft.Certification.ISA_Condition, field);
         field = 'Max_Continous_Power_Speed_VH';
         Aircraft.Certification.Regulation.SubpartC.Flightloads = rmfield(Aircraft.Certification.Regulation.SubpartC.Flightloads, field);
+        % -----------------------------------------------------------------
+        Aircraft.Geometry.Elevator.ce_c_root.value           = Aircraft.Geometry.Horizontal.ce_c_root.value;
+        Aircraft.Geometry.Elevator.ce_c_root.Attributes.unit = Aircraft.Geometry.Horizontal.ce_c_root.Attributes.unit;
+        Aircraft.Geometry.Elevator.ce_c_tip.value            = Aircraft.Geometry.Horizontal.ce_c_tip.value;
+        Aircraft.Geometry.Elevator.ce_c_tip.Attributes.unit  = Aircraft.Geometry.Horizontal.ce_c_tip.Attributes.unit;
+        fields = {'ce_c_root', 'ce_c_tip'};
+        Aircraft.Geometry.Horizontal = rmfield(Aircraft.Geometry.Horizontal, fields);
+        % -----------------------------------------------------------------
 end

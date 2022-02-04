@@ -343,6 +343,18 @@ Aircraft.Geometry.Vertical.S.value = NaN;
 Aircraft.Geometry.Vertical.S.Attributes.unit = "m^2";
 Aircraft.Geometry.Vertical.chord.value = NaN; 
 Aircraft.Geometry.Vertical.chord.Attributes.unit = "m";
+Aircraft.Geometry.Vertical.sweep.value       = NaN; % 20;
+Aircraft.Geometry.Vertical.sweep.Attributes.unit = "deg";
+Aircraft.Geometry.Vertical.sweeploc.value    = NaN; % 0;
+Aircraft.Geometry.Vertical.sweeploc.Attributes.unit = "percentage";
+Aircraft.Geometry.Vertical.secsweeploc.value = 1.0;
+Aircraft.Geometry.Vertical.secsweeploc.Attributes.unit = "percentage";
+Aircraft.Geometry.Vertical.dihedral.value       = NaN; % 0;
+Aircraft.Geometry.Vertical.dihedral.Attributes.unit = "deg";
+Aircraft.Geometry.Vertical.twist.value       = NaN; % 0;
+Aircraft.Geometry.Vertical.twist.Attributes.unit = "deg";
+Aircraft.Geometry.Vertical.twistloc.value       = NaN; % 0;
+Aircraft.Geometry.Vertical.twistloc.Attributes.unit = "deg";
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Rudder
 % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
