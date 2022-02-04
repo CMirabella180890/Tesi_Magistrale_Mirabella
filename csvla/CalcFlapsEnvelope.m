@@ -1096,6 +1096,13 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.case.value
         plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA, '-r', 'LineWidth', 1);
         plot(V_flap_takeoff_fromAtoF, n_flap_takeoff_fromAtoF, '-r', 'LineWidth', 1);
         plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0, '-r', 'LineWidth', 1, 'DisplayName','Takeoff');
+        % ----------------------------------------------------------------------------------------------------
+        plot(V_flap_takeoff_from0toS(end), n_flap_takeoff_from0toS(end), '.k', 'MarkerSize', 10);
+        text(V_flap_takeoff_from0toS(end), n_flap_takeoff_from0toS(end), 'S ', 'FontSize',    6);
+        plot(V_flap_takeoff_fromStoA(end), n_flap_takeoff_fromStoA(end), '.k', 'MarkerSize', 10);
+        text(V_flap_takeoff_fromStoA(end), n_flap_takeoff_fromStoA(end), 'A ', 'FontSize',    6);
+        plot(V_flap_takeoff_fromAtoF(end), n_flap_takeoff_fromAtoF(end), '.k', 'MarkerSize', 10);
+        text(V_flap_takeoff_fromAtoF(end), n_flap_takeoff_fromAtoF(end), 'F ', 'FontSize',    6);
         
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Load factor - $n$ (g's)", "Interpreter", "latex")
@@ -1125,6 +1132,15 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.case.value
             plot(V_flap_takeoff_fromAtoF1, n_flap_takeoff_fromAtoF1, '-r', 'LineWidth', 1);
             plot(V_flap_takeoff_fromF1toF, n_flap_takeoff_fromF1toF, '-r', 'LineWidth', 1);
             plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0, '-r', 'LineWidth', 1, 'DisplayName','Takeoff');
+            % ----------------------------------------------------------------------------------------------------
+            plot(V_flap_takeoff_from0toS(end) , n_flap_takeoff_from0toS(end) , '.k', 'MarkerSize', 10);
+            text(V_flap_takeoff_from0toS(end) , n_flap_takeoff_from0toS(end) , 'S ', 'FontSize',    6);
+            plot(V_flap_takeoff_fromStoA(end) , n_flap_takeoff_fromStoA(end) , '.k', 'MarkerSize', 10);
+            text(V_flap_takeoff_fromStoA(end) , n_flap_takeoff_fromStoA(end) , 'A ', 'FontSize',    6);
+            plot(V_flap_takeoff_fromAtoF1(end), n_flap_takeoff_fromAtoF1(end), '.k', 'MarkerSize', 10);
+            text(V_flap_takeoff_fromAtoF1(end), n_flap_takeoff_fromAtoF1(end), 'F1', 'FontSize',    6);
+            plot(V_flap_takeoff_fromF1toF(end), n_flap_takeoff_fromF1toF(end), '.k', 'MarkerSize', 10);
+            text(V_flap_takeoff_fromF1toF(end), n_flap_takeoff_fromF1toF(end), 'F ', 'FontSize',    6);
             
         
         elseif abs(n_g_plus) < nmax     
@@ -1147,6 +1163,13 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.case.value
             plot(V_flap_takeoff_fromStoA, n_flap_takeoff_fromStoA, '-r', 'LineWidth', 1);
             plot(V_flap_takeoff_fromAtoF, n_flap_takeoff_fromAtoF, '-r', 'LineWidth', 1);
             plot(V_flap_takeoff_fromFto0, n_flap_takeoff_fromFto0, '-r', 'LineWidth', 1, 'DisplayName','Takeoff');
+            % ----------------------------------------------------------------------------------------------------
+            plot(V_flap_takeoff_from0toS(end), n_flap_takeoff_from0toS(end), '.k', 'MarkerSize', 10);
+            text(V_flap_takeoff_from0toS(end), n_flap_takeoff_from0toS(end), 'S ', 'FontSize',    6);
+            plot(V_flap_takeoff_fromStoA(end), n_flap_takeoff_fromStoA(end), '.k', 'MarkerSize', 10);
+            text(V_flap_takeoff_fromStoA(end), n_flap_takeoff_fromStoA(end), 'A ', 'FontSize',    6);
+            plot(V_flap_takeoff_fromAtoF(end), n_flap_takeoff_fromAtoF(end), '.k', 'MarkerSize', 10);
+            text(V_flap_takeoff_fromAtoF(end), n_flap_takeoff_fromAtoF(end), 'F ', 'FontSize',    6);
             
         end
 end
@@ -1173,6 +1196,13 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.case.value
         plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA, '-b', 'LineWidth', 1);
         plot(V_flap_landing_fromAtoF, n_flap_landing_fromAtoF, '-b', 'LineWidth', 1);
         plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0, '-b', 'LineWidth', 1, 'DisplayName','Landing');
+        % ----------------------------------------------------------------------------------------------------
+        plot(V_flap_landing_from0toS(end), n_flap_landing_from0toS(end), '.k', 'MarkerSize', 10);
+        text(V_flap_landing_from0toS(end), n_flap_landing_from0toS(end), 'S ', 'FontSize',    6);
+        plot(V_flap_landing_fromStoA(end), n_flap_landing_fromStoA(end), '.k', 'MarkerSize', 10);
+        text(V_flap_landing_fromStoA(end), n_flap_landing_fromStoA(end), 'A ', 'FontSize',    6);
+        plot(V_flap_landing_fromAtoF(end), n_flap_landing_fromAtoF(end), '.k', 'MarkerSize', 10);
+        text(V_flap_landing_fromAtoF(end), n_flap_landing_fromAtoF(end), 'F ', 'FontSize',    6);
         
     case 'Case 2'
         if abs(n_g_plus) > nmax
@@ -1198,6 +1228,15 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.case.value
             plot(V_flap_landing_fromAtoF1, n_flap_landing_fromAtoF1, '-b', 'LineWidth', 1);
             plot(V_flap_landing_fromF1toF, n_flap_landing_fromF1toF, '-b', 'LineWidth', 1);
             plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0, '-b', 'LineWidth', 1, 'DisplayName','Landing');
+            % ----------------------------------------------------------------------------------------------------
+            plot(V_flap_landing_from0toS(end) , n_flap_landing_from0toS(end) , '.k', 'MarkerSize', 10);
+            text(V_flap_landing_from0toS(end) , n_flap_landing_from0toS(end) , 'S ', 'FontSize',    6);
+            plot(V_flap_landing_fromStoA(end) , n_flap_landing_fromStoA(end) , '.k', 'MarkerSize', 10);
+            text(V_flap_landing_fromStoA(end) , n_flap_landing_fromStoA(end) , 'A ', 'FontSize',    6);
+            plot(V_flap_landing_fromAtoF1(end), n_flap_landing_fromAtoF1(end), '.k', 'MarkerSize', 10);
+            text(V_flap_landing_fromAtoF1(end), n_flap_landing_fromAtoF1(end), 'F1', 'FontSize',    6);
+            plot(V_flap_landing_fromF1toF(end), n_flap_landing_fromF1toF(end), '.k', 'MarkerSize', 10);
+            text(V_flap_landing_fromF1toF(end), n_flap_landing_fromF1toF(end), 'F ', 'FontSize',    6);
             
         elseif abs(n_g_plus) < nmax     
             
@@ -1219,6 +1258,13 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.case.value
             plot(V_flap_landing_fromStoA, n_flap_landing_fromStoA, '-b', 'LineWidth', 1);
             plot(V_flap_landing_fromAtoF, n_flap_landing_fromAtoF, '-b', 'LineWidth', 1);
             plot(V_flap_landing_fromFto0, n_flap_landing_fromFto0, '-b', 'LineWidth', 1, 'DisplayName','Landing');
+            % ----------------------------------------------------------------------------------------------------
+            plot(V_flap_landing_from0toS(end), n_flap_landing_from0toS(end), '.k', 'MarkerSize', 10);
+            text(V_flap_landing_from0toS(end), n_flap_landing_from0toS(end), 'S ', 'FontSize',    6);
+            plot(V_flap_landing_fromStoA(end), n_flap_landing_fromStoA(end), '.k', 'MarkerSize', 10);
+            text(V_flap_landing_fromStoA(end), n_flap_landing_fromStoA(end), 'A ', 'FontSize',    6);
+            plot(V_flap_landing_fromAtoF(end), n_flap_landing_fromAtoF(end), '.k', 'MarkerSize', 10);
+            text(V_flap_landing_fromAtoF(end), n_flap_landing_fromAtoF(end), 'F ', 'FontSize',    6);
             
         end
 end
