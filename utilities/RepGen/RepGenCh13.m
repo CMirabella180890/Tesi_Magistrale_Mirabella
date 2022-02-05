@@ -207,7 +207,8 @@ add(subsec,para);
     subsec.Title = 'Summary of flaps load';
     str = ['A diagram of the flaps load calculations is shown. The clean' ...
         ' positive attitude flight envelope of the aircraft is also represented' ...
-        ' for reference.'];
+        ' for reference. The data relative to these calculations are summarized' ...
+        ' in table form, for takeoff and landing configurations, respectively.'];
     para = Paragraph(str);
     para.Style = {HAlign('justify')};
     add(subsec,para);

@@ -415,6 +415,111 @@ add(subsec,para);
         ol = OrderedList({ref1, ref2});
         append(subsec,ol);
         % -----------------------------------------------------------------
+% -------------------------------------------------------------------------        
+        % -----------------------------------------------------------------
+        %table unchecked manoeuvre calculation        
+        str = ['TABLE TO BE CHECKED!!!'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        para.BackgroundColor = "red";
+        add(subsec,para);  
+        % -----------------------------------------------------------------
+        d2thetadt2_pitch_down      = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.d2thetadt2.value(1:5:end);
+        d2thetadt2_unit            = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.d2thetadt2.Attributes.unit;
+        dthetadt_pitch_down        = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.dthetadt.value(1:5:end);  
+        dthetadt_unit              = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.dthetadt.Attributes.unit;
+        alpha_new_horiz_pitch_down = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_prime_horiz_deg.value(1:5:end);
+        alpha_new_horiz_unit       = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_prime_horiz_deg.Attributes.unit;
+        delta_theta_pitch_down     = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.delta_theta.value(1:5:end);
+        delta_theta_unit           = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.delta_theta.Attributes.unit;
+        delta_v_pitch_down         = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.delta_v.value(1:5:end);
+        delta_v_unit               = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.delta_v.Attributes.unit;
+        alpha_new_ht_pitch_down    = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_new_horiz_grad.value(1:5:end);
+        alpha_new_unit             = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_down.alpha_new_horiz_grad.Attributes.unit;
+        % -----------------------------------------------------------------
+        header = {strcat('d2thetadt2(',d2thetadt2_unit,')'), ...
+                  strcat('dthetadt(',dthetadt_unit,')'), ...
+                  strcat('alfa ht(',alpha_new_horiz_unit,')'), ...
+                  strcat('delta theta(',delta_theta_unit,')'), ...
+                  strcat('delta v(',delta_v_unit,')'), ...
+                  strcat('alfa n ht(',alpha_new_unit,')')};
+        %each table row needs of a fieldValue
+        %1
+%         name       = {char(point_S);  char(point_A);  char(point_F) };
+%         speeds     = {num2str(vs,4);  num2str(va,4);  num2str(vf,4) };
+%         load_fact  = {num2str(ns,4);  num2str(na,4);  num2str(nf,4) };
+%         vec_mug    = {num2str(mug,4); num2str(mug,4); num2str(mug,4)};
+%         vec_kg     = {num2str(kg,4);  num2str(kg,4);  num2str(kg,4) };
+%         vec_Ude    = {num2str(Ude,4); num2str(Ude,4); num2str(Ude,4)};
+%         vec_WS     = {num2str(WS,4);  num2str(WS,4);  num2str(WS,4) };
+%         vec_rho    = {num2str(rho,4); num2str(rho,4); num2str(rho,4)};
+%         vec_alt    = {num2str(altitude,4); num2str(altitude,4); num2str(altitude,4)};
+        fieldValue = {num2str(d2thetadt2_pitch_down,4), num2str(dthetadt_pitch_down,4), ...
+            num2str(alpha_new_horiz_pitch_down,4), num2str(delta_theta_pitch_down,4), ...
+            num2str(delta_v_pitch_down,4), num2str(alpha_new_ht_pitch_down,4)};
+        % ----------------------------------------------------------------------------
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Unchecked manoeuvre. Pitch down case calculations.');
+        tbl.LinkTarget = 'uncheckedmanoeuvre_pitchdown';
+        add(subsec,tbl);
+        % -----------------------------------------------------------------
+% -------------------------------------------------------------------------
+        % -----------------------------------------------------------------
+        %table unchecked manoeuvre calculation        
+        str = ['TABLE TO BE CHECKED!!!'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        para.BackgroundColor = "red";
+        add(subsec,para);  
+        % -----------------------------------------------------------------
+        d2thetadt2_pitch_up      = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.d2thetadt2.value(1:5:end);
+        d2thetadt2_unit          = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.d2thetadt2.Attributes.unit;
+        dthetadt_pitch_up        = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.dthetadt.value(1:5:end);  
+        dthetadt_unit            = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.dthetadt.Attributes.unit;
+        alpha_new_horiz_pitch_up = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.alpha_prime_horiz_deg.value(1:5:end);
+        alpha_new_horiz_unit     = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.alpha_prime_horiz_deg.Attributes.unit;
+        delta_theta_pitch_up     = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.delta_theta.value(1:5:end);
+        delta_theta_unit         = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.delta_theta.Attributes.unit;
+        delta_v_pitch_up         = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.delta_v.value(1:5:end);
+        delta_v_unit             = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.delta_v.Attributes.unit;
+        alpha_new_ht_pitch_up    = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.alpha_new_horiz_grad.value(1:5:end);
+        alpha_new_unit           = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.alpha_new_horiz_grad.Attributes.unit;
+        % -----------------------------------------------------------------
+        header = {strcat('d2thetadt2(',d2thetadt2_unit,')'), ...
+                  strcat('dthetadt(',dthetadt_unit,')'), ...
+                  strcat('alfa ht(',alpha_new_horiz_unit,')'), ...
+                  strcat('delta theta(',delta_theta_unit,')'), ...
+                  strcat('delta v(',delta_v_unit,')'), ...
+                  strcat('alfa n ht(',alpha_new_unit,')')};
+        %each table row needs of a fieldValue
+        %1
+%         name       = {char(point_S);  char(point_A);  char(point_F) };
+%         speeds     = {num2str(vs,4);  num2str(va,4);  num2str(vf,4) };
+%         load_fact  = {num2str(ns,4);  num2str(na,4);  num2str(nf,4) };
+%         vec_mug    = {num2str(mug,4); num2str(mug,4); num2str(mug,4)};
+%         vec_kg     = {num2str(kg,4);  num2str(kg,4);  num2str(kg,4) };
+%         vec_Ude    = {num2str(Ude,4); num2str(Ude,4); num2str(Ude,4)};
+%         vec_WS     = {num2str(WS,4);  num2str(WS,4);  num2str(WS,4) };
+%         vec_rho    = {num2str(rho,4); num2str(rho,4); num2str(rho,4)};
+%         vec_alt    = {num2str(altitude,4); num2str(altitude,4); num2str(altitude,4)};
+        fieldValue = {num2str(d2thetadt2_pitch_down,4), num2str(dthetadt_pitch_down,4), ...
+            num2str(alpha_new_horiz_pitch_down,4), num2str(delta_theta_pitch_down,4), ...
+            num2str(delta_v_pitch_down,4), num2str(alpha_new_ht_pitch_down,4)};
+        % ----------------------------------------------------------------------------
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Unchecked manoeuvre. Pitch up case calculations.');
+        tbl.LinkTarget = 'uncheckedmanoeuvre_pitchup';
+        add(subsec,tbl);
+        % -----------------------------------------------------------------
+% -------------------------------------------------------------------------
 add(sec,subsec);
 % -------------------------------------------------------------------------  
 
