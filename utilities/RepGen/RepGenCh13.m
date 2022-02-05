@@ -263,6 +263,19 @@ add(ch,sec);
             vf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.PointF.VF.value;
         end
         % ------------------------------------------------------------------------- 
+        % -------------------------------------------------------------------------       
+        rho0     = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
+        rho      = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
+        rho_unit = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.Attributes.unit;
+        Ude      = 7.62; % Gust speed for flaps calculations m/s
+        g        = Aircraft.Constants.g.value;
+        S        = Aircraft.Geometry.Wing.S.value;
+        Mass     = Aircraft.Weight.I_Level.W_maxTakeOff.value;
+        WS       = Mass / S;
+        WS_unit  = "kg/m^2";
+        altitude = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.value;
+        alt_un   = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit;
+        % ------------------------------------------------------------------------- 
         % -----------------------------------------------------------------
         %table gust calculation        
         str = ['TABLE TO BE CHECKED!!!'];
@@ -272,7 +285,9 @@ add(ch,sec);
         add(sec,para);  
         % -----------------------------------------------------------------
         header = {'Point', strcat('V(',vs_unit,')'), strcat('n(',ns_unit,')'), ...
-                  strcat('mug'), strcat('Kg')};
+                  strcat('mug'), strcat('Kg'), strcat('Ude(',vs_unit,')'), ...
+                  strcat('WS(',WS_unit,')'), strcat('rho(',rho_unit,')'), ...
+                  strcat('altitude(',alt_un,')')};
         %each table row needs of a fieldValue
         %1
         name       = {char(point_S); char(point_A); char(point_F)};
@@ -280,7 +295,12 @@ add(ch,sec);
         load_fact  = {num2str(ns,4); num2str(na,4); num2str(nf,4)};
         vec_mug    = {num2str(mug,4); num2str(mug,4); num2str(mug,4)};
         vec_kg     = {num2str(kg,4);  num2str(kg,4);  num2str(kg,4) };
-        fieldValue = [name, speeds, load_fact, vec_mug, vec_kg];
+        vec_Ude    = {num2str(Ude,4); num2str(Ude,4); num2str(Ude,4)};
+        vec_WS     = {num2str(WS,4);  num2str(WS,4);  num2str(WS,4) };
+        vec_rho    = {num2str(rho,4); num2str(rho,4); num2str(rho,4)};
+        vec_alt    = {num2str(altitude,4); num2str(altitude,4); num2str(altitude,4)};
+        fieldValue = [name, speeds, load_fact, vec_mug, vec_kg, vec_Ude, ...
+                      vec_WS, vec_rho, vec_alt];
     
           
         tbl = FormalTable(header,fieldValue);
@@ -309,11 +329,30 @@ add(ch,sec);
         na      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromStoA.value(end);
         % na_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromStoA.Attributes.unit;
         point_F = "Point F";
-        vf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromAtoF.value(end);
-        % vf_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.V_fromAtoF.Attributes.unit;
-        nf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromAtoF.value(end);
-        % nf_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.n_fromAtoF.Attributes.unit;
-        % -------------------------------------------------------------------------
+        % -----------------------------------------------------------------------------------------------------------------
+        if isfield(Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope, 'PointF1') == 1
+            nf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF1.nF1.value;
+        % vf_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.V_fromAtoF.Attributes.unit;
+            vf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF1.VF1.value;
+        % nf_unit = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.final_envelope.n_fromAtoF.Attributes.unit;
+        else 
+            nf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.nF.value;
+            vf      = Aircraft.Certification.Regulation.SubpartC.Flapsloads.Landing.final_envelope.PointF.VF.value;
+        end
+        % ------------------------------------------------------------------------- 
+        % -----------------------------------------------------------------------------------------------------------------
+        % -------------------------------------------------------------------------       
+        rho0     = Aircraft.Certification.ISA_Condition.Sea_Level.rho0.value;
+        rho      = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.value;
+        rho_unit = Aircraft.Certification.ISA_Condition.Operative_ceiling.rho0.Attributes.unit;
+        Ude      = 7.62; % Gust speed for flaps calculations m/s
+        g        = Aircraft.Constants.g.value;
+        S        = Aircraft.Geometry.Wing.S.value;
+        Mass     = Aircraft.Weight.I_Level.W_maxTakeOff.value;
+        WS       = Mass / S;
+        WS_unit  = "kg/m^2";
+        altitude = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.value;
+        alt_un   = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit;
         % ------------------------------------------------------------------------- 
         % -----------------------------------------------------------------
         %table gust calculation        
@@ -324,7 +363,9 @@ add(ch,sec);
         add(sec,para);  
         % -----------------------------------------------------------------
         header = {'Point', strcat('V(',vs_unit,')'), strcat('n(',ns_unit,')'), ...
-                  strcat('mug'), strcat('Kg')};
+                  strcat('mug'), strcat('Kg'), strcat('Ude(',vs_unit,')'), ...
+                  strcat('WS(',WS_unit,')'), strcat('rho(',rho_unit,')'), ...
+                  strcat('altitude(',alt_un,')')};
         %each table row needs of a fieldValue
         %1
         name       = {char(point_S);  char(point_A);  char(point_F) };
@@ -332,9 +373,13 @@ add(ch,sec);
         load_fact  = {num2str(ns,4);  num2str(na,4);  num2str(nf,4) };
         vec_mug    = {num2str(mug,4); num2str(mug,4); num2str(mug,4)};
         vec_kg     = {num2str(kg,4);  num2str(kg,4);  num2str(kg,4) };
-        fieldValue = [name, speeds, load_fact, vec_mug, vec_kg];
-    
-          
+        vec_Ude    = {num2str(Ude,4); num2str(Ude,4); num2str(Ude,4)};
+        vec_WS     = {num2str(WS,4);  num2str(WS,4);  num2str(WS,4) };
+        vec_rho    = {num2str(rho,4); num2str(rho,4); num2str(rho,4)};
+        vec_alt    = {num2str(altitude,4); num2str(altitude,4); num2str(altitude,4)};
+        fieldValue = [name, speeds, load_fact, vec_mug, vec_kg, vec_Ude, ...
+                      vec_WS, vec_rho, vec_alt];
+        % ----------------------------------------------------------------------------
         tbl = FormalTable(header,fieldValue);
         % In order to put a table with a caption, the API Report denomination should
         % be used, the other options are from API DOM. In order to solve the problem,
