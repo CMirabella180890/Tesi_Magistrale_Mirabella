@@ -204,6 +204,8 @@ para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(subsec,para)
 % -------------------------------------------------------------------------
+switch(Aircraft.Certification.Aerodynamic_data.Horizontal.tau.Attributes.flag)
+    case 'Full movable'
         % PITCHING ANGLE DIFFERENTIAL EQUATION 
         %
         myEq = "$ \frac{d^{2}\theta}{dt} = \frac{q*S_{tail}*a_{tail}*d}{I_{y}}*\Biggl(\omega*dt - \frac{\Delta v}{V_A}*DF\Biggr) ";
@@ -217,13 +219,13 @@ add(subsec,para)
             eqImg.Style = {VerticalAlign("-5pt")};
         end
         append(subsec,eqImg);
-% -------------------------------------------------------------------------    
-%sec
-str = ['where: '];
-para = Paragraph(str);
-para.Style = {HAlign('justify')};
-add(subsec,para);
-% -------------------------------------------------------------------------
+        % -------------------------------------------------------------------------    
+        %sec
+        str = ['where: '];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        add(subsec,para);
+        % -------------------------------------------------------------------------
 
         % Ude
         myEq = "$ \theta = \mathrm{rotation pitching angle}";
@@ -264,10 +266,10 @@ add(subsec,para);
         end
         ref3 = eqImg3;         
         
-%                          2 * M                   K^2
-%      mu_gt = ------------------------------- * ------- = lat. mass ratio;
-%              rho * c_bar_t * g * a_vt * S_vt   (l_t^2)
-%              
+        %                          2 * M                   K^2
+        %      mu_gt = ------------------------------- * ------- = lat. mass ratio;
+        %              rho * c_bar_t * g * a_vt * S_vt   (l_t^2)
+        %              
         % mu_gt
         myEq = "$ d = \mathrm{C.G.-tail-A.C. distance (m) with } x_{C.G.} = 0.25*MAC ";
         eq = Equation(myEq);
@@ -280,15 +282,15 @@ add(subsec,para);
             eqImg.Style = {VerticalAlign("-5pt")};
         end
         ref4 = eqImg4;      
-%              M    = aeroplane mass (kg); 
-%              rho  = air density (kg/m^3); 
-%              S_vt = area of vertical tail (m^2);
-%              l_t  = distance from aeroplane c.g. to lift centre of
-%                     vertical surface (m); 
-%              a_vt = lift curve slope of vertical tail (1/rad); 
-%              V    = aeroplane equivalent speed (m/s); 
-%              K    = radius of gyration in yaw (m);
-%              g    = acceleration due to gravity (m/s^2).
+        %              M    = aeroplane mass (kg); 
+        %              rho  = air density (kg/m^3); 
+        %              S_vt = area of vertical tail (m^2);
+        %              l_t  = distance from aeroplane c.g. to lift centre of
+        %                     vertical surface (m); 
+        %              a_vt = lift curve slope of vertical tail (1/rad); 
+        %              V    = aeroplane equivalent speed (m/s); 
+        %              K    = radius of gyration in yaw (m);
+        %              g    = acceleration due to gravity (m/s^2).
         % M
         myEq = "$ a_{tail} = \mathrm{tail lift curve slope (1/deg)}; ";
         eq = Equation(myEq);
@@ -316,7 +318,7 @@ add(subsec,para);
         ref6 = eqImg6; 
         
         % lt
-        myEq = "$ \omega = \mathrm{control angular speed of plane deflection (1/sec)}";
+        myEq = "$ \omega = \frac{\delta_{e,max}*\tau}{t_{deflection}} = \mathrm{control angular speed of plane deflection (rad/sec)}";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;
@@ -328,8 +330,8 @@ add(subsec,para);
         end
         ref7 = eqImg7; 
         
-        % Svt
-        myEq = "$ \frac{\Delta v}{V_A} = \mathrm{damping angle} ";
+        % tau
+        myEq = "$ \tau = 1.0 = \mathrm{elevator efficiency factor;}";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;
@@ -341,8 +343,8 @@ add(subsec,para);
         end
         ref8 = eqImg8; 
         
-        % avt
-        myEq = "$ DF = \mathrm{damping effect reduction factor} = 0.3 ";
+        % t deflection
+        myEq = "$ t_{deflection} = \mathrm{total time required to full stop;}";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;
@@ -352,17 +354,265 @@ add(subsec,para);
         elseif(rpt.Type == "docx")
             eqImg.Style = {VerticalAlign("-5pt")};
         end
-        ref9 = eqImg9;  
+        ref9 = eqImg9; 
+        
+        % delta max
+        myEq = "$ \delta_{e,max} = \mathrm{maximum elevator deflection;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg10 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref10 = eqImg10; 
+        
+        % Svt
+        myEq = "$ \frac{\Delta v}{V_A} = \mathrm{damping angle} ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg11 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref11 = eqImg11; 
+        
+        % avt
+        myEq = "$ DF = \mathrm{damping effect reduction factor} = 0.3 ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg12 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref12 = eqImg12;  
         
         ol = UnorderedList({ref1, ref2, ref3, ref4, ...
-            ref5, ref6, ref7, ref8, ref9});
+            ref5, ref6, ref7, ref8, ref9, ref10, ref11, ref12});
 %         ol = UnorderedList({ref1,ref2,ref3,...
 %             ref4,ref5,ref6, ref7,ref8});
 %         ol = UnorderedList({ref1, ref2, ref3,...
 %             ref4,ref5,ref6, ref7, ref8, ref9});
         append(subsec,ol);
+        % -------------------------------------------------------------------------
+        % -------------------------------------------------------------------------    
+    case 'Conventional'
+        % PITCHING ANGLE DIFFERENTIAL EQUATION 
+        %
+        myEq = "$ \frac{d^{2}\theta}{dt} = \frac{q*S_{tail}*a_{tail}*d}{I_{y}}*\Biggl(\omega*dt - \frac{\Delta v}{V_A}*DF\Biggr) ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(subsec,eqImg);
+        % -------------------------------------------------------------------------    
+        %sec
+        str = ['where: '];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        add(subsec,para);
+        % -------------------------------------------------------------------------
+
+        % Ude
+        myEq = "$ \theta = \mathrm{rotation pitching angle}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg1 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref1 = eqImg1;         
+
+        % Lvt
+        myEq = "$ q = \mathrm{dynamic pressure (Pa)}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg2 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref2 = eqImg2; 
+        
+        % Kgt
+        myEq = "$ S_{tail} = \mathrm{horizontal tail area (m^2)}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg3 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref3 = eqImg3;         
+        
+        %                          2 * M                   K^2
+        %      mu_gt = ------------------------------- * ------- = lat. mass ratio;
+        %              rho * c_bar_t * g * a_vt * S_vt   (l_t^2)
+        %              
+        % mu_gt
+        myEq = "$ d = \mathrm{C.G.-tail-A.C. distance (m) with } x_{C.G.} = 0.25*MAC ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg4 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref4 = eqImg4;      
+        %              M    = aeroplane mass (kg); 
+        %              rho  = air density (kg/m^3); 
+        %              S_vt = area of vertical tail (m^2);
+        %              l_t  = distance from aeroplane c.g. to lift centre of
+        %                     vertical surface (m); 
+        %              a_vt = lift curve slope of vertical tail (1/rad); 
+        %              V    = aeroplane equivalent speed (m/s); 
+        %              K    = radius of gyration in yaw (m);
+        %              g    = acceleration due to gravity (m/s^2).
+        % M
+        myEq = "$ a_{tail} = \mathrm{tail lift curve slope (1/deg)}; ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg5 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref5 = eqImg5; 
+        
+        % rho
+        myEq = "$ I_{y} = \mathrm{airplane pitching inertia moment (kg*m^2)} ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg6 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref6 = eqImg6; 
+        
+        % lt
+        myEq = "$ \omega = \frac{\delta_{e,max}*\tau}{t_{deflection}} = \mathrm{control angular speed of plane deflection (rad/sec)}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg7 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref7 = eqImg7; 
+        
+        % tau
+        myEq = "$ \tau = 0.5 = \mathrm{elevator efficiency factor;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg8 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref8 = eqImg8; 
+        
+        % t deflection
+        myEq = "$ t_{deflection} = \mathrm{total time required to full stop;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg9 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref9 = eqImg9; 
+        
+        % delta max
+        myEq = "$ \delta_{e,max} = \mathrm{maximum elevator deflection;}";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg10 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref10 = eqImg10; 
+        
+        % Svt
+        myEq = "$ \frac{\Delta v}{V_A} = \mathrm{damping angle} ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg11 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref11 = eqImg11; 
+        
+        % avt
+        myEq = "$ DF = \mathrm{damping effect reduction factor} = 0.3 ";
+        eq = Equation(myEq);
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg12 = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        ref12 = eqImg12;  
+        
+        ol = UnorderedList({ref1, ref2, ref3, ref4, ...
+            ref5, ref6, ref7, ref8, ref9, ref10, ref11, ref12});
+%         ol = UnorderedList({ref1,ref2,ref3,...
+%             ref4,ref5,ref6, ref7,ref8});
+%         ol = UnorderedList({ref1, ref2, ref3,...
+%             ref4,ref5,ref6, ref7, ref8, ref9});
+        append(subsec,ol);
+        % -------------------------------------------------------------------------
+
 % -------------------------------------------------------------------------  
-% -------------------------------------------------------------------------    
+% -------------------------------------------------------------------------  
+end
+%sec
+str = ['The angular speed is defined from total elevator deflection' ...
+    ', elevator efficiency factor and total deflection time.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
 %sec
 % PITCH UP CASE 423(a) 
 DeltaLimitLTail_cs_airworth        = Aircraft.Certification.Regulation.SubpartC.HorizontalTailLoads.Method_a.pitch_up.DeltaLimitLTail.Attributes.cs;

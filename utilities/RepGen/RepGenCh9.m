@@ -345,7 +345,7 @@ add(sec,para);
         % -----------------------------------------------------------------
         % PITCHING ANGLE DIFFERENTIAL EQUATION 
         %
-        myEq = "$ [-L_{wb}\cdot\cos{\alpha}\cdot(x_{AC} - x_{CG}) - L_{wb}\cdot\sin{\alpha}\cdot b_{CG}] + [D_{wb}\cdot\cos{\alpha}\cdot b_{CG} - D_{wb}\cdot\sin{\alpha}\cdot c\cdot(x_{AC} - x_{CG})] ";
+        myEq = "$ [-L_{wb}\cdot\cos{\alpha}\cdot(x_{AC} - x_{CG}) - L_{wb}\cdot\sin{\alpha}\cdot z_{CG}] + [D_{wb}\cdot\cos{\alpha}\cdot z_{CG} - D_{wb}\cdot\sin{\alpha}\cdot c\cdot(x_{AC} - x_{CG})] ";
         eq = Equation(strcat(myEq));
         eq.DisplayInline = true;
         eq.FontSize = 10;
@@ -374,6 +374,8 @@ add(sec,para);
         % -----------------------------------------------------------------
             xcg             = Aircraft.Geometry.General.xcg.value;
             xcg_unit        = Aircraft.Geometry.General.xcg.Attributes.unit;
+            zcg             = Aircraft.Geometry.General.zcg.value;
+            zcg_unit        = Aircraft.Geometry.General.zcg.Attributes.unit;
             xcg_nondim      = Aircraft.Geometry.General.xcg_divided_by_mac.value;
             xcg_nondim_unit = Aircraft.Geometry.General.xcg_divided_by_mac.Attributes.unit;
             xac_nondim      = Aircraft.Geometry.General.xac_nondim.value;
@@ -388,13 +390,13 @@ add(sec,para);
             header = {'Parameter', 'Value', 'Unit of measure'};
             %each table row needs of a fieldValue
             %1
-            parameter = {'XCG'; 'XCG/MAC'; 'XAC/MAC'; 'XP'; 'nW'; 'XHT';};
+            parameter = {'XCG'; 'XCG/MAC'; 'XAC/MAC'; 'XP'; 'nW'; 'XHT'; 'ZCG'};
             value     = {num2str(xcg,4); num2str(xcg_nondim,4); ...
                 num2str(xac_nondim,4); num2str(xp_nondim,4); ...
-                num2str(nW,4); num2str(xht,4)};
+                num2str(nW,4); num2str(xht,4); num2str(zcg,4)};
             unit      = {char(xcg_unit); char(xcg_nondim_unit); ...
                 char(xac_nondim_unit); char(xp_nondim_unit); ...
-                char(nW_unit); char(xht_unit)};
+                char(nW_unit); char(xht_unit); char(zcg_unit)};
             fieldValue = [parameter, value, unit];
 
             tbl = FormalTable(header, fieldValue);
@@ -440,8 +442,8 @@ cd ..
 
  cd (RepDir);
  
- fig = FormalImage([results_path,'cfd_cm_results.png']);
- fig.Caption = 'Pitching moment coefficient from CFD calculations.';
+ fig = FormalImage([results_path,'cmComparison.png']);
+ fig.Caption = 'Pitching moment coefficient distribution along the wing semi-span.';
  fig.Height = '4in';
  fig.LinkTarget='cfd_cm_results';
  add(sec,fig);
