@@ -372,9 +372,44 @@ add(sec,para);
         end
         append(sec,eqImg); 
         % -----------------------------------------------------------------
+            xcg             = Aircraft.Geometry.General.xcg.value;
+            xcg_unit        = Aircraft.Geometry.General.xcg.Attributes.unit;
+            xcg_nondim      = Aircraft.Geometry.General.xcg_divided_by_mac.value;
+            xcg_nondim_unit = Aircraft.Geometry.General.xcg_divided_by_mac.Attributes.unit;
+            xac_nondim      = Aircraft.Geometry.General.xac_nondim.value;
+            xac_nondim_unit = Aircraft.Geometry.General.xac_nondim.Attributes.unit;
+            xp_nondim       = Aircraft.Geometry.General.xac_nondim.value;
+            xp_nondim_unit  = Aircraft.Geometry.General.xac_nondim.Attributes.unit;
+            nW              = Aircraft.Weight.I_Level.W_maxTakeOff.value*Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value;
+            nW_unit         = Aircraft.Weight.I_Level.W_maxTakeOff.Attributes.unit;
+            xht             = Aircraft.Geometry.Horizontal.l.value;
+            xht_unit        = Aircraft.Geometry.Horizontal.l.Attributes.unit;
+            % -------------------------------------------------------------
+            header = {'Parameter', 'Value', 'Unit of measure'};
+            %each table row needs of a fieldValue
+            %1
+            parameter = {'XCG'; 'XCG/MAC'; 'XAC/MAC'; 'XP'; 'nW'; 'XHT';};
+            value     = {num2str(xcg,4); num2str(xcg_nondim,4); ...
+                num2str(xac_nondim,4); num2str(xp_nondim,4); ...
+                num2str(nW,4); num2str(xht,4)};
+            unit      = {char(xcg_unit); char(xcg_nondim_unit); ...
+                char(xac_nondim_unit); char(xp_nondim_unit); ...
+                char(nW_unit); char(xht_unit)};
+            fieldValue = [parameter, value, unit];
+
+            tbl = FormalTable(header, fieldValue);
+            % In order to put a table with a caption, the API Report denomination should
+            % be used, the other options are from API DOM. In order to solve the problem,
+            % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+            tbl = BaseTable(tbl);
+            tbl.Title = strcat('Balance parameters.');
+            tbl.LinkTarget = 'balanceparameters';
+            add(sec,tbl);
+            % -------------------------------------------------------------          
 % -------------------------------------------------------------------------
 add(ch,sec);
 % -------------------------------------------------------------------------   
+
 %sec
 sec = Section();
 sec.Title = 'Aerodynamic centre';

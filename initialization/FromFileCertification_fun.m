@@ -204,7 +204,12 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'flaps_eta_iniziale', ...
          'flaps_eta_finale', ...
          'flaps_y_iniziale', ...
-         'flaps_y_finale'};
+         'flaps_y_finale', ...
+         'cf_c_root_flap', ...
+         'croot_flap', ...
+         'ctip_flap', ...
+         'cf_flap', ...
+         'flap_surface_S'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -708,6 +713,27 @@ if LengthIndex==length(VarText)
     p = strcmp('flaps_y_finale', label);
     Aircraft.Geometry.Flaps.y_outer.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Geometry.Flaps.y_outer.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('flaps_span_b', label);
+    Aircraft.Geometry.Flaps.b.value = str2double(table2array(value(p==1, 1))); 
+    Aircraft.Geometry.Flaps.b.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('cf_c_root_flap', label); 
+    Aircraft.Geometry.Flaps.cf_c_root.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.cf_c_root.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('cf_c_tip_flap', label); 
+    Aircraft.Geometry.Flaps.cf_c_inner.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.cf_c_inner.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('croot_flap', label);
+    Aircraft.Geometry.Flaps.croot.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.croot.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('ctip_flap', label);
+    Aircraft.Geometry.Flaps.ctip.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.ctip.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('cf_flap', label);
+    Aircraft.Geometry.Flaps.cf.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.cf.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('flap_surface_S', label);
+    Aircraft.Geometry.Flaps.S.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.S.Attributes.unit = char(table2array(unit(p==1,1))); 
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;
