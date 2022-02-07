@@ -200,7 +200,11 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'vertical_croot', ...
          'vertical_ctip', ...
          'vertical_span', ...
-         'vertical_z_position'};
+         'vertical_z_position', ...
+         'flaps_eta_iniziale', ...
+         'flaps_eta_finale', ...
+         'flaps_y_iniziale', ...
+         'flaps_y_finale'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -692,7 +696,18 @@ if LengthIndex==length(VarText)
     p = strcmp('vertical_z_position', label);
     Aircraft.Geometry.Vertical.zpos.value = str2double(table2array(value(p==1, 1)));   %1.0; 
     Aircraft.Geometry.Vertical.zpos.Attributes.unit = char(table2array(unit(p==1,1))); % "% of fuselage diameter";
-    
+    p = strcmp('flaps_eta_iniziale', label);
+    Aircraft.Geometry.Flaps.eta_inner.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.eta_inner.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('flaps_eta_finale', label);    
+    Aircraft.Geometry.Flaps.eta_outer.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.eta_outer.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('flaps_y_iniziale', label);    
+    Aircraft.Geometry.Flaps.y_inner.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.y_inner.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('flaps_y_finale', label);
+    Aircraft.Geometry.Flaps.y_outer.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.y_outer.Attributes.unit = char(table2array(unit(p==1,1)));
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;
