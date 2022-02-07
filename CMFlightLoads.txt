@@ -109,7 +109,6 @@ In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Lift
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcBalancLoads', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m', 163)" style="font-weight:bold">CalcBalancLoads</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m',163,0)">line 163</a>)
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 46)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',46,0)">line 46</a>)
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)] 
-[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving FullLiftModelInterpolation.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -242,6 +241,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  ++++ FIGURE 32 - POINT C FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -554,6 +554,194 @@ Chapter 14 written
 Chapter 15 "Power plant" writing...
 Chapter 15 written
 Report successfully written. Execution terminated.
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.Attributes.cs(1:4)
+{Index exceeds the number of array elements (1).
+} 
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.Attributes.cs
+
+ans = 
+
+    " 335(a)(1) "
+
+char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Cruise_Speed_VC.Attributes.cs) 
+
+ans =
+
+    ' 335(a)(1) '
+
+ans(1:4) 
+
+ans =
+
+    ' 335'
+
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+requirement = strcat('-',Aircraft.Certification.Regulation.value);
+requirement
+
+requirement =
+
+    '-CSVLA'
+
 RepGenMain(Aircraft)
 The authors are  Pierluigi Della Vecchia and Claudio Mirabella
  
@@ -596,10 +784,193 @@ Chapter 14 "Loads on the control surfaces" writing...
 Chapter 14 written
 Chapter 15 "Power plant" writing...
 Chapter 15 written
-[Warning: The sections of formal table "dom.FormalTable:70313" have different numbers of columns. This could cause
-formatting problems.] 
-[> In mlreportgen.report/ReportBase/close
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 190)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',190,0)">line 190</a>)] 
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+requirement = strcat('-',Aircraft.Certification.Regulation.value);
+requirement(2:end) 
+
+ans =
+
+    'CSVLA'
+
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+
+        flaps_req = char(Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.VF.Attributes.cs);     
+flaps_req(1:4) 
+
+ans =
+
+    ' 345'
+
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
 Report successfully written. Execution terminated.
 RepGenMain(Aircraft)
 The authors are  Pierluigi Della Vecchia and Claudio Mirabella
@@ -687,6 +1058,128 @@ Chapter 14 written
 Chapter 15 "Power plant" writing...
 Chapter 15 written
 Report successfully written. Execution terminated.
+alpha = Aircraft.Certification.Aerodynamic_data.alpha.value;
+CL    = Aircraft.Certification.Aerodynamic_data.CL.value;
+CD    = Aircraft.Certification.Aerodynamic_data.CD.value;
+CM    = Aircraft.Certification.Aerodynamic_data.CM.value;
+% -------------------------------------------------------------------------
+subplot(2,2,1);
+plot(alpha, CL);
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot')" style="font-weight:bold">plot</a>
+Invalid first data argument.
+} 
+matlab.internal.language.introspective.errorDocCallback('plot')
+plot(num2str(alpha), num2str(CL)) 
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot')" style="font-weight:bold">plot</a>
+Invalid first data argument.
+} 
+alpha 
+
+alpha =
+
+    '[-4; 0; 4; 8; 10; 12; 13]'
+
+num2str(alpha) 
+
+ans =
+
+    '[-4; 0; 4; 8; 10; 12; 13]'
+
+ischar(alpha) 
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+str2num(alpha) 
+
+ans =
+
+    -4
+     0
+     4
+     8
+    10
+    12
+    13
+
+alpha = Aircraft.Certification.Aerodynamic_data.alpha.value;
+CL    = Aircraft.Certification.Aerodynamic_data.CL.value;
+CD    = Aircraft.Certification.Aerodynamic_data.CD.value;
+CM    = Aircraft.Certification.Aerodynamic_data.CM.value;
+% -------------------------------------------------------------------------
+subplot(2,2,1);
+plot(str2num(alpha), str2num(CL));
+title('Lift coefficient vs AoA')
+
+subplot(2,2,2);
+plot(str2num(CL), str2num(CD));
+title('CL vs CD')
+
+subplot(2,2,[3,4]);
+plot(str2num(alpha), str2num(CM));
+title('CM vs AoA')
+% -------------------------------------------------------------------------
+
+alpha = Aircraft.Certification.Aerodynamic_data.alpha.value;
+CL    = Aircraft.Certification.Aerodynamic_data.CL.value;
+CD    = Aircraft.Certification.Aerodynamic_data.CD.value;
+CM    = Aircraft.Certification.Aerodynamic_data.CM.value;
+% -------------------------------------------------------------------------
+subplot(2,2,1);
+plot(str2num(alpha), str2num(CL));
+xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
+ylabel("Lift coefficient - $C_L$ ", "Interpreter", "latex")
+title('$C_L$ vs $\alpha$', "Interpreter", "latex")
+
+subplot(2,2,2);
+plot(str2num(CL), str2num(CD));
+xlabel("Lift coefficient - $C_L$ ", "Interpreter", "latex")
+ylabel("Drag coefficient - $C_D$ ", "Interpreter", "latex")
+title('$C_L$ vs $C_D$', "Interpreter", "latex")
+
+subplot(2,2,[3,4]);
+plot(str2num(alpha), str2num(CM));
+xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
+ylabel("Pitching moment coefficient - $C_M$ ", "Interpreter", "latex")
+title('$C_M$ vs $\alpha$', "Interpreter", "latex")
+% -------------------------------------------------------------------------
+alpha = Aircraft.Certification.Aerodynamic_data.alpha.value;
+CL    = Aircraft.Certification.Aerodynamic_data.CL.value;
+CD    = Aircraft.Certification.Aerodynamic_data.CD.value;
+CM    = Aircraft.Certification.Aerodynamic_data.CM.value;
+% -------------------------------------------------------------------------
+subplot(2,2,1);
+plot(str2num(alpha), str2num(CL));
+grid on; grid minor;
+xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
+ylabel("Lift coefficient - $C_L$ ", "Interpreter", "latex")
+title('$C_L$ vs $\alpha$', "Interpreter", "latex")
+
+subplot(2,2,2);
+plot(str2num(CL), str2num(CD));
+grid on; grid minor;
+xlabel("Lift coefficient - $C_L$ ", "Interpreter", "latex")
+ylabel("Drag coefficient - $C_D$ ", "Interpreter", "latex")
+title('$C_L$ vs $C_D$', "Interpreter", "latex")
+
+subplot(2,2,[3,4]);
+plot(str2num(alpha), str2num(CM));
+grid on; grid minor;
+xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
+ylabel("Pitching moment coefficient - $C_M$ ", "Interpreter", "latex")
+title('$C_M$ vs $\alpha$', "Interpreter", "latex")
+% -------------------------------------------------------------------------
+RepGenMain(Aircraft)
+{'RepGenMain' is not found in the current folder or on the MATLAB path, but exists in:
+    C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen
+    H:\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen
+    C:\Users\claum\OneDrive\Desktop\NuovaTESIMAGISTRALE\Tesi_Magistrale_Mirabella\utilities\RepGen
+
+Change the MATLAB current folder or add its folder to the MATLAB path.
+} 
 RepGenMain(Aircraft)
 The authors are  Pierluigi Della Vecchia and Claudio Mirabella
  
@@ -700,49 +1193,11 @@ Chapter 2 "References" writing...
 Chapter 2 written
 Chapter 3 "List of Abbreviations" writing...
 Chapter 3 written
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Chapter 4 "Aircraft data" writing...
 Chapter 4 written
 VCmin has been assigned.

@@ -5,7 +5,7 @@
 degenGeom = [];
 degenGeom(end+1).type = 'LIFTING_SURFACE';
 degenGeom(end).name = 'wing';
-degenGeom(end).geom_id = 'QFLUPMRZKC';
+degenGeom(end).geom_id = 'TKVOKFOREI';
 degenGeom(end).surf_index = 0;
 degenGeom(end).main_surf_index = 0;
 degenGeom(end).sym_copy_index = 0;
@@ -2470,7 +2470,7 @@ degenGeom(end).point.cgSolidz = 1.997035335843891923e-01;
 
 degenGeom(end+1).type = 'LIFTING_SURFACE';
 degenGeom(end).name = 'wing';
-degenGeom(end).geom_id = 'QFLUPMRZKC';
+degenGeom(end).geom_id = 'TKVOKFOREI';
 degenGeom(end).surf_index = 1;
 degenGeom(end).main_surf_index = 0;
 degenGeom(end).sym_copy_index = 1;
@@ -4935,7 +4935,7 @@ degenGeom(end).point.cgSolidz = 0.000000000000000000e+00;
 
 degenGeom(end+1).type = 'BODY';
 degenGeom(end).name = 'TransportFuse';
-degenGeom(end).geom_id = 'ZAGIGKPVRS';
+degenGeom(end).geom_id = 'GSAVGFTHXM';
 degenGeom(end).surf_index = 0;
 degenGeom(end).main_surf_index = 0;
 degenGeom(end).sym_copy_index = 0;

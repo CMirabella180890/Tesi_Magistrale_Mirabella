@@ -495,10 +495,10 @@ str = ['According to ' ...
         para.Style = {HAlign('justify')};
         add(sec,para)
         % -----------------------------------------------------------------
-%         para = Paragraph(strcat('According to requirement ',...
-%             requirement,...
-%             '-335.'));
-%         add(sec,para)
+        para = Paragraph(strcat('According to requirement ',...
+            requirement,...
+            '-335.'));
+        add(sec,para)
         para = Paragraph(strcat('(1) VD may not be less than 1.25*VC; and',...
             ' (2) with VCmin, the required minimum design cruising speed, VD may not be less than 1.40*VCmin.'));
         add(sec,para)
@@ -573,7 +573,7 @@ str = ['According to ' ...
         sec = Section();
         sec.Title = 'Never exceed speed VNE';
         
-        para = Paragraph('VNE is not a design airspeeds. It must be checked into sec. CSVLA 1505 Airspeed limitations.');
+        para = Paragraph('VNE is not a design airspeeds. It must be checked into sec. CS-VLA 1505 Airspeed limitations.');
         para.Style = {HAlign('justify')};
         add(sec,para)
         

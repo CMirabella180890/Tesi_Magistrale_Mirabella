@@ -5,69 +5,6 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-% CAP 4:
-% 		
-% aggiungere le figure di aerodinamica CL, CD e CMWB
-% 		
-% aggiungere i principali coefficienti 3D velivolo completo in tabella (CLMAX, CLMAXTO, CLMAX LAN, CLalha)
-
-%% FIGURES TO ADD 
-
-% RepGenFigCh4 = figure(47);
-
-alpha = Aircraft.Certification.Aerodynamic_data.alpha.value;
-CL    = Aircraft.Certification.Aerodynamic_data.CL.value;
-CD    = Aircraft.Certification.Aerodynamic_data.CD.value;
-CM    = Aircraft.Certification.Aerodynamic_data.CM.value;
-% -------------------------------------------------------------------------
-RepGenFigCh4 = figure(47);
-subplot(2,2,1);
-plot(str2num(alpha), str2num(CL));
-grid on; grid minor;
-xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
-ylabel("Lift coefficient - $C_L$ ", "Interpreter", "latex")
-title('$C_L$ vs $\alpha$', "Interpreter", "latex")
-
-subplot(2,2,2);
-plot(str2num(CL), str2num(CD));
-grid on; grid minor;
-xlabel("Lift coefficient - $C_L$ ", "Interpreter", "latex")
-ylabel("Drag coefficient - $C_D$ ", "Interpreter", "latex")
-title('$C_L$ vs $C_D$', "Interpreter", "latex")
-
-subplot(2,2,[3,4]);
-plot(str2num(alpha), str2num(CM));
-grid on; grid minor;
-xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
-ylabel("Pitching moment coefficient - $C_M$ ", "Interpreter", "latex")
-title('$C_M$ vs $\alpha$', "Interpreter", "latex")
-% -------------------------------------------------------------------------
-% Saving figures inside correct folder
-cd .. 
-cd ..
-cd csvla
-dir = pwd;
-fprintf("--------------------------------------");
-fprintf('\n');
-fprintf('### Saving outpus inside correct Folder ###');
-fprintf('\n');
-SaveFolder = strcat(dir,'\Output');
-fprintf('Saving RepGenFigCh4.png in: ');
-fprintf('\n');      
-fprintf('%s\n', SaveFolder);
-% EXPORT FIGURE
-% exportgraphics(final_envelope, 'Finalenvelope.pdf', 'ContentType', 'vector')
-exportgraphics(RepGenFigCh4, 'RepGenFigCh4.png', 'ContentType', 'vector')
-
-% Moving file inside correct folder
-% movefile Finalenvelope.pdf Output
-movefile RepGenFigCh4.png Output 
-
-cd ..
-cd utilities/RepGen
-
-%% REPORT GEN CHAPTER 4
-
 ch = Chapter();
 ch.Title = 'Aircraft data';
 
@@ -347,39 +284,6 @@ if isfield(Aircraft.Geometry, 'Aileron')==1
         add(sec,tbl);
 end
 
-
-%Flaps
-if isfield(Aircraft.Geometry, 'Flaps')==1
-% append(para,InternalLink('elTableRef','Elevator parameters'));
-% add(sec,para)
-        flaps = fieldnames(Aircraft.Geometry.Flaps);
-         fieldValue = cell(length(flaps),1);
-         fieldUnit = cell(length(flaps),1);
-         for i = 1:length(flaps)
-             fieldValue{i} = Aircraft.Geometry.Flaps.(flaps{i}).value;
-             % significant digits
-             if isnumeric(fieldValue{i})
-                 fieldValue{i} = num2str(fieldValue{i},5);
-             end
-             % Not every field has Attributes. If not, they have only one field
-             if length(fieldnames(Aircraft.Geometry.Flaps.(flaps{i}))) > 1
-                 fieldUnit{i} = Aircraft.Geometry.Flaps.(flaps{i}).Attributes.unit;
-             else % Void cells cannot be converted in strings
-                 fieldUnit{i} = '-';
-             end
-         end
-         flaps = [flaps, fieldValue, fieldUnit];
-         header = {'Flaps parameters', 'Value', 'Measure unit'};
-         tbl = FormalTable(header,flaps);
-        % In order to put a table with a caption, the API Report denomination should
-        % be used, the other options are from API DOM. In order to solve the problem,
-        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).      
-        tbl = BaseTable(tbl);
-        tbl.Title = 'Flaps parameters';
-        tbl.LinkTarget = 'flTableRef';     
-        add(sec,tbl);
-end
-
 %sec
 %masses and inertia
 add(ch,sec);
@@ -434,24 +338,7 @@ add(ch,sec);
 %         % aero
 sec = Section();
 sec.Title = 'Aerodynamic';
-% -------------------------------------------------------------------------
-        % -----------------------------------------------------------------
-        % moving to another path for figure
-        cd ..
-        cd ..
-        regulation = Aircraft.Certification.Regulation.value;
-        results_path = [pwd '\' regulation '\Output\'];
-        
-        cd (RepDir);
-        
-        fig = FormalImage([results_path,'RepGenFigCh4.png']);
-        fig.Caption = 'Lift, Drag and pitching moment coefficient of the 3D wing-body configuration.';
-        fig.Height = '4in';
-        fig.Width = '4in';
-        fig.LinkTarget='3Dwingbodyaerodynamic';
-        add(sec,fig);
-        % -----------------------------------------------------------------
-% -------------------------------------------------------------------------
+
 para = Paragraph('The aircraft reference aerodynamic is in figure: ');
 % append(para,InternalLink('tlarTableRef','refTabella'));
 add(sec,para)

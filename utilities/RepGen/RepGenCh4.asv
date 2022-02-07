@@ -61,10 +61,9 @@ exportgraphics(RepGenFigCh4, 'RepGenFigCh4.png', 'ContentType', 'vector')
 
 % Moving file inside correct folder
 % movefile Finalenvelope.pdf Output
-movefile RepGenFigCh4.png Output 
+movefile Finalenvelope.png Output 
 
 cd ..
-cd utilities/RepGen
 
 %% REPORT GEN CHAPTER 4
 
@@ -434,24 +433,7 @@ add(ch,sec);
 %         % aero
 sec = Section();
 sec.Title = 'Aerodynamic';
-% -------------------------------------------------------------------------
-        % -----------------------------------------------------------------
-        % moving to another path for figure
-        cd ..
-        cd ..
-        regulation = Aircraft.Certification.Regulation.value;
-        results_path = [pwd '\' regulation '\Output\'];
-        
-        cd (RepDir);
-        
-        fig = FormalImage([results_path,'RepGenFigCh4.png']);
-        fig.Caption = 'Lift, Drag and pitching moment coefficient of the 3D wing-body configuration.';
-        fig.Height = '4in';
-        fig.Width = '4in';
-        fig.LinkTarget='3Dwingbodyaerodynamic';
-        add(sec,fig);
-        % -----------------------------------------------------------------
-% -------------------------------------------------------------------------
+
 para = Paragraph('The aircraft reference aerodynamic is in figure: ');
 % append(para,InternalLink('tlarTableRef','refTabella'));
 add(sec,para)
