@@ -720,8 +720,8 @@ if LengthIndex==length(VarText)
     Aircraft.Geometry.Flaps.cf_c_root.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Geometry.Flaps.cf_c_root.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('cf_c_tip_flap', label); 
-    Aircraft.Geometry.Flaps.cf_c_inner.value = str2double(table2array(value(p==1, 1)));
-    Aircraft.Geometry.Flaps.cf_c_inner.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Geometry.Flaps.cf_c_tip.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Flaps.cf_c_tip.Attributes.unit = char(table2array(unit(p==1,1)));
     p = strcmp('croot_flap', label);
     Aircraft.Geometry.Flaps.croot.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Geometry.Flaps.croot.Attributes.unit = char(table2array(unit(p==1,1)));

@@ -41,6 +41,7 @@ grid on; grid minor;
 xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
 ylabel("Pitching moment coefficient - $C_M$ ", "Interpreter", "latex")
 title('$C_M$ vs $\alpha$', "Interpreter", "latex")
+
 % -------------------------------------------------------------------------
 % Saving figures inside correct folder
 cd .. 
@@ -65,6 +66,8 @@ movefile RepGenFigCh4.png Output
 
 cd ..
 cd utilities/RepGen
+
+close(RepGenFigCh4);
 
 %% REPORT GEN CHAPTER 4
 
