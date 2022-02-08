@@ -227,9 +227,10 @@ cd ..
 
  cd (RepDir);
  
- fig = FormalImage([results_path,'balance_reference.png']);
+ fig = FormalImage([results_path,'balancereference.png']);
  fig.Caption = 'Simplified equilibrium of the aircraft';
- fig.Height = '3in';
+ fig.Height = '4in';
+ fig.Width = '4in';
  fig.LinkTarget='balance_reference';
  add(sec,fig);
 % balance_reference
@@ -307,12 +308,28 @@ cd ..
         append(sec,ol);
 % ------------------------------------------------------------------------- 
 str = ['Assuming positive forces and moment as depicted in the figures' ...
-    ' it is possible to write the following equilibrium equations:'];
+    ' and remembering that equilibrium along x and y axes are automatically' ...
+    ' fullfilled, it is possible to write the following equilibrium equations:'];
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
-        % PITCHING ANGLE DIFFERENTIAL EQUATION 
+        % AXIAL EQUILIBRIUM
+        %
+        myEq = "$ \mathrm{X equilibrium: } \quad T = D_{wb} ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 10;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(sec,eqImg); 
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+        % VERTICAL EQUILIBRIUM 
         %
         myEq = "$ \mathrm{Z equilibrium: } \quad L_{wb}\cdot\cos{\alpha} + D_{wb}\cdot\sin{\alpha} + \frac{L_{t}}{\cos{\alpha}} - nW\cdot\cos{\alpha} = 0 ";
         eq = Equation(strcat(myEq));
@@ -328,7 +345,7 @@ add(sec,para);
 % -------------------------------------------------------------------------
 % -------------------------------------------------------------------------
         % -----------------------------------------------------------------
-        % PITCHING ANGLE DIFFERENTIAL EQUATION 
+        % EQUILIBRIUM AROUND Y 
         %
         myEq = "$ \mathrm{Rotation about } Y\mathrm{ : } ";
         eq = Equation(strcat(myEq));
@@ -345,7 +362,7 @@ add(sec,para);
         % -----------------------------------------------------------------
         % PITCHING ANGLE DIFFERENTIAL EQUATION 
         %
-        myEq = "$ [-L_{wb}\cdot\cos{\alpha}\cdot(x_{AC} - x_{CG}) - L_{wb}\cdot\sin{\alpha}\cdot z_{CG}] + [D_{wb}\cdot\cos{\alpha}\cdot z_{CG} - D_{wb}\cdot\sin{\alpha}\cdot c\cdot(x_{AC} - x_{CG})] ";
+        myEq = "$ [-L_{wb}\cdot\cos{\alpha}\cdot(x_{AC} - x_{CG}) - L_{wb}\cdot\sin{\alpha}\cdot z_{CG}] + [D_{wb}\cdot\cos{\alpha}\cdot z_{CG} - D_{wb}\cdot\sin{\alpha}\cdot MGC\cdot(x_{AC} - x_{CG})] ";
         eq = Equation(strcat(myEq));
         eq.DisplayInline = true;
         eq.FontSize = 10;
@@ -360,7 +377,7 @@ add(sec,para);
         % -----------------------------------------------------------------
         % PITCHING ANGLE DIFFERENTIAL EQUATION 
         %
-        myEq = "$ + \biggl[-\frac{L_{t}}{\cos{\alpha}}\cdot(l_{t} + c\cdot(x_{AC} - x_{CG})) \biggr] - \\ T\cdot h + M_{wb} = 0 ";
+        myEq = "$ + \biggl[-\frac{L_{t}}{\cos{\alpha}}\cdot(l_{t} + MGC\cdot(x_{AC} - x_{CG})) \biggr] - \\ T\cdot h + M_{wb} = 0 ";
         eq = Equation(strcat(myEq));
         eq.DisplayInline = true;
         eq.FontSize = 10;
@@ -386,17 +403,24 @@ add(sec,para);
             nW_unit         = Aircraft.Weight.I_Level.W_maxTakeOff.Attributes.unit;
             xht             = Aircraft.Geometry.Horizontal.l.value;
             xht_unit        = Aircraft.Geometry.Horizontal.l.Attributes.unit;
+            h               = Aircraft.Geometry.Engine.Primary.Thrust_axes.value;
+            h_unit          = Aircraft.Geometry.Engine.Primary.Thrust_axes.Attributes.unit;
+            MGC             = Aircraft.Geometry.Wing.mgc.value;
+            MGC_unit        = Aircraft.Geometry.Wing.mgc.Attributes.unit;
             % -------------------------------------------------------------
             header = {'Parameter', 'Value', 'Unit of measure'};
             %each table row needs of a fieldValue
             %1
-            parameter = {'XCG'; 'XCG/MAC'; 'XAC/MAC'; 'XP'; 'nW'; 'XHT'; 'ZCG'};
+            parameter = {'XCG'; 'XCG/MAC'; 'XAC/MAC'; 'XP'; 'XHT'; 'ZCG'; ...
+                         'h'; 'MGC'};
             value     = {num2str(xcg,4); num2str(xcg_nondim,4); ...
                 num2str(xac_nondim,4); num2str(xp_nondim,4); ...
-                num2str(nW,4); num2str(xht,4); num2str(zcg,4)};
+                num2str(xht,4); num2str(zcg,4); num2str(h,4); ...
+                num2str(MGC,4)};
             unit      = {char(xcg_unit); char(xcg_nondim_unit); ...
                 char(xac_nondim_unit); char(xp_nondim_unit); ...
-                char(nW_unit); char(xht_unit); char(zcg_unit)};
+                char(xht_unit); char(zcg_unit); char(h_unit); ...
+                char(MGC_unit)};
             fieldValue = [parameter, value, unit];
 
             tbl = FormalTable(header, fieldValue);
@@ -434,6 +458,51 @@ para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
+
+%% FIGURES TO ADD 
+
+% RepGenFigCh4 = figure(47);
+
+alpha = Aircraft.Certification.Aerodynamic_data.alpha.value;
+CL    = Aircraft.Certification.Aerodynamic_data.CL.value;
+CD    = Aircraft.Certification.Aerodynamic_data.CD.value;
+CM    = Aircraft.Certification.Aerodynamic_data.CM.value;
+% -------------------------------------------------------------------------
+RepGenFigCh9 = figure(48);
+hold on;
+plot(str2num(alpha), str2num(CM));
+grid on; grid minor;
+xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
+ylabel("Pitching moment coefficient - $C_M$ ", "Interpreter", "latex")
+title('$C_M$ vs $\alpha$', "Interpreter", "latex")
+
+% -------------------------------------------------------------------------
+% Saving figures inside correct folder
+cd .. 
+cd ..
+cd csvla
+dir = pwd;
+fprintf("--------------------------------------");
+fprintf('\n');
+fprintf('### Saving outpus inside correct Folder ###');
+fprintf('\n');
+SaveFolder = strcat(dir,'\Output');
+fprintf('Saving RepGenFigCh9.png in: ');
+fprintf('\n');      
+fprintf('%s\n', SaveFolder);
+% EXPORT FIGURE
+% exportgraphics(final_envelope, 'Finalenvelope.pdf', 'ContentType', 'vector')
+exportgraphics(RepGenFigCh9, 'RepGenFigCh9.png', 'ContentType', 'vector')
+
+% Moving file inside correct folder
+% movefile Finalenvelope.pdf Output
+movefile RepGenFigCh9.png Output 
+
+cd ..
+cd utilities/RepGen
+
+close(RepGenFigCh9);
+
 %moving to another path for figure
 cd ..
 cd ..
@@ -442,8 +511,8 @@ cd ..
 
  cd (RepDir);
  
- fig = FormalImage([results_path,'cmComparison.png']);
- fig.Caption = 'Pitching moment coefficient distribution along the wing semi-span.';
+ fig = FormalImage([results_path,'RepGenFigCh9.png']);
+ fig.Caption = 'Wing-body pitching moment coefficient.';
  fig.Height = '4in';
  fig.LinkTarget='cfd_cm_results';
  add(sec,fig);
@@ -475,7 +544,11 @@ cd ..
 sec = Section();
 sec.Title = 'Complete aircraft balancing loads';
 str = ['Here, the aircraft balancing loads are collected inside' ...
-    ' table.'];
+    ' a table. A horizontal surface balancing load is a load necessary to' ...
+    ' maintain equilibrium in any condition with no pitching acceleration.' ...
+    ' Determination of the balancing loads is necessary both for the calculation' ...
+    ' of the wing loads and of the balancing loads acting on the horizontal tail' ...
+    ' surface itself.'];
 para = Paragraph(str);
 add(sec,para);
 % -------------------------------------------------------------------------

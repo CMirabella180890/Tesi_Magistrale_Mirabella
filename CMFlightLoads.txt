@@ -60,7 +60,7 @@ Density [kg/m^3]: 0.8632
  ++++ INPUT TO V - N DIAGRAM ++++
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
  VS+                VS-                 VA                VG
- 19.783937          24.868023          38.565993          30.456984
+ 19.846843          24.868023          38.688620          30.456984
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
@@ -78,7 +78,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  
  ++++++++++ FINAL ENVELOPE - VA AND nA ++++++++++ 
  VA1                nA1
- 45.788315          5.356534
+ 46.034041          5.379914
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  CHECK: 
@@ -270,12 +270,12 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++ UNCHECKED ++++
  ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
  Pitch-up at VA     Pitch-down at VA
--37.748689          47.185861
+-37.982186          47.477732
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ Total Critical Horizontal Tail loads - Method (a) [daN] ++++++++++ 
  Total critical load at VA
- 35.074170
+ 35.237734
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (b) ++++
@@ -283,41 +283,41 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++ CHECKED ++++
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
  At VA
- -91.380805
+ -91.458806
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
  ----------------------------------------------
  +++++++++++++++++ Horizontal Tail loads [daN] +++++++++++++++++ 
  At VA
- 58.000905
+ 57.969793
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
  ----------------------------------------------
  +++++++++++++++++ Total Horizontal Tail loads - Method (b) [daN] +++++++++++++++++ 
  At VA
- -91.380805
+ -91.458806
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (a)+(b) ++++
  ----------------------------------------------
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
  At VA
- -49.860380
+ -50.222183
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (c) - DeltaLtail ++++ 
  ---------------------------------------------- 
  +++++++++++++++++ Delta Tail loads [daN] +++++++++++++++++ 
   Upward defl. VA   Downward defl. VA    Upward defl. VD  Downward defl. VD
- -37.748689         47.185861            -35.005482         35.005482
+ -37.982186         47.477732            -35.005482         35.005482
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ METHOD CS - VLA 423 (c) - BTL_1 + DeltaLtail ++++ 
  ------------------------------------------------------ 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
   Upward defl. VA   Downward defl. VA     Upward defl. VD    Downward defl. VD
- -58.437879         35.074170            -82.193643         -12.182678
+ -58.788444         35.237734            -82.193643         -12.182678
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ CS - VLA 423 - METHOD D ++++++++++ 
@@ -329,7 +329,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
  Case 1              Case 2             Case 3             Case 4  
- -59.162208          -45.201375         20.331738          -53.316718
+ -59.419767          -45.235323         20.074179          -53.316718
  -79.026309          -92.196154         -12.702208          -75.842645
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ Critical conditions - CS - VLA 423 Method (d) [daN] ++++++++++ 
@@ -378,21 +378,21 @@ Critical conditions
  ------------------------------------ 
  ++++++++++ Vertical tail loads - CASE (a)(1) [daN] ++++++++++ 
  Y
- 4.565268
+ 4.594347
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ CS - VLA 441 - CASE (a)(2) ++++ 
  ------------------------------------ 
  ++++++++++ Vertical tail loads - CASE (a)(2) [daN] ++++++++++ 
  Y
- 5.778475
+ 5.815281
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ CS - VLA 441 - CASE (a)(3) ++++ 
  ------------------------------------ 
  ++++++++++ Vertical tail loads - CASE (a)(3) [daN] ++++++++++ 
  Y
- 5.495448
+ 5.530451
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ Vertical tail loads - MOST CRITICAL LOADS [daN] ++++++++++ 
  CRITICAL LOADS PER ---> CS - VLA 441 (a)(2) 
@@ -413,7 +413,7 @@ Critical conditions
  
  ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
  L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical
- 20.024613           69.388143           69.388143
+ 20.035265           69.391217           69.391217
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Mass =
@@ -450,19 +450,19 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ------------------------------------------------------ 
  +++++++++++++++++ Hinge Moments - AILERON +++++++++++++++++ 
  HA [N * m]  HA_converted [kg * m]       HA_125 [N * m]      HA_total_SI [N * m]      HA_total_converted [kg * m]
- -6.713773       -0.684614                  -8.392217           -16.784433                -1.711536
+ -6.756536       -0.688975                  -8.445670           -16.891340                -1.722437
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ 
  ------------------------------------------------------ 
  +++++++++++++++++ Hinge Moments - ELEVATOR +++++++++++++++++ 
  HE [N * m]  HE_converted [kg * m]       HE_125 [N * m]   HE_125_convert [kg * m]  HE_Total [N * m]    HE_Total_convert [kg * m]
- -3.408805       -0.347601                  -4.261006           -0.434502           -8.522012           -0.869003
+ -3.430517       -0.349815                  -4.288146           -0.437269           -8.576292           -0.874538
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ 
  ------------------------------------------------------ 
  +++++++++++++++++ Hinge Moments - RUDDER +++++++++++++++++ 
  HR [N * m]  HR_converted [kg * m]       HR_125 [N * m]   HR_125_convert [kg * m]
- -0.749113       -0.076388                  -0.936391           -0.095485
+ -0.753884       -0.076875                  -0.942355           -0.096093
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 -----------------
 ### Current directory ###
@@ -549,18 +549,386 @@ Chapter 7 written
 Chapter 8 "V-n Envelope" writing...
 Chapter 8 written
 Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Chapter 9 written
 Chapter 10 "Loads on the wing" writing...
-{Cannot find an exact (case-sensitive) match for 'cmA'
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+{Error using mlreportgen.report.Section/append
+Cannot add more content to this section
 
-The closest match is: cma in C:\Program Files\MATLAB\R2021a\toolbox\comm\commdeprecated\cma.m
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh8', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh8.m', 205)" style="font-weight:bold">RepGenCh8</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh8.m',205,0)">line 205</a>)
+        append(sec,ol);
 
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh10', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m', 472)" style="font-weight:bold">RepGenCh10</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m',472,0)">line 472</a>)
-        value        = {num2str(yA,4); num2str(cmA,4); num2str(cmC,4); ...
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 175)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',175,0)">line 175</a>)
-RepGenCh10      %Loads on the wing
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 171)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',171,0)">line 171</a>)
+RepGenCh8       %V-n Envelope
 } 
 RepGenMain(Aircraft)
 The authors are  Pierluigi Della Vecchia and Claudio Mirabella
@@ -596,58 +964,12 @@ Chapter 7 written
 Chapter 8 "V-n Envelope" writing...
 Chapter 8 written
 Chapter 9 "Loads on the aeroplane" writing...
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-[Warning: The sections of formal table "dom.FormalTable:61987" have different numbers of columns. This could cause
-formatting problems.] 
-[> In mlreportgen.report/ReportBase/close
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 190)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',190,0)">line 190</a>)] 
-Report successfully written. Execution terminated.
-RepGenMain(Aircraft)
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
 --------------------------------------
 ### Saving outpus inside correct Folder ###
-Saving RepGenFigCh4.png in: 
+Saving RepGenFigCh9.png in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 Chapter 9 written
 Chapter 10 "Loads on the wing" writing...
 Chapter 10 written
@@ -696,6 +1018,12 @@ Chapter 7 written
 Chapter 8 "V-n Envelope" writing...
 Chapter 8 written
 Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 Chapter 9 written
 Chapter 10 "Loads on the wing" writing...
 Chapter 10 written
@@ -744,6 +1072,12 @@ Chapter 7 written
 Chapter 8 "V-n Envelope" writing...
 Chapter 8 written
 Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 Chapter 9 written
 Chapter 10 "Loads on the wing" writing...
 Chapter 10 written
@@ -792,6 +1126,434 @@ Chapter 7 written
 Chapter 8 "V-n Envelope" writing...
 Chapter 8 written
 Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('vertcat')" style="font-weight:bold">vertcat</a>
+Dimensions of arrays being concatenated are not consistent.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh10', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m', 448)" style="font-weight:bold">RepGenCh10</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m',448,0)">line 448</a>)
+ str = ['Critical values of internal forces and moments are relative to' ...
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 175)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',175,0)">line 175</a>)
+RepGenCh10      %Loads on the wing
+} 
+opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m',448,0)
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('vertcat')" style="font-weight:bold">vertcat</a>
+Dimensions of arrays being concatenated are not consistent.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh10', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m', 448)" style="font-weight:bold">RepGenCh10</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m',448,0)">line 448</a>)
+ str = ['Critical values of internal forces and moments are relative to' ...
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 175)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',175,0)">line 175</a>)
+RepGenCh10      %Loads on the wing
+} 
+opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh10.m',448,0)
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
+RepGenMain(Aircraft)
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh4.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+--------------------------------------
+### Saving outpus inside correct Folder ###
+Saving RepGenFigCh9.png in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Chapter 9 written
 Chapter 10 "Loads on the wing" writing...
 Chapter 10 written

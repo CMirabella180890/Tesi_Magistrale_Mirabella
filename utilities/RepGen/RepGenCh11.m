@@ -1075,7 +1075,7 @@ add(ch,sec);
 %sec
 sec = Section();
 sec.Title = 'Horizontal tail loads summary';
-str = ['In this section all the maximum limit load are summarized'];
+str = ['In this section all the maximum manoeuvring limit loads are summarized'];
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(sec,para);

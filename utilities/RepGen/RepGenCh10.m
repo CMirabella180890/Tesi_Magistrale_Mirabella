@@ -88,9 +88,106 @@ add(sec,subsec);
 %sub
 subsec = Section();
 subsec.Title = 'Normal and parallel component';
+% -------------------------------------------------------------------------
+%moving to another path for figure
+cd ..
+cd ..
+ regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\' regulation '\Output\'];
 
+ cd (RepDir);
+ 
+ fig = FormalImage([results_path,'normalandaxial.png']);
+ fig.Caption = 'Normal and axial forces decomposition.';
+ fig.Height = '4in';
+ fig.LinkTarget='normalandaxial';
+ add(subsec,fig);
+ % ------------------------------------------------------------------------
+ str = ['In order to determine the wing structural loads, the aerodynamic forces' ...
+     ', Lift and Drag, are divided into their Normal and Parallel components in' ...
+     ' respect of reference longitudinal axis, as depicted in the figure. The wing' ...
+     ' spars and all structural component are normal or parallel to this axes which' ...
+     ' the wing angle of attack is referred too.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+        %
+        myEq = "$ \mathrm{Normal and Axial decomposition: } ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(subsec,eqImg);
+% -------------------------------------------------------------------------    
+% -------------------------------------------------------------------------
+        %
+        myEq = "$ N_{wb} = L \cdot \cos{\alpha} + D \cdot \sin{\alpha} ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(subsec,eqImg);
+% -------------------------------------------------------------------------  
+% -------------------------------------------------------------------------
+        %
+        myEq = "$ A_{wb} = D \cdot \cos{\alpha} - L \cdot \sin{\alpha} ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(subsec,eqImg);
+% -------------------------------------------------------------------------   
+% -------------------------------------------------------------------------
+ str = ['In non dimensionalized form, the decomposition become the following: '];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+        %
+        myEq = "$ C_{N} = C_{L} \cdot \cos{\alpha} + C_{D} \cdot \sin{\alpha} ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(subsec,eqImg);
+% -------------------------------------------------------------------------
+        %
+        myEq = "$ C_{A} = C_{D} \cdot \cos{\alpha} - C_{L} \cdot \sin{\alpha} ";
+        eq = Equation(strcat(myEq));
+        eq.DisplayInline = true;
+        eq.FontSize = 12;
+        eqImg = getImpl(eq,rpt);
+        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+            eqImg.Style = {VerticalAlign("-30%")};
+        elseif(rpt.Type == "docx")
+            eqImg.Style = {VerticalAlign("-5pt")};
+        end
+        append(subsec,eqImg);
+% -------------------------------------------------------------------------
 add(sec,subsec);
 
+% ------------------------------------------------------------------------
 %sub
 subsec = Section();
 subsec.Title = 'Shear, Bending and Torsion';
@@ -120,10 +217,127 @@ fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointD.png']);
  fig.Height = '4in';
  fig.LinkTarget='D_distribution';
  add(subsec,fig);
- % ------------------------------------------------------------------------
- 
+% ------------------------------------------------------------------------
+ str = ['To evaluate the internal forces needed to the structural' ...
+     ' sizing of the aircraft wing, a summation along the wing semi' ...
+     ' span is performed. First, axial and normal components of the' ...
+     ' aerodynamic forces are calculated from the semi-span distributions' ...
+     ' of lift and drag coefficients, which are used to evaluate shear,' ...
+     ' bending and torsion dimensional distributions.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+%                 SHEAR
+%                 a = 0.5*(FZ(i-1)+FZ(i))*(y(i-1) - y(i));
+%                 S(i) = S(i-1) + a; 
+% -------------------------------------------------------------------------
+                    %
+                    myEq = "$ S_{i} = S_{i-1} + s ";
+                    eq = Equation(strcat(myEq));
+                    eq.DisplayInline = true;
+                    eq.FontSize = 12;
+                    eqImg = getImpl(eq,rpt);
+                    if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+                        eqImg.Style = {VerticalAlign("-30%")};
+                    elseif(rpt.Type == "docx")
+                        eqImg.Style = {VerticalAlign("-5pt")};
+                    end
+                    append(subsec,eqImg);
+% ------------------------------------------------------------------------- 
+ str = ['where'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% ------------------------------------------------------------------------- 
+                    %
+                    myEq = "$ s = \frac{1}{2} \cdot (N_{i-1} + N_{i})\cdot(y_{i-1} - y_{i}) ";
+                    eq = Equation(strcat(myEq));
+                    eq.DisplayInline = true;
+                    eq.FontSize = 12;
+                    eqImg = getImpl(eq,rpt);
+                    if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+                        eqImg.Style = {VerticalAlign("-30%")};
+                    elseif(rpt.Type == "docx")
+                        eqImg.Style = {VerticalAlign("-5pt")};
+                    end
+                    append(subsec,eqImg);
+% ------------------------------------------------------------------------- 
+ str = ['where N is the normal force acting on the wing at the span station y.' ...
+     ' For the bending moment distribution, the calculations are very similar:' ...
+     ' Torsion is calculated via the same summation, but with torsion couple' ...
+     ' along the wing semi-span:'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+%                 BENDING
+                    %
+                    myEq = "$ BM_{i} = BM_{i-1} + b ";
+                    eq = Equation(strcat(myEq));
+                    eq.DisplayInline = true;
+                    eq.FontSize = 12;
+                    eqImg = getImpl(eq,rpt);
+                    if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+                        eqImg.Style = {VerticalAlign("-30%")};
+                    elseif(rpt.Type == "docx")
+                        eqImg.Style = {VerticalAlign("-5pt")};
+                    end
+                    append(subsec,eqImg);
+                    %                 BENDING
+                    % a = 0.5*(S(i-1)+S(i))*(y(i-1) - y(i));
+                    myEq = "$ b = \frac{1}{2} \cdot (S_{i-1} + S_{i}) \cdot (y_{i-1} - y_{i}) ";
+                    eq = Equation(strcat(myEq));
+                    eq.DisplayInline = true;
+                    eq.FontSize = 12;
+                    eqImg = getImpl(eq,rpt);
+                    if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+                        eqImg.Style = {VerticalAlign("-30%")};
+                    elseif(rpt.Type == "docx")
+                        eqImg.Style = {VerticalAlign("-5pt")};
+                    end
+                    append(subsec,eqImg);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+str = ['Torsion is calculated via the same summation, but with torsion couple' ...
+     ' along the wing semi-span:'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% -------------------------------------------------------------------------
+%                 TORSION
+%                 x         = c_of_y(i);
+%                 M_of_y(i) = CM(i)*Dyn_Press*(x^2);
+                    %
+                    myEq = "$ M_{y_{i}} = C_{M_{i}}\cdot q \cdot (c_{y_{i}})^{2} ";
+                    eq = Equation(strcat(myEq));
+                    eq.DisplayInline = true;
+                    eq.FontSize = 12;
+                    eqImg = getImpl(eq,rpt);
+                    if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+                        eqImg.Style = {VerticalAlign("-30%")};
+                    elseif(rpt.Type == "docx")
+                        eqImg.Style = {VerticalAlign("-5pt")};
+                    end
+                    append(subsec,eqImg);
+% -------------------------------------------------------------------------
+ str = ['where the chords are evaluated at every semi-span station.' ...
+     ' The summation is performed in the same way as did with shear and' ...
+     ' bending distributions.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+% ------------------------------------------------------------------------- 
         % -----------------------------------------------------------------
         n1           = 1.0; 
+        
+        point_S    = "Point S";
+        vs         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value;
+        ns         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value;
+        shearS     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Shear_distr.value(end);
+        bendingS   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Bend_mom_distr.value(end);
+        torsionS   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Tors_mom_distr.value(end);
+        
         point_A      = "Point A";
         va           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
         va_unit      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
@@ -149,6 +363,13 @@ fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointD.png']);
         shearD     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Shear_distr.value(end);
         bendingD   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Bend_mom_distr.value(end);
         torsionD   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Tors_mom_distr.value(end);
+        
+        point_Sinv  = "Point Sinv";
+        vs_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.value;
+        ns_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.nS_inv.value;
+        shearSinv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Shear_distr.value(end);
+        bendingSinv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Bend_mom_distr.value(end);
+        torsionSinv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Tors_mom_distr.value(end);
         
         point_G    = "Point G";
         vg         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value;
@@ -188,18 +409,19 @@ fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointD.png']);
             strcat('S (',shear_unit,')'), strcat('M (',bending_unit,')'), strcat('T (',torsion_unit,')')};
         %each table row needs of a fieldValue
         %1
-        name       = {char(point_A); char(point_C); char(point_D); ...
-                      char(point_G); char(point_F); char(point_E)};
-        speeds     = {num2str(va,4); num2str(vc,4); num2str(vd,4); ...
-                      num2str(vg,4); num2str(vf,4); num2str(ve,4)};
-        load_fact  = {num2str(na,4); num2str(nc,4); num2str(nd,4); ...
-                      num2str(ng,4); num2str(nf,4); num2str(ne,4)};
-        shear      = {num2str(shearA, 4); num2str(shearC, 4); num2str(shearD, 4); ... 
-                      num2str(shearG, 4); num2str(shearF, 4); num2str(shearE, 4)};
-        bending    = {num2str(bendingA, 4); num2str(bendingC, 4); num2str(bendingD, 4); ...
-                      num2str(bendingG, 4); num2str(bendingF, 4); num2str(bendingE, 4)};
-        torsion    = {num2str(torsionA, 4); num2str(torsionC, 4); num2str(torsionD, 4); ...
-                      num2str(torsionG, 4); num2str(torsionF, 4); num2str(torsionE, 4)};
+        name       = {char(point_S); char(point_A); char(point_C); ...
+                      char(point_D); char(point_Sinv); char(point_G); ...
+                      char(point_F); char(point_E)};
+        speeds     = {num2str(vs,4); num2str(va,4); num2str(vc,4); num2str(vd,4); ...
+                      num2str(vs_inv,4); num2str(vg,4); num2str(vf,4); num2str(ve,4)};
+        load_fact  = {num2str(ns,4); num2str(na,4); num2str(nc,4); num2str(nd,4); ...
+                      num2str(ns_inv,4); num2str(ng,4); num2str(nf,4); num2str(ne,4)};
+        shear      = {num2str(shearS, 4); num2str(shearA, 4); num2str(shearC, 4); num2str(shearD, 4); ... 
+                      num2str(shearSinv, 4); num2str(shearG, 4); num2str(shearF, 4); num2str(shearE, 4)};
+        bending    = {num2str(bendingS, 4); num2str(bendingA, 4); num2str(bendingC, 4); num2str(bendingD, 4); ...
+                      num2str(bendingSinv, 4); num2str(bendingG, 4); num2str(bendingF, 4); num2str(bendingE, 4)};
+        torsion    = {num2str(torsionS, 4); num2str(torsionA, 4); num2str(torsionC, 4); num2str(torsionD, 4); ...
+                      num2str(torsionSinv, 4); num2str(torsionG, 4); num2str(torsionF, 4); num2str(torsionE, 4)};
         fieldValue = [name, speeds, load_fact, shear, bending, torsion];
           
         tbl = FormalTable(header,fieldValue);
@@ -223,6 +445,59 @@ add(sec,subsec);
 %sub
 subsec = Section();
 subsec.Title = 'Critical load condition';
+ str = ['Critical values of internal forces and moments are relative to' ...
+     ' the root station of the wing. Shear is critical at point C, where is equal to' ... 
+     (' ') ...
+     num2str(shearC, 4) ...
+     (' ') ...
+     char(shear_unit) ...
+     '; the corresponding inverted flight point F is also' ...
+     ' a point where shear is higher than other flight conditions in inverted flight.' ...
+     ' At point C the bending moment at the root is equal to' ...
+     (' ') ...
+     num2str(bendingC, 4) ...
+     (' ') ...
+     char(bending_unit) ...
+     ', while bending is not critical for inverted flight.' ...
+     ' Torsion is critical at points D and E, where we have' ...
+     (' ') ...
+     num2str(torsionD, 4) ...
+     (' ') ...
+     char(torsion_unit) ...
+     ' and ' ...
+     (' ') ...
+     num2str(torsionE, 4) ...
+     (' ') ...
+     char(torsion_unit) ...
+     ', respectively.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);
+
+        % -----------------------------------------------------------------
+        header = {'Point', strcat('S (',shear_unit,')'), strcat('M (',bending_unit,')'), strcat('T (',torsion_unit,')')};
+        %each table row needs of a fieldValue
+        %1
+        name       = {char(point_C); char(point_D); char(point_F); char(point_E)};
+        shear      = {num2str(shearC, 4); num2str(shearD, 4); num2str(shearF, 4); num2str(shearE, 4)};
+        bending    = { num2str(bendingC, 4); num2str(bendingD, 4); num2str(bendingF, 4); num2str(bendingE, 4)};
+        torsion    = {num2str(torsionC, 4); num2str(torsionD, 4); num2str(torsionF, 4); num2str(torsionE, 4)};
+        fieldValue = [name, shear, bending, torsion];
+          
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Critical shear, bending and torsion.');
+        tbl.LinkTarget = 'shearbendingtors_crit';
+        add(subsec,tbl);
+        % -----------------------------------------------------------------
+ str = ['In the table these values are summarized, for convenience.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);        
+% ------------------------------------------------------------------------- 
 
 %SHEAR
 fig = FormalImage([results_path,'ShearComparison.png']);

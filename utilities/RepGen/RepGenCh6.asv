@@ -89,7 +89,7 @@ switch requirement
         %gust calculation table
         %1 
         sea_level = {num2str(rho0,4), num2str(h0,4), ...
-                     num2str(T0,4), num2str(p0, '% 6.1f'), ...
+                     num2str(T0,4), num2str(p0,4), ...
                      num2str(a0,4)};    
 %         PointA     = {'A', num2str(va,4), num2str(na,4)};     
 %         PointC     = {'C', num2str(vc,4), num2str(nc,4)};        
@@ -126,8 +126,8 @@ switch requirement
         %gust calculation table
         %1 
         operative = {num2str(rho_op,4), num2str(h_op,4), ...
-                     num2str(T_op,4), num2str(p_op, '% 6.1f'), ...
-                     num2str(a_op,4)};    
+                     num2str(T_op,4), num2str(p_op,4), ...
+                     num2str(a_opa0,4)};    
 %         PointA     = {'A', num2str(va,4), num2str(na,4)};     
 %         PointC     = {'C', num2str(vc,4), num2str(nc,4)};        
 %         PointD     = {'D', num2str(vd,4), num2str(nd,4)};
@@ -146,43 +146,6 @@ switch requirement
         tbl = BaseTable(tbl);
         tbl.Title = strcat('Operative reference values');
         tbl.LinkTarget = 'operativeleveltable';
-        add(ch,tbl);
-% -------------------------------------------------------------------------
-
-        % -----------------------------------------------------------------
-        rho_t   = Aircraft.Certification.ISA_Condition.Theoretical_ceiling.rho0.value;
-        h_t     = Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.value;
-        T_t     = Aircraft.Certification.ISA_Condition.Theoretical_ceiling.T0.value;
-        p_t     = Aircraft.Certification.ISA_Condition.Theoretical_ceiling.p0.value;
-        a_t     = Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Speed_of_sound0.value;
-        % -----------------------------------------------------------------
-        header = {strcat('rho(',rho_unit,')'), strcat('h(',h_unit,')'), ...
-           strcat('T(',T_unit,')'), strcat('p(',p_unit,')'), ... 
-           strcat('a(', a_unit,')')};
-        %each table row needs of a fieldValue
-        %gust calculation table
-        %1 
-        theoretical = {num2str(rho_t,4), num2str(h_t,4), ...
-                     num2str(T_t,4), num2str(p_t, '% 6.1f'), ...
-                     num2str(a_t,4)};    
-%         PointA     = {'A', num2str(va,4), num2str(na,4)};     
-%         PointC     = {'C', num2str(vc,4), num2str(nc,4)};        
-%         PointD     = {'D', num2str(vd,4), num2str(nd,4)};
-%         %2 
-%         PointS_inv = {'S_inv', num2str(vs_inv,4), num2str(ns_inv,4)};    
-%         PointG     = {'G', num2str(vg,4), num2str(ng,4)};     
-%         PointF     = {'F', num2str(vf,4), num2str(nf,4)};        
-%         PointE     = {'E', num2str(ve,4), num2str(ne,4)};
-        fieldValue = [theoretical];
-    
-          
-        tbl = FormalTable(header,fieldValue);
-        % In order to put a table with a caption, the API Report denomination should
-        % be used, the other options are from API DOM. In order to solve the problem,
-        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
-        tbl = BaseTable(tbl);
-        tbl.Title = strcat('Theoretical ceiling reference values');
-        tbl.LinkTarget = 'theoreticalleveltable';
         add(ch,tbl);
 % -------------------------------------------------------------------------
 

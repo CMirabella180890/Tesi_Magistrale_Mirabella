@@ -55,7 +55,17 @@ else
     va       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
     na       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
 end
-
+% -----------------------------------------------------------------------------------------------
+vg       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value;
+ng       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value;
+% -----------------------------------------------------------------------------------------------
+vf       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value;
+nf       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value;
+% -----------------------------------------------------------------------------------------------
+ve       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value;
+ne       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value;
+% -----------------------------------------------------------------------------------------------
+    
 %% END DECLARATION
 
 ch = Chapter();
@@ -359,7 +369,7 @@ switch requirement
         %each table row needs of a fieldValue
         %gust calculation table
         %1 
-        PointA1    = {'A1', num2str(va,4), num2str(mtow,4), ...
+        PointA     = {'A', num2str(va,4), num2str(mtow,4), ...
                     num2str(m_over_s,4), num2str(altitude,4),...
                     num2str(rho,4), num2str(mg,4), num2str(kg,4), ...
                     num2str(gustc,4), num2str(na,4)};     
@@ -373,7 +383,22 @@ switch requirement
                     num2str(m_over_s,4), num2str(altitude,4), ...
                     num2str(rho,4), num2str(mg,4), num2str(kg,4), ...
                     num2str(gustd,4), num2str(nd,4)};
-        fieldValue = [PointA1; PointC; PointD];
+        %1 
+        PointG     = {'G', num2str(vg,4), num2str(mtow,4), ...
+                    num2str(m_over_s,4), num2str(altitude,4),...
+                    num2str(rho,4), num2str(mg,4), num2str(kg,4), ...
+                    num2str(gustc,4), num2str(ng,4)};     
+        %2 
+        PointF     = {'F', num2str(vf,4), num2str(mtow,4), ...
+                    num2str(m_over_s,4), num2str(altitude,4),...
+                    num2str(rho,4), num2str(mg,4), num2str(kg,4), ...
+                    num2str(gustc,4), num2str(nf,4)};        
+        %3 
+        PointE     = {'E', num2str(ve,4), num2str(mtow,4), ...
+                    num2str(m_over_s,4), num2str(altitude,4), ...
+                    num2str(rho,4), num2str(mg,4), num2str(kg,4), ...
+                    num2str(gustd,4), num2str(ne,4)};
+        fieldValue = [PointA; PointC; PointD; PointG; PointF; PointE];
     
           
         tbl = FormalTable(header,fieldValue);
