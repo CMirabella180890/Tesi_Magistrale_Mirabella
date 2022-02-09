@@ -20,7 +20,48 @@ csvla_363   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Engine_load
 ch = Chapter();
 ch.Title = 'Power plant';
 disp(['Chapter 15', (' "'), ch.Title,('" ') ,'writing...' ])
+% -------------------------------------------------------------------------
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
 
+fig = FormalImage([results_path,'Engine -Front-View.png']);
+         fig.Caption = 'Engine, front view.';
+         fig.Height = '5in';
+         fig.LinkTarget='engine_front_view';
+         add(ch,fig);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
+
+fig = FormalImage([results_path,'Engine -Side-View.png']);
+         fig.Caption = 'Engine, side view.';
+         fig.Height = '5in';
+         fig.LinkTarget='engine_side_view';
+         add(ch,fig);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
+
+fig = FormalImage([results_path,'Engine -Top-View.png']);
+         fig.Caption = 'Engine, top view.';
+         fig.Height = '5in';
+         fig.LinkTarget='engine_top_view';
+         add(ch,fig);
+% -------------------------------------------------------------------------
 str = ['The engine mount and its supporting structure must be designed' ...
        ' for the effects of:'];
 para = Paragraph(str);

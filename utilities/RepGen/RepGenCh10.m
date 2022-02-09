@@ -13,6 +13,20 @@ import mlreportgen.utils.*
 ch = Chapter();
 ch.Title = 'Loads on the wing';
 disp(['Chapter 10', (' "'), ch.Title,('" ') ,'writing...' ])
+% -------------------------------------------------------------------------
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
+
+fig = FormalImage([results_path,'Wing-Top-View.png']);
+         fig.Caption = 'Wing, top view.';
+         fig.Height = '5in';
+         fig.LinkTarget='Wingtopview';
+         add(ch,fig);
+% -------------------------------------------------------------------------
 str = ['In this section will be shown all the resulting internal' ...
     ' forces acting on the wing structural elements; having calculated' ...
     ' lift, drag and pitching moment coefficient distribution on the wing' ...
@@ -62,6 +76,13 @@ str = ['Spanwise airloads distributions along the wing semi-span' ...
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(subsec,para);
+
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\csvla\Output\'];
+cd(RepDir);
 
 %to be checked
 fig = FormalImage([results_path,'ClInterpolation3dplot.png']);

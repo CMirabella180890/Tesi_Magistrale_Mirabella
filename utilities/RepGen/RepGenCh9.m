@@ -459,6 +459,7 @@ para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 
+
 %% FIGURES TO ADD 
 
 % RepGenFigCh4 = figure(47);
@@ -539,10 +540,39 @@ cd ..
  fig.Height = '5in';
  fig.LinkTarget='bala_loads';
  add(sec,fig);
+ 
+% -------------------------------------------------------------------------
+%sec
+sec = Section();
+sec.Title = 'Wing airloads';
+str = ['Wing airloads are depicted in figure; these are the airloads' ...
+    ' necessary to size wing structures and they comes from the' ...
+    ' balancing equations applied on the full aircraft. Mainly, these' ...
+    ' loads come from lift, during a symmetric, straight, non-accelerated' ...
+    ' flight condition.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(sec,para);
+% -------------------------------------------------------------------------
+add(ch,sec);
 
 %sec
 sec = Section();
 sec.Title = 'Complete aircraft balancing loads';
+% -------------------------------------------------------------------------
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
+
+fig = FormalImage([results_path,'Horizontal-Top-View.png']);
+         fig.Caption = 'Horizontal tail plane, top view.';
+         fig.Height = '5in';
+         fig.LinkTarget='httopview';
+         add(sec,fig);
+% -------------------------------------------------------------------------
 str = ['Here, the aircraft balancing loads are collected inside' ...
     ' a table. A horizontal surface balancing load is a load necessary to' ...
     ' maintain equilibrium in any condition with no pitching acceleration.' ...

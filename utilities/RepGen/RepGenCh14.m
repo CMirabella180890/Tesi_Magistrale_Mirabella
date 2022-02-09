@@ -37,6 +37,66 @@ aileron_airworth_rules = Aircraft.Certification.Regulation.SubpartC.Flightloads.
 %sec
 sec = Section();
 sec.Title = 'Ailerons';
+% -------------------------------------------------------------------------
+%moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
+
+fig = FormalImage([results_path,'Wing-Top-View.png']);
+         fig.Caption = 'Aileron, top view.';
+         fig.Height = '5in';
+         fig.LinkTarget='aileron_top_view';
+         add(sec,fig);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+C_h_delta_rad    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_rad.value;
+C_h_delta_rad_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_rad.Attributes.unit;
+C_h_delta_deg    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_deg.value;
+C_h_delta_deg_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_delta_deg.Attributes.unit;
+C_h_alfa_deg     = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_deg.value;
+C_h_alfa_deg_un  = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_deg.Attributes.unit;
+C_h_alfa_rad     = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_rad.value;
+C_h_alfa_rad_un  = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_alfa_rad.Attributes.unit;
+C_h_total_deg    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_deg.value;
+C_h_total_deg_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_deg.Attributes.unit;
+C_h_total_rad    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_rad.value;
+C_h_total_rad_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_rad.Attributes.unit;
+% -------------------------------------------------------------------------
+        %table gust calculation        
+        str = ['TABLE TO BE CHECKED!!!'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        para.BackgroundColor = "red";
+        add(ch,para);  
+        
+        header = {'Quantity', 'Value', 'Units'};
+        %each table row needs of a fieldValue
+        %gust calculation table
+        %1 
+        chdeltarad = {'CH delta', num2str(C_h_delta_rad,4), char(C_h_delta_rad_un)};    
+        chdeltadeg = {'CH delta', num2str(C_h_delta_deg,4), char(C_h_delta_deg_un)};
+        chalfarad  = {'CH alfa',  num2str(C_h_alfa_rad,4),  char(C_h_alfa_rad_un)};    
+        chalfadeg  = {'CH alfa',  num2str(C_h_alfa_deg,4),  char(C_h_alfa_deg_un)};
+        chtotalrad = {'CH total', num2str(C_h_total_rad,4), char(C_h_total_rad_un)};    
+        chtotaldeg = {'CH total', num2str(C_h_total_deg,4), char(C_h_total_deg_un)};
+
+        fieldValue = [chdeltarad; chdeltadeg; chalfarad; ...
+            chalfadeg; chtotalrad; chtotaldeg];
+    
+          
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Aileron. Hinge moments coefficients.');
+        tbl.LinkTarget = 'hingemomentcoefftableaileron';
+        add(sec,tbl);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 str = ['According to ' ...
        (' ') ...
        char(requirement) ...
@@ -183,7 +243,7 @@ add(sec,para);
         elseif(rpt.Type == "docx")
             eqImg.Style = {VerticalAlign("-5pt")};
         end
-        append(sec,eqImg);
+        append(sec,eqImg);      
 % ------------------------------------------------------------------------- 
 add(ch,sec);
 % ++++++++
@@ -194,6 +254,66 @@ elevator_load_SI_unit   = Aircraft.Certification.Regulation.SubpartC.Flightloads
 %sec
 sec = Section();
 sec.Title = 'Elevator';
+% -------------------------------------------------------------------------
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
+
+fig = FormalImage([results_path,'Horizontal-Top-View.png']);
+         fig.Caption = 'Elevator, top view.';
+         fig.Height = '5in';
+         fig.LinkTarget='elevator_top_view';
+         add(sec,fig);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+C_h_delta_rad    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_rad.value;
+C_h_delta_rad_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_rad.Attributes.unit;
+C_h_delta_deg    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_deg.value;
+C_h_delta_deg_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_delta_deg.Attributes.unit;
+C_h_alfa_deg     = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_deg.value;
+C_h_alfa_deg_un  = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_deg.Attributes.unit;
+C_h_alfa_rad     = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_rad.value;
+C_h_alfa_rad_un  = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_alfa_rad.Attributes.unit;
+C_h_total_deg    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_total_deg.value;
+C_h_total_deg_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_total_deg.Attributes.unit;
+C_h_total_rad    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_total_rad.value;
+C_h_total_rad_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Elevator.C_h_total_rad.Attributes.unit;
+% -------------------------------------------------------------------------
+        %table gust calculation        
+        str = ['TABLE TO BE CHECKED!!!'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        para.BackgroundColor = "red";
+        add(ch,para);  
+        
+        header = {'Quantity', 'Value', 'Units'};
+        %each table row needs of a fieldValue
+        %gust calculation table
+        %1 
+        chdeltarad = {'CH delta', num2str(C_h_delta_rad,4), char(C_h_delta_rad_un)};    
+        chdeltadeg = {'CH delta', num2str(C_h_delta_deg,4), char(C_h_delta_deg_un)};
+        chalfarad  = {'CH alfa',  num2str(C_h_alfa_rad,4),  char(C_h_alfa_rad_un)};    
+        chalfadeg  = {'CH alfa',  num2str(C_h_alfa_deg,4),  char(C_h_alfa_deg_un)};
+        chtotalrad = {'CH total', num2str(C_h_total_rad,4), char(C_h_total_rad_un)};    
+        chtotaldeg = {'CH total', num2str(C_h_total_deg,4), char(C_h_total_deg_un)};
+
+        fieldValue = [chdeltarad; chdeltadeg; chalfarad; ...
+            chalfadeg; chtotalrad; chtotaldeg];
+    
+          
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Elevator. Hinge moments coefficients.');
+        tbl.LinkTarget = 'elevatorhingemomentcoefftable';
+        add(sec,tbl);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 str = ['According to ' ...
        (' ') ...
        char(requirement) ...
@@ -274,6 +394,66 @@ rudder_load_SI_unit   = Aircraft.Certification.Regulation.SubpartC.Flightloads.F
 %sec
 sec = Section();
 sec.Title = 'Rudder';
+% -------------------------------------------------------------------------
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
+
+fig = FormalImage([results_path,'Vertical-Side-View.png']);
+         fig.Caption = 'Vertical fin, side view.';
+         fig.Height = '5in';
+         fig.LinkTarget='verticalfin_side_view';
+         add(sec,fig);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+C_h_delta_rad    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_rad.value;
+C_h_delta_rad_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_rad.Attributes.unit;
+C_h_delta_deg    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_deg.value;
+C_h_delta_deg_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_delta_deg.Attributes.unit;
+C_h_alfa_deg     = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_deg.value;
+C_h_alfa_deg_un  = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_deg.Attributes.unit;
+C_h_alfa_rad     = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_rad.value;
+C_h_alfa_rad_un  = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_alfa_rad.Attributes.unit;
+C_h_total_deg    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_deg.value;
+C_h_total_deg_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_deg.Attributes.unit;
+C_h_total_rad    = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_rad.value;
+C_h_total_rad_un = Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_rad.Attributes.unit;
+% -------------------------------------------------------------------------
+        %table gust calculation        
+        str = ['TABLE TO BE CHECKED!!!'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        para.BackgroundColor = "red";
+        add(ch,para);  
+        
+        header = {'Quantity', 'Value', 'Units'};
+        %each table row needs of a fieldValue
+        %gust calculation table
+        %1 
+        chdeltarad = {'CH delta', num2str(C_h_delta_rad,4), char(C_h_delta_rad_un)};    
+        chdeltadeg = {'CH delta', num2str(C_h_delta_deg,4), char(C_h_delta_deg_un)};
+        chalfarad  = {'CH alfa',  num2str(C_h_alfa_rad,4),  char(C_h_alfa_rad_un)};    
+        chalfadeg  = {'CH alfa',  num2str(C_h_alfa_deg,4),  char(C_h_alfa_deg_un)};
+        chtotalrad = {'CH total', num2str(C_h_total_rad,4), char(C_h_total_rad_un)};    
+        chtotaldeg = {'CH total', num2str(C_h_total_deg,4), char(C_h_total_deg_un)};
+
+        fieldValue = [chdeltarad; chdeltadeg; chalfarad; ...
+            chalfadeg; chtotalrad; chtotaldeg];
+    
+          
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Rudder. Hinge moments coefficients.');
+        tbl.LinkTarget = 'hingemomentcoefftablerudder';
+        add(sec,tbl);
+% -------------------------------------------------------------------------
+% -------------------------------------------------------------------------
 str = ['According to ' ...
        (' ') ...
        char(requirement) ...
@@ -402,7 +582,7 @@ add(ch,sec);
 %          fig.LinkTarget='maneuver_ref';
 %          add(ch,fig);
 
-%add(ch7,sec1);
+%add(sec,sec1);
 
 
 %% END chapter

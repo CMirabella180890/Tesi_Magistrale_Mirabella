@@ -229,6 +229,10 @@ add(ch,para);
 Max_Lift_Coefficient          = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
 Max_Lift_Coefficient_unit     = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.Attributes.unit;
 Max_Lift_Coefficient_inverted = Aircraft.Certification.Aerodynamic_data.Min_Lift_Coefficient.value;
+CLMAX_takeoff                 = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.value;
+CLMAX_takeoff_unit            = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_takeoff.Attributes.unit;
+CLMAX_landing                 = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.value;
+CLMAX_landing_unit            = Aircraft.Certification.Aerodynamic_data.Flaps.CLMAX_landing.Attributes.unit;
 CL0                           = Aircraft.Certification.Aerodynamic_data.CL0.value;
 CL0_unit                      = Aircraft.Certification.Aerodynamic_data.CL0.Attributes.unit;
 CLALFA_rad                    = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
@@ -243,6 +247,12 @@ CM0                           = Aircraft.Certification.Aerodynamic_data.CM0.valu
 CM0_unit                      = Aircraft.Certification.Aerodynamic_data.CM0.Attributes.unit;
 CMCL                          = Aircraft.Certification.Aerodynamic_data.CMCL.value;
 CMCL_unit                     = Aircraft.Certification.Aerodynamic_data.CMCL.Attributes.unit;
+CM_landing_gear               = Aircraft.Certification.Aerodynamic_data.CM_landing_gear.value;
+CM_landing_gear_unit          = Aircraft.Certification.Aerodynamic_data.CM_landing_gear.Attributes.unit;
+Alpha_zero_lift               = Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value;
+Alpha_zero_lift_unit          = Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.Attributes.unit;
+Oswald_efficiency_factor      = Aircraft.Certification.Aerodynamic_data.e.value;
+Oswald_efficiency_factor_un   = Aircraft.Certification.Aerodynamic_data.e.Attributes.unit;
 % -------------------------------------------------------------------------
         %table gust calculation        
         str = ['TABLE TO BE CHECKED!!!'];
@@ -257,15 +267,22 @@ CMCL_unit                     = Aircraft.Certification.Aerodynamic_data.CMCL.Att
         %1 
         cl_wb_max_clean = {'CLMAX wb',         num2str(Max_Lift_Coefficient,4),          char(Max_Lift_Coefficient_unit)};    
         cl_wb_inv_clean = {'CLMAXwb inverted', num2str(Max_Lift_Coefficient_inverted,4), char(Max_Lift_Coefficient_unit)};
+        cl_wb_takeoff   = {'CLMAX takeoff',    num2str(CLMAX_takeoff,4),                 char(CLMAX_takeoff_unit)};
+        cl_wb_landing   = {'CLMAX landing',    num2str(CLMAX_landing,4),                 char(CLMAX_landing_unit)};
         cl_0            = {'CL0',              num2str(CL0,4),                           char(CL0_unit)};
         cl_alfa_rad     = {'CLALFA (rad)',     num2str(CLALFA_rad,4),                    char(CLALFA_rad_unit)};
         cl_alfa_deg     = {'CLALFA (deg)',     num2str(CLALFA_deg,4),                    char(CLALFA_deg_unit)};
         cd0             = {'CD0',              num2str(CD0,4),                           char(CD0_unit)};
         cd_gear         = {'CD landing gear',  num2str(CDGEAR,4),                        char(CDGEAR_UNIT)};
         cm0             = {'CM0',              num2str(CM0,4),                           char(CM0_unit)};
+        cm_gear         = {'CM landing gear',  num2str(CM_landing_gear,4),               char(CM_landing_gear_unit)};
         cmcl            = {'CMCL',             num2str(CMCL,4),                          char(CMCL_unit)};
+        alfa0l          = {'Alfa zero lift',   num2str(Alpha_zero_lift,4),               char(Alpha_zero_lift_unit)};
+        osw_eff_factor  = {'e',                num2str(Oswald_efficiency_factor,4),      char(Oswald_efficiency_factor_un)};
 
-        fieldValue = [cl_wb_max_clean; cl_wb_inv_clean; cl_0; cl_alfa_rad; cl_alfa_deg; cd0; cd_gear; cm0; cmcl];
+        fieldValue = [cl_wb_max_clean; cl_wb_inv_clean; cl_wb_takeoff; ...
+            cl_wb_landing; cl_0; cl_alfa_rad; cl_alfa_deg; cd0; cd_gear; ...
+            cm0; cm_gear; cmcl; alfa0l; osw_eff_factor];
     
           
         tbl = FormalTable(header,fieldValue);

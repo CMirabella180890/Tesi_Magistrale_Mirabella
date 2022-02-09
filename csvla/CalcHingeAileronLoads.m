@@ -179,9 +179,9 @@ alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_e
 C_h_total_deg = C_h_delta_deg * delta_max_deg + C_h_alfa_deg * alfa_A_deg; 
 Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_deg.value = C_h_total_deg; 
 Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_deg.Attributes.unit = "1/deg";
-C_h_total_rad = C_h_total_deg * conversion_factor;
+C_h_total_rad = C_h_total_deg / conversion_factor;
 Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_rad.value = C_h_total_rad; 
-Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_rad.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Aileron.C_h_total_rad.Attributes.unit = "1/rad";
 
 % DYNAMIC PRESSURE AT VA
 qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;

@@ -155,9 +155,9 @@ beta_deg = 0;
 C_h_total_deg = C_h_delta_deg * max_deflection_rudder + C_h_alfa_deg * beta_deg;
 Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_deg.value = C_h_total_deg; 
 Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_deg.Attributes.unit = "1/deg";
-C_h_total_rad = C_h_total_deg * conversion_factor;
+C_h_total_rad = C_h_total_deg / conversion_factor;
 Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_rad.value = C_h_total_rad; 
-Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_rad.Attributes.unit = "1/deg";
+Aircraft.Certification.Aerodynamic_data.Hinge_moments.Rudder.C_h_total_rad.Attributes.unit = "1/rad";
 
 % DYNAMIC PRESSURE AT VA
 qA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.qA.value;
