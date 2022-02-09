@@ -9,9 +9,10 @@ ch = Chapter();
 ch.Title = 'V-n Envelope';
 disp(['Chapter 8', (' "'), ch.Title,('" ') ,'writing...' ])
 % -----------------------------------------------------------------------------------------------
-requirement   = Aircraft.Certification.Regulation.value;
-altitude      = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.value;
-altitude_unit = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit;
+requirement    = Aircraft.Certification.Regulation.value;
+altitude       = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.value;
+altitude_unit  = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit;
+flight_env_req = Aircraft.Certification.Regulation.SubpartC.Flightloads.Attributes.cs;
 % -------------------------------------------------------------------------
 str = ['The final flight envelope diagram showed in the above figure was drawn' ...
     ' considering limit load factor values related to the maximum wing stress' ...
@@ -24,7 +25,13 @@ str = ['The final flight envelope diagram showed in the above figure was drawn' 
     num2str(altitude) ...
     (' ') ...
     char(altitude_unit) ...
-    '.'];
+    '. According to' ... 
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    char(flight_env_req) ...
+    ', each critical altitude expected during normal operations and' ...
+    ' each critical weight and centre of gravity positions has been examined.'];
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(ch,para);
@@ -133,7 +140,7 @@ cd ..
         add(ch,tbl);
 % -------------------------------------------------------------------------
 % -------------------------------------------------------------------------
-str = ['The following assumption must be made for gust calculations:'];
+str = ['The following assumption has been made for gust calculations:'];
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(ch,para);
@@ -204,6 +211,72 @@ add(ch,para);
 %             ref4,ref5,ref6, ref7, ref8, ref9});
         append(ch,ol);
 % ------------------------------------------------------------------------- 
+flight_env_airworthiness_req = char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.Attributes.cs);
+str = ['The figure shows the final flight envelope, resulting from' ...
+    ' superposition of manoeuvring and gust loads, according to ' ...
+    (' ') ...
+    char(requirement) ...
+    (' ') ...
+    flight_env_airworthiness_req ...
+    ', obtaining the limit combined loads diagram. For the' ...
+    ' calculation of structural design speeds, the stalling speeds' ...
+    ' Vs0 and Vs1 should be taken to be the 1-g stalling speeds in' ...
+    ' the appropriate flap configuration. '];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(ch,para);
+% -------------------------------------------------------------------------
+Max_Lift_Coefficient          = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
+Max_Lift_Coefficient_unit     = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.Attributes.unit;
+Max_Lift_Coefficient_inverted = Aircraft.Certification.Aerodynamic_data.Min_Lift_Coefficient.value;
+CL0                           = Aircraft.Certification.Aerodynamic_data.CL0.value;
+CL0_unit                      = Aircraft.Certification.Aerodynamic_data.CL0.Attributes.unit;
+CLALFA_rad                    = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.value;
+CLALFA_rad_unit               = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope.Attributes.unit;
+CLALFA_deg                    = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value;
+CLALFA_deg_unit               = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.Attributes.unit;
+CD0                           = Aircraft.Certification.Aerodynamic_data.CD0.value;
+CD0_unit                      = Aircraft.Certification.Aerodynamic_data.CD0.Attributes.unit;
+CDGEAR                        = Aircraft.Certification.Aerodynamic_data.CD_landing_gear.value;
+CDGEAR_UNIT                   = Aircraft.Certification.Aerodynamic_data.CD_landing_gear.Attributes.unit;
+CM0                           = Aircraft.Certification.Aerodynamic_data.CM0.value;
+CM0_unit                      = Aircraft.Certification.Aerodynamic_data.CM0.Attributes.unit;
+CMCL                          = Aircraft.Certification.Aerodynamic_data.CMCL.value;
+CMCL_unit                     = Aircraft.Certification.Aerodynamic_data.CMCL.Attributes.unit;
+% -------------------------------------------------------------------------
+        %table gust calculation        
+        str = ['TABLE TO BE CHECKED!!!'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        para.BackgroundColor = "red";
+        add(ch,para);  
+        
+        header = {'Quantity', 'Value', 'Units'};
+        %each table row needs of a fieldValue
+        %gust calculation table
+        %1 
+        cl_wb_max_clean = {'CLMAX wb',         num2str(Max_Lift_Coefficient,4),          char(Max_Lift_Coefficient_unit)};    
+        cl_wb_inv_clean = {'CLMAXwb inverted', num2str(Max_Lift_Coefficient_inverted,4), char(Max_Lift_Coefficient_unit)};
+        cl_0            = {'CL0',              num2str(CL0,4),                           char(CL0_unit)};
+        cl_alfa_rad     = {'CLALFA (rad)',     num2str(CLALFA_rad,4),                    char(CLALFA_rad_unit)};
+        cl_alfa_deg     = {'CLALFA (deg)',     num2str(CLALFA_deg,4),                    char(CLALFA_deg_unit)};
+        cd0             = {'CD0',              num2str(CD0,4),                           char(CD0_unit)};
+        cd_gear         = {'CD landing gear',  num2str(CDGEAR,4),                        char(CDGEAR_UNIT)};
+        cm0             = {'CM0',              num2str(CM0,4),                           char(CM0_unit)};
+        cmcl            = {'CMCL',             num2str(CMCL,4),                          char(CMCL_unit)};
+
+        fieldValue = [cl_wb_max_clean; cl_wb_inv_clean; cl_0; cl_alfa_rad; cl_alfa_deg; cd0; cd_gear; cm0; cmcl];
+    
+          
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Aerodynamic reference values.');
+        tbl.LinkTarget = 'aerodynamictableRef';
+        add(ch,tbl);
+% -------------------------------------------------------------------------
 % -------------------------------------------------------------------------
 % add(ch,para)
 %% END chapter

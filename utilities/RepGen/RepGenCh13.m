@@ -277,6 +277,8 @@ add(ch,sec);
         altitude = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.value;
         alt_un   = Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude.Attributes.unit;
         % ------------------------------------------------------------------------- 
+        mtow    = Aircraft.Weight.I_Level.W_maxTakeOff.value;
+        mtow_un = Aircraft.Weight.I_Level.W_maxTakeOff.Attributes.unit;
         % -----------------------------------------------------------------
         %table gust calculation        
         str = ['TABLE TO BE CHECKED!!!'];
@@ -285,14 +287,18 @@ add(ch,sec);
         para.BackgroundColor = "red";
         add(sec,para);  
         % -----------------------------------------------------------------
-        header = {'Point', strcat('V(',vs_unit,')'), strcat('n(',ns_unit,')'), ...
-                  strcat('mug'), strcat('Kg'), strcat('Ude(',vs_unit,')'), ...
-                  strcat('WS(',WS_unit,')'), strcat('rho(',rho_unit,')'), ...
-                  strcat('altitude(',alt_un,')')};
+        header = {'ID',strcat('V(',vc_un,')'), strcat('M(',mtow_un,')'),...
+                strcat('M/S(',mtow_un,'/',s_un,')'), strcat('Altitude(',altitude_un,')'),...
+                strcat('rho(',rho_un,')'),'mug', 'Kg', strcat('Ude(',gustc_un,')') , 'n'};
+%         header = {'Point', strcat('V(',vs_unit,')'), strcat('n(',ns_unit,')'), ...
+%                   strcat('mug'), strcat('Kg'), strcat('Ude(',vs_unit,')'), ...
+%                   strcat('WS(',WS_unit,')'), strcat('rho(',rho_unit,')'), ...
+%                   strcat('altitude(',alt_un,')')};
         %each table row needs of a fieldValue
         %1
         name       = {char(point_S); char(point_A); char(point_F)};
         speeds     = {num2str(vs,4); num2str(va,4); num2str(vf,4)};
+        vec_mass   = {num2str(mtow,4);  num2str(mtow,4);  num2str(mtow,4) };
         load_fact  = {num2str(ns,4); num2str(na,4); num2str(nf,4)};
         vec_mug    = {num2str(mug,4); num2str(mug,4); num2str(mug,4)};
         vec_kg     = {num2str(kg,4);  num2str(kg,4);  num2str(kg,4) };
@@ -300,8 +306,8 @@ add(ch,sec);
         vec_WS     = {num2str(WS,4);  num2str(WS,4);  num2str(WS,4) };
         vec_rho    = {num2str(rho,4); num2str(rho,4); num2str(rho,4)};
         vec_alt    = {num2str(altitude,4); num2str(altitude,4); num2str(altitude,4)};
-        fieldValue = [name, speeds, load_fact, vec_mug, vec_kg, vec_Ude, ...
-                      vec_WS, vec_rho, vec_alt];
+        fieldValue = [name, speeds, vec_mass, vec_WS, vec_alt, vec_rho, ...
+                      vec_mug, vec_kg, vec_Ude, load_fact];
     
           
         tbl = FormalTable(header,fieldValue);
@@ -363,14 +369,18 @@ add(ch,sec);
         para.BackgroundColor = "red";
         add(sec,para);  
         % -----------------------------------------------------------------
-        header = {'Point', strcat('V(',vs_unit,')'), strcat('n(',ns_unit,')'), ...
-                  strcat('mug'), strcat('Kg'), strcat('Ude(',vs_unit,')'), ...
-                  strcat('WS(',WS_unit,')'), strcat('rho(',rho_unit,')'), ...
-                  strcat('altitude(',alt_un,')')};
+        mtow    = Aircraft.Weight.I_Level.W_maxTakeOff.value;
+        mtow_un = Aircraft.Weight.I_Level.W_maxTakeOff.Attributes.unit;
+        % -----------------------------------------------------------------
+        header = {'ID',strcat('V(',vc_un,')'), strcat('M(',mtow_un,')'),...
+                strcat('M/S(',mtow_un,'/',s_un,')'), strcat('Altitude(',altitude_un,')'),...
+                strcat('rho(',rho_un,')'),'mug', 'Kg', strcat('Ude(',gustc_un,')') , 'n'};
+
         %each table row needs of a fieldValue
         %1
         name       = {char(point_S);  char(point_A);  char(point_F) };
         speeds     = {num2str(vs,4);  num2str(va,4);  num2str(vf,4) };
+        vec_mass   = {num2str(mtow,4);  num2str(mtow,4);  num2str(mtow,4) };
         load_fact  = {num2str(ns,4);  num2str(na,4);  num2str(nf,4) };
         vec_mug    = {num2str(mug,4); num2str(mug,4); num2str(mug,4)};
         vec_kg     = {num2str(kg,4);  num2str(kg,4);  num2str(kg,4) };
@@ -378,8 +388,8 @@ add(ch,sec);
         vec_WS     = {num2str(WS,4);  num2str(WS,4);  num2str(WS,4) };
         vec_rho    = {num2str(rho,4); num2str(rho,4); num2str(rho,4)};
         vec_alt    = {num2str(altitude,4); num2str(altitude,4); num2str(altitude,4)};
-        fieldValue = [name, speeds, load_fact, vec_mug, vec_kg, vec_Ude, ...
-                      vec_WS, vec_rho, vec_alt];
+        fieldValue = [name, speeds, vec_mass, vec_WS, vec_alt, vec_rho, ...
+                      vec_mug, vec_kg, vec_Ude, load_fact];
         % ----------------------------------------------------------------------------
         tbl = FormalTable(header,fieldValue);
         % In order to put a table with a caption, the API Report denomination should
