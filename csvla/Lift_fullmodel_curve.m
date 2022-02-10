@@ -21,8 +21,8 @@ plot(alpha, CL_Data, 'k.', 'MarkerSize', 10)
 % xlim([]);
 ylim([0.0 1.80]);
 xlabel("Angle of attack - $\alpha$ $(deg)$", "Interpreter", "latex")
-ylabel("Lift coefficient - $C_L$", "Interpreter", "latex")
+ylabel("Lift coefficient - $C_{L_{wb}}$", "Interpreter", "latex")
 title("Lift curve model", "Interpreter", "latex")
-legend({'Full model','Data points','Data'}, 'Interpreter', 'latex', 'Location', 'southeast')
+legend({'Full model','Data points'}, 'Interpreter', 'latex', 'Location', 'southeast')
 
 end

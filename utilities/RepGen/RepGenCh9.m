@@ -362,7 +362,7 @@ add(sec,para);
         % -----------------------------------------------------------------
         % PITCHING ANGLE DIFFERENTIAL EQUATION 
         %
-        myEq = "$ [-L_{wb}\cdot\cos{\alpha}\cdot(x_{AC} - x_{CG}) - L_{wb}\cdot\sin{\alpha}\cdot z_{CG}] + [D_{wb}\cdot\cos{\alpha}\cdot z_{CG} - D_{wb}\cdot\sin{\alpha}\cdot MGC\cdot(x_{AC} - x_{CG})] ";
+        myEq = "$ [-L_{wb}\cdot\cos{\alpha}\cdot(x_{AC} - x_{CG}) - L_{wb}\cdot\sin{\alpha}\cdot z_{CG}] + [D_{wb}\cdot\cos{\alpha}\cdot z_{CG} - D_{wb}\cdot\sin{\alpha}\cdot mgc\cdot(x_{AC} - x_{CG})] ";
         eq = Equation(strcat(myEq));
         eq.DisplayInline = true;
         eq.FontSize = 10;
@@ -377,7 +377,7 @@ add(sec,para);
         % -----------------------------------------------------------------
         % PITCHING ANGLE DIFFERENTIAL EQUATION 
         %
-        myEq = "$ + \biggl[-\frac{L_{t}}{\cos{\alpha}}\cdot(l_{t} + MGC\cdot(x_{AC} - x_{CG})) \biggr] - \\ T\cdot h + M_{wb} = 0 ";
+        myEq = "$ + \biggl[-\frac{L_{t}}{\cos{\alpha}}\cdot(l_{t} + mgc\cdot(x_{AC} - x_{CG})) \biggr] - \\ T\cdot h + M_{wb} = 0 ";
         eq = Equation(strcat(myEq));
         eq.DisplayInline = true;
         eq.FontSize = 10;
@@ -412,7 +412,7 @@ add(sec,para);
             %each table row needs of a fieldValue
             %1
             parameter = {'XCG'; 'XCG/MAC'; 'XAC/MAC'; 'XP'; 'XHT'; 'ZCG'; ...
-                         'h'; 'MGC'};
+                         'h'; 'mgc'};
             value     = {num2str(xcg,4); num2str(xcg_nondim,4); ...
                 num2str(xac_nondim,4); num2str(xp_nondim,4); ...
                 num2str(xht,4); num2str(zcg,4); num2str(h,4); ...
@@ -547,9 +547,10 @@ sec = Section();
 sec.Title = 'Wing airloads';
 str = ['Wing airloads are depicted in figure; these are the airloads' ...
     ' necessary to size wing structures and they comes from the' ...
-    ' balancing equations applied on the full aircraft. Mainly, these' ...
+    ' equilibrium equations applied on the full aircraft. Mainly, these' ...
     ' loads come from lift, during a symmetric, straight, non-accelerated' ...
-    ' flight condition.'];
+    ' flight condition, including lift that results from horizontal' ...
+    ' tail negative lift.'];
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(sec,para);

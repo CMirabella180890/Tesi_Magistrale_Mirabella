@@ -140,76 +140,76 @@ cd ..
         add(ch,tbl);
 % -------------------------------------------------------------------------
 % -------------------------------------------------------------------------
-str = ['The following assumption has been made for gust calculations:'];
-para = Paragraph(str);
-para.Style = {HAlign('justify')};
-add(ch,para);
-% -------------------------------------------------------------------------
-% -------------------------------------------------------------------------
-        % AXIAL EQUILIBRIUM
-        %
-        myEq = "$ U = \frac{U_{de}}{2}\cdot \biggl( 1 - \cos{\frac{2\pi d_{gust}}{25\cdot MGC}} \biggr) ";
-        eq = Equation(strcat(myEq));
-        eq.DisplayInline = true;
-        eq.FontSize = 10;
-        eqImg = getImpl(eq,rpt);
-        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
-            eqImg.Style = {VerticalAlign("-30%")};
-        elseif(rpt.Type == "docx")
-            eqImg.Style = {VerticalAlign("-5pt")};
-        end
-        append(ch,eqImg); 
-% -------------------------------------------------------------------------
-str = ['where'];
-para = Paragraph(str);
-para.Style = {HAlign('justify')};
-add(ch,para);
-% -------------------------------------------------------------------------
-        % d_gust
-        myEq = "$ d_{gust} = \mathrm{distance penetrated into gust; } (m) ";
-        eq = Equation(myEq);
-        eq.DisplayInline = true;
-        eq.FontSize = 12;
-        eqImg1 = getImpl(eq,rpt);
-        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
-            eqImg.Style = {VerticalAlign("-30%")};
-        elseif(rpt.Type == "docx")
-            eqImg.Style = {VerticalAlign("-5pt")};
-        end
-        ref1 = eqImg1; 
-        
-        % MGC
-        myEq = "$ MGC = \mathrm{mean geometric chord of wing; } (m) ";
-        eq = Equation(myEq);
-        eq.DisplayInline = true;
-        eq.FontSize = 12;
-        eqImg2 = getImpl(eq,rpt);
-        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
-            eqImg.Style = {VerticalAlign("-30%")};
-        elseif(rpt.Type == "docx")
-            eqImg.Style = {VerticalAlign("-5pt")};
-        end
-        ref2 = eqImg2; 
-        
-        % MGC
-        myEq = "$ U_{de} = \mathrm{derived gust velocity; } (m/s) ";
-        eq = Equation(myEq);
-        eq.DisplayInline = true;
-        eq.FontSize = 12;
-        eqImg3 = getImpl(eq,rpt);
-        if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
-            eqImg.Style = {VerticalAlign("-30%")};
-        elseif(rpt.Type == "docx")
-            eqImg.Style = {VerticalAlign("-5pt")};
-        end
-        ref3 = eqImg3;
-        
-        ol = UnorderedList({ref1, ref2, ref3});
-%         ol = UnorderedList({ref1,ref2,ref3,... 
-%             ref4,ref5,ref6, ref7,ref8});
-%         ol = UnorderedList({ref1, ref2, ref3,...
-%             ref4,ref5,ref6, ref7, ref8, ref9});
-        append(ch,ol);
+% str = ['The following assumption has been made for gust calculations:'];
+% para = Paragraph(str);
+% para.Style = {HAlign('justify')};
+% add(ch,para);
+% % -------------------------------------------------------------------------
+% % -------------------------------------------------------------------------
+%         % AXIAL EQUILIBRIUM
+%         %
+%         myEq = "$ U = \frac{U_{de}}{2}\cdot \biggl( 1 - \cos{\frac{2\pi d_{gust}}{25\cdot MGC}} \biggr) ";
+%         eq = Equation(strcat(myEq));
+%         eq.DisplayInline = true;
+%         eq.FontSize = 10;
+%         eqImg = getImpl(eq,rpt);
+%         if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+%             eqImg.Style = {VerticalAlign("-30%")};
+%         elseif(rpt.Type == "docx")
+%             eqImg.Style = {VerticalAlign("-5pt")};
+%         end
+%         append(ch,eqImg); 
+% % -------------------------------------------------------------------------
+% str = ['where'];
+% para = Paragraph(str);
+% para.Style = {HAlign('justify')};
+% add(ch,para);
+% % -------------------------------------------------------------------------
+%         % d_gust
+%         myEq = "$ d_{gust} = \mathrm{distance penetrated into gust; } (m) ";
+%         eq = Equation(myEq);
+%         eq.DisplayInline = true;
+%         eq.FontSize = 12;
+%         eqImg1 = getImpl(eq,rpt);
+%         if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+%             eqImg.Style = {VerticalAlign("-30%")};
+%         elseif(rpt.Type == "docx")
+%             eqImg.Style = {VerticalAlign("-5pt")};
+%         end
+%         ref1 = eqImg1; 
+%         
+%         % MGC
+%         myEq = "$ MGC = \mathrm{mean geometric chord of wing; } (m) ";
+%         eq = Equation(myEq);
+%         eq.DisplayInline = true;
+%         eq.FontSize = 12;
+%         eqImg2 = getImpl(eq,rpt);
+%         if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+%             eqImg.Style = {VerticalAlign("-30%")};
+%         elseif(rpt.Type == "docx")
+%             eqImg.Style = {VerticalAlign("-5pt")};
+%         end
+%         ref2 = eqImg2; 
+%         
+%         % MGC
+%         myEq = "$ U_{de} = \mathrm{derived gust velocity; } (m/s) ";
+%         eq = Equation(myEq);
+%         eq.DisplayInline = true;
+%         eq.FontSize = 12;
+%         eqImg3 = getImpl(eq,rpt);
+%         if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
+%             eqImg.Style = {VerticalAlign("-30%")};
+%         elseif(rpt.Type == "docx")
+%             eqImg.Style = {VerticalAlign("-5pt")};
+%         end
+%         ref3 = eqImg3;
+%         
+%         ol = UnorderedList({ref1, ref2, ref3});
+% %         ol = UnorderedList({ref1,ref2,ref3,... 
+% %             ref4,ref5,ref6, ref7,ref8});
+% %         ol = UnorderedList({ref1, ref2, ref3,...
+% %             ref4,ref5,ref6, ref7, ref8, ref9});
+%         append(ch,ol);
 % ------------------------------------------------------------------------- 
 flight_env_airworthiness_req = char(Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.Attributes.cs);
 str = ['The figure shows the final flight envelope, resulting from' ...

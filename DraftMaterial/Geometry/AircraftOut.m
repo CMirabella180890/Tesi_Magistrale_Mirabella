@@ -7,8 +7,11 @@ function AircraftOut(Aircraft)
 % 2) 2D plot -> 3-Views of aircraft drafting
 % 3) 3D plot -> 3D PLOT of aircraft structure with imported airfoils
 
-%Aircraft.Geometry.Vertical.empennage_flag.value = 'Single fin';
-clc; close all;
+close all
+disp ('-----------------------------------------------------------------')
+disp ('-----------------------------------------------------------------')
+disp ('Whole Aircraft Geometry utilities running')
+
 %% Auxiliary variables
 %Tlar and Configurations
 cfg = 'lw_tt_bm';                           %aircraft configuration TO BE EDITED from outside
@@ -22,13 +25,8 @@ lf = Aircraft.Geometry.Fuselage.length.value;           % fuselage lenght (m)
 Aircraft.Geometry.Fuselage.kcockpit.value = 1.0;
 Aircraft.Geometry.Fuselage.ktail.value = 1.5;
 
-% disp('------------------------------------------')
-% disp('------------------------------------------')
-% disp('------------- Fuselage data --------------')
-% disp(df)
-
 %wing
-zpos = Aircraft.Geometry.Wing.zle.value;                            %wing root chord zeta position 
+zpos = Aircraft.Geometry.Wing.zle.value;                            % wing root chord zeta position (unit)
 xle = Aircraft.Geometry.Wing.xle.value/lf;                          % wing tip leading edge %of fuselage lenght
 xtip_le = xle + ...
            (Aircraft.Geometry.Wing.b.value/2*...
@@ -53,7 +51,7 @@ Aircraft.Geometry.Horizontal.xtip_le.value = xtip_le_h; % % of lf
 Aircraft.Geometry.Horizontal.ypos.value = Aircraft.Geometry.Horizontal.yloc.value/Aircraft.Geometry.Wing.b.value/2; % % of wing span
 
 %vertical
-sweep_v = 20; %TO BE TAKEN FROM INPUT!!!
+sweep_v = Aircraft.Geometry.Vertical.sweep.value; %sweep angle in degree
 switch Aircraft.Geometry.Vertical.empennage_flag.value
     case 'Multiple fin'
         xle_v = xtip_le_h*lf;
@@ -71,13 +69,6 @@ switch Aircraft.Geometry.Vertical.empennage_flag.value
         yvloc = 0.0;
         zvloc = Aircraft.Geometry.Vertical.zpos.value*df/2;  % in meters
 end
-%Aircraft.Geometry.Vertical.xle.value = 0.95; %of fuselage lenght
-%Aircraft.Geometry.Vertical.croot.value = 0.3136; %m
-%Aircraft.Geometry.Vertical.ctip.value = 0.1534725; %m
-%Aircraft.Geometry.Vertical.xtip_le.value = 1.0; %of fuselage lenght
-
-%Aircraft.Geometry.Vertical.b.value = 0.437502; %m
-%Aircraft.Geometry.Vertical.zpos.value = 1.0; % % of df
 
 %engine 
 ezpos = 1.0;       % % df engine zeta position
@@ -87,6 +78,7 @@ Aircraft.Geometry.Engine.Primary.ypos.value = 0.0;              % %of wing semis
 Aircraft.Geometry.Engine.Primary.df.value = 0.1;                % m
 Aircraft.Geometry.Engine.Primary.propdiam.value = 0.6;          %prop diameter in meters
 Aircraft.Geometry.Engine.Primary.zpos.value = 1.0;              %of fus df
+
 %landing gear
 % x_main_lg = Aircraft.Geometry.Undercarriage.Main.xpos.value*lf;
 % x_nose_lg = Aircraft.Geometry.Undercarriage.Nose.xpos.value*lf;
@@ -289,81 +281,133 @@ if  Aircraft.TLAR.Type_engine.value == ("TP")
     end
 end
 
+%MOVABLES START HERE
+
 %AILERON %TO BE MODIFIED for kinks WING!!!!
-%linear chord law
-c0 = Aircraft.Geometry.Wing.croot.value;          % root chord (unit)
-c1 = Aircraft.Geometry.Wing.ctip.value;           % tip chord (unit)
-span0 = Aircraft.Geometry.Wing.yle.value;
-span1 = Aircraft.Geometry.Wing.b.value/2;
-[c_0,c_y] = chord_linear(c0 ,c1, span0, span1);
+if isfield(Aircraft.Geometry, 'Aileron') == 1
+    %linear chord law
+    c0 = Aircraft.Geometry.Wing.croot.value;          % root chord (unit)
+    c1 = Aircraft.Geometry.Wing.ctip.value;           % tip chord (unit)
+    span0 = Aircraft.Geometry.Wing.yle.value;
+    span1 = Aircraft.Geometry.Wing.b.value/2;
+    [c_0,c_y] = chord_linear(c0 ,c1, span0, span1);
+    
+    y_inner = Aircraft.Geometry.Aileron.eta_inner.value * span1;
+    y_outer = Aircraft.Geometry.Aileron.eta_outer.value * span1;
+    
+    c_inner = c_0 - c_y * y_inner;                      %htail chord at inner station (unit)
+    c_outer = c_0 - c_y * y_outer;                      %htail chord at inner station (unit)
+    
+    cf_inner = c_inner * Aircraft.Geometry.Aileron.ca_c_root.value;   %elevetor chord at inner station (unit)
+    cf_outer = c_outer* Aircraft.Geometry.Aileron.ca_c_tip.value;    %elevetor chord at inner station (unit)
+    
+    xle_inner = Aircraft.Geometry.Wing.xle.value +  y_inner * tan(Aircraft.Geometry.Wing.sweep.value/57.3) +...
+        c_inner - cf_inner;
+    
+    xle_outer = Aircraft.Geometry.Wing.xle.value +  y_outer * tan(Aircraft.Geometry.Wing.sweep.value/57.3) +...
+        c_outer - cf_outer;
+    
+    plot([y_inner y_inner],...
+        [xle_inner xle_inner+cf_inner],'r',"LineWidth",1.5)
+    plot([y_outer y_outer],...
+        [xle_outer xle_outer+cf_outer],'r',"LineWidth",1.5)
+    plot([y_inner y_outer],...
+        [xle_inner xle_outer],'r',"LineWidth",1.5)
+    fill ([y_inner y_outer y_outer y_inner],[xle_inner xle_outer xle_outer+cf_outer xle_inner+cf_inner],'r')
+    %
+    plot([-y_inner -y_inner],...
+        [xle_inner xle_inner+cf_inner],'r',"LineWidth",1.5)
+    plot([-y_outer -y_outer],...
+        [xle_outer xle_outer+cf_outer],'r',"LineWidth",1.5)
+    plot([-y_inner -y_outer],...
+        [xle_inner xle_outer],'r',"LineWidth",1.5)
+    %
+    fill ([-y_inner -y_outer -y_outer -y_inner],[xle_inner xle_outer xle_outer+cf_outer xle_inner+cf_inner],'r')
+end
 
-y_inner = Aircraft.Geometry.Aileron.eta_inner.value * span1;
-y_outer = Aircraft.Geometry.Aileron.eta_outer.value * span1;
-
-c_inner = c_0 - c_y * y_inner;                      %htail chord at inner station (unit)
-c_outer = c_0 - c_y * y_outer;                      %htail chord at inner station (unit)
-
-cf_inner = c_inner * Aircraft.Geometry.Aileron.ca_c_inner.value;   %elevetor chord at inner station (unit)
-cf_outer = c_outer* Aircraft.Geometry.Aileron.ca_c_outer.value;    %elevetor chord at inner station (unit)
-
-xle_inner = Aircraft.Geometry.Wing.xle.value +  y_inner * tan(Aircraft.Geometry.Wing.sweep.value/57.3) +...
-    c_inner - cf_inner;
-
-xle_outer = Aircraft.Geometry.Wing.xle.value +  y_outer * tan(Aircraft.Geometry.Wing.sweep.value/57.3) +...
-    c_outer - cf_outer;
-
-plot([y_inner y_inner],...
-     [xle_inner xle_inner+cf_inner],'r',"LineWidth",1.5)
-plot([y_outer y_outer],...
-     [xle_outer xle_outer+cf_outer],'r',"LineWidth",1.5)
- plot([y_inner y_outer],...
-     [xle_inner xle_outer],'r',"LineWidth",1.5)
-%
-plot([-y_inner -y_inner],...
-     [xle_inner xle_inner+cf_inner],'r',"LineWidth",1.5)
-plot([-y_outer -y_outer],...
-     [xle_outer xle_outer+cf_outer],'r',"LineWidth",1.5)
- plot([-y_inner -y_outer],...
-     [xle_inner xle_outer],'r',"LineWidth",1.5)
-%
+%FLAPS %TO BE MODIFIED for kinks WING!!!!
+if isfield(Aircraft.Geometry, 'Flaps') == 1
+    %linear chord law
+    c0 = Aircraft.Geometry.Wing.croot.value;          % root chord (unit)
+    c1 = Aircraft.Geometry.Wing.ctip.value;           % tip chord (unit)
+    span0 = Aircraft.Geometry.Wing.yle.value;
+    span1 = Aircraft.Geometry.Wing.b.value/2;
+    [c_0,c_y] = chord_linear(c0 ,c1, span0, span1);
+    
+    y_inner = Aircraft.Geometry.Flaps.eta_inner.value * span1;
+    y_outer = Aircraft.Geometry.Flaps.eta_outer.value * span1;
+    
+    c_inner = c_0 - c_y * y_inner;                      %htail chord at inner station (unit)
+    c_outer = c_0 - c_y * y_outer;                      %htail chord at inner station (unit)
+    
+    cf_inner = c_inner * Aircraft.Geometry.Flaps.cf_c_root.value;   %elevetor chord at inner station (unit)
+    cf_outer = c_outer* Aircraft.Geometry.Flaps.cf_c_tip.value;    %elevetor chord at inner station (unit)
+    
+    xle_inner = Aircraft.Geometry.Wing.xle.value +  y_inner * tan(Aircraft.Geometry.Wing.sweep.value/57.3) +...
+        c_inner - cf_inner;
+    
+    xle_outer = Aircraft.Geometry.Wing.xle.value +  y_outer * tan(Aircraft.Geometry.Wing.sweep.value/57.3) +...
+        c_outer - cf_outer;
+    
+    plot([y_inner y_inner],...
+        [xle_inner xle_inner+cf_inner],'r',"LineWidth",1.5)
+    plot([y_outer y_outer],...
+        [xle_outer xle_outer+cf_outer],'r',"LineWidth",1.5)
+    plot([y_inner y_outer],...
+        [xle_inner xle_outer],'r',"LineWidth",1.5)
+    fill ([y_inner y_outer y_outer y_inner],[xle_inner xle_outer xle_outer+cf_outer xle_inner+cf_inner],'r')
+    %
+    plot([-y_inner -y_inner],...
+        [xle_inner xle_inner+cf_inner],'r',"LineWidth",1.5)
+    plot([-y_outer -y_outer],...
+        [xle_outer xle_outer+cf_outer],'r',"LineWidth",1.5)
+    plot([-y_inner -y_outer],...
+        [xle_inner xle_outer],'r',"LineWidth",1.5)
+    %
+    fill ([-y_inner -y_outer -y_outer -y_inner],[xle_inner xle_outer xle_outer+cf_outer xle_inner+cf_inner],'r')
+end
 
 
 %ELEVATOR
-%linear chord law
-c0 = Aircraft.Geometry.Horizontal.croot.value;          % root chord (unit)
-c1 = Aircraft.Geometry.Horizontal.ctip.value;           % tip chord (unit)
-span0 = Aircraft.Geometry.Horizontal.yloc.value;
-span1 = Aircraft.Geometry.Horizontal.b.value/2;
-[c_0,c_y] = chord_linear(c0 ,c1, span0, span1);
-%
-y_inner = Aircraft.Geometry.Elevator.eta_inner.value * span1;
-y_outer = Aircraft.Geometry.Elevator.eta_outer.value * span1;
-%
-c_inner = c_0 - c_y * y_inner;                      %htail chord at inner station (unit)
-c_outer = c_0 - c_y * y_outer;                      %htail chord at inner station (unit)
-%
-ce_inner = c_inner * Aircraft.Geometry.Elevator.cf_c_inner.value;   %elevetor chord at inner station (unit)
-ce_outer = c_outer* Aircraft.Geometry.Elevator.cf_c_outer.value;    %elevetor chord at inner station (unit)
-%
-xle_inner = Aircraft.Geometry.Horizontal.xle.value*lf +  y_inner * tan(Aircraft.Geometry.Horizontal.sweep.value/57.3) +...
-    c_inner - ce_inner;
-xle_outer = Aircraft.Geometry.Horizontal.xle.value*lf +  y_outer * tan(Aircraft.Geometry.Horizontal.sweep.value/57.3) +...
-    c_outer - ce_outer;
-%
-plot([y_inner y_inner],...
-     [xle_inner xle_inner+ce_inner],'g',"LineWidth",1.5)
-plot([y_outer y_outer],...
-     [xle_outer xle_outer+ce_outer],'g',"LineWidth",1.5)
- plot([y_inner y_outer],...
-     [xle_inner xle_outer],'g',"LineWidth",1.5)
-%
-plot([-y_inner -y_inner],...
-     [xle_inner xle_inner+ce_inner],'g',"LineWidth",1.5)
-plot([-y_outer -y_outer],...
-     [xle_outer xle_outer+ce_outer],'g',"LineWidth",1.5)
- plot([-y_inner -y_outer],...
-     [xle_inner xle_outer],'g',"LineWidth",1.5)
-%
+if isfield(Aircraft.Geometry, 'Elevator') == 1
+    %linear chord law
+    c0 = Aircraft.Geometry.Horizontal.croot.value;          % root chord (unit)
+    c1 = Aircraft.Geometry.Horizontal.ctip.value;           % tip chord (unit)
+    span0 = Aircraft.Geometry.Horizontal.yloc.value;
+    span1 = Aircraft.Geometry.Horizontal.b.value/2;
+    [c_0,c_y] = chord_linear(c0 ,c1, span0, span1);
+    %
+    y_inner = Aircraft.Geometry.Elevator.eta_inner.value * span1;
+    y_outer = Aircraft.Geometry.Elevator.eta_outer.value * span1;
+    %
+    c_inner = c_0 - c_y * y_inner;                      %htail chord at inner station (unit)
+    c_outer = c_0 - c_y * y_outer;                      %htail chord at inner station (unit)
+    %
+    ce_inner = c_inner * Aircraft.Geometry.Elevator.cf_c_inner.value;   %elevetor chord at inner station (unit)
+    ce_outer = c_outer* Aircraft.Geometry.Elevator.cf_c_outer.value;    %elevetor chord at inner station (unit)
+    %
+    xle_inner = Aircraft.Geometry.Horizontal.xle.value*lf +  y_inner * tan(Aircraft.Geometry.Horizontal.sweep.value/57.3) +...
+        c_inner - ce_inner;
+    xle_outer = Aircraft.Geometry.Horizontal.xle.value*lf +  y_outer * tan(Aircraft.Geometry.Horizontal.sweep.value/57.3) +...
+        c_outer - ce_outer;
+    %
+    plot([y_inner y_inner],...
+        [xle_inner xle_inner+ce_inner],'g',"LineWidth",1.5)
+    plot([y_outer y_outer],...
+        [xle_outer xle_outer+ce_outer],'g',"LineWidth",1.5)
+    plot([y_inner y_outer],...
+        [xle_inner xle_outer],'g',"LineWidth",1.5)
+    fill ([y_inner y_outer y_outer y_inner],[xle_inner xle_outer xle_outer+ce_outer xle_inner+ce_inner],'g')
+    %
+    plot([-y_inner -y_inner],...
+        [xle_inner xle_inner+ce_inner],'g',"LineWidth",1.5)
+    plot([-y_outer -y_outer],...
+        [xle_outer xle_outer+ce_outer],'g',"LineWidth",1.5)
+    plot([-y_inner -y_outer],...
+        [xle_inner xle_outer],'g',"LineWidth",1.5)
+    fill ([-y_inner -y_outer -y_outer -y_inner],[xle_inner xle_outer xle_outer+ce_outer xle_inner+ce_inner],'g')
+    %
+end
 
 grid on
 title('Aircraft Top-View')
@@ -407,16 +451,15 @@ plot([lf,...
     lf-Aircraft.Geometry.Fuselage.ktail.value*df],...
     [df/2-dbase, -df/2],'b',"LineWidth",1.5)
 
-% %wing
-% plot([xle*lf,...
-%     xle*lf+Aircraft.Geometry.Wing.croot.value]...
-%     ,[zpos*df/2, zpos*df/2],'r',"LineWidth",1.5)
+%wing
+plot([xle*lf, xle*lf+Aircraft.Geometry.Wing.croot.value]...
+    ,[zpos, zpos],'r',"LineWidth",1.5)
 
-% %horizontal
-% plot([Aircraft.Geometry.Horizontal.xle.value*lf,...
-%     Aircraft.Geometry.Horizontal.xle.value*lf+Aircraft.Geometry.Horizontal.croot.value]...
-%     ,[df/2+hzpos*Aircraft.Geometry.Vertical.b.value, ...
-%     df/2+hzpos*Aircraft.Geometry.Vertical.b.value],'g',"LineWidth",1.5)
+%horizontal
+plot([Aircraft.Geometry.Horizontal.xle.value*lf,...
+    Aircraft.Geometry.Horizontal.xle.value*lf+Aircraft.Geometry.Horizontal.croot.value]...
+    ,[df/2+hzpos*Aircraft.Geometry.Vertical.b.value, ...
+    df/2+hzpos*Aircraft.Geometry.Vertical.b.value],'g',"LineWidth",1.5)
 
 %vertical
 switch Aircraft.Geometry.Vertical.empennage_flag.value
@@ -449,8 +492,8 @@ switch Aircraft.Geometry.Vertical.empennage_flag.value
             [zvloc, zvloc + Aircraft.Geometry.Vertical.b.value],'y',"LineWidth",1.5)
 end
 
+
 %RUDDER
-%ELEVATOR
 %linear chord law
 c0 = Aircraft.Geometry.Vertical.croot.value;          % root chord (unit)
 c1 = Aircraft.Geometry.Vertical.ctip.value;           % tip chord (unit)
@@ -461,41 +504,32 @@ span1 = Aircraft.Geometry.Vertical.b.value;
 y_inner = Aircraft.Geometry.Rudder.eta_inner.value * span1;
 y_outer = Aircraft.Geometry.Rudder.eta_outer.value * span1;
 %
-c_inner = c_0 - c_y * y_inner;                      %htail chord at inner station (unit)
-c_outer = c_0 - c_y * y_outer;                      %htail chord at inner station (unit)
+c_inner = c_0 - c_y * y_inner;                      %vtail chord at inner station (unit)
+c_outer = c_0 - c_y * y_outer;                      %vtail chord at inner station (unit)
 %
-cf_inner = c_inner * Aircraft.Geometry.Rudder.cr_c_root.value;   %elevetor chord at inner station (unit)
-cf_outer = c_outer* Aircraft.Geometry.Rudder.cr_c_tip.value;    %elevetor chord at inner station (unit)
+cf_inner = c_inner * Aircraft.Geometry.Rudder.cr_c_root.value;   %rudder chord at inner station (unit)
+cf_outer = c_outer* Aircraft.Geometry.Rudder.cr_c_tip.value;     %rudder chord at inner station (unit)
 %
 xle_inner = xtip_le_h*lf +  y_inner * tan(sweep_v/57.3) + (c_inner - cf_inner);
 xle_outer = xtip_le_h*lf +  y_outer * tan(sweep_v/57.3) + (c_outer - cf_outer);
 %
-% xle_inner = xle_v*lf +  y_inner * tan(sweep_v/57.3) +...
-%     c_inner - cf_inner;
-% xle_outer = xle_v*lf +  y_outer * tan(sweep_v/57.3) +...
-%     c_outer - cf_outer;
-% %
+
 plot([xle_inner  xle_inner+cf_inner],...
      zvloc + [y_inner y_inner],'y',"LineWidth",1.5)
 plot([xle_outer xle_outer+cf_outer],...
-     [y_outer+zvloc y_outer+zvloc],'y',"LineWidth",1.5)
+     zvloc + [y_outer y_outer],'y',"LineWidth",1.5)
  plot([xle_inner xle_outer],...
-     [y_inner+zvloc y_outer+zvloc],'y',"LineWidth",1.5)
-%
-% plot([-y_inner -y_inner],...
-%      [xle_inner xle_inner+cf_inner],'y',"LineWidth",1.5)
-% plot([-y_outer -y_outer],...
-%      [xle_outer xle_outer+cf_outer],'y',"LineWidth",1.5)
-%  plot([-y_inner -y_outer],...
-%      [xle_inner xle_outer],'y',"LineWidth",1.5)
-%
+     zvloc + [y_inner y_outer],'y',"LineWidth",1.5)
 
+fill ([xle_inner xle_outer xle_outer+cf_outer xle_inner+cf_inner],...
+      [zvloc + y_inner  zvloc + y_outer...
+       zvloc + y_outer  zvloc + y_inner],'y')
 
-%engine
+%ENGINE
 zmin = ezpos*df/2 - Aircraft.Geometry.Engine.Primary.df.value/2;
 zmax = ezpos*df/2 + Aircraft.Geometry.Engine.Primary.df.value/2;
 
-%propeller
+%PROPELLER
 if Aircraft.TLAR.Type_engine.value == "TP"
     if strcmp(prop_config,'tractor')==1
         if cfg(end-1:end) == "wm"
@@ -525,8 +559,7 @@ plot([xmin xmax],[zmax zmax],'k',"LineWidth",2)
 plot([xmin xmin],[zmin zmax],'k',"LineWidth",2)
 plot([xmax xmax],[zmin zmax],'k',"LineWidth",2)
 
-
-%undercarriage
+%LANDING GEAR
 teta = linspace (0,360,100);
 
 x = x_main_lg  + ...
@@ -541,12 +574,14 @@ z = z_nose_lg + d_wheel_nose/2 +...
     d_wheel_nose/2.* sin(teta/57.3);
 plot(x,z,'k','LineWidth',2)
 
-
 grid on
 title('Aircraft Side-View')
 xlabel({'x (m)'})
 ylabel({'z (m)'})
 axis equal
+
+saveas(gcf, 'Side-View.fig')
+saveas(gcf, 'Side-View.png')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -635,8 +670,8 @@ axis equal
 
 %saveas(gcf,[pwd 'Aircraft.fig']);
 %saveas(gcf,[pwd 'Aircraft.png']);
-saveas(gcf, 'Aircraft.fig');
-saveas(gcf, 'Aircraft.png');
+saveas(gcf, 'Front-View.fig')
+saveas(gcf, 'Front-View.png')
 
 pwd 
 hold off
@@ -1185,6 +1220,44 @@ end
 
 %cd ('../')
 
+  %% moving results
+    movefile('Top-View.png', Aircraft.res_dir);
+    movefile('Top-View.fig', Aircraft.res_dir);
+    movefile('Side-View.fig', Aircraft.res_dir);
+    movefile('Side-View.png', Aircraft.res_dir);
+    movefile('Front-View.fig', Aircraft.res_dir);
+    movefile('Front-View.png', Aircraft.res_dir);
+    movefile('Aircraft3D.fig', Aircraft.res_dir);
+    movefile('Aircraft3D.png', Aircraft.res_dir);
+    movefile('FrontView3D.fig', Aircraft.res_dir);
+    movefile('FrontView3D.png', Aircraft.res_dir);
+    movefile('SideView3D.fig', Aircraft.res_dir);
+    movefile('SideView3D.png', Aircraft.res_dir);
+    movefile('TopView3D.fig', Aircraft.res_dir);
+    movefile('TopView3D.png', Aircraft.res_dir);
+    
+    if exist('engine.mat') == 2
+        movefile('engine.mat', Aircraft.res_dir);
+    end
+    if exist('fuselage.mat') == 2
+        movefile('fuselage.mat', Aircraft.res_dir);
+    end
+    if exist('wing.mat') == 2
+        movefile('wing.mat', Aircraft.res_dir);
+    end
+    if exist('vertical.mat') == 2
+        movefile('vertical.mat', Aircraft.res_dir);
+    end
+    if exist('horizontal.mat') == 2
+        movefile('horizontal.mat', Aircraft.res_dir);
+    end
+    if exist('landing_gear.mat') == 2
+        movefile('landing_gear.mat', Aircraft.res_dir);
+    end
+    
+disp ('-----------------------------------------------------------------')
+disp ('-----------------------------------------------------------------')
+disp ('End Geometry utilities run')
 
 end
 

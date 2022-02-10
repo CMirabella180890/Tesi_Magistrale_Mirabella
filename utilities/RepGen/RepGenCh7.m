@@ -271,7 +271,7 @@ switch requirement
         ref6 = eqImg6;   
        
         %cbar
-        myEq = "$\bar{c} = \mathrm{mean geometric chord (m)}; g = \mathrm{acceleration due to gravity (m/s2);}";
+        myEq = "$\bar{C} = \mathrm{mean geometric chord (m)}; g = \mathrm{acceleration due to gravity (m/s2);}";
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;

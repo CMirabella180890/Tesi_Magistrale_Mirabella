@@ -9,7 +9,7 @@ function EngineOut(Aircraft)
 % 2) 2D plot -> 3-Views of aircraft drafting
 % 3) 3D plot -> 3D PLOT of aircraft structure with imported airfoils
 
-comp = 'Engine ';
+comp = 'Engine';
 
 if isfield(Aircraft.Geometry, "Engine") == 1
     disp ([comp, 'exists'])
@@ -300,7 +300,7 @@ if isfield(Aircraft.Geometry, "Engine") == 1
     disp ('-----------------------------------------------------------------')
     disp ('-----------------------------------------------------------------')
     disp ([comp, 'Geometry utilities end run'])
-    
+    return
     
     
 end 

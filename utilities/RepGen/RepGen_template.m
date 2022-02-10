@@ -49,7 +49,7 @@ tp.Title = Title;
 %end
 %tp.Image = '_figures/cover.jpg';
 cd ..
-results_path = [pwd '/Geometry/'];
+results_path = [pwd '/Geometry/DroneVLA_results/'];
 tp.Image = [results_path 'Aircraft3D.png'];
 tp.Publisher = Aircraft.Report.society;
 tp.Author = Aircraft.Report.author;

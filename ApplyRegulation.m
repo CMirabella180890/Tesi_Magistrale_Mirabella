@@ -41,6 +41,11 @@ switch (Aircraft.Certification.Regulation.value)
         CalcFlightEnv
         fprintf('-----------------');
         fprintf('\n');
+        fprintf('### Aero Model - per CS - VLA ###');
+        fprintf('\n');
+        CalcAeroModel
+        fprintf('-----------------');
+        fprintf('\n');
         fprintf('### Balancing loads - per CS - VLA ###');
         fprintf('\n');
         CalcBalancLoads
@@ -149,6 +154,8 @@ switch (Aircraft.Certification.Regulation.value)
         CalcHingeRudderLoads
         % RUN THIS AT THE END OF THE EXECUTION
         RemoveFromStruct
+        % CLOSE ALL THE FIGURES - COMMENT IF NECESSARY
+        close all;
     case 'CS23'
     case 'CS22'
 end

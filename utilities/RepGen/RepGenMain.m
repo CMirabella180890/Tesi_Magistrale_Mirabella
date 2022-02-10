@@ -131,7 +131,7 @@ tp.Title = Title;
 %% Cover image
 %tp.Image = '_figures/cover.jpg';
 cd ..
-geometry_path = [pwd '/Geometry/'];
+geometry_path = [pwd '/Geometry/DroneVLA_results/'];
 tp.Image = [geometry_path 'Aircraft3D.png'];
 tp.Publisher = Aircraft.Report.society;
 tp.Author = Aircraft.Report.author;

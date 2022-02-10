@@ -224,6 +224,17 @@ if isfield(Aircraft.Geometry, "Vertical") == 1
     
     %%
     figure('Name',[comp '-Front-View'],'NumberTitle','off');
+    hold on
+    switch Aircraft.Geometry.Vertical.empennage_flag.value
+        case 'Multiple fin'
+            plot([yvloc yvloc], [zvloc, zvloc + Aircraft.Geometry.Vertical.b.value],'y',"LineWidth",1.5)
+            plot([-yvloc -yvloc], [zvloc, zvloc + Aircraft.Geometry.Vertical.b.value],'y',"LineWidth",1.5)
+        case 'Double fin'
+            plot([yvloc yvloc], [zvloc, zvloc + Aircraft.Geometry.Vertical.b.value],'y',"LineWidth",1.5)
+            plot([-yvloc -yvloc], [zvloc, zvloc + Aircraft.Geometry.Vertical.b.value],'y',"LineWidth",1.5)
+        case 'Single fin'
+            plot([yvloc yvloc], [zvloc, zvloc + Aircraft.Geometry.Vertical.b.value],'y',"LineWidth",1.5)
+    end
     
     grid on
     title([comp 'Front-View'])

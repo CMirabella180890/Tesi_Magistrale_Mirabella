@@ -28,7 +28,7 @@ cd ..
  results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'Engine -Front-View.png']);
+fig = FormalImage([results_path,'Engine-Front-View.png']);
          fig.Caption = 'Engine, front view.';
          fig.Height = '5in';
          fig.LinkTarget='engine_front_view';
@@ -42,7 +42,7 @@ cd ..
  results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'Engine -Side-View.png']);
+fig = FormalImage([results_path,'Engine-Side-View.png']);
          fig.Caption = 'Engine, side view.';
          fig.Height = '5in';
          fig.LinkTarget='engine_side_view';
@@ -56,7 +56,7 @@ cd ..
  results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'Engine -Top-View.png']);
+fig = FormalImage([results_path,'Engine-Top-View.png']);
          fig.Caption = 'Engine, top view.';
          fig.Height = '5in';
          fig.LinkTarget='engine_top_view';
