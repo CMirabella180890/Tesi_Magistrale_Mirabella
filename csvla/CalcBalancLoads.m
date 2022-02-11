@@ -599,9 +599,9 @@ switch (Straight_flight_Case)
             CLHT_fromA1toC1 = zeros(length(V_fromA1toC1), 1);
             LHT_fromA1toC1  = zeros(length(V_fromA1toC1), 1);
             for i = 1:length(V_fromA1toC1)
-                alfa_fromA1toC1(i) = alfa_func(rho0, S, V_fromA1toC1(i), WS, n_fromA1toC1(i), CLalfa, alpha_zerol);
-                CL_fromA1toC1(i)   = CL_fullmodel(alfa_fromA1toC1(i));
-                CD_fromA1toC1(i)   = cd_calc(obj1, CD0, CL_fromA1toC1(i), AR, e, k1, k2);
+                CL_fromA1toC1(i)   = CLmax_func(rho0, V_fromA1toC1(i), WS, n_fromA1toC1(i));
+                alfa_fromA1toC1(i) = alpha_fullmodel(CL_fromA1toC1(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                CD_fromA1toC1(i)   = polyval(p_CD_wb1, alfa_fromA1toC1(i));
                 q_fromA1toC1(i)    = 0.5*rho0*(V_fromA1toC1(i))^2;
                 WBL_fromA1toC1(i)  = q_fromA1toC1(i)*S*CL_fromA1toC1(i)*1e-1;
                 CMCL_fromA1toC1(i) = CLWB_contrib(obj1, CL_fromA1toC1(i), deg2rad(alfa_fromA1toC1(i)), XAC, XCG, bCG, MAC);
@@ -622,8 +622,8 @@ switch (Straight_flight_Case)
                 tol               = 1e-3; 
                 n                 = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromA1toC1 = alpha_fullmodel(CL_new_fromA1toC1);
-                   CD_wb               = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromA1toC1 = alpha_fullmodel(CL_new_fromA1toC1, a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                   CD_wb               = polyval(p_CD_wb1, alfa_new_fromA1toC1);
                    CMCL_new            = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromA1toC1), XAC, XCG, bCG, MAC);
                    CMCD_new            = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromA1toC1), XAC, XCG, bCG, MAC);
                    CMCT_new            = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -686,9 +686,9 @@ switch (Straight_flight_Case)
             CLHT_fromC1toC = zeros(length(V_fromC1toC), 1);
             LHT_fromC1toC  = zeros(length(V_fromC1toC), 1);
             for i = 1:length(V_fromC1toC)
-                alfa_fromC1toC(i) = alfa_func(rho0, S, V_fromC1toC(i), WS, n_fromC1toC(i), CLalfa, alpha_zerol);
-                CL_fromC1toC(i)   = CL_fullmodel(alfa_fromC1toC(i));
-                CD_fromC1toC(i)   = cd_calc(obj1, CD0, CL_fromC1toC(i), AR, e, k1, k2);
+                CL_fromC1toC(i)   = CLmax_func(rho0, V_fromC1toC(i), WS, n_fromC1toC(i));
+                alfa_fromC1toC(i) = alpha_fullmodel(CL_fromC1toC(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                CD_fromC1toC(i)   = polyval(p_CD_wb1, alfa_fromC1toC(i));
                 q_fromC1toC(i)    = 0.5*rho0*(V_fromC1toC(i))^2;
                 WBL_fromC1toC(i)  = q_fromC1toC(i)*S*CL_fromC1toC(i)*1e-1;
                 CMCL_fromC1toC(i) = CLWB_contrib(obj1, CL_fromC1toC(i), deg2rad(alfa_fromC1toC(i)), XAC, XCG, bCG, MAC);
@@ -709,8 +709,8 @@ switch (Straight_flight_Case)
                 tol               = 1e-3; 
                 n                 = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromC1toC = alpha_fullmodel(CL_new_fromC1toC);
-                   CD_wb             = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromC1toC = alpha_fullmodel(CL_new_fromC1toC, a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                   CD_wb             = polyval(p_CD_wb1, alfa_fromC1toC(i));
                    CMCL_new          = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromC1toC), XAC, XCG, bCG, MAC);
                    CMCD_new          = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromC1toC), XAC, XCG, bCG, MAC);
                    CMCT_new          = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -772,9 +772,9 @@ switch (Straight_flight_Case)
             CLHT_fromCtoC2 = zeros(length(V_fromCtoC2), 1);
             LHT_fromCtoC2  = zeros(length(V_fromCtoC2), 1);
             for i = 1:length(V_fromCtoC2)
-                alfa_fromCtoC2(i) = alfa_func(rho0, S, V_fromCtoC2(i), WS, n_fromCtoC2(i), CLalfa, alpha_zerol);
-                CL_fromCtoC2(i)   = CL_fullmodel(alfa_fromCtoC2(i));
-                CD_fromCtoC2(i)   = cd_calc(obj1, CD0, CL_fromCtoC2(i), AR, e, k1, k2);
+                CL_fromCtoC2(i)   = CLmax_func(rho0, V_fromCtoC2(i), WS, n_fromCtoC2(i));
+                alfa_fromCtoC2(i) = alpha_fullmodel(CL_fromCtoC2(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                CD_fromCtoC2(i)   = polyval(p_CD_wb1, alfa_fromCtoC2(i));
                 q_fromCtoC2(i)    = 0.5*rho0*(V_fromCtoC2(i))^2;
                 WBL_fromCtoC2(i)  = q_fromCtoC2(i)*S*CL_fromCtoC2(i)*1e-1;
                 CMCL_fromCtoC2(i) = CLWB_contrib(obj1, CL_fromCtoC2(i), deg2rad(alfa_fromCtoC2(i)), XAC, XCG, bCG, MAC);
@@ -795,8 +795,8 @@ switch (Straight_flight_Case)
                 tol               = 1e-3; 
                 n                 = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromCtoC2 = alpha_fullmodel(CL_new_fromCtoC2);
-                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromCtoC2 = alpha_fullmodel(CL_new_fromCtoC2, a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                   CD_wb              = polyval(p_CD_wb1, alfa_new_fromCtoC2);
                    CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromCtoC2), XAC, XCG, bCG, MAC);
                    CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromCtoC2), XAC, XCG, bCG, MAC);
                    CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -858,9 +858,9 @@ switch (Straight_flight_Case)
             CLHT_fromC2toD = zeros(length(V_fromC2toD), 1);
             LHT_fromC2toD  = zeros(length(V_fromC2toD), 1);
             for i = 1:length(V_fromC2toD)
-                alfa_fromC2toD(i) = alfa_func(rho0, S, V_fromC2toD(i), WS, n_fromC2toD(i), CLalfa, alpha_zerol);
-                CL_fromC2toD(i)   = CL_fullmodel(alfa_fromC2toD(i));
-                CD_fromC2toD(i)   = cd_calc(obj1, CD0, CL_fromC2toD(i), AR, e, k1, k2);
+                CL_fromC2toD(i)   = CLmax_func(rho0, V_fromC2toD(i), WS, n_fromC2toD(i));
+                alfa_fromC2toD(i) = alpha_fullmodel(CL_fromC2toD(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                CD_fromC2toD(i)   = polyval(p_CD_wb1, alfa_fromC2toD(i));
                 q_fromC2toD(i)    = 0.5*rho0*(V_fromC2toD(i))^2;
                 WBL_fromC2toD(i)  = q_fromC2toD(i)*S*CL_fromC2toD(i)*1e-1;
                 CMCL_fromC2toD(i) = CLWB_contrib(obj1, CL_fromC2toD(i), deg2rad(alfa_fromC2toD(i)), XAC, XCG, bCG, MAC);
@@ -881,8 +881,8 @@ switch (Straight_flight_Case)
                 tol               = 1e-3; 
                 n                 = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromC2toD = alpha_fullmodel(CL_new_fromC2toD);
-                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromC2toD = alpha_fullmodel(CL_new_fromC2toD, a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                   CD_wb              = polyval(p_CD_wb1, alfa_new_fromC2toD);
                    CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromC2toD), XAC, XCG, bCG, MAC);
                    CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromC2toD), XAC, XCG, bCG, MAC);
                    CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -944,9 +944,9 @@ switch (Straight_flight_Case)
             CLHT_fromDto0 = zeros(length(V_fromDto0), 1);
             LHT_fromDto0  = zeros(length(V_fromDto0), 1);
             for i = 1:length(V_fromDto0)
-                alfa_fromDto0(i) = alfa_func(rho0, S, V_fromDto0(i), WS, n_fromDto0(i), CLalfa, alpha_zerol);
-                CL_fromDto0(i)   = CL_fullmodel(alfa_fromDto0(i));
-                CD_fromDto0(i)   = cd_calc(obj1, CD0, CL_fromDto0(i), AR, e, k1, k2);
+                CL_fromDto0(i)   = CLmax_func(rho0, V_fromDto0(i), WS, n_fromDto0(i));
+                alfa_fromDto0(i) = alpha_fullmodel(CL_fromDto0(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                CD_fromDto0(i)   = polyval(p_CD_wb1, alfa_fromDto0(i));
                 q_fromDto0(i)    = 0.5*rho0*(V_fromDto0(i))^2;
                 WBL_fromDto0(i)  = q_fromDto0(i)*S*CL_fromDto0(i)*1e-1;
                 CMCL_fromDto0(i) = CLWB_contrib(obj1, CL_fromDto0(i), deg2rad(alfa_fromDto0(i)), XAC, XCG, bCG, MAC);
@@ -967,8 +967,8 @@ switch (Straight_flight_Case)
                 tol               = 1e-3; 
                 n                 = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromDto0  = alpha_fullmodel(CL_new_fromDto0);
-                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromDto0  = alpha_fullmodel(CL_new_fromDto0, a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                   CD_wb              = polyval(p_CD_wb1, alfa_new_fromDto0);
                    CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromDto0), XAC, XCG, bCG, MAC);
                    CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromDto0), XAC, XCG, bCG, MAC);
                    CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -1042,12 +1042,21 @@ switch (Straight_flight_Case)
                 Aero_force = q_unit_load_factor(i)*S;
                 CLWB_unit_load_factor(i) = ((Aircraft_weight(i))*(1/Aero_force));
             end
-
+            
+            % ALPHA CALCULATION 
+            alpha_unit_load_factor = zeros(length(V_unit_load_factor), 1);
+            for i = 1:length(alpha_unit_load_factor)
+                alpha_unit_load_factor(i) = alpha_fullmodel(CLWB_unit_load_factor(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor.value = alpha_unit_load_factor;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor.Attributes.unit = "deg";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor_rad.value = deg2rad(alpha_unit_load_factor);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor_rad.Attributes.unit = "rad";              
+                
             % DRAG LIFT COEFFICIENT
             CD_unit_load_factor = zeros(length(V_unit_load_factor), 1);
             for i = 1:length(V_unit_load_factor)
-                CD_unit_load_factor(i) = cd_calc(obj1, CD0, CLWB_unit_load_factor(i), ...
-                                                 AR, e, k1, k2);
+                CD_unit_load_factor(i) = polyval(p_CD_wb1, alpha_unit_load_factor(i));
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value = V_unit_load_factor;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.Attributes.unit = "m/s";        
@@ -1057,24 +1066,6 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLWB_unit_load_factor.Attributes.unit = "Non dimensional"; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_unit_load_factor.value = CD_unit_load_factor;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_unit_load_factor.Attributes.unit = "Non dimensional"; 
-
-            % Interpolation coefficient from actual aerodynamic data
-            CL_supp    = str2num(Aircraft.Certification.Aerodynamic_data.CL.value);
-            alpha_supp = str2num(Aircraft.Certification.Aerodynamic_data.alpha.value);
-            x          = 0.027*ones(length(CL_supp), 1);
-            p = polyfit(CL_supp + x, alpha_supp, 2);
-            CLalfa_deg = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value;
-
-            % ALPHA CALCULATION 
-            alpha_unit_load_factor = zeros(length(V_unit_load_factor), 1);
-            for i = 1:length(alpha_unit_load_factor)
-                alpha_unit_load_factor(i) = alpha_calc(obj1, ...
-                                                       CLWB_unit_load_factor(i), CL0, CL_star, CLalfa_deg, p);
-            end
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor.value = alpha_unit_load_factor;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor.Attributes.unit = "deg";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor_rad.value = deg2rad(alpha_unit_load_factor);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor_rad.Attributes.unit = "rad"; 
 
             % WING BODY LIFT 
             WBLift_unit_load_factor = zeros(length(alpha_unit_load_factor), 1);
@@ -1398,10 +1389,10 @@ switch (Straight_flight_Case)
             CMCG_fromA1toC = zeros(length(V_fromA1toC), 1); 
             CLHT_fromA1toC = zeros(length(V_fromA1toC), 1);
             LHT_fromA1toC  = zeros(length(V_fromA1toC), 1);
-            for i = 1:length(V_fromA1toC)
-                alfa_fromA1toC(i) = alfa_func(rho0, S, V_fromA1toC(i), WS, n_fromA1toC(i), CLalfa, alpha_zerol);
-                CL_fromA1toC(i)   = CL_fullmodel(alfa_fromA1toC(i));
-                CD_fromA1toC(i)   = cd_calc(obj1, CD0, CL_fromA1toC(i), AR, e, k1, k2);
+            for i = 1:length(V_fromA1toC)           
+                CL_fromA1toC(i)   = CLmax_func(rho0, V_fromA1toC(i), WS, n_fromA1toC(i));
+                alfa_fromA1toC(i) = alpha_fullmodel(CL_fromA1toC(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                CD_fromA1toC(i)   = polyval(p_CD_wb1, alfa_fromA1toC(i));
                 q_fromA1toC(i)    = 0.5*rho0*(V_fromA1toC(i))^2;
                 WBL_fromA1toC(i)  = q_fromA1toC(i)*S*CL_fromA1toC(i)*1e-1;
                 CMCL_fromA1toC(i) = CLWB_contrib(obj1, CL_fromA1toC(i), deg2rad(alfa_fromA1toC(i)), XAC, XCG, bCG, MAC);
@@ -1422,8 +1413,8 @@ switch (Straight_flight_Case)
                 tol               = 1e-3; 
                 n                 = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromA1toC = alpha_fullmodel(CL_new_fromA1toC);
-                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromA1toC = alpha_fullmodel(CL_new_fromA1toC, a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                   CD_wb              = polyval(p_CD_wb1, alfa_new_fromA1toC);
                    CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromA1toC), XAC, XCG, bCG, MAC);
                    CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromA1toC), XAC, XCG, bCG, MAC);
                    CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -1485,9 +1476,9 @@ switch (Straight_flight_Case)
             CLHT_fromCtoD = zeros(length(V_fromCtoD), 1);
             LHT_fromCtoD  = zeros(length(V_fromCtoD), 1);
             for i = 1:length(V_fromCtoD)
-                alfa_fromCtoD(i) = alfa_func(rho0, S, V_fromCtoD(i), WS, n_fromCtoD(i), CLalfa, alpha_zerol);
-                CL_fromCtoD(i)   = CL_fullmodel(alfa_fromCtoD(i));
-                CD_fromCtoD(i)   = cd_calc(obj1, CD0, CL_fromCtoD(i), AR, e, k1, k2);
+                CL_fromCtoD(i)   = CLmax_func(rho0, V_fromCtoD(i), WS, n_fromCtoD(i));
+                alfa_fromCtoD(i) = alpha_fullmodel(CL_fromCtoD(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                CD_fromCtoD(i)   = polyval(p_CD_wb1, alfa_fromCtoD(i));
                 q_fromCtoD(i)    = 0.5*rho0*(V_fromCtoD(i))^2;
                 WBL_fromCtoD(i)  = q_fromCtoD(i)*S*CL_fromCtoD(i)*1e-1;
                 CMCL_fromCtoD(i) = CLWB_contrib(obj1, CL_fromCtoD(i), deg2rad(alfa_fromCtoD(i)), XAC, XCG, bCG, MAC);
@@ -1508,8 +1499,8 @@ switch (Straight_flight_Case)
                 tol               = 1e-3; 
                 n                 = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromCtoD  = alpha_fullmodel(CL_new_fromCtoD);
-                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromCtoD  = alpha_fullmodel(CL_new_fromCtoD, a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                   CD_wb              = polyval(p_CD_wb1, alfa_new_fromCtoD);
                    CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromCtoD), XAC, XCG, bCG, MAC);
                    CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromCtoD), XAC, XCG, bCG, MAC);
                    CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -1571,10 +1562,10 @@ switch (Straight_flight_Case)
             CMCG_fromDto0 = zeros(length(V_fromDto0), 1); 
             CLHT_fromDto0 = zeros(length(V_fromDto0), 1);
             LHT_fromDto0  = zeros(length(V_fromDto0), 1);
-            for i = 1:length(V_fromDto0)
-                alfa_fromDto0(i) = alfa_func(rho0, S, V_fromDto0(i), WS, n_fromDto0(i), CLalfa, alpha_zerol);
-                CL_fromDto0(i)   = CL_fullmodel(alfa_fromDto0(i));
-                CD_fromDto0(i)   = cd_calc(obj1, CD0, CL_fromDto0(i), AR, e, k1, k2);
+            for i = 1:length(V_fromDto0) 
+                CL_fromDto0(i)   = CLmax_func(rho0, V_fromDto0(i), WS, n_fromDto0(i));
+                alfa_fromDto0(i) = alpha_fullmodel(CL_fromDto0(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                CD_fromDto0(i)   = polyval(p_CD_wb1, alfa_fromDto0(i));
                 q_fromDto0(i)    = 0.5*rho0*(V_fromDto0(i))^2;
                 WBL_fromDto0(i)  = q_fromDto0(i)*S*CL_fromDto0(i)*1e-1;
                 CMCL_fromDto0(i) = CLWB_contrib(obj1, CL_fromDto0(i), deg2rad(alfa_fromDto0(i)), XAC, XCG, bCG, MAC);
@@ -1595,8 +1586,8 @@ switch (Straight_flight_Case)
                 tol               = 1e-3; 
                 n                 = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromDto0  = alpha_fullmodel(CL_new_fromDto0);
-                   CD_wb              = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromDto0  = alpha_fullmodel(CL_new_fromDto0, a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+                   CD_wb              = polyval(p_CD_wb1, alfa_new_fromDto0);
                    CMCL_new           = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromDto0), XAC, XCG, bCG, MAC);
                    CMCD_new           = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromDto0), XAC, XCG, bCG, MAC);
                    CMCT_new           = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -1670,12 +1661,21 @@ switch (Straight_flight_Case)
                 Aero_force = q_unit_load_factor(i)*S;
                 CLWB_unit_load_factor(i) = ((Aircraft_weight(i))*(1/Aero_force));
             end
-
+                
+            % ALPHA CALCULATION 
+            alpha_unit_load_factor = zeros(length(V_unit_load_factor), 1);
+            for i = 1:length(alpha_unit_load_factor)
+                alpha_unit_load_factor(i) = alpha_fullmodel(CLWB_unit_load_factor(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor.value = alpha_unit_load_factor;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor.Attributes.unit = "deg";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor_rad.value = deg2rad(alpha_unit_load_factor);
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor_rad.Attributes.unit = "rad"; 
+            
             % DRAG LIFT COEFFICIENT
             CD_unit_load_factor = zeros(length(V_unit_load_factor), 1);
             for i = 1:length(V_unit_load_factor)
-                CD_unit_load_factor(i) = cd_calc(obj1, CD0, CLWB_unit_load_factor(i), ...
-                                                 AR, e, k1, k2);
+                CD_unit_load_factor(i) = polyval(p_CD_wb1, alpha_unit_load_factor(i));
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.value = V_unit_load_factor;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.V_unit_load_factor.Attributes.unit = "m/s";        
@@ -1685,25 +1685,7 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CLWB_unit_load_factor.Attributes.unit = "Non dimensional"; 
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_unit_load_factor.value = CD_unit_load_factor;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CD_unit_load_factor.Attributes.unit = "Non dimensional"; 
-
-            % Interpolation coefficient from actual aerodynamic data
-            CL_supp    = str2num(Aircraft.Certification.Aerodynamic_data.CL.value);
-            alpha_supp = str2num(Aircraft.Certification.Aerodynamic_data.alpha.value);
-            x          = 0.027*ones(length(CL_supp), 1);
-            p = polyfit(CL_supp + x, alpha_supp, 2);
-            CLalfa_deg = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value;
-
-            % ALPHA CALCULATION 
-            alpha_unit_load_factor = zeros(length(V_unit_load_factor), 1);
-            for i = 1:length(alpha_unit_load_factor)
-                alpha_unit_load_factor(i) = alpha_calc(obj1, ...
-                                                       CLWB_unit_load_factor(i), CL0, CL_star, CLalfa_deg, p);
-            end
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor.value = alpha_unit_load_factor;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor.Attributes.unit = "deg";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor_rad.value = deg2rad(alpha_unit_load_factor);
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.alpha_unit_load_factor_rad.Attributes.unit = "rad"; 
-
+ 
             % WING BODY LIFT 
             WBLift_unit_load_factor = zeros(length(alpha_unit_load_factor), 1);
             for i = 1:length(alpha_unit_load_factor)   
@@ -2911,15 +2893,9 @@ switch (Inverted_flight_Case)
             CLHT_from0toSinv = zeros(length(V_from0toSinv), 1);
             LHT_from0toSinv  = zeros(length(V_from0toSinv), 1);
             for i = 1:length(V_from0toSinv)
-                alfa_from0toSinv(i) = alfa_func(rho0, S, V_from0toSinv(i), WS, n_from0toSinv(i), CLalfa, alpha_zerol);
-                CL_from0toSinv(i)   = CL_calc(obj1, n_from0toSinv(i), Mass, g, V_from0toSinv(i), rho0, S);
-                if CL_from0toSinv(i) < CL_star
-                    CL_from0toSinv(i) = CL_calc(obj1, n_from0toSinv(i), Mass, g, V_from0toSinv(i), rho0, S);
-                elseif CL_from0toSinv(i) > CL_star
-                    CL_from0toSinv(i) = CLmax_non_lin(alfa_from0toSinv(i));
-                end
-%                alfa_new_from0toS = alpha_fullmodel(CL_from0toSinv(i), a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
-                CD_from0toSinv(i)   = cd_calc(obj1, CD0, CL_from0toSinv(i), AR, e, k1, k2);
+                CL_from0toSinv(i)   = CLmax_func(rho0, V_from0toSinv(i), WS, n_from0toSinv(i));
+                alfa_from0toSinv(i) = alpha_fullmodel_inv(CL_from0toSinv(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_from0toSinv(i)   = polyval(p_CD_wb1, alfa_from0toSinv(i));
                 q_from0toSinv(i)    = 0.5*rho0*(V_from0toSinv(i))^2;
                 WBL_from0toSinv(i)  = q_from0toSinv(i)*S*CL_from0toSinv(i)*1e-1;
                 CMCL_from0toSinv(i) = CLWB_contrib(obj1, CL_from0toSinv(i), deg2rad(alfa_from0toSinv(i)), XAC, XCG, bCG, MAC);
@@ -2934,14 +2910,14 @@ switch (Inverted_flight_Case)
                 LHT_from0toSinv(i) = (0.5)*(V_from0toSinv(i)^2)*(S)*(rho0)*(CLHT_from0toSinv(i))*(1e-1);
                 
                 % DRAFT VERSION OF ITERATION 
-                CL_tail         = CLHT_from0toSinv(i);
-                CL_wb           = CL_from0toSinv(i);
-                CL_from0toSinv  = CL_wb - CL_tail;
-                tol             = 1e-3; 
-                n               = 1;
+                CL_tail            = CLHT_from0toSinv(i);
+                CL_wb              = CL_from0toSinv(i);
+                CL_new_from0toSinv = CL_wb - CL_tail;
+                tol                = 1e-3; 
+                n                  = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_from0toSinv = alpha_fullmodel(CL_new_from0toSinv);
-                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_from0toSinv = alpha_fullmodel_inv(CL_new_from0toSinv, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb                = polyval(p_CD_wb1, alfa_new_from0toSinv);
                    CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_from0toSinv), XAC, XCG, bCG, MAC);
                    CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_from0toSinv), XAC, XCG, bCG, MAC);
                    CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -3003,14 +2979,9 @@ switch (Inverted_flight_Case)
             CLHT_fromSinvtoG = zeros(length(V_fromSinvtoG), 1);
             LHT_fromSinvtoG  = zeros(length(V_fromSinvtoG), 1);
             for i = 1:length(V_fromSinvtoG)
-                alfa_fromSinvtoG(i) = alfa_func(rho0, S, V_fromSinvtoG(i), WS, n_fromSinvtoG(i), CLalfa, alpha_zerol);
-                CL_fromSinvtoG(i)   = CL_calc(obj1, n_fromSinvtoG(i), Mass, g, V_fromSinvtoG(i), rho0, S);
-                if CL_fromSinvtoG(i) < CL_star
-                    CL_fromSinvtoG(i) = CL_calc(obj1, n_fromSinvtoG(i), Mass, g, V_fromSinvtoG(i), rho0, S);
-                elseif CL_fromSinvtoG(i) > CL_star
-                    CL_fromSinvtoG(i) = CLmax_non_lin(alfa_fromSinvtoG(i));
-                end
-                CD_fromSinvtoG(i)   = cd_calc(obj1, CD0, CL_fromSinvtoG(i), AR, e, k1, k2);
+                CL_fromSinvtoG(i)   = CLmax_func(rho0, V_fromSinvtoG(i), WS, n_fromSinvtoG(i));
+                alfa_from0toSinv(i) = alpha_fullmodel_inv(CL_fromSinvtoG(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_fromSinvtoG(i)   =  polyval(p_CD_wb1, alfa_fromSinvtoG(i));
                 q_fromSinvtoG(i)    = 0.5*rho0*(V_fromSinvtoG(i))^2;
                 WBL_fromSinvtoG(i)  = q_fromSinvtoG(i)*S*CL_fromSinvtoG(i)*1e-1;
                 CMCL_fromSinvtoG(i) = CLWB_contrib(obj1, CL_fromSinvtoG(i), deg2rad(alfa_fromSinvtoG(i)), XAC, XCG, bCG, MAC);
@@ -3025,14 +2996,14 @@ switch (Inverted_flight_Case)
                 LHT_fromSinvtoG(i) = (0.5)*(V_fromSinvtoG(i)^2)*(S)*(rho0)*(CLHT_fromSinvtoG(i))*(1e-1);
                 
                 % DRAFT VERSION OF ITERATION 
-                CL_tail         = CLHT_fromSinvtoG(i);
-                CL_wb           = CL_fromSinvtoG(i);
-                CL_fromSinvtoG  = CL_wb - CL_tail;
-                tol             = 1e-3; 
-                n               = 1;
+                CL_tail            = CLHT_fromSinvtoG(i);
+                CL_wb              = CL_fromSinvtoG(i);
+                CL_new_fromSinvtoG = CL_wb - CL_tail;
+                tol                = 1e-3; 
+                n                  = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromSinvtoG = alpha_fullmodel(CL_new_fromSinvtoG);
-                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromSinvtoG = alpha_fullmodel_inv(CL_new_fromSinvtoG, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb                = polyval(p_CD_wb1, alfa_new_fromSinvtoG);
                    CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromSinvtoG), XAC, XCG, bCG, MAC);
                    CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromSinvtoG), XAC, XCG, bCG, MAC);
                    CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -3093,15 +3064,10 @@ switch (Inverted_flight_Case)
             CMCG_fromGtoG1 = zeros(length(V_fromGtoG1), 1); 
             CLHT_fromGtoG1 = zeros(length(V_fromGtoG1), 1);
             LHT_fromGtoG1  = zeros(length(V_fromGtoG1), 1);
-            for i = 1:length(V_fromGtoG1)
-                alfa_fromGtoG1(i) = alfa_func(rho0, S, V_fromGtoG1(i), WS, n_fromGtoG1(i), CLalfa, alpha_zerol);
-                CL_fromGtoG1(i)   = CL_calc(obj1, n_fromGtoG1(i), Mass, g, V_fromGtoG1(i), rho0, S);
-                if CL_fromGtoG1(i) < CL_star
-                    CL_fromGtoG1(i) = CL_calc(obj1, n_fromGtoG1(i), Mass, g, V_fromGtoG1(i), rho0, S);
-                elseif CL_fromGtoG1(i) > CL_star
-                    CL_fromGtoG1(i) = CLmax_non_lin(alfa_fromGtoG1(i));
-                end
-                CD_fromGtoG1(i)   = cd_calc(obj1, CD0, CL_fromGtoG1(i), AR, e, k1, k2);
+            for i = 1:length(V_fromGtoG1) 
+                CL_fromGtoG1(i)   = CLmax_func(rho0, V_fromGtoG1(i), WS, n_fromGtoG1(i));
+                alfa_fromGtoG1(i) = alpha_fullmodel_inv(CL_fromGtoG1(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_fromGtoG1(i)   = polyval(p_CD_wb1, alfa_fromGtoG1(i));
                 q_fromGtoG1(i)    = 0.5*rho0*(V_fromGtoG1(i))^2;
                 WBL_fromGtoG1(i)  = q_fromGtoG1(i)*S*CL_fromGtoG1(i)*1e-1;
                 CMCL_fromGtoG1(i) = CLWB_contrib(obj1, CL_fromGtoG1(i), deg2rad(alfa_fromGtoG1(i)), XAC, XCG, bCG, MAC);
@@ -3116,14 +3082,14 @@ switch (Inverted_flight_Case)
                 LHT_fromGtoG1(i) = (0.5)*(V_fromGtoG1(i)^2)*(S)*(rho0)*(CLHT_fromGtoG1(i))*(1e-1);
                 
                 % DRAFT VERSION OF ITERATION 
-                CL_tail         = CLHT_fromGtoG1(i);
-                CL_wb           = CL_fromGtoG1(i);
-                CL_fromGtoG1    = CL_wb - CL_tail;
-                tol             = 1e-3; 
-                n               = 1;
+                CL_tail          = CLHT_fromGtoG1(i);
+                CL_wb            = CL_fromGtoG1(i);
+                CL_new_fromGtoG1 = CL_wb - CL_tail;
+                tol              = 1e-3; 
+                n                = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromGtoG1   = alpha_fullmodel(CL_new_fromGtoG1);
-                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromGtoG1   = alpha_fullmodel_inv(CL_new_fromGtoG1, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb                = polyval(p_CD_wb1, alfa_new_fromGtoG1);
                    CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromGtoG1), XAC, XCG, bCG, MAC);
                    CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromGtoG1), XAC, XCG, bCG, MAC);
                    CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -3185,14 +3151,9 @@ switch (Inverted_flight_Case)
             CLHT_fromG1toF = zeros(length(V_fromG1toF), 1);
             LHT_fromG1toF  = zeros(length(V_fromG1toF), 1);
             for i = 1:length(V_fromG1toF)
-                alfa_fromG1toF(i) = alfa_func(rho0, S, V_fromG1toF(i), WS, n_fromG1toF(i), CLalfa, alpha_zerol);
-                CL_fromG1toF(i)   = CL_calc(obj1, n_fromG1toF(i), Mass, g, V_fromG1toF(i), rho0, S);
-                if CL_fromG1toF(i) < CL_star
-                    CL_fromG1toF(i) = CL_calc(obj1, n_fromG1toF(i), Mass, g, V_fromG1toF(i), rho0, S);
-                elseif CL_fromG1toF(i) > CL_star
-                    CL_fromG1toF(i) = CLmax_non_lin(alfa_fromG1toF(i));
-                end
-                CD_fromG1toF(i)   = cd_calc(obj1, CD0, CL_fromG1toF(i), AR, e, k1, k2);
+                CL_fromG1toF(i)   = CLmax_func(rho0, V_fromG1toF(i), WS, n_fromG1toF(i));
+                alfa_fromG1toF(i) = alpha_fullmodel_inv(CL_fromG1toF(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_fromG1toF(i)   = polyval(p_CD_wb1, alfa_fromG1toF(i));
                 q_fromG1toF(i)    = 0.5*rho0*(V_fromG1toF(i))^2;
                 WBL_fromG1toF(i)  = q_fromG1toF(i)*S*CL_fromG1toF(i)*1e-1;
                 CMCL_fromG1toF(i) = CLWB_contrib(obj1, CL_fromG1toF(i), deg2rad(alfa_fromG1toF(i)), XAC, XCG, bCG, MAC);
@@ -3207,14 +3168,14 @@ switch (Inverted_flight_Case)
                 LHT_fromG1toF(i) = (0.5)*(V_fromG1toF(i)^2)*(S)*(rho0)*(CLHT_fromG1toF(i))*(1e-1);
                 
                 % DRAFT VERSION OF ITERATION 
-                CL_tail         = CLHT_fromG1toF(i);
-                CL_wb           = CL_fromG1toF(i);
-                CL_fromG1toF    = CL_wb - CL_tail;
-                tol             = 1e-3; 
-                n               = 1;
+                CL_tail          = CLHT_fromG1toF(i);
+                CL_wb            = CL_fromG1toF(i);
+                CL_new_fromG1toF = CL_wb - CL_tail;
+                tol              = 1e-3; 
+                n                = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromG1toF   = alpha_fullmodel(CL_new_fromG1toF);
-                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromG1toF   = alpha_fullmodel_inv(CL_new_fromG1toF, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb                = polyval(p_CD_wb1, alfa_new_fromG1toF);
                    CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromG1toF), XAC, XCG, bCG, MAC);
                    CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromG1toF), XAC, XCG, bCG, MAC);
                    CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -3276,14 +3237,9 @@ switch (Inverted_flight_Case)
             CLHT_fromFtoG2 = zeros(length(V_fromFtoG2), 1);
             LHT_fromFtoG2  = zeros(length(V_fromFtoG2), 1);
             for i = 1:length(V_fromFtoG2)
-                alfa_fromFtoG2(i) = alfa_func(rho0, S, V_fromFtoG2(i), WS, n_fromFtoG2(i), CLalfa, alpha_zerol);
-                CL_fromFtoG2(i)   = CL_calc(obj1, n_fromFtoG2(i), Mass, g, V_fromFtoG2(i), rho0, S);
-                if CL_fromFtoG2(i) < CL_star
-                    CL_fromFtoG2(i) = CL_calc(obj1, n_fromFtoG2(i), Mass, g, V_fromFtoG2(i), rho0, S);
-                elseif CL_fromFtoG2(i) > CL_star
-                    CL_fromFtoG2(i) = CLmax_non_lin(alfa_fromFtoG2(i));
-                end
-                CD_fromFtoG2(i)   = cd_calc(obj1, CD0, CL_fromFtoG2(i), AR, e, k1, k2);
+                CL_fromFtoG2(i)   = CLmax_func(rho0, V_fromFtoG2(i), WS, n_fromFtoG2(i));
+                alfa_fromFtoG2(i) = alpha_fullmodel_inv(CL_fromFtoG2(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_fromFtoG2(i)   = polyval(p_CD_wb1, alfa_fromFtoG2(i));
                 q_fromFtoG2(i)    = 0.5*rho0*(V_fromFtoG2(i))^2;
                 WBL_fromFtoG2(i)  = q_fromFtoG2(i)*S*CL_fromFtoG2(i)*1e-1;
                 CMCL_fromFtoG2(i) = CLWB_contrib(obj1, CL_fromFtoG2(i), deg2rad(alfa_fromFtoG2(i)), XAC, XCG, bCG, MAC);
@@ -3298,14 +3254,14 @@ switch (Inverted_flight_Case)
                 LHT_fromFtoG2(i) = (0.5)*(V_fromFtoG2(i)^2)*(S)*(rho0)*(CLHT_fromFtoG2(i))*(1e-1);
  
                 % DRAFT VERSION OF ITERATION 
-                CL_tail         = CLHT_fromFtoG2(i);
-                CL_wb           = CL_fromFtoG2(i);
-                CL_fromFtoG2    = CL_wb - CL_tail;
-                tol             = 1e-3; 
-                n               = 1;
+                CL_tail          = CLHT_fromFtoG2(i);
+                CL_wb            = CL_fromFtoG2(i);
+                CL_new_fromFtoG2 = CL_wb - CL_tail;
+                tol              = 1e-3; 
+                n                = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromFtoG2   = alpha_fullmodel(CL_new_fromFtoG2);
-                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromFtoG2   = alpha_fullmodel_inv(CL_new_fromFtoG2, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb                = polyval(p_CD_wb1, alfa_new_fromFtoG2);
                    CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromFtoG2), XAC, XCG, bCG, MAC);
                    CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromFtoG2), XAC, XCG, bCG, MAC);
                    CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -3368,14 +3324,9 @@ switch (Inverted_flight_Case)
             CLHT_fromG2toE = zeros(length(V_fromG2toE), 1);
             LHT_fromG2toE  = zeros(length(V_fromG2toE), 1);
             for i = 1:length(V_fromG2toE)
-                alfa_fromG2toE(i) = alfa_func(rho0, S, V_fromG2toE(i), WS, n_fromG2toE(i), CLalfa, alpha_zerol);
-                CL_fromG2toE(i)   = CL_calc(obj1, n_fromG2toE(i), Mass, g, V_fromG2toE(i), rho0, S);
-                if CL_fromG2toE(i) < CL_star
-                    CL_fromG2toE(i) = CL_calc(obj1, n_fromG2toE(i), Mass, g, V_fromG2toE(i), rho0, S);
-                elseif CL_fromG2toE(i) > CL_star
-                    CL_fromG2toE(i) = CLmax_non_lin(alfa_fromG2toE(i));
-                end
-                CD_fromG2toE(i)   = cd_calc(obj1, CD0, CL_fromG2toE(i), AR, e, k1, k2);
+                CL_fromG2toE(i)   = CLmax_func(rho0, V_fromG2toE(i), WS, n_fromG2toE(i));
+                alfa_fromG2toE(i) = alpha_fullmodel_inv(CL_fromG2toE(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_fromG2toE(i)   = polyval(p_CD_wb1, alfa_fromG2toE(i));
                 q_fromG2toE(i)    = 0.5*rho0*(V_fromG2toE(i))^2;
                 WBL_fromG2toE(i)  = q_fromG2toE(i)*S*CL_fromG2toE(i)*1e-1;
                 CMCL_fromG2toE(i) = CLWB_contrib(obj1, CL_fromG2toE(i), deg2rad(alfa_fromG2toE(i)), XAC, XCG, bCG, MAC);
@@ -3390,14 +3341,14 @@ switch (Inverted_flight_Case)
                 LHT_fromG2toE(i) = (0.5)*(V_fromG2toE(i)^2)*(S)*(rho0)*(CLHT_fromG2toE(i))*(1e-1);
                 
                 % DRAFT VERSION OF ITERATION 
-                CL_tail         = CLHT_fromG2toE(i);
-                CL_wb           = CL_fromG2toE(i);
-                CL_fromG2toE    = CL_wb - CL_tail;
-                tol             = 1e-3; 
-                n               = 1;
+                CL_tail          = CLHT_fromG2toE(i);
+                CL_wb            = CL_fromG2toE(i);
+                CL_new_fromG2toE = CL_wb - CL_tail;
+                tol              = 1e-3; 
+                n                = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromG2toE   = alpha_fullmodel(CL_new_fromG2toE);
-                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromG2toE   = alpha_fullmodel_inv(CL_new_fromG2toE, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb                = polyval(p_CD_wb1, alfa_new_fromG2toE);
                    CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromG2toE), XAC, XCG, bCG, MAC);
                    CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromG2toE), XAC, XCG, bCG, MAC);
                    CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -3458,15 +3409,7 @@ switch (Inverted_flight_Case)
             CMCG_fromEto0 = zeros(length(V_fromEto0), 1); 
             CLHT_fromEto0 = zeros(length(V_fromEto0), 1);
             LHT_fromEto0  = zeros(length(V_fromEto0), 1);
-            for i = 1:length(V_fromEto0)
-                alfa_fromEto0(i) = alfa_func(rho0, S, V_fromEto0(i), WS, n_fromEto0(i), CLalfa, alpha_zerol);
-                CL_fromEto0(i)   = CL_calc(obj1, n_fromEto0(i), Mass, g, V_fromEto0(i), rho0, S);
-                if CL_fromEto0(i) < CL_star
-                    CL_fromEto0(i) = CL_calc(obj1, n_fromEto0(i), Mass, g, V_fromEto0(i), rho0, S);
-                elseif CL_fromEto0(i) > CL_star
-                    CL_fromEto0(i) = CLmax_non_lin(alfa_fromEto0(i));
-                end
-                CD_fromEto0(i)   = cd_calc(obj1, CD0, CL_fromEto0(i), AR, e, k1, k2);
+            for i = 1:length(V_fromEto0)   
                 q_fromEto0(i)    = 0.5*rho0*(V_fromEto0(i))^2;
                 WBL_fromEto0(i)  = q_fromEto0(i)*S*CL_fromEto0(i)*1e-1;
                 CMCL_fromEto0(i) = CLWB_contrib(obj1, CL_fromEto0(i), deg2rad(alfa_fromEto0(i)), XAC, XCG, bCG, MAC);
@@ -3483,12 +3426,12 @@ switch (Inverted_flight_Case)
                 % DRAFT VERSION OF ITERATION 
                 CL_tail         = CLHT_fromEto0(i);
                 CL_wb           = CL_fromEto0(i);
-                CL_fromEto0    = CL_wb - CL_tail;
+                CL_new_fromEto0 = CL_wb - CL_tail;
                 tol             = 1e-3; 
                 n               = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromEto0   = alpha_fullmodel(CL_new_fromEto0);
-                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromEto0    = alpha_fullmodel_inv(CL_new_fromEto0, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb                = polyval(p_CD_wb1, alfa_new_fromEto0);
                    CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromEto0), XAC, XCG, bCG, MAC);
                    CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromEto0), XAC, XCG, bCG, MAC);
                    CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -3765,14 +3708,9 @@ switch (Inverted_flight_Case)
             CLHT_from0toSinv = zeros(length(V_from0toSinv), 1);
             LHT_from0toSinv  = zeros(length(V_from0toSinv), 1);
             for i = 1:length(V_from0toSinv)
-                alfa_from0toSinv(i) = alfa_func(rho0, S, V_from0toSinv(i), WS, n_from0toSinv(i), CLalfa, alpha_zerol);
-                CL_from0toSinv(i)   = CL_calc(obj1, n_from0toSinv(i), Mass, g, V_from0toSinv(i), rho0, S);
-                if CL_from0toSinv(i) < CL_star
-                    CL_from0toSinv(i) = CL_calc(obj1, n_from0toSinv(i), Mass, g, V_from0toSinv(i), rho0, S);
-                elseif CL_from0toSinv(i) > CL_star
-                    CL_from0toSinv(i) = CLmax_non_lin(alfa_from0toSinv(i));
-                end
-                CD_from0toSinv(i)   = cd_calc(obj1, CD0, CL_from0toSinv(i), AR, e, k1, k2);
+                CL_from0toSinv(i)   = CLmax_func(rho0, V_from0toSinv(i), WS, n_from0toSinv(i));
+                alfa_from0toSinv(i) = alpha_fullmodel_inv(CL_from0toSinv(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_from0toSinv(i)   = polyval(p_CD_wb1, alfa_from0toSinv(i));
                 q_from0toSinv(i)    = 0.5*rho0*(V_from0toSinv(i))^2;
                 WBL_from0toSinv(i)  = q_from0toSinv(i)*S*CL_from0toSinv(i)*1e-1;
                 CMCL_from0toSinv(i) = CLWB_contrib(obj1, CL_from0toSinv(i), deg2rad(alfa_from0toSinv(i)), XAC, XCG, bCG, MAC);
@@ -3787,14 +3725,14 @@ switch (Inverted_flight_Case)
                 LHT_from0toSinv(i) = (0.5)*(V_from0toSinv(i)^2)*(S)*(rho0)*(CLHT_from0toSinv(i))*(1e-1);
 
                 % DRAFT VERSION OF ITERATION 
-                CL_tail         = CLHT_from0toSinv(i);
-                CL_wb           = CL_from0toSinv(i);
-                CL_from0toSinv  = CL_wb - CL_tail;
-                tol             = 1e-3; 
-                n               = 1;
+                CL_tail            = CLHT_from0toSinv(i);
+                CL_wb              = CL_from0toSinv(i);
+                CL_from0toSinv_sin = CL_wb - CL_tail;
+                tol                = 1e-3; 
+                n                  = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_from0toSinv = alpha_fullmodel(CL_new_from0toSinv);
-                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_from0toSinv = alpha_fullmodel_inv(CL_from0toSinv_sin, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb                = polyval(p_CD_wb1, alfa_new_from0toSinv);
                    CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_from0toSinv), XAC, XCG, bCG, MAC);
                    CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_from0toSinv), XAC, XCG, bCG, MAC);
                    CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -3857,14 +3795,9 @@ switch (Inverted_flight_Case)
             CLHT_fromSinvtoG = zeros(length(V_fromSinvtoG), 1);
             LHT_fromSinvtoG  = zeros(length(V_fromSinvtoG), 1);
             for i = 1:length(V_fromSinvtoG)
-                alfa_fromSinvtoG(i) = alfa_func(rho0, S, V_fromSinvtoG(i), WS, n_fromSinvtoG(i), CLalfa, alpha_zerol);
-                CL_fromSinvtoG(i)   = CL_calc(obj1, n_fromSinvtoG(i), Mass, g, V_fromSinvtoG(i), rho0, S);
-                if CL_fromSinvtoG(i) < CL_star
-                    CL_fromSinvtoG(i) = CL_calc(obj1, n_fromSinvtoG(i), Mass, g, V_fromSinvtoG(i), rho0, S);
-                elseif CL_fromSinvtoG(i) > CL_star
-                    CL_fromSinvtoG(i) = CLmax_non_lin(alfa_fromSinvtoG(i));
-                end
-                CD_fromSinvtoG(i)   = cd_calc(obj1, CD0, CL_fromSinvtoG(i), AR, e, k1, k2);
+                CL_fromSinvtoG(i)   = CLmax_func(rho0, V_fromSinvtoG(i), WS, n_fromSinvtoG(i));
+                alfa_fromSinvtoG(i) = alpha_fullmodel_inv(CL_fromSinvtoG(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_fromSinvtoG(i)   = polyval(p_CD_wb1, alfa_fromSinvtoG(i));
                 q_fromSinvtoG(i)    = 0.5*rho0*(V_fromSinvtoG(i))^2;
                 WBL_fromSinvtoG(i)  = q_fromSinvtoG(i)*S*CL_fromSinvtoG(i)*1e-1;
                 CMCL_fromSinvtoG(i) = CLWB_contrib(obj1, CL_fromSinvtoG(i), deg2rad(alfa_fromSinvtoG(i)), XAC, XCG, bCG, MAC);
@@ -3881,12 +3814,12 @@ switch (Inverted_flight_Case)
                 % DRAFT VERSION OF ITERATION 
                 CL_tail         = CLHT_fromSinvtoG(i);
                 CL_wb           = CL_fromSinvtoG(i);
-                CL_fromSinvtoG  = CL_wb - CL_tail;
+                CL_new_fromSinvtoG  = CL_wb - CL_tail;
                 tol             = 1e-3; 
                 n               = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromSinvtoG = alpha_fullmodel(CL_new_fromSinvtoG);
-                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromSinvtoG = alpha_fullmodel_inv(CL_new_fromSinvtoG, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb                = polyval(p_CD_wb1, alfa_new_fromSinvtoG);
                    CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromSinvtoG), XAC, XCG, bCG, MAC);
                    CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromSinvtoG), XAC, XCG, bCG, MAC);
                    CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -3949,14 +3882,9 @@ switch (Inverted_flight_Case)
             CLHT_fromGtoF = zeros(length(V_fromGtoF), 1);
             LHT_fromGtoF  = zeros(length(V_fromGtoF), 1);
             for i = 1:length(V_fromGtoF)
-                alfa_fromGtoF(i) = alfa_func(rho0, S, V_fromGtoF(i), WS, n_fromGtoF(i), CLalfa, alpha_zerol);
-                CL_fromGtoF(i)   = CL_calc(obj1, n_fromGtoF(i), Mass, g, V_fromGtoF(i), rho0, S);
-                if CL_fromGtoF(i) < CL_star
-                    CL_fromGtoF(i) = CL_calc(obj1, n_fromGtoF(i), Mass, g, V_fromGtoF(i), rho0, S);
-                elseif CL_fromGtoF(i) > CL_star
-                    CL_fromGtoF(i) = CLmax_non_lin(alfa_fromGtoF(i));
-                end
-                CD_fromGtoF(i)   = cd_calc(obj1, CD0, CL_fromGtoF(i), AR, e, k1, k2);
+                CL_fromGtoF(i)   = CLmax_func(rho0, V_fromGtoF(i), WS, n_fromGtoF(i));
+                alfa_fromGtoF(i) = alpha_fullmodel_inv(CL_fromGtoF(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_fromGtoF(i)   = polyval(p_CD_wb1, alfa_fromGtoF(i));
                 q_fromGtoF(i)    = 0.5*rho0*(V_fromGtoF(i))^2;
                 WBL_fromGtoF(i)  = q_fromGtoF(i)*S*CL_fromGtoF(i)*1e-1;
                 CMCL_fromGtoF(i) = CLWB_contrib(obj1, CL_fromGtoF(i), deg2rad(alfa_fromGtoF(i)), XAC, XCG, bCG, MAC);
@@ -3971,14 +3899,14 @@ switch (Inverted_flight_Case)
                 LHT_fromGtoF(i) = (0.5)*(V_fromGtoF(i)^2)*(S)*(rho0)*(CLHT_fromGtoF(i))*(1e-1);
                 
                 % DRAFT VERSION OF ITERATION 
-                CL_tail      = CLHT_fromGtoF(i);
-                CL_wb        = CL_fromGtoF(i);
-                CL_fromGtoF  = CL_wb - CL_tail;
-                tol          = 1e-3; 
-                n            = 1;
+                CL_tail         = CLHT_fromGtoF(i);
+                CL_wb           = CL_fromGtoF(i);
+                CL_new_fromGtoF = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromSinvtoG = alpha_fullmodel(CL_new_fromGtoF);
-                   CD_wb                = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromSinvtoG = alpha_fullmodel_inv(CL_new_fromGtoF, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_fromGtoF(i)       = polyval(p_CD_wb1, alfa_new_fromSinvtoG);
                    CMCL_new             = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromGtoF), XAC, XCG, bCG, MAC);
                    CMCD_new             = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromGtoF), XAC, XCG, bCG, MAC);
                    CMCT_new             = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -4040,14 +3968,9 @@ switch (Inverted_flight_Case)
             CLHT_fromFtoE = zeros(length(V_fromFtoE), 1);
             LHT_fromFtoE  = zeros(length(V_fromFtoE), 1);
             for i = 1:length(V_fromFtoE)
-                alfa_fromFtoE(i) = alfa_func(rho0, S, V_fromFtoE(i), WS, n_fromFtoE(i), CLalfa, alpha_zerol);
-                CL_fromFtoE(i)   = CL_calc(obj1, n_fromFtoE(i), Mass, g, V_fromFtoE(i), rho0, S);
-                if CL_fromFtoE(i) < CL_star
-                    CL_fromFtoE(i) = CL_calc(obj1, n_fromFtoE(i), Mass, g, V_fromFtoE(i), rho0, S);
-                elseif CL_fromFtoE(i) > CL_star
-                    CL_fromFtoE(i) = CLmax_non_lin(alfa_fromFtoE(i));
-                end
-                CD_fromFtoE(i)   = cd_calc(obj1, CD0, CL_fromFtoE(i), AR, e, k1, k2);
+                CL_fromFtoE(i)   = CLmax_func(rho0, V_fromFtoE(i), WS, n_fromFtoE(i));
+                alfa_fromFtoE(i) = alpha_fullmodel_inv(CL_fromFtoE(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_fromFtoE(i)   = polyval(p_CD_wb1, alfa_fromFtoE(i));
                 q_fromFtoE(i)    = 0.5*rho0*(V_fromFtoE(i))^2;
                 WBL_fromFtoE(i)  = q_fromFtoE(i)*S*CL_fromFtoE(i)*1e-1;
                 CMCL_fromFtoE(i) = CLWB_contrib(obj1, CL_fromFtoE(i), deg2rad(alfa_fromFtoE(i)), XAC, XCG, bCG, MAC);
@@ -4062,14 +3985,14 @@ switch (Inverted_flight_Case)
                 LHT_fromFtoE(i) = (0.5)*(V_fromFtoE(i)^2)*(S)*(rho0)*(CLHT_fromFtoE(i))*(1e-1);
                 
                 % DRAFT VERSION OF ITERATION 
-                CL_tail      = CLHT_fromFtoE(i);
-                CL_wb        = CL_fromFtoE(i);
-                CL_fromFtoE  = CL_wb - CL_tail;
-                tol          = 1e-3; 
-                n            = 1;
+                CL_tail         = CLHT_fromFtoE(i);
+                CL_wb           = CL_fromFtoE(i);
+                CL_new_fromFtoE = CL_wb - CL_tail;
+                tol             = 1e-3; 
+                n               = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromFtoE = alpha_fullmodel(CL_new_fromFtoE);
-                   CD_wb             = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromFtoE = alpha_fullmodel_inv(CL_new_fromFtoE, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb             = polyval(p_CD_wb1, alfa_new_fromFtoE);
                    CMCL_new          = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromFtoE), XAC, XCG, bCG, MAC);
                    CMCD_new          = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromFtoE), XAC, XCG, bCG, MAC);
                    CMCT_new          = CT_contr(obj1, CD_wb, Thrust_axes, MAC);
@@ -4132,14 +4055,9 @@ switch (Inverted_flight_Case)
             CLHT_fromEto0 = zeros(length(V_fromEto0), 1);
             LHT_fromEto0  = zeros(length(V_fromEto0), 1);
             for i = 1:length(V_fromEto0)
-                alfa_fromEto0(i) = alfa_func(rho0, S, V_fromEto0(i), WS, n_fromEto0(i), CLalfa, alpha_zerol);
-                CL_fromEto0(i)   = CL_calc(obj1, n_fromEto0(i), Mass, g, V_fromEto0(i), rho0, S);
-                if CL_fromEto0(i) < CL_star
-                    CL_fromEto0(i) = CL_calc(obj1, n_fromEto0(i), Mass, g, V_fromEto0(i), rho0, S);
-                elseif CL_fromEto0(i) > CL_star
-                    CL_fromEto0(i) = CLmax_non_lin(alfa_fromEto0(i));
-                end
-                CD_fromEto0(i)   = cd_calc(obj1, CD0, CL_fromEto0(i), AR, e, k1, k2);
+                CL_fromEto0(i)   = CLmax_func(rho0, V_fromEto0(i), WS, n_fromEto0(i));
+                alfa_fromEto0(i) = alpha_fullmodel_inv(CL_fromEto0(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                CD_fromEto0(i)   = polyval(p_CD_wb1, alfa_fromEto0(i));
                 q_fromEto0(i)    = 0.5*rho0*(V_fromEto0(i))^2;
                 WBL_fromEto0(i)  = q_fromEto0(i)*S*CL_fromEto0(i)*1e-1;
                 CMCL_fromEto0(i) = CLWB_contrib(obj1, CL_fromEto0(i), deg2rad(alfa_fromEto0(i)), XAC, XCG, bCG, MAC);
@@ -4156,12 +4074,12 @@ switch (Inverted_flight_Case)
                 % DRAFT VERSION OF ITERATION 
                 CL_tail      = CLHT_fromEto0(i);
                 CL_wb        = CL_fromEto0(i);
-                CL_fromEto0  = CL_wb - CL_tail;
+                CL_new_fromEto0  = CL_wb - CL_tail;
                 tol          = 1e-3; 
                 n            = 1;
                 while abs(CL_wb - CL_tail) > tol
-                   alfa_new_fromEto0 = alpha_fullmodel(CL_new_fromEto0);
-                   CD_wb             = cd_calc(obj1, CD0, CL_wb, AR, e, k1, k2);
+                   alfa_new_fromEto0 = alpha_fullmodel_inv(CL_new_fromEto0, CL_max_inv, CL0, CLalfa, alfa_0l);
+                   CD_wb             = polyval(p_CD_wb1, alfa_new_fromEto0);
                    CMCL_new          = CLWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromEto0), XAC, XCG, bCG, MAC);
                    CMCD_new          = CDWB_contrib(obj1, CL_wb, deg2rad(alfa_new_fromEto0), XAC, XCG, bCG, MAC);
                    CMCT_new          = CT_contr(obj1, CD_wb, Thrust_axes, MAC);

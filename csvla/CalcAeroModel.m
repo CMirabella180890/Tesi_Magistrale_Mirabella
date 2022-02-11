@@ -148,8 +148,8 @@ if InputSource == "From File"
     CL0         = Aircraft.Certification.Aerodynamic_data.CL0.value;
     CL_alfa_deg = Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value;
     alfa_0l     = -CL0 / CL_alfa_deg;
-    Aircraft.Certification.Aerodynamic_data.alfa_zero_lift.value           = alfa_0l;
-    Aircraft.Certification.Aerodynamic_data.alfa_zero_lift.Attributes.unit = "deg";
+    Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value           = alfa_0l;
+    Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.Attributes.unit = "deg";
     % =========================================================================
     % -------------------------------------------------------------------------
     % CL INTERPOLATION

@@ -273,7 +273,8 @@ switch (Straight_flight_Case)
                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -302,7 +303,8 @@ switch (Straight_flight_Case)
                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
 
@@ -1316,6 +1318,7 @@ switch (Straight_flight_Case)
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -1345,6 +1348,7 @@ switch (Straight_flight_Case)
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
         
@@ -2103,7 +2107,8 @@ switch (Straight_flight_Case)
                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -2132,7 +2137,8 @@ switch (Straight_flight_Case)
                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
             % =================================================================
@@ -3012,6 +3018,7 @@ switch (Inverted_flight_Case)
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -3040,7 +3047,8 @@ switch (Inverted_flight_Case)
                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
             
@@ -4018,12 +4026,12 @@ switch (Inverted_flight_Case)
             %% CL ALONG THE SPAN COMPARISON
             figure(25);
 
-            plot(flip(half_span), -cl_S_inv, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_G, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_G1, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_F, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_G2, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_E, 'LineWidth', 1.5)
+            plot(half_span, abs(cl_S_inv), 'LineWidth', 1.5)
+            plot(half_span, abs(cl_G),     'LineWidth', 1.5)
+            plot(half_span, abs(cl_G1),    'LineWidth', 1.5)
+            plot(half_span, abs(cl_F),     'LineWidth', 1.5)
+            plot(half_span, abs(cl_G2),    'LineWidth', 1.5)
+            plot(half_span, abs(cl_E),     'LineWidth', 1.5)
 
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -4047,12 +4055,12 @@ switch (Inverted_flight_Case)
             %% CD ALONG THE SPAN COMPARISON
             figure(26);
 
-            plot(flip(half_span), cd_S_inv, 'LineWidth', 1.5)
-            plot(flip(half_span), cd_G, 'LineWidth', 1.5)
-            plot(flip(half_span), cd_G1, 'LineWidth', 1.5)
-            plot(flip(half_span), cd_F, 'LineWidth', 1.5)
-            plot(flip(half_span), cd_G2, 'LineWidth', 1.5)
-            plot(flip(half_span), cd_E, 'LineWidth', 1.5)
+            plot(half_span, cd_S_inv, 'LineWidth', 1.5)
+            plot(half_span, cd_G, 'LineWidth', 1.5)
+            plot(half_span, cd_G1, 'LineWidth', 1.5)
+            plot(half_span, cd_F, 'LineWidth', 1.5)
+            plot(half_span, cd_G2, 'LineWidth', 1.5)
+            plot(half_span, cd_E, 'LineWidth', 1.5)
 
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -4076,12 +4084,12 @@ switch (Inverted_flight_Case)
             %% CM ALONG THE SPAN COMPARISON
             figure(27);
 
-            plot(flip(half_span), cm_S_inv, 'LineWidth', 1.5)
-            plot(flip(half_span), cm_G, 'LineWidth', 1.5)
-            plot(flip(half_span), cm_G1, 'LineWidth', 1.5)
-            plot(flip(half_span), cm_F, 'LineWidth', 1.5)
-            plot(flip(half_span), cm_G2, 'LineWidth', 1.5)
-            plot(flip(half_span), cm_E, 'LineWidth', 1.5)
+            plot(half_span, cm_S_inv, 'LineWidth', 1.5)
+            plot(half_span, cm_G, 'LineWidth', 1.5)
+            plot(half_span, cm_G1, 'LineWidth', 1.5)
+            plot(half_span, cm_F, 'LineWidth', 1.5)
+            plot(half_span, cm_G2, 'LineWidth', 1.5)
+            plot(half_span, cm_E, 'LineWidth', 1.5)
 
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
@@ -4233,6 +4241,7 @@ switch (Inverted_flight_Case)
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -4261,7 +4270,8 @@ switch (Inverted_flight_Case)
                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
             
@@ -5085,11 +5095,11 @@ switch (Inverted_flight_Case)
             %% CL ALONG THE SPAN COMPARISON
             figure(25);
 
-            plot(flip(half_span), -cl_S_inv, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_G, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_G1, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_F, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_E, 'LineWidth', 1.5)
+            plot(half_span, abs(cl_S_inv), 'LineWidth', 1.5)
+            plot(half_span, abs(cl_G),     'LineWidth', 1.5)
+            plot(half_span, abs(cl_G1),    'LineWidth', 1.5)
+            plot(half_span, abs(cl_F),     'LineWidth', 1.5)
+            plot(half_span, abs(cl_E),     'LineWidth', 1.5)
 
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -5112,11 +5122,11 @@ switch (Inverted_flight_Case)
             %% CD ALONG THE SPAN COMPARISON
             figure(26);
 
-            plot(flip(half_span), cd_S_inv, 'LineWidth', 1.5)
-            plot(flip(half_span), cd_G, 'LineWidth', 1.5)
-            plot(flip(half_span), cd_G1, 'LineWidth', 1.5)
-            plot(flip(half_span), cd_F, 'LineWidth', 1.5)
-            plot(flip(half_span), cd_E, 'LineWidth', 1.5)
+            plot(half_span, cd_S_inv, 'LineWidth', 1.5)
+            plot(half_span, cd_G, 'LineWidth', 1.5)
+            plot(half_span, cd_G1, 'LineWidth', 1.5)
+            plot(half_span, cd_F, 'LineWidth', 1.5)
+            plot(half_span, cd_E, 'LineWidth', 1.5)
 
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -5139,11 +5149,11 @@ switch (Inverted_flight_Case)
             %% CM ALONG THE SPAN COMPARISON
             figure(27);
 
-            plot(flip(half_span), cm_S_inv, 'LineWidth', 1.5)
-            plot(flip(half_span), cm_G, 'LineWidth', 1.5)
-            plot(flip(half_span), cm_G1, 'LineWidth', 1.5)
-            plot(flip(half_span), cm_F, 'LineWidth', 1.5)
-            plot(flip(half_span), cm_E, 'LineWidth', 1.5)
+            plot(half_span, cm_S_inv, 'LineWidth', 1.5)
+            plot(half_span, cm_G, 'LineWidth', 1.5)
+            plot(half_span, cm_G1, 'LineWidth', 1.5)
+            plot(half_span, cm_F, 'LineWidth', 1.5)
+            plot(half_span, cm_E, 'LineWidth', 1.5)
 
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$c_m = c_m(y)$", "Interpreter", "latex")
@@ -5294,7 +5304,8 @@ switch (Inverted_flight_Case)
                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
 
                     elseif (kink1 == kink2)
                         % FROM ROOT TO KINK
@@ -5323,7 +5334,8 @@ switch (Inverted_flight_Case)
                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";  
+                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
                     end
             end
         
@@ -5345,9 +5357,9 @@ switch (Inverted_flight_Case)
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
-                Interpolated_Global_CD_S_inv(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                Interpolated_Global_CD_S_inv(i) = trapz(half_span, check_interp(i,:));
                 if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-1
-                   cd_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                   cd_S_inv = check_interp(i,:)';
                    cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                 end
             end
@@ -6151,11 +6163,11 @@ switch (Inverted_flight_Case)
         %% CL ALONG THE SPAN COMPARISON
         figure(25);
 
-        plot(half_span, abs(cl_S_inv, 'LineWidth', 1.5)
-        plot(half_span, abs(cl_G, 'LineWidth', 1.5)
-        plot(half_span, abs(cl_G1, 'LineWidth', 1.5)
-        plot(half_span, abs(cl_F, 'LineWidth', 1.5)
-        plot(half_span, abs(cl_E, 'LineWidth', 1.5)
+        plot(half_span, abs(cl_S_inv), 'LineWidth', 1.5)
+        plot(half_span, abs(cl_G),     'LineWidth', 1.5)
+        plot(half_span, abs(cl_G1),    'LineWidth', 1.5)
+        plot(half_span, abs(cl_F),     'LineWidth', 1.5)
+        plot(half_span, abs(cl_E),     'LineWidth', 1.5)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_l = c_l(y)$", "Interpreter", "latex")
