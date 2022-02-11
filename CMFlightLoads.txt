@@ -105,65 +105,18 @@ In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test
  ++++ FIGURE 6 - LIFT CURVE INTERPOLATION ++++ 
 [Warning: Polynomial is not unique; degree >= number of data points.] 
 [> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('polyfit', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\polyfun\polyfit.m', 78)" style="font-weight:bold">polyfit</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\polyfun\polyfit.m',78,0)">line 78</a>)
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcAeroModel', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcAeroModel.m', 205)" style="font-weight:bold">CalcAeroModel</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcAeroModel.m',205,0)">line 205</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('CalcAeroModel', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcAeroModel.m', 208)" style="font-weight:bold">CalcAeroModel</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcAeroModel.m',208,0)">line 208</a>)
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ApplyRegulation', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m', 46)" style="font-weight:bold">ApplyRegulation</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\ApplyRegulation.m',46,0)">line 46</a>)
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 116)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',116,0)">line 116</a>)] 
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcAeroModel.m',226,1)">226 </a>end
-iscomplex 
-{Unrecognized function or variable 'iscomplex'.
-} 
-help complex
-    <strong>complex</strong> Create complex array.
-    C = <strong>complex</strong>(A,B) returns the complex result A + Bi, where A and B are
-    identically sized real N-D arrays, matrices, or scalars of the same data type.
-    Note: In the event that B is all zeros, C is complex with all zero imaginary
-    part, unlike the result of the addition A+0i, which returns a 
-    strictly real result.
- 
-    C = <strong>complex</strong>(A) for real A returns the complex result C with real part A
-    and all zero imaginary part. Even though its imaginary part is all zero,
-    C is complex and so isreal(C) returns false. If A is complex, C is identical
-    to A.
- 
-    The complex function provides a useful substitute for expressions such as
-    A+1i*B or A+1j*B in cases when A and B are not single or double, or when
-    B is all zero.
- 
-    See also  <a href="matlab:help i -displayBanner">i</a>, <a href="matlab:help j -displayBanner">j</a>, <a href="matlab:help imag -displayBanner">imag</a>, <a href="matlab:help conj -displayBanner">conj</a>, <a href="matlab:help angle -displayBanner">angle</a>, <a href="matlab:help abs -displayBanner">abs</a>, <a href="matlab:help real -displayBanner">real</a>, <a href="matlab:help isreal -displayBanner">isreal</a>.
-
-    <a href="matlab:doc complex">Documentation for complex</a>
-    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('complex')">Other functions named complex</a>
-
-help isreal
- <strong>isreal</strong> True if input does not use complex storage.
-    <strong>isreal</strong>(X) returns logical 1 (true) if X does not have an imaginary
-    part, and logical 0 (false) otherwise. <strong>isreal</strong> returns logical 0 (false)
-    for complex values that have zero imaginary part, since the value is
-    still stored as a complex number.
- 
-    Some common related commands are:
- 
-    ~<strong>isreal</strong>(X) detects arrays that have an imaginary part, even if it is
-    all zero.
- 
-    ~ANY(IMAG(X(:))) detects strictly real arrays, whether X has
-    an all zero imaginary part allocated or not.
- 
-    Examples:
-    1) x = magic(3);
-       isreal(x)
- 
-       The result is true because x is not a complex array.
- 
-    2) y = complex(x);
-       isreal(y)
- 
-       The result is false because COMPLEX returns y with an all zero
-       imaginary part.
- 
-    See also <a href="matlab:help real -displayBanner">real</a>, <a href="matlab:help imag -displayBanner">imag</a>, <a href="matlab:help complex -displayBanner">complex</a>, <a href="matlab:help i -displayBanner">i</a>, <a href="matlab:help j -displayBanner">j</a>.
-
-    <a href="matlab:doc isreal">Documentation for isreal</a>
-    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('isreal')">Other functions named isreal</a>
-
-if system_dependent('IsDebugMode')==1, dbquit all; end
+-----------------
+### Balancing loads - per CS - VLA ###
+<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m',4478,1)">4478 </a>        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.LHT_from0toSinv.Attributes.unit = "daN";   
+if system_dependent('IsDebugMode')==1, dbcont; end
+if system_dependent('IsDebugMode')==1, dbcont; end
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving Balancingloads.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving Wingairloads.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m',5094,1)">5094 </a>Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.Attributes.cs = " 421 ";
