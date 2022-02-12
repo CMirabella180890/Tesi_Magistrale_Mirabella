@@ -11,7 +11,8 @@ function alfa_interp = alpha_fullmodel(CL, a2, b2, c2, CL_max, ...
             elseif CL > CL_star
                 alfa_interp = alpha_plus(CL, a2, b2, c2);
                 if ~isreal(alfa_interp) == 1
-%                     CL = CL_max + 0.033735;
+                    disp(" WARNING: negative number under square root ")
+                    disp("          CL = CLmax ")
                     CL = CL_max;
                     alfa_interp = alpha_plus(CL, a2, b2, c2);
                 elseif ~isreal(alfa_interp) == 0

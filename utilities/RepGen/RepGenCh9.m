@@ -227,10 +227,10 @@ cd ..
 
  cd (RepDir);
  
- fig = FormalImage([results_path,'balancereference.png']);
+ fig = FormalImage([results_path,'balance_reference.png']);
  fig.Caption = 'Simplified equilibrium of the aircraft';
- fig.Height = '4in';
- fig.Width = '4in';
+%  fig.Height = '4in';
+%  fig.Width = '4in';
  fig.LinkTarget='balance_reference';
  add(sec,fig);
 % balance_reference
@@ -778,6 +778,7 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
         alpha_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.Attributes.unit;
         CLS        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value;
+        CLS_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S_new.value;
         LS         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS_new.value;
         L_unit     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS_new.Attributes.unit;
         LtailS     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LHTS.value;
@@ -790,6 +791,7 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
         alpha_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.Attributes.unit;
         CLA        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value;
+        CLA_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A_new.value;
         LA         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA_new.value;
         L_unit     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LA_new.Attributes.unit;
         LtailA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.LHTA.value;
@@ -799,6 +801,7 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         nc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value;
         alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
         CLC        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
+        CLC_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C_new.value;
         LC         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LC_new.value;
         LtailC     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.LHTC.value;
         
@@ -807,6 +810,7 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         nd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value;
         alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
         CLD        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
+        CLD_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D_new.value;
         LD         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LD_new.value;
         LtailD     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTD.value;
         
@@ -815,6 +819,7 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         ng         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value;
         alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
         CLG        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
+        CLG_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G_new.value;
         LG         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LG_new.value;
         LtailG     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.LHTG.value;
         
@@ -823,6 +828,7 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         nf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value;
         alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
         CLF        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
+        CLF_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F_new.value;
         LF         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LF_new.value;
         LtailF     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.LHTF.value;
         
@@ -831,12 +837,13 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         ne         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value;
         alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
         CLE        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
+        CLE_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E_new.value;
         LE         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LE_new.value;
         LtailE     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LHTE.value;
         
         % -----------------------------------------------------------------
         header = {'Point', strcat('V(',va_unit,')'), strcat('n(',na_unit,')'), ...
-            strcat('alpha(',alpha_unit,')'), strcat('CL'), strcat('L(',L_unit,')'), strcat('L tail(',L_unit,')')};
+            strcat('alpha(',alpha_unit,')'), strcat('CL wb'),  strcat('CL full'), strcat('L(',L_unit,')'), strcat('L tail(',L_unit,')')};
         %each table row needs of a fieldValue
         %1
         name       = {char(point_S); char(point_A); char(point_C); char(point_D); ...
@@ -849,11 +856,13 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
                       num2str(alfaG, 4); num2str(alfaF, 4); num2str(alfaE, 4)};
         lift_coeff = {num2str(CLS, 4); num2str(CLA, 4); num2str(CLC, 4); num2str(CLD, 4); ...
                       num2str(CLG, 4); num2str(CLF, 4); num2str(CLE, 4)};
+        lift_coeff_full = {num2str(CLS_new, 4); num2str(CLA_new, 4); num2str(CLC_new, 4); num2str(CLD_new, 4); ...
+                      num2str(CLG_new, 4); num2str(CLF_new, 4); num2str(CLE_new, 4)};
         wing_lift  = {num2str(LS, 4); num2str(LA, 4); num2str(LC, 4); num2str(LD, 4); ...
                       num2str(LG, 4); num2str(LF, 4); num2str(LE, 4)};
         tail_lift  = {num2str(LtailS, 4); num2str(LtailA, 4); num2str(LtailC, 4); num2str(LtailD, 4); ...
                       num2str(LtailG, 4); num2str(LtailF, 4); num2str(LtailE, 4)};
-        fieldValue = [name, speeds, load_fact, alfa, lift_coeff, wing_lift, tail_lift];
+        fieldValue = [name, speeds, load_fact, alfa, lift_coeff, lift_coeff_full, wing_lift, tail_lift];
     
           
         tbl = FormalTable(header,fieldValue);

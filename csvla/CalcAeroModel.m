@@ -81,6 +81,10 @@ if InputSource == "From File"
     n_pol2        = 2;
     p_CL_wb1      = polyfit([alpha_wb(1:3); alfa_star],   [CL_wb(1:3); CL_star],   n_pol1);
     p_CL_wb2      = polyfit([alfa_star; alpha_wb(4:end)], [CL_star; CL_wb(4:end)], n_pol2);
+    Aircraft.Certification.Aerodynamic_data.p_CL_wb1.value = p_CL_wb1; 
+    Aircraft.Certification.Aerodynamic_data.p_CL_wb1.Attributes.unit = "1/deg";
+    Aircraft.Certification.Aerodynamic_data.p_CL_wb2.value = p_CL_wb2; 
+    Aircraft.Certification.Aerodynamic_data.p_CL_wb2.Attributes.unit = "1/deg";
     CL_wb_interp1 = polyval(p_CL_wb1, alpha_interp);
     CL_wb_interp2 = polyval(p_CL_wb2, alpha_interp);
     for i = 1:length(alpha_interp)
