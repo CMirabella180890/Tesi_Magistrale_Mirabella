@@ -316,7 +316,7 @@ add(sec,para);
 % -------------------------------------------------------------------------
         % AXIAL EQUILIBRIUM
         %
-        myEq = "$ \mathrm{X equilibrium: } \quad T = D_{wb} ";
+        myEq = "$ \mathrm{X equilibrium: } \quad T = L_{wb}\cdot \sin{\alpha} - D_{wb}\cdot \cos{\alpha} ";
         eq = Equation(strcat(myEq));
         eq.DisplayInline = true;
         eq.FontSize = 10;
@@ -362,7 +362,7 @@ add(sec,para);
         % -----------------------------------------------------------------
         % PITCHING ANGLE DIFFERENTIAL EQUATION 
         %
-        myEq = "$ [-L_{wb}\cdot\cos{\alpha}\cdot(x_{AC} - x_{CG}) - L_{wb}\cdot\sin{\alpha}\cdot z_{CG}] + [D_{wb}\cdot\cos{\alpha}\cdot z_{CG} - D_{wb}\cdot\sin{\alpha}\cdot MGC\cdot(x_{AC} - x_{CG})] ";
+        myEq = "$ [-L_{wb}\cdot\cos{\alpha}\cdot(x_{AC} - x_{CG}) - L_{wb}\cdot\sin{\alpha}\cdot z_{CG}] + [D_{wb}\cdot\cos{\alpha}\cdot z_{CG} - D_{wb}\cdot\sin{\alpha}\cdot mgc\cdot(x_{AC} - x_{CG})] ";
         eq = Equation(strcat(myEq));
         eq.DisplayInline = true;
         eq.FontSize = 10;
@@ -377,7 +377,7 @@ add(sec,para);
         % -----------------------------------------------------------------
         % PITCHING ANGLE DIFFERENTIAL EQUATION 
         %
-        myEq = "$ + \biggl[-\frac{L_{t}}{\cos{\alpha}}\cdot(l_{t} + MGC\cdot(x_{AC} - x_{CG})) \biggr] - \\ T\cdot h + M_{wb} = 0 ";
+        myEq = "$ + \biggl[-\frac{L_{t}}{\cos{\alpha}}\cdot(l_{t} + mgc\cdot(x_{AC} - x_{CG})) \biggr] - \\ T\cdot h + M_{wb} = 0 ";
         eq = Equation(strcat(myEq));
         eq.DisplayInline = true;
         eq.FontSize = 10;
@@ -411,8 +411,8 @@ add(sec,para);
             header = {'Parameter', 'Value', 'Unit of measure'};
             %each table row needs of a fieldValue
             %1
-            parameter = {'XCG'; 'XCG/MAC'; 'XAC/MAC'; 'XP'; 'XHT'; 'ZCG'; ...
-                         'h'; 'MGC'};
+            parameter = {'xcg'; 'xcg/MAC'; 'xac/MAC'; 'xp'; 'xht'; 'ZCG'; ...
+                         'h'; 'mgc'};
             value     = {num2str(xcg,4); num2str(xcg_nondim,4); ...
                 num2str(xac_nondim,4); num2str(xp_nondim,4); ...
                 num2str(xht,4); num2str(zcg,4); num2str(h,4); ...
@@ -547,7 +547,10 @@ sec = Section();
 sec.Title = 'Wing airloads';
 str = ['Wing airloads are depicted in figure; these are the airloads' ...
     ' necessary to size wing structures and they comes from the' ...
-    ' balancing equations applied on the full aircraft.'];
+    ' equilibrium equations applied on the full aircraft. Mainly, these' ...
+    ' loads come from lift, during a symmetric, straight, non-accelerated' ...
+    ' flight condition, including lift that results from horizontal' ...
+    ' tail negative lift.'];
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(sec,para);
@@ -565,10 +568,10 @@ cd ..
  results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'Horizontal-Top-View.png']);
-         fig.Caption = 'Horizontal tail plane, top view.';
+fig = FormalImage([results_path,'SideView3D.png']);
+         fig.Caption = 'Aircraft 3D sideview.';
          fig.Height = '5in';
-         fig.LinkTarget='httopview';
+         fig.LinkTarget='sideview3D';
          add(sec,fig);
 % -------------------------------------------------------------------------
 str = ['Here, the aircraft balancing loads are collected inside' ...
@@ -767,6 +770,18 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
     case 'Case 2'
         % -----------------------------------------------------------------
         n1         = 1.0; 
+        point_S    = "Point A";
+        vs         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value;
+        vs_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.Attributes.unit;
+        ns         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value;
+        na_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nA.Attributes.unit;
+        alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaA.value;
+        alpha_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaA.Attributes.unit;
+        CLS        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_A.value;
+        LS         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LA_new.value;
+        L_unit     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LA_new.Attributes.unit;
+        LtailS     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LHTA.value;
+        
         point_A    = "Point A";
         va         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
         va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;

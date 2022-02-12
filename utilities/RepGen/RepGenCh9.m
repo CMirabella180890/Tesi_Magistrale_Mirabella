@@ -316,7 +316,7 @@ add(sec,para);
 % -------------------------------------------------------------------------
         % AXIAL EQUILIBRIUM
         %
-        myEq = "$ \mathrm{X equilibrium: } \quad T = D_{wb} ";
+        myEq = "$ \mathrm{X equilibrium: } \quad T = L_{wb}\cdot \sin{\alpha} - D_{wb}\cdot \cos{\alpha} ";
         eq = Equation(strcat(myEq));
         eq.DisplayInline = true;
         eq.FontSize = 10;
@@ -411,7 +411,7 @@ add(sec,para);
             header = {'Parameter', 'Value', 'Unit of measure'};
             %each table row needs of a fieldValue
             %1
-            parameter = {'XCG'; 'XCG/MAC'; 'XAC/MAC'; 'XP'; 'XHT'; 'ZCG'; ...
+            parameter = {'xcg'; 'xcg/MAC'; 'xac/MAC'; 'xp'; 'xht'; 'ZCG'; ...
                          'h'; 'mgc'};
             value     = {num2str(xcg,4); num2str(xcg_nondim,4); ...
                 num2str(xac_nondim,4); num2str(xp_nondim,4); ...
@@ -568,10 +568,10 @@ cd ..
  results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'Horizontal-Top-View.png']);
-         fig.Caption = 'Horizontal tail plane, top view.';
+fig = FormalImage([results_path,'SideView3D.png']);
+         fig.Caption = 'Aircraft 3D sideview.';
          fig.Height = '5in';
-         fig.LinkTarget='httopview';
+         fig.LinkTarget='sideview3D';
          add(sec,fig);
 % -------------------------------------------------------------------------
 str = ['Here, the aircraft balancing loads are collected inside' ...
@@ -770,6 +770,18 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
     case 'Case 2'
         % -----------------------------------------------------------------
         n1         = 1.0; 
+        point_S    = "Point S";
+        vs         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value;
+        vs_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.Attributes.unit;
+        ns         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value;
+        na_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.Attributes.unit;
+        alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
+        alpha_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.Attributes.unit;
+        CLS        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value;
+        LS         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS_new.value;
+        L_unit     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LS_new.Attributes.unit;
+        LtailS     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.LHTS.value;
+        
         point_A    = "Point A";
         va         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
         va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
@@ -827,19 +839,19 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             strcat('alpha(',alpha_unit,')'), strcat('CL'), strcat('L(',L_unit,')'), strcat('L tail(',L_unit,')')};
         %each table row needs of a fieldValue
         %1
-        name       = {char(point_A); char(point_C); char(point_D); ...
+        name       = {char(point_S); char(point_A); char(point_C); char(point_D); ...
                       char(point_G); char(point_F); char(point_E)};
-        speeds     = {num2str(va,4); num2str(vc,4); num2str(vd,4); ...
+        speeds     = {num2str(vs,4); num2str(va,4); num2str(vc,4); num2str(vd,4); ...
                       num2str(vg,4); num2str(vf,4); num2str(ve,4)};
-        load_fact  = {num2str(na,4); num2str(nc,4); num2str(nd,4); ...
+        load_fact  = {num2str(ns,4); num2str(na,4); num2str(nc,4); num2str(nd,4); ...
                       num2str(ng,4); num2str(nf,4); num2str(ne,4)};
-        alfa       = {num2str(alfaA, 4); num2str(alfaC, 4); num2str(alfaD, 4); ...
+        alfa       = {num2str(alfaS, 4); num2str(alfaA, 4); num2str(alfaC, 4); num2str(alfaD, 4); ...
                       num2str(alfaG, 4); num2str(alfaF, 4); num2str(alfaE, 4)};
-        lift_coeff = {num2str(CLA, 4); num2str(CLC, 4); num2str(CLD, 4); ...
+        lift_coeff = {num2str(CLS, 4); num2str(CLA, 4); num2str(CLC, 4); num2str(CLD, 4); ...
                       num2str(CLG, 4); num2str(CLF, 4); num2str(CLE, 4)};
-        wing_lift  = {num2str(LA, 4); num2str(LC, 4); num2str(LD, 4); ...
+        wing_lift  = {num2str(LS, 4); num2str(LA, 4); num2str(LC, 4); num2str(LD, 4); ...
                       num2str(LG, 4); num2str(LF, 4); num2str(LE, 4)};
-        tail_lift  = {num2str(LtailA, 4); num2str(LtailC, 4); num2str(LtailD, 4); ...
+        tail_lift  = {num2str(LtailS, 4); num2str(LtailA, 4); num2str(LtailC, 4); num2str(LtailD, 4); ...
                       num2str(LtailG, 4); num2str(LtailF, 4); num2str(LtailE, 4)};
         fieldValue = [name, speeds, load_fact, alfa, lift_coeff, wing_lift, tail_lift];
     
