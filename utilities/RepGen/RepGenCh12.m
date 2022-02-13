@@ -859,6 +859,27 @@ str = ['The critical combined load is ' ...
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(sec,para);
+% -----------------------------------------------------------------------------------------------
+%moving to another path for figure
+cd ..
+cd ..
+ regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\' regulation '\Output\'];
+
+ cd (RepDir);
+
+ fig = FormalImage([results_path,'Finalenvelope.png']);
+ fig.Caption = 'Maneuver and Gust load factors diagram';
+ fig.Height = '5in';
+ fig.LinkTarget='maneuver_ref';
+ add(ch,fig);
+
+%  fig = FormalImage([results_path,'Finalenvelope.png']);
+%  fig.Caption = 'Maneuver and Gust load factors and diagram';
+%  fig.Height = '5in';
+%  fig.LinkTarget='maneuver_ref';
+%  add(ch,fig);
+% -------------------------------------------------------------------------
 % -------------------------------------------------------------------------        
 %         %1
 %         para = Paragraph(str);

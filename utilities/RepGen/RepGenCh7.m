@@ -439,10 +439,27 @@ switch requirement
         fig.Width = '4in';
         fig.LinkTarget='Gust diagram';
         add(sec,fig);
-        
-        
+        % -----------------------------------------------------------------
+        Gust_load_pos_cruise = max(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_pos_cruise.value);
+        Gust_load_neg_cruise = min(Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_load_neg_cruise.value);
+        str = ['In the last figure, it is possible to observe the gust' ...
+            ' load factor varying linearly along the flight envelope' ...
+            ' airspeed; the maximum and minimum gust load factor are,' ...
+            ' respectively,' ...
+            (' ') ... 
+            num2str(Gust_load_pos_cruise, 4) ...
+            ' and ' ...
+            num2str(Gust_load_neg_cruise, 4) ...
+            '.'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        add(sec,para);  
+        % -----------------------------------------------------------------
         add(ch,sec);
+        % -----------------------------------------------------------------
+        % -----------------------------------------------------------------
         % CASE 2: CS23
+        % -----------------------------------------------------------------
     case 'CS23'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
