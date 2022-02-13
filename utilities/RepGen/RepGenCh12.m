@@ -868,10 +868,10 @@ cd ..
 
  cd (RepDir);
 
- fig = FormalImage([results_path,'Finalenvelope.png']);
- fig.Caption = 'Maneuver and Gust load factors diagram';
+ fig = FormalImage([results_path,'Combinedload.png']);
+ fig.Caption = 'Combined load figurative representation.';
  fig.Height = '5in';
- fig.LinkTarget='maneuver_ref';
+ fig.LinkTarget='comb_load';
  add(ch,fig);
 
 %  fig = FormalImage([results_path,'Finalenvelope.png']);

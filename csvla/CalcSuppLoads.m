@@ -199,6 +199,9 @@ hold on; grid on; grid minor;
 % SWITCH CASE TO TAKE INTO ACCOUNT THE EMPENNAGE CONFIGURATION 
 switch(Aircraft.Geometry.Vertical.empennage_flag.value)
     case 'Double fin'
+        combined_load_figure = figure(160);
+        hold on ;
+        grid on; grid minor;
         plot([0 Aircraft.Geometry.Horizontal.b.value], [0 0], '-k.', 'LineWidth', 2.5, 'DisplayName', 'Horiz. tail');
         plot([Aircraft.Geometry.Horizontal.b.value Aircraft.Geometry.Horizontal.b.value], [0 Aircraft.Geometry.Vertical.b.value], '-k.', 'LineWidth', 2.5, 'DisplayName', 'Vert. tail');
         critical_load = Aircraft.Certification.Regulation.SubpartC.CombinedLoads.Critical_condition.Total_loads.value;
@@ -228,6 +231,19 @@ switch(Aircraft.Geometry.Vertical.empennage_flag.value)
         
         xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
         ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+
+        % EXPORT FIGURE
+        exportgraphics(combined_load_figure, 'Combinedload.pdf', 'ContentType', 'vector')
+        exportgraphics(combined_load_figure, 'Combinedload.png', 'ContentType', 'vector')
+
+        % Saving figures inside correct folder
+        fprintf('Saving Combinedload.pdf in: ');
+        fprintf('\n'); 
+        fprintf('%s\n', SaveFolder);
+        % Moving file inside correct folder
+        movefile Combinedload.pdf Output
+        movefile Combinedload.png Output 
+        % -----------------------------------------------------------------
     case 'Single fin'
         
     case 'T tail'
