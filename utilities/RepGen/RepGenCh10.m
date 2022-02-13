@@ -120,7 +120,7 @@ cd ..
  
  fig = FormalImage([results_path,'normalandaxial.png']);
  fig.Caption = 'Normal and axial forces decomposition.';
- fig.Height = '4in';
+%  fig.Height = '4in';
  fig.LinkTarget='normalandaxial';
  add(subsec,fig);
  % ------------------------------------------------------------------------

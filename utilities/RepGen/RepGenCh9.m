@@ -411,7 +411,7 @@ add(sec,para);
             header = {'Parameter', 'Value', 'Unit of measure'};
             %each table row needs of a fieldValue
             %1
-            parameter = {'xcg'; 'xcg/MAC'; 'xac/MAC'; 'xp'; 'xht'; 'ZCG'; ...
+            parameter = {'xcg'; 'xcg/MAC'; 'xac/MAC'; 'xp'; 'xht'; 'zcg'; ...
                          'h'; 'mgc'};
             value     = {num2str(xcg,4); num2str(xcg_nondim,4); ...
                 num2str(xac_nondim,4); num2str(xp_nondim,4); ...
@@ -814,6 +814,15 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         LD         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LD_new.value;
         LtailD     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.LHTD.value;
         
+        point_S_inv = "Point Sinv";
+        vs_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.value;
+        ns_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.nS_inv.value;
+        alfaS_inv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.alfaS_inv.value;
+        CLS_inv     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv.value;
+        CLS_new_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv_new.value;
+        LS_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.LS_inv_new.value;
+        LtailS_inv  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.LHTS_inv.value;
+        
         point_G    = "Point G";
         vg         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value;
         ng         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value;
@@ -842,26 +851,26 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         LtailE     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.LHTE.value;
         
         % -----------------------------------------------------------------
-        header = {'Point', strcat('V(',va_unit,')'), strcat('n(',na_unit,')'), ...
-            strcat('alpha(',alpha_unit,')'), strcat('CL wb'),  strcat('CL full'), strcat('L(',L_unit,')'), strcat('L tail(',L_unit,')')};
+        header = {'Point', strcat('V (',va_unit,')'), strcat('n (',na_unit,')'), ...
+            strcat('alpha (',alpha_unit,')'), strcat('CL wb'),  strcat('CL full'), strcat('L (',L_unit,')'), strcat('L tail (',L_unit,')')};
         %each table row needs of a fieldValue
         %1
         name       = {char(point_S); char(point_A); char(point_C); char(point_D); ...
-                      char(point_G); char(point_F); char(point_E)};
+                      char(point_S_inv); char(point_G); char(point_F); char(point_E)};
         speeds     = {num2str(vs,4); num2str(va,4); num2str(vc,4); num2str(vd,4); ...
-                      num2str(vg,4); num2str(vf,4); num2str(ve,4)};
+                      num2str(vs_inv,4); num2str(vg,4); num2str(vf,4); num2str(ve,4)};
         load_fact  = {num2str(ns,4); num2str(na,4); num2str(nc,4); num2str(nd,4); ...
-                      num2str(ng,4); num2str(nf,4); num2str(ne,4)};
+                      num2str(ns_inv,4); num2str(ng,4); num2str(nf,4); num2str(ne,4)};
         alfa       = {num2str(alfaS, 4); num2str(alfaA, 4); num2str(alfaC, 4); num2str(alfaD, 4); ...
-                      num2str(alfaG, 4); num2str(alfaF, 4); num2str(alfaE, 4)};
+                      num2str(alfaS_inv, 4); num2str(alfaG, 4); num2str(alfaF, 4); num2str(alfaE, 4)};
         lift_coeff = {num2str(CLS, 4); num2str(CLA, 4); num2str(CLC, 4); num2str(CLD, 4); ...
-                      num2str(CLG, 4); num2str(CLF, 4); num2str(CLE, 4)};
+                      num2str(CLS_inv, 4); num2str(CLG, 4); num2str(CLF, 4); num2str(CLE, 4)};
         lift_coeff_full = {num2str(CLS_new, 4); num2str(CLA_new, 4); num2str(CLC_new, 4); num2str(CLD_new, 4); ...
-                      num2str(CLG_new, 4); num2str(CLF_new, 4); num2str(CLE_new, 4)};
+                      num2str(CLS_new_inv, 4); num2str(CLG_new, 4); num2str(CLF_new, 4); num2str(CLE_new, 4)};
         wing_lift  = {num2str(LS, 4); num2str(LA, 4); num2str(LC, 4); num2str(LD, 4); ...
-                      num2str(LG, 4); num2str(LF, 4); num2str(LE, 4)};
+                      num2str(LS_inv, 4); num2str(LG, 4); num2str(LF, 4); num2str(LE, 4)};
         tail_lift  = {num2str(LtailS, 4); num2str(LtailA, 4); num2str(LtailC, 4); num2str(LtailD, 4); ...
-                      num2str(LtailG, 4); num2str(LtailF, 4); num2str(LtailE, 4)};
+                      num2str(LtailS_inv, 4); num2str(LtailG, 4); num2str(LtailF, 4); num2str(LtailE, 4)};
         fieldValue = [name, speeds, load_fact, alfa, lift_coeff, lift_coeff_full, wing_lift, tail_lift];
     
           

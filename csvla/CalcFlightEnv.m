@@ -517,7 +517,9 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.LE
 flight_envelope = figure; 
 hold on; grid on; grid minor;
 ylim([nmin-1.0 nmax+1.0])
-xlim([0 VD+10])
+% xlim([0 VD+10])
+% ylim 'padded';
+xlim 'padded';
 plot(VSpos, npos, ':r', 'LineWidth', 0.25)
 plot(VSneg, nneg, ':r', 'LineWidth', 0.25)
 plot(V_from1toS, n_from1toS, '-r', 'LineWidth', 1)
@@ -763,8 +765,10 @@ n_gust_dive_neg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloa
 %% GUST ENVELOPE DIAGRAM
 gust_envelope = figure; 
 hold on; grid on; grid minor;
-ylim([nmin-2.0 nmax+2.0])
-xlim([0 VD+10])
+% ylim([nmin-2.0 nmax+2.0])
+% xlim([0 VD+10])
+ylim 'padded';
+xlim 'padded';
 plot(VSpos, npos, ':r', 'LineWidth', 0.25)
 plot(VSneg, nneg, ':r', 'LineWidth', 0.25)
 plot(V_from1toS, n_from1toS, '-r', 'LineWidth', 1)
