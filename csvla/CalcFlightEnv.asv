@@ -193,7 +193,8 @@ Reg = Aircraft.Certification.Regulation.value;
 %      requirements. NOTE: point G need not be investigated when the
 %      supplementary condition specified in CS-VLA 369 is investigated.
 
-
+% Aircraft.Certification.Regulation.SubpartC.Flightloads.Attributes.cs = " 333 ";
+Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.Attributes.cs = " 333(d) ";
 % -------------------------------------------------------------------------
 %% WING LOADING DEFINITION
 % x = calcn(obj, nmax) - from csvla.m
@@ -516,7 +517,9 @@ Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointE.LE
 flight_envelope = figure; 
 hold on; grid on; grid minor;
 ylim([nmin-1.0 nmax+1.0])
-xlim([0 VD+10])
+% xlim([0 VD+10])
+% ylim 'padded';
+xlim 'padded';
 plot(VSpos, npos, ':r', 'LineWidth', 0.25)
 plot(VSneg, nneg, ':r', 'LineWidth', 0.25)
 plot(V_from1toS, n_from1toS, '-r', 'LineWidth', 1)
@@ -533,7 +536,7 @@ plot(V_fromStoG, n_fromStoG, '-r', 'LineWidth', 1)
 plot(VA, nA, 'k.', 'MarkerSize', 12)
 plot(VC, nC, 'k.', 'MarkerSize', 12)
 plot(VD, nD, 'k.', 'MarkerSize', 12)
-plot(VE, nE, 'k.', 'MarkerSize', 12)
+plot(VE, 0.0, 'k.', 'MarkerSize', 12)
 plot(VF, nF, 'k.', 'MarkerSize', 12)
 plot(VG, nG, 'k.', 'MarkerSize', 12)
 plot(VS, nS, 'k.', 'MarkerSize', 12)
@@ -541,7 +544,7 @@ plot(VS_inv, nS_inv, 'k.', 'MarkerSize', 12)
 text(VA, nA, 'Point A', 'FontSize', 6)
 text(VC, nC, 'Point C', 'FontSize', 6)
 text(VD, nD, 'Point D', 'FontSize', 6)
-text(VE, nE, 'Point E', 'FontSize', 6)
+text(VE, 0.0, 'Point E', 'FontSize', 6)
 text(VF, nF, 'Point F', 'FontSize', 6)
 text(VG, nG, 'Point G', 'FontSize', 6)
 text(VS, nS, 'Point S', 'FontSize', 6)
@@ -762,8 +765,10 @@ n_gust_dive_neg = Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloa
 %% GUST ENVELOPE DIAGRAM
 gust_envelope = figure; 
 hold on; grid on; grid minor;
-ylim([nmin-2.0 nmax+2.0])
-xlim([0 VD+10])
+% ylim([nmin-2.0 nmax+2.0])
+% xlim([0 VD+10])
+ylim 'padded';
+xlim 'padded';
 plot(VSpos, npos, ':r', 'LineWidth', 0.25)
 plot(VSneg, nneg, ':r', 'LineWidth', 0.25)
 plot(V_from1toS, n_from1toS, '-r', 'LineWidth', 1)
@@ -949,7 +954,7 @@ for i = 1:length(Solution)
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.Attributes.unit  = "m/s"; 
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value            = nC; 
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.Attributes.unit  = "g's"; 
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value          = CLMAX_clean; % CLmax_func(rho0, S, VC, WS, nC);
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value          = CLmax_func(rho0, S, VC, WS, nC); %CLMAX_clean; % CLmax_func(rho0, S, VC, WS, nC);
                 CL_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.Attributes.unit = "Non dimensional";
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value            = 0.5*rho0*VC^2;
@@ -1150,7 +1155,7 @@ for i = 1:length(Solution)
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.Attributes.unit  = "m/s"; 
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value            = nC; 
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.Attributes.unit  = "g's"; 
-                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value          = CLMAX_clean; % CLmax_func(rho0, S, VC, WS, nC);
+                Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value          = CLmax_func(rho0, S, VC, WS, nC); % CLMAX_clean; % CLmax_func(rho0, S, VC, WS, nC);
                 CL_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.Attributes.unit = "Non dimensional";
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.qC.value            = 0.5*rho0*VC^2;

@@ -1255,15 +1255,23 @@ switch (Straight_flight_Case)
             xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
             ylabel("Horizontal tail lift - $L_{ht}$ (daN)", "Interpreter", "latex")
             title("Horizontal empennage airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct      
-            
-            % MAIN WING LOADS DIAGRAM        
-            CL_from0toS_new   = CL_from0toS   - CLHT_from0toS;        
-            CL_fromStoA1_new  = CL_fromStoA1  - CLHT_fromStoA1;        
-            CL_fromA1toC1_new = CL_fromA1toC1 - CLHT_fromA1toC1;        
-            CL_fromC1toC_new  = CL_fromC1toC  - CLHT_fromC1toC;      
-            CL_fromCtoC2_new  = CL_fromCtoC2  - CLHT_fromCtoC2;
-            CL_fromC2toD_new  = CL_fromC2toD  - CLHT_fromC2toD;
-            CL_fromDto0_new   = CL_fromDto0   - CLHT_fromDto0;
+             
+            % MAIN WING LOADS DIAGRAM 
+            CL_from0toS_new   = CL_from0toS   + CLHT_from0toS;        
+            CL_fromStoA1_new  = CL_fromStoA1  + CLHT_fromStoA1;        
+            CL_fromA1toC1_new = CL_fromA1toC1 + CLHT_fromA1toC1;        
+            CL_fromC1toC_new  = CL_fromC1toC  + CLHT_fromC1toC;      
+            CL_fromCtoC2_new  = CL_fromCtoC2  + CLHT_fromCtoC2;
+            CL_fromC2toD_new  = CL_fromC2toD  + CLHT_fromC2toD;
+            CL_fromDto0_new   = CL_fromDto0   + CLHT_fromDto0;
+%             % MAIN WING LOADS DIAGRAM        
+%             CL_from0toS_new   = CL_from0toS   - CLHT_from0toS;        
+%             CL_fromStoA1_new  = CL_fromStoA1  - CLHT_fromStoA1;        
+%             CL_fromA1toC1_new = CL_fromA1toC1 - CLHT_fromA1toC1;        
+%             CL_fromC1toC_new  = CL_fromC1toC  - CLHT_fromC1toC;      
+%             CL_fromCtoC2_new  = CL_fromCtoC2  - CLHT_fromCtoC2;
+%             CL_fromC2toD_new  = CL_fromC2toD  - CLHT_fromC2toD;
+%             CL_fromDto0_new   = CL_fromDto0   - CLHT_fromDto0;
             LW_from0toS_new   = zeros(length(CL_from0toS_new), 1);
             LW_fromStoA1_new  = zeros(length(CL_from0toS_new), 1);
             LW_fromA1toC1_new = zeros(length(CL_from0toS_new), 1);
@@ -1913,11 +1921,17 @@ switch (Straight_flight_Case)
             title("Horizontal empennage airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct   
             
             % MAIN WING LOADS DIAGRAM        
-            CL_from0toS_new  = CL_from0toS  - CLHT_from0toS;        
-            CL_fromStoA1_new = CL_fromStoA1 - CLHT_fromStoA1;        
-            CL_fromA1toC_new = CL_fromA1toC - CLHT_fromA1toC;        
-            CL_fromCtoD_new  = CL_fromCtoD  - CLHT_fromCtoD;      
-            CL_fromDto0_new  = CL_fromDto0  - CLHT_fromDto0;
+            CL_from0toS_new  = CL_from0toS  + CLHT_from0toS;        
+            CL_fromStoA1_new = CL_fromStoA1 + CLHT_fromStoA1;        
+            CL_fromA1toC_new = CL_fromA1toC + CLHT_fromA1toC;        
+            CL_fromCtoD_new  = CL_fromCtoD  + CLHT_fromCtoD;      
+            CL_fromDto0_new  = CL_fromDto0  + CLHT_fromDto0;
+%             % MAIN WING LOADS DIAGRAM        
+%             CL_from0toS_new  = CL_from0toS  - CLHT_from0toS;        
+%             CL_fromStoA1_new = CL_fromStoA1 - CLHT_fromStoA1;        
+%             CL_fromA1toC_new = CL_fromA1toC - CLHT_fromA1toC;        
+%             CL_fromCtoD_new  = CL_fromCtoD  - CLHT_fromCtoD;      
+%             CL_fromDto0_new  = CL_fromDto0  - CLHT_fromDto0;
             LW_from0toS_new  = zeros(length(CL_from0toS_new), 1);
             LW_fromStoA1_new = zeros(length(CL_from0toS_new), 1);
             LW_fromA1toC_new = zeros(length(CL_from0toS_new), 1);
@@ -2331,7 +2345,7 @@ switch (Straight_flight_Case)
            CLHT_new   = CL_Tail(obj1, CMCL_new, CMCD_new, CMCT_new, CMCG_new, ...
                                 l_ht, MAC, XAC, XCG, deg2rad(alfa_new_A));
            CL_tail    = CLHT_new;
-           CL_new_A   = CL_A - CL_tail;
+           CL_new_A   = CL_A + CL_tail;
            CL_wb      = CL_wb + (CL_new_A - CL_wb) * 1e-1;
            n          = n + 1;
            if n == 100
@@ -2929,12 +2943,20 @@ switch (Straight_flight_Case)
         title("Horizontal empennage airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
         
         % MAIN WING LOADS DIAGRAM        
-        CL_from0toS_new  = CL_from0toS  - CLHT_from0toS;        
-        CL_fromStoA1_new = CL_fromStoA1 - CLHT_fromStoA1;        
-        CL_fromA1toC_new = CL_fromA1toC - CLHT_fromA1toC;        
-        CL_fromCtoA2_new = CL_fromCtoA2 - CLHT_fromCtoA2;        
-        CL_fromA2toD_new = CL_fromA2toD - CLHT_fromA2toD;        
-        CL_fromDto0_new  = CL_fromDto0  - CLHT_fromDto0;
+        CL_from0toS_new  = CL_from0toS  + CLHT_from0toS;        
+        CL_fromStoA1_new = CL_fromStoA1 + CLHT_fromStoA1;        
+        CL_fromA1toC_new = CL_fromA1toC + CLHT_fromA1toC;        
+        CL_fromCtoA2_new = CL_fromCtoA2 + CLHT_fromCtoA2;        
+        CL_fromA2toD_new = CL_fromA2toD + CLHT_fromA2toD;        
+        CL_fromDto0_new  = CL_fromDto0  + CLHT_fromDto0;
+        
+%         % MAIN WING LOADS DIAGRAM        
+%         CL_from0toS_new  = CL_from0toS  - CLHT_from0toS;        
+%         CL_fromStoA1_new = CL_fromStoA1 - CLHT_fromStoA1;        
+%         CL_fromA1toC_new = CL_fromA1toC - CLHT_fromA1toC;        
+%         CL_fromCtoA2_new = CL_fromCtoA2 - CLHT_fromCtoA2;        
+%         CL_fromA2toD_new = CL_fromA2toD - CLHT_fromA2toD;        
+%         CL_fromDto0_new  = CL_fromDto0  - CLHT_fromDto0;
         LW_from0toS_new  = zeros(length(CL_from0toS_new), 1);
         LW_fromStoA1_new = zeros(length(CL_from0toS_new), 1);
         LW_fromA1toC_new = zeros(length(CL_from0toS_new), 1);
@@ -3825,13 +3847,21 @@ switch (Inverted_flight_Case)
             text(V_fromG2toE(end),     LHT_fromG2toE(end),  ' E',      'FontSize', 6)
             % =================================================================
             % MAIN WING LOADS DIAGRAM        
-            CL_from0toSinv_new = CL_from0toSinv  - CLHT_from0toSinv;        
-            CL_fromSinvtoG_new = CL_fromSinvtoG - CLHT_fromSinvtoG;        
-            CL_fromGtoG1_new   = CL_fromGtoG1    - CLHT_fromGtoG1;        
-            CL_fromG1toF_new   = CL_fromG1toF    - CLHT_fromG1toF;        
-            CL_fromFtoG2_new   = CL_fromFtoG2    - CLHT_fromFtoG2;        
-            CL_fromG2toE_new   = CL_fromG2toE    - CLHT_fromG2toE;        
-            CL_fromEto0_new    = CL_fromEto0     - CLHT_fromEto0;
+            CL_from0toSinv_new = CL_from0toSinv  + CLHT_from0toSinv;        
+            CL_fromSinvtoG_new = CL_fromSinvtoG + CLHT_fromSinvtoG;        
+            CL_fromGtoG1_new   = CL_fromGtoG1    + CLHT_fromGtoG1;        
+            CL_fromG1toF_new   = CL_fromG1toF    + CLHT_fromG1toF;        
+            CL_fromFtoG2_new   = CL_fromFtoG2    + CLHT_fromFtoG2;        
+            CL_fromG2toE_new   = CL_fromG2toE    + CLHT_fromG2toE;        
+            CL_fromEto0_new    = CL_fromEto0     + CLHT_fromEto0;
+%             % MAIN WING LOADS DIAGRAM        
+%             CL_from0toSinv_new = CL_from0toSinv  - CLHT_from0toSinv;        
+%             CL_fromSinvtoG_new = CL_fromSinvtoG - CLHT_fromSinvtoG;        
+%             CL_fromGtoG1_new   = CL_fromGtoG1    - CLHT_fromGtoG1;        
+%             CL_fromG1toF_new   = CL_fromG1toF    - CLHT_fromG1toF;        
+%             CL_fromFtoG2_new   = CL_fromFtoG2    - CLHT_fromFtoG2;        
+%             CL_fromG2toE_new   = CL_fromG2toE    - CLHT_fromG2toE;        
+%             CL_fromEto0_new    = CL_fromEto0     - CLHT_fromEto0;
             LW_from0toSinv_new = zeros(length(CL_from0toSinv_new), 1);
             LW_fromSinvtoG_new = zeros(length(CL_from0toSinv_new), 1);
             LW_fromGtoG1_new   = zeros(length(CL_from0toSinv_new), 1);
@@ -4513,11 +4543,17 @@ switch (Inverted_flight_Case)
             text(V_fromFtoE(end),    LHT_fromFtoE(end),    ' E',      'FontSize', 6)
             % =================================================================
             % MAIN WING LOADS DIAGRAM        
-            CL_from0toSinv_new = CL_from0toSinv - CLHT_from0toSinv;        
-            CL_fromSinvtoG_new = CL_fromSinvtoG - CLHT_fromSinvtoG;        
-            CL_fromGtoF_new    = CL_fromGtoF    - CLHT_fromGtoF;        
-            CL_fromFtoE_new    = CL_fromFtoE    - CLHT_fromFtoE;       
-            CL_fromEto0_new    = CL_fromEto0    - CLHT_fromEto0;
+            CL_from0toSinv_new = CL_from0toSinv + CLHT_from0toSinv;        
+            CL_fromSinvtoG_new = CL_fromSinvtoG + CLHT_fromSinvtoG;        
+            CL_fromGtoF_new    = CL_fromGtoF    + CLHT_fromGtoF;        
+            CL_fromFtoE_new    = CL_fromFtoE    + CLHT_fromFtoE;       
+            CL_fromEto0_new    = CL_fromEto0    + CLHT_fromEto0;
+%             % MAIN WING LOADS DIAGRAM        
+%             CL_from0toSinv_new = CL_from0toSinv - CLHT_from0toSinv;        
+%             CL_fromSinvtoG_new = CL_fromSinvtoG - CLHT_fromSinvtoG;        
+%             CL_fromGtoF_new    = CL_fromGtoF    - CLHT_fromGtoF;        
+%             CL_fromFtoE_new    = CL_fromFtoE    - CLHT_fromFtoE;       
+%             CL_fromEto0_new    = CL_fromEto0    - CLHT_fromEto0;
             LW_from0toSinv_new = zeros(length(CL_from0toSinv_new), 1);
             LW_fromSinvtoG_new = zeros(length(CL_from0toSinv_new), 1);
             LW_fromGtoF_new    = zeros(length(CL_from0toSinv_new), 1);
@@ -4840,7 +4876,7 @@ switch (Inverted_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfa_new_G_rad.Attributes.unit = "rad";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value = CL_G;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.Attributes.unit = "Non dimensional";
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G_new.value = CL_new_G;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G_new.value = CL_G + CLHT_G;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G_new.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CLHT_G.value = CLHT_G;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CLHT_G.Attributes.unit = "Non dimensional";
@@ -5274,13 +5310,18 @@ switch (Inverted_flight_Case)
         text(V_fromFtoE(end),     LHT_fromFtoE(end),     ' E',      'FontSize', 6)
         ylim padded;
         xlim padded;
-        
         % MAIN WING LOADS DIAGRAM        
-        CL_from0toSinv_new  = CL_from0toSinv  - CLHT_from0toSinv;        
-        CL_fromSinvtoG1_new = CL_fromSinvtoG1 - CLHT_fromSinvtoG1;        
-        CL_fromG1toF_new    = CL_fromG1toF - CLHT_fromG1toF;        
-        CL_fromFtoE_new     = CL_fromFtoE - CLHT_fromFtoE;        
-        CL_fromEto0_new     = CL_fromEto0 - CLHT_fromEto0;
+        CL_from0toSinv_new  = CL_from0toSinv  + CLHT_from0toSinv;        
+        CL_fromSinvtoG1_new = CL_fromSinvtoG1 + CLHT_fromSinvtoG1;        
+        CL_fromG1toF_new    = CL_fromG1toF + CLHT_fromG1toF;        
+        CL_fromFtoE_new     = CL_fromFtoE + CLHT_fromFtoE;        
+        CL_fromEto0_new     = CL_fromEto0 + CLHT_fromEto0;
+%         % MAIN WING LOADS DIAGRAM        
+%         CL_from0toSinv_new  = CL_from0toSinv  - CLHT_from0toSinv;        
+%         CL_fromSinvtoG1_new = CL_fromSinvtoG1 - CLHT_fromSinvtoG1;        
+%         CL_fromG1toF_new    = CL_fromG1toF - CLHT_fromG1toF;        
+%         CL_fromFtoE_new     = CL_fromFtoE - CLHT_fromFtoE;        
+%         CL_fromEto0_new     = CL_fromEto0 - CLHT_fromEto0;
         LW_from0toSinv_new  = zeros(length(CL_from0toSinv_new), 1);
         LW_fromSinvtoG1_new = zeros(length(CL_from0toSinv_new), 1);
         LW_fromG1toF_new    = zeros(length(CL_from0toSinv_new), 1);

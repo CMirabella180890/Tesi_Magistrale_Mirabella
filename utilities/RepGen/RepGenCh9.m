@@ -227,7 +227,7 @@ cd ..
 
  cd (RepDir);
  
- fig = FormalImage([results_path,'balance_reference.png']);
+ fig = FormalImage([results_path,'referencebalance.png']);
  fig.Caption = 'Simplified equilibrium of the aircraft';
 %  fig.Height = '4in';
 %  fig.Width = '4in';
