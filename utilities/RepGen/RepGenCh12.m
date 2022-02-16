@@ -48,6 +48,21 @@ ch = Chapter();
 ch.Title = 'Loads on the vertical tail';
 disp(['Chapter 12', (' "'), ch.Title,('" ') ,'writing...' ])
 
+% -------------------------------------------------------------------------
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
+
+fig = FormalImage([results_path,'Vertical-Side-View.png']);
+         fig.Caption = 'Vertical fin, side view.';
+         fig.Height = '5in';
+         fig.LinkTarget='verticalfin_side_view';
+         add(ch,fig);
+% -------------------------------------------------------------------------
+
 % firt paragraph - optional
 str = ['According to ' ...
     (' ') ...
