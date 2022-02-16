@@ -1280,20 +1280,20 @@ switch (Straight_flight_Case)
             LW_fromC2toD_new  = zeros(length(CL_from0toS_new), 1);
             LW_fromDto0_new   = zeros(length(CL_from0toS_new), 1);
              for i = 1:length(CL_from0toS_new)
-%                 LW_from0toS_new(i)   = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS_new(i))*(1e-1);  
-%                 LW_fromStoA1_new(i)  = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1_new(i))*(1e-1);
-%                 LW_fromA1toC1_new(i) = (0.5)*(V_fromA1toC1(i)^2)* rho0 * S *(CL_fromA1toC1_new(i))*(1e-1);
-%                 LW_fromC1toC_new(i)  = (0.5)*(V_fromC1toC(i)^2)* rho0 * S *(CL_fromC1toC_new(i))*(1e-1);
-%                 LW_fromCtoC2_new(i)  = (0.5)*(V_fromCtoC2(i)^2)* rho0 * S *(CL_fromCtoC2_new(i))*(1e-1);
-%                 LW_fromC2toD_new(i)  = (0.5)*(V_fromC2toD(i)^2)* rho0 * S *(CL_fromC2toD_new(i))*(1e-1);
-%                 LW_fromDto0_new(i)   = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0_new(i))*(1e-1);
-                LW_from0toS_new(i)   = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS(i))*(1e-1);  
-                LW_fromStoA1_new(i)  = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1(i))*(1e-1);
-                LW_fromA1toC1_new(i) = (0.5)*(V_fromA1toC1(i)^2)* rho0 * S *(CL_fromA1toC1(i))*(1e-1);
-                LW_fromC1toC_new(i)  = (0.5)*(V_fromC1toC(i)^2)* rho0 * S *(CL_fromC1toC(i))*(1e-1);
-                LW_fromCtoC2_new(i)  = (0.5)*(V_fromCtoC2(i)^2)* rho0 * S *(CL_fromCtoC2(i))*(1e-1);
-                LW_fromC2toD_new(i)  = (0.5)*(V_fromC2toD(i)^2)* rho0 * S *(CL_fromC2toD(i))*(1e-1);
-                LW_fromDto0_new(i)   = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0(i))*(1e-1);
+                LW_from0toS_new(i)   = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS_new(i))*(1e-1);  
+                LW_fromStoA1_new(i)  = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1_new(i))*(1e-1);
+                LW_fromA1toC1_new(i) = (0.5)*(V_fromA1toC1(i)^2)* rho0 * S *(CL_fromA1toC1_new(i))*(1e-1);
+                LW_fromC1toC_new(i)  = (0.5)*(V_fromC1toC(i)^2)* rho0 * S *(CL_fromC1toC_new(i))*(1e-1);
+                LW_fromCtoC2_new(i)  = (0.5)*(V_fromCtoC2(i)^2)* rho0 * S *(CL_fromCtoC2_new(i))*(1e-1);
+                LW_fromC2toD_new(i)  = (0.5)*(V_fromC2toD(i)^2)* rho0 * S *(CL_fromC2toD_new(i))*(1e-1);
+                LW_fromDto0_new(i)   = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0_new(i))*(1e-1);
+%                 LW_from0toS_new(i)   = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS(i))*(1e-1);  
+%                 LW_fromStoA1_new(i)  = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1(i))*(1e-1);
+%                 LW_fromA1toC1_new(i) = (0.5)*(V_fromA1toC1(i)^2)* rho0 * S *(CL_fromA1toC1(i))*(1e-1);
+%                 LW_fromC1toC_new(i)  = (0.5)*(V_fromC1toC(i)^2)* rho0 * S *(CL_fromC1toC(i))*(1e-1);
+%                 LW_fromCtoC2_new(i)  = (0.5)*(V_fromCtoC2(i)^2)* rho0 * S *(CL_fromCtoC2(i))*(1e-1);
+%                 LW_fromC2toD_new(i)  = (0.5)*(V_fromC2toD(i)^2)* rho0 * S *(CL_fromC2toD(i))*(1e-1);
+%                 LW_fromDto0_new(i)   = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0(i))*(1e-1);
             end       
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS_new.value = CL_from0toS_new;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS_new.Attributes.unit = "Non dimensional";
@@ -1331,32 +1331,60 @@ switch (Straight_flight_Case)
 
     %         ylim([LHT_from0toS(1) LHT_fromDto0(1)])
     %         xlim([0.0 V_fromDto0(1)])
-
-            plot(V_from0toS,   LW_from0toS_new,   '-r', 'LineWidth', 1)
-            plot(V_fromStoA1,  LW_fromStoA1_new,  '-r', 'LineWidth', 1)
-            plot(V_fromA1toC1, LW_fromA1toC1_new, '-r', 'LineWidth', 1)
-            plot(V_fromC1toC,  LW_fromC1toC_new,  '-r', 'LineWidth', 1)
-            plot(V_fromCtoC2,  LW_fromCtoC2_new,  '-r', 'LineWidth', 1)
-            plot(V_fromC2toD,  LW_fromC2toD_new,  '-r', 'LineWidth', 1)
-            plot(V_fromDto0,   LW_fromDto0_new,   '-r', 'LineWidth', 1)
+%             % --------------------------------------------------------------------
+%             plot(V_from0toS,   LW_from0toS_new,   '-r', 'LineWidth', 1)
+%             plot(V_fromStoA1,  LW_fromStoA1_new,  '-r', 'LineWidth', 1)
+%             plot(V_fromA1toC1, LW_fromA1toC1_new, '-r', 'LineWidth', 1)
+%             plot(V_fromC1toC,  LW_fromC1toC_new,  '-r', 'LineWidth', 1)
+%             plot(V_fromCtoC2,  LW_fromCtoC2_new,  '-r', 'LineWidth', 1)
+%             plot(V_fromC2toD,  LW_fromC2toD_new,  '-r', 'LineWidth', 1)
+%             plot(V_fromDto0,   LW_fromDto0_new,   '-r', 'LineWidth', 1)
+%             % UNIT LOAD DISTR.
+%             plot(V_unit_load_factor, LW_unit_load_factor,  '--k', 'LineWidth', 2)
+%             % ---------------------------------------------------------------------
+%             plot(V_from0toS(1),     LW_from0toS_new(1),     'k.', 'MarkerSize', 10)
+%             plot(V_from0toS(end),   LW_from0toS_new(end),   'k.', 'MarkerSize', 10)
+%             plot(V_fromStoA1(end),  LW_fromStoA1_new(end),  'k.', 'MarkerSize', 10)
+%             plot(V_fromA1toC1(end), LW_fromA1toC1_new(end), 'k.', 'MarkerSize', 10)
+%             plot(V_fromC1toC(end),  LW_fromC1toC_new(end),  'k.', 'MarkerSize', 10)
+%             plot(V_fromCtoC2(end),  LW_fromCtoC2_new(end),  'k.', 'MarkerSize', 10)
+%             plot(V_fromC2toD(end),  LW_fromC2toD_new(end),  'k.', 'MarkerSize', 10)
+%             plot(V_fromDto0(end),   LW_fromDto0_new(end),   'k.', 'MarkerSize', 10)
+%             % ---------------------------------------------------------------------
+%             text(V_fromStoA1(1),   LW_fromStoA1_new(1),     '  S',  'FontSize', 6)
+%             text(V_fromStoA1(end), LW_fromStoA1_new(end),   '  A1', 'FontSize', 6)
+%             text(V_fromA1toC1(end), LW_fromA1toC1_new(end), '  C1', 'FontSize', 6)
+%             text(V_fromC1toC(end),  LW_fromC1toC_new(end),  '  C',  'FontSize', 6)
+%             text(V_fromCtoC2(end),  LW_fromCtoC2_new(end),  '  C2', 'FontSize', 6)
+%             text(V_fromC2toD(end),  LW_fromC2toD_new(end),  '  D',  'FontSize', 6)
+%             % text(40.75, -18, 'n = 1')
+%             % ---------------------------------------------------------------------
+            % --------------------------------------------------------------------
+            plot(V_from0toS,   WBL_from0toS,   '-r', 'LineWidth', 1)
+            plot(V_fromStoA1,  WBL_fromStoA1,  '-r', 'LineWidth', 1)
+            plot(V_fromA1toC1, WBL_fromA1toC1, '-r', 'LineWidth', 1)
+            plot(V_fromC1toC,  WBL_fromC1toC,  '-r', 'LineWidth', 1)
+            plot(V_fromCtoC2,  WBL_fromCtoC2,  '-r', 'LineWidth', 1)
+            plot(V_fromC2toD,  WBL_fromC2toD,  '-r', 'LineWidth', 1)
+            plot(V_fromDto0,   WBL_fromDto0,   '-r', 'LineWidth', 1)
             % UNIT LOAD DISTR.
             plot(V_unit_load_factor, LW_unit_load_factor,  '--k', 'LineWidth', 2)
             % ---------------------------------------------------------------------
-            plot(V_from0toS(1),     LW_from0toS_new(1),     'k.', 'MarkerSize', 10)
-            plot(V_from0toS(end),   LW_from0toS_new(end),   'k.', 'MarkerSize', 10)
-            plot(V_fromStoA1(end),  LW_fromStoA1_new(end),  'k.', 'MarkerSize', 10)
-            plot(V_fromA1toC1(end), LW_fromA1toC1_new(end), 'k.', 'MarkerSize', 10)
-            plot(V_fromC1toC(end),  LW_fromC1toC_new(end),  'k.', 'MarkerSize', 10)
-            plot(V_fromCtoC2(end),  LW_fromCtoC2_new(end),  'k.', 'MarkerSize', 10)
-            plot(V_fromC2toD(end),  LW_fromC2toD_new(end),  'k.', 'MarkerSize', 10)
-            plot(V_fromDto0(end),   LW_fromDto0_new(end),   'k.', 'MarkerSize', 10)
+            plot(V_from0toS(1),     WBL_from0toS(1),     'k.', 'MarkerSize', 10)
+            plot(V_from0toS(end),   WBL_from0toS(end),   'k.', 'MarkerSize', 10)
+            plot(V_fromStoA1(end),  WBL_fromStoA1(end),  'k.', 'MarkerSize', 10)
+            plot(V_fromA1toC1(end), WBL_fromA1toC1(end), 'k.', 'MarkerSize', 10)
+            plot(V_fromC1toC(end),  WBL_fromC1toC(end),  'k.', 'MarkerSize', 10)
+            plot(V_fromCtoC2(end),  WBL_fromCtoC2(end),  'k.', 'MarkerSize', 10)
+            plot(V_fromC2toD(end),  WBL_fromC2toD(end),  'k.', 'MarkerSize', 10)
+            plot(V_fromDto0(end),   WBL_fromDto0(end),   'k.', 'MarkerSize', 10)
             % ---------------------------------------------------------------------
-            text(V_fromStoA1(1),   LW_fromStoA1_new(1),     '  S',  'FontSize', 6)
-            text(V_fromStoA1(end), LW_fromStoA1_new(end),   '  A1', 'FontSize', 6)
-            text(V_fromA1toC1(end), LW_fromA1toC1_new(end), '  C1', 'FontSize', 6)
-            text(V_fromC1toC(end),  LW_fromC1toC_new(end),  '  C',  'FontSize', 6)
-            text(V_fromCtoC2(end),  LW_fromCtoC2_new(end),  '  C2', 'FontSize', 6)
-            text(V_fromC2toD(end),  LW_fromC2toD_new(end),  '  D',  'FontSize', 6)
+            text(V_fromStoA1(1),    WBL_fromStoA1(1),       '  S',  'FontSize', 6)
+            text(V_fromStoA1(end),  WBL_fromStoA1(end),     '  A1', 'FontSize', 6)
+            text(V_fromA1toC1(end), WBL_fromA1toC1(end),    '  C1', 'FontSize', 6)
+            text(V_fromC1toC(end),  WBL_fromC1toC(end),  '  C',  'FontSize', 6)
+            text(V_fromCtoC2(end),  WBL_fromCtoC2(end),  '  C2', 'FontSize', 6)
+            text(V_fromC2toD(end),  WBL_fromC2toD(end),  '  D',  'FontSize', 6)
             % text(40.75, -18, 'n = 1')
             % ---------------------------------------------------------------------
             xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
@@ -1945,17 +1973,17 @@ switch (Straight_flight_Case)
             LW_fromCtoD_new  = zeros(length(CL_from0toS_new), 1);
             LW_fromDto0_new  = zeros(length(CL_from0toS_new), 1);
              for i = 1:length(CL_from0toS_new)
-%                 LW_from0toS_new(i)  = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS_new(i))*(1e-1);  
-%                 LW_fromStoA1_new(i) = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1_new(i))*(1e-1);
-%                 LW_fromA1toC_new(i) = (0.5)*(V_fromA1toC(i)^2)* rho0 * S *(CL_fromA1toC_new(i))*(1e-1);
-%                 LW_fromCtoD_new(i) = (0.5)*(V_fromCtoD(i)^2)* rho0 * S *(CL_fromCtoD_new(i))*(1e-1);
-%                 LW_fromDto0_new(i)  = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0_new(i))*(1e-1);
+                LW_from0toS_new(i)  = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS_new(i))*(1e-1);  
+                LW_fromStoA1_new(i) = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1_new(i))*(1e-1);
+                LW_fromA1toC_new(i) = (0.5)*(V_fromA1toC(i)^2)* rho0 * S *(CL_fromA1toC_new(i))*(1e-1);
+                LW_fromCtoD_new(i) = (0.5)*(V_fromCtoD(i)^2)* rho0 * S *(CL_fromCtoD_new(i))*(1e-1);
+                LW_fromDto0_new(i)  = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0_new(i))*(1e-1);
 
-                LW_from0toS_new(i)  = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS(i))*(1e-1);  
-                LW_fromStoA1_new(i) = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1(i))*(1e-1);
-                LW_fromA1toC_new(i) = (0.5)*(V_fromA1toC(i)^2)* rho0 * S *(CL_fromA1toC(i))*(1e-1);
-                LW_fromCtoD_new(i) = (0.5)*(V_fromCtoD(i)^2)* rho0 * S *(CL_fromCtoD(i))*(1e-1);
-                LW_fromDto0_new(i)  = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0(i))*(1e-1);
+%                 LW_from0toS_new(i)  = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS(i))*(1e-1);  
+%                 LW_fromStoA1_new(i) = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1(i))*(1e-1);
+%                 LW_fromA1toC_new(i) = (0.5)*(V_fromA1toC(i)^2)* rho0 * S *(CL_fromA1toC(i))*(1e-1);
+%                 LW_fromCtoD_new(i) = (0.5)*(V_fromCtoD(i)^2)* rho0 * S *(CL_fromCtoD(i))*(1e-1);
+%                 LW_fromDto0_new(i)  = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0(i))*(1e-1);
 
             end       
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS_new.value = CL_from0toS_new;
@@ -1986,26 +2014,49 @@ switch (Straight_flight_Case)
 
     %         ylim([LHT_from0toS(1) LHT_fromDto0(1)])
     %         xlim([0.0 V_fromDto0(1)])
-
-            plot(V_from0toS,  LW_from0toS_new,  '-r', 'LineWidth', 1)
-            plot(V_fromStoA1, LW_fromStoA1_new, '-r', 'LineWidth', 1)
-            plot(V_fromA1toC, LW_fromA1toC_new, '-r', 'LineWidth', 1)
-            plot(V_fromCtoD,  LW_fromCtoD_new, '-r', 'LineWidth', 1)
-            plot(V_fromDto0,  LW_fromDto0_new,  '-r', 'LineWidth', 1)
+% 
+%             plot(V_from0toS,  LW_from0toS_new,  '-r', 'LineWidth', 1)
+%             plot(V_fromStoA1, LW_fromStoA1_new, '-r', 'LineWidth', 1)
+%             plot(V_fromA1toC, LW_fromA1toC_new, '-r', 'LineWidth', 1)
+%             plot(V_fromCtoD,  LW_fromCtoD_new, '-r', 'LineWidth', 1)
+%             plot(V_fromDto0,  LW_fromDto0_new,  '-r', 'LineWidth', 1)
+%             % UNIT LOAD DISTR.
+%             plot(V_unit_load_factor, LW_unit_load_factor,  '--k', 'LineWidth', 2)
+%             % ---------------------------------------------------------------------
+%             plot(V_from0toS(1),    LW_from0toS_new(1),    'k.', 'MarkerSize', 10)
+%             plot(V_from0toS(end),  LW_from0toS_new(end),  'k.', 'MarkerSize', 10)
+%             plot(V_fromStoA1(end), LW_fromStoA1_new(end), 'k.', 'MarkerSize', 10)
+%             plot(V_fromA1toC(end), LW_fromA1toC_new(end), 'k.', 'MarkerSize', 10)
+%             plot(V_fromCtoD(end),  LW_fromCtoD_new(end),  'k.', 'MarkerSize', 10)
+%             plot(V_fromDto0(end),  LW_fromDto0_new(end),  'k.', 'MarkerSize', 10)
+%             % ---------------------------------------------------------------------
+%             text(V_fromStoA1(1),   LW_fromStoA1_new(1),   '  S',  'FontSize', 6)
+%             text(V_fromStoA1(end), LW_fromStoA1_new(end), '  A1', 'FontSize', 6)
+%             text(V_fromA1toC(end), LW_fromA1toC_new(end), '  C',  'FontSize', 6)
+%             text(V_fromCtoD(end),  LW_fromCtoD_new(end),  '  D', 'FontSize', 6)
+%             % text(40.75, -18, 'n = 1')
+            % ---------------------------------------------------------------------
+            % --------------------------------------------------------------------
+            plot(V_from0toS,   WBL_from0toS,  '-r', 'LineWidth', 1)
+            plot(V_fromStoA1,  WBL_fromStoA1, '-r', 'LineWidth', 1)
+            plot(V_fromA1toC,  WBL_fromA1toC, '-r', 'LineWidth', 1)
+            plot(V_fromCtoD,   WBL_fromCtoD,  '-r', 'LineWidth', 1)
+            plot(V_fromDto0,   WBL_fromDto0,  '-r', 'LineWidth', 1)
             % UNIT LOAD DISTR.
             plot(V_unit_load_factor, LW_unit_load_factor,  '--k', 'LineWidth', 2)
             % ---------------------------------------------------------------------
-            plot(V_from0toS(1),    LW_from0toS_new(1),    'k.', 'MarkerSize', 10)
-            plot(V_from0toS(end),  LW_from0toS_new(end),  'k.', 'MarkerSize', 10)
-            plot(V_fromStoA1(end), LW_fromStoA1_new(end), 'k.', 'MarkerSize', 10)
-            plot(V_fromA1toC(end), LW_fromA1toC_new(end), 'k.', 'MarkerSize', 10)
-            plot(V_fromCtoD(end),  LW_fromCtoD_new(end),  'k.', 'MarkerSize', 10)
-            plot(V_fromDto0(end),  LW_fromDto0_new(end),  'k.', 'MarkerSize', 10)
+            plot(V_from0toS(1),     WBL_from0toS(1),     'k.', 'MarkerSize', 10)
+            plot(V_from0toS(end),   WBL_from0toS(end),   'k.', 'MarkerSize', 10)
+            plot(V_fromStoA1(end),  WBL_fromStoA1(end),  'k.', 'MarkerSize', 10)
+            plot(V_fromA1toC(end),  WBL_fromA1toC(end), 'k.', 'MarkerSize', 10)
+            plot(V_fromCtoD(end),   WBL_fromCtoD(end),  'k.', 'MarkerSize', 10)
+            plot(V_fromDto0(end),   WBL_fromDto0(end),  'k.', 'MarkerSize', 10)
             % ---------------------------------------------------------------------
-            text(V_fromStoA1(1),   LW_fromStoA1_new(1),   '  S',  'FontSize', 6)
-            text(V_fromStoA1(end), LW_fromStoA1_new(end), '  A1', 'FontSize', 6)
-            text(V_fromA1toC(end), LW_fromA1toC_new(end), '  C',  'FontSize', 6)
-            text(V_fromCtoD(end),  LW_fromCtoD_new(end),  '  D', 'FontSize', 6)
+            text(V_fromStoA1(1),    WBL_fromStoA1(1),       '  S',  'FontSize', 6)
+            text(V_fromStoA1(end),  WBL_fromStoA1(end),     '  A1', 'FontSize', 6)
+            text(V_fromA1toC(end),  WBL_fromA1toC(end),    '  C1', 'FontSize', 6)
+            text(V_fromCtoD(end),   WBL_fromCtoD(end),  '  C',  'FontSize', 6)
+            text(V_fromDto0(end),   WBL_fromDto0(end),  '  C2', 'FontSize', 6)
             % text(40.75, -18, 'n = 1')
             % ---------------------------------------------------------------------
             xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
@@ -2952,6 +3003,32 @@ switch (Straight_flight_Case)
         text(V_fromA2toD(end), LHT_fromA2toD(end), '  D',  'FontSize', 6)
         text(40.75, -18, 'n = 1')
         % ---------------------------------------------------------------------
+% 
+%             % --------------------------------------------------------------------
+%             plot(V_from0toS,  WBL_from0toS,  '-r', 'LineWidth', 1)
+%             plot(V_fromStoA1, WBL_fromStoA1, '-r', 'LineWidth', 1)
+%             plot(V_fromA1toC, WBL_fromA1toC, '-r', 'LineWidth', 1)
+%             plot(V_fromCtoA2, WBL_fromCtoA2, '-r', 'LineWidth', 1)
+%             plot(V_fromA2toD, WBL_fromA2toD, '-r', 'LineWidth', 1)
+%             plot(V_fromDto0,  WBL_fromDto0,  '-r', 'LineWidth', 1)
+%             % UNIT LOAD DISTR.
+%             plot(V_unit_load_factor, LW_unit_load_factor,  '--k', 'LineWidth', 2)
+%             % ---------------------------------------------------------------------
+%             plot(V_from0toS(1),     WBL_from0toS(1),     'k.', 'MarkerSize', 10)
+%             plot(V_from0toS(end),   WBL_from0toS(end),   'k.', 'MarkerSize', 10)
+%             plot(V_fromStoA1(end),  WBL_fromStoA1(end),  'k.', 'MarkerSize', 10)
+%             plot(V_fromA1toC(end),  WBL_fromA1toC(end),  'k.', 'MarkerSize', 10)
+%             plot(V_fromCtoA2(end),  WBL_fromCtoA2(end),   'k.', 'MarkerSize', 10)
+%             plot(V_fromA2toD(end),  WBL_fromA2toD(end),   'k.', 'MarkerSize', 10)
+%             plot(V_fromDto0(end),   WBL_fromDto0(end),   'k.', 'MarkerSize', 10)
+%             % ---------------------------------------------------------------------
+%             text(V_fromStoA1(1),    WBL_fromStoA1(1),    '  S',  'FontSize', 6)
+%             text(V_fromStoA1(end),  WBL_fromStoA1(end),  '  A1', 'FontSize', 6)
+%             text(V_fromA1toC(end),  WBL_fromA1toC(end),  '  C', 'FontSize', 6)
+%             text(V_fromCtoA2(end),  WBL_fromCtoA2(end),  '  A2',  'FontSize', 6)
+%             text(V_fromA2toD(end),  WBL_fromA2toD(end),  '  D', 'FontSize', 6)
+%             % text(40.75, -18, 'n = 1')
+%             % ---------------------------------------------------------------------        
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Horizontal tail lift - $L_{ht}$ (daN)", "Interpreter", "latex")
         title("Horizontal empennage airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct
@@ -2978,18 +3055,18 @@ switch (Straight_flight_Case)
         LW_fromA2toD_new = zeros(length(CL_from0toS_new), 1);
         LW_fromDto0_new  = zeros(length(CL_from0toS_new), 1);
         for i = 1:length(CL_from0toS_new)
-%             LW_from0toS_new(i)  = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS_new(i))*(1e-1);  
-%             LW_fromStoA1_new(i) = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1_new(i))*(1e-1);
-%             LW_fromA1toC_new(i) = (0.5)*(V_fromA1toC(i)^2)* rho0 * S *(CL_fromA1toC_new(i))*(1e-1);
-%             LW_fromCtoA2_new(i) = (0.5)*(V_fromCtoA2(i)^2)* rho0 * S *(CL_fromCtoA2_new(i))*(1e-1);
-%             LW_fromA2toD_new(i) = (0.5)*(V_fromA2toD(i)^2)* rho0 * S *(CL_fromA2toD_new(i))*(1e-1);
-%             LW_fromDto0_new(i)  = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0_new(i))*(1e-1);
-            LW_from0toS_new(i)  = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS(i))*(1e-1);  
-            LW_fromStoA1_new(i) = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1(i))*(1e-1);
-            LW_fromA1toC_new(i) = (0.5)*(V_fromA1toC(i)^2)* rho0 * S *(CL_fromA1toC(i))*(1e-1);
-            LW_fromCtoA2_new(i) = (0.5)*(V_fromCtoA2(i)^2)* rho0 * S *(CL_fromCtoA2(i))*(1e-1);
-            LW_fromA2toD_new(i) = (0.5)*(V_fromA2toD(i)^2)* rho0 * S *(CL_fromA2toD(i))*(1e-1);
-            LW_fromDto0_new(i)  = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0(i))*(1e-1);
+            LW_from0toS_new(i)  = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS_new(i))*(1e-1);  
+            LW_fromStoA1_new(i) = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1_new(i))*(1e-1);
+            LW_fromA1toC_new(i) = (0.5)*(V_fromA1toC(i)^2)* rho0 * S *(CL_fromA1toC_new(i))*(1e-1);
+            LW_fromCtoA2_new(i) = (0.5)*(V_fromCtoA2(i)^2)* rho0 * S *(CL_fromCtoA2_new(i))*(1e-1);
+            LW_fromA2toD_new(i) = (0.5)*(V_fromA2toD(i)^2)* rho0 * S *(CL_fromA2toD_new(i))*(1e-1);
+            LW_fromDto0_new(i)  = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0_new(i))*(1e-1);
+%             LW_from0toS_new(i)  = (0.5)*(V_from0toS(i)^2)* rho0 * S *(CL_from0toS(i))*(1e-1);  
+%             LW_fromStoA1_new(i) = (0.5)*(V_fromStoA1(i)^2)* rho0 * S *(CL_fromStoA1(i))*(1e-1);
+%             LW_fromA1toC_new(i) = (0.5)*(V_fromA1toC(i)^2)* rho0 * S *(CL_fromA1toC(i))*(1e-1);
+%             LW_fromCtoA2_new(i) = (0.5)*(V_fromCtoA2(i)^2)* rho0 * S *(CL_fromCtoA2(i))*(1e-1);
+%             LW_fromA2toD_new(i) = (0.5)*(V_fromA2toD(i)^2)* rho0 * S *(CL_fromA2toD(i))*(1e-1);
+%             LW_fromDto0_new(i)  = (0.5)*(V_fromDto0(i)^2)* rho0 * S *(CL_fromDto0(i))*(1e-1);
         end       
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS_new.value = CL_from0toS_new;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toS_new.Attributes.unit = "Non dimensional";
@@ -3024,32 +3101,59 @@ switch (Straight_flight_Case)
 %         ylim([LHT_from0toS(1) LHT_fromDto0(1)])
 %         xlim([0.0 V_fromDto0(1)])
         
-        plot(V_from0toS,  LW_from0toS_new,  '-r', 'LineWidth', 1)
-        plot(V_fromStoA1, LW_fromStoA1_new, '-r', 'LineWidth', 1)
-        plot(V_fromA1toC, LW_fromA1toC_new, '-r', 'LineWidth', 1)
-        plot(V_fromCtoA2, LW_fromCtoA2_new, '-r', 'LineWidth', 1)
-        plot(V_fromA2toD, LW_fromA2toD_new, '-r', 'LineWidth', 1)
-        plot(V_fromDto0,  LW_fromDto0_new,  '-r', 'LineWidth', 1)
-        % UNIT LOAD DISTR.
-        plot(V_unit_load_factor, LW_unit_load_factor,  '--k', 'LineWidth', 2)
-        % ---------------------------------------------------------------------
-        plot(V_from0toS(1),    LW_from0toS_new(1),    'k.', 'MarkerSize', 10)
-        plot(V_from0toS(end),  LW_from0toS_new(end),  'k.', 'MarkerSize', 10)
-%         plot(VA,               WBL_A,                 'k.', 'MarkerSize', 10)
-        plot(V_fromStoA1(end), LW_fromStoA1_new(end), 'k.', 'MarkerSize', 10)
-        plot(V_fromA1toC(end), LW_fromA1toC_new(end), 'k.', 'MarkerSize', 10)
-        plot(V_fromCtoA2(end), LW_fromCtoA2_new(end), 'k.', 'MarkerSize', 10)
-        plot(V_fromA2toD(end), LW_fromA2toD_new(end), 'k.', 'MarkerSize', 10)
-        plot(V_fromDto0(end),  LW_fromDto0_new(end),  'k.', 'MarkerSize', 10)
-        % ---------------------------------------------------------------------
-        text(V_fromStoA1(1),   LW_fromStoA1_new(1),   '  S',  'FontSize',  6)
-%         text(VA,               WBL_A,                  '  A',  'FontSize', 6)
-        text(V_fromStoA1(end), LW_fromStoA1_new(end), '  A1', 'FontSize',  6)
-        text(V_fromA1toC(end), LW_fromA1toC_new(end), '  C',  'FontSize',  6)
-        text(V_fromCtoA2(end), LW_fromCtoA2_new(end), '  A2', 'FontSize',  6)
-        text(V_fromA2toD(end), LW_fromA2toD_new(end), '  D',  'FontSize',  6)
-        % text(40.75, -18, 'n = 1')
-        % ---------------------------------------------------------------------
+%         plot(V_from0toS,  LW_from0toS_new,  '-r', 'LineWidth', 1)
+%         plot(V_fromStoA1, LW_fromStoA1_new, '-r', 'LineWidth', 1)
+%         plot(V_fromA1toC, LW_fromA1toC_new, '-r', 'LineWidth', 1)
+%         plot(V_fromCtoA2, LW_fromCtoA2_new, '-r', 'LineWidth', 1)
+%         plot(V_fromA2toD, LW_fromA2toD_new, '-r', 'LineWidth', 1)
+%         plot(V_fromDto0,  LW_fromDto0_new,  '-r', 'LineWidth', 1)
+%         % UNIT LOAD DISTR.
+%         plot(V_unit_load_factor, LW_unit_load_factor,  '--k', 'LineWidth', 2)
+%         % ---------------------------------------------------------------------
+%         plot(V_from0toS(1),    LW_from0toS_new(1),    'k.', 'MarkerSize', 10)
+%         plot(V_from0toS(end),  LW_from0toS_new(end),  'k.', 'MarkerSize', 10)
+% %         plot(VA,               WBL_A,                 'k.', 'MarkerSize', 10)
+%         plot(V_fromStoA1(end), LW_fromStoA1_new(end), 'k.', 'MarkerSize', 10)
+%         plot(V_fromA1toC(end), LW_fromA1toC_new(end), 'k.', 'MarkerSize', 10)
+%         plot(V_fromCtoA2(end), LW_fromCtoA2_new(end), 'k.', 'MarkerSize', 10)
+%         plot(V_fromA2toD(end), LW_fromA2toD_new(end), 'k.', 'MarkerSize', 10)
+%         plot(V_fromDto0(end),  LW_fromDto0_new(end),  'k.', 'MarkerSize', 10)
+%         % ---------------------------------------------------------------------
+%         text(V_fromStoA1(1),   LW_fromStoA1_new(1),   '  S',  'FontSize',  6)
+% %         text(VA,               WBL_A,                  '  A',  'FontSize', 6)
+%         text(V_fromStoA1(end), LW_fromStoA1_new(end), '  A1', 'FontSize',  6)
+%         text(V_fromA1toC(end), LW_fromA1toC_new(end), '  C',  'FontSize',  6)
+%         text(V_fromCtoA2(end), LW_fromCtoA2_new(end), '  A2', 'FontSize',  6)
+%         text(V_fromA2toD(end), LW_fromA2toD_new(end), '  D',  'FontSize',  6)
+%         % text(40.75, -18, 'n = 1')
+%         % ---------------------------------------------------------------------
+
+            % --------------------------------------------------------------------
+            plot(V_from0toS,  WBL_from0toS,  '-r', 'LineWidth', 1)
+            plot(V_fromStoA1, WBL_fromStoA1, '-r', 'LineWidth', 1)
+            plot(V_fromA1toC, WBL_fromA1toC, '-r', 'LineWidth', 1)
+            plot(V_fromCtoA2, WBL_fromCtoA2, '-r', 'LineWidth', 1)
+            plot(V_fromA2toD, WBL_fromA2toD, '-r', 'LineWidth', 1)
+            plot(V_fromDto0,  WBL_fromDto0,  '-r', 'LineWidth', 1)
+            % UNIT LOAD DISTR.
+            plot(V_unit_load_factor, LW_unit_load_factor,  '--k', 'LineWidth', 2)
+            % ---------------------------------------------------------------------
+            plot(V_from0toS(1),     WBL_from0toS(1),     'k.', 'MarkerSize', 10)
+            plot(V_from0toS(end),   WBL_from0toS(end),   'k.', 'MarkerSize', 10)
+            plot(V_fromStoA1(end),  WBL_fromStoA1(end),  'k.', 'MarkerSize', 10)
+            plot(V_fromA1toC(end),  WBL_fromA1toC(end),  'k.', 'MarkerSize', 10)
+            plot(V_fromCtoA2(end),  WBL_fromCtoA2(end),   'k.', 'MarkerSize', 10)
+            plot(V_fromA2toD(end),  WBL_fromA2toD(end),   'k.', 'MarkerSize', 10)
+            plot(V_fromDto0(end),   WBL_fromDto0(end),   'k.', 'MarkerSize', 10)
+            % ---------------------------------------------------------------------
+            text(V_fromStoA1(1),    WBL_fromStoA1(1),    '  S',  'FontSize', 6)
+            text(V_fromStoA1(end),  WBL_fromStoA1(end),  '  A1', 'FontSize', 6)
+            text(V_fromA1toC(end),  WBL_fromA1toC(end),  '  C', 'FontSize', 6)
+            text(V_fromCtoA2(end),  WBL_fromCtoA2(end),  '  A2',  'FontSize', 6)
+            text(V_fromA2toD(end),  WBL_fromA2toD(end),  '  D', 'FontSize', 6)
+            % text(40.75, -18, 'n = 1')
+            % ---------------------------------------------------------------------            
+        
         xlabel("Airspeed - $V$ (m/s)", "Interpreter", "latex")
         ylabel("Wing lift - $L_{w}$ (daN)", "Interpreter", "latex")
         title("Wing airloads per ", Reg, "Interpreter", "latex") % Applied regulation from 'Aircraft' struct  
@@ -3890,20 +3994,20 @@ switch (Inverted_flight_Case)
             LW_fromG2toE_new   = zeros(length(CL_from0toSinv_new), 1);
             LW_fromEto0_new    = zeros(length(CL_from0toSinv_new), 1);
             for i = 1:length(CL_from0toSinv_new)
-%                 LW_from0toSinv_new(i) = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv_new(i))*(1e-1);  
-%                 LW_fromSinvtoG_new(i) = (0.5)*(V_fromSinvtoG(i)^2)* rho0 * S *(CL_fromSinvtoG_new(i))*(1e-1);
-%                 LW_fromGtoG1_new(i)   = (0.5)*(V_fromGtoG1(i)^2)* rho0 * S *(CL_fromGtoG1_new(i))*(1e-1);
-%                 LW_fromG1toF_new(i)   = (0.5)*(V_fromG1toF(i)^2)* rho0 * S *(CL_fromG1toF_new(i))*(1e-1);
-%                 LW_fromFtoG2_new(i)   = (0.5)*(V_fromFtoG2(i)^2)* rho0 * S *(CL_fromFtoG2_new(i))*(1e-1);
-%                 LW_fromG2toE_new(i)   = (0.5)*(V_fromG2toE(i)^2)* rho0 * S *(CL_fromG2toE_new(i))*(1e-1);
-%                 LW_fromEto0_new(i)    = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0_new(i))*(1e-1);
-                LW_from0toSinv_new(i) = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv(i))*(1e-1);  
-                LW_fromSinvtoG_new(i) = (0.5)*(V_fromSinvtoG(i)^2)* rho0 * S *(CL_fromSinvtoG(i))*(1e-1);
-                LW_fromGtoG1_new(i)   = (0.5)*(V_fromGtoG1(i)^2)* rho0 * S *(CL_fromGtoG1(i))*(1e-1);
-                LW_fromG1toF_new(i)   = (0.5)*(V_fromG1toF(i)^2)* rho0 * S *(CL_fromG1toF(i))*(1e-1);
-                LW_fromFtoG2_new(i)   = (0.5)*(V_fromFtoG2(i)^2)* rho0 * S *(CL_fromFtoG2(i))*(1e-1);
-                LW_fromG2toE_new(i)   = (0.5)*(V_fromG2toE(i)^2)* rho0 * S *(CL_fromG2toE(i))*(1e-1);
-                LW_fromEto0_new(i)    = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0(i))*(1e-1);
+                LW_from0toSinv_new(i) = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv_new(i))*(1e-1);  
+                LW_fromSinvtoG_new(i) = (0.5)*(V_fromSinvtoG(i)^2)* rho0 * S *(CL_fromSinvtoG_new(i))*(1e-1);
+                LW_fromGtoG1_new(i)   = (0.5)*(V_fromGtoG1(i)^2)* rho0 * S *(CL_fromGtoG1_new(i))*(1e-1);
+                LW_fromG1toF_new(i)   = (0.5)*(V_fromG1toF(i)^2)* rho0 * S *(CL_fromG1toF_new(i))*(1e-1);
+                LW_fromFtoG2_new(i)   = (0.5)*(V_fromFtoG2(i)^2)* rho0 * S *(CL_fromFtoG2_new(i))*(1e-1);
+                LW_fromG2toE_new(i)   = (0.5)*(V_fromG2toE(i)^2)* rho0 * S *(CL_fromG2toE_new(i))*(1e-1);
+                LW_fromEto0_new(i)    = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0_new(i))*(1e-1);
+%                 LW_from0toSinv_new(i) = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv(i))*(1e-1);  
+%                 LW_fromSinvtoG_new(i) = (0.5)*(V_fromSinvtoG(i)^2)* rho0 * S *(CL_fromSinvtoG(i))*(1e-1);
+%                 LW_fromGtoG1_new(i)   = (0.5)*(V_fromGtoG1(i)^2)* rho0 * S *(CL_fromGtoG1(i))*(1e-1);
+%                 LW_fromG1toF_new(i)   = (0.5)*(V_fromG1toF(i)^2)* rho0 * S *(CL_fromG1toF(i))*(1e-1);
+%                 LW_fromFtoG2_new(i)   = (0.5)*(V_fromFtoG2(i)^2)* rho0 * S *(CL_fromFtoG2(i))*(1e-1);
+%                 LW_fromG2toE_new(i)   = (0.5)*(V_fromG2toE(i)^2)* rho0 * S *(CL_fromG2toE(i))*(1e-1);
+%                 LW_fromEto0_new(i)    = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0(i))*(1e-1);
             end       
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv_new.value = CL_from0toSinv_new;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv_new.Attributes.unit = "Non dimensional";
@@ -3937,29 +4041,52 @@ switch (Inverted_flight_Case)
             % =============================================================
             % WING LOADS DIAGRAM - NEGATIVE SIDE   
             figure(6)
+%             % ---------------------------------------------------------------------
+%             plot(V_from0toSinv, LW_from0toSinv_new, '-r', 'LineWidth', 1)
+%             plot(V_fromSinvtoG, LW_fromSinvtoG_new, '-r', 'LineWidth', 1)
+%             plot(V_fromGtoG1,   LW_fromGtoG1_new,   '-r', 'LineWidth', 1)
+%             plot(V_fromG1toF,   LW_fromG1toF_new,   '-r', 'LineWidth', 1)
+%             plot(V_fromFtoG2,   LW_fromFtoG2_new,   '-r', 'LineWidth', 1)
+%             plot(V_fromG2toE,   LW_fromG2toE_new,   '-r', 'LineWidth', 1)
+%             plot(V_fromEto0,    LW_fromEto0_new,    '-r', 'LineWidth', 1)
+%             % ---------------------------------------------------------------------
+%             plot(V_from0toSinv(1),   LW_from0toSinv_new(1),   'k.', 'MarkerSize', 10)
+%             plot(V_from0toSinv(end), LW_from0toSinv_new(end), 'k.', 'MarkerSize', 10)
+%             plot(V_fromSinvtoG(end), LW_fromSinvtoG_new(end), 'k.', 'MarkerSize', 10)
+%             plot(V_fromGtoG1(end),   LW_fromGtoG1_new(end),   'k.', 'MarkerSize', 10)
+%             plot(V_fromG1toF(end),   LW_fromG1toF_new(end),   'k.', 'MarkerSize', 10)
+%             plot(V_fromFtoG2(end),   LW_fromFtoG2_new(end),   'k.', 'MarkerSize', 10)
+%             plot(V_fromG2toE(end),   LW_fromG2toE_new(end),   'k.', 'MarkerSize', 10)
+%             % ---------------------------------------------------------------------
+%             text(V_from0toSinv(end),  LW_from0toSinv_new(end), ' S inv.', 'FontSize', 6)
+%             text(V_fromSinvtoG(end),  LW_fromSinvtoG_new(end), ' G',      'FontSize', 6)
+%             text(V_fromGtoG1(end),    LW_fromGtoG1_new(end),   ' G1',     'FontSize', 6)
+%             text(V_fromG1toF(end),    LW_fromG1toF_new(end),   ' F',      'FontSize', 6) 
+%             text(V_fromFtoG2(end),    LW_fromFtoG2_new(end),   ' G2',     'FontSize', 6)  
+%             text(V_fromG2toE(end),    LW_fromG2toE_new(end),   ' E',      'FontSize', 6) 
             % ---------------------------------------------------------------------
-            plot(V_from0toSinv, LW_from0toSinv_new, '-r', 'LineWidth', 1)
-            plot(V_fromSinvtoG, LW_fromSinvtoG_new, '-r', 'LineWidth', 1)
-            plot(V_fromGtoG1,   LW_fromGtoG1_new,   '-r', 'LineWidth', 1)
-            plot(V_fromG1toF,   LW_fromG1toF_new,   '-r', 'LineWidth', 1)
-            plot(V_fromFtoG2,   LW_fromFtoG2_new,   '-r', 'LineWidth', 1)
-            plot(V_fromG2toE,   LW_fromG2toE_new,   '-r', 'LineWidth', 1)
-            plot(V_fromEto0,    LW_fromEto0_new,    '-r', 'LineWidth', 1)
+            plot(V_from0toSinv, WBL_from0toSinv, '-r', 'LineWidth', 1)
+            plot(V_fromSinvtoG, WBL_fromSinvtoG, '-r', 'LineWidth', 1)
+            plot(V_fromGtoG1,   WBL_fromGtoG1,   '-r', 'LineWidth', 1)
+            plot(V_fromG1toF,   WBL_fromG1toF,   '-r', 'LineWidth', 1)
+            plot(V_fromFtoG2,   WBL_fromFtoG2,   '-r', 'LineWidth', 1)
+            plot(V_fromG2toE,   WBL_fromG2toE,   '-r', 'LineWidth', 1)
+            plot(V_fromEto0,    WBL_fromEto0,    '-r', 'LineWidth', 1)
             % ---------------------------------------------------------------------
-            plot(V_from0toSinv(1),   LW_from0toSinv_new(1),   'k.', 'MarkerSize', 10)
-            plot(V_from0toSinv(end), LW_from0toSinv_new(end), 'k.', 'MarkerSize', 10)
-            plot(V_fromSinvtoG(end), LW_fromSinvtoG_new(end), 'k.', 'MarkerSize', 10)
-            plot(V_fromGtoG1(end),   LW_fromGtoG1_new(end),   'k.', 'MarkerSize', 10)
-            plot(V_fromG1toF(end),   LW_fromG1toF_new(end),   'k.', 'MarkerSize', 10)
-            plot(V_fromFtoG2(end),   LW_fromFtoG2_new(end),   'k.', 'MarkerSize', 10)
-            plot(V_fromG2toE(end),   LW_fromG2toE_new(end),   'k.', 'MarkerSize', 10)
+            plot(V_from0toSinv(1),   WBL_from0toSinv(1),   'k.', 'MarkerSize', 10)
+            plot(V_from0toSinv(end), WBL_from0toSinv(end), 'k.', 'MarkerSize', 10)
+            plot(V_fromSinvtoG(end), WBL_fromSinvtoG(end), 'k.', 'MarkerSize', 10)
+            plot(V_fromGtoG1(end),   WBL_fromGtoG1(end),   'k.', 'MarkerSize', 10)
+            plot(V_fromG1toF(end),   WBL_fromG1toF(end),   'k.', 'MarkerSize', 10)
+            plot(V_fromFtoG2(end),   WBL_fromFtoG2(end),   'k.', 'MarkerSize', 10)
+            plot(V_fromG2toE(end),   WBL_fromG2toE(end),   'k.', 'MarkerSize', 10)
             % ---------------------------------------------------------------------
-            text(V_from0toSinv(end),  LW_from0toSinv_new(end), ' S inv.', 'FontSize', 6)
-            text(V_fromSinvtoG(end),  LW_fromSinvtoG_new(end), ' G',      'FontSize', 6)
-            text(V_fromGtoG1(end),    LW_fromGtoG1_new(end),   ' G1',     'FontSize', 6)
-            text(V_fromG1toF(end),    LW_fromG1toF_new(end),   ' F',      'FontSize', 6) 
-            text(V_fromFtoG2(end),    LW_fromFtoG2_new(end),   ' G2',     'FontSize', 6)  
-            text(V_fromG2toE(end),    LW_fromG2toE_new(end),   ' E',      'FontSize', 6) 
+            text(V_from0toSinv(end),  WBL_from0toSinv(end), ' S inv.', 'FontSize', 6)
+            text(V_fromSinvtoG(end),  WBL_fromSinvtoG(end), ' G',      'FontSize', 6)
+            text(V_fromGtoG1(end),    WBL_fromGtoG1(end),   ' G1',     'FontSize', 6)
+            text(V_fromG1toF(end),    WBL_fromG1toF(end),   ' F',      'FontSize', 6) 
+            text(V_fromFtoG2(end),    WBL_fromFtoG2(end),   ' G2',     'FontSize', 6)  
+            text(V_fromG2toE(end),    WBL_fromG2toE(end),   ' E',      'FontSize', 6)             
             
             % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
 
@@ -4569,6 +4696,7 @@ switch (Inverted_flight_Case)
             text(V_fromGtoF(end),    LHT_fromGtoF(end),    ' F',      'FontSize', 6)
             text(V_fromFtoE(end),    LHT_fromFtoE(end),    ' E',      'FontSize', 6)
             % =================================================================
+
 %             % MAIN WING LOADS DIAGRAM        
 %             CL_from0toSinv_new = CL_from0toSinv + CLHT_from0toSinv;        
 %             CL_fromSinvtoG_new = CL_fromSinvtoG + CLHT_fromSinvtoG;        
@@ -4587,16 +4715,16 @@ switch (Inverted_flight_Case)
             LW_fromFtoE_new    = zeros(length(CL_from0toSinv_new), 1);
             LW_fromEto0_new    = zeros(length(CL_from0toSinv_new), 1);
             for i = 1:length(CL_from0toSinv_new)
-%                 LW_from0toSinv_new(i)  = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv_new(i))*(1e-1);  
-%                 LW_fromSinvtoG_new(i) = (0.5)*(V_fromSinvtoG(i)^2)* rho0 * S *(CL_fromSinvtoG_new(i))*(1e-1);
-%                 LW_fromGtoF_new(i)    = (0.5)*(V_fromGtoF(i)^2)* rho0 * S *(CL_fromGtoF_new(i))*(1e-1);
-%                 LW_fromFtoE_new(i)     = (0.5)*(V_fromFtoE(i)^2)* rho0 * S *(CL_fromFtoE_new(i))*(1e-1);
-%                 LW_fromEto0_new(i)     = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0_new(i))*(1e-1);
-                LW_from0toSinv_new(i)  = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv(i))*(1e-1);  
-                LW_fromSinvtoG_new(i) = (0.5)*(V_fromSinvtoG(i)^2)* rho0 * S *(CL_fromSinvtoG(i))*(1e-1);
-                LW_fromGtoF_new(i)    = (0.5)*(V_fromGtoF(i)^2)* rho0 * S *(CL_fromGtoF(i))*(1e-1);
-                LW_fromFtoE_new(i)     = (0.5)*(V_fromFtoE(i)^2)* rho0 * S *(CL_fromFtoE(i))*(1e-1);
-                LW_fromEto0_new(i)     = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0(i))*(1e-1);
+                LW_from0toSinv_new(i)  = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv_new(i))*(1e-1);  
+                LW_fromSinvtoG_new(i) = (0.5)*(V_fromSinvtoG(i)^2)* rho0 * S *(CL_fromSinvtoG_new(i))*(1e-1);
+                LW_fromGtoF_new(i)    = (0.5)*(V_fromGtoF(i)^2)* rho0 * S *(CL_fromGtoF_new(i))*(1e-1);
+                LW_fromFtoE_new(i)     = (0.5)*(V_fromFtoE(i)^2)* rho0 * S *(CL_fromFtoE_new(i))*(1e-1);
+                LW_fromEto0_new(i)     = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0_new(i))*(1e-1);
+%                 LW_from0toSinv_new(i)  = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv(i))*(1e-1);  
+%                 LW_fromSinvtoG_new(i) = (0.5)*(V_fromSinvtoG(i)^2)* rho0 * S *(CL_fromSinvtoG(i))*(1e-1);
+%                 LW_fromGtoF_new(i)    = (0.5)*(V_fromGtoF(i)^2)* rho0 * S *(CL_fromGtoF(i))*(1e-1);
+%                 LW_fromFtoE_new(i)     = (0.5)*(V_fromFtoE(i)^2)* rho0 * S *(CL_fromFtoE(i))*(1e-1);
+%                 LW_fromEto0_new(i)     = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0(i))*(1e-1);
             end       
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv_new.value = CL_from0toSinv_new;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv_new.Attributes.unit = "Non dimensional";
@@ -4622,25 +4750,43 @@ switch (Inverted_flight_Case)
             % =============================================================
             % WING LOADS DIAGRAM - NEGATIVE SIDE   
             figure(6)
+%             % ---------------------------------------------------------------------
+%             plot(V_from0toSinv, LW_from0toSinv_new, '-r', 'LineWidth', 1)
+%             plot(V_fromSinvtoG, LW_fromSinvtoG_new, '-r', 'LineWidth', 1)
+%             plot(V_fromGtoF,    LW_fromGtoF_new,    '-r', 'LineWidth', 1)
+%             plot(V_fromFtoE,    LW_fromFtoE_new,    '-r', 'LineWidth', 1)
+%             plot(V_fromEto0,    LW_fromEto0_new,    '-r', 'LineWidth', 1)
+%             % ---------------------------------------------------------------------
+%             plot(V_from0toSinv(1),   LW_from0toSinv_new(1),   'k.', 'MarkerSize', 10)
+%             plot(V_from0toSinv(end), LW_from0toSinv_new(end), 'k.', 'MarkerSize', 10)
+%             plot(V_fromSinvtoG(end), LW_fromSinvtoG_new(end), 'k.', 'MarkerSize', 10)
+%             plot(V_fromGtoF(end),    LW_fromGtoF_new(end),    'k.', 'MarkerSize', 10)
+%             plot(V_fromFtoE(end),    LW_fromFtoE_new(end),    'k.', 'MarkerSize', 10)
+%             plot(V_fromEto0(end),    LW_fromEto0_new(end),    'k.', 'MarkerSize', 10)
+%             % ---------------------------------------------------------------------
+%             text(V_from0toSinv(end),  LW_from0toSinv_new(end), ' S inv.', 'FontSize', 6)
+%             text(V_fromSinvtoG(end), LW_fromSinvtoG_new(end),  ' G',      'FontSize', 6)
+%             text(V_fromGtoF(end),    LW_fromGtoF_new(end),     ' F',      'FontSize', 6)
+%             text(V_fromFtoE(end),    LW_fromFtoE_new(end),     ' E',      'FontSize', 6)  
+
             % ---------------------------------------------------------------------
-            plot(V_from0toSinv, LW_from0toSinv_new, '-r', 'LineWidth', 1)
-            plot(V_fromSinvtoG, LW_fromSinvtoG_new, '-r', 'LineWidth', 1)
-            plot(V_fromGtoF,    LW_fromGtoF_new,    '-r', 'LineWidth', 1)
-            plot(V_fromFtoE,    LW_fromFtoE_new,    '-r', 'LineWidth', 1)
-            plot(V_fromEto0,    LW_fromEto0_new,    '-r', 'LineWidth', 1)
+            plot(V_from0toSinv, WBL_from0toSinv, '-r', 'LineWidth', 1)
+            plot(V_fromSinvtoG, WBL_fromSinvtoG, '-r', 'LineWidth', 1)
+            plot(V_fromGtoF,    WBL_fromGtoF,    '-r', 'LineWidth', 1)
+            plot(V_fromFtoE,    WBL_fromFtoE,    '-r', 'LineWidth', 1)
+            plot(V_fromEto0,    WBL_fromEto0,    '-r', 'LineWidth', 1)
             % ---------------------------------------------------------------------
-            plot(V_from0toSinv(1),   LW_from0toSinv_new(1),   'k.', 'MarkerSize', 10)
-            plot(V_from0toSinv(end), LW_from0toSinv_new(end), 'k.', 'MarkerSize', 10)
-            plot(V_fromSinvtoG(end), LW_fromSinvtoG_new(end), 'k.', 'MarkerSize', 10)
-            plot(V_fromGtoF(end),    LW_fromGtoF_new(end),    'k.', 'MarkerSize', 10)
-            plot(V_fromFtoE(end),    LW_fromFtoE_new(end),    'k.', 'MarkerSize', 10)
-            plot(V_fromEto0(end),    LW_fromEto0_new(end),    'k.', 'MarkerSize', 10)
+            plot(V_from0toSinv(1),   WBL_from0toSinv(1),   'k.', 'MarkerSize', 10)
+            plot(V_from0toSinv(end), WBL_from0toSinv(end), 'k.', 'MarkerSize', 10)
+            plot(V_fromSinvtoG(end), WBL_fromSinvtoG(end), 'k.', 'MarkerSize', 10)
+            plot(V_fromGtoF(end),    WBL_fromGtoF(end),    'k.', 'MarkerSize', 10)
+            plot(V_fromFtoE(end),    WBL_fromFtoE(end),    'k.', 'MarkerSize', 10)
+            plot(V_fromEto0(end),    WBL_fromEto0(end),    'k.', 'MarkerSize', 10)
             % ---------------------------------------------------------------------
-            text(V_from0toSinv(end),  LW_from0toSinv_new(end), ' S inv.', 'FontSize', 6)
-            text(V_fromSinvtoG(end), LW_fromSinvtoG_new(end),  ' G',      'FontSize', 6)
-            text(V_fromGtoF(end),    LW_fromGtoF_new(end),     ' F',      'FontSize', 6)
-            text(V_fromFtoE(end),    LW_fromFtoE_new(end),     ' E',      'FontSize', 6)  
-            
+            text(V_from0toSinv(end), WBL_from0toSinv(end),  ' S inv.', 'FontSize', 6)
+            text(V_fromSinvtoG(end), WBL_fromSinvtoG(end),  ' G',      'FontSize', 6)
+            text(V_fromGtoF(end),    WBL_fromGtoF(end),     ' F',      'FontSize', 6)
+            text(V_fromFtoE(end),    WBL_fromFtoE(end),     ' E',      'FontSize', 6)              
         % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
         
         % POINT S_INV
@@ -5360,16 +5506,16 @@ switch (Inverted_flight_Case)
         LW_fromFtoE_new     = zeros(length(CL_from0toSinv_new), 1);
         LW_fromEto0_new     = zeros(length(CL_from0toSinv_new), 1);
         for i = 1:length(CL_from0toSinv_new)
-%             LW_from0toSinv_new(i)  = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv_new(i))*(1e-1);  
-%             LW_fromSinvtoG1_new(i) = (0.5)*(V_fromSinvtoG1(i)^2)* rho0 * S *(CL_fromSinvtoG1_new(i))*(1e-1);
-%             LW_fromG1toF_new(i)    = (0.5)*(V_fromG1toF(i)^2)* rho0 * S *(CL_fromG1toF_new(i))*(1e-1);
-%             LW_fromFtoE_new(i)     = (0.5)*(V_fromFtoE(i)^2)* rho0 * S *(CL_fromFtoE_new(i))*(1e-1);
-%             LW_fromEto0_new(i)     = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0_new(i))*(1e-1);
-            LW_from0toSinv_new(i)  = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv(i))*(1e-1);  
-            LW_fromSinvtoG1_new(i) = (0.5)*(V_fromSinvtoG1(i)^2)* rho0 * S *(CL_fromSinvtoG1(i))*(1e-1);
-            LW_fromG1toF_new(i)    = (0.5)*(V_fromG1toF(i)^2)* rho0 * S *(CL_fromG1toF(i))*(1e-1);
-            LW_fromFtoE_new(i)     = (0.5)*(V_fromFtoE(i)^2)* rho0 * S *(CL_fromFtoE(i))*(1e-1);
-            LW_fromEto0_new(i)     = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0(i))*(1e-1); 
+            LW_from0toSinv_new(i)  = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv_new(i))*(1e-1);  
+            LW_fromSinvtoG1_new(i) = (0.5)*(V_fromSinvtoG1(i)^2)* rho0 * S *(CL_fromSinvtoG1_new(i))*(1e-1);
+            LW_fromG1toF_new(i)    = (0.5)*(V_fromG1toF(i)^2)* rho0 * S *(CL_fromG1toF_new(i))*(1e-1);
+            LW_fromFtoE_new(i)     = (0.5)*(V_fromFtoE(i)^2)* rho0 * S *(CL_fromFtoE_new(i))*(1e-1);
+            LW_fromEto0_new(i)     = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0_new(i))*(1e-1);
+%             LW_from0toSinv_new(i)  = (0.5)*(V_from0toSinv(i)^2)* rho0 * S *(CL_from0toSinv(i))*(1e-1);  
+%             LW_fromSinvtoG1_new(i) = (0.5)*(V_fromSinvtoG1(i)^2)* rho0 * S *(CL_fromSinvtoG1(i))*(1e-1);
+%             LW_fromG1toF_new(i)    = (0.5)*(V_fromG1toF(i)^2)* rho0 * S *(CL_fromG1toF(i))*(1e-1);
+%             LW_fromFtoE_new(i)     = (0.5)*(V_fromFtoE(i)^2)* rho0 * S *(CL_fromFtoE(i))*(1e-1);
+%             LW_fromEto0_new(i)     = (0.5)*(V_fromEto0(i)^2)* rho0 * S *(CL_fromEto0(i))*(1e-1); 
         end       
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv_new.value = CL_from0toSinv_new;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.CL_from0toSinv_new.Attributes.unit = "Non dimensional";
@@ -5395,26 +5541,48 @@ switch (Inverted_flight_Case)
         
         % WING LOADS DIAGRAM - NEGATIVE SIDE   
         figure(6)
+%         % ---------------------------------------------------------------------
+%         plot(V_from0toSinv,  LW_from0toSinv_new,  '-r', 'LineWidth', 1)
+%         plot(V_fromSinvtoG1, LW_fromSinvtoG1_new, '-r', 'LineWidth', 1)
+%         plot(V_fromG1toF,    LW_fromG1toF_new,    '-r', 'LineWidth', 1)
+%         plot(V_fromFtoE,     LW_fromFtoE_new,     '-r', 'LineWidth', 1)
+%         plot(V_fromEto0,     LW_fromEto0_new,     '-r', 'LineWidth', 1)
+%         % ---------------------------------------------------------------------
+%         plot(V_from0toSinv(1),    LW_from0toSinv_new(1),    'k.', 'MarkerSize', 10)
+%         plot(V_from0toSinv(end),  LW_from0toSinv_new(end),  'k.', 'MarkerSize', 10)
+% %         plot(VG,                  WBL_G,                    'k.', 'MarkerSize', 10)
+%         plot(V_fromSinvtoG1(end), LW_fromSinvtoG1_new(end), 'k.', 'MarkerSize', 10)
+%         plot(V_fromG1toF(end),    LW_fromG1toF_new(end),    'k.', 'MarkerSize', 10)
+%         plot(V_fromFtoE(end),     LW_fromFtoE_new(end),     'k.', 'MarkerSize', 10)
+%         plot(V_fromEto0(end),     LW_fromEto0_new(end),     'k.', 'MarkerSize', 10)
+%         % ---------------------------------------------------------------------
+%         text(V_from0toSinv(end),  LW_from0toSinv_new(end),  ' S inv.', 'FontSize', 6)
+% %         text(VG,                  WBL_G,                    ' G',      'FontSize', 6)
+%         text(V_fromSinvtoG1(end), LW_fromSinvtoG1_new(end), ' G1',     'FontSize', 6)
+%         text(V_fromG1toF(end),    LW_fromG1toF_new(end),    ' F',      'FontSize', 6)
+%         text(V_fromFtoE(end),     LW_fromFtoE_new(end),     ' E',      'FontSize', 6) 
+
         % ---------------------------------------------------------------------
-        plot(V_from0toSinv,  LW_from0toSinv_new,  '-r', 'LineWidth', 1)
-        plot(V_fromSinvtoG1, LW_fromSinvtoG1_new, '-r', 'LineWidth', 1)
-        plot(V_fromG1toF,    LW_fromG1toF_new,    '-r', 'LineWidth', 1)
-        plot(V_fromFtoE,     LW_fromFtoE_new,     '-r', 'LineWidth', 1)
-        plot(V_fromEto0,     LW_fromEto0_new,     '-r', 'LineWidth', 1)
+        plot(V_from0toSinv,  WBL_from0toSinv,  '-r', 'LineWidth', 1)
+        plot(V_fromSinvtoG1, WBL_fromSinvtoG1, '-r', 'LineWidth', 1)
+        plot(V_fromG1toF,    WBL_fromG1toF,    '-r', 'LineWidth', 1)
+        plot(V_fromFtoE,     WBL_fromFtoE,     '-r', 'LineWidth', 1)
+        plot(V_fromEto0,     WBL_fromEto0,     '-r', 'LineWidth', 1)
         % ---------------------------------------------------------------------
-        plot(V_from0toSinv(1),    LW_from0toSinv_new(1),    'k.', 'MarkerSize', 10)
-        plot(V_from0toSinv(end),  LW_from0toSinv_new(end),  'k.', 'MarkerSize', 10)
+        plot(V_from0toSinv(1),    WBL_from0toSinv(1),    'k.', 'MarkerSize', 10)
+        plot(V_from0toSinv(end),  WBL_from0toSinv(end),  'k.', 'MarkerSize', 10)
 %         plot(VG,                  WBL_G,                    'k.', 'MarkerSize', 10)
-        plot(V_fromSinvtoG1(end), LW_fromSinvtoG1_new(end), 'k.', 'MarkerSize', 10)
-        plot(V_fromG1toF(end),    LW_fromG1toF_new(end),    'k.', 'MarkerSize', 10)
-        plot(V_fromFtoE(end),     LW_fromFtoE_new(end),     'k.', 'MarkerSize', 10)
-        plot(V_fromEto0(end),     LW_fromEto0_new(end),     'k.', 'MarkerSize', 10)
+        plot(V_fromSinvtoG1(end), WBL_fromSinvtoG1(end), 'k.', 'MarkerSize', 10)
+        plot(V_fromG1toF(end),    WBL_fromG1toF(end),    'k.', 'MarkerSize', 10)
+        plot(V_fromFtoE(end),     WBL_fromFtoE(end),     'k.', 'MarkerSize', 10)
+        plot(V_fromEto0(end),     WBL_fromEto0(end),     'k.', 'MarkerSize', 10)
         % ---------------------------------------------------------------------
-        text(V_from0toSinv(end),  LW_from0toSinv_new(end),  ' S inv.', 'FontSize', 6)
+        text(V_from0toSinv(end),  WBL_from0toSinv(end),  ' S inv.', 'FontSize', 6)
 %         text(VG,                  WBL_G,                    ' G',      'FontSize', 6)
-        text(V_fromSinvtoG1(end), LW_fromSinvtoG1_new(end), ' G1',     'FontSize', 6)
-        text(V_fromG1toF(end),    LW_fromG1toF_new(end),    ' F',      'FontSize', 6)
-        text(V_fromFtoE(end),     LW_fromFtoE_new(end),     ' E',      'FontSize', 6) 
+        text(V_fromSinvtoG1(end), WBL_fromSinvtoG1(end), ' G1',     'FontSize', 6)
+        text(V_fromG1toF(end),    WBL_fromG1toF(end),    ' F',      'FontSize', 6)
+        text(V_fromFtoE(end),     WBL_fromFtoE(end),     ' E',      'FontSize', 6) 
+        
         ylim padded;
         xlim padded;
         
