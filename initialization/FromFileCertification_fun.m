@@ -209,7 +209,15 @@ VarText={'Aircraft.Certification.Aircraft_Name.value', ...
          'croot_flap', ...
          'ctip_flap', ...
          'cf_flap', ...
-         'flap_surface_S'};
+         'flap_surface_S', ...
+         'vertical_yaw_angle', ...
+         'verticaloads_dr', ...
+         'vertical_CY_vector', ...
+         'vertical_CY0', ...
+         'maximum_delta_rudder', ...
+         'CY_vertical_tailplane', ...
+         'case3_CY_vert_tp', ...
+         'vert_tp_K'};
 
 Index=zeros(1,length(VarText));
 for i=1:length(VarText)
@@ -734,6 +742,39 @@ if LengthIndex==length(VarText)
     p = strcmp('flap_surface_S', label);
     Aircraft.Geometry.Flaps.S.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Geometry.Flaps.S.Attributes.unit = char(table2array(unit(p==1,1))); 
+    % -------------------------------------------------------------------------- 
+    p = strcmp('vertical_yaw_angle', label);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.yaw_angle.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.yaw_angle.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('verticaloads_dr', label);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.dr.value = char(table2array(value(p==1, 1)));
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.dr.value = str2num(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.dr.value);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.dr.Attributes.unit = char(table2array(unit(p==1,1)));    
+    p = strcmp('vertical_CY_vector', label);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_vector.value = char(table2array(value(p==1, 1)));  % [0.00003615686 0.01291153]';
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_vector.value = str2num(Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_vector.value);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_vector.Attributes.unit = char(table2array(unit(p==1,1))); 
+    p = strcmp('vertical_CY0', label);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_0.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_0.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('vertical_CYdr', label);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CYdr.value = str2double(table2array(value(p==1, 1)));   % 0.000644;
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CYdr.Attributes.unit = char(table2array(unit(p==1,1))); % "1/deg";
+    p = strcmp('maximum_delta_rudder', label);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Maximum_delta_rudder.value = str2double(table2array(value(p==1, 1)));   % 30.0;
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Maximum_delta_rudder.Attributes.unit = char(table2array(unit(p==1,1))); % "deg";
+    % CASE 2
+    p = strcmp('CY_vertical_tailplane', label);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_VTP.value = str2double(table2array(value(p==1, 1)));   % 0.0245;
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_VTP.Attributes.unit = char(table2array(unit(p==1,1))); % "Non dimensional";
+    % CASE 3
+    p = strcmp('case3_CY_vert_tp', label);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_VTP.value = str2double(table2array(value(p==1, 1)));   % 0.0233;
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_VTP.Attributes.unit = char(table2array(unit(p==1,1))); % "Non dimensional";
+    p = strcmp('vert_tp_K', label);
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.value = str2double(table2array(value(p==1, 1)));   % 0.3; 
+    Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.Attributes.unit = char(table2array(unit(p==1,1))); % "m"; 
+
 end
 
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Positive_load_factors.value = NaN;

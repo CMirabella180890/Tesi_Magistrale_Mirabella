@@ -68,7 +68,6 @@ Density [kg/m^3]: 0.8632
  3.800000          -1.500000          58.386920          58.386920
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 --------------------------------------
 ### Saving outpus inside correct Folder ###
 Saving Vndiagram.pdf in: 
@@ -57757,12 +57756,12 @@ Critical conditions
  ---------------------- 
  ++++++++++ Vertical tail - GUST LOADS [daN] ++++++++++ 
  GUST - VC        GUST - VD
- 8.839467         5.524667
+ 9.014154         5.633846
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ Vertical tail - CRITICAL GUST LOADS [daN] ++++++++++ 
  at VC
  CRITICAL GUST LOADS
- 8.839467
+ 9.014154
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ 
@@ -57877,11 +57876,6 @@ Chapter 14 "Loads on the control surfaces" writing...
 Chapter 14 written
 Chapter 15 "Power plant" writing...
 Chapter 15 written
-[Warning: The sections of formal table "dom.FormalTable:253075" have different numbers of columns. This could cause
-formatting problems.] 
-[> In mlreportgen.report/ReportBase/close
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 190)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',190,0)">line 190</a>)
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 134)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',134,0)">line 134</a>)] 
 Report successfully written. Execution terminated.
 RepGenMain(Aircraft)
 The authors are  Pierluigi Della Vecchia and Claudio Mirabella
@@ -57922,6 +57916,7 @@ Chapter 9 "Loads on the aeroplane" writing...
 Saving RepGenFigCh9.png in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
 Chapter 9 written
 Chapter 10 "Loads on the wing" writing...
 Chapter 10 written

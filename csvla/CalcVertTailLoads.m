@@ -634,9 +634,9 @@ switch (Aircraft.Geometry.Vertical.empennage_flag.value)
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.global_requirement.Attributes.cs  = " 441 ";
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.global_requirement.Attributes.amc = " AMC 441 "; 
 
-        % APPLICABLE YAW ANGLE 
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.yaw_angle.value = 15.0;
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.yaw_angle.Attributes.unit = "deg";
+%         % APPLICABLE YAW ANGLE 
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.yaw_angle.value = 15.0;
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.yaw_angle.Attributes.unit = "deg";
 
         % APPLICABLE LOAD FACTOR 
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.load_factor_n.value = Aircraft.Certification.Regulation.SubpartC.Flightloads.nmax.value;
@@ -673,24 +673,24 @@ switch (Aircraft.Geometry.Vertical.empennage_flag.value)
 
         %% CS - VLA 441 CASE (a)(1)
         % A VECTOR CALLED DR
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.dr.value = [0.0 20.0]';
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.dr.Attributes.unit = "Unknown";
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.dr.value = [0.0 20.0]';
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.dr.Attributes.unit = "Unknown";
 
-        % LATERAL FORCE COEFFICIENT AT TWO BETA - FROM CFD
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_vector.value = [0.00003615686 0.01291153]';
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_vector.Attributes.unit = "Non dimensional";
+%         % LATERAL FORCE COEFFICIENT AT TWO BETA - FROM CFD
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_vector.value = [0.00003615686 0.01291153]';
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_vector.Attributes.unit = "Non dimensional";
 
-        % LATERAL FORCE COEFFICIENT WHEN BETA = 0 AND DR = 0
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_0.value = 0.000036156860;
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_0.Attributes.unit = "Non dimensional";
+%         % LATERAL FORCE COEFFICIENT WHEN BETA = 0 AND DR = 0
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_0.value = 0.000036156860;
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CY_0.Attributes.unit = "Non dimensional";
 
-        % LATERAL FORCE GRADIENT C_Y / dr
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CYdr.value = 0.000644;
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CYdr.Attributes.unit = "1/deg";
+%         % LATERAL FORCE GRADIENT C_Y / dr
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CYdr.value = 0.000644;
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.CYdr.Attributes.unit = "1/deg";
 
         % MAXIMUM RUDDER DEFLECTION 
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Maximum_delta_rudder.value = 30.0;
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Maximum_delta_rudder.Attributes.unit = "deg";
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Maximum_delta_rudder.value = 30.0;
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_1.Maximum_delta_rudder.Attributes.unit = "deg";
 
         % LATERAL FORCE COEFFICIENT WHEN THE RUDDER IS AT MAXIMUM DEFLECTION:
         %              d CY
@@ -760,9 +760,9 @@ switch (Aircraft.Geometry.Vertical.empennage_flag.value)
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.yaw_angle.value = (1.3)*Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.yaw_angle.value;
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.yaw_angle.Attributes.unit = "deg";
 
-        % LATERAL FORCE COEFFICIENT 
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_VTP.value = 0.0245;
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_VTP.Attributes.unit = "Non dimensional";
+%         % LATERAL FORCE COEFFICIENT 
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_VTP.value = 0.0245;
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_VTP.Attributes.unit = "Non dimensional";
 
         % LATERAL FORCE COEFFICIENT 
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_dividedby_Sratio.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_2.CY_VTP.value/Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.value;
@@ -820,9 +820,9 @@ switch (Aircraft.Geometry.Vertical.empennage_flag.value)
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.yaw_angle.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.yaw_angle.value;
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.yaw_angle.Attributes.unit = "deg";
 
-        % LATERAL FORCE COEFFICIENT 
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_VTP.value = 0.0233;
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_VTP.Attributes.unit = "Non dimensional";
+%         % LATERAL FORCE COEFFICIENT 
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_VTP.value = 0.0233;
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_VTP.Attributes.unit = "Non dimensional";
 
         % LATERAL FORCE COEFFICIENT 
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_dividedby_Sratio.value = Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.Case_a_3.CY_VTP.value/Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.S_ratio.value;
@@ -1003,15 +1003,16 @@ switch (Aircraft.Geometry.Vertical.empennage_flag.value)
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.S_vt.Attributes.unit = "m^2";
 
         % ATMOSPHERE PROPERTIES LOCALLY INSTANTIATED 
-        h = 3000; % [m]
+        % h = 3000; % [m]
+        h = Aircraft.Certification.ISA_Condition.Theoretical_ceiling.Altitude.value;
         [T, acc, p, rho] = atmosisa(h);
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.rho.value = rho;
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.rho.Attributes.unit = "kg/m^3";
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.rho.Attributes.height = "3000 m";
+        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.rho.Attributes.height = "3500 m";
 
-        % RADIUS OF GYRATION 
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.value = 0.3; 
-        Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.Attributes.unit = "m"; 
+%         % RADIUS OF GYRATION 
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.value = 0.3; 
+%         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.Attributes.unit = "m"; 
         Aircraft.Certification.Regulation.SubpartC.VerticalTailLoads.GustLoads.K.Attributes.quantity = "Radius of gyration";
 
         % AIRSPEED - LOAD AT VC
