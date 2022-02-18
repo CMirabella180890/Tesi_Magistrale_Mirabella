@@ -13,16 +13,19 @@ str = ['HERE BELOW AN EXAMPLE OF REFERENCES TO BE EDITED'];
 para = Paragraph(str);
 
 %references: CAN BE MOVED IN OTHER position
-ref1 = 'ASTM F2245-12d,” ASTM.“ASTM F2245-12d, ASTM.';
-ref2 = 'ABCD-FL-57-00 Wing Load Calculation, EASA.';
-ref3 = 'ISO 2533:1975, International Standardization Organization, 1975.';
-ref4 = 'CS-LSA Certification Specifications and Acceptable Means of Compliance, Amnd.1 29.Jul.2013, EASA, 2013.';
-ref5 = '“ABCD-FTR-01-00 Flight Test Report,” EASA.';
-ref6 = 'L. Smith, “NACA technical note 1945, ‘Aerodynamic characteristics of 15 NACA airfoil sections at seven Reynolds numbers from 0.7x10E6 to 9x10E6,” 1949.';
-ref7 = 'ABCD-WB-08-00 Weight and Balance Report, EASA.';
+ref1  = 'ASTM F2245-12d,” ASTM.“ASTM F2245-12d, ASTM.';
+ref2  = 'ABCD-FL-57-00 Wing Load Calculation, EASA.';
+ref3  = 'ISO 2533:1975, International Standardization Organization, 1975.';
+ref4  = 'CS-LSA Certification Specifications and Acceptable Means of Compliance, Amnd.1 29.Jul.2013, EASA, 2013.';
+ref5  = '“ABCD-FTR-01-00 Flight Test Report,” EASA.';
+ref6  = 'L. Smith, “NACA technical note 1945, ‘Aerodynamic characteristics of 15 NACA airfoil sections at seven Reynolds numbers from 0.7x10E6 to 9x10E6,” 1949.';
+ref7  = 'ABCD-WB-08-00 Weight and Balance Report, EASA.';
+ref8  = 'Schrenk, Technical Memorandum 948 - A SIMPLE APPROXIMATION METHOD FOR OBTAINING THE SPANWISE LIFT DISTRIBUTION NACA, 1940';
+ref9  = 'NACA Report No.824, Summary of Airfoil Data, NACA, 1945';
+ref10 = 'Report 751 - The Mean Aerodynamic Chord and the Aerodynamic Center of a Tapered Wing, NACA, 1942.';
 
 ol = OrderedList({ref1, ref2, ref3,...
-    ref4, ref5,ref6,ref7});
+    ref4, ref5,ref6,ref7,ref8,ref9,ref10});
 
 append(ch,ol);
 

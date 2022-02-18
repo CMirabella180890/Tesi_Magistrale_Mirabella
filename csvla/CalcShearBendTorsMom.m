@@ -320,16 +320,52 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.value = cl_S;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.Attributes.unit = "Non dimensional";
 
-            % Drag coefficient ditribution along the span at the Point S (close to
-            % stall)
-            cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
+            % Support variables to interpolate
+            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
-            % Pitching moment coefficient distribution along the span at Point S
-            cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            % Selection of the interpolated distribution of CD and CM
+            CD_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
+            CM_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
+            Interpolated_Global_CD_S = zeros(length(yi), 1);
+            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+            if exist('check_interp', 'var') == 1
+                for i = 1:length(yi)
+                    Interpolated_Global_CD_S(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                    if abs(Interpolated_Global_CD_S(i) - CD_S) < 1e-1
+                       cd_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                       cm_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check = 1;
+                    end
+                end
+                if exist('check', 'var') == 0
+                    cd_S = CD_S * ones(length(xi),1);
+                    cm_S = CM_S * ones(length(xi),1);
+                end
+            elseif exist('check_interp', 'var') == 0
+                cd_S = CD_S * ones(length(xi),1);
+                cm_S = CM_S * ones(length(xi),1);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Interpolated_Global_CD.value = Interpolated_Global_CD_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
+            % -------------------------------------------------------------            
+
+%             % Drag coefficient ditribution along the span at the Point S (close to
+%             % stall)
+%             cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
+% 
+%             % Pitching moment coefficient distribution along the span at Point S
+%             cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
 
             % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
             % In this section of the code two vectors are defined to store the product 
@@ -447,16 +483,52 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A1.value = cl_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A1.Attributes.unit = "Non dimensional";
 
-            % Drag coefficient ditribution along the span at the Point A1 (close to
-            % stall)
-            cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
+            % Support variables to interpolate
+            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
-            % Pitching moment coefficient distribution along the span at Point A1
-            cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            % Selection of the interpolated distribution of CD and CM
+            CD_A1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
+            CM_A1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
+            Interpolated_Global_CD_A1 = zeros(length(yi), 1);
+            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+            if exist('check_interp', 'var') == 1
+                for i = 1:length(yi)
+                    Interpolated_Global_CD_A1(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                    if abs(Interpolated_Global_CD_A1(i) - CD_A1) < 1e-1
+                       cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                       cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check = 1;
+                    end
+                end
+                if exist('check', 'var') == 0
+                    cd_A1 = CD_A1 * ones(length(xi),1);
+                    cm_A1 = CM_A1 * ones(length(xi),1);
+                end
+            elseif exist('check_interp', 'var') == 0
+                cd_A1 = CD_A1 * ones(length(xi),1);
+                cm_A1 = CM_A1 * ones(length(xi),1);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Interpolated_Global_CD.value = Interpolated_Global_CD_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
+            % -------------------------------------------------------------            
+
+%             % Drag coefficient ditribution along the span at the Point A1 (close to
+%             % stall)
+%             cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
+% 
+%             % Pitching moment coefficient distribution along the span at Point A1
+%             cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
 
             % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
             % In this section of the code two vectors are defined to store the product 
@@ -569,19 +641,55 @@ switch (Straight_flight_Case)
             %% POINT C1 CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point C1
             cl_C1 = CL_C1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cl_C.value = cl_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cl_C.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cl_C1.value = cl_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cl_C1.Attributes.unit = "Non dimensional";
 
-            % Drag coefficient ditribution along the span at the Point C1 (close to
-            % stall)
-            cd_C1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cd_C.value = cd_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cd_C.Attributes.unit = "Non dimensional";
+            % Support variables to interpolate
+            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
-            % Pitching moment coefficient distribution along the span at Point C1
-            cm_C1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cm_C.value = cm_C1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cm_C.Attributes.unit = "Non dimensional";
+            % Selection of the interpolated distribution of CD and CM
+            CD_C1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CD_C1.value;
+            CM_C1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CM_C1.value;
+            Interpolated_Global_CD_C1 = zeros(length(yi), 1);
+            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+            if exist('check_interp', 'var') == 1
+                for i = 1:length(yi)
+                    Interpolated_Global_CD_C1(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                    if abs(Interpolated_Global_CD_C1(i) - CD_C1) < 1e-1
+                       cd_C1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                       cm_C1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check = 1;
+                    end
+                end
+                if exist('check', 'var') == 0
+                    cd_C1 = CD_C1 * ones(length(xi),1);
+                    cm_C1 = CM_C1 * ones(length(xi),1);
+                end
+            elseif exist('check_interp', 'var') == 0
+                cd_C1 = CD_C1 * ones(length(xi),1);
+                cm_C1 = CM_C1 * ones(length(xi),1);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Interpolated_Global_CD.value = Interpolated_Global_CD_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cd_C1.value = cd_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cm_C1.value = cm_C1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cd_C1.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cm_C1.Attributes.unit = "Non dimensional";
+            % -------------------------------------------------------------            
+
+%             % Drag coefficient ditribution along the span at the Point C1 (close to
+%             % stall)
+%             cd_C1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cd_C.value = cd_C1;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cd_C.Attributes.unit = "Non dimensional";
+% 
+%             % Pitching moment coefficient distribution along the span at Point C1
+%             cm_C1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cm_C.value = cm_C1;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cm_C.Attributes.unit = "Non dimensional";
 
             % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
             % In this section of the code two vectors are defined to store the product 
@@ -697,16 +805,52 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.value = cl_C;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.Attributes.unit = "Non dimensional";
 
-            % Drag coefficient ditribution along the span at the Point C (close to
-            % stall)
-            cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
+            % Support variables to interpolate
+            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
-            % Pitching moment coefficient distribution along the span at Point C
-            cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            % Selection of the interpolated distribution of CD and CM
+            CD_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value;
+            CM_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CM_C.value;
+            Interpolated_Global_CD_C = zeros(length(yi), 1);
+            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+            if exist('check_interp', 'var') == 1
+                for i = 1:length(yi)
+                    Interpolated_Global_CD_C(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                    if abs(Interpolated_Global_CD_C(i) - CD_C) < 1e-1
+                       cd_C  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                       cm_C  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check = 1;
+                    end
+                end
+                if exist('check', 'var') == 0
+                    cd_C = CD_C * ones(length(xi),1);
+                    cm_C = CM_C * ones(length(xi),1);
+                end
+            elseif exist('check_interp', 'var') == 0
+                cd_C = CD_C * ones(length(xi),1);
+                cm_C = CM_C * ones(length(xi),1);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Interpolated_Global_CD.value = Interpolated_Global_CD_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
+            % -------------------------------------------------------------
+            
+%             % Drag coefficient ditribution along the span at the Point C (close to
+%             % stall)
+%             cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
+% 
+%             % Pitching moment coefficient distribution along the span at Point C
+%             cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
 
             % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
             % In this section of the code two vectors are defined to store the product 
@@ -816,22 +960,64 @@ switch (Straight_flight_Case)
             movefile ShearBendingTorsionDiagramPointC.pdf Output
             movefile ShearBendingTorsionDiagramPointC.png Output
             
-            %% POINT C2 CALCULATIONS                 
+            %% POINT C2 CALCULATIONS 
+            % -------------------------------------------------------------
             % Lift coefficient distribution along the span at the Point C2
             cl_C2 = CL_C2 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cl_C.value = cl_C2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cl_C.Attributes.unit = "Non dimensional";
 
-            % Drag coefficient ditribution along the span at the Point C2 (close to
-            % stall)
-            cd_C2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cd_C.value = cd_C2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cd_C.Attributes.unit = "Non dimensional";
+            % Support variables to interpolate
+            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
-            % Pitching moment coefficient distribution along the span at Point C2
-            cm_C2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cm_C.value = cm_C2;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cm_C.Attributes.unit = "Non dimensional";
+            % Selection of the interpolated distribution of CD and CM
+            CD_C2                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CD_C2.value;
+            CM_C2                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CM_C2.value;
+            Interpolated_Global_CD_C2 = zeros(length(yi), 1);
+            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+            if exist('check_interp', 'var') == 1
+                for i = 1:length(yi)
+                    Interpolated_Global_CD_C2(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                    if abs(Interpolated_Global_CD_C2(i) - CD_C2) < 1e-1
+                       cd_C2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                       cm_C2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check = 1;
+                    end
+                end
+                if exist('check', 'var') == 0
+                    cd_C2 = CD_C2 * ones(length(xi),1);
+                    cm_C2 = CM_C2 * ones(length(xi),1);
+                end
+            elseif exist('check_interp', 'var') == 0
+                cd_C2 = CD_C2 * ones(length(xi),1);
+                cm_C2 = CM_C2 * ones(length(xi),1);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Interpolated_Global_CD.value = Interpolated_Global_CD_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cd_C2.value = cd_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cm_C2.value = cm_C2;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cd_C2.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cm_C2.Attributes.unit = "Non dimensional";
+            % -------------------------------------------------------------
+            
+%             % Lift coefficient distribution along the span at the Point C2
+%             cl_C2 = CL_C2 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cl_C.value = cl_C2;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cl_C.Attributes.unit = "Non dimensional";
+
+%             % Drag coefficient ditribution along the span at the Point C2 (close to
+%             % stall)
+%             cd_C2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cd_C.value = cd_C2;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cd_C.Attributes.unit = "Non dimensional";
+% 
+%             % Pitching moment coefficient distribution along the span at Point C2
+%             cm_C2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cm_C.value = cm_C2;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cm_C.Attributes.unit = "Non dimensional";
 
             % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
             % In this section of the code two vectors are defined to store the product 
@@ -955,13 +1141,25 @@ switch (Straight_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
+            CM_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_D.value;
             Interpolated_Global_CD_D = zeros(length(yi), 1);
-            for i = 1:length(yi)
-                Interpolated_Global_CD_D(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-2
-                   cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
-                   cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+            if exist('check_interp', 'var') == 1
+                for i = 1:length(yi)
+                    Interpolated_Global_CD_D(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                    if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-1
+                       cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                       cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check = 1;
+                    end
                 end
+                if exist('check', 'var') == 0
+                    cd_D = CD_D * ones(length(xi),1);
+                    cm_D = CM_D * ones(length(xi),1);
+                end
+            elseif exist('check_interp', 'var') == 0
+                cd_D = CD_D * ones(length(xi),1);
+                cm_D = CM_D * ones(length(xi),1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.value = Interpolated_Global_CD_D;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -969,7 +1167,8 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value = cm_D;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.Attributes.unit = "Non dimensional";
-
+            % -------------------------------------------------------------
+            
             % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
             % In this section of the code two vectors are defined to store the product 
             % c(y)*Cl(y) and c(y)*Cd(y) inside the struct variable 'Aircraft'
@@ -1369,16 +1568,50 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.value = cl_S;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.Attributes.unit = "Non dimensional";
 
-            % Drag coefficient ditribution along the span at the Point S (close to
-            % stall)
-            cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
+            % Support variables to interpolate
+            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
-            % Pitching moment coefficient distribution along the span at Point S
-            cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            % Selection of the interpolated distribution of CD and CM
+            CD_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
+            CM_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
+            Interpolated_Global_CD_S = zeros(length(yi), 1);
+            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+            if exist('check_interp', 'var') == 1
+                for i = 1:length(yi)
+                    Interpolated_Global_CD_S(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                    if abs(Interpolated_Global_CD_S(i) - CD_S) < 1e-1
+                       cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                       cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                    else
+                       cd_S = CD_S * ones(length(xi),1);
+                       cm_S = CM_S * ones(length(xi),1);
+                    end
+                end
+            elseif exist('check_interp', 'var') == 0
+                cd_S = CD_S * ones(length(xi),1);
+                cm_S = CM_S * ones(length(xi),1);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Interpolated_Global_CD.value = Interpolated_Global_CD_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
+            % -------------------------------------------------------------            
+
+%             % Drag coefficient ditribution along the span at the Point S (close to
+%             % stall)
+%             cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
+% 
+%             % Pitching moment coefficient distribution along the span at Point S
+%             cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
 
             % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
             % In this section of the code two vectors are defined to store the product 
@@ -1495,16 +1728,52 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A.value = cl_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A.Attributes.unit = "Non dimensional";
 
-            % Drag coefficient ditribution along the span at the Point A1 (close to
-            % stall)
-            cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
+            % Support variables to interpolate
+            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
-            % Pitching moment coefficient distribution along the span at Point A1
-            cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            % Selection of the interpolated distribution of CD and CM
+            CD_A1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
+            CM_A1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
+            Interpolated_Global_CD_A1 = zeros(length(yi), 1);
+            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+            if exist('check_interp', 'var') == 1
+                for i = 1:length(yi)
+                     Interpolated_Global_CD_A1(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                     if abs(Interpolated_Global_CD_A1(i) - CD_A1) < 1e-1
+                       cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                       cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check = 1;
+                     end
+                end
+                if exist('check') == 0
+                    cd_A1 = CD_A1 * ones(length(xi),1);
+                    cd_A1 = CM_A1 * ones(length(xi),1);
+                end
+            elseif exist('check_interp', 'var') == 0
+                cd_A1 = CD_A1 * ones(length(xi),1);
+                cm_A1 = CM_A1 * ones(length(xi),1);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Interpolated_Global_CD.value = Interpolated_Global_CD_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
+            % -------------------------------------------------------------      
+            
+%             % Drag coefficient ditribution along the span at the Point A1 (close to
+%             % stall)
+%             cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
+% 
+%             % Pitching moment coefficient distribution along the span at Point A1
+%             cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
 
             % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
             % In this section of the code two vectors are defined to store the product 
@@ -1620,16 +1889,52 @@ switch (Straight_flight_Case)
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.value = cl_C;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.Attributes.unit = "Non dimensional";
 
-            % Drag coefficient ditribution along the span at the Point C (close to
-            % stall)
-            cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
+            % Support variables to interpolate
+            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
-            % Pitching moment coefficient distribution along the span at Point C
-            cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+            % Selection of the interpolated distribution of CD and CM
+            CD_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value;
+            CM_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CM_C.value;
+            Interpolated_Global_CD_C = zeros(length(yi), 1);
+            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+            if exist('check_interp', 'var') == 1
+                for i = 1:length(yi)
+                    Interpolated_Global_CD_C(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                    if abs(Interpolated_Global_CD_C(i) - CD_C) < 1e-1
+                       cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                       cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check = 1;
+                    end
+               end
+               if exist('check') == 0
+                       cd_C = CD_C * ones(length(xi),1);
+                       cm_C = CM_C * ones(length(xi),1);
+               end
+            elseif exist('check_interp', 'var') == 0
+                cd_C = CD_C * ones(length(xi),1);
+                cm_C = CM_C * ones(length(xi),1);
+            end
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Interpolated_Global_CD.value = Interpolated_Global_CD_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
+            % -------------------------------------------------------------
+            
+%             % Drag coefficient ditribution along the span at the Point C (close to
+%             % stall)
+%             cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
+% 
+%             % Pitching moment coefficient distribution along the span at Point C
+%             cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
 
             % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
             % In this section of the code two vectors are defined to store the product 
@@ -1754,12 +2059,23 @@ switch (Straight_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
             Interpolated_Global_CD_D = zeros(length(yi), 1);
-            for i = 1:length(yi)
-                Interpolated_Global_CD_D(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-2
-                   cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
-                   cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+            if exist('check_interp', 'var') == 1
+                for i = 1:length(yi)
+                    Interpolated_Global_CD_D(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                    if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-2
+                       cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                       cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check = 1;
+                    end
+                    if exist('check') == 0
+                           cd_D = CD_D * ones(length(xi),1);
+                           cm_D = CM_D * ones(length(xi),1);
+                    end
                 end
+            elseif exist('check_interp', 'var') == 0
+                    cd_C = CD_C * ones(length(xi),1);
+                    cm_C = CM_C * ones(length(xi),1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.value = Interpolated_Global_CD_D;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -2162,17 +2478,47 @@ switch (Straight_flight_Case)
         cl_S = CL_S*CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.value = cl_S;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.Attributes.unit = "Non dimensional";
-        
-        % Drag coefficient ditribution along the span at the Point S (close to
-        % stall)
-        cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+
+        % Selection of the interpolated distribution of CD and CM
+        CD_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
+        CM_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
+        Interpolated_Global_CD_S = zeros(length(yi), 1);
+        check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+        if exist('check_interp', 'var') == 1
+            for i = 1:length(yi)
+                Interpolated_Global_CD_S(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                if abs(Interpolated_Global_CD_S(i) - CD_S) <= 1e-1
+                   cd_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                   cm_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                   check = 1;
+                end
+            end
+            if exist('check') == 0
+                cd_S = CD_S * ones(length(xi),1);
+                cm_S = CM_S * ones(length(xi),1);
+            end
+        elseif exist('check_interp', 'var') == 0
+            cd_S = CD_S * ones(length(xi),1);
+            cm_S = CM_S * ones(length(xi),1);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Interpolated_Global_CD.value = Interpolated_Global_CD_S;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
-        
-        % Pitching moment coefficient distribution along the span at Point S
-        cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
+        % -------------------------------------------------------------            
+        
+%         % Drag coefficient ditribution along the span at the Point S (close to
+%         % stall)
+%         cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
+%         
+%         % Pitching moment coefficient distribution along the span at Point S
+%         cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
         
         % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
         % In this section of the code two vectors are defined to store the product 
@@ -2288,17 +2634,53 @@ switch (Straight_flight_Case)
         cl_A = CL_A*CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cl_A.value = cl_A;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cl_A.Attributes.unit = "Non dimensional";
-        
-        % Drag coefficient ditribution along the span at the Point A (close to
-        % stall)
-        cd_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+
+        % Support variables to interpolate
+        x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+        y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+        xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+        yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
+
+        % Selection of the interpolated distribution of CD and CM
+        CD_A                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CD_A.value;
+        CM_A                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CM_A.value;
+        Interpolated_Global_CD_A = zeros(length(yi), 1);
+        check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+        if exist('check_interp', 'var') == 1
+            for i = 1:length(yi)
+                Interpolated_Global_CD_A(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                if abs(Interpolated_Global_CD_A(i) - CD_A) <= 1e-1
+                   cd_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                   cm_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                   check = 1;
+                end
+            end
+            if exist('check') == 0
+                cd_A = CD_A * ones(length(xi),1);
+                cd_A = CM_A * ones(length(xi),1);
+            end
+        elseif exist('check_interp', 'var') == 0
+            cd_A = CD_A * ones(length(xi),1);
+            cm_A = CM_A * ones(length(xi),1);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Interpolated_Global_CD.value = Interpolated_Global_CD_A;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.value = cd_A;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.Attributes.unit = "Non dimensional";
-        
-        % Pitching moment coefficient distribution along the span at Point A
-        cm_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value = cm_A;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.Attributes.unit = "Non dimensional";
+        % -------------------------------------------------------------      
+                    
+%         % Drag coefficient ditribution along the span at the Point A (close to
+%         % stall)
+%         cd_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.value = cd_A;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.Attributes.unit = "Non dimensional";
+%         
+%         % Pitching moment coefficient distribution along the span at Point A
+%         cm_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value = cm_A;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.Attributes.unit = "Non dimensional";
         
         % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
         % In this section of the code two vectors are defined to store the product 
@@ -2413,17 +2795,53 @@ switch (Straight_flight_Case)
         cl_A1 = CL_A1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A1.value = cl_A1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A1.Attributes.unit = "Non dimensional";
-        
-        % Drag coefficient ditribution along the span at the Point A1 (close to
-        % stall)
-        cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+
+        % Support variables to interpolate
+        x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+        y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+        xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+        yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
+
+        % Selection of the interpolated distribution of CD and CM
+        CD_A1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
+        CM_A1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
+        Interpolated_Global_CD_A1 = zeros(length(yi), 1);
+        check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+        if exist('check_interp', 'var') == 1
+            for i = 1:length(yi)
+                Interpolated_Global_CD_A1(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                if abs(Interpolated_Global_CD_A1(i) - CD_A1) <= 1e-1
+                   cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                   cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                   check = 1;
+                end
+            end
+            if exist('check') == 0
+                   cd_A1 = CD_A1 * ones(length(xi),1);
+                   cm_A1 = CM_A1 * ones(length(xi),1);
+            end
+        elseif exist('check_interp', 'var') == 0
+            cd_A1 = CD_A1 * ones(length(xi),1);
+            cm_A1 = CM_A1 * ones(length(xi),1);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Interpolated_Global_CD.value = Interpolated_Global_CD_A1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
-        
-        % Pitching moment coefficient distribution along the span at Point A1
-        cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
+        % -------------------------------------------------------------      
+               
+%         % Drag coefficient ditribution along the span at the Point A1 (close to
+%         % stall)
+%         cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
+%         
+%         % Pitching moment coefficient distribution along the span at Point A1
+%         cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
         
         % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
         % In this section of the code two vectors are defined to store the product 
@@ -2538,17 +2956,53 @@ switch (Straight_flight_Case)
         cl_C = CL_C * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.value = cl_C;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cl_C.Attributes.unit = "Non dimensional";
-        
-        % Drag coefficient ditribution along the span at the Point C (close to
-        % stall)
-        cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+
+        % Support variables to interpolate
+        x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+        y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
+        xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
+        yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
+
+        % Selection of the interpolated distribution of CD and CM
+        CD_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value;
+        CM_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CM_C.value;
+        Interpolated_Global_CD_C = zeros(length(yi), 1);
+        check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+        if exist('check_interp', 'var') == 1
+            for i = 1:length(yi)
+                Interpolated_Global_CD_C(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                if abs(Interpolated_Global_CD_C(i) - CD_C) <= 1e-1
+                   cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                   cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                   check = 1;
+                end
+            end
+            if exist('check') == 0
+                   cd_C = CD_C * ones(length(xi),1);
+                   cm_C = CM_C * ones(length(xi),1);
+            end
+        elseif exist('check_interp', 'var') == 0
+            cd_C = CD_C * ones(length(xi),1);
+            cm_C = CM_C * ones(length(xi),1);
+        end
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Interpolated_Global_CD.value = Interpolated_Global_CD_C;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
-        
-        % Pitching moment coefficient distribution along the span at Point C
-        cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
+        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
+        % -------------------------------------------------------------
+            
+%         % Drag coefficient ditribution along the span at the Point C (close to
+%         % stall)
+%         cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:)';
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
+%         
+%         % Pitching moment coefficient distribution along the span at Point C
+%         cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cmy.value(7,:)';
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
         
         % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
         % In this section of the code two vectors are defined to store the product 
@@ -2664,21 +3118,34 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cl_D.value = cl_D;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cl_D.Attributes.unit = "Non dimensional";
         
+
         % Support variables to interpolate
         x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
         y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
         xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
         yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
-        
+
         % Selection of the interpolated distribution of CD and CM
         CD_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
+        CM_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_D.value;
         Interpolated_Global_CD_D = zeros(length(yi), 1);
-        for i = 1:length(yi)
-            Interpolated_Global_CD_D(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-            if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-1
-               cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
-               cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+        check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
+        if exist('check_interp', 'var') == 1
+            for i = 1:length(yi)
+                Interpolated_Global_CD_D(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
+                if abs(Interpolated_Global_CD_D(i) - CD_D) <= 1e-1
+                   cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
+                   cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                   check = 1;
+                end
             end
+            if exist('check') == 0
+                   cd_D = CD_D * ones(length(xi),1);
+                   cm_D = CM_D * ones(length(xi),1);
+            end
+        elseif exist('check_interp', 'var') == 0
+            cd_D = CD_D * ones(length(xi),1);
+            cm_D = CM_D * ones(length(xi),1);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.value = Interpolated_Global_CD_D;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -2686,6 +3153,7 @@ switch (Straight_flight_Case)
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value = cm_D;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.Attributes.unit = "Non dimensional";
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.Attributes.unit = "Non dimensional";
+        % -------------------------------------------------------------         
         
         % PRODUCT C(y)*Cl(y) AND C(y)*Cd(y)
         % In this section of the code two vectors are defined to store the product 
@@ -3080,6 +3548,7 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CD_S_inv.value;
+            CM_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CM_S_inv.value;
             Interpolated_Global_CD_S_inv = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
@@ -3088,11 +3557,16 @@ switch (Inverted_flight_Case)
                     if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-2
                        cd_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
                 end
+                if exist('check', 'var') == 0
+                    cd_S_inv = CD_S_inv * ones(length(xi), 1); 
+                    cm_S_inv = CM_S_inv * ones(length(xi), 1);
+                end
             elseif exist('check_interp', 'var') == 0
-                cd_S_inv = CD_S_inv * ones(length(yi), 1); 
-                cm_S_inv = CM_S_inv * ones(length(yi), 1);
+                cd_S_inv = CD_S_inv * ones(length(xi), 1); 
+                cm_S_inv = CM_S_inv * ones(length(xi), 1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.value = Interpolated_Global_CD_S_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -3226,19 +3700,25 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value;
+            CM_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CM_G.value;
             Interpolated_Global_CD_G = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
                     Interpolated_Global_CD_G(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                    if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-2
+                    if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-1
                        cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
                 end
+                if exist('check', 'var') == 0
+                    cd_G = CD_G * ones(length(xi), 1); 
+                    cm_G = CM_G * ones(length(xi), 1);
+                end
             elseif exist('check_interp', 'var') == 0
-                cd_G = CD_G * ones(length(yi), 1); 
-                cm_G = CM_G * ones(length(yi), 1);
+                cd_G = CD_G * ones(length(xi), 1); 
+                cm_G = CM_G * ones(length(xi), 1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.value = Interpolated_Global_CD_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -3372,15 +3852,21 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CD_G1.value;
+            CM_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CM_G1.value;
             Interpolated_Global_CD_G1 = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
                     Interpolated_Global_CD_G1(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                    if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-2
+                    if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-1
                        cd_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
+                end
+                if exist('check', 'var') == 0
+                    cd_G1 = CD_G1 * ones(length(xi), 1); 
+                    cm_G1 = CM_G1 * ones(length(xi), 1);
                 end
             elseif exist('check_interp', 'var') == 0
                 cd_G1 = CD_G1 * ones(length(yi), 1); 
@@ -3518,19 +4004,25 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_F                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CD_F.value;
+            CM_F                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CM_F.value;
             Interpolated_Global_CD_F = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
                     Interpolated_Global_CD_F(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                    if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-2
+                    if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-1
                        cd_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
                 end
+                if exist('check', 'var') == 0
+                    cd_F = CD_F * ones(length(xi), 1); 
+                    cm_F = CM_F * ones(length(xi), 1);
+                end
             elseif exist('check_interp', 'var') == 0
-                cd_F = CD_F * ones(length(yi), 1); 
-                cm_F = CM_F * ones(length(yi), 1);
+                cd_F = CD_F * ones(length(xi), 1); 
+                cm_F = CM_F * ones(length(xi), 1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.value = Interpolated_Global_CD_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -3664,19 +4156,25 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_G2                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.CD_G2.value;
+            CM_G2                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.CM_G2.value;
             Interpolated_Global_CD_G2 = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
                     Interpolated_Global_CD_G2(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                    if abs(Interpolated_Global_CD_G2(i) - CD_G2) < 1e-2
+                    if abs(Interpolated_Global_CD_G2(i) - CD_G2) < 1e-1
                        cd_G2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
                 end
+                if exist('check', 'var') == 0
+                    cd_G2 = CD_G2 * ones(length(xi), 1); 
+                    cm_G2 = CM_G2 * ones(length(xi), 1);
+                end
             elseif exist('check_interp', 'var') == 0
-                cd_G2 = CD_G2 * ones(length(yi), 1); 
-                cm_G2 = CM_G2 * ones(length(yi), 1);
+                cd_G2 = CD_G2 * ones(length(xi), 1); 
+                cm_G2 = CM_G2 * ones(length(xi), 1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Interpolated_Global_CD.value = Interpolated_Global_CD_G2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -3810,19 +4308,25 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CD_E.value;
+            CM_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CM_E.value;
             Interpolated_Global_CD_E = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
                     Interpolated_Global_CD_E(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                    if abs(Interpolated_Global_CD_E(i) - CD_E) < 1e-2
+                    if abs(Interpolated_Global_CD_E(i) - CD_E) < 1e-1
                        cd_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
                 end
+                if exist('check', 'var') == 0
+                    cd_E = CD_E * ones(length(xi), 1); 
+                    cm_E = CM_E * ones(length(xi), 1);
+                end
             elseif exist('check_interp', 'var') == 0
-                cd_E = CD_E * ones(length(yi), 1); 
-                cm_E = CM_E * ones(length(yi), 1);
+                cd_E = CD_E * ones(length(xi), 1); 
+                cm_E = CM_E * ones(length(xi), 1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.value = Interpolated_Global_CD_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -4303,19 +4807,25 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CD_S_inv.value;
+            CM_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CM_S_inv.value;
             Interpolated_Global_CD_S_inv = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
                     Interpolated_Global_CD_S_inv(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                    if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-2
+                    if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-1
                        cd_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
                 end
+                if exist('check', 'var') == 0
+                    cd_S_inv = CD_S_inv * ones(length(xi), 1); 
+                    cm_S_inv = CM_S_inv * ones(length(xi), 1);
+                end
             elseif exist('check_interp', 'var') == 0
-                cd_S_inv = CD_S_inv * ones(length(yi), 1); 
-                cm_S_inv = CM_S_inv * ones(length(yi), 1);
+                cd_S_inv = CD_S_inv * ones(length(xi), 1); 
+                cm_S_inv = CM_S_inv * ones(length(xi), 1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.value = Interpolated_Global_CD_S_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -4449,19 +4959,25 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value;
+            CM_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CM_G.value;
             Interpolated_Global_CD_G = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
                     Interpolated_Global_CD_G(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                    if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-2
+                    if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-1
                        cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
                 end
+                if exist('check', 'var') == 0
+                    cd_G = CD_G * ones(length(xi), 1); 
+                    cm_G = CM_G * ones(length(xi), 1);
+                end
             elseif exist('check_interp', 'var') == 0
-                cd_G = CD_G * ones(length(yi), 1); 
-                cm_G = CM_G * ones(length(yi), 1);
+                cd_G = CD_G * ones(length(xi), 1); 
+                cm_G = CM_G * ones(length(xi), 1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.value = Interpolated_Global_CD_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -4595,19 +5111,25 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CD_G1.value;
+            CM_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CM_G1.value;
             Interpolated_Global_CD_G1 = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
                     Interpolated_Global_CD_G1(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                    if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-2
+                    if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-1
                        cd_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
                 end
+                if exist('check', 'var') == 0
+                    cd_G1 = CD_G1 * ones(length(xi), 1); 
+                    cm_G1 = CM_G1 * ones(length(xi), 1);
+                end
             elseif exist('check_interp', 'var') == 0
-                cd_G1 = CD_G1 * ones(length(yi), 1); 
-                cm_G1 = CM_G1 * ones(length(yi), 1);
+                cd_G1 = CD_G1 * ones(length(xi), 1); 
+                cm_G1 = CM_G1 * ones(length(xi), 1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Interpolated_Global_CD.value = Interpolated_Global_CD_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -4741,19 +5263,25 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_F                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CD_F.value;
+            CM_F                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CM_F.value;
             Interpolated_Global_CD_F = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
                     Interpolated_Global_CD_F(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                    if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-2
+                    if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-1
                        cd_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
                 end
+                if exist('check', 'var') == 0
+                    cd_F = CD_F * ones(length(xi), 1); 
+                    cm_F = CM_F * ones(length(xi), 1);
+                end
             elseif exist('check_interp', 'var') == 0
-                cd_F = CD_F * ones(length(yi), 1); 
-                cm_F = CM_F * ones(length(yi), 1);
+                cd_F = CD_F * ones(length(xi), 1); 
+                cm_F = CM_F * ones(length(xi), 1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.value = Interpolated_Global_CD_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -4887,19 +5415,25 @@ switch (Inverted_flight_Case)
 
             % Selection of the interpolated distribution of CD and CM
             CD_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CD_E.value;
+            CM_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CM_E.value;
             Interpolated_Global_CD_E = zeros(length(yi), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
                     Interpolated_Global_CD_E(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                    if abs(Interpolated_Global_CD_E(i) - CD_E) < 1e-2
+                    if abs(Interpolated_Global_CD_E(i) - CD_E) < 1e-1
                        cd_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                       check    = 1;
                     end
                 end
+                if exist('check', 'var') == 0
+                    cd_E = CD_E * ones(length(xi), 1); 
+                    cm_E = CM_E * ones(length(xi), 1);
+                end
             elseif exist('check_interp', 'var') == 0
-                cd_E = CD_E * ones(length(yi), 1); 
-                cm_E = CM_E * ones(length(yi), 1);
+                cd_E = CD_E * ones(length(xi), 1); 
+                cm_E = CM_E * ones(length(xi), 1);
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.value = Interpolated_Global_CD_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -5367,19 +5901,25 @@ switch (Inverted_flight_Case)
         
         % Selection of the interpolated distribution of CD and CM
         CD_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CD_S_inv.value;
+        CM_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CM_S_inv.value;
         Interpolated_Global_CD_S_inv = zeros(length(yi), 1);
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
                 Interpolated_Global_CD_S_inv(i) = trapz(half_span, check_interp(i,:));
-                if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-2
+                if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-1
                    cd_S_inv = check_interp(i,:)';
                    cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                   check    = 1;
                 end
             end
+            if exist('check', 'var') == 0
+                cd_S_inv = CD_S_inv * ones(length(xi), 1); 
+                cm_S_inv = CM_S_inv * ones(length(xi), 1);
+            end
         elseif exist('check_interp', 'var') == 0
-            cd_S_inv = CD_S_inv * ones(length(yi), 1); 
-            cm_S_inv = CM_S_inv * ones(length(yi), 1);
+            cd_S_inv = CD_S_inv * ones(length(xi), 1); 
+            cm_S_inv = CM_S_inv * ones(length(xi), 1);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.value = Interpolated_Global_CD_S_inv;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -5513,19 +6053,23 @@ switch (Inverted_flight_Case)
         
         % Selection of the interpolated distribution of CD and CM
         CD_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value;
+        CM_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CM_G.value;
         Interpolated_Global_CD_G = zeros(length(yi), 1);
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
                 Interpolated_Global_CD_G(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-2
+                if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-1
                    cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                else
+                    cd_G = CD_G * ones(length(xi), 1);
+                    cm_G = CM_G * ones(length(xi), 1);
                 end
             end
         elseif exist('check_interp', 'var') == 0
-            cd_G = CD_G * ones(length(yi), 1); 
-            cm_G = CM_G * ones(length(yi), 1);
+            cd_G = CD_G * ones(length(xi), 1); 
+            cm_G = CM_G * ones(length(xi), 1);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.value = Interpolated_Global_CD_G;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -5659,19 +6203,25 @@ switch (Inverted_flight_Case)
         
         % Selection of the interpolated distribution of CD and CM
         CD_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CD_G1.value;
+        CM_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CM_G1.value;
         Interpolated_Global_CD_G1 = zeros(length(yi), 1);
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
                 Interpolated_Global_CD_G1(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-2
+                if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-1
                    cd_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                   check    = 1;
                 end
             end
+            if exist('check', 'var') == 0
+                cd_G1 = CD_G1 * ones(length(xi), 1); 
+                cm_G1 = CM_G1 * ones(length(xi), 1);
+            end
         elseif exist('check_interp', 'var') == 0
-            cd_G1 = CD_G1 * ones(length(yi), 1); 
-            cm_G1 = CM_G1 * ones(length(yi), 1);
+            cd_G1 = CD_G1 * ones(length(xi), 1); 
+            cm_G1 = CM_G1 * ones(length(xi), 1);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Interpolated_Global_CD.value = Interpolated_Global_CD_G1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -5805,19 +6355,25 @@ switch (Inverted_flight_Case)
         
         % Selection of the interpolated distribution of CD and CM
         CD_F                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CD_F.value;
+        CM_F                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CM_F.value;
         Interpolated_Global_CD_F = zeros(length(yi), 1);
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
                 Interpolated_Global_CD_F(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:));
-                if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-2
+                if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-1
                    cd_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                   check    = 1;
                 end
             end
+            if exist('check', 'var') == 0
+                cd_F = CD_F * ones(length(xi), 1); 
+                cm_F = CM_F * ones(length(xi), 1);
+            end
         elseif exist('check_interp', 'var') == 0
-            cd_F = CD_F * ones(length(yi), 1); 
-            cm_F = CM_F * ones(length(yi), 1);
+            cd_F = CD_F * ones(length(xi), 1); 
+            cm_F = CM_F * ones(length(xi), 1);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.value = Interpolated_Global_CD_F;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -5950,6 +6506,7 @@ switch (Inverted_flight_Case)
         
         % Selection of the interpolated distribution of CD and CM
         CD_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CD_E.value;
+        CM_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CM_E.value;
         Interpolated_Global_CD_E = zeros(length(yi), 1);
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
@@ -5958,11 +6515,16 @@ switch (Inverted_flight_Case)
                 if abs(Interpolated_Global_CD_E(i) - CD_E) < 1e-1
                    cd_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
+                   check    = 1;
                 end
             end
+            if exist('check', 'var') == 0
+                cd_E = CD_E * ones(length(xi), 1); 
+                cm_E = CM_E * ones(length(xi), 1);
+            end
         elseif exist('check_interp', 'var') == 0
-            cd_E = CD_E * ones(length(yi), 1); 
-            cm_E = CM_E * ones(length(yi), 1);
+            cd_E = CD_E * ones(length(xi), 1); 
+            cm_E = CM_E * ones(length(xi), 1);
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.value = Interpolated_Global_CD_E;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
