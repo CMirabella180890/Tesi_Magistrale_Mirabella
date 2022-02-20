@@ -7,8 +7,8 @@ function alfa_interp = alpha_fullmodel(CL, a2, b2, c2, CL_max, ...
         alpha_plus  = @(CL, a, b, c) (-b + sqrt(b^2 - 4*a*(c - CL)))/(2*a);
 
         if CL > CL_max 
-            disp("WARNING: There is no solution for alpha! ")
-            return
+            error("WARNING: There is no solution for alpha with this lift coefficient! ")
+%             return
         end
         
             if CL < CL_star 

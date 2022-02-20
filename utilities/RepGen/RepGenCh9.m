@@ -597,7 +597,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_S    = "Point S";
             vs         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value;
             ns         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value;
-            alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
+%             alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
+            alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS_new.value;
             CLS        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value;
             CLS_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S_new.value;
             CLHT_S     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CLHT_S.value;
@@ -610,7 +611,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
             na         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
             na_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit;
-            alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
+%             alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
+            alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA_new.value;
             alpha_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.Attributes.unit;
             CLA        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value;
             CLA_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A_new.value;
@@ -623,7 +625,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_C    = "Point C";
             vc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
             nc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value;
-            alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+%             alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+            alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_new.value;
             CLC        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
             CLC_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C_new.value;
             CLHT_C     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.value;
@@ -634,7 +637,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_D    = "Point D";
             vd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value;
             nd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value;
-            alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+%            alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+            alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_new.value;
             CLD        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
             CLD_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D_new.value;
             CLHT_D     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.value;
@@ -645,7 +649,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_S_inv = "Point Sinv";
             vs_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.value;
             ns_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.nS_inv.value;
-            alfaS_inv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.alfaS_inv.value;
+%             alfaS_inv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.alfaS_inv.value;
+            alfaS_inv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv_new.alfaS_inv.value;
             CLS_inv     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv.value;
             CLS_new_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv_new.value;
             CLHT_S_inv  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CLHT_S_inv.value;
@@ -656,7 +661,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_G    = "Point G";
             vg         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value;
             ng         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value;
-            alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
+%             alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
+            alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG_new.value;
             CLG        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
             CLG_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G_new.value;
             CLHT_G     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CLHT_G.value;
@@ -667,7 +673,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_F    = "Point F";
             vf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value;
             nf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value;
-            alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
+%             alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
+            alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF_new.value;
             CLF        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
             CLF_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F_new.value;
             CLHT_F     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CLHT_F.value;
@@ -678,7 +685,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_E    = "Point E";
             ve         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value;
             ne         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value;
-            alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
+%             alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
+            alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE_new.value;
             CLE        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
             CLE_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E_new.value;
             CLHT_E     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CLHT_E.value;
@@ -733,7 +741,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_S    = "Point S";
             vs         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value;
             ns         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value;
-            alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
+%             alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
+            alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS_new.value;
             CLS        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value;
             CLS_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S_new.value;
             CLHT_S     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CLHT_S.value;
@@ -746,7 +755,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
             na         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
             na_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit;
-            alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
+%             alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
+            alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA_new.value;
             alpha_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.Attributes.unit;
             CLA        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value;
             CLA_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A_new.value;
@@ -759,7 +769,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_C    = "Point C";
             vc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
             nc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value;
-            alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+%             alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+            alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_new.value;
             CLC        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
             CLC_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C_new.value;
             CLHT_C     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.value;
@@ -770,7 +781,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_D    = "Point D";
             vd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value;
             nd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value;
-            alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+%             alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+            alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_new.value;
             CLD        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
             CLD_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D_new.value;
             CLHT_D     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.value;
@@ -781,7 +793,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_S_inv = "Point Sinv";
             vs_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.value;
             ns_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.nS_inv.value;
-            alfaS_inv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.alfaS_inv.value;
+%             alfaS_inv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.alfaS_inv.value;
+            alfaS_inv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.alfaS_inv_new.value;
             CLS_inv     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv.value;
             CLS_new_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv_new.value;
             CLHT_S_inv  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CLHT_S_inv.value;
@@ -792,7 +805,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_G    = "Point G";
             vg         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value;
             ng         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value;
-            alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
+%             alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
+            alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG_new.value;
             CLG        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
             CLG_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G_new.value;
             CLHT_G     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CLHT_G.value;
@@ -803,7 +817,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_F    = "Point F";
             vf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value;
             nf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value;
-            alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
+%             alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
+            alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF_new.value;
             CLF        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
             CLF_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F_new.value;
             CLHT_F     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CLHT_F.value;
@@ -814,7 +829,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
             point_E    = "Point E";
             ve         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value;
             ne         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value;
-            alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
+%             alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
+            alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE_new.value;
             CLE        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
             CLE_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E_new.value;
             CLHT_E     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CLHT_E.value;
@@ -874,7 +890,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         vs         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.value;
         vs_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.VS.Attributes.unit;
         ns         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.nS.value;
-        alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
+%         alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
+        alfaS      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS_new.value;
         CLS        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S.value;
         CLS_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CL_S_new.value;
         CLHT_S     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CLHT_S.value;
@@ -887,7 +904,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
         na         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
         na_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit;
-        alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
+%         alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
+        alfaA      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA_new.value;
         alpha_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.Attributes.unit;
         CLA        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A.value;
         CLA_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CL_A_new.value;
@@ -900,7 +918,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         point_C    = "Point C";
         vc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
         nc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.nC.value;
-        alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+%         alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
+        alfaC      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC_new.value;
         CLC        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
         CLC_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C_new.value;
         CLHT_C     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CLHT_C.value;
@@ -911,7 +930,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         point_D    = "Point D";
         vd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.VD.value;
         nd         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.nD.value;
-        alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+%         alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD.value;
+        alfaD      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.alfaD_new.value;
         CLD        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
         CLD_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D_new.value;
         CLHT_D     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CLHT_D.value;
@@ -922,7 +942,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         point_S_inv = "Point Sinv";
         vs_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.VS_inv.value;
         ns_inv      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.nS_inv.value;
-        alfaS_inv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.alfaS_inv.value;
+%         alfaS_inv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.alfaS_inv.value;
+        alfaS_inv   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.alfaS_inv_new.value;
         CLS_inv     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv.value;
         CLS_new_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv_new.value;
         CLHT_S_inv  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CLHT_S_inv.value;
@@ -933,7 +954,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         point_G    = "Point G";
         vg         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.VG.value;
         ng         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.nG.value;
-        alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
+%         alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfaG.value;
+        alfaG      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.alfa_new_G.value;
         CLG        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
         CLG_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G_new.value;
         CLHT_G     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CLHT_G.value;
@@ -944,7 +966,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         point_F    = "Point F";
         vf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.VF.value;
         nf         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.nF.value;
-        alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
+%         alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF.value;
+        alfaF      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.alfaF_new.value;
         CLF        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
         CLF_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F_new.value;
         CLHT_F     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CLHT_F.value;
@@ -955,7 +978,8 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.St
         point_E    = "Point E";
         ve         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.VE.value;
         ne         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.nE.value;
-        alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
+%         alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE.value;
+        alfaE      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.alfaE_new.value;
         CLE        = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
         CLE_new    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E_new.value;
         CLHT_E     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CLHT_E.value;

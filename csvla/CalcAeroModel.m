@@ -135,6 +135,14 @@ if InputSource == "From File"
     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_b.value = b2;
     Aircraft.Certification.Aerodynamic_data.Alpha_PolCoeff_c.value = c2;
     % -------------------------------------------------------------------------
+    CL0          = p_CL_wb1(2);
+    CLalfa       = p_CL_wb1(1);
+    Aircraft.Certification.Aerodynamic_data.CL0.value = CL0;
+    Aircraft.Certification.Aerodynamic_data.Normal_Force_Curve_Slope_deg.value = CLalfa;
+    alfa_zero_lift = alpha_fullmodel(0, a2, b2, c2, CL_max, CL_star, CL0, CLalfa);
+    Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.value           = alfa_zero_lift;
+    Aircraft.Certification.Aerodynamic_data.Alpha_zero_lift.Attributes.unit = "deg";
+    % -------------------------------------------------------------------------
     % CD INTERPOLATION
     % -------------------------------------------------------------------------
     p_cd_star   = polyfit(alpha_wb(4:5), CD_wb(4:5), 2);
