@@ -459,7 +459,19 @@ para = Paragraph('The aircraft reference aerodynamic is shown in figure: ');
 % append(para,InternalLink('tlarTableRef','refTabella'));
 add(sec,para)
 append(para,InternalLink('polars_wb',' Wing-Body reference Aerodynamics'));
-
+% -------------------------------------------------------------------------
+        str = ['The previous figure refers to wing-body aerodynamics,' ...
+            ' obtained via computational fluidynamics simulations.' ...
+            ' Full-vehicle aerodynamics is not available for this aircraft.' ...
+            ' The calculations illustrated in this document are based on an' ...
+            ' aerodynamic reference model, obtained from wing-body aerodynamics' ...
+            ' through interpolation. The interpolation procedure is in good agreement' ...
+            ' with present data. Further examination of this data through wind-tunnel' ...
+            ' or in-flight tests must be performed.'];
+        para = Paragraph(str);
+        para.Style = {HAlign('justify')};
+        add(sec,para);  
+        % -----------------------------------------------------------------
 %moving to another path for figure
 cd ..
 cd ..
@@ -467,7 +479,7 @@ cd ..
  results_path = [pwd '\' regulation '\Output\'];
 
 cd (RepDir);
-
+% -------------------------------------------------------------------------
 % -------------------------------------------------------------------------
 Max_Lift_Coefficient          = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.value;
 Max_Lift_Coefficient_unit     = Aircraft.Certification.Aerodynamic_data.Max_Lift_Coefficient.Attributes.unit;
