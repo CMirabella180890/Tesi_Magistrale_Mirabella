@@ -364,12 +364,21 @@ add(subsec,para);
         va_unit      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
         na           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
         na_unit      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit;
-        shearA       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value(end);
-        shear_unit   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.Attributes.unit;
-        bendingA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value(end);
-        bending_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.Attributes.unit;
-        torsionA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value(end);
-        torsion_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.Attributes.unit;
+        if isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA, 'Shear_distr') == 1
+            shearA       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value(end);
+            shear_unit   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.Attributes.unit;
+            bendingA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value(end);
+            bending_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.Attributes.unit;
+            torsionA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value(end);
+            torsion_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.Attributes.unit;
+        elseif isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope, 'PointA1') == 1
+            shearA       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Shear_distr.value(end);
+            shear_unit   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Shear_distr.Attributes.unit;
+            bendingA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Bend_mom_distr.value(end);
+            bending_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Bend_mom_distr.Attributes.unit;
+            torsionA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Tors_mom_distr.value(end);
+            torsion_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Tors_mom_distr.Attributes.unit;
+        end
 
         point_C    = "Point C";
         vc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
@@ -989,9 +998,15 @@ add(subsec,para);
         % -----------------------------------------------------------------
         n1         = 1.0; 
         point_A    = "Point A";
-        cm_A       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value(1:3:end);
-        yA         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.value(1:3:end)';
-        yA_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.Attributes.unit;
+        if isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA, 'Unsymmetrical_loads') == 1
+            cm_A       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value(1:3:end);
+            yA         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.value(1:3:end)';
+            yA_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.Attributes.unit;
+        elseif isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA, 'Unsymmetrical_loads') == 0
+            cm_A       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.cm_A1.value(1:3:end);
+            yA         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.value(1:3:end)';
+            yA_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.Attributes.unit;
+        end
 %         va         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
 %         va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
 %         na         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
@@ -1092,11 +1107,19 @@ add(subsec,para);
         % -----------------------------------------------------------------
         n1         = 1.0; 
         point_A          = "Point A";
-        TA_full_airloads = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value(1:3:end);
-        TA_70_airloads   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value(1:3:end);
-        TA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.Attributes.unit;
-        yA               = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.value(1:3:end)';
-        yA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.Attributes.unit;
+        if isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA, 'Unsymmetrical_loads') == 1 
+            TA_full_airloads = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value(1:3:end);
+            TA_70_airloads   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value(1:3:end);
+            TA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.Attributes.unit;
+            yA               = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.value(1:3:end)';
+            yA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.Attributes.unit;
+        elseif isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA, 'Unsymmetrical_loads') == 0 
+            TA_full_airloads = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.TA1_full_airloads.value(1:3:end);
+            TA_70_airloads   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.TA1_70_airloads.value(1:3:end);
+            TA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.TA1_70_airloads.Attributes.unit;
+            yA               = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.value(1:3:end)';
+            yA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.Attributes.unit;
+        end
 %         va         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
 %         va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
 %         na         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;

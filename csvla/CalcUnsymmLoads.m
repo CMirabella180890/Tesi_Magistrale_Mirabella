@@ -68,8 +68,11 @@ switch (Straight_flight_Case)
         if max(n_gust_cruise_plus) > nmax
             % =================================================================
             %% AILERON DEFLECTION AT POINT A1
-
-            cm_A1      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value;
+%             if isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope, 'PointA1') == 1
+%                 cm_A1      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value;
+%             elseif isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope, 'PointA1') == 0
+%                 cm_A1      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value;
+%             end
             delta_A1   = delta_max;
 
             % Aileron deflection at Point A1
@@ -78,8 +81,8 @@ switch (Straight_flight_Case)
 
             % Dynamic pressure times delta_A1
             qA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.qA1.value;
-            F_aileron_A1 = qA1 * delta_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.value = F_aileron_A1;
+            F_Aileron_A1 = qA1 * delta_A1;
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.value = F_Aileron_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.F_Aileron_A1.Attributes.unit = "N/m^2";
 
             % Initialization of the Unsymmetrical_load field - Point A
@@ -482,6 +485,7 @@ switch (Straight_flight_Case)
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.description = 'Critical condition for aileron at Point D'; 
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.cs   = " 455 ";
 
             %% CRITICAL CONDITION FOR TORSION DUE TO AILERON DEFLECTION
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = NaN;
@@ -914,6 +918,7 @@ switch (Straight_flight_Case)
                 Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.description = 'Critical condition for aileron at Point D'; 
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.unit = "Non dimensional";
+            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_condition.Attributes.cs   = " 455 ";
 
             %% CRITICAL CONDITION FOR TORSION DUE TO AILERON DEFLECTION
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Aileron_critical_torsion.value = NaN;

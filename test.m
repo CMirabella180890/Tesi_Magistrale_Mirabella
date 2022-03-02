@@ -38,7 +38,10 @@ InputSource = "From File";
 % "From File"
 % "Custom"
 %do not edit
-filename = 'Aircraft_test'; %do not edit
+% filename = 'Aircraft_test'; %do not edit
+ filename = 'drone_vla';     %do not edit
+% filename = 'TecnamP92_input';  %do not edit
+
 %% INIZIALIZATION OF AircraftSTRUCT VARIABLE (Just the minimal values)
 cd initialization 
 % The 'dir' variable contains working directory path saved as a
@@ -53,7 +56,8 @@ fprintf('%s\n', dir);
 Aircraft = FlightLoadsInitialize();
 fprintf('\n');
 fprintf('Certification used from file.');
-Aircraft = FromFileCertification_fun(Aircraft,filename);
+% Aircraft = FromFileCertification_fun(Aircraft,filename);
+Aircraft = FromFileCertification_funUNDERTEST(Aircraft,filename);
 fprintf('\n');
 pause(5/1000);
 %% Pause

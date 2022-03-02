@@ -13,6 +13,20 @@ import mlreportgen.utils.*
 ch = Chapter();
 ch.Title = 'Loads on the wing';
 disp(['Chapter 10', (' "'), ch.Title,('" ') ,'writing...' ])
+% -------------------------------------------------------------------------
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
+
+fig = FormalImage([results_path,'Wing-Top-View.png']);
+         fig.Caption = 'Wing, top view.';
+         fig.Height = '5in';
+         fig.LinkTarget='Wingtopview';
+         add(ch,fig);
+% -------------------------------------------------------------------------
 str = ['In this section will be shown all the resulting internal' ...
     ' forces acting on the wing structural elements; having calculated' ...
     ' lift, drag and pitching moment coefficient distribution on the wing' ...
@@ -63,6 +77,13 @@ para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(subsec,para);
 
+% moving to another path for figure
+cd ..
+cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\csvla\Output\'];
+cd(RepDir);
+
 %to be checked
 fig = FormalImage([results_path,'ClInterpolation3dplot.png']);
  fig.Caption = 'Wing lift coefficient spanwise distribution';
@@ -99,7 +120,7 @@ cd ..
  
  fig = FormalImage([results_path,'normalandaxial.png']);
  fig.Caption = 'Normal and axial forces decomposition.';
- fig.Height = '4in';
+%  fig.Height = '4in';
  fig.LinkTarget='normalandaxial';
  add(subsec,fig);
  % ------------------------------------------------------------------------
@@ -343,12 +364,21 @@ add(subsec,para);
         va_unit      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
         na           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
         na_unit      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.Attributes.unit;
-        shearA       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value(end);
-        shear_unit   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.Attributes.unit;
-        bendingA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value(end);
-        bending_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.Attributes.unit;
-        torsionA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value(end);
-        torsion_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.Attributes.unit;
+        if isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA, 'Shear_distr') == 1
+            shearA       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.value(end);
+            shear_unit   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Shear_distr.Attributes.unit;
+            bendingA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.value(end);
+            bending_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Bend_mom_distr.Attributes.unit;
+            torsionA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.value(end);
+            torsion_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Tors_mom_distr.Attributes.unit;
+        elseif isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope, 'PointA1') == 1
+            shearA       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Shear_distr.value(end);
+            shear_unit   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Shear_distr.Attributes.unit;
+            bendingA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Bend_mom_distr.value(end);
+            bending_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Bend_mom_distr.Attributes.unit;
+            torsionA     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Tors_mom_distr.value(end);
+            torsion_unit = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Tors_mom_distr.Attributes.unit;
+        end
 
         point_C    = "Point C";
         vc         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.VC.value;
@@ -409,6 +439,7 @@ add(subsec,para);
         check_tors  = [abs(torsionS), abs(torsionA), abs(torsionC), abs(torsionD), abs(torsionSinv), abs(torsionG), abs(torsionF), abs(torsionE)];
       % -----------------------------------------------------------------
         if max(check_shear) == abs(shearS)
+            critical_point_shear   = 'Point S';
             critical_shear         = shearS;
             string_paragraph_shear = [' The critical shear is at point S and is' ...
                 ' equal to' ...
@@ -418,6 +449,7 @@ add(subsec,para);
                 char(shear_unit) ...
                 '.']; 
         elseif max(check_shear) == abs(shearA)
+            critical_point_shear   = 'Point A';
             critical_shear         = shearA;
             string_paragraph_shear = [' The critical shear is at point A and is' ...
                 ' equal to' ...
@@ -427,6 +459,7 @@ add(subsec,para);
                 char(shear_unit) ...
                 '.']; 
         elseif max(check_shear) == abs(shearC)
+            critical_point_shear   = 'Point C';
             critical_shear         = shearC;
             string_paragraph_shear = [' The critical shear is at point C and is' ...
                 ' equal to' ...
@@ -436,6 +469,7 @@ add(subsec,para);
                 char(shear_unit) ...
                 '.'];
         elseif max(check_shear) == abs(shearD)
+            critical_point_shear   = 'Point D';
             critical_shear         = shearD;
             string_paragraph_shear = [' The critical shear is at point D and is' ...
                 ' equal to' ...
@@ -445,6 +479,7 @@ add(subsec,para);
                 char(shear_unit) ...
                 '.'];
         elseif max(check_shear) == abs(shearSinv)
+            critical_point_shear   = 'Point Sinv';
             critical_shear         = shearSinv;
             string_paragraph_shear = [' The critical shear is at point Sinv and is' ...
                 ' equal to' ...
@@ -454,6 +489,7 @@ add(subsec,para);
                 char(shear_unit) ...
                 '.'];
         elseif max(check_shear) == abs(shearG)
+            critical_point_shear   = 'Point G';
             critical_shear         = shearG;
             string_paragraph_shear = [' The critical shear is at point G and is' ...
                 ' equal to' ...
@@ -463,6 +499,7 @@ add(subsec,para);
                 char(shear_unit) ...
                 '.'];
         elseif max(check_shear) == abs(shearF)
+            critical_point_shear   = 'Point F';
             critical_shear         = shearF;
             string_paragraph_shear = [' The critical shear is at point F and is' ...
                 ' equal to' ...
@@ -472,6 +509,7 @@ add(subsec,para);
                 char(shear_unit) ...
                 '.'];
         elseif max(check_shear) == abs(shearE)
+            critical_point_shear   = 'Point E';
             critical_shear         = shearE;
             string_paragraph_shear = [' The critical shear is at point E and is' ...
                 ' equal to' ...
@@ -484,6 +522,7 @@ add(subsec,para);
         % -----------------------------------------------------------------
         % -----------------------------------------------------------------
         if max(check_bend) == abs(bendingS)
+            critical_point_bend   = 'Point S';
             critical_bend         = bendingS;
             string_paragraph_bend = [' The critical bending is at point S and is' ...
                 ' equal to' ...
@@ -493,6 +532,7 @@ add(subsec,para);
                 char(bending_unit) ...
                 '.']; 
         elseif max(check_bend) == abs(bendingA)
+            critical_point_bend   = 'Point A';
             critical_bend         = bendingA;
             string_paragraph_bend = [' The critical bending is at point A and is' ...
                 ' equal to' ...
@@ -502,6 +542,7 @@ add(subsec,para);
                 char(bending_unit) ...
                 '.']; 
         elseif max(check_bend) == abs(bendingC)
+            critical_point_bend   = 'Point C';
             critical_bend         = bendingC;
             string_paragraph_bend = [' The critical bending is at point C and is' ...
                 ' equal to' ...
@@ -511,6 +552,7 @@ add(subsec,para);
                 char(bending_unit) ...
                 '.'];
         elseif max(check_bend) == abs(bendingD)
+            critical_point_bend   = 'Point D';
             critical_bend         = bendingD;
             string_paragraph_bend = [' The critical bending is at point D and is' ...
                 ' equal to' ...
@@ -520,6 +562,7 @@ add(subsec,para);
                 char(bending_unit) ...
                 '.'];
         elseif max(check_bend) == abs(bendingSinv)
+            critical_point_bend   = 'Point Sinv';
             critical_bend         = bendingSinv;
             string_paragraph_bend = [' The critical bending is at point Sinv and is' ...
                 ' equal to' ...
@@ -529,6 +572,7 @@ add(subsec,para);
                 char(bending_unit) ...
                 '.'];
         elseif max(check_bend) == abs(bendingG)
+            critical_point_bend   = 'Point G';
             critical_bend         = bendingG;
             string_paragraph_bend = [' The critical bending is at point G and is' ...
                 ' equal to' ...
@@ -538,6 +582,7 @@ add(subsec,para);
                 char(torsion_unit) ...
                 '.'];
         elseif max(check_bend) == abs(bendingF)
+            critical_point_bend   = 'Point F';
             critical_bend         = bendingF;
             string_paragraph_bend = [' The critical bending is at point F and is' ...
                 ' equal to' ...
@@ -547,6 +592,7 @@ add(subsec,para);
                 char(bending_unit) ...
                 '.'];
         elseif max(check_bend) == abs(bendingE)
+            critical_point_bend   = 'Point E';
             critical_bend         = bendingE;
             string_paragraph_bend = [' The critical bending is at point E and is' ...
                 ' equal to' ...
@@ -559,6 +605,7 @@ add(subsec,para);
         % -----------------------------------------------------------------
         % -----------------------------------------------------------------
         if max(check_tors) == abs(torsionS)
+            critical_point_tors   = 'Point S';
             critical_tors         = torsionS;
             string_paragraph_tors = [' The critical torsion is at point S and is' ...
                 ' equal to' ...
@@ -568,6 +615,7 @@ add(subsec,para);
                 char(torsion_unit) ...
                 '.']; 
         elseif max(check_tors) == abs(torsionA)
+            critical_point_tors   = 'Point A';
             critical_tors         = torsionA;
             string_paragraph_tors = [' The critical torsion is at point A and is' ...
                 ' equal to' ...
@@ -577,6 +625,7 @@ add(subsec,para);
                 char(torsion_unit) ...
                 '.']; 
         elseif max(check_tors) == abs(torsionC)
+            critical_point_tors   = 'Point C';
             critical_tors         = torsionC;
             string_paragraph_tors = [' The critical torsion is at point C and is' ...
                 ' equal to' ...
@@ -586,7 +635,7 @@ add(subsec,para);
                 char(torsion_unit) ...
                 '.'];
         elseif max(check_tors) == abs(torsionD)
-            critical_point_tors   = 'Point E';
+            critical_point_tors   = 'Point D';
             critical_tors         = torsionD;
             string_paragraph_tors = [' The critical torsion is at point D and is' ...
                 ' equal to' ...
@@ -716,28 +765,28 @@ add(subsec,para);
         append(subsec,ol);
         % +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
         % -----------------------------------------------------------------
-%         header = {'Point', strcat('S (',shear_unit,')'), strcat('M (',bending_unit,')'), strcat('T (',torsion_unit,')')};
-%         %each table row needs of a fieldValue
-%         %1
-%         name       = {char(point_C); char(point_D); char(point_F); char(point_E)};
-%         shear      = {num2str(shearC, 4); num2str(shearD, 4); num2str(shearF, 4); num2str(shearE, 4)};
-%         bending    = { num2str(bendingC, 4); num2str(bendingD, 4); num2str(bendingF, 4); num2str(bendingE, 4)};
-%         torsion    = {num2str(torsionC, 4); num2str(torsionD, 4); num2str(torsionF, 4); num2str(torsionE, 4)};
-%         fieldValue = [name, shear, bending, torsion];
-%           
-%         tbl = FormalTable(header,fieldValue);
-%         % In order to put a table with a caption, the API Report denomination should
-%         % be used, the other options are from API DOM. In order to solve the problem,
-%         % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
-%         tbl = BaseTable(tbl);
-%         tbl.Title = strcat('Critical shear, bending and torsion.');
-%         tbl.LinkTarget = 'shearbendingtors_crit';
-%         add(subsec,tbl);
+        header = {'Point', 'Value', 'Units', 'Load'};
+        %each table row needs of a fieldValue
+        %1
+        name       = {char(critical_point_shear); char(critical_point_bend); char(critical_point_tors)};
+        values     = {num2str(critical_shear, 4); num2str(critical_bend, 4); num2str(critical_tors, 4)};
+        units      = {char(shear_unit); char(bending_unit); char(torsion_unit)};
+        load       = {'Shear'; 'Bending'; 'Torsion'};
+        fieldValue = [name, values, units, load];
+          
+        tbl = FormalTable(header,fieldValue);
+        % In order to put a table with a caption, the API Report denomination should
+        % be used, the other options are from API DOM. In order to solve the problem,
+        % the table is created as FormalTable (DOM) but it is inserted in a BaseTable (Report).
+        tbl = BaseTable(tbl);
+        tbl.Title = strcat('Critical shear, bending and torsion.');
+        tbl.LinkTarget = 'shearbendingtors_crit';
+        add(subsec,tbl);
         % -----------------------------------------------------------------
-%  str = ['In the table these values are summarized, for convenience.'];
-% para = Paragraph(str);
-% para.Style = {HAlign('justify')};
-% add(subsec,para);        
+ str = ['In the table these values are summarized, for convenience.'];
+para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(subsec,para);        
 % ------------------------------------------------------------------------- 
 
 %SHEAR
@@ -949,9 +998,15 @@ add(subsec,para);
         % -----------------------------------------------------------------
         n1         = 1.0; 
         point_A    = "Point A";
-        cm_A       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value(1:3:end);
-        yA         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.value(1:3:end)';
-        yA_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.Attributes.unit;
+        if isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA, 'Unsymmetrical_loads') == 1
+            cm_A       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.cm_A.value(1:3:end);
+            yA         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.value(1:3:end)';
+            yA_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.Attributes.unit;
+        elseif isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA, 'Unsymmetrical_loads') == 0
+            cm_A       = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.cm_A1.value(1:3:end);
+            yA         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.value(1:3:end)';
+            yA_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.Attributes.unit;
+        end
 %         va         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
 %         va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
 %         na         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;
@@ -1052,11 +1107,17 @@ add(subsec,para);
         % -----------------------------------------------------------------
         n1         = 1.0; 
         point_A          = "Point A";
-        TA_full_airloads = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value(1:3:end);
-        TA_70_airloads   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value(1:3:end);
-        TA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.Attributes.unit;
-        yA               = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.value(1:3:end)';
-        yA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.Attributes.unit;
+        if isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA, 'Unsymmetrical_loads') == 1 
+            TA_full_airloads = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_full_airloads.value(1:3:end);
+            TA_70_airloads   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.value(1:3:end);
+            TA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Unsymmetrical_loads.TA_70_airloads.Attributes.unit;
+            yA               = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.value(1:3:end)';
+            yA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.yA.Attributes.unit;
+        elseif isfield(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA, 'Unsymmetrical_loads') == 0 
+            TA_full_airloads = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.TA1_full_airloads.value(1:3:end);
+            TA_70_airloads   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.TA1_70_airloads.value(1:3:end);
+            TA_unit          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Unsymmetrical_loads.TA1_70_airloads.Attributes.unit;
+            yA               = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.yA1.value(1:3:end)';
 %         va         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
 %         va_unit    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.Attributes.unit;
 %         na         = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.nA.value;

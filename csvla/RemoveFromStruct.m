@@ -65,8 +65,12 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
 %         Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude = rmfield(Aircraft.Certification.ISA_Condition.Operative_ceiling.Altitude, field);
         field = 'Sea_level';
         Aircraft.Certification.ISA_Condition = rmfield(Aircraft.Certification.ISA_Condition, field);
-        field = 'Max_Continous_Power_Speed_VH';
-        Aircraft.Certification.Regulation.SubpartC.Flightloads = rmfield(Aircraft.Certification.Regulation.SubpartC.Flightloads, field);
+%         field = 'Max_Continous_Power_Speed_VH';
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads = rmfield(Aircraft.Certification.Regulation.SubpartC.Flightloads, field);
+        % -----------------------------------------------------------------
+        field = 'type';
+        Aircraft.Geometry.Flaps = rmfield(Aircraft.Geometry.Flaps, field);
+        
     case 'SCHRENK'
         % -----------------------------------------------------------------
         Aircraft.Geometry.General.xcg_divided_by_mac.value = 0.25;

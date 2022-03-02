@@ -447,11 +447,17 @@ sec.Title = 'Aerodynamic';
         
         cd (RepDir);
         
-        fig = FormalImage([results_path,'RepGenFigCh4.png']);
-        fig.Caption = 'Lift, Drag and pitching moment coefficient of the 3D wing-body configuration.';
+        fig = FormalImage([results_path,'FullLiftModelInterpolation.png']);
+        fig.Caption = 'Lift coefficient of the 3D wing-body configuration.';
         fig.Height = '4in';
         fig.Width = '4in';
-        fig.LinkTarget='3Dwingbodyaerodynamic';
+        fig.LinkTarget='3DwingbodyaerodynamicLift';
+        add(sec,fig);
+        fig = FormalImage([results_path,'FullDragModelInterpolation.png']);
+        fig.Caption = 'Drag coefficient of the 3D wing-body configuration.';
+        fig.Height = '4in';
+        fig.Width = '4in';
+        fig.LinkTarget='3DwingbodyaerodynamicDrag';
         add(sec,fig);
         % -----------------------------------------------------------------
 % -------------------------------------------------------------------------
@@ -460,13 +466,14 @@ para = Paragraph('The aircraft reference aerodynamic is shown in figure: ');
 add(sec,para)
 append(para,InternalLink('polars_wb',' Wing-Body reference Aerodynamics'));
 % -------------------------------------------------------------------------
-        str = ['The previous figure refers to wing-body aerodynamics,' ...
+        str = ['The previous figures refer to wing-body aerodynamics,' ...
             ' obtained via computational fluidynamics simulations.' ...
             ' Full-vehicle aerodynamics is not available for this aircraft.' ...
             ' The calculations illustrated in this document are based on an' ...
             ' aerodynamic reference model, obtained from wing-body aerodynamics' ...
-            ' through interpolation. The interpolation procedure is in good agreement' ...
-            ' with present data. Further examination of this data through wind-tunnel' ...
+            ' through interpolation (red curves in figure). The interpolation' ...
+            ' procedure is in good agreement with present data. Further' ...
+            ' examination of this data through wind-tunnel' ...
             ' or in-flight tests must be performed.'];
         para = Paragraph(str);
         para.Style = {HAlign('justify')};

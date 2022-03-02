@@ -143,7 +143,23 @@ elevator_max_deflection = Aircraft.Geometry.Elevator.max_deflection.value;
 VA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
 
 % ANGLE OF ATTACK AT MANOEUVRE SPEED 
-alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value);
+% alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value);
+
+switch (Straight_flight_Case)
+    % CASE 1: VA greater than the intercept
+    case 'Case 1'
+        % MANOUEVRE SPEED
+        VA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.VA1.value;
+        
+        % ANGLE OF ATTACK AT MANOEUVRE SPEED 
+        alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.value);
+    case 'Case 2'
+        % MANOUEVRE SPEED
+        VA = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.VA.value;
+        
+        % ANGLE OF ATTACK AT MANOEUVRE SPEED 
+        alfa_A_deg = real(Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value);
+end
 
 % D EPSILON / D ALFA 
 depsilon_dalfa = 0.3;

@@ -32,6 +32,8 @@ taper_ratio = c_tip / c_root;
 MAC         = mean_aerodynamic_chord(c_root, taper_ratio);
 
 % STORE INSIDE THE STRUCT VARIABLE
+% Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
+% Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
 Aircraft.Geometry.Wing.mac.value           = MAC;
 Aircraft.Geometry.Wing.mac.Attributes.unit = "m";
 
