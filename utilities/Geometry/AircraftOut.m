@@ -110,6 +110,13 @@ saveas(fus_side,'Side-View.png');
 saveas(fus_front,'Front-View.fig');
 saveas(fus_front,'front-View.png');
 
+% saveas(fus_top,'Top-View.fig');
+% saveas(fus_top,'Top-View.pdf');
+% saveas(fus_side,'Side-View.fig');
+% saveas(fus_side,'Side-View.pdf');
+% saveas(fus_front,'Front-View.fig');
+% saveas(fus_front,'front-View.pdf');
+
 %3D
 saveas(fus_3D,'Aircraft3D.fig');
 saveas(fus_3D,'Aircraft3D.png');
@@ -125,6 +132,21 @@ title('Aircraft 3D Top-View')
 view(0,90.0)
 saveas(gcf,'TopView3D.fig');
 saveas(gcf,'TopView3D.png');
+
+% saveas(fus_3D,'Aircraft3D.fig');
+% saveas(fus_3D,'Aircraft3D.pdf');
+% view(0,0.5)
+% title('Aircraft 3D Side-View')
+% saveas(gcf,'SideView3D.fig');
+% saveas(gcf,'SideView3D.pdf');
+% title('Aircraft 3D Front-View')
+% view(-90,0.0)
+% saveas(gcf,'FrontView3D.fig');
+% saveas(gcf,'FrontView3D.pdf');
+% title('Aircraft 3D Top-View')
+% view(0,90.0)
+% saveas(gcf,'TopView3D.fig');
+% saveas(gcf,'TopView3D.pdf');
 
 cd ..
 

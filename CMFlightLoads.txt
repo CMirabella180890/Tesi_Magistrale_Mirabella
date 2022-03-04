@@ -67,6 +67,11 @@ Density [kg/m^3]: 0.8632
  nmax                nmin                 VD                VE
  3.800000          -1.500000          58.386920          58.386920
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
+ VC
+ 46.709536          
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 --------------------------------------
 ### Saving outpus inside correct Folder ###
@@ -106,8 +111,6 @@ length_alpha =
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving FullLiftModelInterpolation.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcAeroModel.m',370,1)">370 </a>    movefile FullLiftModelInterpolation.png Output    
-if system_dependent('IsDebugMode')==1, dbcont; end
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving FullDragModelInterpolation.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -156,12 +159,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving LiftComparisonWithPoints.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcShearBendTorsMom.m',2370,1)">2370 </a>        obj2 = ShearBendingTorsion; 
-if system_dependent('IsDebugMode')==1, dbstep; end
-if system_dependent('IsDebugMode')==1, dbstep; end
-if system_dependent('IsDebugMode')==1, dbstep; end
-if system_dependent('IsDebugMode')==1, dbstep; end
-if system_dependent('IsDebugMode')==1, dbcont; end
  
  ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
@@ -234,6 +231,8 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving CmComparisonPointA.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcUnsymmLoads.m',995,1)">995 </a>        movefile CmComparisonPointA.png Output   
+if system_dependent('IsDebugMode')==1, dbcont; end
  ++++ FIGURE 28 - POINT A PARTIAL LOAD - UNSYMM. TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving UnsymmetricalTorsionSeventyPerCentPointA.pdf in: 
@@ -456,18 +455,14 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving flaps_final_envelopediagramlanding.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcFlapsEnvelope.m',1190,1)">1190 </a>switch (Aircraft.Certification.Regulation.SubpartC.Flapsloads.Takeoff.case.value)
-if system_dependent('IsDebugMode')==1, dbcont; end
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Superposition.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcFlapsEnvelope.m',1493,1)">1493 </a>movefile Superposition.png Output 
-if system_dependent('IsDebugMode')==1, dbcont; end
  ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ 
  ------------------------------------------------------ 
  +++++++++++++++++ Hinge Moments - AILERON +++++++++++++++++ 
  HA [N * m]  HA_converted [kg * m]       HA_125 [N * m]      HA_total_SI [N * m]      HA_total_converted [kg * m]
- -1.579842       -0.161099                  -1.974802           -3.949605                -0.402748
+ -1.578798       -0.160993                  -1.973498           -3.946995                -0.402481
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ 
  ------------------------------------------------------ 
@@ -481,6 +476,45 @@ if system_dependent('IsDebugMode')==1, dbcont; end
  HR [N * m]  HR_converted [kg * m]       HR_125 [N * m]   HR_125_convert [kg * m]
  -0.886739       -0.090422                  -1.108424           -0.113028
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\Geometry
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+ 
+### aircraft name is DroneVLA
+Fuselageexists
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+Fuselage Geometry utilities running
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+FuselageGeometry utilities end run
+Wingexists
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+WingGeometry utilities end run
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+WingGeometry utilities end run
+Horizontalexists
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+HorizontalGeometry utilities end run
+Verticalexists
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+VerticalGeometry utilities end run
+Engineexists
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+EngineGeometry utilities end run
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+Saving complete aircaft figures...
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+End Geometry utilities run
 -----------------
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen
@@ -513,26 +547,16 @@ Chapter 5 written
 Chapter 6 "Altitude" writing...
 Chapter 6 written
 Chapter 7 "Manoeuvring and Gust load factors n" writing...
-Chapter 7 written
-Chapter 8 "V-n Envelope" writing...
-Chapter 8 written
-Chapter 9 "Loads on the aeroplane" writing...
---------------------------------------
-### Saving outpus inside correct Folder ###
-Saving RepGenFigCh9.png in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Chapter 9 written
-Chapter 10 "Loads on the wing" writing...
-Chapter 10 written
-Chapter 11 "Loads on the horizontal tail" writing...
-Chapter 11 written
-Chapter 12 "Loads on the vertical tail" writing...
-Chapter 12 written
-Chapter 13 "Loads on the wing flaps" writing...
-Chapter 13 written
-Chapter 14 "Loads on the control surfaces" writing...
-Chapter 14 written
-Chapter 15 "Power plant" writing...
-Chapter 15 written
-Report successfully written. Execution terminated.
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mlreportgen.dom.Paragraph')" style="font-weight:bold">mlreportgen.dom.Paragraph</a>
+No constructor 'mlreportgen.dom.Paragraph' with matching signature found.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh7', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh7.m', 339)" style="font-weight:bold">RepGenCh7</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh7.m',339,0)">line 339</a>)
+        para = Paragraph(str);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 170)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',170,0)">line 170</a>)
+RepGenCh7       %Manoeuvring and Gust load factors n
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 157)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',157,0)">line 157</a>)
+RepGenMain(Aircraft);
+} 
+<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh7.m',339,1)">339 </a>        para = Paragraph(str);

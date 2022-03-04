@@ -29,17 +29,32 @@ zpos = Aircraft.Geometry.Wing.zle.value;                                    % wi
 xle = Aircraft.Geometry.Wing.xle.value/lf;                                  % wing tip leading edge %of fuselage lenght
 
 %landing gear
-x_main_lg = 0.6*lf;
-x_nose_lg = 0.1*lf;
-y_main_lg = 1.1*df;
-y_nose_lg = 0.0*df;
-z_main_lg = -1.1*df;
-z_nose_lg = -1.1*df;
-d_wheel_main = 0.1;
-d_wheel_nose = 0.1;
-Aircraft.Geometry.Undercarriage.Main.diameter.value = 0.1; %m
-Aircraft.Geometry.Undercarriage.Nose.diameter.value = 0.1; %m
-wheel_width = 0.1*df; % main gear wheel width (m)
+%main gear
+Aircraft.Geometry.Undercarriage.Main.x.value = 0.6*lf;  % fraction of fuselage lenght MAIN LG
+Aircraft.Geometry.Undercarriage.Main.y.value = 1.1*df; % fraction of diameter MAIN LG
+Aircraft.Geometry.Undercarriage.Main.z.value = -1.1*df; % fraction of diameter MAIN LG
+%nose gear
+Aircraft.Geometry.Undercarriage.Nose.x.value = 0.1*lf;          % fraction of fuselage lenght NOSE LG   
+Aircraft.Geometry.Undercarriage.Nose.y.value = 0.0*df; % fraction of diameter NOSE LG
+Aircraft.Geometry.Undercarriage.Nose.z.value = -1.1*df; % fraction of diameter NOSE LG
+%wheel
+Aircraft.Geometry.Undercarriage.Main.diameter.value = 0.3; %m
+Aircraft.Geometry.Undercarriage.Nose.diameter.value = 0.3; %m
+Aircraft.Geometry.Undercarriage.wheel_width = 0.1*df;
+
+
+x_main_lg = Aircraft.Geometry.Undercarriage.Main.x.value;
+y_main_lg = Aircraft.Geometry.Undercarriage.Main.y.value;
+z_main_lg = Aircraft.Geometry.Undercarriage.Main.z.value;
+
+x_nose_lg = Aircraft.Geometry.Undercarriage.Nose.x.value;
+y_nose_lg = Aircraft.Geometry.Undercarriage.Nose.y.value;
+z_nose_lg = Aircraft.Geometry.Undercarriage.Nose.z.value;
+
+d_wheel_main = Aircraft.Geometry.Undercarriage.Main.diameter.value;
+d_wheel_nose = Aircraft.Geometry.Undercarriage.Nose.diameter.value;
+
+wheel_width = Aircraft.Geometry.Undercarriage.wheel_width; % main gear wheel width (m)
 
 %% TOP-VIEW
 figure('Name',[comp '-Top-View'],'NumberTitle','off');

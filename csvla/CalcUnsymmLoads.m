@@ -1,3 +1,4 @@
+close all;
 %% CalcUnsymmLoads 
 % Script to evaluate unsymmetrical load conditions associated with aileron
 % deflection.

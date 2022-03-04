@@ -121,9 +121,28 @@ Aircraft = ApplyRegulation(Aircraft);
 
 %% CALCULATING SHEAR AND BENDING MOMENT ON THE WING
 
+%% GEMOETRY SUBROUTINE 
+cd .. 
+cd utilities\Geometry
+% The 'dir' variable contains working directory path saved as a
+% char value
+dir = pwd;
+% Store working directory inside the log file
+fprintf('-----------------');
+fprintf('\n');
+fprintf('### Current directory ###');
+fprintf('\n');
+fprintf('%s\n', dir);
+
+% CALLING RepGenMain FUNCTION
+Main_Geometry;
+
+close all;
+
 %% REPORT GENERATOR 
 cd .. 
-cd utilities\RepGen
+cd RepGen
+% cd utilities\RepGen
 % The 'dir' variable contains working directory path saved as a
 % char value
 dir = pwd;

@@ -284,7 +284,7 @@ switch requirement
         end
         ref7 = eqImg7; 
         
-%cbar
+        %V
         myEq = "$V = \mathrm{aeroplane equivalent speed (m/s); and}";
         eq = Equation(myEq);
         eq.DisplayInline = true;
@@ -302,16 +302,16 @@ switch requirement
         eq = Equation(myEq);
         eq.DisplayInline = true;
         eq.FontSize = 12;
-        eqImg8 = getImpl(eq,rpt);
+        eqImg9 = getImpl(eq,rpt);
         if (rpt.Type == "html" || rpt.Type == "html-file" || rpt.Type == "pdf")
             eqImg.Style = {VerticalAlign("-30%")};
         elseif(rpt.Type == "docx")
             eqImg.Style = {VerticalAlign("-5pt")};
         end
-        ref8 = eqImg8;        
+        ref9 = eqImg9;        
         
         ol = UnorderedList({ref1,ref2,ref3,...
-            ref4,ref5,ref6, ref7,ref8});
+            ref4,ref5,ref6, ref7,ref8, ref9});
 %         ol = UnorderedList({ref1, ref2, ref3,...
 %             ref4,ref5,ref6, ref7, ref8, ref9});
         append(sec,ol);

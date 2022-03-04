@@ -21,7 +21,8 @@ if isfield(Aircraft.Geometry, "Engine") == 1
     %Tlar and Configurations
     cfg = 'lw_tt_bm';                           %aircraft configuration TO BE EDITED from outside
     Aircraft.TLAR.Type_engine.value = "TP";     %aircraft configuration TO BE EDITED from outside
-    prop_config = 'pusher';                     % 'tractor' or 'pusher' to be provided from TLARs
+    Aircraft.Geometry.Engine.prop_config.value = 'tractor'; % 'tractor' or 'pusher' to be provided from TLARs
+    prop_config = Aircraft.Geometry.Engine.prop_config.value;                     
     
     %fuselage
     df = Aircraft.Geometry.Fuselage.diameter.value;         % fuselage diameter (m)
@@ -31,17 +32,25 @@ if isfield(Aircraft.Geometry, "Engine") == 1
     xle = Aircraft.Geometry.Wing.xle.value/lf;                                  % wing tip leading edge %of fuselage lenght
     xtip_le = xle + ...
         (Aircraft.Geometry.Wing.b.value/2*...
-        tan(Aircraft.Geometry.Wing.sweep.value/57.3))/lf;                       % wing tip leading edge %of fuselage lenght
+        tan(Aircraft.Geometry.Wing.sweep_second.value/57.3))/lf;                       % wing tip leading edge %of fuselage lenght
     Aircraft.Geometry.Wing.ypos.value = 0.0;                                    % %of wing semispan
-    %engine
-    ezpos = 1.0;       % % df engine zeta position
-    Aircraft.Geometry.Engine.Primary.xpos.value = 0.90;             % % lf
-    Aircraft.Geometry.Engine.Primary.lf.value = 0.5;                % engine lenght m
-    Aircraft.Geometry.Engine.Primary.ypos.value = 0.0;              % %of wing semispan
-    Aircraft.Geometry.Engine.Primary.df.value = 0.1;                % m
-    Aircraft.Geometry.Engine.Primary.propdiam.value = 0.6;          %prop diameter in meters
-    Aircraft.Geometry.Engine.Primary.zpos.value = 1.0;              %of fus df
+% %     %engine
+% %     Aircraft.Geometry.Engine.Primary.xpos.value = 0.90;             % % lf
+% %     Aircraft.Geometry.Engine.Primary.lf.value = 0.5;                % engine lenght m
+% %     Aircraft.Geometry.Engine.Primary.ypos.value = 0.0;              % %of wing semispan
+% %     Aircraft.Geometry.Engine.Primary.df.value = 0.1;                % m
+% %     Aircraft.Geometry.Engine.Primary.propdiam.value = 0.6;          %prop diameter in meters
+% %     Aircraft.Geometry.Engine.Primary.zpos.value = 1.0;              %of fus df
     
+    Aircraft.Geometry.Engine.Primary.xpos.value = 0.0;             % % lf
+    Aircraft.Geometry.Engine.Primary.lf.value = 1.2;                % engine lenght m
+    Aircraft.Geometry.Engine.Primary.ypos.value = 0.0;              % %of wing semispan
+    Aircraft.Geometry.Engine.Primary.df.value = 0.8;                % m
+    Aircraft.Geometry.Engine.Primary.propdiam.value = 1.2;          %prop diameter in meters
+    Aircraft.Geometry.Engine.Primary.zpos.value = 0.0;              %of fus df
+    
+ ezpos = Aircraft.Geometry.Engine.Primary.zpos.value;       % % df engine zeta position
+
     
     %% TOP-VIEW
     figure('Name',[comp '-Top-View'],'NumberTitle','off');

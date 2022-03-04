@@ -407,6 +407,16 @@ fprintf(label);
 fprintf(format, Data1.');
 disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
 
+disp(" ")
+% Input to the flight envelope
+Data1 = [VC];                 % VG = VD on the negative side of V - n diagram
+disp(" ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ ")
+format = ' %6.6f          \n';
+label  = ' VC\n';
+fprintf(label);
+fprintf(format, Data1.');
+disp(" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ")
+
 % AIRCRAFT STRUCT VARIABLE FILLING
 % POINT S
 Aircraft.Certification.Regulation.SubpartC.Flightloads.Flight_envelope.PointS.VS.value = VS; 

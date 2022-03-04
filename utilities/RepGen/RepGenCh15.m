@@ -388,7 +388,7 @@ Inertia_load_on_engine_mount = Aircraft.Certification.Regulation.SubpartC.Flight
 
 %sec
 sec = Section();
-sec.Title = 'Intertia load on engine mount';
+sec.Title = 'Inertia load on engine mount';
 
 % str = strcat('The inertia load is equal to the maximum limit load factor ', ...
 %     'times the engine group weight: ', num2str(Gust_limit_load,4), ...
