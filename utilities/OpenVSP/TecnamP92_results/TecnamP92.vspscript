@@ -32,10 +32,10 @@ Update();
 
 SetDriverGroup(wing,1,SPAN_WSECT_DRIVER,ROOTC_WSECT_DRIVER,TIPC_WSECT_DRIVER);
 
-SetParmVal(wing,"Root_Chord","XSec_1",1.1);
+SetParmVal(wing,"Root_Chord","XSec_1",1.4);
 SetParmVal(wing,"Tip_Chord","XSec_1",1.4);
 SetParmVal(wing,"Span","XSec_1",0.60125);
-SetParmVal(wing,"Sweep","XSec_1",-14);
+SetParmVal(wing,"Sweep","XSec_1",0);
 SetParmVal(wing,"Sweep_Location","XSec_1",0);
 SetParmVal(wing,"Sec_Sweep_Location","XSec_1",1);
 SetParmVal(wing,"Dihedral","XSec_1",1.5);
@@ -90,7 +90,7 @@ Update();
 
 // wing airfoil 1
 
-ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),0),"airfoil/E216_104.dat");
+ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),0),"airfoil/GOE_398_AIRFOIL.dat");
 SetParmVal(wing,"ThickChord","XSecCurve_0",0.18);
 
 SetParmVal(wing,"Twist","XSec_0",-1.5);
@@ -99,7 +99,7 @@ SetParmVal(wing,"Twist_Location","XSec_0",0);
 Update(); 
 // wing airfoil 2
 
-ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),1),"airfoil/E216_104.dat");
+ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),1),"airfoil/GOE_398_AIRFOIL.dat");
 SetParmVal(wing,"ThickChord","XSecCurve_1",0.18);
 
 SetParmVal(wing,"Twist","XSec_1",-1.5);
@@ -108,7 +108,7 @@ SetParmVal(wing,"Twist_Location","XSec_1",0);
 Update(); 
 // wing airfoil 3
 
-ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),2),"airfoil/E216_104.dat");
+ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),2),"airfoil/GOE_398_AIRFOIL.dat");
 SetParmVal(wing,"ThickChord","XSecCurve_2",0.18);
 
 SetParmVal(wing,"Twist","XSec_2",-1.5);
@@ -117,7 +117,7 @@ SetParmVal(wing,"Twist_Location","XSec_2",0);
 Update(); 
 // wing airfoil 4
 
-ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),3),"airfoil/E216_104.dat");
+ReadFileAirfoil(GetXSec(GetXSecSurf(wing,1),3),"airfoil/GOE_398_AIRFOIL.dat");
 SetParmVal(wing,"ThickChord","XSecCurve_3",0.18);
 
 SetParmVal(wing,"Twist","XSec_3",-1.5);
@@ -141,7 +141,7 @@ string fuselage = AddGeom("TransportFuse");
 SetGeomDrawType(fuselage, GEOM_DRAW_SHADE );
 
 SetParmVal(fuselage,"Length","Design",6.3);
-SetParmVal(fuselage,"Diameter","Design",0.45);
+SetParmVal(fuselage,"Diameter","Design",1.4);
 
 Update(); 
 

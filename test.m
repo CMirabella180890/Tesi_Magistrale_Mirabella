@@ -39,8 +39,8 @@ InputSource = "From File";
 % "Custom"
 %do not edit
 % filename = 'Aircraft_test'; %do not edit
- filename = 'drone_vla';     %do not edit
-% filename = 'TecnamP92_input';  %do not edit
+% filename = 'drone_vla';     %do not edit
+filename = 'TecnamP92_input';  %do not edit
 
 %% INIZIALIZATION OF AircraftSTRUCT VARIABLE (Just the minimal values)
 cd initialization 
@@ -139,19 +139,19 @@ Main_Geometry;
 
 close all;
 
-%% REPORT GENERATOR 
-cd .. 
-cd RepGen
-% cd utilities\RepGen
-% The 'dir' variable contains working directory path saved as a
-% char value
-dir = pwd;
-% Store working directory inside the log file
-fprintf('-----------------');
-fprintf('\n');
-fprintf('### Current directory ###');
-fprintf('\n');
-fprintf('%s\n', dir);
-
-% CALLING RepGenMain FUNCTION
-RepGenMain(Aircraft);
+% %% REPORT GENERATOR 
+% cd .. 
+% cd RepGen
+% % cd utilities\RepGen
+% % The 'dir' variable contains working directory path saved as a
+% % char value
+% dir = pwd;
+% % Store working directory inside the log file
+% fprintf('-----------------');
+% fprintf('\n');
+% fprintf('### Current directory ###');
+% fprintf('\n');
+% fprintf('%s\n', dir);
+% 
+% % CALLING RepGenMain FUNCTION
+% RepGenMain(Aircraft);

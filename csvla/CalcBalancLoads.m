@@ -4362,7 +4362,8 @@ switch (Inverted_flight_Case)
             text(V_fromG1toF(end),    WBL_fromG1toF(end),   ' F',      'FontSize', 6) 
             text(V_fromFtoG2(end),    WBL_fromFtoG2(end),   ' G2',     'FontSize', 6)  
             text(V_fromG2toE(end),    WBL_fromG2toE(end),   ' E',      'FontSize', 6)             
-            
+            ylim padded;
+            xlim padded;
             % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
 
             % POINT S_INV
@@ -5073,7 +5074,8 @@ switch (Inverted_flight_Case)
             text(V_fromGtoF(end),    LHT_fromGtoF(end),    ' F',      'FontSize', 6)
             text(V_fromFtoE(end),    LHT_fromFtoE(end),    ' E',      'FontSize', 6)
             % =================================================================
-
+            ylim padded;
+            xlim padded;
 % %             % MAIN WING LOADS DIAGRAM        
 % %             CL_from0toSinv_new = CL_from0toSinv + CLHT_from0toSinv;        
 % %             CL_fromSinvtoG_new = CL_fromSinvtoG + CLHT_fromSinvtoG;        
@@ -5163,7 +5165,9 @@ switch (Inverted_flight_Case)
             text(V_from0toSinv(end), WBL_from0toSinv(end),  ' S inv.', 'FontSize', 6)
             text(V_fromSinvtoG(end), WBL_fromSinvtoG(end),  ' G',      'FontSize', 6)
             text(V_fromGtoF(end),    WBL_fromGtoF(end),     ' F',      'FontSize', 6)
-            text(V_fromFtoE(end),    WBL_fromFtoE(end),     ' E',      'FontSize', 6)              
+            text(V_fromFtoE(end),    WBL_fromFtoE(end),     ' E',      'FontSize', 6)      
+            ylim padded;
+            xlim padded;
         % STORE INSIDE THE AIRCRAFT STRUCTURE VARIABLE
         
         % POINT S_INV

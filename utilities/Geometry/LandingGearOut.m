@@ -30,17 +30,17 @@ xle = Aircraft.Geometry.Wing.xle.value/lf;                                  % wi
 
 %landing gear
 %main gear
-Aircraft.Geometry.Undercarriage.Main.x.value = 0.6*lf;  % fraction of fuselage lenght MAIN LG
-Aircraft.Geometry.Undercarriage.Main.y.value = 1.1*df; % fraction of diameter MAIN LG
-Aircraft.Geometry.Undercarriage.Main.z.value = -1.1*df; % fraction of diameter MAIN LG
-%nose gear
-Aircraft.Geometry.Undercarriage.Nose.x.value = 0.1*lf;          % fraction of fuselage lenght NOSE LG   
-Aircraft.Geometry.Undercarriage.Nose.y.value = 0.0*df; % fraction of diameter NOSE LG
-Aircraft.Geometry.Undercarriage.Nose.z.value = -1.1*df; % fraction of diameter NOSE LG
-%wheel
-Aircraft.Geometry.Undercarriage.Main.diameter.value = 0.3; %m
-Aircraft.Geometry.Undercarriage.Nose.diameter.value = 0.3; %m
-Aircraft.Geometry.Undercarriage.wheel_width = 0.1*df;
+% Aircraft.Geometry.Undercarriage.Main.x.value = 0.6*lf;  % fraction of fuselage lenght MAIN LG
+% Aircraft.Geometry.Undercarriage.Main.y.value = 1.1*df; % fraction of diameter MAIN LG
+% Aircraft.Geometry.Undercarriage.Main.z.value = -1.1*df; % fraction of diameter MAIN LG
+% %nose gear
+% Aircraft.Geometry.Undercarriage.Nose.x.value = 0.1*lf;          % fraction of fuselage lenght NOSE LG   
+% Aircraft.Geometry.Undercarriage.Nose.y.value = 0.0*df; % fraction of diameter NOSE LG
+% Aircraft.Geometry.Undercarriage.Nose.z.value = -1.1*df; % fraction of diameter NOSE LG
+% %wheel
+% Aircraft.Geometry.Undercarriage.Main.diameter.value = 0.3; %m
+% Aircraft.Geometry.Undercarriage.Nose.diameter.value = 0.3; %m
+% Aircraft.Geometry.Undercarriage.wheel_width.value = 0.1*df;
 
 
 x_main_lg = Aircraft.Geometry.Undercarriage.Main.x.value;
@@ -54,7 +54,7 @@ z_nose_lg = Aircraft.Geometry.Undercarriage.Nose.z.value;
 d_wheel_main = Aircraft.Geometry.Undercarriage.Main.diameter.value;
 d_wheel_nose = Aircraft.Geometry.Undercarriage.Nose.diameter.value;
 
-wheel_width = Aircraft.Geometry.Undercarriage.wheel_width; % main gear wheel width (m)
+wheel_width = Aircraft.Geometry.Undercarriage.wheel_width.value; % main gear wheel width (m)
 
 %% TOP-VIEW
 figure('Name',[comp '-Top-View'],'NumberTitle','off');

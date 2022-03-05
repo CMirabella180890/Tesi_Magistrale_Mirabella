@@ -14,7 +14,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\initialization
 
 Certification used from file.
-Input File: drone_vla.xlsx
+Input File: TecnamP92_input.xlsx
 
 -----------------
 ### Current directory ###
@@ -43,34 +43,34 @@ Density [kg/m^3]: 1.2250
 --------------------------------------
 ### Standard atmosphere - Operative Ceiling ###
 --------------------------------------
-Temperature [K]: 279.7000
-Speed of sound [m/s]: 335.2674
-Pressure [Pa]: 86651.9492
-Density [kg/m^3]: 1.0793
+Temperature [K]: 275.1500
+Speed of sound [m/s]: 332.5293
+Pressure [Pa]: 79495.2174
+Density [kg/m^3]: 1.0065
 ----------------------------------------------------------------------------
 --------------------------------------
 ### Standard atmosphere - Theoretical Ceiling ###
 --------------------------------------
-Temperature [K]: 265.4000
-Speed of sound [m/s]: 326.5845
-Pressure [Pa]: 65764.0871
-Density [kg/m^3]: 0.8632
+Temperature [K]: 262.1500
+Speed of sound [m/s]: 324.5787
+Pressure [Pa]: 61640.2383
+Density [kg/m^3]: 0.8191
 -------------------------------------- WARNING: VH not available! 
  
  ++++ INPUT TO V - N DIAGRAM ++++
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
  VS+                VS-                 VA                VG
- 19.732177          24.868023          38.465094          30.456984
+ 18.624958          23.187886          36.306727          28.399244
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
  nmax                nmin                 VD                VE
- 3.800000          -1.500000          58.386920          58.386920
+ 3.800000          -1.500000          66.111080          66.111080
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ DATA USED TO PLOT V - N DIAGRAM ++++++++++ 
  VC
- 46.709536          
+ 43.553738          
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 --------------------------------------
@@ -81,18 +81,10 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving Gustenvelope.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
- ++++++++++ FINAL ENVELOPE - VA AND nA ++++++++++ 
- VA1                nA1
- 45.586655          5.337347
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
- 
  CHECK: 
- Solutions are real numbers
- 
- ++++++++++ FINAL ENVELOPE - VA AND nA ++++++++++ 
- Sol1                Sol2
- 13.700235          45.139269
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+   0
+
+ WARNING: There are no solutions in the Real numbers
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Finalenvelope.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -104,7 +96,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 
 length_alpha =
 
-     7
+    73
 
  
  ++++ FIGURE 6 - LIFT CURVE INTERPOLATION ++++ 
@@ -165,22 +157,27 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving ShearBendingTorsionDiagramPointS.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
- ++++ FIGURE 13 - POINT A SHEAR, BENDING, TORSION ++++ 
-[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Saving ShearBendingTorsionDiagramPointA.pdf in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
- 
- ++++ FIGURE 14 - POINT A1 SHEAR, BENDING, TORSION ++++ 
+ ++++ FIGURE 13 - POINT A1 SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointA1.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
- ++++ FIGURE 14 - POINT C SHEAR, BENDING, TORSION ++++ 
+ ++++ FIGURE 14 - POINT C1 SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointC1.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 15 - POINT C SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointC.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
- ++++ FIGURE 15 - POINT D SHEAR, BENDING, TORSION ++++ 
+ ++++ FIGURE 16 - POINT C2 SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointC2.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 16 - POINT D SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointD.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -205,7 +202,12 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving ShearBendingTorsionDiagramPointF.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
  
- ++++ FIGURE 21 - POINT E SHEAR, BENDING, TORSION ++++ 
+ ++++ FIGURE 21 - POINT G2 SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointG2.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ FIGURE 22 - POINT E SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointE.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -227,17 +229,15 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving cdComparison.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
- ++++ FIGURE 27 - POINT A SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+ ++++ FIGURE 27 - POINT A1 SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Saving CmComparisonPointA.pdf in: 
+Saving CmComparisonPointA1.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcUnsymmLoads.m',995,1)">995 </a>        movefile CmComparisonPointA.png Output   
-if system_dependent('IsDebugMode')==1, dbcont; end
- ++++ FIGURE 28 - POINT A PARTIAL LOAD - UNSYMM. TORSION ++++ 
+ ++++ FIGURE 28 - POINT A1 PARTIAL LOAD - UNSYMM. TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Saving UnsymmetricalTorsionSeventyPerCentPointA.pdf in: 
+Saving UnsymmetricalTorsionSeventyPerCentPointA1.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
- ++++ FIGURE 29 - POINT A FULL LOAD - UNSYMM. TORSION ++++ 
+ ++++ FIGURE 29 - POINT A1 FULL LOAD - UNSYMM. TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
@@ -279,12 +279,12 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++ UNCHECKED ++++
  ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
  Pitch-up at VA     Pitch-down at VA
--37.557071          46.946339
+-89.267639          111.584549
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ Total Critical Horizontal Tail loads - Method (a) [daN] ++++++++++ 
  Total critical load at VA
- 35.152305
+ -5.864754
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (b) ++++
@@ -292,89 +292,89 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++ CHECKED ++++
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
  At VA
- -90.776047
+ -28.974659
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
  ----------------------------------------------
  +++++++++++++++++ Horizontal Tail loads [daN] +++++++++++++++++ 
  At VA
- 58.095372
+ 0.143665
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
  ----------------------------------------------
  +++++++++++++++++ Total Horizontal Tail loads - Method (b) [daN] +++++++++++++++++ 
  At VA
- -90.776047
+ -28.974659
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (a)+(b) ++++
  ----------------------------------------------
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
  At VA
- -49.351106
+ -117.305638
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (c) - DeltaLtail ++++ 
  ---------------------------------------------- 
  +++++++++++++++++ Delta Tail loads [daN] +++++++++++++++++ 
   Upward defl. VA   Downward defl. VA    Upward defl. VD  Downward defl. VD
- -37.557071         46.946339            -35.005482         35.005482
+ -89.267639         111.584549            -68.522978         68.522978
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ METHOD CS - VLA 423 (c) - BTL_1 + DeltaLtail ++++ 
  ------------------------------------------------------ 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
   Upward defl. VA   Downward defl. VA     Upward defl. VD    Downward defl. VD
- -57.763461         35.152305            -81.340844         -11.329880
+ -95.924172         -5.864754            -90.499421         46.546535
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ CS - VLA 423 - METHOD D ++++++++++ 
  --------------------------------------------- 
  ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
   Case 1             Case 2             Case 3              Case 4  
- -41.996801          41.996801          37.497144          -37.497144
- -41.996801          41.996801          37.497144          -37.497144
+ -198.254788          198.254788          177.013204          -177.013204
+ -198.254788          198.254788          177.013204          -177.013204
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
  Case 1              Case 2             Case 3             Case 4  
- -58.650560          -45.117033         20.843386          -53.035408
- -78.367835          -91.303488         -11.809543          -75.160769
+ -315.704090          -229.162499         59.563901          -137.646193
+ -144.418468          -177.676404         197.591587          -310.553886
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ Critical conditions - CS - VLA 423 Method (d) [daN] ++++++++++ 
 Critical conditions
- -91.303488
+ -315.704090
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  AIRWORTHINESS RULES: CS - VLA 425 GUST AIRLOADS
  --------------------------------- 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
   L_ht VF             L_ht VC            L_ht VD
- -36.371033          -17.816900         -37.663625
+ 53.836320          -131.993951         -133.540683
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  +++++++++++++++++ Delta Horizontal Tail loads [daN] +++++++++++++++++ 
  DeltaL_ht VF       DeltaL_ht VC      DeltaL_ht VD
- 29.648194          59.140755         37.060243
+ 89.539402          178.608780         135.913627
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  +++++++++++++++++ Total Horizontal Tail loads - Positive Gust [daN] +++++++++++++++++ 
   Gust + L_ht VF    Gust + L_ht VC     Gust + L_ht VD
- -6.722839          41.323855         -0.603383
+ 143.375721          46.614829         2.372945
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  +++++++++++++++++ Total Horizontal Tail loads - Negative Gust [daN] +++++++++++++++++ 
   Gust - L_ht VF      Gust - L_ht VC     Gust - L_ht VD
- -66.019227          -76.957654         -74.723868
+ -35.703082          -310.602731         -269.454310
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  Final results from CS - VLA 423 Airworthiness prescriptions 
  +++++++++++++++++ Total Horizontal Tail loads - Maximum Symmetrical load [daN] +++++++++++++++++ 
   Maximum symmetrical load
- -91.303488
+ -315.704090
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  UNSYMMETRICAL LOADS PER CS - VLA 427 
  +++++++++++++++++ Total Horizontal Tail loads - Unsymmetrical conditions [daN] +++++++++++++++++ 
   Full load side      Partial load side
- -45.651744          -32.869256
+ -157.852045          -113.653473
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ STARTING VERTICAL TAIL LOADS CALCULATION ++++ 
@@ -387,21 +387,21 @@ Critical conditions
  ------------------------------------ 
  ++++++++++ Vertical tail loads - CASE (a)(1) [daN] ++++++++++ 
  Y
- 4.541412
+ 10.470664
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ CS - VLA 441 - CASE (a)(2) ++++ 
  ------------------------------------ 
  ++++++++++ Vertical tail loads - CASE (a)(2) [daN] ++++++++++ 
  Y
- 5.959440
+ 13.253213
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ CS - VLA 441 - CASE (a)(3) ++++ 
  ------------------------------------ 
  ++++++++++ Vertical tail loads - CASE (a)(3) [daN] ++++++++++ 
  Y
- 5.466730
+ 12.604076
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ Vertical tail loads - MOST CRITICAL LOADS [daN] ++++++++++ 
  CRITICAL LOADS PER ---> CS - VLA 441 (a)(2) 
@@ -410,27 +410,24 @@ Critical conditions
  ---------------------- 
  ++++++++++ Vertical tail - GUST LOADS [daN] ++++++++++ 
  GUST - VC        GUST - VD
- 9.014154         5.633846
+ 20.185635         15.320087
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ Vertical tail - CRITICAL GUST LOADS [daN] ++++++++++ 
  at VC
  CRITICAL GUST LOADS
- 9.014154
+ 20.185635
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ 
  
  ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
  L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical
- 19.752268           68.736445           68.736445
+ 68.072947           237.148690           237.148690
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Saving Combinedload.pdf in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 
 Mass =
 
-   100
+   450
 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving flapsenvelopediagramtakeoff.pdf in: 
@@ -439,12 +436,12 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 Saving flapsenvelopediagramtakeoff.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Saving flaps_final_envelopediagramtakeoff.pdf in: 
+Saving flaps_final_envelopediagram.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 
 Mass =
 
-   100
+   450
 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving flapsenvelopediagramlanding.pdf in: 
@@ -462,19 +459,19 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ------------------------------------------------------ 
  +++++++++++++++++ Hinge Moments - AILERON +++++++++++++++++ 
  HA [N * m]  HA_converted [kg * m]       HA_125 [N * m]      HA_total_SI [N * m]      HA_total_converted [kg * m]
- -1.578798       -0.160993                  -1.973498           -3.946995                -0.402481
+ -0.000000       -0.000000                  -0.000000           -0.000000                -0.000000
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ 
  ------------------------------------------------------ 
  +++++++++++++++++ Hinge Moments - ELEVATOR +++++++++++++++++ 
  HE [N * m]  HE_converted [kg * m]       HE_125 [N * m]   HE_125_convert [kg * m]  HE_Total [N * m]    HE_Total_convert [kg * m]
- -4.038741       -0.411837                  -5.048426           -0.514796           -10.096852           -1.029592
+ -223.945871       -22.836124                  -279.932338           -28.545154           -559.864677           -57.090309
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ 
  ------------------------------------------------------ 
  +++++++++++++++++ Hinge Moments - RUDDER +++++++++++++++++ 
  HR [N * m]  HR_converted [kg * m]       HR_125 [N * m]   HR_125_convert [kg * m]
- -0.886739       -0.090422                  -1.108424           -0.113028
+ -10.322723       -1.052625                  -12.903404           -1.315781
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 -----------------
 ### Current directory ###
@@ -482,7 +479,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 -----------------------------------------------------------------
 -----------------------------------------------------------------
  
-### aircraft name is DroneVLA
+### aircraft name is TecnamP92
 Fuselageexists
 -----------------------------------------------------------------
 -----------------------------------------------------------------
@@ -515,48 +512,4 @@ Saving complete aircaft figures...
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 End Geometry utilities run
------------------
-### Current directory ###
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen
-The authors are  Pierluigi Della Vecchia and Claudio Mirabella
- 
-The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
-The report template is  No Template
-The report format is  pdf
-Writing report...
-Chapter 1 "Introduction" writing...
-Chapter 1 written
-Chapter 2 "References" writing...
-Chapter 2 written
-Chapter 3 "List of Abbreviations" writing...
-Chapter 3 written
---------------------------------------
-### Saving outpus inside correct Folder ###
-Saving RepGenFigCh4.png in: 
-C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
-Chapter 4 "Aircraft data" writing...
-Chapter 4 written
-VCmin has been assigned.
-VCmin = 32m/s
-Chapter 5 "Design Airspeeds" writing...
-VH is Not a Number
-VH has not been assigned.
-VH will be set to zero 
-Chapter 5 written
-Chapter 6 "Altitude" writing...
-Chapter 6 written
-Chapter 7 "Manoeuvring and Gust load factors n" writing...
-{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mlreportgen.dom.Paragraph')" style="font-weight:bold">mlreportgen.dom.Paragraph</a>
-No constructor 'mlreportgen.dom.Paragraph' with matching signature found.
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenCh7', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh7.m', 339)" style="font-weight:bold">RepGenCh7</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh7.m',339,0)">line 339</a>)
-        para = Paragraph(str);
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RepGenMain', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m', 170)" style="font-weight:bold">RepGenMain</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenMain.m',170,0)">line 170</a>)
-RepGenCh7       %Manoeuvring and Gust load factors n
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('test', 'C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m', 157)" style="font-weight:bold">test</a> (<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',157,0)">line 157</a>)
-RepGenMain(Aircraft);
-} 
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen\RepGenCh7.m',339,1)">339 </a>        para = Paragraph(str);
+<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\test.m',140,1)">140 </a>close all;

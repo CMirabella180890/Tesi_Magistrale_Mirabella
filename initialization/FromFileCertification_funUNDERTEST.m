@@ -60,7 +60,6 @@ VarText={'Aircraft_name', ...      % PRELIMINARY INPUTS
          'second_airfoil_section', ...
          'third_airfoil_section', ...
          'fourth_airfoil_section', ...
-         'aspect_ratio', ...
          'first_sweep_value', ...
          'second_sweep_value', ...
          'third_sweep_value', ...
@@ -83,7 +82,7 @@ VarText={'Aircraft_name', ...      % PRELIMINARY INPUTS
          'sweep_location', ...
          'wing_xle', ...
          'wing_yle', ...
-         'wing_zle', ...               % WING CHARACTERISTICS
+         'wing_zle', ...                % WING CHARACTERISTICS
          'Correction_factor_flag1', ... % ENGINE DATA
          'Correction_factor_flag2', ...
          'takeoff_power', ...
@@ -101,7 +100,14 @@ VarText={'Aircraft_name', ...      % PRELIMINARY INPUTS
          'single_tank_capacity', ...
          'fuel_capacity', ...
          'oil_capacity', ...           
-         'engine_block_mass', ...      % ENGINE DATA 
+         'engine_block_mass', ...      
+         'engine_xpos', ...
+         'engine_ypos', ...
+         'engine_zpos', ...
+         'engine_length', ...
+         'engine_diameter', ...
+         'engine_prop_diameter', ...
+         'engine_prop_config', ...     % ENGINE DATA 
          'propeller_diameter', ...     % PROPELLER DATA
          'propeller_numberof_blades', ...
          'propeller_mass', ...
@@ -242,6 +248,8 @@ VarText={'Aircraft_name', ...      % PRELIMINARY INPUTS
          'nmin', ...
          'gust_cruise', ...
          'gust_dive', ...                  % CS PRESCRIPTIONS
+         'undercarriage_main_diameter', ...    % LANDING GEAR
+         'undercarriage_nose_diameter', ...     % LANDING GEAR
          };
      VarText = VarText';
 % -----------------------------
@@ -311,6 +319,8 @@ if LengthIndex==length(VarText)
     p = strcmp('Wing_span', label);
     Aircraft.Geometry.Wing.b.value = str2double(table2array(value(p==1,1)));
     Aircraft.Geometry.Wing.b.Attributes.unit = char(table2array(unit(p==1,1)));
+    Aircraft.Geometry.Wing.AR.value = (Aircraft.Geometry.Wing.b.value^2)/(Aircraft.Geometry.Wing.S.value); 
+    Aircraft.Geometry.Wing.AR.Attributes.unit = "Non dimensional"; 
     p = strcmp('Wing_dihedral', label);
     Aircraft.Geometry.Wing.dihedral.value = str2double(table2array(value(p==1,1)));
     Aircraft.Geometry.Wing.dihedral.Attributes.unit = char(table2array(unit(p==1,1)));
@@ -341,9 +351,9 @@ if LengthIndex==length(VarText)
     p = strcmp('fourth_airfoil_section', label);
     Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.value = char(table2array(value(p==1, 1)));
     Aircraft.Certification.Aerodynamic_data.airfoil_fourth_panel.Attributes.unit = char(table2array(unit(p==1,1)));
-    p = strcmp('aspect_ratio', label);
-    Aircraft.Geometry.Wing.AR.value = str2double(table2array(value(p==1, 1))); 
-    Aircraft.Geometry.Wing.AR.Attributes.unit = char(table2array(unit(p==1, 1))); 
+%     p = strcmp('aspect_ratio', label);
+%     Aircraft.Geometry.Wing.AR.value = str2double(table2array(value(p==1, 1))); 
+%     Aircraft.Geometry.Wing.AR.Attributes.unit = char(table2array(unit(p==1, 1))); 
     p = strcmp('first_sweep_value', label);
     Aircraft.Geometry.Wing.sweep_first.value = str2double(table2array(value(p==1, 1)));  
     Aircraft.Geometry.Wing.sweep_first.Attributes.unit = char(table2array(unit(p==1,1)));
@@ -466,6 +476,27 @@ if LengthIndex==length(VarText)
     p = strcmp('engine_block_mass', label);
     Aircraft.Engine.engine_block_mass.value = str2double(table2array(value(p==1, 1)));
     Aircraft.Engine.engine_block_mass.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('engine_xpos', label); 
+    Aircraft.Geometry.Engine.Primary.xpos.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Engine.Primary.xpos.Attributes.unit = char(table2array(unit(p==1,1))); % Fuselage length percentage
+    p = strcmp('engine_ypos', label); 
+    Aircraft.Geometry.Engine.Primary.ypos.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Engine.Primary.ypos.Attributes.unit = char(table2array(unit(p==1,1))); % Fuselage length percentage
+    p = strcmp('engine_zpos', label); 
+    Aircraft.Geometry.Engine.Primary.zpos.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Engine.Primary.zpos.Attributes.unit = char(table2array(unit(p==1,1))); % Fuselage length percentage
+    p = strcmp('engine_length', label); 
+    Aircraft.Geometry.Engine.Primary.lf.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Engine.Primary.lf.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('engine_diameter', label); 
+    Aircraft.Geometry.Engine.Primary.df.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Engine.Primary.df.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('engine_prop_diameter', label);
+    Aircraft.Geometry.Engine.Primary.propdiam.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Engine.Primary.propdiam.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('engine_prop_config', label);
+    Aircraft.Geometry.Engine.prop.config.value = str2double(table2array(value(p==1, 1)));
+    Aircraft.Geometry.Engine.prop.config.Attributes.unit = char(table2array(unit(p==1,1)));
     % ---------------------------------------------------------------------
     p = strcmp('propeller_diameter', label);
     Aircraft.Engine.Propeller_polar_moment.value = str2double(table2array(value(p==1, 1))); 
@@ -1066,6 +1097,31 @@ if LengthIndex==length(VarText)
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_dive.value = str2double(table2array(value(p==1,1)));
     Aircraft.Certification.Regulation.SubpartC.Flightloads.Gustloads.Gust_speed_dive.Attributes.unit = char(table2array(unit(p==1,1))); 
     % ---------------------------------------------------------------------
+    p = strcmp('undercarriage_main_diameter', label); 
+    Aircraft.Geometry.Undercarriage.Main.diameter.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.Undercarriage.Main.diameter.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('undercarriage_nose_diameter', label); 
+    Aircraft.Geometry.Undercarriage.Nose.diameter.value = str2double(table2array(value(p==1,1)));
+    Aircraft.Geometry.Undercarriage.Nose.diameter.Attributes.unit = char(table2array(unit(p==1,1)));
+    % ---------------------------------------------------------------------
+    lf = Aircraft.Geometry.Fuselage.length.value;
+    df = Aircraft.Geometry.Fuselage.diameter.value;
+    Aircraft.Geometry.Undercarriage.Main.x.value = 0.6*lf; 
+    Aircraft.Geometry.Undercarriage.Main.x.Attributes.unit = "Fuselage length percentage"; 
+    Aircraft.Geometry.Undercarriage.Main.y.value = 1.1*df; 
+    Aircraft.Geometry.Undercarriage.Main.y.Attributes.unit = "Fuselage diameter percentage";
+    Aircraft.Geometry.Undercarriage.Main.z.value = -1.1*df; 
+    Aircraft.Geometry.Undercarriage.Main.z.Attributes.unit = "Fuselage diameter percentage"; 
+    
+    Aircraft.Geometry.Undercarriage.Nose.x.value = 0.1*lf; 
+    Aircraft.Geometry.Undercarriage.Nose.x.Attributes.unit = "Fuselage length percentage";
+    Aircraft.Geometry.Undercarriage.Nose.y.value = 0.0*df; 
+    Aircraft.Geometry.Undercarriage.Nose.y.Attributes.unit = "Fuselage diameter percentage";
+    Aircraft.Geometry.Undercarriage.Nose.z.value = -1.1*df;
+    Aircraft.Geometry.Undercarriage.Nose.z.Attributes.unit = "Fuselage length percentage";
+    
+    Aircraft.Geometry.Undercarriage.wheel_width.value = 0.1*df;
+    Aircraft.Geometry.Undercarriage.wheel_width.Attributes.unit = "Fuselage diameter percentage";
     % ---------------------------------------------------------------------
 
 
