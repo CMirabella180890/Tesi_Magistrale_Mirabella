@@ -42,16 +42,10 @@ sec.Title = 'Ailerons';
 cd ..
 cd ..
 %  regulation = Aircraft.Certification.Regulation.value;
-% results_path = Aircraft.res_dir;
-Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-if Check_name == "Drone_VLA"
-    results_path =  [pwd '\utilities\Geometry\DroneVLA_results\'];
-elseif Check_name == "TecnamP92"
-    results_path =  [pwd '\utilities\Geometry\TecnamP92_results\'];
-end
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'/Wing-Top-View.png']);
+fig = FormalImage([results_path,'Wing-Top-View.png']);
          fig.Caption = 'Aileron, top view.';
          fig.Height = '5in';
          fig.LinkTarget='aileron_top_view';
@@ -265,10 +259,10 @@ sec.Title = 'Elevator';
 cd ..
 cd ..
 %  regulation = Aircraft.Certification.Regulation.value;
- %results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'/Horizontal-Top-View.png']);
+fig = FormalImage([results_path,'Horizontal-Top-View.png']);
          fig.Caption = 'Elevator, top view.';
          fig.Height = '5in';
          fig.LinkTarget='elevator_top_view';
@@ -405,10 +399,10 @@ sec.Title = 'Rudder';
 cd ..
 cd ..
 %  regulation = Aircraft.Certification.Regulation.value;
-% results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'/Vertical-Side-View.png']);
+fig = FormalImage([results_path,'Vertical-Side-View.png']);
          fig.Caption = 'Vertical fin, side view.';
          fig.Height = '5in';
          fig.LinkTarget='verticalfin_side_view';

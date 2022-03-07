@@ -34,7 +34,7 @@ SetDriverGroup(wing,1,SPAN_WSECT_DRIVER,ROOTC_WSECT_DRIVER,TIPC_WSECT_DRIVER);
 
 SetParmVal(wing,"Root_Chord","XSec_1",1.4);
 SetParmVal(wing,"Tip_Chord","XSec_1",1.4);
-SetParmVal(wing,"Span","XSec_1",0.60125);
+SetParmVal(wing,"Span","XSec_1",1.5873);
 SetParmVal(wing,"Sweep","XSec_1",0);
 SetParmVal(wing,"Sweep_Location","XSec_1",0);
 SetParmVal(wing,"Sec_Sweep_Location","XSec_1",1);
@@ -48,7 +48,7 @@ SetDriverGroup(wing,2,SPAN_WSECT_DRIVER,ROOTC_WSECT_DRIVER,TIPC_WSECT_DRIVER);
 
 SetParmVal(wing,"Root_Chord","XSec_2",1.4);
 SetParmVal(wing,"Tip_Chord","XSec_2",1.4);
-SetParmVal(wing,"Span","XSec_2",2.1044);
+SetParmVal(wing,"Span","XSec_2",1.5873);
 SetParmVal(wing,"Sweep","XSec_2",0);
 SetParmVal(wing,"Sweep_Location","XSec_2",0);
 SetParmVal(wing,"Sec_Sweep_Location","XSec_2",1);
@@ -62,7 +62,7 @@ SetDriverGroup(wing,3,SPAN_WSECT_DRIVER,ROOTC_WSECT_DRIVER,TIPC_WSECT_DRIVER);
 
 SetParmVal(wing,"Root_Chord","XSec_3",1.4);
 SetParmVal(wing,"Tip_Chord","XSec_3",1.4);
-SetParmVal(wing,"Span","XSec_3",2.1044);
+SetParmVal(wing,"Span","XSec_3",1.5873);
 SetParmVal(wing,"Sweep","XSec_3",0);
 SetParmVal(wing,"Sweep_Location","XSec_3",0);
 SetParmVal(wing,"Sec_Sweep_Location","XSec_3",1);

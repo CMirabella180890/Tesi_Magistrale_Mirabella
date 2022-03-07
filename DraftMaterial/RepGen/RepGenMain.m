@@ -131,8 +131,8 @@ tp.Title = Title;
 %% Cover image
 %tp.Image = '_figures/cover.jpg';
 cd ..
-%geometry_path = ['C:/Users/claum/OneDrive/Desktop/TesiMagistrale/tesi-magistrale-claudio-mirabella/utilities/Geometry/DroneVLA_results/'];
-geometry_path = [pwd '/Geometry/' Aircraft.Certification.Aircraft_Name.value '_results/'];
+geometry_path = ['C:/Users/claum/OneDrive/Desktop/TesiMagistrale/tesi-magistrale-claudio-mirabella/utilities/Geometry/DroneVLA_results/'];
+% geometry_path = [pwd '/Geometry/DroneVLA_results/'];
 tp.Image = [geometry_path 'Aircraft3D.png'];
 tp.Publisher = Aircraft.Report.society;
 tp.Author = Aircraft.Report.author;

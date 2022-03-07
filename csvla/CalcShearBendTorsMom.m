@@ -213,10 +213,11 @@ switch (Straight_flight_Case)
             % by Abbott in Theory of Wing Section. See the complete documentation
             % inside the cl_unit_lift.m file
             CL_equal_to_one = 0.0;
+            tol = 1e-2;
             global_CL = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1)), 1);
             for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
                 global_CL(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:))/S;
-                if (global_CL(i) >= 1.0-1e-1) && (global_CL(i) <= 1.0+1e-1)
+                if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
                         CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
                 end
             end
@@ -1465,10 +1466,11 @@ switch (Straight_flight_Case)
             % by Abbott in Theory of Wing Section. See the complete documentation
             % inside the cl_unit_lift.m file
             CL_equal_to_one = 0.0;
+            tol = 1e-2;
             global_CL = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1)), 1);
             for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
                 global_CL(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:))/S;
-                if (global_CL(i) >= 1.0-1e-2) && (global_CL(i) <= 1.0+1e-2)
+                if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
                         CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
                 end
             end
@@ -2379,10 +2381,11 @@ switch (Straight_flight_Case)
         % by Abbott in Theory of Wing Section. See the complete documentation
         % inside the cl_unit_lift.m file
         CL_equal_to_one = 0.0;
+        tol = 1e-2;
         global_CL = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1)), 1);
         for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
             global_CL(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:))/S;
-            if (global_CL(i) >= 1.0-1e-2) && (global_CL(i) <= 1.0+1e-2)
+            if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
                     CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
             end
         end
@@ -3444,10 +3447,11 @@ switch (Inverted_flight_Case)
             % by Abbott in Theory of Wing Section. See the complete documentation
             % inside the cl_unit_lift.m file
             CL_equal_to_one = 0.0;
+            tol = 1e-2;
             global_CL = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1)), 1);
             for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
                 global_CL(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:))/S;
-                if (global_CL(i) >= 1.0-1e-2) && (global_CL(i) <= 1.0+1e-2)
+                if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
                         CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
                 end
             end
@@ -4737,10 +4741,11 @@ switch (Inverted_flight_Case)
             % by Abbott in Theory of Wing Section. See the complete documentation
             % inside the cl_unit_lift.m file
             CL_equal_to_one = 0.0;
+            tol = 1e-2;
             global_CL = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1)), 1);
             for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
                 global_CL(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:))/S;
-                if (global_CL(i) >= 1.0-1e-2) && (global_CL(i) <= 1.0+1e-2)
+                if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
                         CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
                 end
             end
@@ -5879,10 +5884,11 @@ switch (Inverted_flight_Case)
         % by Abbott in Theory of Wing Section. See the complete documentation
         % inside the cl_unit_lift.m file
         CL_equal_to_one = 0.0;
+        tol = 1e-2;
         global_CL = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1)), 1);
         for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
             global_CL(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:))/S;
-            if (global_CL(i) >= 1.0-1e-2) && (global_CL(i) <= 1.0+1e-2)
+            if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
                     CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
             end
         end

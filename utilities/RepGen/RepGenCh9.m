@@ -562,8 +562,14 @@ sec.Title = 'Complete aircraft balancing loads';
 % moving to another path for figure
 cd ..
 cd ..
-%  regulation = Aircraft.Certification.Regulation.value;
- results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+% regulation = Aircraft.Certification.Regulation.value;
+% results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
+if Check_name == "Drone_VLA"
+    results_path =  [pwd '\utilities\Geometry\DroneVLA_results\'];
+elseif Check_name == "TecnamP92"
+    results_path =  [pwd '\utilities\Geometry\TecnamP92_results\'];
+end
 cd(RepDir);
 
 fig = FormalImage([results_path,'SideView3D.png']);

@@ -25,9 +25,10 @@ disp(['Chapter 15', (' "'), ch.Title,('" ') ,'writing...' ])
 cd ..
 cd ..
 %  regulation = Aircraft.Certification.Regulation.value;
-results_path = Aircraft.res_dir;cd(RepDir);
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+cd(RepDir);
 
-fig = FormalImage([results_path,'\Engine-Front-View.png']);
+fig = FormalImage([results_path,'Engine-Front-View.png']);
          fig.Caption = 'Engine, front view.';
          fig.Height = '5in';
          fig.LinkTarget='engine_front_view';
@@ -37,9 +38,11 @@ fig = FormalImage([results_path,'\Engine-Front-View.png']);
 % moving to another path for figure
 cd ..
 cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'\Engine-Side-View.png']);
+fig = FormalImage([results_path,'Engine-Side-View.png']);
          fig.Caption = 'Engine, side view.';
          fig.Height = '5in';
          fig.LinkTarget='engine_side_view';
@@ -49,9 +52,11 @@ fig = FormalImage([results_path,'\Engine-Side-View.png']);
 % moving to another path for figure
 cd ..
 cd ..
+%  regulation = Aircraft.Certification.Regulation.value;
+ results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'\Engine-Top-View.png']);
+fig = FormalImage([results_path,'Engine-Top-View.png']);
          fig.Caption = 'Engine, top view.';
          fig.Height = '5in';
          fig.LinkTarget='engine_top_view';

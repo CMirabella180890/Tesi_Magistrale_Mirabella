@@ -19,7 +19,7 @@ function Aircraft = ApplyRegulation(Aircraft)
 %% SWITCH CASE TO SELECT APPLICABLE REGULATION 
 switch (Aircraft.Certification.Regulation.value)
     % CASE 1: Very Light Aircraft
-    case 'CSVLA'
+    case 'csvla'
         % Change working directory
         cd csvla
         % The 'dir' variable contains working directory path saved as a
@@ -156,8 +156,8 @@ switch (Aircraft.Certification.Regulation.value)
         RemoveFromStruct
         % CLOSE ALL THE FIGURES - COMMENT IF NECESSARY
         close all;
-    case 'CS23'
-    case 'CS22'
+    case 'cs-23'
+    case 'cs-22'
 end
 %% DISPLAYING RESULTS
 end

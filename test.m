@@ -139,19 +139,19 @@ Main_Geometry;
 
 close all;
 
-% %% REPORT GENERATOR 
-% cd .. 
-% cd RepGen
-% % cd utilities\RepGen
-% % The 'dir' variable contains working directory path saved as a
-% % char value
-% dir = pwd;
-% % Store working directory inside the log file
-% fprintf('-----------------');
-% fprintf('\n');
-% fprintf('### Current directory ###');
-% fprintf('\n');
-% fprintf('%s\n', dir);
-% 
-% % CALLING RepGenMain FUNCTION
-% RepGenMain(Aircraft);
+%% REPORT GENERATOR 
+cd .. 
+cd RepGen
+% cd utilities\RepGen
+% The 'dir' variable contains working directory path saved as a
+% char value
+dir = pwd;
+% Store working directory inside the log file
+fprintf('-----------------');
+fprintf('\n');
+fprintf('### Current directory ###');
+fprintf('\n');
+fprintf('%s\n', dir);
+
+% CALLING RepGenMain FUNCTION
+RepGenMain(Aircraft);

@@ -451,8 +451,8 @@ if InputSource == "From File"
     legend({'Model','Data points'}, 'Interpreter', 'latex', 'Location', 'southeast')
     
     % SAVING FIGURES
-    exportgraphics(CDalfa, 'FullPitchMomModelInterpolation.pdf', 'ContentType', 'vector');
-    exportgraphics(CDalfa, 'FullPitchMomModelInterpolation.png', 'ContentType', 'vector');
+    exportgraphics(CMALFA, 'FullPitchMomModelInterpolation.pdf', 'ContentType', 'vector');
+    exportgraphics(CMALFA, 'FullPitchMomModelInterpolation.png', 'ContentType', 'vector');
     
     % Saving figures inside correct folder
     fprintf('Saving FullPitchMomModelInterpolation.pdf in: ');

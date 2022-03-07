@@ -53,7 +53,13 @@ disp(['Chapter 12', (' "'), ch.Title,('" ') ,'writing...' ])
 cd ..
 cd ..
 %  regulation = Aircraft.Certification.Regulation.value;
- results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+%  results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
+Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
+if Check_name == "Drone_VLA"
+    results_path =  [pwd '\utilities\Geometry\DroneVLA_results\'];
+elseif Check_name == "TecnamP92"
+    results_path =  [pwd '\utilities\Geometry\TecnamP92_results\'];
+end
 cd(RepDir);
 
 fig = FormalImage([results_path,'Vertical-Side-View.png']);
@@ -881,13 +887,26 @@ cd ..
  regulation = Aircraft.Certification.Regulation.value;
  results_path = [pwd '\' regulation '\Output\'];
 
- cd (RepDir);
+cd(RepDir);
 
- fig = FormalImage([results_path,'Combinedload.png']);
- fig.Caption = 'Combined load figurative representation.';
- fig.Height = '5in';
- fig.LinkTarget='comb_load';
- add(ch,fig);
+Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
+if Check_name == "Drone_VLA"
+     fig = FormalImage([results_path,'Combinedload.png']);
+     fig.Caption = 'Combined load figurative representation.';
+     fig.Height = '5in';
+     fig.LinkTarget='comb_load';
+     add(ch,fig);
+elseif Check_name == "TecnamP92"
+    disp("No combined load.")
+end
+
+cd(RepDir); 
+ 
+%  fig = FormalImage([results_path,'Combinedload.png']);
+%  fig.Caption = 'Combined load figurative representation.';
+%  fig.Height = '5in';
+%  fig.LinkTarget='comb_load';
+%  add(ch,fig);
 
 %  fig = FormalImage([results_path,'Finalenvelope.png']);
 %  fig.Caption = 'Maneuver and Gust load factors and diagram';

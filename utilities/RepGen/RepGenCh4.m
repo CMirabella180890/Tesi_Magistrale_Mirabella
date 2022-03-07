@@ -459,6 +459,13 @@ sec.Title = 'Aerodynamic';
         fig.Width = '4in';
         fig.LinkTarget='3DwingbodyaerodynamicDrag';
         add(sec,fig);
+        fig = FormalImage([results_path,'FullPitchMomModelInterpolation.png']);
+        fig.Caption = 'Pitch moment coefficient of the 3D wing-body configuration.';
+        fig.Height = '4in';
+        fig.Width = '4in';
+        fig.LinkTarget='3DwingbodyaerodynamicPitchMom';
+        add(sec,fig);
+        % -----------------------------------------------------------------
         % -----------------------------------------------------------------
 % -------------------------------------------------------------------------
 para = Paragraph('The aircraft reference aerodynamic is shown in figure: ');
