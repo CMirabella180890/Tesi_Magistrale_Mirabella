@@ -23,9 +23,11 @@ ref7  = 'ABCD-WB-08-00 Weight and Balance Report, EASA.';
 ref8  = 'Schrenk, Technical Memorandum 948 - A SIMPLE APPROXIMATION METHOD FOR OBTAINING THE SPANWISE LIFT DISTRIBUTION NACA, 1940';
 ref9  = 'NACA Report No.824, Summary of Airfoil Data, NACA, 1945';
 ref10 = 'Report 751 - The Mean Aerodynamic Chord and the Aerodynamic Center of a Tapered Wing, NACA, 1942.';
+ref11 = 'CS-VLA Certification Specifications and Acceptable Means of Compliance, Amnd.1 23.Nov.2018, EASA, 2018.';
+ref12 = 'CS-23 Certification Specifications and Acceptable Means of Compliance, Amnd.4 14.Nov.2018, EASA, 2019.';
 
 ol = OrderedList({ref1, ref2, ref3,...
-    ref4, ref5,ref6,ref7,ref8,ref9,ref10});
+    ref4, ref5,ref6,ref7,ref8,ref9,ref10,ref11,ref12});
 
 append(ch,ol);
 

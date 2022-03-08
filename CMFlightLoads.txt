@@ -151,16 +151,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving LiftComparisonWithPoints.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcShearBendTorsMom.m',217,1)">217 </a>            global_CL = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1)), 1);
-if system_dependent('IsDebugMode')==1, dbcont; end
-trapz(half_span, CL_equal_to_one)/S;
-ans
-
-ans =
-
-    1.0096
-
-if system_dependent('IsDebugMode')==1, dbcont; end
  
  ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
@@ -191,9 +181,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving ShearBendingTorsionDiagramPointD.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcShearBendTorsMom.m',3439,1)">3439 </a>            AircraftName = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-if system_dependent('IsDebugMode')==1, dbcont; end
-if system_dependent('IsDebugMode')==1, dbcont; end
  
  ++++ FIGURE 17 - POINT S_inv SHEAR, BENDING, TORSION ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
@@ -400,21 +387,21 @@ Critical conditions
  ------------------------------------ 
  ++++++++++ Vertical tail loads - CASE (a)(1) [daN] ++++++++++ 
  Y
- 10.470664
+ 20.941328
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ CS - VLA 441 - CASE (a)(2) ++++ 
  ------------------------------------ 
  ++++++++++ Vertical tail loads - CASE (a)(2) [daN] ++++++++++ 
  Y
- 13.253213
+ 26.506426
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ CS - VLA 441 - CASE (a)(3) ++++ 
  ------------------------------------ 
  ++++++++++ Vertical tail loads - CASE (a)(3) [daN] ++++++++++ 
  Y
- 12.604076
+ 25.208152
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  ++++++++++ Vertical tail loads - MOST CRITICAL LOADS [daN] ++++++++++ 
  CRITICAL LOADS PER ---> CS - VLA 441 (a)(2) 
@@ -435,7 +422,7 @@ Critical conditions
  
  ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
  L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical
- 68.072947           237.148690           237.148690
+ 71.839189           238.257097           238.257097
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Mass =
@@ -550,6 +537,9 @@ Chapter 4 written
 VCmin has been assigned.
 VCmin = 47.2222m/s
 Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
 Chapter 5 written
 Chapter 6 "Altitude" writing...
 Chapter 6 written

@@ -22,7 +22,7 @@ disp(['Chapter 6', (' "'), ch.Title,('" ') ,'writing...' ])
 switch requirement
     
     % CASE 1: Very Light Aircraft
-    case '-CSVLA'
+    case '-csvla'
         str = strcat('The maximum permissible operational altitude for the aircrat is ',...
             {' '},...
             num2str(op_altitude),...
@@ -187,7 +187,7 @@ switch requirement
 % -------------------------------------------------------------------------
 
         % CASE CS23
-    case '-CS23'
+    case '-cs-23'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
@@ -200,7 +200,7 @@ switch requirement
         add(ch,para2)
         
         % CASE 3: CS25
-    case '-CS25'
+    case '-cs-25'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
@@ -213,7 +213,7 @@ switch requirement
         add(ch,para2)
 
     % CASE CS22
-    case '-CS22'
+    case '-cs-22'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
@@ -226,7 +226,7 @@ switch requirement
         add(ch,para2)        
 
     % CASE CSLSA
-    case '-CSLSA'
+    case '-cslsa'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1

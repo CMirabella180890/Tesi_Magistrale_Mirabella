@@ -221,6 +221,10 @@ switch (Straight_flight_Case)
                         CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
                 end
             end
+            bool_CL_check = global_CL < 1.0; 
+            if ~any(bool_CL_check) == 1  
+                error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
+            end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
       
@@ -1474,6 +1478,10 @@ switch (Straight_flight_Case)
                         CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
                 end
             end
+            bool_CL_check = global_CL < 1.0; 
+            if ~any(bool_CL_check) == 1  
+                error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
+            end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
 
@@ -2388,6 +2396,10 @@ switch (Straight_flight_Case)
             if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
                     CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
             end
+        end
+        bool_CL_check = global_CL < 1.0; 
+        if ~any(bool_CL_check) == 1  
+            error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
@@ -3454,6 +3466,10 @@ switch (Inverted_flight_Case)
                 if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
                         CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
                 end
+            end
+            bool_CL_check = global_CL < 1.0; 
+            if ~any(bool_CL_check) == 1  
+                error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
@@ -4749,6 +4765,10 @@ switch (Inverted_flight_Case)
                         CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
                 end
             end
+            bool_CL_check = global_CL < 1.0; 
+            if ~any(bool_CL_check) == 1  
+                error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
+            end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
 
@@ -5891,6 +5911,10 @@ switch (Inverted_flight_Case)
             if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
                     CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
             end
+        end
+        bool_CL_check = global_CL < 1.0; 
+        if ~any(bool_CL_check) == 1  
+            error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
         end
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 

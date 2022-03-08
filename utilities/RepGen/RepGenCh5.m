@@ -67,7 +67,7 @@ disp(['Chapter 5', (' "'), ch.Title,('" ') ,'writing...' ])
 switch requirement
     
     % CASE 1: Very Light Aircraft
-    case '-CSVLA'
+    case '-csvla'
         
         str = ['This chapter defines the operating and design airspeed as required for certification' ...
             (' ') ...
@@ -657,7 +657,7 @@ str = ['According to ' ...
         add(ch,sec);
         
         % CASE: CS23
-    case '-CS23'
+    case '-cs-23'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
@@ -670,7 +670,7 @@ str = ['According to ' ...
         add(ch,para2)
         
     % CASE 3: CS25
-    case '-CS25'
+    case '-cs-25'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
@@ -683,7 +683,7 @@ str = ['According to ' ...
         add(ch,para2)
         
         % CASE CS22
-    case '-CS22'
+    case '-cs-22'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
@@ -696,7 +696,7 @@ str = ['According to ' ...
         add(ch,para2)
         
         % CASE CSLSA
-    case '-CSLSA'
+    case '-cslsa'
         str = strcat('Check regulation to update ');
         str2 = strcat('Check regulation to update ');
         %1
