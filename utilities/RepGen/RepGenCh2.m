@@ -11,6 +11,8 @@ disp(['Chapter 2', (' "'), ch.Title,('" ') ,'writing...' ])
 
 str = ['HERE BELOW AN EXAMPLE OF REFERENCES TO BE EDITED'];
 para = Paragraph(str);
+para.Style = {HAlign('justify')};
+add(ch,para);
 
 %references: CAN BE MOVED IN OTHER position
 ref1  = 'ASTM F2245-12d,” ASTM.“ASTM F2245-12d, ASTM.';
@@ -32,7 +34,7 @@ ol = OrderedList({ref1, ref2, ref3,...
 append(ch,ol);
 
 % append(para,InternalLink('tlarTableRef','refTabella'));
-add(ch,para)
+% add(ch,para)
 
 %% END chapter
 %Adding chapters
