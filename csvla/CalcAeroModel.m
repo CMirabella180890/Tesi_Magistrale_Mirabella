@@ -431,28 +431,38 @@ if InputSource == "From File"
     % -------------------------------------------------------------------------
     % CM INTERPOLATION
     % -------------------------------------------------------------------------
-    n_pol     = 3;
-    p_CM_wb   = polyfit(alpha_wb, CM_wb, n_pol);
-    CM_interp = polyval(p_CM_wb, alpha_interp);
+    n_pol        = 1;
+    CL_for_CM    = CL_wb(CL_wb>0.93 & CL_wb<1.59);
+    index_CM_min = find(CL_wb<0.93,73);
+    index_CM_min = index_CM_min(end)+1;
+    index_CM_max = find(CL_wb>1.59,73);
+    index_CM_max = index_CM_max(1)-1;
+    CM_wb_reduct = CM_wb(index_CM_min:index_CM_max);
+    p_CM_wb      = polyfit(CL_for_CM, CM_wb_reduct, n_pol);
+    CM_interp    = polyval(p_CM_wb, Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value);
+    Aircraft.Certification.Aerodynamic_data.CM0.value = p_CM_wb(2);
+    Aircraft.Certification.Aerodynamic_data.CM0.Attributes.unit = "Non dimensional";
+    Aircraft.Certification.Aerodynamic_data.CMCL.value = p_CM_wb(1);
+    Aircraft.Certification.Aerodynamic_data.CMCL.Attributes.unit = "Non dimensional";
     Aircraft.Certification.Aerodynamic_data.CM_fullmodel.value = CM_interp;
     Aircraft.Certification.Aerodynamic_data.CM_fullmodel.Attributes.unit = "Non dimensional";
     % -------------------------------------------------------------------------   
-    CMALFA = figure(151);
+    CMCL = figure(151);
     hold on
     grid on 
     grid minor
-    plot(alpha_interp, CM_interp, '-r', 'LineWidth', 1.5)
-    plot(alpha_wb, CM_wb, 'k.', 'MarkerSize', 10)
+    plot(Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value, CM_interp, '-r', 'LineWidth', 1.5)
+    plot(CL_wb, CM_wb, 'k.', 'MarkerSize', 10)
     xlim 'padded' ;
     ylim 'padded' ;
-    xlabel("Angle of attack - $\alpha$ $(deg)$", "Interpreter", "latex")
+    xlabel("Lift coefficient - $C_{L_{wb}}$", "Interpreter", "latex")
     ylabel("Pitch. mom. coefficient - $C_{M_{wb}}$", "Interpreter", "latex")
     title("Pitch. mom. model", "Interpreter", "latex")
     legend({'Model','Data points'}, 'Interpreter', 'latex', 'Location', 'southeast')
     
     % SAVING FIGURES
-    exportgraphics(CMALFA, 'FullPitchMomModelInterpolation.pdf', 'ContentType', 'vector');
-    exportgraphics(CMALFA, 'FullPitchMomModelInterpolation.png', 'ContentType', 'vector');
+    exportgraphics(CMCL, 'FullPitchMomModelInterpolation.pdf', 'ContentType', 'vector');
+    exportgraphics(CMCL, 'FullPitchMomModelInterpolation.png', 'ContentType', 'vector');
     
     % Saving figures inside correct folder
     fprintf('Saving FullPitchMomModelInterpolation.pdf in: ');
