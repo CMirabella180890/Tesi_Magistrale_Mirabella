@@ -42,12 +42,12 @@ if isfield(Aircraft.Geometry, "Engine") == 1
 % %     Aircraft.Geometry.Engine.Primary.propdiam.value = 0.6;          %prop diameter in meters
 % %     Aircraft.Geometry.Engine.Primary.zpos.value = 1.0;              %of fus df
     
-    Aircraft.Geometry.Engine.Primary.xpos.value = 0.0;             % % lf
-    Aircraft.Geometry.Engine.Primary.lf.value = 1.2;                % engine lenght m
-    Aircraft.Geometry.Engine.Primary.ypos.value = 0.0;              % %of wing semispan
-    Aircraft.Geometry.Engine.Primary.df.value = 0.8;                % m
-    Aircraft.Geometry.Engine.Primary.propdiam.value = 1.2;          %prop diameter in meters
-    Aircraft.Geometry.Engine.Primary.zpos.value = 0.0;              %of fus df
+%     Aircraft.Geometry.Engine.Primary.xpos.value = 0.0;             % % lf
+%     Aircraft.Geometry.Engine.Primary.lf.value = 1.2;                % engine lenght m
+%     Aircraft.Geometry.Engine.Primary.ypos.value = 0.0;              % %of wing semispan
+%     Aircraft.Geometry.Engine.Primary.df.value = 0.8;                % m
+%     Aircraft.Geometry.Engine.Primary.propdiam.value = 1.2;          %prop diameter in meters
+%     Aircraft.Geometry.Engine.Primary.zpos.value = 0.0;              %of fus df
     
  ezpos = Aircraft.Geometry.Engine.Primary.zpos.value;       % % df engine zeta position
 

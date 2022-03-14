@@ -46,7 +46,8 @@ VarText={'Aircraft_name', ...      % PRELIMINARY INPUTS
          'UM', ...
          'FM', ...
          'CM', ...
-         'Oil_mass', ...           % AIRCRAFT MASS/WEIGHT
+         'Oil_mass', ...           
+         'Inertia_momY', ...       % AIRCRAFT MASS/WEIGHT
          'Wing_type', ...          % WING CHARACTERISTICS
          'Wing_surface', ...
          'Wing_span', ...
@@ -305,6 +306,9 @@ if LengthIndex==length(VarText)
     p = strcmp('Oil_mass', label);
     Aircraft.Weight.I_Level.Oil_mass.value = str2double(table2array(value(p==1,1)));
     Aircraft.Weight.I_Level.Oil_mass.Attributes.unit = char(table2array(unit(p==1,1)));
+    p = strcmp('Inertia_momY', label);
+    Aircraft.Weight.I_Level.IY.value = str2double(table2array(value(p==1,1))); % 100.0
+    Aircraft.Weight.I_Level.IY.Attributes.unit = char(table2array(unit(p==1,1))); % "kg * m^2"
     % ---------------------------------------------------------------------
     p = strcmp('Wing_type', label);
     Aircraft.Geometry.Wing.type.value = char(table2array(value(p==1,1)));

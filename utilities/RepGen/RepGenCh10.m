@@ -19,12 +19,12 @@ cd ..
 cd ..
 %  regulation = Aircraft.Certification.Regulation.value;
 % results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
-Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-if Check_name == "Drone_VLA"
-    results_path =  [pwd '\utilities\Geometry\DroneVLA_results\'];
-elseif Check_name == "TecnamP92"
-    results_path =  [pwd '\utilities\Geometry\TecnamP92_results\'];
-end
+% Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
+% if Check_name == "Drone_VLA"
+%     results_path =  [pwd '\utilities\Geometry\DroneVLA_results\'];
+% elseif Check_name == "TecnamP92"
+%     results_path =  [pwd '\utilities\Geometry\TecnamP92_results\'];
+% end
 cd(RepDir);
 
 fig = FormalImage([results_path,'Wing-Top-View.png']);
@@ -224,17 +224,19 @@ str = ['Shear, bending and torsion along the wing semi-span are' ...
 para = Paragraph(str);
 para.Style = {HAlign('justify')};
 add(subsec,para);
+
 %A
-Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-if Check_name == "Drone_VLA"
-    fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointA.png']);
-    fig.Caption = 'Shear, Bending and Torsion due to airloads - POINT A';
-    fig.LinkTarget='A_distribution';
-elseif Check_name == "TecnamP92"
-    fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointA1.png']);
-    fig.Caption = 'Shear, Bending and Torsion due to airloads - POINT A1';
-    fig.LinkTarget='A_distribution';
-end
+% Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
+% if Check_name == "Drone_VLA"
+%     fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointA.png']);
+%     fig.Caption = 'Shear, Bending and Torsion due to airloads - POINT A';
+%     fig.LinkTarget='A_distribution';
+% elseif Check_name == "TecnamP92"
+%     fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointA1.png']);
+%     fig.Caption = 'Shear, Bending and Torsion due to airloads - POINT A1';
+%     fig.LinkTarget='A_distribution';
+% end
+
 % fig = FormalImage([results_path,'ShearBendingTorsionDiagramPointA.png']);
 %  fig.Caption = 'Shear, Bending and Torsion due to airloads - POINT A';
 %  fig.Height = '4in';
@@ -1083,21 +1085,21 @@ add(subsec,para);
         add(subsec,tbl);
         % -----------------------------------------------------------------
 % -------------------------------------------------------------------------
-%cm_A
-Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-if Check_name == "Drone_VLA"
-    fig = FormalImage([results_path,'CmComparisonPointA.png']);
-    fig.Caption = 'Pithcing moment coefficient - POINT A';
-    fig.Height = '5in';
-    fig.LinkTarget='cm_unsimm_A';
-    add(subsec,fig);
-elseif Check_name == "TecnamP92"
-    fig = FormalImage([results_path,'CmComparisonPointA1.png']);
-    fig.Caption = 'Pithcing moment coefficient - POINT A1';
-    fig.Height = '5in';
-    fig.LinkTarget='cm_unsimm_A';
-    add(subsec,fig);
-end
+% %cm_A
+% Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
+% if Check_name == "Drone_VLA"
+%     fig = FormalImage([results_path,'CmComparisonPointA.png']);
+%     fig.Caption = 'Pithcing moment coefficient - POINT A';
+%     fig.Height = '5in';
+%     fig.LinkTarget='cm_unsimm_A';
+%     add(subsec,fig);
+% elseif Check_name == "TecnamP92"
+%     fig = FormalImage([results_path,'CmComparisonPointA1.png']);
+%     fig.Caption = 'Pithcing moment coefficient - POINT A1';
+%     fig.Height = '5in';
+%     fig.LinkTarget='cm_unsimm_A';
+%     add(subsec,fig);
+% end
 
 % fig = FormalImage([results_path,'CmComparisonPointA.png']);
 % fig.Caption = 'Pithcing moment coefficient - POINT A';
@@ -1220,20 +1222,20 @@ add(subsec,para);
         % -----------------------------------------------------------------
 % -------------------------------------------------------------------------
 %cm_A
-Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-if Check_name == "Drone_VLA"
-    fig = FormalImage([results_path,'UnsymmetricalTorsionFullPointA.png']);
-    fig.Caption = 'Torsion distribution full loads - POINT A';
-    fig.Height = '5in';
-    fig.LinkTarget='tors_unsimm_A';
-    add(subsec,fig);
-elseif Check_name == "TecnamP92"
-    fig = FormalImage([results_path,'UnsymmetricalTorsionFullPointA1.png']);
-    fig.Caption = 'Torsion distribution full loads - POINT A1';
-    fig.Height = '5in';
-    fig.LinkTarget='tors_unsimm_A';
-    add(subsec,fig);
-end
+% Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
+% if Check_name == "Drone_VLA"
+%     fig = FormalImage([results_path,'UnsymmetricalTorsionFullPointA.png']);
+%     fig.Caption = 'Torsion distribution full loads - POINT A';
+%     fig.Height = '5in';
+%     fig.LinkTarget='tors_unsimm_A';
+%     add(subsec,fig);
+% elseif Check_name == "TecnamP92"
+%     fig = FormalImage([results_path,'UnsymmetricalTorsionFullPointA1.png']);
+%     fig.Caption = 'Torsion distribution full loads - POINT A1';
+%     fig.Height = '5in';
+%     fig.LinkTarget='tors_unsimm_A';
+%     add(subsec,fig);
+% end
 
 % fig = FormalImage([results_path,'UnsymmetricalTorsionFullPointA.png']);
 % fig.Caption = 'Torsion distribution full loads - POINT A';

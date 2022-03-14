@@ -574,18 +574,18 @@ Aircraft.Geometry.Engine.Primary.Thrust_axes.Attributes.unit = 'm';
 % -------------------------------------------------------------------------
 % Weight
 % -------------------------------------------------------------------------
-Aircraft.Weight.I_Level.W_maxTakeOff.value = NaN;
-Aircraft.Weight.I_Level.W_maxTakeOff.Attributes.unit = 'kg';
-Aircraft.Weight.I_Level.W_OperativeEmpty.value = NaN;
-Aircraft.Weight.I_Level.W_OperativeEmpty.Attributes.unit = 'kg';
-Aircraft.Weight.I_Level.W_Payload.value = NaN;
-Aircraft.Weight.I_Level.W_Payload.Attributes.unit = 'kg';
-Aircraft.Weight.I_Level.W_Fuel.value = NaN;
-Aircraft.Weight.I_Level.W_Fuel.Attributes.unit = 'kg';
-Aircraft.Weight.I_Level.W_Crew.value = NaN;
-Aircraft.Weight.I_Level.W_Crew.Attributes.unit = 'kg';
-Aircraft.Weight.I_Level.IY.value = 100.0;
-Aircraft.Weight.I_Level.IY.Attributes.unit = "kg * m^2";
+% Aircraft.Weight.I_Level.W_maxTakeOff.value = NaN;
+% Aircraft.Weight.I_Level.W_maxTakeOff.Attributes.unit = 'kg';
+% Aircraft.Weight.I_Level.W_OperativeEmpty.value = NaN;
+% Aircraft.Weight.I_Level.W_OperativeEmpty.Attributes.unit = 'kg';
+% Aircraft.Weight.I_Level.W_Payload.value = NaN;
+% Aircraft.Weight.I_Level.W_Payload.Attributes.unit = 'kg';
+% Aircraft.Weight.I_Level.W_Fuel.value = NaN;
+% Aircraft.Weight.I_Level.W_Fuel.Attributes.unit = 'kg';
+% Aircraft.Weight.I_Level.W_Crew.value = NaN;
+% Aircraft.Weight.I_Level.W_Crew.Attributes.unit = 'kg';
+% Aircraft.Weight.I_Level.IY.value = 100.0;
+% Aircraft.Weight.I_Level.IY.Attributes.unit = "kg * m^2";
 % -------------------------------------------------------------------------
 Aircraft.Certification.ISA_Condition.Sea_level.Altitude.value = NaN;
 Aircraft.Certification.ISA_Condition.Sea_level.Altitude.Attributes.unit = "m";

@@ -276,7 +276,7 @@ if InputSource == "From File"
 %     CM_wb    = Aircraft.Certification.Aerodynamic_data.CM.value;
 %     alpha_wb = Aircraft.Certification.Aerodynamic_data.alpha.value;
     % =========================================================================
-    length_alpha = length(alpha_wb)
+    length_alpha = length(alpha_wb);
     % =========================================================================
     aid_to_interp = figure(1400); 
     hold on; grid on; grid minor; 
@@ -432,19 +432,20 @@ if InputSource == "From File"
     % CM INTERPOLATION
     % -------------------------------------------------------------------------
     n_pol        = 1;
-    CL_for_CM    = CL_wb(CL_wb>0.93 & CL_wb<1.59);
-    index_CM_min = find(CL_wb<0.93,73);
-    index_CM_min = index_CM_min(end)+1;
-    index_CM_max = find(CL_wb>1.59,73);
-    index_CM_max = index_CM_max(1)-1;
-    CM_wb_reduct = CM_wb(index_CM_min:index_CM_max);
+    CL_for_CM    = CL_wb(CL_wb < CL_star);
+    index_CM_min = find(CL_wb < CL_star,73);
+    length_CL    = length(CL_for_CM);
+    if length_CL ~= index_CM_min
+        error("WARNING: Uncorrect pitching moment interpolation")
+    end
+    CM_wb_reduct = CM_wb(1:index_CM_min(end));
     p_CM_wb      = polyfit(CL_for_CM, CM_wb_reduct, n_pol);
     CM_interp    = polyval(p_CM_wb, Aircraft.Certification.Aerodynamic_data.CL_fullmodel.value);
-    Aircraft.Certification.Aerodynamic_data.CM0.value = p_CM_wb(2);
-    Aircraft.Certification.Aerodynamic_data.CM0.Attributes.unit = "Non dimensional";
-    Aircraft.Certification.Aerodynamic_data.CMCL.value = p_CM_wb(1);
-    Aircraft.Certification.Aerodynamic_data.CMCL.Attributes.unit = "Non dimensional";
-    Aircraft.Certification.Aerodynamic_data.CM_fullmodel.value = CM_interp;
+    Aircraft.Certification.Aerodynamic_data.CM0.value                    = p_CM_wb(2);
+    Aircraft.Certification.Aerodynamic_data.CM0.Attributes.unit          = "Non dimensional";
+    Aircraft.Certification.Aerodynamic_data.CMCL.value                   = p_CM_wb(1);
+    Aircraft.Certification.Aerodynamic_data.CMCL.Attributes.unit         = "Non dimensional";
+    Aircraft.Certification.Aerodynamic_data.CM_fullmodel.value           = CM_interp;
     Aircraft.Certification.Aerodynamic_data.CM_fullmodel.Attributes.unit = "Non dimensional";
     % -------------------------------------------------------------------------   
     CMCL = figure(151);

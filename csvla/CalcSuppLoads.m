@@ -229,8 +229,10 @@ switch(Aircraft.Geometry.Vertical.empennage_flag.value)
         legend('Interpreter', 'latex', 'Location', 'northwestoutside')
         % legend({'Horiz. empennage', 'Vertical empennage', 'H load', 'V load', 'Critical load'}, 'Interpreter', 'latex', 'Location', 'northwestoutside')
         
-        xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
-        ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+%         xlim([0 (Aircraft.Geometry.Horizontal.b.value+0.5)])
+%         ylim([-(Aircraft.Geometry.Vertical.b.value+0.5) Aircraft.Geometry.Vertical.b.value+0.25]);
+        xlim padded;
+        ylim padded;
 
         % EXPORT FIGURE
         exportgraphics(combined_load_figure, 'Combinedload.pdf', 'ContentType', 'vector')

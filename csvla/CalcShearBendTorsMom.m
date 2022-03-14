@@ -201,11 +201,8 @@ switch (Straight_flight_Case)
             % LOAD A CLASS OF FUNCTIONS USEFUL TO EVALUATE ALL THE REQUIRED DATA
             obj2 = ShearBendingTorsion; 
             
-        AircraftName = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-        if AircraftName == "TecnamP92"
             S = Aircraft.Geometry.Wing.S.value*0.5;
-        end
-            
+
             % Lift coefficient distribution at a global CL equal to one
             % A simple function to evaluate the lift coefficient distribution along the
             % span cl = cl(y) when the associated global lift coefficient of the whole
@@ -1456,13 +1453,10 @@ switch (Straight_flight_Case)
             movefile LiftComparisonWithPoints.png Output        
         
             % LOAD A CLASS OF FUNCTIONS USEFUL TO EVALUATE ALL THE REQUIRED DATA
-            obj2 = ShearBendingTorsion; 
-
+            obj2 = ShearBendingTorsion;
             
-        AircraftName = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-        if AircraftName == "TecnamP92"
             S = Aircraft.Geometry.Wing.S.value*0.5;
-        end
+            
             % Lift coefficient distribution at a global CL equal to one
             % A simple function to evaluate the lift coefficient distribution along the
             % span cl = cl(y) when the associated global lift coefficient of the whole
@@ -2378,10 +2372,9 @@ switch (Straight_flight_Case)
         
         % LOAD A CLASS OF FUNCTIONS USEFUL TO EVALUATE ALL THE REQUIRED DATA
         obj2 = ShearBendingTorsion; 
-        AircraftName = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-        if AircraftName == "TecnamP92"
-            S = Aircraft.Geometry.Wing.S.value*0.5;
-        end
+
+        S = Aircraft.Geometry.Wing.S.value*0.5;
+
         % Lift coefficient distribution at a global CL equal to one
         % A simple function to evaluate the lift coefficient distribution along the
         % span cl = cl(y) when the associated global lift coefficient of the whole
@@ -3448,10 +3441,9 @@ switch (Inverted_flight_Case)
             PointG2  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.point_name.value;
             PointE  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value;
             % ---------------------------------------------------------------------------------------------            
-            AircraftName = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-            if AircraftName == "TecnamP92"
-                S = Aircraft.Geometry.Wing.S.value*0.5;
-            end
+
+            S = Aircraft.Geometry.Wing.S.value*0.5;
+                
             % Lift coefficient distribution at a global CL equal to one
             % A simple function to evaluate the lift coefficient distribution along the
             % span cl = cl(y) when the associated global lift coefficient of the whole
@@ -4746,10 +4738,9 @@ switch (Inverted_flight_Case)
             PointF  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value;
             PointE  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value;
             % ---------------------------------------------------------------------------------------------               
-            AircraftName = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-            if AircraftName == "TecnamP92"
-                S = Aircraft.Geometry.Wing.S.value*0.5;
-            end
+
+            S = Aircraft.Geometry.Wing.S.value*0.5;
+
             % Lift coefficient distribution at a global CL equal to one
             % A simple function to evaluate the lift coefficient distribution along the
             % span cl = cl(y) when the associated global lift coefficient of the whole
@@ -5893,10 +5884,9 @@ switch (Inverted_flight_Case)
         PointF  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.point_name.value;
         PointE  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value;
         % ---------------------------------------------------------------------------------------------           
-          AircraftName = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-            if AircraftName == "TecnamP92"
-                S = Aircraft.Geometry.Wing.S.value*0.5;
-            end
+        
+        S = Aircraft.Geometry.Wing.S.value*0.5;
+                
         % Lift coefficient distribution at a global CL equal to one
         % A simple function to evaluate the lift coefficient distribution along the
         % span cl = cl(y) when the associated global lift coefficient of the whole
@@ -6190,10 +6180,12 @@ switch (Inverted_flight_Case)
                 if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-1
                    cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
-                else
-                    cd_G = CD_G * ones(length(xi), 1);
-                    cm_G = CM_G * ones(length(xi), 1);
+                   check    = 1;
                 end
+            end
+            if exist('check', 'var') == 0
+                cd_G = CD_G * ones(length(xi), 1); 
+                cm_G = CM_G * ones(length(xi), 1);
             end
         elseif exist('check_interp', 'var') == 0
             cd_G = CD_G * ones(length(xi), 1); 
@@ -6924,7 +6916,7 @@ switch (Inverted_flight_Case)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_d = c_d(y)$", "Interpreter", "latex")
-        title("Lift distr. comparison", "Interpreter", "latex") 
+        title("Drag distr. comparison", "Interpreter", "latex") 
 
         legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
         

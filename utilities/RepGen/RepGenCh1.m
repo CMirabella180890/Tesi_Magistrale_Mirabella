@@ -5,7 +5,8 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
-requirement = strcat('-', Aircraft.Certification.Regulation.value);
+requirement   = strcat('-', Aircraft.Certification.Regulation.value);
+
 
 ch = Chapter();
 ch.Title = 'Introduction';
@@ -13,7 +14,7 @@ disp(['Chapter 1', (' "'), ch.Title,('" ') ,'writing...' ])
 para = Paragraph();
 
 append(para, Text(strcat('This document defines the SUBPART C - Structure - Flight Loads of the:',' ', char(Aircraft.Certification.Aircraft_Name.value),'.',...
-    ' The boundaries of the flight envelope will be defined within this document. All speeds are calibrated airspeeds (CAS) (requirement 4.4 [1])',...
+    ' The boundaries of the flight envelope will be defined within this document. All speeds are calibrated airspeeds (CAS) (requirement 49 [11, p. 22])',...
     ' and given in knots if not stated otherwise.',...
     ' All other units used are metric (SI units).',...
     ' The weights are given in mass units (kg) but the formulas require force units as input,',...
@@ -74,6 +75,8 @@ ref7 = ['chapter 15 illustrates loads applied on the engine and its support' ...
     ' structures.'];
 ol = OrderedList({ref1, ref2, ref3, ref4, ref5, ref6, ref7});
 append(sec,ol);
+% -------------------------------------------------------------------------
+add(ch,sec);
 % -------------------------------------------------------------------------
 %sec
 sec = Section();

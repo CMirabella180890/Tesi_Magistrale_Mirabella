@@ -117,6 +117,15 @@ rpt.Locale = 'en';
 
 RepDir = pwd;
 
+cd .. 
+cd ..
+aircraft_name = Aircraft.Certification.Aircraft_Name.value;
+global results_path
+local_path    = strcat('\utilities\Geometry\', aircraft_name, '_results\');
+results_path  = [pwd local_path];
+
+cd(RepDir)
+
 %% TITLE PAGE
 %Title
 tp = TitlePage();

@@ -7,6 +7,14 @@ import mlreportgen.dom.*     % import document object model DOM API (DOM related
 % @see https://it.mathworks.com/help/search.html?qdoc=mlreportgen.dom&submitsearch=)
 import mlreportgen.utils.*
 
+cd ..
+cd ..
+aircraft_name = Aircraft.Certification.Aircraft_Name.value;
+figure_path   = strcat('\utilities\Geometry\', aircraft_name, '_results\');
+results_path  = [pwd figure_path];
+cd(RepDir);
+
+
 % CONSTANTS
 requirement            = Aircraft.Certification.Regulation.value;
 aileron_airworth_rules = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.Aileron_load_SI.Attributes.cs;
@@ -43,15 +51,15 @@ cd ..
 cd ..
 %  regulation = Aircraft.Certification.Regulation.value;
 % results_path = Aircraft.res_dir;
-Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
-if Check_name == "Drone_VLA"
-    results_path =  [pwd '\utilities\Geometry\DroneVLA_results\'];
-elseif Check_name == "TecnamP92"
-    results_path =  [pwd '\utilities\Geometry\TecnamP92_results\'];
-end
+% Check_name = convertCharsToStrings(Aircraft.Certification.Aircraft_Name.value);
+% if Check_name == "DroneVLA"
+%     results_path =  [pwd '\utilities\Geometry\DroneVLA_results\'];
+% elseif Check_name == "TecnamP92"
+%     results_path =  [pwd '\utilities\Geometry\TecnamP92_results\'];
+% end
 cd(RepDir);
 
-fig = FormalImage([results_path,'/Wing-Top-View.png']);
+fig = FormalImage([results_path,'Wing-Top-View.png']);
          fig.Caption = 'Aileron, top view.';
          fig.Height = '5in';
          fig.LinkTarget='aileron_top_view';
@@ -264,11 +272,15 @@ sec.Title = 'Elevator';
 % moving to another path for figure
 cd ..
 cd ..
+aircraft_name = Aircraft.Certification.Aircraft_Name.value;
+figure_path   = strcat('\utilities\Geometry\', aircraft_name, '_results\');
+results_path  = [pwd figure_path];
+
 %  regulation = Aircraft.Certification.Regulation.value;
  %results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'/Horizontal-Top-View.png']);
+fig = FormalImage([results_path,'Horizontal-Top-View.png']);
          fig.Caption = 'Elevator, top view.';
          fig.Height = '5in';
          fig.LinkTarget='elevator_top_view';
@@ -408,7 +420,7 @@ cd ..
 % results_path = [pwd '\utilities\Geometry\DroneVLA_results\'];
 cd(RepDir);
 
-fig = FormalImage([results_path,'/Vertical-Side-View.png']);
+fig = FormalImage([results_path,'Vertical-Side-View.png']);
          fig.Caption = 'Vertical fin, side view.';
          fig.Height = '5in';
          fig.LinkTarget='verticalfin_side_view';
