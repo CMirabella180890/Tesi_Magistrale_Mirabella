@@ -15,7 +15,7 @@ Update();
 
 SetParmVal(wing,"X_Rel_Location","XForm",1.638);
 SetParmVal(wing,"Y_Rel_Location","XForm",0);
-SetParmVal(wing,"Z_Rel_Location","XForm",0.165);
+SetParmVal(wing,"Z_Rel_Location","XForm",0.7);
 SetParmVal(wing,"X_Rel_Rotation","XForm",0);
 SetParmVal(wing,"Y_Rel_Rotation","XForm",0);
 
@@ -140,7 +140,7 @@ string fuselage = AddGeom("TransportFuse");
 
 SetGeomDrawType(fuselage, GEOM_DRAW_SHADE );
 
-SetParmVal(fuselage,"Length","Design",6.3);
+SetParmVal(fuselage,"Length","Design",6.6);
 SetParmVal(fuselage,"Diameter","Design",1.4);
 
 Update(); 

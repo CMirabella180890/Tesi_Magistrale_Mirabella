@@ -334,6 +334,9 @@ switch (Straight_flight_Case)
             yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
             % Selection of the interpolated distribution of CD and CM
+            % ATTENZIONE! -------------------------- > PARTE DA MODIFICARE 
+            % INSERIRE MESHGRID MATLAB O INTERP MATLAB PER EVITARE UN CM
+            % TROPPO GRANDE! PARAMETRO DI ACCESSO AL MESHGRID: ALPHA
             CD_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
             CM_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
             Interpolated_Global_CD_S = zeros(length(yi), 1);
