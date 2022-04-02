@@ -103,7 +103,7 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         field = 'Sea_level';
         Aircraft.Certification.ISA_Condition = rmfield(Aircraft.Certification.ISA_Condition, field);
         field = 'Max_Continous_Power_Speed_VH';
-        Aircraft.Certification.Regulation.SubpartC.Flightloads = rmfield(Aircraft.Certification.Regulation.SubpartC.Flightloads, field);
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads = rmfield(Aircraft.Certification.Regulation.SubpartC.Flightloads, field);
         % -----------------------------------------------------------------
         Aircraft.Geometry.Elevator.ce_c_root.value           = Aircraft.Geometry.Horizontal.ce_c_root.value;
         Aircraft.Geometry.Elevator.ce_c_root.Attributes.unit = Aircraft.Geometry.Horizontal.ce_c_root.Attributes.unit;

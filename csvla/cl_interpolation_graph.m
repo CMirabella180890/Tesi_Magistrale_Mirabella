@@ -1,4 +1,4 @@
-function OutputArg1 = cl_interpolation_graph(x, y, Cl, Cl_interp, XI, YI, y_half_span, S)
+function OutputArg1 = cl_interpolation_graph(x, y, Cl, Cl_interp, XI, YI)
 
 % Output = cd_interpolation_graph(x, y, Cd, Cd_interp, XI, YI)
 %   A function which is able to plot a 3-dimensional interpolation of

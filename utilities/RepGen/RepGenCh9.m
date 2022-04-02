@@ -457,64 +457,6 @@ para.Style = {HAlign('justify')};
 add(sec,para);
 % -------------------------------------------------------------------------
 
-
-%% FIGURES TO ADD 
-
-% RepGenFigCh4 = figure(47);
-
-alpha = Aircraft.Certification.Aerodynamic_data.alpha.value;
-CL    = Aircraft.Certification.Aerodynamic_data.CL.value;
-CD    = Aircraft.Certification.Aerodynamic_data.CD.value;
-CM    = Aircraft.Certification.Aerodynamic_data.CM.value;
-% -------------------------------------------------------------------------
-RepGenFigCh9 = figure(48);
-hold on;
-plot(str2num(alpha), str2num(CM));
-grid on; grid minor;
-xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
-ylabel("Pitching moment coefficient - $C_M$ ", "Interpreter", "latex")
-title('$C_M$ vs $\alpha$', "Interpreter", "latex")
-
-% -------------------------------------------------------------------------
-% Saving figures inside correct folder
-cd .. 
-cd ..
-cd csvla
-dir = pwd;
-fprintf("--------------------------------------");
-fprintf('\n');
-fprintf('### Saving outpus inside correct Folder ###');
-fprintf('\n');
-SaveFolder = strcat(dir,'\Output');
-fprintf('Saving RepGenFigCh9.png in: ');
-fprintf('\n');      
-fprintf('%s\n', SaveFolder);
-% EXPORT FIGURE
-% exportgraphics(final_envelope, 'Finalenvelope.pdf', 'ContentType', 'vector')
-exportgraphics(RepGenFigCh9, 'RepGenFigCh9.png', 'ContentType', 'vector')
-
-% Moving file inside correct folder
-% movefile Finalenvelope.pdf Output
-movefile RepGenFigCh9.png Output 
-
-cd ..
-cd utilities/RepGen
-
-close(RepGenFigCh9);
-
-%moving to another path for figure
-cd ..
-cd ..
- regulation = Aircraft.Certification.Regulation.value;
- results_path = [pwd '\' regulation '\Output\'];
-
- cd (RepDir);
- 
- fig = FormalImage([results_path,'RepGenFigCh9.png']);
- fig.Caption = 'Wing-body pitching moment coefficient.';
- fig.Height = '4in';
- fig.LinkTarget='cfd_cm_results';
- add(sec,fig);
 % reference_axis
 % -------------------------------------------------------------------------
 add(ch,sec);

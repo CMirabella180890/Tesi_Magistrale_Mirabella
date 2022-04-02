@@ -11,64 +11,6 @@ import mlreportgen.utils.*
 % 		
 % aggiungere i principali coefficienti 3D velivolo completo in tabella (CLMAX, CLMAXTO, CLMAX LAN, CLalha)
 
-%% FIGURES TO ADD 
-
-% RepGenFigCh4 = figure(47);
-
-alpha = Aircraft.Certification.Aerodynamic_data.alpha.value;
-CL    = Aircraft.Certification.Aerodynamic_data.CL.value;
-CD    = Aircraft.Certification.Aerodynamic_data.CD.value;
-CM    = Aircraft.Certification.Aerodynamic_data.CM.value;
-% -------------------------------------------------------------------------
-RepGenFigCh4 = figure(47);
-subplot(2,2,1);
-plot(str2num(alpha), str2num(CL));
-grid on; grid minor;
-xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
-ylabel("Lift coefficient - $C_L$ ", "Interpreter", "latex")
-title('$C_L$ vs $\alpha$', "Interpreter", "latex")
-
-subplot(2,2,2);
-plot(str2num(CL), str2num(CD));
-grid on; grid minor;
-xlabel("Lift coefficient - $C_L$ ", "Interpreter", "latex")
-ylabel("Drag coefficient - $C_D$ ", "Interpreter", "latex")
-title('$C_L$ vs $C_D$', "Interpreter", "latex")
-
-subplot(2,2,[3,4]);
-plot(str2num(alpha), str2num(CM));
-grid on; grid minor;
-xlabel("Angle of attack - $\alpha$ (deg)", "Interpreter", "latex")
-ylabel("Pitching moment coefficient - $C_M$ ", "Interpreter", "latex")
-title('$C_M$ vs $\alpha$', "Interpreter", "latex")
-
-% -------------------------------------------------------------------------
-% Saving figures inside correct folder
-cd .. 
-cd ..
-cd csvla
-dir = pwd;
-fprintf("--------------------------------------");
-fprintf('\n');
-fprintf('### Saving outpus inside correct Folder ###');
-fprintf('\n');
-SaveFolder = strcat(dir,'\Output');
-fprintf('Saving RepGenFigCh4.png in: ');
-fprintf('\n');      
-fprintf('%s\n', SaveFolder);
-% EXPORT FIGURE
-% exportgraphics(final_envelope, 'Finalenvelope.pdf', 'ContentType', 'vector')
-exportgraphics(RepGenFigCh4, 'RepGenFigCh4.png', 'ContentType', 'vector')
-
-% Moving file inside correct folder
-% movefile Finalenvelope.pdf Output
-movefile RepGenFigCh4.png Output 
-
-cd ..
-cd utilities/RepGen
-
-close(RepGenFigCh4);
-
 %% REPORT GEN CHAPTER 4
 
 ch = Chapter();

@@ -440,7 +440,7 @@ switch (Straight_flight_Case)
             q_from0toS(i)    = 0.5*rho0*(V_from0toS(i))^2;
             WBL_from0toS(i)  = q_from0toS(i)*S*CL_from0toS(i)*1e-1;
             CMCL_from0toS(i) = CLWB_contrib(obj1, CL_from0toS(i), deg2rad(alfa_from0toS(i)), XAC, XCG, bCG, MAC);
-            CMCD_from0toS(i) = CDWB_contrib(obj1, CL_from0toS(i), deg2rad(alfa_from0toS(i)), XAC, XCG, bCG, MAC);
+            CMCD_from0toS(i) = CDWB_contrib(obj1, CD_from0toS(i), deg2rad(alfa_from0toS(i)), XAC, XCG, bCG, MAC);
             CMCT_from0toS(i) = CT_contr(obj1, CD_from0toS(i), Thrust_axes, MAC);
             CMCG_from0toS(i) = CM_aboutcg(obj1, CM0, CM_landing_gear, CM_slope, CL_from0toS(i));
             % HORIZONTAL TAIL LIFT COEFFICIENT

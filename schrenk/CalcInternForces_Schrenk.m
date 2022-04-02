@@ -156,6 +156,20 @@ switch (Straight_flight_Case)
             CL_C2  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CL_C2.value;
             CL_D   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
             % ---------------------------------------------------------------------------------------------
+            CD_S   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
+            CD_A1  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
+            CD_C1  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CD_C1.value;
+            CD_C   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value;
+            CD_C2  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CD_C2.value;
+            CD_D   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
+            % ---------------------------------------------------------------------------------------------
+            CM_S   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
+            CM_A1  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
+            CM_C1  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CM_C1.value;
+            CM_C   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CM_C.value;
+            CM_C2  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CM_C2.value;
+            CM_D   = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_D.value;
+            % ---------------------------------------------------------------------------------------------
             alfaS  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
             alfaA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.value;
             alfaC1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.alfaC1.value;
@@ -234,12 +248,14 @@ switch (Straight_flight_Case)
 
             % Drag coefficient ditribution along the span at the Point S (close to
             % stall)
-            cd_S = zeros(length(cl_S), 1);
+            %cd_S = zeros(length(cl_S), 1);
+            cd_S = CD_S*ones(length(cl_S), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point S
-            cm_S = zeros(length(cl_S), 1);
+            % cm_S = zeros(length(cl_S), 1);
+            cm_S = CM_S*ones(length(cl_S), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
 
@@ -361,12 +377,14 @@ switch (Straight_flight_Case)
 
             % Drag coefficient ditribution along the span at the Point A1 (close to
             % stall)
-            cd_A1 = zeros(length(cl_A1), 1);
+            %cd_A1 = zeros(length(cl_A1), 1);
+            cd_A1 = CD_A1*ones(length(cl_A1), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point A1
-            cm_A1 = zeros(length(cl_A1), 1);
+            % cm_A1 = zeros(length(cl_A1), 1);
+            cm_A1 = CM_A1*ones(length(cl_A1), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
 
@@ -486,12 +504,14 @@ switch (Straight_flight_Case)
 
             % Drag coefficient ditribution along the span at the Point C1 (close to
             % stall)
-            cd_C1 = zeros(length(cl_C1), 1);
+            % cd_C1 = zeros(length(cl_C1), 1);
+            cd_C1 = CD_C1 * ones(length(cl_C1), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cd_C.value = cd_C1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cd_C.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point C1
-            cm_C1 = zeros(length(cl_C1), 1);
+            % cm_C1 = zeros(length(cl_C1), 1);
+            cm_C1 = CM_C1 * ones(length(cl_C1), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cm_C.value = cm_C1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.cm_C.Attributes.unit = "Non dimensional";
 
@@ -611,12 +631,14 @@ switch (Straight_flight_Case)
 
             % Drag coefficient ditribution along the span at the Point C (close to
             % stall)
-            cd_C = zeros(length(cl_C), 1);
+            % cd_C = zeros(length(cl_C), 1);
+            cd_C = CD_C * ones(length(cl_C), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point C
-            cm_C = zeros(length(cl_C), 1);
+            % cm_C = zeros(length(cl_C), 1);
+            cm_C = CM_C * ones(length(cl_C), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
 
@@ -736,12 +758,13 @@ switch (Straight_flight_Case)
 
             % Drag coefficient ditribution along the span at the Point C2 (close to
             % stall)
-            cd_C2 = zeros(length(cl_C2), 1);
+            %cd_C2 = zeros(length(cl_C2), 1);
+            cd_C2 = CD_C2 * ones(length(cl_C2), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cd_C.value = cd_C2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cd_C.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point C2
-            cm_C2 = zeros(length(cl_C2), 1);
+            cm_C2 = CM_C2 * ones(length(cl_C2), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cm_C.value = cm_C2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.cm_C.Attributes.unit = "Non dimensional";
 
@@ -861,12 +884,13 @@ switch (Straight_flight_Case)
 
             % Drag coefficient ditribution along the span at the Point D (close to
             % stall)
-            cd_D = zeros(length(cl_D), 1);
+            %cd_D = zeros(length(cl_D), 1);
+            cd_D = CD_D * ones(length(cl_D), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.value = cd_D;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_C.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point D
-            cm_D = zeros(length(cl_D), 1);
+            cm_D = CM_D * ones(length(cl_D), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value = cm_D;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.Attributes.unit = "Non dimensional";            
 
@@ -1109,6 +1133,16 @@ switch (Straight_flight_Case)
             CL_C  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
             CL_D  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
             % ---------------------------------------------------------------------------------------------
+            CD_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
+            CD_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
+            CD_C  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value;
+            CD_D  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
+            % ---------------------------------------------------------------------------------------------
+            CM_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
+            CM_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
+            CM_C  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CM_C.value;
+            CM_D  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_D.value;
+            % ---------------------------------------------------------------------------------------------
             alfaS  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
             alfaA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.value;
             alfaC  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.alfaC.value;
@@ -1184,12 +1218,14 @@ switch (Straight_flight_Case)
 
             % Drag coefficient ditribution along the span at the Point S (close to
             % stall)
-            cd_S = zeros(length(cl_S), 1);
+            % cd_S = zeros(length(cl_S), 1);
+            cd_S = CD_S * ones(length(cl_S), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point S
-            cm_S = zeros(length(cl_S), 1);
+            % cm_S = zeros(length(cl_S), 1);
+            cm_S = CM_S * ones(length(cl_S), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
 
@@ -1310,12 +1346,14 @@ switch (Straight_flight_Case)
 
             % Drag coefficient ditribution along the span at the Point A1 (close to
             % stall)
-            cd_A1 = zeros(length(cl_A1), 1);
+            % cd_A1 = zeros(length(cl_A1), 1);
+            cd_A1 = CD_A1 * ones(length(cl_A1),1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point A1
-            cm_A1 = zeros(length(cl_A1), 1);
+            % cm_A1 = zeros(length(cl_A1), 1);
+            cm_A1 = CM_A1 * ones(length(cl_A1),1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
 
@@ -1435,12 +1473,14 @@ switch (Straight_flight_Case)
 
             % Drag coefficient ditribution along the span at the Point C (close to
             % stall)
-            cd_C = zeros(length(cl_C), 1);
+            % cd_C = zeros(length(cl_C), 1);
+            cd_C = CD_C * ones(length(cl_C), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point C
-            cm_C = zeros(length(cl_C), 1);
+            % cm_C = zeros(length(cl_C), 1);
+            cm_C = CM_C * ones(length(cl_C), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
 
@@ -1560,12 +1600,14 @@ switch (Straight_flight_Case)
 
             % Drag coefficient ditribution along the span at the Point D (close to
             % stall)
-            cd_D = zeros(length(cl_D), 1);
+            % cd_D = zeros(length(cl_D), 1);
+            cd_D = CD_D * ones(length(cl_D), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.value = cd_D;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point D
-            cm_D = zeros(length(cl_D), 1);
+            % cm_D = zeros(length(cl_D), 1);
+            cm_D = CM_D * ones(length(cl_D), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value = cm_D;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.Attributes.unit = "Non dimensional";
 
@@ -1802,6 +1844,18 @@ switch (Straight_flight_Case)
         CL_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CL_C.value;
         CL_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CL_D.value;
         % ---------------------------------------------------------------------------------------------
+        CD_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
+        CD_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CD_A.value;
+        CD_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
+        CD_C  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value;
+        CD_D  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
+        % ---------------------------------------------------------------------------------------------
+        CM_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
+        CM_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CM_A.value;
+        CM_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
+        CM_C  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CM_C.value;
+        CM_D  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_D.value;
+        % ---------------------------------------------------------------------------------------------
         alfaS  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.alfaS.value;
         alfaA  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.alfaA.value;
         alfaA1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.alfaA1.value;
@@ -1878,12 +1932,13 @@ switch (Straight_flight_Case)
         
         % Drag coefficient ditribution along the span at the Point S (close to
         % stall)
-        cd_S = zeros(length(cl_S), 1);
+        % cd_S = zeros(length(cl_S), 1);
+        cd_S = CD_S * ones(length(cl_S), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
         
         % Pitching moment coefficient distribution along the span at Point S
-        cm_S = zeros(length(cl_S), 1);
+        cm_S = CM_S * ones(length(cl_S), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
         
@@ -2004,12 +2059,14 @@ switch (Straight_flight_Case)
         
         % Drag coefficient ditribution along the span at the Point A (close to
         % stall)
-        cd_A = zeros(length(cl_A), 1);
+        % cd_A = zeros(length(cl_A), 1);
+        cd_A = CD_A * ones(length(cl_A), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.value = cd_A;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cd_A.Attributes.unit = "Non dimensional";
         
         % Pitching moment coefficient distribution along the span at Point A
-        cm_A = zeros(length(cl_A), 1);
+        % cm_A = zeros(length(cl_A), 1);
+        cm_A = CM_A * ones(length(cl_A), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.value = cm_A;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.cm_A.Attributes.unit = "Non dimensional";
         
@@ -2129,12 +2186,14 @@ switch (Straight_flight_Case)
         
         % Drag coefficient ditribution along the span at the Point A1 (close to
         % stall)
-        cd_A1 = zeros(length(cl_A1), 1);
+        % cd_A1 = zeros(length(cl_A1), 1);
+        cd_A1 = CD_A1 * ones(length(cl_A1), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
         
         % Pitching moment coefficient distribution along the span at Point A1
-        cm_A1 = zeros(length(cl_A1), 1);
+        % cm_A1 = zeros(length(cl_A1), 1);
+        cm_A1 = CM_A1 * ones(length(cl_A1), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
         
@@ -2254,12 +2313,14 @@ switch (Straight_flight_Case)
         
         % Drag coefficient ditribution along the span at the Point C (close to
         % stall)
-        cd_C = zeros(length(cl_C), 1);
+        %cd_C = zeros(length(cl_C), 1);
+        cd_C = CD_C * ones(length(cl_C), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.value = cd_C;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cd_C.Attributes.unit = "Non dimensional";
         
         % Pitching moment coefficient distribution along the span at Point C
-        cm_C = zeros(length(cl_C), 1);
+        % cm_C = zeros(length(cl_C), 1);
+        cm_C = CM_C * ones(length(cl_C), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.value = cm_C;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.cm_C.Attributes.unit = "Non dimensional";
         
@@ -2379,12 +2440,14 @@ switch (Straight_flight_Case)
         
         % Drag coefficient ditribution along the span at the Point D (close to
         % stall)
-        cd_D = zeros(length(cl_D), 1);
+        %cd_D = zeros(length(cl_D), 1);
+        cd_D = CD_D * ones(length(cl_D), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.value = cd_D;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cd_D.Attributes.unit = "Non dimensional";
         
         % Pitching moment coefficient distribution along the span at Point D
-        cm_D = zeros(length(cl_D), 1);
+        % cm_D = zeros(length(cl_D), 1);
+        cm_D = CM_D * ones(length(cl_D), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.value = cm_D;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.cm_D.Attributes.unit = "Non dimensional";
         
@@ -2692,12 +2755,14 @@ switch (Inverted_flight_Case)
         
             % Drag coefficient ditribution along the span at the Point S_inv (close to
             % stall)
-            cd_S_inv = zeros(length(cl_S_inv), 1);
+            % cd_S_inv = zeros(length(cl_S_inv), 1);
+            cd_S_inv = CD_S_inv * ones(length(cl_S_inv), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cd_S_inv.value = cd_S_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cd_S_inv.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point S_inv
-            cm_S_inv = zeros(length(cl_S_inv), 1);
+            % cm_S_inv = zeros(length(cl_S_inv), 1);
+            cm_S_inv = CM_S_inv * ones(length(cl_S_inv), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cm_S_inv.value = cm_S_inv;  
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cm_S_inv.Attributes.unit = "Non dimensional";       
 
@@ -2813,18 +2878,20 @@ switch (Inverted_flight_Case)
             
             %% POINT G CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point G
-            cl_G = CL_G * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_G = -CL_G * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.value = cl_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.Attributes.unit = "Non dimensional";
             
             % Drag coefficient ditribution along the span at the Point G (close to
             % stall)
-            cd_G = zeros(length(cl_G), 1);
+            % cd_G = zeros(length(cl_G), 1);
+            cd_G = CD_G * ones(length(cl_G), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cd_G.value = cd_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cd_G.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at Point G
-            cm_G = zeros(length(cl_G), 1);
+            % cm_G = zeros(length(cl_G), 1);
+            cm_G = CM_G * ones(length(cl_G), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cm_G.value = cm_G;    
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cm_G.Attributes.unit = "Non dimensional";
 
@@ -2940,19 +3007,21 @@ switch (Inverted_flight_Case)
             
             %% POINT G1 CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point G1
-            cl_G1 = CL_G1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_G1 = -CL_G1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cl_G1.value = cl_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cl_G1.Attributes.unit = "Non dimensional";
             
             % Drag coefficient ditribution along the span at the Point G1 (close to
             % stall)
-            cd_G1 = zeros(length(cl_G1), 1);
+            % cd_G1 = zeros(length(cl_G1), 1);
+            cd_G1 = CD_G1 * ones(length(cl_G1), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cd_G1.value = cd_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cd_G1.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at
             % Point G1
-            cm_G1 = zeros(length(cl_G1), 1);
+            % cm_G1 = zeros(length(cl_G1), 1);
+            cm_G1 = CM_G1 * ones(length(cl_G1), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cm_G1.value = cm_G1;    
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cm_G1.Attributes.unit = "Non dimensional";       
 
@@ -3068,19 +3137,21 @@ switch (Inverted_flight_Case)
             
             %% POINT F CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point F
-            cl_F = CL_F * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_F = -CL_F * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.value = cl_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.Attributes.unit = "Non dimensional";
             
             % Drag coefficient ditribution along the span at the Point F (close to
             % stall)
-            cd_F = zeros(length(cl_F), 1);
+            % cd_F = zeros(length(cl_F), 1);
+            cd_F = CD_F * ones(length(cl_F), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cd_F.value = cd_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cd_F.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at
             % Point F
-            cm_F = zeros(length(cl_F), 1);
+            % cm_F = zeros(length(cl_F), 1);
+            cm_F = CM_F * ones(length(cl_F), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cm_F.value = cm_F;    
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cm_F.Attributes.unit = "Non dimensional";      
 
@@ -3196,19 +3267,21 @@ switch (Inverted_flight_Case)
             
             %% POINT G2 CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point G2
-            cl_G2 = CL_G2 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_G2 = -CL_G2 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cl_G2.value = cl_G2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cl_G2.Attributes.unit = "Non dimensional";
             
             % Drag coefficient ditribution along the span at the Point G2 (close to
             % stall)
-            cd_G2 = zeros(length(cl_G2), 1);
+            % cd_G2 = zeros(length(cl_G2), 1);
+            cd_G2 = CD_G2 * ones(length(cl_G2), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cd_G2.value = cd_G2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cd_G2.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at
             % Point G2
-            cm_G2 = zeros(length(cl_G2), 1);
+            % cm_G2 = zeros(length(cl_G2), 1);
+            cm_G2 = CM_G2 * ones(length(cl_G2), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cm_G2.value = cm_G2;    
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cm_G2.Attributes.unit = "Non dimensional";           
 
@@ -3324,19 +3397,21 @@ switch (Inverted_flight_Case)
             
             %% POINT E CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point E
-            cl_E = CL_E * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_E = -CL_E * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.value = cl_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.Attributes.unit = "Non dimensional";
             
             % Drag coefficient ditribution along the span at the Point E (close to
             % stall)
-            cd_E  = zeros(length(cl_E ), 1);
+            % cd_E  = zeros(length(cl_E ), 1);
+            cd_E  = CD_E * ones(length(cl_E ), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cd_E .value = cd_E ;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cd_E.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at
             % Point E
-            cm_E  = zeros(length(cl_E), 1);
+            % cm_E  = zeros(length(cl_E), 1);
+            cm_E  = CM_E * ones(length(cl_E ), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cm_E.value = cm_E;    
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cm_E.Attributes.unit = "Non dimensional";        
 
@@ -3549,11 +3624,11 @@ switch (Inverted_flight_Case)
             figure(25);
 
             plot(flip(half_span), -cl_S_inv, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_G, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_G1, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_F, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_G2, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_E, 'LineWidth', 1.5)
+            plot(flip(half_span), -cl_G, 'LineWidth', 1.5)
+            plot(flip(half_span), -cl_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), -cl_F, 'LineWidth', 1.5)
+            plot(flip(half_span), -cl_G2, 'LineWidth', 1.5)
+            plot(flip(half_span), -cl_E, 'LineWidth', 1.5)
 
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -3722,13 +3797,15 @@ switch (Inverted_flight_Case)
             
             % Drag coefficient ditribution along the span at the Point S_inv (close to
             % stall)
-            cd_S_inv  = zeros(length(cl_S_inv ), 1);
+            %cd_S_inv  = zeros(length(cl_S_inv ), 1);
+            cd_S_inv  = CD_S_inv * ones(length(cl_S_inv ), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cd_S_inv .value = cd_S_inv ;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cd_S_inv.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at
             % Point S_inv
-            cm_S_inv  = zeros(length(cl_S_inv), 1);
+            % cm_S_inv  = zeros(length(cl_S_inv), 1);
+            cm_S_inv  = CM_S_inv * ones(length(cl_S_inv ), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cm_S_inv.value = cm_S_inv;    
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cm_S_inv.Attributes.unit = "Non dimensional";          
 
@@ -3844,19 +3921,21 @@ switch (Inverted_flight_Case)
 
             %% POINT G CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point G
-            cl_G = CL_G * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_G = -CL_G * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.value = cl_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.Attributes.unit = "Non dimensional";
             
             % Drag coefficient ditribution along the span at the Point G (close to
             % stall)
-            cd_G  = zeros(length(cl_G ), 1);
+            %cd_G = zeros(length(cl_G),1);
+            cd_G  = CD_G * ones(length(cl_G ), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cd_G .value = cd_G ;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cd_G.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at
             % Point G
-            cm_G  = zeros(length(cl_G), 1);
+            % cm_G  = zeros(length(cl_G), 1);
+            cm_G  = CM_G * ones(length(cl_G), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cm_G.value = cm_G;    
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cm_G.Attributes.unit = "Non dimensional"; 
 
@@ -3972,19 +4051,21 @@ switch (Inverted_flight_Case)
             
             %% POINT G1 CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point G1
-            cl_G1 = CL_G1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_G1 = -CL_G1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cl_G1.value = cl_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cl_G1.Attributes.unit = "Non dimensional";
             
             % Drag coefficient ditribution along the span at the Point G1 (close to
             % stall)
-            cd_G1  = zeros(length(cl_G1), 1);
+            %cd_G1  = zeros(length(cl_G1), 1);
+            cd_G1  = CD_G1 * ones(length(cl_G1), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cd_G1 .value = cd_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cd_G1.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at
             % Point G1
-            cm_G1  = zeros(length(cl_G1), 1);
+            % cm_G1  = zeros(length(cl_G1), 1);
+            cm_G1  = CM_G1 * ones(length(cl_G1), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cm_G1.value = cm_G1;    
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cm_G1.Attributes.unit = "Non dimensional";           
 
@@ -4100,19 +4181,21 @@ switch (Inverted_flight_Case)
                   
             %% POINT F CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point F
-            cl_F = CL_F * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_F = -CL_F * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.value = cl_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.Attributes.unit = "Non dimensional";
             
             % Drag coefficient ditribution along the span at the Point F (close to
             % stall)
-            cd_F  = zeros(length(cl_F), 1);
+            %cd_F  = zeros(length(cl_F), 1);
+            cd_F  = CD_F * ones(length(cl_F), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cd_F.value = cd_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cd_F.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at
             % Point F
-            cm_F  = zeros(length(cl_F), 1);
+            % cm_F  = zeros(length(cl_F), 1);
+            cm_F = CM_F * ones(length(cl_F), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cm_F.value = cm_F;    
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cm_F.Attributes.unit = "Non dimensional";        
 
@@ -4228,19 +4311,21 @@ switch (Inverted_flight_Case)
             
             %% POINT E CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point E
-            cl_E = CL_E * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_E = -CL_E * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.value = cl_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.Attributes.unit = "Non dimensional";
             
             % Drag coefficient ditribution along the span at the Point E (close to
             % stall)
-            cd_E  = zeros(length(cl_E), 1);
+            %cd_E  = zeros(length(cl_E), 1);
+            cd_E  = CD_E * ones(length(cl_E), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cd_E.value = cd_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cd_E.Attributes.unit = "Non dimensional";
 
             % Pitching moment coefficient distribution along the span at
             % Point F
-            cm_E  = zeros(length(cl_E), 1);
+            % cm_E  = zeros(length(cl_E), 1);
+            cm_E  = CM_E * ones(length(cl_E), 1);
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cm_E.value = cm_E;    
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cm_E.Attributes.unit = "Non dimensional";         
 
@@ -4445,10 +4530,10 @@ switch (Inverted_flight_Case)
             figure(25);
 
             plot(flip(half_span), -cl_S_inv, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_G, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_G1, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_F, 'LineWidth', 1.5)
-            plot(flip(half_span), cl_E, 'LineWidth', 1.5)
+            plot(flip(half_span), -cl_G, 'LineWidth', 1.5)
+            plot(flip(half_span), -cl_G1, 'LineWidth', 1.5)
+            plot(flip(half_span), -cl_F, 'LineWidth', 1.5)
+            plot(flip(half_span), -cl_E, 'LineWidth', 1.5)
 
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
             ylabel("$cl = cl(y)$", "Interpreter", "latex")
@@ -4613,13 +4698,15 @@ switch (Inverted_flight_Case)
             
         % Drag coefficient ditribution along the span at the Point S_inv (close to
         % stall)
-        cd_S_inv  = zeros(length(cl_S_inv), 1);
+        %cd_S_inv  = zeros(length(cl_S_inv), 1);
+        cd_S_inv  = CD_S_inv * ones(length(cl_S_inv), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cd_S_inv.value = cd_S_inv;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cd_S_inv.Attributes.unit = "Non dimensional";
 
         % Pitching moment coefficient distribution along the span at
         % Point S_inv
-        cm_S_inv  = zeros(length(cl_S_inv), 1);
+        % cm_S_inv  = zeros(length(cl_S_inv), 1);
+        cm_S_inv  = CM_S_inv * ones(length(cl_S_inv), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cm_S_inv.value = cm_S_inv;    
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.cm_S_inv.Attributes.unit = "Non dimensional";        
 
@@ -4735,19 +4822,21 @@ switch (Inverted_flight_Case)
 
         %% POINT G CALCULATIONS                 
         % Lift coefficient distribution along the span at the Point G
-        cl_G = CL_G * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+        cl_G = -CL_G * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.value = cl_G;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.Attributes.unit = "Non dimensional";        
         
         % Drag coefficient ditribution along the span at the Point G (close to
         % stall)
-        cd_G  = zeros(length(cl_G), 1);
+        %cd_G  = zeros(length(cl_G), 1);
+        cd_G  = CD_G * ones(length(cl_G), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cd_G.value = cd_G;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cd_G.Attributes.unit = "Non dimensional";
 
         % Pitching moment coefficient distribution along the span at
         % Point G
-        cm_G  = zeros(length(cl_G), 1);
+        % cm_G  = zeros(length(cl_G), 1);
+        cm_G  = CM_G * ones(length(cl_G), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cm_G.value = cm_G;    
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cm_G.Attributes.unit = "Non dimensional";  
 
@@ -4863,19 +4952,21 @@ switch (Inverted_flight_Case)
         
         %% POINT G1 CALCULATIONS                 
         % Lift coefficient distribution along the span at the Point G1
-        cl_G1 = CL_G1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+        cl_G1 = -CL_G1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cl_G1.value = cl_G1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cl_G1.Attributes.unit = "Non dimensional";
             
         % Drag coefficient ditribution along the span at the Point G1 (close to
         % stall)
-        cd_G1  = zeros(length(cl_G1), 1);
+        % cd_G1  = zeros(length(cl_G1), 1);
+        cd_G1  = CD_G1 * ones(length(cl_G1), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cd_G1.value = cd_G1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cd_G1.Attributes.unit = "Non dimensional";
 
         % Pitching moment coefficient distribution along the span at
         % Point G1
-        cm_G1  = zeros(length(cl_G1), 1);
+        % cm_G1  = zeros(length(cl_G1), 1);
+        cm_G1  = CM_G1 * ones(length(cl_G1), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cm_G1.value = cm_G1;    
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cm_G1.Attributes.unit = "Non dimensional";        
 
@@ -4991,19 +5082,21 @@ switch (Inverted_flight_Case)
         
         %% POINT F CALCULATIONS                 
         % Lift coefficient distribution along the span at the Point F
-        cl_F = CL_F * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+        cl_F = -CL_F * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.value = cl_F;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.Attributes.unit = "Non dimensional";
             
         % Drag coefficient ditribution along the span at the Point F (close to
         % stall)
-        cd_F  = zeros(length(cl_F), 1);
+        %cd_F  = zeros(length(cl_F), 1);
+        cd_F  = CD_F * ones(length(cl_F), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cd_F.value = cd_F;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cd_F.Attributes.unit = "Non dimensional";
 
         % Pitching moment coefficient distribution along the span at
         % Point F
-        cm_F  = zeros(length(cl_F), 1);
+        % cm_F  = zeros(length(cl_F), 1);
+        cm_F  = CM_F * ones(length(cl_F), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cm_F.value = cm_F;    
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cm_F.Attributes.unit = "Non dimensional";     
 
@@ -5118,19 +5211,21 @@ switch (Inverted_flight_Case)
         % =================================================================         
         %% POINT E CALCULATIONS                 
         % Lift coefficient distribution along the span at the Point E
-        cl_E = CL_E * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+        cl_E = -CL_E * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.value = cl_E;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.Attributes.unit = "Non dimensional";
             
         % Drag coefficient ditribution along the span at the Point E (close to
         % stall)
-        cd_E  = zeros(length(cl_E), 1);
+        % cd_E  = zeros(length(cl_E), 1);
+        cd_E  = CD_E * ones(length(cl_E), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cd_E.value = cd_E;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cd_E.Attributes.unit = "Non dimensional";
 
         % Pitching moment coefficient distribution along the span at
         % Point E
-        cm_E  = zeros(length(cl_E), 1);
+        % cm_E  = zeros(length(cl_E), 1);
+        cm_E  = CM_E * ones(length(cl_E), 1);
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cm_E.value = cm_E;    
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cm_E.Attributes.unit = "Non dimensional";         
 
@@ -5375,7 +5470,7 @@ switch (Inverted_flight_Case)
 
         xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
         ylabel("$c_d = c_d(y)$", "Interpreter", "latex")
-        title("Lift distr. comparison", "Interpreter", "latex") 
+        title("Drag distr. comparison", "Interpreter", "latex") 
 
         legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
         

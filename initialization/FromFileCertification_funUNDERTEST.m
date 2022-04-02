@@ -246,7 +246,13 @@ VarText={'Aircraft_name', ...      % PRELIMINARY INPUTS
          'gust_cruise', ...
          'gust_dive', ...                  % CS PRESCRIPTIONS
          'undercarriage_main_diameter', ...    % LANDING GEAR
-         'undercarriage_nose_diameter', ...     % LANDING GEAR
+         'undercarriage_nose_diameter', ...    
+         'x_main_undercarriage_pos', ...
+         'y_main_undercarriage_pos', ...
+         'z_main_undercarriage_pos', ...       
+         'x_nose_undercarriage_pos', ...
+         'y_nose_undercarriage_pos', ...
+         'z_nose_undercarriage_pos', ...      % LANDING GEAR
          };
      VarText = VarText';
 % -----------------------------
@@ -1118,22 +1124,27 @@ if LengthIndex==length(VarText)
     % ---------------------------------------------------------------------
     lf = Aircraft.Geometry.Fuselage.length.value;
     df = Aircraft.Geometry.Fuselage.diameter.value;
-    Aircraft.Geometry.Undercarriage.Main.x.value = 0.6*lf; 
-    Aircraft.Geometry.Undercarriage.Main.x.Attributes.unit = "Fuselage length percentage"; 
-    Aircraft.Geometry.Undercarriage.Main.y.value = 1.1*df; 
-    Aircraft.Geometry.Undercarriage.Main.y.Attributes.unit = "Fuselage diameter percentage";
-    Aircraft.Geometry.Undercarriage.Main.z.value = -1.1*df; 
-    Aircraft.Geometry.Undercarriage.Main.z.Attributes.unit = "Fuselage diameter percentage"; 
-    
-    Aircraft.Geometry.Undercarriage.Nose.x.value = 0.1*lf; 
-    Aircraft.Geometry.Undercarriage.Nose.x.Attributes.unit = "Fuselage length percentage";
-    Aircraft.Geometry.Undercarriage.Nose.y.value = 0.0*df; 
-    Aircraft.Geometry.Undercarriage.Nose.y.Attributes.unit = "Fuselage diameter percentage";
-    Aircraft.Geometry.Undercarriage.Nose.z.value = -1.1*df;
-    Aircraft.Geometry.Undercarriage.Nose.z.Attributes.unit = "Fuselage length percentage";
-    
-    Aircraft.Geometry.Undercarriage.wheel_width.value = 0.1*df;
-    Aircraft.Geometry.Undercarriage.wheel_width.Attributes.unit = "Fuselage diameter percentage";
+    p = strcmp('x_main_undercarriage_pos', label); 
+    Aircraft.Geometry.Undercarriage.Main.x.value = str2double(table2array(value(p==1,1))); % 0.6*lf / lf; 
+    Aircraft.Geometry.Undercarriage.Main.x.Attributes.unit = char(table2array(unit(p==1,1))); % "Fuselage length percentage"; 
+    p = strcmp('y_main_undercarriage_pos', label); 
+    Aircraft.Geometry.Undercarriage.Main.y.value = str2double(table2array(value(p==1,1))); % 1.1*df / df; 
+    Aircraft.Geometry.Undercarriage.Main.y.Attributes.unit = char(table2array(unit(p==1,1))); % "Fuselage diameter percentage";
+    p = strcmp('z_main_undercarriage_pos', label); 
+    Aircraft.Geometry.Undercarriage.Main.z.value = str2double(table2array(value(p==1,1))); % -1.1*df / df; 
+    Aircraft.Geometry.Undercarriage.Main.z.Attributes.unit = char(table2array(unit(p==1,1))); %"Fuselage diameter percentage"; 
+    p = strcmp('x_nose_undercarriage_pos', label); 
+    Aircraft.Geometry.Undercarriage.Nose.x.value =str2double(table2array(value(p==1,1)));  % 0.1*lf / lf; 
+    Aircraft.Geometry.Undercarriage.Nose.x.Attributes.unit = char(table2array(unit(p==1,1))); % "Fuselage length percentage";
+    p = strcmp('y_nose_undercarriage_pos', label);
+    Aircraft.Geometry.Undercarriage.Nose.y.value =str2double(table2array(value(p==1,1))); % 0.0*df / df; 
+    Aircraft.Geometry.Undercarriage.Nose.y.Attributes.unit = char(table2array(unit(p==1,1))); % "Fuselage diameter percentage";
+    p = strcmp('z_nose_undercarriage_pos', label);
+    Aircraft.Geometry.Undercarriage.Nose.z.value = str2double(table2array(value(p==1,1))); % -1.1*df / df;
+    Aircraft.Geometry.Undercarriage.Nose.z.Attributes.unit = char(table2array(unit(p==1,1))); %"Fuselage length percentage";
+    p = strcmp('wheel_width', label);
+    Aircraft.Geometry.Undercarriage.wheel_width.value = str2double(table2array(value(p==1,1))); % 0.1*df / df;
+    Aircraft.Geometry.Undercarriage.wheel_width.Attributes.unit = char(table2array(unit(p==1,1))); % "Fuselage diameter percentage";
     % ---------------------------------------------------------------------
 
 
