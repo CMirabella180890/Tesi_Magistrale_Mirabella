@@ -3629,7 +3629,7 @@ switch (Inverted_flight_Case)
             % ================================================================= 
             for i = 1:length(V_fromSinvtoG)
                 CL_fromSinvtoG(i)   = CLmax_func(rho0, V_fromSinvtoG(i), WS, n_fromSinvtoG(i));
-                alfa_from0toSinv(i) = alpha_fullmodel_inv(CL_fromSinvtoG(i), CL_max_inv, CL0, CLalfa, alfa_0l);
+                alfa_fromSinvtoG(i) = alpha_fullmodel_inv(CL_fromSinvtoG(i), CL_max_inv, CL0, CLalfa, alfa_0l);
                 CD_fromSinvtoG(i)   =  polyval(p_CD_wb1, alfa_fromSinvtoG(i));
                 q_fromSinvtoG(i)    = 0.5*rho0*(V_fromSinvtoG(i))^2;
                 WBL_fromSinvtoG(i)  = q_fromSinvtoG(i)*S*CL_fromSinvtoG(i)*1e-1;
