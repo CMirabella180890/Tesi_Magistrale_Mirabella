@@ -198,132 +198,136 @@ switch (Straight_flight_Case)
             movefile LiftComparisonWithPoints.pdf Output
             movefile LiftComparisonWithPoints.png Output    
             
-        % LOAD A CLASS OF FUNCTIONS USEFUL TO EVALUATE ALL THE REQUIRED DATA
-        obj2 = ShearBendingTorsion; 
- 
-            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
-            wing_type = Aircraft.Geometry.Wing.type.value;
-            switch (wing_type)
-                case 'Rectangular'
-                    % CHORD PARAMETERS
-                    croot       = Aircraft.Geometry.Wing.croot.value;
-                    ctip        = Aircraft.Geometry.Wing.ctip.value;
-                    taper_ratio = ctip / croot;
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
-                    Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
-                    
-                    % Calculation of a chord distribution with a convenient, simple function.
-                    % 
-                    % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                    % A complete documentation of this function is included inside the class
-                    % ShearBendingTorsion.m
-                    S           = Aircraft.Geometry.Wing.S.value;
-                    b           = Aircraft.Geometry.Wing.b.value;
-                    chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
-                    chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    
-                case 'With_kinks'
-                    if (kink1 ~= kink2)
-                        % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-                        % WING THIRD SECTION - CHORDS
-                        ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        taper_ratio_section3 = ctip_section3 / croot_section3;
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
-                        Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
-                        chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+            % LOAD A CLASS OF FUNCTIONS USEFUL TO EVALUATE ALL THE REQUIRED DATA
+            obj2 = ShearBendingTorsion; 
+        
+             % CHORD CALCULATION AND UNIT LIFT DISTRIBUTION
+            CalcUnitLiftDistr 
+            
+%             kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+%             kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
+%             wing_type = Aircraft.Geometry.Wing.type.value;
+%             switch (wing_type)
+%                 case 'Rectangular'
+%                     % CHORD PARAMETERS
+%                     croot       = Aircraft.Geometry.Wing.croot.value;
+%                     ctip        = Aircraft.Geometry.Wing.ctip.value;
+%                     taper_ratio = ctip / croot;
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
+%                     Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
+%                     
+%                     % Calculation of a chord distribution with a convenient, simple function.
+%                     % 
+%                     % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                     % A complete documentation of this function is included inside the class
+%                     % ShearBendingTorsion.m
+%                     S           = Aircraft.Geometry.Wing.S.value;
+%                     b           = Aircraft.Geometry.Wing.b.value;
+%                     chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
+%                     chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     
+%                 case 'With_kinks'
+%                     if (kink1 ~= kink2)
+%                         % WING FIRST SECTION - CHORDS
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % WING SECOND SECTION - CHORDS
+%                         ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+%                         % WING THIRD SECTION - CHORDS
+%                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         taper_ratio_section3 = ctip_section3 / croot_section3;
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
+%                         Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
+%                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+% 
+%                     elseif (kink1 == kink2)
+%                         % FROM ROOT TO KINK
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % FROM KINK TO TIP
+%                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+% 
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+% 
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     end
+%             end
+%             % =================================================================
+%         chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
+%         S                  = Aircraft.Geometry.Wing.S.value;
+%         b                  = Aircraft.Geometry.Wing.b.value;
+%         % Lift coefficient distribution at a global CL equal to one
+%         % A simple function to evaluate the lift coefficient distribution along the
+%         % span cl = cl(y) when the associated global lift coefficient of the whole
+%         % wing is equal to 1.0; the function use a method similar to that suggested
+%         % by Abbott in Theory of Wing Section. See the complete documentation
+%         % inside the cl_unit_lift.m file
+%         CL_equal_to_one = 0.0;
+%         tol = 1e-1;
+%         cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
+%         global_CL       = zeros(length(cl_interpolated(1,:)), 1);
+%         k_cl            = (b*0.5)/S;
+%         for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
+%             global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
+%             if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
+%                     CL_equal_to_one = cl_interpolated(:, i);
+%             end
+%         end
+%         bool_CL_check = global_CL < 1.0; 
+%         if ~any(bool_CL_check) == 1  
+%             error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
+%         end
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
 
-                    elseif (kink1 == kink2)
-                        % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % FROM KINK TO TIP
-                        ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    end
-            end
-            % =================================================================
-        chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
-        S                  = Aircraft.Geometry.Wing.S.value;
-        b                  = Aircraft.Geometry.Wing.b.value;
-        % Lift coefficient distribution at a global CL equal to one
-        % A simple function to evaluate the lift coefficient distribution along the
-        % span cl = cl(y) when the associated global lift coefficient of the whole
-        % wing is equal to 1.0; the function use a method similar to that suggested
-        % by Abbott in Theory of Wing Section. See the complete documentation
-        % inside the cl_unit_lift.m file
-        CL_equal_to_one = 0.0;
-        tol = 1e-1;
-        cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
-        global_CL       = zeros(length(cl_interpolated(1,:)), 1);
-        k_cl            = (b*0.5)/S;
-        for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
-            global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
-            if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
-                    CL_equal_to_one = cl_interpolated(:, i);
-            end
-        end
-        bool_CL_check = global_CL < 1.0; 
-        if ~any(bool_CL_check) == 1  
-            error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
-        end
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
-
+CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value;
             %% POINT S CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point S
             cl_S = CL_S*CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
@@ -340,19 +344,19 @@ switch (Straight_flight_Case)
             % ATTENZIONE! -------------------------- > PARTE DA MODIFICARE 
             % INSERIRE MESHGRID MATLAB O INTERP MATLAB PER EVITARE UN CM
             % TROPPO GRANDE! PARAMETRO DI ACCESSO AL MESHGRID: ALPHA
-            CD_S                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
-            CM_S                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
+            CD_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
+            CM_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
             cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
             cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
+            cCd_calc                 = chord_distr.*cd_interpolated;
+            cCm_calc                 = chord_distr.*cm_interpolated;
             Interpolated_Global_CD_S = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_S = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_S(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_S(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_S(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_S(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_S(i) - CD_S) < 1e-1
                        cd_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -534,19 +538,15 @@ switch (Straight_flight_Case)
             yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
             % Selection of the interpolated distribution of CD and CM
-            CD_A1                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
-            CM_A1                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
+            CD_A1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
+            CM_A1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
             Interpolated_Global_CD_A1 = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_A1 = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_A1(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_A1(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_A1(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_A1(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_A1(i) - CD_A1) < 1e-1
                        cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -720,17 +720,13 @@ switch (Straight_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_C1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CD_C1.value;
             CM_C1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC1.CM_C1.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
             Interpolated_Global_CD_C1 = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_C1 = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_C1(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_C1(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_C1(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_C1(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_C1(i) - CD_C1) < 1e-1
                        cd_C1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_C1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -925,17 +921,13 @@ switch (Straight_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value;
             CM_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CM_C.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
             Interpolated_Global_CD_C = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_C = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_C(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_C(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_C(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_C(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_C(i) - CD_C) < 1e-1
                        cd_C  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_C  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -1131,17 +1123,13 @@ switch (Straight_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_C2                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CD_C2.value;
             CM_C2                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC2.CM_C2.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
             Interpolated_Global_CD_C2 = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_C2 = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_C2(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_C2(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_C2(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_C2(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_C2(i) - CD_C2) < 1e-1
                        cd_C2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_C2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -1341,17 +1329,13 @@ switch (Straight_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
             CM_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_D.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
             Interpolated_Global_CD_D = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_D = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_D(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_D(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_D(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_D(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-1
                        cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -1694,131 +1678,135 @@ switch (Straight_flight_Case)
         
         % LOAD A CLASS OF FUNCTIONS USEFUL TO EVALUATE ALL THE REQUIRED DATA
         obj2 = ShearBendingTorsion; 
- 
-            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
-            wing_type = Aircraft.Geometry.Wing.type.value;
-            switch (wing_type)
-                case 'Rectangular'
-                    % CHORD PARAMETERS
-                    croot       = Aircraft.Geometry.Wing.croot.value;
-                    ctip        = Aircraft.Geometry.Wing.ctip.value;
-                    taper_ratio = ctip / croot;
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
-                    Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
-                    
-                    % Calculation of a chord distribution with a convenient, simple function.
-                    % 
-                    % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                    % A complete documentation of this function is included inside the class
-                    % ShearBendingTorsion.m
-                    S           = Aircraft.Geometry.Wing.S.value;
-                    b           = Aircraft.Geometry.Wing.b.value;
-                    chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
-                    chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    
-                case 'With_kinks'
-                    if (kink1 ~= kink2)
-                        % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-                        % WING THIRD SECTION - CHORDS
-                        ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        taper_ratio_section3 = ctip_section3 / croot_section3;
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
-                        Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
-                        chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-
-                    elseif (kink1 == kink2)
-                        % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % FROM KINK TO TIP
-                        ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    end
-            end
-            % =================================================================
-        chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
-        S                  = Aircraft.Geometry.Wing.S.value;
-        b                  = Aircraft.Geometry.Wing.b.value;
-        % Lift coefficient distribution at a global CL equal to one
-        % A simple function to evaluate the lift coefficient distribution along the
-        % span cl = cl(y) when the associated global lift coefficient of the whole
-        % wing is equal to 1.0; the function use a method similar to that suggested
-        % by Abbott in Theory of Wing Section. See the complete documentation
-        % inside the cl_unit_lift.m file
-        CL_equal_to_one = 0.0;
-        tol = 1e-1;
-        cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
-        global_CL       = zeros(length(cl_interpolated(1,:)), 1);
-        k_cl            = (b*0.5)/S;
-        for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
-            global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
-            if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
-                    CL_equal_to_one = cl_interpolated(:, i);
-            end
-        end
-        bool_CL_check = global_CL < 1.0; 
-        if ~any(bool_CL_check) == 1  
-            error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
-        end
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
+        
+            % CHORD CALCULATION AND UNIT LIFT DISTRIBUTION
+            CalcUnitLiftDistr 
+            
+%             kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+%             kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
+%             wing_type = Aircraft.Geometry.Wing.type.value;
+%             switch (wing_type)
+%                 case 'Rectangular'
+%                     % CHORD PARAMETERS
+%                     croot       = Aircraft.Geometry.Wing.croot.value;
+%                     ctip        = Aircraft.Geometry.Wing.ctip.value;
+%                     taper_ratio = ctip / croot;
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
+%                     Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
+%                     
+%                     % Calculation of a chord distribution with a convenient, simple function.
+%                     % 
+%                     % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                     % A complete documentation of this function is included inside the class
+%                     % ShearBendingTorsion.m
+%                     S           = Aircraft.Geometry.Wing.S.value;
+%                     b           = Aircraft.Geometry.Wing.b.value;
+%                     chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
+%                     chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     
+%                 case 'With_kinks'
+%                     if (kink1 ~= kink2)
+%                         % WING FIRST SECTION - CHORDS
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % WING SECOND SECTION - CHORDS
+%                         ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+%                         % WING THIRD SECTION - CHORDS
+%                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         taper_ratio_section3 = ctip_section3 / croot_section3;
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
+%                         Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
+%                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+% 
+%                     elseif (kink1 == kink2)
+%                         % FROM ROOT TO KINK
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % FROM KINK TO TIP
+%                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+% 
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+% 
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     end
+%             end
+%             % =================================================================
+%         chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
+%         S                  = Aircraft.Geometry.Wing.S.value;
+%         b                  = Aircraft.Geometry.Wing.b.value;
+%         % Lift coefficient distribution at a global CL equal to one
+%         % A simple function to evaluate the lift coefficient distribution along the
+%         % span cl = cl(y) when the associated global lift coefficient of the whole
+%         % wing is equal to 1.0; the function use a method similar to that suggested
+%         % by Abbott in Theory of Wing Section. See the complete documentation
+%         % inside the cl_unit_lift.m file
+%         CL_equal_to_one = 0.0;
+%         tol = 1e-1;
+%         cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
+%         global_CL       = zeros(length(cl_interpolated(1,:)), 1);
+%         k_cl            = (b*0.5)/S;
+%         for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
+%             global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
+%             if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
+%                     CL_equal_to_one = cl_interpolated(:, i);
+%             end
+%         end
+%         bool_CL_check = global_CL < 1.0; 
+%         if ~any(bool_CL_check) == 1  
+%             error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
+%         end
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
         
             % =================================================================
+CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value;
             %% POINT S CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point S
             cl_S = CL_S*CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
@@ -1830,15 +1818,15 @@ switch (Straight_flight_Case)
             CM_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
             cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
             cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
+            cCd_calc                 = chord_distr.*cd_interpolated;
+            cCm_calc                 = chord_distr.*cm_interpolated;
             Interpolated_Global_CD_S = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_S = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(cd_interpolated(1,:))
-                    Interpolated_Global_CD_S(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_S(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_S(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_S(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_S(i) - CD_S) < 1e-1
                        cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -2042,17 +2030,13 @@ switch (Straight_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_A1                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
             CM_A1                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
             Interpolated_Global_CD_A1 = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_A1 = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                     Interpolated_Global_CD_A1(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                     Interpolated_Global_CM_A1(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_A1(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_A1(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                      if abs(Interpolated_Global_CD_A1(i) - CD_A1) < 1e-1
                        cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -2062,7 +2046,7 @@ switch (Straight_flight_Case)
                        cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                      end
                 end
-                if exist('check') == 0
+                if exist('check', 'var') == 0
                     cd_A1 = CD_A1 * ones(length(xi),1);
                     cm_A1 = CM_A1 * ones(length(xi),1);
                 end
@@ -2245,19 +2229,15 @@ switch (Straight_flight_Case)
             yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
             % Selection of the interpolated distribution of CD and CM
-            CD_C                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value;
-            CM_C                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CM_C.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
+            CD_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value;
+            CM_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CM_C.value;
             Interpolated_Global_CD_C = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_C = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_C(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_C(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_C(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_C(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_C(i) - CD_C) < 1e-1
                        cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -2267,7 +2247,7 @@ switch (Straight_flight_Case)
                        cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                     end
                end
-               if exist('check') == 0
+               if exist('check', 'var') == 0
                        cd_C = CD_C * ones(length(xi),1);
                        cm_C = CM_C * ones(length(xi),1);
                end
@@ -2452,17 +2432,13 @@ switch (Straight_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
             CM_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_D.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
             Interpolated_Global_CD_D = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_D = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_D(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_D(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_D(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_D(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_D(i) - CD_D) < 1e-1
                        cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -2796,131 +2772,135 @@ switch (Straight_flight_Case)
         
         % LOAD A CLASS OF FUNCTIONS USEFUL TO EVALUATE ALL THE REQUIRED DATA
         obj2 = ShearBendingTorsion; 
- 
-            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
-            wing_type = Aircraft.Geometry.Wing.type.value;
-            switch (wing_type)
-                case 'Rectangular'
-                    % CHORD PARAMETERS
-                    croot       = Aircraft.Geometry.Wing.croot.value;
-                    ctip        = Aircraft.Geometry.Wing.ctip.value;
-                    taper_ratio = ctip / croot;
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
-                    Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
-                    
-                    % Calculation of a chord distribution with a convenient, simple function.
-                    % 
-                    % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                    % A complete documentation of this function is included inside the class
-                    % ShearBendingTorsion.m
-                    S           = Aircraft.Geometry.Wing.S.value;
-                    b           = Aircraft.Geometry.Wing.b.value;
-                    chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
-                    chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    
-                case 'With_kinks'
-                    if (kink1 ~= kink2)
-                        % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-                        % WING THIRD SECTION - CHORDS
-                        ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        taper_ratio_section3 = ctip_section3 / croot_section3;
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
-                        Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
-                        chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-
-                    elseif (kink1 == kink2)
-                        % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % FROM KINK TO TIP
-                        ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    end
-            end
-            % =================================================================
-        chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
-        S                  = Aircraft.Geometry.Wing.S.value;
-        b                  = Aircraft.Geometry.Wing.b.value;
-        % Lift coefficient distribution at a global CL equal to one
-        % A simple function to evaluate the lift coefficient distribution along the
-        % span cl = cl(y) when the associated global lift coefficient of the whole
-        % wing is equal to 1.0; the function use a method similar to that suggested
-        % by Abbott in Theory of Wing Section. See the complete documentation
-        % inside the cl_unit_lift.m file
-        CL_equal_to_one = 0.0;
-        tol = 1e-1;
-        cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
-        global_CL       = zeros(length(cl_interpolated(1,:)), 1);
-        k_cl            = (b*0.5)/S;
-        for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
-            global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
-            if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
-                    CL_equal_to_one = cl_interpolated(:, i);
-            end
-        end
-        bool_CL_check = global_CL < 1.0; 
-        if ~any(bool_CL_check) == 1  
-            error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
-        end
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
+        
+         % CHORD CALCULATION AND UNIT LIFT DISTRIBUTION
+        CalcUnitLiftDistr 
+        
+%             kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+%             kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
+%             wing_type = Aircraft.Geometry.Wing.type.value;
+%             switch (wing_type)
+%                 case 'Rectangular'
+%                     % CHORD PARAMETERS
+%                     croot       = Aircraft.Geometry.Wing.croot.value;
+%                     ctip        = Aircraft.Geometry.Wing.ctip.value;
+%                     taper_ratio = ctip / croot;
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
+%                     Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
+%                     
+%                     % Calculation of a chord distribution with a convenient, simple function.
+%                     % 
+%                     % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                     % A complete documentation of this function is included inside the class
+%                     % ShearBendingTorsion.m
+%                     S           = Aircraft.Geometry.Wing.S.value;
+%                     b           = Aircraft.Geometry.Wing.b.value;
+%                     chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
+%                     chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     
+%                 case 'With_kinks'
+%                     if (kink1 ~= kink2)
+%                         % WING FIRST SECTION - CHORDS
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % WING SECOND SECTION - CHORDS
+%                         ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+%                         % WING THIRD SECTION - CHORDS
+%                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         taper_ratio_section3 = ctip_section3 / croot_section3;
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
+%                         Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
+%                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+% 
+%                     elseif (kink1 == kink2)
+%                         % FROM ROOT TO KINK
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % FROM KINK TO TIP
+%                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+% 
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+% 
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     end
+%             end
+%             % =================================================================
+%         chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
+%         S                  = Aircraft.Geometry.Wing.S.value;
+%         b                  = Aircraft.Geometry.Wing.b.value;
+%         % Lift coefficient distribution at a global CL equal to one
+%         % A simple function to evaluate the lift coefficient distribution along the
+%         % span cl = cl(y) when the associated global lift coefficient of the whole
+%         % wing is equal to 1.0; the function use a method similar to that suggested
+%         % by Abbott in Theory of Wing Section. See the complete documentation
+%         % inside the cl_unit_lift.m file
+%         CL_equal_to_one = 0.0;
+%         tol = 1e-1;
+%         cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
+%         global_CL       = zeros(length(cl_interpolated(1,:)), 1);
+%         k_cl            = (b*0.5)/S;
+%         for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
+%             global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
+%             if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
+%                     CL_equal_to_one = cl_interpolated(:, i);
+%             end
+%         end
+%         bool_CL_check = global_CL < 1.0; 
+%         if ~any(bool_CL_check) == 1  
+%             error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
+%         end
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
        
-            
+CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value;
+
         %% POINT S CALCULATIONS                 
         % Lift coefficient distribution along the span at the Point S
         cl_S = CL_S*CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
@@ -2937,19 +2917,19 @@ switch (Straight_flight_Case)
         % ATTENZIONE! -------------------------- > PARTE DA MODIFICARE 
         % INSERIRE MESHGRID MATLAB O INTERP MATLAB PER EVITARE UN CM
         % TROPPO GRANDE! PARAMETRO DI ACCESSO AL MESHGRID: ALPHA
-        CD_S                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
-        CM_S                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
+        CD_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
+        CM_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
         cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
         cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-        k_cd                     = (b*0.5)/S;
-        k_cm                     = (b*0.5)/S;
+        cCd_calc                 = chord_distr.*cd_interpolated;
+        cCm_calc                 = chord_distr.*cm_interpolated;
         Interpolated_Global_CD_S = zeros(length(cd_interpolated(1,:)), 1);
         Interpolated_Global_CM_S = zeros(length(cd_interpolated(1,:)), 1);
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
-                Interpolated_Global_CD_S(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                Interpolated_Global_CM_S(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                Interpolated_Global_CD_S(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                Interpolated_Global_CM_S(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                 if abs(Interpolated_Global_CD_S(i) - CD_S) < 1e-1
                    cd_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_S  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -3154,17 +3134,13 @@ switch (Straight_flight_Case)
         % Selection of the interpolated distribution of CD and CM
         CD_A                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CD_A.value;
         CM_A                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA.CM_A.value;
-        cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-        cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-        k_cd                     = (b*0.5)/S;
-        k_cm                     = (b*0.5)/S;
         Interpolated_Global_CD_A = zeros(length(cd_interpolated(1,:)), 1);
         Interpolated_Global_CM_A = zeros(length(cd_interpolated(1,:)), 1);
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
-                Interpolated_Global_CD_A(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                Interpolated_Global_CM_A(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                Interpolated_Global_CD_A(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                Interpolated_Global_CM_A(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                 if abs(Interpolated_Global_CD_A(i) - CD_A) <= 1e-1
                    cd_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -3359,17 +3335,13 @@ switch (Straight_flight_Case)
         % Selection of the interpolated distribution of CD and CM
         CD_A1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
         CM_A1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
-        cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-        cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-        k_cd                      = (b*0.5)/S;
-        k_cm                      = (b*0.5)/S;
         Interpolated_Global_CD_A1 = zeros(length(cd_interpolated(1,:)), 1);
         Interpolated_Global_CM_A1 = zeros(length(cd_interpolated(1,:)), 1);
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
-                Interpolated_Global_CD_A1(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                Interpolated_Global_CM_A1(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                Interpolated_Global_CD_A1(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                Interpolated_Global_CM_A1(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                 if abs(Interpolated_Global_CD_A1(i) - CD_A1) <= 1e-1
                    cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -3564,17 +3536,13 @@ switch (Straight_flight_Case)
         % Selection of the interpolated distribution of CD and CM
         CD_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CD_C.value;
         CM_C                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointC.CM_C.value;
-        cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-        cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-        k_cd                      = (b*0.5)/S;
-        k_cm                      = (b*0.5)/S;
         Interpolated_Global_CD_C = zeros(length(cd_interpolated(1,:)), 1);
         Interpolated_Global_CM_C = zeros(length(cd_interpolated(1,:)), 1);
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
-                Interpolated_Global_CD_C(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                Interpolated_Global_CM_C(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                Interpolated_Global_CD_C(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                Interpolated_Global_CM_C(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                 if abs(Interpolated_Global_CD_C(i) - CD_C) <= 1e-1
                    cd_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -3768,19 +3736,15 @@ switch (Straight_flight_Case)
         yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
 
         % Selection of the interpolated distribution of CD and CM
-        CD_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
-        CM_D                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_D.value;
-        cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-        cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-        k_cd                      = (b*0.5)/S;
-        k_cm                      = (b*0.5)/S;
+        CD_D                      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CD_D.value;
+        CM_D                      = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_D.value;
         Interpolated_Global_CD_D = zeros(length(cd_interpolated(1,:)), 1);
         Interpolated_Global_CM_D = zeros(length(cd_interpolated(1,:)), 1);
         check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
         if exist('check_interp', 'var') == 1
             for i = 1:length(yi)
-                Interpolated_Global_CD_D(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                Interpolated_Global_CM_D(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                Interpolated_Global_CD_D(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                Interpolated_Global_CM_D(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                 if abs(Interpolated_Global_CD_D(i) - CD_D) <= 1e-1
                    cd_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                    cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -3790,7 +3754,7 @@ switch (Straight_flight_Case)
                    cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                 end
             end
-            if exist('check') == 0
+            if exist('check','var') == 0
                    cd_D = CD_D * ones(length(xi),1);
                    cm_D = CM_D * ones(length(xi),1);
             end
@@ -4106,131 +4070,135 @@ switch (Inverted_flight_Case)
             PointG2  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.point_name.value;
             PointE  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value;
             % ---------------------------------------------------------------------------------------------            
-
- 
-            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
-            wing_type = Aircraft.Geometry.Wing.type.value;
-            switch (wing_type)
-                case 'Rectangular'
-                    % CHORD PARAMETERS
-                    croot       = Aircraft.Geometry.Wing.croot.value;
-                    ctip        = Aircraft.Geometry.Wing.ctip.value;
-                    taper_ratio = ctip / croot;
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
-                    Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
-                    
-                    % Calculation of a chord distribution with a convenient, simple function.
-                    % 
-                    % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                    % A complete documentation of this function is included inside the class
-                    % ShearBendingTorsion.m
-                    S           = Aircraft.Geometry.Wing.S.value;
-                    b           = Aircraft.Geometry.Wing.b.value;
-                    chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
-                    chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    
-                case 'With_kinks'
-                    if (kink1 ~= kink2)
-                        % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-                        % WING THIRD SECTION - CHORDS
-                        ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        taper_ratio_section3 = ctip_section3 / croot_section3;
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
-                        Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
-                        chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-
-                    elseif (kink1 == kink2)
-                        % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % FROM KINK TO TIP
-                        ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    end
-            end
-            % =================================================================
-        chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
-        S                  = Aircraft.Geometry.Wing.S.value;
-        b                  = Aircraft.Geometry.Wing.b.value;
-        % Lift coefficient distribution at a global CL equal to one
-        % A simple function to evaluate the lift coefficient distribution along the
-        % span cl = cl(y) when the associated global lift coefficient of the whole
-        % wing is equal to 1.0; the function use a method similar to that suggested
-        % by Abbott in Theory of Wing Section. See the complete documentation
-        % inside the cl_unit_lift.m file
-        CL_equal_to_one = 0.0;
-        tol = 1e-1;
-        cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
-        global_CL       = zeros(length(cl_interpolated(1,:)), 1);
-        k_cl            = (b*0.5)/S;
-        for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
-            global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
-            if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
-                    CL_equal_to_one = cl_interpolated(:, i);
-            end
-        end
-        bool_CL_check = global_CL < 1.0; 
-        if ~any(bool_CL_check) == 1  
-            error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
-        end
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
             
+            % CHORD CALCULATION AND UNIT LIFT DISTRIBUTION
+            CalcUnitLiftDistr 
+            
+%             kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+%             kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
+%             wing_type = Aircraft.Geometry.Wing.type.value;
+%             switch (wing_type)
+%                 case 'Rectangular'
+%                     % CHORD PARAMETERS
+%                     croot       = Aircraft.Geometry.Wing.croot.value;
+%                     ctip        = Aircraft.Geometry.Wing.ctip.value;
+%                     taper_ratio = ctip / croot;
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
+%                     Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
+%                     
+%                     % Calculation of a chord distribution with a convenient, simple function.
+%                     % 
+%                     % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                     % A complete documentation of this function is included inside the class
+%                     % ShearBendingTorsion.m
+%                     S           = Aircraft.Geometry.Wing.S.value;
+%                     b           = Aircraft.Geometry.Wing.b.value;
+%                     chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
+%                     chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     
+%                 case 'With_kinks'
+%                     if (kink1 ~= kink2)
+%                         % WING FIRST SECTION - CHORDS
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % WING SECOND SECTION - CHORDS
+%                         ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+%                         % WING THIRD SECTION - CHORDS
+%                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         taper_ratio_section3 = ctip_section3 / croot_section3;
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
+%                         Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
+%                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+% 
+%                     elseif (kink1 == kink2)
+%                         % FROM ROOT TO KINK
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % FROM KINK TO TIP
+%                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+% 
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+% 
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     end
+%             end
+%             % =================================================================
+%         chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
+%         S                  = Aircraft.Geometry.Wing.S.value;
+%         b                  = Aircraft.Geometry.Wing.b.value;
+%         % Lift coefficient distribution at a global CL equal to one
+%         % A simple function to evaluate the lift coefficient distribution along the
+%         % span cl = cl(y) when the associated global lift coefficient of the whole
+%         % wing is equal to 1.0; the function use a method similar to that suggested
+%         % by Abbott in Theory of Wing Section. See the complete documentation
+%         % inside the cl_unit_lift.m file
+%         CL_equal_to_one = 0.0;
+%         tol = 1e-1;
+%         cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
+%         global_CL       = zeros(length(cl_interpolated(1,:)), 1);
+%         k_cl            = (b*0.5)/S;
+%         for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
+%             global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
+%             if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
+%                     CL_equal_to_one = cl_interpolated(:, i);
+%             end
+%         end
+%         bool_CL_check = global_CL < 1.0; 
+%         if ~any(bool_CL_check) == 1  
+%             error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
+%         end
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
+
+   
+CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value;         
             %% POINT S_inv CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point S_inv
             cl_S_inv = CL_S_inv * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
@@ -4246,17 +4214,17 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CD_S_inv.value;
             CM_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CM_S_inv.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
+            cd_interpolated              = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
+            cm_interpolated              = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
+            cCd_calc                     = chord_distr.*cd_interpolated;
+            cCm_calc                     = chord_distr.*cm_interpolated;
             Interpolated_Global_CD_S_inv = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_S_inv = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_S_inv(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_S_inv(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_S_inv(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_S_inv(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-1
                        cd_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -4273,6 +4241,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_S_inv = CD_S_inv * ones(length(xi), 1); 
                 cm_S_inv = CM_S_inv * ones(length(xi), 1);
+            end
+            if exist('cd_S_inv', 'var') == 0 
+                cd_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)'; 
+            end
+            if exist('cm_S_inv', 'var') == 0 
+                cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';  
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.value = Interpolated_Global_CD_S_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -4450,17 +4424,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value;
             CM_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CM_G.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_G = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_G = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_G(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_G(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_G(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_G(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-1
                        cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -4477,6 +4447,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_G = CD_G * ones(length(xi), 1); 
                 cm_G = CM_G * ones(length(xi), 1);
+            end
+            if exist('cd_G', 'var') == 0 
+                cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)'; 
+            end
+            if exist('cm_G', 'var') == 0 
+                cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';  
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.value = Interpolated_Global_CD_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -4646,17 +4622,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CD_G1.value;
             CM_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CM_G1.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_G1 = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_G1 = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_G1(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_G1(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_G1(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_G1(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-1
                        cd_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -4673,6 +4645,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_G1 = CD_G1 * ones(length(yi), 1); 
                 cm_G1 = CM_G1 * ones(length(yi), 1);
+            end
+            if exist('cd_G1', 'var') == 0 
+                cd_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)';  
+            end
+            if exist('cm_G1', 'var') == 0 
+                cm_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)'; 
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Interpolated_Global_CD.value = Interpolated_Global_CD_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -4851,8 +4829,8 @@ switch (Inverted_flight_Case)
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_F(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_F(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_F(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_F(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-1
                        cd_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -4869,6 +4847,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_F = CD_F * ones(length(xi), 1); 
                 cm_F = CM_F * ones(length(xi), 1);
+            end
+            if exist('cd_F', 'var') == 0 
+                cd_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)'; 
+            end
+            if exist('cm_F', 'var') == 0 
+                cm_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)'; 
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.value = Interpolated_Global_CD_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -5038,17 +5022,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_G2                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.CD_G2.value;
             CM_G2                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.CM_G2.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_G2 = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_G2 = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_G2(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_G2(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_G2(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_G2(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_G2(i) - CD_G2) < 1e-1
                        cd_G2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -5065,6 +5045,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_G2 = CD_G2 * ones(length(xi), 1); 
                 cm_G2 = CM_G2 * ones(length(xi), 1);
+            end
+            if exist('cd_G2', 'var') == 0 
+                cd_G2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)'; 
+            end
+            if exist('cm_G2', 'var') == 0 
+                cm_G2 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';  
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Interpolated_Global_CD.value = Interpolated_Global_CD_G2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -5239,17 +5225,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CD_E.value;
             CM_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CM_E.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_E = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_E = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_E(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_E(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_E(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_E(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_E(i) - CD_E) < 1e-1
                        cd_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -5266,6 +5248,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_E = CD_E * ones(length(xi), 1); 
                 cm_E = CM_E * ones(length(xi), 1);
+            end
+            if exist('cd_E', 'var') == 0 
+                cd_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)'; 
+            end
+            if exist('cm_E', 'var') == 0 
+                cm_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)'; 
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.value = Interpolated_Global_CD_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -5696,154 +5684,158 @@ switch (Inverted_flight_Case)
             PointE  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value;
             % ---------------------------------------------------------------------------------------------               
 
-            S = Aircraft.Geometry.Wing.S.value;
-
-            % Lift coefficient distribution at a global CL equal to one
-            % A simple function to evaluate the lift coefficient distribution along the
-            % span cl = cl(y) when the associated global lift coefficient of the whole
-            % wing is equal to 1.0; the function use a method similar to that suggested
-            % by Abbott in Theory of Wing Section. See the complete documentation
-            % inside the cl_unit_lift.m file
-            CL_equal_to_one = 0.0;
-            tol = 1e-1;
-            global_CL = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1)), 1);
-            for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
-                global_CL(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:))/S;
-                if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
-                        CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
-                end
-            end
-            bool_CL_check = global_CL < 1.0; 
-            if ~any(bool_CL_check) == 1  
-                error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
-            end
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
-
- 
-            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
-            wing_type = Aircraft.Geometry.Wing.type.value;
-            switch (wing_type)
-                case 'Rectangular'
-                    % CHORD PARAMETERS
-                    croot       = Aircraft.Geometry.Wing.croot.value;
-                    ctip        = Aircraft.Geometry.Wing.ctip.value;
-                    taper_ratio = ctip / croot;
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
-                    Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
-                    
-                    % Calculation of a chord distribution with a convenient, simple function.
-                    % 
-                    % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                    % A complete documentation of this function is included inside the class
-                    % ShearBendingTorsion.m
-                    S           = Aircraft.Geometry.Wing.S.value;
-                    b           = Aircraft.Geometry.Wing.b.value;
-                    chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
-                    chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    
-                case 'With_kinks'
-                    if (kink1 ~= kink2)
-                        % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-                        % WING THIRD SECTION - CHORDS
-                        ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        taper_ratio_section3 = ctip_section3 / croot_section3;
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
-                        Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
-                        chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-
-                    elseif (kink1 == kink2)
-                        % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % FROM KINK TO TIP
-                        ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    end
-            end
-            % =================================================================
-        chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
-        S                  = Aircraft.Geometry.Wing.S.value;
-        b                  = Aircraft.Geometry.Wing.b.value;
-        % Lift coefficient distribution at a global CL equal to one
-        % A simple function to evaluate the lift coefficient distribution along the
-        % span cl = cl(y) when the associated global lift coefficient of the whole
-        % wing is equal to 1.0; the function use a method similar to that suggested
-        % by Abbott in Theory of Wing Section. See the complete documentation
-        % inside the cl_unit_lift.m file
-        CL_equal_to_one = 0.0;
-        tol = 1e-1;
-        cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
-        global_CL       = zeros(length(cl_interpolated(1,:)), 1);
-        k_cl            = (b*0.5)/S;
-        for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
-            global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
-            if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
-                    CL_equal_to_one = cl_interpolated(:, i);
-            end
-        end
-        bool_CL_check = global_CL < 1.0; 
-        if ~any(bool_CL_check) == 1  
-            error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
-        end
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
+            % CHORD CALCULATION AND UNIT LIFT DISTRIBUTION
+            CalcUnitLiftDistr 
             
+%             S = Aircraft.Geometry.Wing.S.value;
+% 
+%             % Lift coefficient distribution at a global CL equal to one
+%             % A simple function to evaluate the lift coefficient distribution along the
+%             % span cl = cl(y) when the associated global lift coefficient of the whole
+%             % wing is equal to 1.0; the function use a method similar to that suggested
+%             % by Abbott in Theory of Wing Section. See the complete documentation
+%             % inside the cl_unit_lift.m file
+%             CL_equal_to_one = 0.0;
+%             tol = 1e-1;
+%             global_CL = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1)), 1);
+%             for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
+%                 global_CL(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:))/S;
+%                 if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
+%                         CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
+%                 end
+%             end
+%             bool_CL_check = global_CL < 1.0; 
+%             if ~any(bool_CL_check) == 1  
+%                 error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
+%             end
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
+%             Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
+% 
+%  
+%             kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+%             kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
+%             wing_type = Aircraft.Geometry.Wing.type.value;
+%             switch (wing_type)
+%                 case 'Rectangular'
+%                     % CHORD PARAMETERS
+%                     croot       = Aircraft.Geometry.Wing.croot.value;
+%                     ctip        = Aircraft.Geometry.Wing.ctip.value;
+%                     taper_ratio = ctip / croot;
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
+%                     Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
+%                     
+%                     % Calculation of a chord distribution with a convenient, simple function.
+%                     % 
+%                     % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                     % A complete documentation of this function is included inside the class
+%                     % ShearBendingTorsion.m
+%                     S           = Aircraft.Geometry.Wing.S.value;
+%                     b           = Aircraft.Geometry.Wing.b.value;
+%                     chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
+%                     chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     
+%                 case 'With_kinks'
+%                     if (kink1 ~= kink2)
+%                         % WING FIRST SECTION - CHORDS
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % WING SECOND SECTION - CHORDS
+%                         ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+%                         % WING THIRD SECTION - CHORDS
+%                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         taper_ratio_section3 = ctip_section3 / croot_section3;
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
+%                         Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
+%                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+% 
+%                     elseif (kink1 == kink2)
+%                         % FROM ROOT TO KINK
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % FROM KINK TO TIP
+%                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+% 
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+% 
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     end
+%             end
+%             % =================================================================
+%         chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
+%         S                  = Aircraft.Geometry.Wing.S.value;
+%         b                  = Aircraft.Geometry.Wing.b.value;
+%         % Lift coefficient distribution at a global CL equal to one
+%         % A simple function to evaluate the lift coefficient distribution along the
+%         % span cl = cl(y) when the associated global lift coefficient of the whole
+%         % wing is equal to 1.0; the function use a method similar to that suggested
+%         % by Abbott in Theory of Wing Section. See the complete documentation
+%         % inside the cl_unit_lift.m file
+%         CL_equal_to_one = 0.0;
+%         tol = 1e-1;
+%         cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
+%         global_CL       = zeros(length(cl_interpolated(1,:)), 1);
+%         k_cl            = (b*0.5)/S;
+%         for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
+%             global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
+%             if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
+%                     CL_equal_to_one = cl_interpolated(:, i);
+%             end
+%         end
+%         bool_CL_check = global_CL < 1.0; 
+%         if ~any(bool_CL_check) == 1  
+%             error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
+%         end
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
+        
+CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value;    
             %% POINT S_inv CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point S_inv
             cl_S_inv = CL_S_inv * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
@@ -5859,17 +5851,17 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CD_S_inv.value;
             CM_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CM_S_inv.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
+            cd_interpolated              = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
+            cm_interpolated              = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
+            cCd_calc                     = chord_distr.*cd_interpolated;
+            cCm_calc                     = chord_distr.*cm_interpolated;
             Interpolated_Global_CD_S_inv = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_S_inv = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_S_inv(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_S_inv(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_S_inv(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_S_inv(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-1
                        cd_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -5886,6 +5878,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_S_inv = CD_S_inv * ones(length(xi), 1); 
                 cm_S_inv = CM_S_inv * ones(length(xi), 1);
+            end
+            if exist('cd_S_inv', 'var') == 0 
+                cd_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)';  
+            end
+            if exist('cm_S_inv', 'var') == 0 
+                cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';  
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.value = Interpolated_Global_CD_S_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -6063,17 +6061,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value;
             CM_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CM_G.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_G = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_G = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_G(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_G(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_G(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_G(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-1
                        cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -6090,6 +6084,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_G = CD_G * ones(length(xi), 1); 
                 cm_G = CM_G * ones(length(xi), 1);
+            end
+            if exist('cd_G', 'var') == 0 
+                cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)'; 
+            end
+            if exist('cm_G', 'var') == 0 
+                cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)'; 
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.value = Interpolated_Global_CD_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -6259,17 +6259,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CD_G1.value;
             CM_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CM_G1.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_G1 = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_G1 = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_G1(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_G1(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_G1(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_G1(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-1
                        cd_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -6286,6 +6282,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_G1 = CD_G1 * ones(length(yi), 1); 
                 cm_G1 = CM_G1 * ones(length(yi), 1);
+            end
+            if exist('cd_G1', 'var') == 0 
+                cd_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)'; 
+            end
+            if exist('cm_G1', 'var') == 0 
+                cm_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';  
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Interpolated_Global_CD.value = Interpolated_Global_CD_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -6455,17 +6457,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_F                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CD_F.value;
             CM_F                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CM_F.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_F = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_F = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_F(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_F(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_F(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_F(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-1
                        cd_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -6482,6 +6480,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_F = CD_F * ones(length(xi), 1); 
                 cm_F = CM_F * ones(length(xi), 1);
+            end
+            if exist('cd_F', 'var') == 0 
+                cd_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)';  
+            end
+            if exist('cm_F', 'var') == 0 
+                cm_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';  
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.value = Interpolated_Global_CD_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -6651,17 +6655,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CD_E.value;
             CM_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CM_E.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_E = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_E = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_E(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_E(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_E(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_E(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_E(i) - CD_E) < 1e-1
                        cd_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -6678,6 +6678,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_E = CD_E * ones(length(xi), 1); 
                 cm_E = CM_E * ones(length(xi), 1);
+            end
+            if exist('cd_E', 'var') == 0 
+                cd_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)'; 
+            end
+            if exist('cm_E', 'var') == 0 
+                cm_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)'; 
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.value = Interpolated_Global_CD_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -7083,10 +7089,10 @@ switch (Inverted_flight_Case)
         
         % ---------------------------------------------------------------------------------------------
         CL_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CL_S_inv.value;
-        CL_G     = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
-        CL_G1    = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CL_G1.value;
-        CL_F     = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
-        CL_E     = -Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
+        CL_G     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CL_G.value;
+        CL_G1    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CL_G1.value;
+        CL_F     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CL_F.value;
+        CL_E     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CL_E.value;
         % ---------------------------------------------------------------------------------------------
         CD_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CD_S_inv.value;
         CD_G     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value;
@@ -7113,126 +7119,133 @@ switch (Inverted_flight_Case)
         PointE  = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.point_name.value;
         % ---------------------------------------------------------------------------------------------           
         
-        S = Aircraft.Geometry.Wing.S.value;
-                
-        % Lift coefficient distribution at a global CL equal to one
-        % A simple function to evaluate the lift coefficient distribution along the
-        % span cl = cl(y) when the associated global lift coefficient of the whole
-        % wing is equal to 1.0; the function use a method similar to that suggested
-        % by Abbott in Theory of Wing Section. See the complete documentation
-        % inside the cl_unit_lift.m file
-        CL_equal_to_one = 0.0;
-        tol = 1e-1;
-        global_CL = zeros(length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1)), 1);
-        for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
-            global_CL(i) = trapz(half_span, Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:))/S;
-            if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
-                    CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(i,:)';
-            end
-        end
-        bool_CL_check = global_CL < 1.0; 
-        if ~any(bool_CL_check) == 1  
-            error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
-        end
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
-        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
+        % CHORD CALCULATION AND UNIT LIFT DISTRIBUTION
+        CalcUnitLiftDistr 
         
-            kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
-            kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
-            wing_type = Aircraft.Geometry.Wing.type.value;
-            switch (wing_type)
-                case 'Rectangular'
-                    % CHORD PARAMETERS
-                    croot       = Aircraft.Geometry.Wing.croot.value;
-                    ctip        = Aircraft.Geometry.Wing.ctip.value;
-                    taper_ratio = ctip / croot;
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
-                    Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
-                    
-                    % Calculation of a chord distribution with a convenient, simple function.
-                    % 
-                    % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                    % A complete documentation of this function is included inside the class
-                    % ShearBendingTorsion.m
-                    S           = Aircraft.Geometry.Wing.S.value;
-                    b           = Aircraft.Geometry.Wing.b.value;
-                    chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
-                    
-                    % STORE INSIDE THE STRUCT VARIABLE
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
-                    Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
-                    chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    
-                case 'With_kinks'
-                    if (kink1 ~= kink2)
-                        % WING FIRST SECTION - CHORDS
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % WING SECOND SECTION - CHORDS
-                        ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-                        % WING THIRD SECTION - CHORDS
-                        ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
-                        taper_ratio_section3 = ctip_section3 / croot_section3;
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
-                        Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
-                        chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-
-                    elseif (kink1 == kink2)
-                        % FROM ROOT TO KINK
-                        ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        croot_section1       = Aircraft.Geometry.Wing.croot.value;
-                        taper_ratio_section1 = ctip_section1 / croot_section1;
-                        % FROM KINK TO TIP
-                        ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
-                        croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
-                        taper_ratio_section2 = ctip_section2 / croot_section2;
-
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
-                        Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
-                        Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
-                        Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
-                        Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
-
-                        % Calculation of a chord distribution with a convenient, simple function.
-                        % 
-                        % c(y) = calc_chord(Swing, taper_ratio, span, y)
-                        % A complete documentation of this function is included inside the class
-                        % ShearBendingTorsion.m
-                        S           = Aircraft.Geometry.Wing.S.value;
-                        b           = Aircraft.Geometry.Wing.b.value;
-                        chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
-                        chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
-                        % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
-                        Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
-                        chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
-                    end
-            end
+%             kink1     = Aircraft.Geometry.Wing.chord_kink_one.value;
+%             kink2     = Aircraft.Geometry.Wing.chord_kink_two.value;
+%             wing_type = Aircraft.Geometry.Wing.type.value;
+%             switch (wing_type)
+%                 case 'Rectangular'
+%                     % CHORD PARAMETERS
+%                     croot       = Aircraft.Geometry.Wing.croot.value;
+%                     ctip        = Aircraft.Geometry.Wing.ctip.value;
+%                     taper_ratio = ctip / croot;
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Geometry.Wing.taper_ratio.value = taper_ratio;
+%                     Aircraft.Geometry.Wing.taper_ratio.Attributes.unit = "Non dimensional";
+%                     
+%                     % Calculation of a chord distribution with a convenient, simple function.
+%                     % 
+%                     % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                     % A complete documentation of this function is included inside the class
+%                     % ShearBendingTorsion.m
+%                     S           = Aircraft.Geometry.Wing.S.value;
+%                     b           = Aircraft.Geometry.Wing.b.value;
+%                     chord_distr = calc_chord(obj2, S, taper_ratio, b, half_span);
+%                     
+%                     % STORE INSIDE THE STRUCT VARIABLE
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = chord_distr';
+%                     Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m"; 
+%                     chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     
+%                 case 'With_kinks'
+%                     if (kink1 ~= kink2)
+%                         % WING FIRST SECTION - CHORDS
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % WING SECOND SECTION - CHORDS
+%                         ctip_section2        = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+%                         % WING THIRD SECTION - CHORDS
+%                         ctip_section3        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section3       = Aircraft.Geometry.Wing.chord_kink_two.value;
+%                         taper_ratio_section3 = ctip_section3 / croot_section3;
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio3.value = taper_ratio_section3;
+%                         Aircraft.Geometry.Wing.taper_ratio3.Attributes.unit = "Non dimensional";
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/3)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/3)+1):ceil(2*N/3)));
+%                         chord_distr3 = calc_chord(obj2, S, taper_ratio_section3, b, half_span(ceil((2*N/3)+1):ceil(N/3)));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2'; chord_distr3' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+% 
+%                     elseif (kink1 == kink2)
+%                         % FROM ROOT TO KINK
+%                         ctip_section1        = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         croot_section1       = Aircraft.Geometry.Wing.croot.value;
+%                         taper_ratio_section1 = ctip_section1 / croot_section1;
+%                         % FROM KINK TO TIP
+%                         ctip_section2        = Aircraft.Geometry.Wing.ctip.value;
+%                         croot_section2       = Aircraft.Geometry.Wing.chord_kink_one.value;
+%                         taper_ratio_section2 = ctip_section2 / croot_section2;
+% 
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE                
+%                         Aircraft.Geometry.Wing.taper_ratio1.value = taper_ratio_section1;
+%                         Aircraft.Geometry.Wing.taper_ratio1.Attributes.unit = "Non dimensional";
+%                         Aircraft.Geometry.Wing.taper_ratio2.value = taper_ratio_section2;
+%                         Aircraft.Geometry.Wing.taper_ratio2.Attributes.unit = "Non dimensional";
+% 
+%                         % Calculation of a chord distribution with a convenient, simple function.
+%                         % 
+%                         % c(y) = calc_chord(Swing, taper_ratio, span, y)
+%                         % A complete documentation of this function is included inside the class
+%                         % ShearBendingTorsion.m
+%                         S           = Aircraft.Geometry.Wing.S.value;
+%                         b           = Aircraft.Geometry.Wing.b.value;
+%                         chord_distr1 = calc_chord(obj2, S, taper_ratio_section1, b, half_span(1:ceil(N/2)));
+%                         chord_distr2 = calc_chord(obj2, S, taper_ratio_section2, b, half_span(ceil((N/2)+1):N));
+%                         % STORE INSIDE THE AIRCRAFT STRUCT VARIABLE
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value = [ chord_distr1'; chord_distr2' ];
+%                         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.Attributes.unit = "m";   
+%                         chord_distr = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value;
+%                     end
+%             end
+%             % =================================================================
+%         chord_distribution = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.chord_distr.value; 
+%         S                  = Aircraft.Geometry.Wing.S.value;
+%         b                  = Aircraft.Geometry.Wing.b.value;
+%         % Lift coefficient distribution at a global CL equal to one
+%         % A simple function to evaluate the lift coefficient distribution along the
+%         % span cl = cl(y) when the associated global lift coefficient of the whole
+%         % wing is equal to 1.0; the function use a method similar to that suggested
+%         % by Abbott in Theory of Wing Section. See the complete documentation
+%         % inside the cl_unit_lift.m file
+%         CL_equal_to_one = 0.0;
+%         tol = 1e-1;
+%         cl_interpolated = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value';
+%         global_CL       = zeros(length(cl_interpolated(1,:)), 1);
+%         k_cl            = (b*0.5)/S;
+%         for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
+%             global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
+%             if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
+%                     CL_equal_to_one = cl_interpolated(:, i);
+%             end
+%         end
+%         bool_CL_check = global_CL < 1.0; 
+%         if ~any(bool_CL_check) == 1  
+%             error("ERROR: CL distribution along the wing semi-span does not contain the unit CL distribution!")
+%         end
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value = CL_equal_to_one;
+%         Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.Attributes.unit = "Non dimensional"; 
         
+CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_at_CL1.value;
         %% POINT S_inv CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point S_inv
             cl_S_inv = CL_S_inv * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
@@ -7248,17 +7261,17 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CD_S_inv.value;
             CM_S_inv                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.CM_S_inv.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
+            cd_interpolated              = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
+            cm_interpolated              = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
+            cCd_calc                     = chord_distr.*cd_interpolated;
+            cCm_calc                     = chord_distr.*cm_interpolated;
             Interpolated_Global_CD_S_inv = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_S_inv = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_S_inv(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_S_inv(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_S_inv(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_S_inv(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_S_inv(i) - CD_S_inv) < 1e-1
                        cd_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -7275,6 +7288,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_S_inv = CD_S_inv * ones(length(xi), 1); 
                 cm_S_inv = CM_S_inv * ones(length(xi), 1);
+            end
+            if exist('cd_S_inv', 'var') == 0 
+                cd_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)';  
+            end
+            if exist('cm_S_inv', 'var') == 0 
+                cm_S_inv = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';  
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.value = Interpolated_Global_CD_S_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -7452,17 +7471,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CD_G.value;
             CM_G                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.CM_G.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_G = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_G = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_G(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_G(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_G(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_G(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_G(i) - CD_G) < 1e-1
                        cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -7479,6 +7494,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_G = CD_G * ones(length(yi), 1); 
                 cm_G = CM_G * ones(length(yi), 1);
+            end
+            if exist('cd_G', 'var') == 0 
+                cd_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)'; 
+            end
+            if exist('cm_G', 'var') == 0 
+                cm_G = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.value = Interpolated_Global_CD_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -7648,17 +7669,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CD_G1.value;
             CM_G1                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.CM_G1.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_G1 = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_G1 = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_G1(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_G1(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_G1(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_G1(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_G1(i) - CD_G1) < 1e-1
                        cd_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -7675,6 +7692,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_G1 = CD_G1 * ones(length(yi), 1); 
                 cm_G1 = CM_G1 * ones(length(yi), 1);
+            end
+            if exist('cd_G1', 'var') == 0 
+                cd_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)';
+            end
+            if exist('cm_G1', 'var') == 0 
+                cm_G1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Interpolated_Global_CD.value = Interpolated_Global_CD_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -7844,17 +7867,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_F                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CD_F.value;
             CM_F                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.CM_F.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_F = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_F = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_F(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_F(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_F(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_F(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_F(i) - CD_F) < 1e-1
                        cd_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -7871,6 +7890,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_F = CD_F * ones(length(xi), 1); 
                 cm_F = CM_F * ones(length(xi), 1);
+            end
+            if exist('cd_F', 'var') == 0 
+                cd_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)';
+            end
+            if exist('cm_F', 'var') == 0 
+                cm_F = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.value = Interpolated_Global_CD_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
@@ -8040,17 +8065,13 @@ switch (Inverted_flight_Case)
             % Selection of the interpolated distribution of CD and CM
             CD_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CD_E.value;
             CM_E                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.CM_E.value;
-            cd_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated           = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                      = (b*0.5)/S;
-            k_cm                      = (b*0.5)/S;
             Interpolated_Global_CD_E = zeros(length(cd_interpolated(1,:)), 1);
             Interpolated_Global_CM_E = zeros(length(cd_interpolated(1,:)), 1);
             check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
             if exist('check_interp', 'var') == 1
                 for i = 1:length(yi)
-                    Interpolated_Global_CD_E(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_E(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
+                    Interpolated_Global_CD_E(i) = (2/S) * trapz(half_span, cCd_calc(:,i));
+                    Interpolated_Global_CM_E(i) = (2/S) * trapz(half_span, cCm_calc(:,i));
                     if abs(Interpolated_Global_CD_E(i) - CD_E) < 1e-1
                        cd_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
                        cm_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
@@ -8067,6 +8088,12 @@ switch (Inverted_flight_Case)
             elseif exist('check_interp', 'var') == 0
                 cd_E = CD_E * ones(length(xi), 1); 
                 cm_E = CM_E * ones(length(xi), 1);
+            end
+            if exist('cd_E', 'var') == 0 
+                cd_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(end,:)';
+            end
+            if exist('cm_E', 'var') == 0 
+                cm_E = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(end,:)';
             end
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.value = Interpolated_Global_CD_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Interpolated_Global_CD.Attributes.unit = "Non dimensional";

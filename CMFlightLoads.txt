@@ -157,358 +157,440 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving LiftComparisonWithPoints.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcShearBendTorsMom.m',2817,1)">2817 </a>        k_cl            = (b*0.5)/S;
-if system_dependent('IsDebugMode')==1, dbstep; end
-        for i = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.cl_interpolated.value(:,1))
-            global_CL(i) = k_cl * trapz(half_span, cl_interpolated(:,i).*chord_distribution);
-            if (global_CL(i) >= 1.0-tol) && (global_CL(i) <= 1.0+tol)
-                    CL_equal_to_one = cl_interpolated(:, i);
-            end
-        end
-              %% POINT S CALCULATIONS                 
-            % Lift coefficient distribution along the span at the Point S
-            cl_S = CL_S*CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.value = cl_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cl_S.Attributes.unit = "Non dimensional";      
+Vector already in correct dimension
+Vector already in correct dimension
+Vector already in correct dimension
+ 
+ ++++ FIGURE 12 - POINT S SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointS.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+Vector already in correct dimension
+ 
+ ++++ FIGURE 13 - POINT A SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+Vector already in correct dimension
+ 
+ ++++ FIGURE 14 - POINT A1 SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointA1.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+Vector already in correct dimension
+ 
+ ++++ FIGURE 14 - POINT C SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+Vector already in correct dimension
+ 
+ ++++ FIGURE 15 - POINT D SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+Vector already in correct dimension
+ 
+ ++++ FIGURE 17 - POINT S_inv SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointS_inv.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+Vector already in correct dimension
+ 
+ ++++ FIGURE 18 - POINT G SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointG.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+Vector already in correct dimension
+ 
+ ++++ FIGURE 19 - POINT G1 SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointG1.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+Vector already in correct dimension
+ 
+ ++++ FIGURE 20 - POINT F SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointF.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+Vector already in correct dimension
+ 
+ ++++ FIGURE 21 - POINT E SHEAR, BENDING, TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearBendingTorsionDiagramPointE.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving ShearComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving BendingComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving TorsionComparison.pdf Output in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving clComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving cdComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving cdComparison.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcShearBendTorsMom.m',8455,1)">8455 </a>        movefile cmComparison.png Output
+if system_dependent('IsDebugMode')==1, dbcont; end
+ ++++ FIGURE 27 - POINT A SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CmComparisonPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+ ++++ FIGURE 28 - POINT A PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointA.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 29 - POINT A FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 30 -POINT C SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CmComparisonPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+ ++++ FIGURE 31 - POINT C PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 32 - POINT C FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointC.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 33 -POINT D SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving CmComparisonPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+Vector already in correct dimension
+Vector already in correct dimension
+ ++++ FIGURE 34 - POINT D PARTIAL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionSeventyPerCentPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 35 - POINT D FULL LOAD - UNSYMM. TORSION ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalTorsionFullPointD.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 36 - FULL LOAD UNSYMM. TORSION COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalLoadsComparisonFullLoad.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ FIGURE 37 - PARTIAL LOAD UNSYMM. TORSION COMPARISON ++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving UnsymmetricalLoadsComparisonSeventyPerCentLoad.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ 
+ ++++ METHOD CS - VLA 423 (a) ++++
+ ---------------------------------
+ ++++ UNCHECKED ++++
+ ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
+ Pitch-up at VA     Pitch-down at VA
+-37.557071          46.946339
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++++++++ Total Critical Horizontal Tail loads - Method (a) [daN] ++++++++++ 
+ Total critical load at VA
+ 33.645331
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (b) ++++
+ ---------------------------------
+ ++++ CHECKED ++++
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+ At VA
+ -94.398181
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
+ ----------------------------------------------
+ +++++++++++++++++ Horizontal Tail loads [daN] +++++++++++++++++ 
+ At VA
+ 57.611548
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
+ ----------------------------------------------
+ +++++++++++++++++ Total Horizontal Tail loads - Method (b) [daN] +++++++++++++++++ 
+ At VA
+ -94.398181
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (a)+(b) ++++
+ ----------------------------------------------
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+ At VA
+ -50.858080
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ METHOD CS - VLA 423 (c) - DeltaLtail ++++ 
+ ---------------------------------------------- 
+ +++++++++++++++++ Delta Tail loads [daN] +++++++++++++++++ 
+  Upward defl. VA   Downward defl. VA    Upward defl. VD  Downward defl. VD
+ -37.557071         46.946339            -35.005482         35.005482
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++ METHOD CS - VLA 423 (c) - BTL_1 + DeltaLtail ++++ 
+ ------------------------------------------------------ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+  Upward defl. VA   Downward defl. VA     Upward defl. VD    Downward defl. VD
+ -60.300865         33.645331            -87.159376         -17.148411
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++++++++ CS - VLA 423 - METHOD D ++++++++++ 
+ --------------------------------------------- 
+ ++++++++++ Critical Horizontal Tail loads increments [daN] ++++++++++ 
+  Case 1             Case 2             Case 3              Case 4  
+ -41.996801          41.996801          37.497144          -37.497144
+ -41.996801          41.996801          37.497144          -37.497144
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+ Case 1              Case 2             Case 3             Case 4  
+ -60.789824          -45.517843         18.704122          -54.930090
+ -82.803840          -97.362394         -17.868448          -79.869577
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Critical conditions - CS - VLA 423 Method (d) [daN] ++++++++++ 
+Critical conditions
+ -97.362394
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ AIRWORTHINESS RULES: CS - VLA 425 GUST AIRLOADS
+ --------------------------------- 
+ +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
+  L_ht VF             L_ht VC            L_ht VD
+ -40.807039          -20.101418         -42.372433
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Delta Horizontal Tail loads [daN] +++++++++++++++++ 
+ DeltaL_ht VF       DeltaL_ht VC      DeltaL_ht VD
+ 29.648194          59.140755         37.060243
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads - Positive Gust [daN] +++++++++++++++++ 
+  Gust + L_ht VF    Gust + L_ht VC     Gust + L_ht VD
+ -11.158845          39.039337         -5.312191
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ +++++++++++++++++ Total Horizontal Tail loads - Negative Gust [daN] +++++++++++++++++ 
+  Gust - L_ht VF      Gust - L_ht VC     Gust - L_ht VD
+ -70.455233          -79.242173         -79.432676
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ Final results from CS - VLA 423 Airworthiness prescriptions 
+ +++++++++++++++++ Total Horizontal Tail loads - Maximum Symmetrical load [daN] +++++++++++++++++ 
+  Maximum symmetrical load
+ -97.362394
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ UNSYMMETRICAL LOADS PER CS - VLA 427 
+ +++++++++++++++++ Total Horizontal Tail loads - Unsymmetrical conditions [daN] +++++++++++++++++ 
+  Full load side      Partial load side
+ -48.681197          -35.050462
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ STARTING VERTICAL TAIL LOADS CALCULATION ++++ 
+ 
+ ---------------------------------------------------------------- 
+ ++++ CS - VLA 441 - VERTICAL TAIL LOADS - MANOEUVRING LOADS ++++ 
+ ---------------------------------------------------------------- 
+ 
+ ++++ CS - VLA 441 - CASE (a)(1) ++++ 
+ ------------------------------------ 
+ ++++++++++ Vertical tail loads - CASE (a)(1) [daN] ++++++++++ 
+ Y
+ 4.541412
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ CS - VLA 441 - CASE (a)(2) ++++ 
+ ------------------------------------ 
+ ++++++++++ Vertical tail loads - CASE (a)(2) [daN] ++++++++++ 
+ Y
+ 5.959440
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ CS - VLA 441 - CASE (a)(3) ++++ 
+ ------------------------------------ 
+ ++++++++++ Vertical tail loads - CASE (a)(3) [daN] ++++++++++ 
+ Y
+ 5.466730
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Vertical tail loads - MOST CRITICAL LOADS [daN] ++++++++++ 
+ CRITICAL LOADS PER ---> CS - VLA 441 (a)(2) 
+ 
+ ++++ CS - VLA 445 ++++ 
+ ---------------------- 
+ ++++++++++ Vertical tail - GUST LOADS [daN] ++++++++++ 
+ GUST - VC        GUST - VD
+ 9.014154         5.633846
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++++++++ Vertical tail - CRITICAL GUST LOADS [daN] ++++++++++ 
+ at VC
+ CRITICAL GUST LOADS
+ 9.014154
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ 
+ ++++ CS - VLA 447 COMBINED LOADS ON TAIL SURFACES ++++ 
+ 
+ ++++++++++ COMBINED TAIL LOADS - [daN] ++++++++++ 
+ L_Tail Subpar. (a) L_Tail Subpar. (b) L_Tail Critical
+ 22.008423           73.264572           73.264572
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving Combinedload.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 
-            % Selection of the interpolated distribution of CD and CM
-            CD_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
-            CM_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
-            Interpolated_Global_CD_S = zeros(length(cd_interpolated(1,:)), 1);
-            Interpolated_Global_CM_S = zeros(length(cd_interpolated(1,:)), 1);
-            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
-            if exist('check_interp', 'var') == 1
-                for i = 1:length(cd_interpolated(1,:))
-                    Interpolated_Global_CD_S(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_S(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
-                    if abs(Interpolated_Global_CD_S(i) - CD_S) < 1e-1
-                       cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
-                    else
-                       cd_S = CD_S * ones(length(cd_interpolated(1,:)),1);
-                    end
-                    if abs(Interpolated_Global_CM_S(i) - CM_S) < 1e-1
-                       cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
-                    else
-                       cm_S = CM_S * ones(length(cd_interpolated(1,:)),1);
-                    end
-                end
-            elseif exist('check_interp', 'var') == 0
-                cd_S = CD_S * ones(length(cd_interpolated(1,:)),1);
-                cm_S = CM_S * ones(length(cd_interpolated(1,:)),1);
-            end
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Interpolated_Global_CD.value = Interpolated_Global_CD_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
-            % -------------------------------------------------------------   
-            % Selection of the interpolated distribution of CD and CM
-            CD_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
-            CM_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
-            Interpolated_Global_CD_S = zeros(length(cd_interpolated(1,:)), 1);
-            Interpolated_Global_CM_S = zeros(length(cd_interpolated(1,:)), 1);
-            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
-            if exist('check_interp', 'var') == 1
-                for i = 1:length(cd_interpolated(1,:))
-                    Interpolated_Global_CD_S(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_S(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution^2);
-                    if abs(Interpolated_Global_CD_S(i) - CD_S) < 1e-1
-                       cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
-                    else
-                       cd_S = CD_S * ones(length(cd_interpolated(1,:)),1);
-                    end
-                    if abs(Interpolated_Global_CM_S(i) - CM_S) < 1e-1
-                       cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
-                    else
-                       cm_S = CM_S * ones(length(cd_interpolated(1,:)),1);
-                    end
-                end
-            elseif exist('check_interp', 'var') == 0
-                cd_S = CD_S * ones(length(cd_interpolated(1,:)),1);
-                cm_S = CM_S * ones(length(cd_interpolated(1,:)),1);
-            end
-{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mpower', 'C:\Program Files\MATLAB\R2021a\toolbox\matlab\ops\mpower.m', 51)" style="font-weight:bold"> ^ </a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2021a\toolbox\matlab\ops\mpower.m',51,0)">line 51</a>)
-Incorrect dimensions for raising a matrix to a power. Check that the matrix is square and the power
-is a scalar. To perform elementwise matrix powers, use '.^'.
-} 
-            % Selection of the interpolated distribution of CD and CM
-            CD_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CD_S.value;
-            CM_S                     = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.CM_S.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
-            Interpolated_Global_CD_S = zeros(length(cd_interpolated(1,:)), 1);
-            Interpolated_Global_CM_S = zeros(length(cd_interpolated(1,:)), 1);
-            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
-            if exist('check_interp', 'var') == 1
-                for i = 1:length(cd_interpolated(1,:))
-                    Interpolated_Global_CD_S(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                    Interpolated_Global_CM_S(i) = k_cm * trapz(half_span, cm_interpolated(:,i).*chord_distribution.^2);
-                    if abs(Interpolated_Global_CD_S(i) - CD_S) < 1e-1
-                       cd_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
-                    else
-                       cd_S = CD_S * ones(length(cd_interpolated(1,:)),1);
-                    end
-                    if abs(Interpolated_Global_CM_S(i) - CM_S) < 1e-1
-                       cm_S = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
-                    else
-                       cm_S = CM_S * ones(length(cd_interpolated(1,:)),1);
-                    end
-                end
-            elseif exist('check_interp', 'var') == 0
-                cd_S = CD_S * ones(length(cd_interpolated(1,:)),1);
-                cm_S = CM_S * ones(length(cd_interpolated(1,:)),1);
-            end
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Interpolated_Global_CD.value = Interpolated_Global_CD_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.value = cd_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.value = cm_S;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cd_S.Attributes.unit = "Non dimensional";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS.cm_S.Attributes.unit = "Non dimensional";
-            % ------------------------------------------------------------- 
-            % Lift coefficient distribution along the span at the Point A1
-            cl_A1 = CL_A1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A.value = cl_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A.Attributes.unit = "Non dimensional";
+Mass =
 
-            % Support variables to interpolate
-            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
-            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
-            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
-            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
+   100
 
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving flapsenvelopediagramtakeoff.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving flapsenvelopediagramtakeoff.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving flaps_final_envelopediagramtakeoff.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 
-            % Selection of the interpolated distribution of CD and CM
-            CD_A1                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
-            CM_A1                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
-            Interpolated_Global_CD_A1 = zeros(length(cd_interpolated(1,:)), 1);
-            Interpolated_Global_CM_A1 = zeros(length(cd_interpolated(1,:)), 1);
-            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
-            if exist('check_interp', 'var') == 1
-                for i = 1:length(yi)
-                     Interpolated_Global_CD_A1(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                     Interpolated_Global_CD_A1(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                     if abs(Interpolated_Global_CD_A1(i) - CD_A1) < 1e-1
-                       cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
-                       cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
-                       check = 1;
-                     end
-                     if abs(Interpolated_Global_CM_A1(i) - CM_A1) < 1e-1
-                       cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
-                     end
-                end
-                if exist('check') == 0
-                    cd_A1 = CD_A1 * ones(length(xi),1);
-                    cm_A1 = CM_A1 * ones(length(xi),1);
-                end
-            elseif exist('check_interp', 'var') == 0
-                cd_A1 = CD_A1 * ones(length(xi),1);
-                cm_A1 = CM_A1 * ones(length(xi),1);
-            end
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Interpolated_Global_CD.value = Interpolated_Global_CD_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
-            % -------------------------------------------------------------      
-            % Lift coefficient distribution along the span at the Point A1
-            cl_A1 = CL_A1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A.value = cl_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cl_A.Attributes.unit = "Non dimensional";
+Mass =
 
-            % Support variables to interpolate
-            x   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
-            y   = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));
-            xi  = 1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(7,:));
-            yi  = 1:0.1:length(Aircraft.Certification.Regulation.SubpartC.Flightloads.Balancingloads.OpenVSP.Cd.value(:,1));        
+   100
 
-
-            % Selection of the interpolated distribution of CD and CM
-            CD_A1                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CD_A1.value;
-            CM_A1                    = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.CM_A1.value;
-            cd_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value';
-            cm_interpolated          = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value';
-            k_cd                     = (b*0.5)/S;
-            k_cm                     = (b*0.5)/S;
-            Interpolated_Global_CD_A1 = zeros(length(cd_interpolated(1,:)), 1);
-            Interpolated_Global_CM_A1 = zeros(length(cd_interpolated(1,:)), 1);
-            check_interp = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value;
-            if exist('check_interp', 'var') == 1
-                for i = 1:length(yi)
-                     Interpolated_Global_CD_A1(i) = k_cd * trapz(half_span, cd_interpolated(:,i).*chord_distribution);
-                     Interpolated_Global_CM_A1(i) = k_cd * trapz(half_span, cm_interpolated(:,i).*chord_distribution);
-                     if abs(Interpolated_Global_CD_A1(i) - CD_A1) < 1e-1
-                       cd_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cd.value(i,:)';
-                       cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
-                       check = 1;
-                     end
-                     if abs(Interpolated_Global_CM_A1(i) - CM_A1) < 1e-1
-                       cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
-                     end
-                end
-                if exist('check') == 0
-                    cd_A1 = CD_A1 * ones(length(xi),1);
-                    cm_A1 = CM_A1 * ones(length(xi),1);
-                end
-            elseif exist('check_interp', 'var') == 0
-                cd_A1 = CD_A1 * ones(length(xi),1);
-                cm_A1 = CM_A1 * ones(length(xi),1);
-            end
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Interpolated_Global_CD.value = Interpolated_Global_CD_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.Interpolated_Global_CD.Attributes.unit = "Non dimensional";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.value = cd_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.value = cm_A1;
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cd_A1.Attributes.unit = "Non dimensional";
-            Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointA1.cm_A1.Attributes.unit = "Non dimensional";
-            % -------------------------------------------------------------   
-Interpolated_Global_CM_A1
-
-Interpolated_Global_CM_A1 =
-
-   -0.4388
-   -0.4379
-   -0.4369
-   -0.4360
-   -0.4351
-   -0.4342
-   -0.4333
-   -0.4325
-   -0.4317
-   -0.4309
-   -0.4302
-   -0.4294
-   -0.4287
-   -0.4281
-   -0.4274
-   -0.4268
-   -0.4262
-   -0.4257
-   -0.4252
-   -0.4247
-   -0.4242
-   -0.4237
-   -0.4233
-   -0.4230
-   -0.4226
-   -0.4223
-   -0.4220
-   -0.4218
-   -0.4215
-   -0.4213
-   -0.4212
-   -0.4211
-   -0.4210
-   -0.4209
-   -0.4209
-   -0.4209
-   -0.4209
-   -0.4210
-   -0.4211
-   -0.4213
-   -0.4214
-   -0.4217
-   -0.4219
-   -0.4222
-   -0.4225
-   -0.4228
-   -0.4232
-   -0.4236
-   -0.4241
-   -0.4246
-   -0.4251
-   -0.4256
-   -0.4262
-   -0.4268
-   -0.4275
-   -0.4282
-   -0.4289
-   -0.4297
-   -0.4305
-   -0.4313
-   -0.4322
-   -0.4331
-   -0.4340
-   -0.4350
-   -0.4360
-   -0.4370
-   -0.4381
-   -0.4392
-   -0.4404
-   -0.4416
-   -0.4428
-   -0.4440
-   -0.4453
-   -0.4466
-   -0.4480
-   -0.4493
-   -0.4508
-   -0.4522
-   -0.4537
-   -0.4552
-   -0.4568
-   -0.4583
-   -0.4600
-   -0.4616
-   -0.4633
-   -0.4650
-   -0.4668
-   -0.4686
-   -0.4704
-   -0.4722
-   -0.4741
-   -0.4760
-   -0.4780
-   -0.4799
-   -0.4819
-   -0.4840
-   -0.4860
-   -0.4881
-   -0.4902
-   -0.4924
-   -0.4946
-   -0.4968
-   -0.4990
-   -0.5013
-   -0.5036
-   -0.5059
-   -0.5083
-   -0.5106
-   -0.5130
-   -0.5155
-   -0.5179
-   -0.5204
-   -0.5229
-   -0.5254
-   -0.5280
-   -0.5306
-   -0.5332
-   -0.5358
-   -0.5384
-   -0.5411
-   -0.5438
-   -0.5465
-   -0.5492
-   -0.5520
-   -0.5548
-   -0.5576
-   -0.5604
-   -0.5632
-   -0.5661
-   -0.5689
-   -0.5718
-
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving flapsenvelopediagramlanding.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving flapsenvelopediagramlanding.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving flaps_final_envelopediagramlanding.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+[Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
+Saving Superposition.pdf in: 
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+ ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ 
+ ------------------------------------------------------ 
+ +++++++++++++++++ Hinge Moments - AILERON +++++++++++++++++ 
+ HA [N * m]  HA_converted [kg * m]       HA_125 [N * m]      HA_total_SI [N * m]      HA_total_converted [kg * m]
+ -1.360276       -0.138710                  -1.700345           -3.400690                -0.346774
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ 
+ ------------------------------------------------------ 
+ +++++++++++++++++ Hinge Moments - ELEVATOR +++++++++++++++++ 
+ HE [N * m]  HE_converted [kg * m]       HE_125 [N * m]   HE_125_convert [kg * m]  HE_Total [N * m]    HE_Total_convert [kg * m]
+ -4.038741       -0.411837                  -5.048426           -0.514796           -10.096852           -1.029592
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+ ++++ A11 CONTROL SURFACE LOADS - HINGE MOMENTS ++++ 
+ ------------------------------------------------------ 
+ +++++++++++++++++ Hinge Moments - RUDDER +++++++++++++++++ 
+ HR [N * m]  HR_converted [kg * m]       HR_125 [N * m]   HR_125_convert [kg * m]
+ -0.886739       -0.090422                  -1.108424           -0.113028
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\Geometry
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+ 
+### aircraft name is DroneVLA
+Fuselageexists
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+Fuselage Geometry utilities running
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+FuselageGeometry utilities end run
+Wingexists
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+WingGeometry utilities end run
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+WingGeometry utilities end run
+Horizontalexists
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+HorizontalGeometry utilities end run
+Verticalexists
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+VerticalGeometry utilities end run
+Engineexists
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+EngineGeometry utilities end run
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+Saving complete aircaft figures...
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+End Geometry utilities run
+-----------------
+### Current directory ###
+C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\RepGen
+The authors are  Pierluigi Della Vecchia and Claudio Mirabella
+ 
+The authors' affiliation is  Design of Aircraft and Flight Technologies, DAF
+The report template is  No Template
+The report format is  pdf
+Writing report...
+Chapter 1 "Introduction" writing...
+Chapter 1 written
+Chapter 2 "References" writing...
+Chapter 2 written
+Chapter 3 "List of Abbreviations" writing...
+Chapter 3 written
+Chapter 4 "Aircraft data" writing...
+Chapter 4 written
+VCmin has been assigned.
+VCmin = 32m/s
+Chapter 5 "Design Airspeeds" writing...
+VH is Not a Number
+VH has not been assigned.
+VH will be set to zero 
+Chapter 5 written
+Chapter 6 "Altitude" writing...
+Chapter 6 written
+Chapter 7 "Manoeuvring and Gust load factors n" writing...
+Chapter 7 written
+Chapter 8 "V-n Envelope" writing...
+Chapter 8 written
+Chapter 9 "Loads on the aeroplane" writing...
+Chapter 9 written
+Chapter 10 "Loads on the wing" writing...
+Chapter 10 written
+Chapter 11 "Loads on the horizontal tail" writing...
+Chapter 11 written
+Chapter 12 "Loads on the vertical tail" writing...
+Chapter 12 written
+Chapter 13 "Loads on the wing flaps" writing...
+Chapter 13 written
+Chapter 14 "Loads on the control surfaces" writing...
+Chapter 14 written
+Chapter 15 "Power plant" writing...
+Chapter 15 written
+Report successfully written. Execution terminated.
