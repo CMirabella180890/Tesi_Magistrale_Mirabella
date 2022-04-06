@@ -112,4 +112,6 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         fields = {'ce_c_root', 'ce_c_tip'};
         Aircraft.Geometry.Horizontal = rmfield(Aircraft.Geometry.Horizontal, fields);
         % -----------------------------------------------------------------
+        field = {'type'};
+        Aircraft.Geometry.Flaps = rmfield(Aircraft.Geometry.Flaps, field);
 end

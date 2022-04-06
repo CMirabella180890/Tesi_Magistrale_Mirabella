@@ -2878,7 +2878,7 @@ switch (Inverted_flight_Case)
             
             %% POINT G CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point G
-            cl_G = -CL_G * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_G = CL_G * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.value = cl_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.cl_G.Attributes.unit = "Non dimensional";
             
@@ -3007,7 +3007,7 @@ switch (Inverted_flight_Case)
             
             %% POINT G1 CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point G1
-            cl_G1 = -CL_G1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_G1 = CL_G1 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cl_G1.value = cl_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.cl_G1.Attributes.unit = "Non dimensional";
             
@@ -3137,7 +3137,7 @@ switch (Inverted_flight_Case)
             
             %% POINT F CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point F
-            cl_F = -CL_F * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_F = CL_F * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.value = cl_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.cl_F.Attributes.unit = "Non dimensional";
             
@@ -3267,7 +3267,7 @@ switch (Inverted_flight_Case)
             
             %% POINT G2 CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point G2
-            cl_G2 = -CL_G2 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_G2 = CL_G2 * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cl_G2.value = cl_G2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.cl_G2.Attributes.unit = "Non dimensional";
             
@@ -3397,7 +3397,7 @@ switch (Inverted_flight_Case)
             
             %% POINT E CALCULATIONS                 
             % Lift coefficient distribution along the span at the Point E
-            cl_E = -CL_E * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
+            cl_E = CL_E * CL_equal_to_one; % LIFT COEFFICIENT TIMES LIFT DISTRIBUTION ALONG THE SEMI-SPAN
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.value = cl_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.cl_E.Attributes.unit = "Non dimensional";
             
@@ -3660,8 +3660,8 @@ switch (Inverted_flight_Case)
             plot(flip(half_span), cd_E, 'LineWidth', 1.5)
 
             xlabel("Wing semispan - $y$ $(m)$", "Interpreter", "latex")
-            ylabel("$cl = cl(y)$", "Interpreter", "latex")
-            title("Lift distr. comparison", "Interpreter", "latex") 
+            ylabel("$c_d = c_d(y)$", "Interpreter", "latex")
+            title("Drag distr. comparison", "Interpreter", "latex") 
 
             legend(legenda, 'Interpreter', 'latex', 'Location', 'northeast', 'FontSize', 6)
             

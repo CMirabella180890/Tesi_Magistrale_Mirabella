@@ -535,7 +535,7 @@ set.X_cg                    = ac.wing.macxloc+...     % aircraft center of gravi
 set.Y_cg                    = 0;
 set.Z_cg                    = 0;
 % set.AoA                     = -2:2:20;                 % attack angle(s) TecnamP92
-set.AoA                     = -26:2:26;                 % attack angle(s) drone
+set.AoA                     = -12:2:14;                 % attack angle(s) drone
 % 
 % +++++++++++++++++++++++++++++++++++
 % ANGLE OF ATTACK CORRESPONDING TO CL = 1
