@@ -171,6 +171,8 @@ if isfield(Aircraft.Geometry.Wing,'type') == 1
         ac.wing.macxloc = ac.wing.xloc;       % Rectangular or...
     end
 end
+Aircraft.Geometry.Wing.MAC.value           = ac.wing.mac; 
+Aircraft.Geometry.Wing.MAC.Attributes.unit = "m";
 % Vectors referring to wing panels must be the same size.
 % Vectors referring to wing airfoils must be the same size.
 % Latter ones are one element bigger than first ones.

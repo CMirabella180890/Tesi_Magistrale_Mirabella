@@ -114,12 +114,16 @@ Saving FullPitchMomModelInterpolation.pdf in:
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 -----------------
 ### Balancing loads - per CS - VLA ###
+<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m',3682,1)">3682 </a>        Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointD.CM_D.Attributes.unit = "Non dimensional";      
+if system_dependent('IsDebugMode')==1, dbcont; end
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Balancingloads.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving Wingairloads.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
+<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcBalancLoads.m',6377,1)">6377 </a>movefile Wingairloads.png Output 
+if system_dependent('IsDebugMode')==1, dbcont; end
 -----------------
 ### Current directory ###
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\utilities\OpenVSP
@@ -255,8 +259,6 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving cdComparison.pdf in: 
 C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\Output
-<a href="matlab: opentoline('C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella\csvla\CalcShearBendTorsMom.m',8455,1)">8455 </a>        movefile cmComparison.png Output
-if system_dependent('IsDebugMode')==1, dbcont; end
  ++++ FIGURE 27 - POINT A SYMM. AND UNSYMM. PITCH MOM. COEFFICIENTS ++++ 
 [Warning: 'ContentType' parameter is ignored when it is set to 'vector' for image output.] 
 Saving CmComparisonPointA.pdf in: 
@@ -326,7 +328,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ++++ CHECKED ++++
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
  At VA
- -94.398181
+ -91.490164
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (b) - PITCH DOWN ++++
@@ -340,7 +342,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ----------------------------------------------
  +++++++++++++++++ Total Horizontal Tail loads - Method (b) [daN] +++++++++++++++++ 
  At VA
- -94.398181
+ -91.490164
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++ METHOD CS - VLA 423 (a)+(b) ++++
@@ -360,7 +362,7 @@ C:\Users\claum\OneDrive\Desktop\TesiMagistrale\tesi-magistrale-claudio-mirabella
  ------------------------------------------------------ 
  +++++++++++++++++ Total Horizontal Tail loads [daN] +++++++++++++++++ 
   Upward defl. VA   Downward defl. VA     Upward defl. VD    Downward defl. VD
- -60.300865         33.645331            -87.159376         -17.148411
+ -57.566092         33.645331            -83.897481         -13.886516
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
  
  ++++++++++ CS - VLA 423 - METHOD D ++++++++++ 
