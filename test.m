@@ -39,8 +39,8 @@ InputSource = "From File";
 % "Custom"
 %do not edit
 % filename = 'Aircraft_test'; %do not edit
-% filename = 'drone_vla';     %do not edit
-filename = 'TecnamP92_input';  %do not edit
+filename = 'drone_vla';     %do not edit
+% filename = 'TecnamP92_input';  %do not edit
 
 %% INIZIALIZATION OF AircraftSTRUCT VARIABLE (Just the minimal values)
 cd initialization 

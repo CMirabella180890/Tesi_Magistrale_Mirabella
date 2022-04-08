@@ -119,4 +119,7 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         % -----------------------------------------------------------------
         field = {'type'};
         Aircraft.Geometry.Flaps = rmfield(Aircraft.Geometry.Flaps, field);
+        field = {'y_span'};
+        Aircraft.Geometry.Aileron = rmfield(Aircraft.Geometry.Aileron, field);
+        
 end

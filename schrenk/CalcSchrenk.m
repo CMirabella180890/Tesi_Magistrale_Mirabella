@@ -2,7 +2,7 @@
 %% CALCULATION OF THE LOAD DISTRIBUTION WITH SCHRENK'S METHOD
 
 %% Number of elements
-numb = 1e3; 
+numb = 39; 
 
 %% Aircraft data 
 b      = Aircraft.Geometry.Wing.b.value; 
