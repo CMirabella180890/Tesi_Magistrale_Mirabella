@@ -2855,6 +2855,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_S_inv = calc_tors_mom(obj2, half_span, m_distr_S_inv)*(1e-1);
+            Tors_mom_distr_S_inv = abs( Tors_mom_distr_S_inv );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Tors_mom_distr.value = Tors_mom_distr_S_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -2984,6 +2985,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_G = calc_tors_mom(obj2, half_span, m_distr_G)*(1e-1);
+            Tors_mom_distr_G = abs( Tors_mom_distr_G );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.value = Tors_mom_distr_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -3114,6 +3116,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_G1 = calc_tors_mom(obj2, half_span, m_distr_G1)*(1e-1);
+            Tors_mom_distr_G1 = abs( Tors_mom_distr_G1 );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Tors_mom_distr.value = Tors_mom_distr_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -3244,6 +3247,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_F = calc_tors_mom(obj2, half_span, m_distr_F)*(1e-1);
+            Tors_mom_distr_F = abs( Tors_mom_distr_F );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.value = Tors_mom_distr_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -3374,6 +3378,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_G2 = calc_tors_mom(obj2, half_span, m_distr_G2)*(1e-1);
+            Tors_mom_distr_G2 = abs( Tors_mom_distr_G2 );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Tors_mom_distr.value = Tors_mom_distr_G2;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG2.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -3504,6 +3509,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_E = calc_tors_mom(obj2, half_span, m_distr_E)*(1e-1);
+            Tors_mom_distr_E = abs( Tors_mom_distr_E );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.value = Tors_mom_distr_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -3898,6 +3904,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_S_inv = calc_tors_mom(obj2, half_span, m_distr_S_inv)*(1e-1);
+            Tors_mom_distr_S_inv = abs( Tors_mom_distr_S_inv );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Tors_mom_distr.value = Tors_mom_distr_S_inv;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -4028,6 +4035,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_G = calc_tors_mom(obj2, half_span, m_distr_G)*(1e-1);
+            Tors_mom_distr_G = abs( Tors_mom_distr_G );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.value = Tors_mom_distr_G;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -4158,6 +4166,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_G1 = calc_tors_mom(obj2, half_span, m_distr_G1)*(1e-1);
+            Tors_mom_distr_G1 = abs( Tors_mom_distr_G1 );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Tors_mom_distr.value = Tors_mom_distr_G1;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -4288,6 +4297,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_F = calc_tors_mom(obj2, half_span, m_distr_F)*(1e-1);
+            Tors_mom_distr_F = abs( Tors_mom_distr_F );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.value = Tors_mom_distr_F;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -4418,6 +4428,7 @@ switch (Inverted_flight_Case)
             % A complete distribution of this function is included inside the class
             % file ShearBendingTorsion.m
             Tors_mom_distr_E = calc_tors_mom(obj2, half_span, m_distr_E)*(1e-1);
+            Tors_mom_distr_E = abs( Tors_mom_distr_E );
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.value = Tors_mom_distr_E;
             Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -4799,6 +4810,7 @@ switch (Inverted_flight_Case)
         % A complete distribution of this function is included inside the class
         % file ShearBendingTorsion.m
         Tors_mom_distr_S_inv = calc_tors_mom(obj2, half_span, m_distr_S_inv)*(1e-1);
+        Tors_mom_distr_S_inv = abs( Tors_mom_distr_S_inv );
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Tors_mom_distr.value = Tors_mom_distr_S_inv;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointS_inv.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -4929,6 +4941,7 @@ switch (Inverted_flight_Case)
         % A complete distribution of this function is included inside the class
         % file ShearBendingTorsion.m
         Tors_mom_distr_G = calc_tors_mom(obj2, half_span, m_distr_G)*(1e-1);
+        Tors_mom_distr_G = abs( Tors_mom_distr_G );
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.value = Tors_mom_distr_G;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -5059,6 +5072,7 @@ switch (Inverted_flight_Case)
         % A complete distribution of this function is included inside the class
         % file ShearBendingTorsion.m
         Tors_mom_distr_G1 = calc_tors_mom(obj2, half_span, m_distr_G1)*(1e-1);
+        Tors_mom_distr_G1 = abs( Tors_mom_distr_G1 );
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Tors_mom_distr.value = Tors_mom_distr_G1;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointG1.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -5189,6 +5203,7 @@ switch (Inverted_flight_Case)
         % A complete distribution of this function is included inside the class
         % file ShearBendingTorsion.m
         Tors_mom_distr_F = calc_tors_mom(obj2, half_span, m_distr_F)*(1e-1);
+        Tors_mom_distr_F = abs( Tors_mom_distr_F );
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.value = Tors_mom_distr_F;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointF.Tors_mom_distr.Attributes.unit = "daN*m";   
 
@@ -5318,6 +5333,7 @@ switch (Inverted_flight_Case)
         % A complete distribution of this function is included inside the class
         % file ShearBendingTorsion.m
         Tors_mom_distr_E = calc_tors_mom(obj2, half_span, m_distr_E)*(1e-1);
+        Tors_mom_distr_E = abs( Tors_mom_distr_E );
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.value = Tors_mom_distr_E;
         Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.PointE.Tors_mom_distr.Attributes.unit = "daN*m";   
 

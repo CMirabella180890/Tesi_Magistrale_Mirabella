@@ -161,7 +161,7 @@ add(sec,para);
 %         % -----------------------------------------------------------------
 % -------------------------------------------------------------------------        
 
-% UNCHECKED MANOEUVRE DATA
+% UNCHECKED MANOEUVRE DATA < ERRORE QUI 
 pitchup_control_stops   = Aircraft.Certification.Aerodynamic_data.Elevator.Max_deflection.value;
 pitchup_control_unit    = Aircraft.Certification.Aerodynamic_data.Elevator.Max_deflection.Attributes.unit;
 pitchdown_control_stops = Aircraft.Certification.Aerodynamic_data.Elevator.Max_deflection.value;  

@@ -84,6 +84,11 @@ switch (Aircraft.Certification.Regulation.SubpartC.Flightloads.Airload_case.Attr
         Aircraft.Geometry.General.xcg_nondim.value = Aircraft.Geometry.General.XCG_nondim.value;
         Aircraft.Geometry.General.xcg_nondim.Attributes.unit = "Non dimensional";
         % -----------------------------------------------------------------
+        Aircraft.Certification.Aerodynamic_data.Elevator.Max_deflection.value = Aircraft.Geometry.Elevator.max_deflection.value;
+        Aircraft.Certification.Aerodynamic_data.Elevator.Max_deflection.Attributes.unit = "deg";
+        Aircraft.Certification.Aerodynamic_data.Elevator.total_deflection_time.value = Aircraft.Geometry.Elevator.total_deflection_time.value;
+        Aircraft.Certification.Aerodynamic_data.Elevator.total_deflection_time.Attributes.unit = "s";
+        % -----------------------------------------------------------------
         fields = {'xac', 'yac', 'zac', 'X_cg', 'XAC_nondim', 'XCG_nondim'};
         Aircraft.Geometry.General = rmfield(Aircraft.Geometry.General, fields);
         % -----------------------------------------------------------------

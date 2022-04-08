@@ -2447,7 +2447,7 @@ CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balanci
                     if abs(Interpolated_Global_CM_D(i) - CM_D) < 1e-1
                        cm_D = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                     end
-                    if exist('check') == 0
+                    if exist('check','var') == 0
                            cd_D = CD_D * ones(length(xi),1);
                            cm_D = CM_D * ones(length(xi),1);
                     end
@@ -3150,7 +3150,7 @@ CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balanci
                    cm_A = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                 end
             end
-            if exist('check') == 0
+            if exist('check','var') == 0
                 cd_A = CD_A * ones(length(xi),1);
                 cm_A = CM_A * ones(length(xi),1);
             end
@@ -3351,7 +3351,7 @@ CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balanci
                    cm_A1 = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                 end
             end
-            if exist('check') == 0
+            if exist('check','var') == 0
                    cd_A1 = CD_A1 * ones(length(xi),1);
                    cm_A1 = CM_A1 * ones(length(xi),1);
             end
@@ -3552,7 +3552,7 @@ CL_equal_to_one = Aircraft.Certification.Regulation.SubpartC.Flightloads.Balanci
                    cm_C = Aircraft.Certification.Regulation.SubpartC.Flightloads.Final_envelope.Interpolated_Cm.value(i,:)';
                 end
             end
-            if exist('check') == 0
+            if exist('check','var') == 0
                    cd_C = CD_C * ones(length(xi),1);
                    cm_C = CM_C * ones(length(xi),1);
             end

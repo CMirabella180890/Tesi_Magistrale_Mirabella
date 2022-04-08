@@ -120,6 +120,9 @@ switch (Aircraft.Certification.Regulation.value)
                 % INTERNAL FORCES 
                 CalcInternForces_Schrenk
                 
+                % UNSYMMETRICAL LOADS - SCHRENK
+                CalcUnsymmLoadsSchrenk
+                
                 % -----------------------------------------------------------------
                 % CHANGE DIRECTORY TO APPLY AIRWORTHINESS RULES
                 cd .. 
@@ -134,6 +137,7 @@ switch (Aircraft.Certification.Regulation.value)
                 fprintf('\n');
                 fprintf('%s\n', dir);
                 % -----------------------------------------------------------------
+                
         end
         % =================================================================
         % CALCULATE HORIZONTAL TAIL LOADS 
